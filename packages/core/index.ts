@@ -62,6 +62,7 @@ import useElementSize from "./hooks/useElementSize";
 import useVirtualList from "./hooks/useVirtualList";
 import usePreferredColorScheme from "./hooks/usePreferredColorScheme";
 import usePreferredContrast from "./hooks/usePreferredContrast";
+import useActiveElement from "./hooks/useActiveElement";
 
 export {
   usePrevious,
@@ -128,4 +129,5 @@ export {
   useScrollLock,
   useElementSize,
   useVirtualList,
+  useActiveElement,
 };

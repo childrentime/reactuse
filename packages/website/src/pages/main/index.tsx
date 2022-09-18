@@ -52,6 +52,7 @@ const menuGroup: Menu[] = [
   {
     title: "Browser",
     items: [
+      "useActiveElement",
       "useMediaQuery",
       "usePreferredColorScheme",
       "usePreferredContrast",
