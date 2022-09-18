@@ -30,10 +30,10 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        uses: yarn install --frozen-lockfile
 
       - name: Run build
-        run: yarn build
+        uses: yarn build
 
   test:
     name: Unit tests
@@ -46,7 +46,7 @@ jobs:
 
     steps:
       - name: Check out repository
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Install yarn
         uses: yarn/action-setup@v2
