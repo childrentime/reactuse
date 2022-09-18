@@ -48,9 +48,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Install yarn
-        uses: yarn/action-setup@v2
-
       - name: Set node version to ${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
