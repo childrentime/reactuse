@@ -1,0 +1,42 @@
+{
+  "name": "@reactuses/core",
+  "version": "1.0.0",
+  "main": "./index.cjs",
+  "module": "./index.mjs",
+  "types": "./index.d.ts",
+  "sideEffects": false,
+  "license": "Unlicense",
+  "homepage": "https://github.com/vueuse/vueuse/tree/main/packages/metadata#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/childrentime/reactuse",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/childrentime/reactuse/issues"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.184",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.31.5",
+    "eslint-plugin-react-hooks": "^4.6.0"
+  },
+  "scripts": {
+    "lint": "eslint \"{hooks,tests}/**/*.{ts,tsx}\""
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "screenfull": "^5.0.0"
+  },
+  "keywords": [
+    "react",
+    "react-use",
+    "react hooks",
+    "hook",
+    "hooks",
+    "component"
+  ]
+}

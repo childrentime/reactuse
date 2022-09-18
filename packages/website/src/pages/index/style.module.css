@@ -1,0 +1,43 @@
+.layout {
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1152px;
+  padding-top: 15rem;
+  margin-top: 40px;
+}
+
+.layout h1 {
+  font-size: 4.8rem;
+  line-height: 1.5;
+}
+
+.layout p {
+  font-size: 2.4rem;
+  margin-bottom: 4.8rem;
+}
+
+.buttons {
+  margin-left: -1.5rem;
+}
+
+.button {
+  cursor: pointer;
+  font-size: 1.8rem;
+  text-decoration: none;
+  color: var(--c-primary);
+  padding: 1.35rem 4.136rem;
+  box-shadow: 0px 1rem 3rem var(--c-box-shadow);
+  border-radius: 1rem;
+  -webkit-transition-duration: 200ms;
+  transition-duration: 200ms;
+  margin: 1.5rem;
+}
+
+.primary {
+  background-color: var(--c-primary);
+  color: var(--c-bg) !important;
+  box-shadow: 0px 1rem 3rem var(--c-primary-shadow) !important;
+}
