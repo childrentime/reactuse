@@ -1,12 +1,12 @@
 {
   "name": "@reactuses/core",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "./index.cjs",
   "module": "./index.mjs",
   "types": "./index.d.ts",
   "sideEffects": false,
   "license": "Unlicense",
-  "homepage": "https://github.com/vueuse/vueuse/tree/main/packages/metadata#readme",
+  "homepage": "https://www.reactuse.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/childrentime/reactuse",
