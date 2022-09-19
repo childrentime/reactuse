@@ -63,6 +63,7 @@ import useVirtualList from "./hooks/useVirtualList";
 import usePreferredColorScheme from "./hooks/usePreferredColorScheme";
 import usePreferredContrast from "./hooks/usePreferredContrast";
 import useActiveElement from "./hooks/useActiveElement";
+import useDraggable from "./hooks/useDraggable";
 
 export {
   usePrevious,
@@ -130,4 +131,5 @@ export {
   useElementSize,
   useVirtualList,
   useActiveElement,
+  useDraggable,
 };

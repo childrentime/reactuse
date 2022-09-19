@@ -87,6 +87,7 @@ const menuGroup: Menu[] = [
       "useInfiniteScroll",
       "useKeyModifier",
       "useMousePressed",
+      "useDraggable",
     ],
   },
 ];
