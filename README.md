@@ -62,6 +62,14 @@ See the [**Contributing Guide**](CONTRIBUTING.md)
 
 <hr/>
 
+## Idea
+
+We want to keep a single hook function as simple as possible.
+
+* For data fetch, we recommend use [swr](https://www.npmjs.com/package/swr)
+
+* For keyboard shortcuts, we recommend use [react-hotkeys-hook](https://www.npmjs.com/package/react-hotkeys-hook)
+
 ## Thanks
 
 This project is heavily inspired by the following awesome projects.
