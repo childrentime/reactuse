@@ -64,6 +64,7 @@ import usePreferredColorScheme from "./hooks/usePreferredColorScheme";
 import usePreferredContrast from "./hooks/usePreferredContrast";
 import useActiveElement from "./hooks/useActiveElement";
 import useDraggable from "./hooks/useDraggable";
+import useElementBounding from "./hooks/useElementBounding";
 
 export {
   usePrevious,
@@ -132,4 +133,5 @@ export {
   useVirtualList,
   useActiveElement,
   useDraggable,
+  useElementBounding,
 };

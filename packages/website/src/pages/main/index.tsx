@@ -58,6 +58,7 @@ const menuGroup: Menu[] = [
       "usePreferredContrast",
       "usePreferredDark",
       "useDarkMode",
+      "useElementBounding",
       "useMutationObserver",
       "useIntersectionObserver",
       "useResizeObserver",
