@@ -1,6 +1,6 @@
 import { useLatest } from "@reactuses/core";
 import file from "./README.md";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Layout from "../Layout";
 
 const Page = () => {
