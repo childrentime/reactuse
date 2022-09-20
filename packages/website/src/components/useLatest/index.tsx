@@ -13,7 +13,6 @@ const Page = () => {
 
 const Demo = () => {
   const [count, setCount] = useState(0);
-  const arr = useRef([1, 2]);
   const latestCount = useLatest(count);
   const handleAlertClick = () => {
     setTimeout(() => {
@@ -26,7 +25,6 @@ const Demo = () => {
       <p>You clicked {count} times</p>
       <button onClick={() => setCount(count + 1)}>Click me</button>
       <button onClick={handleAlertClick}>Show alert</button>
-      <div>{arr.current.toString()}</div>
     </div>
   );
 };
