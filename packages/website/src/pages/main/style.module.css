@@ -196,6 +196,8 @@
   background: var(--c-bg);
   color: var(--c-text);
   transition: background-color 0.5s;
+  width: 200px;
+  height: 200px;
 }
 
 .content button[disabled] {
