@@ -55,6 +55,11 @@ You can also write your tests first if you prefer [test-driven development](http
 
 Feel free to enhance the existing functions. Please try not to introduce breaking changes.
 
+## Code Style
+
+- An if or for statement block must be enclosed in curly braces.
+- Statements must be enclosed in semicolons.
+
 ## Thanks
 
 Thank you again for being interested in this project! You are awesome!
