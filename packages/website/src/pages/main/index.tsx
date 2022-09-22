@@ -55,6 +55,7 @@ const menuGroup: Menu[] = [
       "useActiveElement",
       "useDocumentVisibility",
       "useElementBounding",
+      "useElementVisibility",
       "useDraggable",
       "useDropZone",
       "useElementSize",

@@ -65,6 +65,7 @@ import usePreferredContrast from "./hooks/usePreferredContrast";
 import useActiveElement from "./hooks/useActiveElement";
 import useDraggable from "./hooks/useDraggable";
 import useElementBounding from "./hooks/useElementBounding";
+import useElementVisibility from "./hooks/useElementVisibility";
 
 export {
   usePrevious,
@@ -134,4 +135,5 @@ export {
   useActiveElement,
   useDraggable,
   useElementBounding,
+  useElementVisibility,
 };
