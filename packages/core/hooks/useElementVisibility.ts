@@ -1,4 +1,4 @@
-import { useIntersectionObserver } from "@reactuses/core";
+import useIntersectionObserver from "./useIntersectionObserver";
 import { useCallback, useState } from "react";
 import { BasicTarget } from "./../utils/domTarget";
 
