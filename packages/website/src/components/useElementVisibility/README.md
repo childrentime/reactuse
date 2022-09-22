@@ -10,7 +10,7 @@ import { useRef } from "react";
 
 const Demo = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const visible = useElementVisibility(ref);
+  const [visible, stop] = useElementVisibility(ref);
 
   return (
     <div>
@@ -25,6 +25,13 @@ const Demo = () => {
       >
         Target Element (scroll down)
       </div>
+      <button
+        onClick={() => {
+          stop();
+        }}
+      >
+        Stop
+      </button>
       <div
         style={{
           borderWidth: 2,

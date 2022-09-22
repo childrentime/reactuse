@@ -5,7 +5,7 @@ import { BasicTarget } from "./../utils/domTarget";
 export default function useElementVisibility(
   target: BasicTarget<HTMLElement | SVGElement>,
   options: IntersectionObserverInit = {}
-): boolean {
+): readonly [any, () => void] {
   const [visible, setVisible] = useState(false);
 
   const callback: IntersectionObserverCallback = useCallback((entries) => {
@@ -19,7 +19,7 @@ export default function useElementVisibility(
         rect.right >= 0
     );
   }, []);
-  useIntersectionObserver(target, callback, options);
+  const stop = useIntersectionObserver(target, callback, options);
 
-  return visible;
+  return [visible, stop] as const;
 }
