@@ -1,6 +1,6 @@
 {
   "name": "@reactuses/monorepo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": "true",
   "description": "Collection of essential React Composition Utilities",
   "workspaces": [
