@@ -62,6 +62,7 @@ const menuGroup: Menu[] = [
       "useMutationObserver",
       "useIntersectionObserver",
       "useResizeObserver",
+      "useWindowFocus",
     ],
   },
   {

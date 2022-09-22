@@ -66,6 +66,7 @@ import useActiveElement from "./hooks/useActiveElement";
 import useDraggable from "./hooks/useDraggable";
 import useElementBounding from "./hooks/useElementBounding";
 import useElementVisibility from "./hooks/useElementVisibility";
+import useWindowsFocus from "./hooks/useWindowFocus";
 
 export {
   usePrevious,
@@ -136,4 +137,5 @@ export {
   useDraggable,
   useElementBounding,
   useElementVisibility,
+  useWindowsFocus,
 };
