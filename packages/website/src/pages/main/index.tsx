@@ -63,6 +63,7 @@ const menuGroup: Menu[] = [
       "useIntersectionObserver",
       "useResizeObserver",
       "useWindowFocus",
+      "useWindowScroll",
       "useWindowSize",
     ],
   },

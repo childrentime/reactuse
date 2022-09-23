@@ -68,6 +68,7 @@ import useElementBounding from "./hooks/useElementBounding";
 import useElementVisibility from "./hooks/useElementVisibility";
 import useWindowsFocus from "./hooks/useWindowFocus";
 import useWindowSize from "./hooks/useWindowSize";
+import useWindowScroll from "./hooks/useWindowScroll";
 
 export {
   usePrevious,
@@ -140,4 +141,5 @@ export {
   useElementVisibility,
   useWindowsFocus,
   useWindowSize,
+  useWindowScroll,
 };
