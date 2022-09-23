@@ -1,6 +1,6 @@
 {
   "name": "@reactuses/core",
-  "version": "1.0.5",
+  "version": "1.0.6-beta.1",
   "main": "./index.cjs",
   "module": "./index.mjs",
   "types": "./index.d.ts",

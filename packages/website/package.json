@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@docsearch/react": "3",
-    "@reactuses/core": "1.0.5",
+    "@reactuses/core": "1.0.6-beta.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
