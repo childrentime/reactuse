@@ -13,7 +13,7 @@ export default function useWindowScroll(): State {
   }));
 
   const handleScroll = () => {
-    setState({ x: window.scrollX, y: window.screenY });
+    setState({ x: window.scrollX, y: window.scrollY });
   };
 
   useEventListener("scroll", handleScroll, window, {
