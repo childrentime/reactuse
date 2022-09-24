@@ -7,6 +7,8 @@
     "packages/*"
   ],
   "scripts": {
+    "dev": "cd packages && cd website && yarn start",
+    "start": "yarn dev",
     "build": "esno scripts/build.ts",
     "build:rollup": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" rollup -c",
     "update": "esno scripts/update.ts",
