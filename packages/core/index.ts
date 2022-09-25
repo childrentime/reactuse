@@ -69,6 +69,7 @@ import useElementVisibility from "./hooks/useElementVisibility";
 import useWindowsFocus from "./hooks/useWindowFocus";
 import useWindowSize from "./hooks/useWindowSize";
 import useWindowScroll from "./hooks/useWindowScroll";
+import useClipboard from "./hooks/useClipboard";
 
 export {
   usePrevious,
@@ -142,4 +143,5 @@ export {
   useWindowsFocus,
   useWindowSize,
   useWindowScroll,
+  useClipboard,
 };

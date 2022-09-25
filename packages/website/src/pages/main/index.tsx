@@ -98,6 +98,7 @@ const menuGroup: Menu[] = [
       "useInfiniteScroll",
       "useKeyModifier",
       "useMousePressed",
+      "useClipboard",
     ],
   },
 ];
