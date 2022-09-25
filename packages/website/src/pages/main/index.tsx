@@ -53,6 +53,7 @@ const menuGroup: Menu[] = [
     title: "Element",
     items: [
       "useActiveElement",
+      "useClickOutside",
       "useDocumentVisibility",
       "useElementBounding",
       "useElementVisibility",

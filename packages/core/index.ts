@@ -70,6 +70,7 @@ import useWindowsFocus from "./hooks/useWindowFocus";
 import useWindowSize from "./hooks/useWindowSize";
 import useWindowScroll from "./hooks/useWindowScroll";
 import useClipboard from "./hooks/useClipboard";
+import useClickOutside from "./hooks/useClickOutside";
 
 export {
   usePrevious,
@@ -144,4 +145,5 @@ export {
   useWindowSize,
   useWindowScroll,
   useClipboard,
+  useClickOutside,
 };
