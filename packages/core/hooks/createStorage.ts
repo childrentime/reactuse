@@ -87,7 +87,7 @@ export default function useStorage<
   const getStoredValue = () => {
     try {
       const raw = storage?.getItem(key);
-      if (raw) {
+      if (raw !== undefined && raw !== null) {
         return serializer.read(raw);
       } else {
         storage?.setItem(key, serializer.write(data));
