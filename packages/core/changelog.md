@@ -36,3 +36,12 @@
 ### Core
 
 * fix useWindowScroll error
+
+### 1.0.7(September 28, 2022)
+
+### Core
+
+* add useClickOutside
+* add useClipboard
+* add useCycleList
+* refactor(useMediaQuery): rewrite with uses
