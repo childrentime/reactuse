@@ -25,6 +25,7 @@ const menuGroup: Menu[] = [
       "useMountedState",
       "useCounter",
       "useVirtualList",
+      "useCycleList",
     ],
   },
   {

@@ -71,6 +71,7 @@ import useWindowSize from "./hooks/useWindowSize";
 import useWindowScroll from "./hooks/useWindowScroll";
 import useClipboard from "./hooks/useClipboard";
 import useClickOutside from "./hooks/useClickOutside";
+import useCycleList from "./hooks/useCycleList";
 
 export {
   usePrevious,
@@ -146,4 +147,5 @@ export {
   useWindowScroll,
   useClipboard,
   useClickOutside,
+  useCycleList,
 };
