@@ -1,5 +1,6 @@
-import { useEventListener, useLatest } from "@reactuses/core";
 import { BasicTarget, getTargetElement } from "./../utils/domTarget";
+import useEventListener from "./useEventListener";
+import useLatest from "./useLatest";
 
 type EventType = MouseEvent | TouchEvent;
 export default function useClickOutSide(
