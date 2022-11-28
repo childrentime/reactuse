@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useLatest from "./useLatest";
-import { isDev, isFunction } from "../utils/is";
+import { isDev, isFunction } from "./utils/is";
 
 export default function useUnmount(fn: () => void) {
   if (isDev) {

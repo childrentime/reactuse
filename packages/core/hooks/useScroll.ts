@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { BasicTarget } from "../utils/domTarget";
-import { noop } from "../utils/is";
+import { BasicTarget } from "./utils/domTarget";
+import { noop } from "./utils/is";
 import useDebounceFn from "./useDebounceFn";
 import useEvent from "./useEvent";
 import useEventListener from "./useEventListener";

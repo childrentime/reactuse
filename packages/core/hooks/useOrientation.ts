@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { off, on } from "../utils/browser";
-import { isBrowser } from "../utils/is";
+import { off, on } from "./utils/browser";
+import { isBrowser } from "./utils/is";
 
 export interface OrientationState {
   angle: number;

@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect } from "react";
-import { isBrowser } from "../utils/is";
+import { isBrowser } from "./utils/is";
 
 const useIsomorphicLayoutEffect = isBrowser ? useLayoutEffect : useEffect;
 

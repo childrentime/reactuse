@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { isBrowser } from "../utils/is";
+import { isBrowser } from "./utils/is";
 import useStorage from "./createStorage";
 import usePreferredDark from "./usePreferredDark";
 
@@ -46,7 +46,7 @@ export default function useDarkMode<T extends string | "light" | "dark">(
     storage = () => (isBrowser ? localStorage : undefined),
   } = options;
 
-  const prefersDarkMode = usePreferredDark();
+  const prefersDarkMode = usePreferredDark(false);
   const value = initialValue
     ? initialValue
     : prefersDarkMode

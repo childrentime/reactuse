@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useMount from "./useMount";
-import { off, on } from "../utils/browser";
+import { off, on } from "./utils/browser";
 
 export type KeyModifier =
   | "Alt"

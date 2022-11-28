@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { isBrowser } from "../utils/is";
+import { isBrowser } from "./utils/is";
 
 export type UseTextDirectionValue = "ltr" | "rtl" | "auto";
 export interface UseTextDirectionOptions {

@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import useThrottle from "../../hooks/useThrottle";
-import { sleep } from "../../utils/testingHelpers";
+import { sleep } from "../utils/testingHelpers";
 
 describe("useThrottle", () => {
   beforeAll(() => {

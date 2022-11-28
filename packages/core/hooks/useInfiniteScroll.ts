@@ -1,4 +1,4 @@
-import { BasicTarget, getTargetElement } from "../utils/domTarget";
+import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import useScroll, { UseScrollOptions } from "./useScroll";
 import useLatest from "./useLatest";
 import useUpdateEffect from "./useUpdateEffect";

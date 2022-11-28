@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { off, on } from "../utils/browser";
-import { isNavigator, noop } from "../utils/is";
+import { off, on } from "./utils/browser";
+import { isNavigator, noop } from "./utils/is";
 
 function useMediaDevices() {
   const [state, setState] = useState<{

@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { isFunction } from "../utils/is";
-import { guessSerializerType } from "../utils/serializer";
+import { isFunction } from "./utils/is";
+import { guessSerializerType } from "./utils/serializer";
 import useUpdateEffect from "./useUpdateEffect";
 import useEvent from "./useEvent";
+
 export interface Serializer<T> {
   read(raw: string): T;
   write(value: T): string;

@@ -1,6 +1,6 @@
 import useLatest from "./useLatest";
-import { off, on } from "../utils/browser";
-import { BasicTarget, getTargetElement } from "../utils/domTarget";
+import { off, on } from "./utils/browser";
+import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import useDeepCompareEffect from "./useDeepCompareEffect";
 
 export type Target = BasicTarget<

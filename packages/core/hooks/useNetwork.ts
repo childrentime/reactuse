@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { off, on } from "../utils/browser";
-import { isNavigator } from "../utils/is";
+import { off, on } from "./utils/browser";
+import { isNavigator } from "./utils/is";
 
 export interface INetworkInformation extends EventTarget {
   readonly downlink: number;

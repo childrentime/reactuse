@@ -1,5 +1,5 @@
-import { BasicTarget, getTargetElement } from "../utils/domTarget";
-import { PointerType, Position } from "../utils/types";
+import { BasicTarget, getTargetElement } from "./utils/domTarget";
+import { PointerType, Position } from "./utils/types";
 import { useState } from "react";
 import useEventListener from "./useEventListener";
 

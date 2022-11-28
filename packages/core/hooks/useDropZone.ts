@@ -1,4 +1,4 @@
-import { BasicTarget, getTargetElement } from "../utils/domTarget";
+import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import { useRef, useState } from "react";
 import useEventListener from "./useEventListener";
 

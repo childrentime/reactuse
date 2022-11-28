@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import useDebounce from "../../hooks/useDebounce";
-import { sleep } from "../../utils/testingHelpers";
+import { sleep } from "../utils/testingHelpers";
 
 describe("useDebounce", () => {
   beforeAll(() => {

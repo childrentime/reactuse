@@ -1,4 +1,4 @@
-import { BasicTarget, getTargetElement } from "../utils/domTarget";
+import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import useLatest from "./useLatest";
 import useDeepCompareEffect from "./useDeepCompareEffect";
 import { useCallback, useRef } from "react";

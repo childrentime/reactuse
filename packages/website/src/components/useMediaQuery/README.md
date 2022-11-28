@@ -21,6 +21,6 @@ export default function useMediaQuery(
 ): boolean
 ```
 
-The second parameter is only used as a fallback for server side rendering. It's just like the third  parameter of [useSyncExternalStore](https://github.com/reactwg/react-18/discussions/86) hook.
+The second parameter is only used as a fallback for server side rendering.
 
 ## Examples

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import screenfull from "screenfull";
-import { BasicTarget, getTargetElement } from "../utils/domTarget";
+import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import useLatest from "./useLatest";
 import useUnmount from "./useUnmount";
 import useEvent from "./useEvent";

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { off, on } from "../utils/browser";
-import { noop } from "../utils/is";
+import { off, on } from "./utils/browser";
+import { noop } from "./utils/is";
 
 export type IState = PermissionState | "";
 

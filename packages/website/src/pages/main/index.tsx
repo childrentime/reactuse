@@ -1,118 +1,8 @@
-import { Fragment, lazy, Suspense } from "react";
+import { Fragment } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import styles from "./style.module.css";
 import NotFound from "../404/";
-
-interface Menu {
-  title: string;
-  items: string[];
-}
-
-const menuGroup: Menu[] = [
-  {
-    title: "STATE",
-    items: [
-      "useToggle",
-      "usePrevious",
-      "useLatest",
-      "useFirstMountState",
-      "useThrottle",
-      "useDebounce",
-      "useLocalStorage",
-      "useSessionStorage",
-      "useMarkdown",
-      "useRafState",
-      "useMountedState",
-      "useCounter",
-      "useVirtualList",
-      "useCycleList",
-    ],
-  },
-  {
-    title: "Effects",
-    items: [
-      "useMount",
-      "useUnmount",
-      "useUpdateEffect",
-      "useUpdateLayoutEffect",
-      "useIsomorphicLayoutEffect",
-      "useEvent",
-      "useInterval",
-      "useThrottleFn",
-      "useDebounceFn",
-      "useUpdate",
-      "useTimeout",
-      "useTimeoutFn",
-      "useEventListener",
-      "useRafFn",
-      "useEventEmitter",
-      "useCustomCompareEffect",
-      "useDeepCompareEffect",
-    ],
-  },
-  {
-    title: "Element",
-    items: [
-      "useActiveElement",
-      "useClickOutside",
-      "useDocumentVisibility",
-      "useElementBounding",
-      "useElementVisibility",
-      "useDraggable",
-      "useDropZone",
-      "useElementSize",
-      "useMutationObserver",
-      "useIntersectionObserver",
-      "useResizeObserver",
-      "useWindowFocus",
-      "useWindowScroll",
-      "useWindowSize",
-    ],
-  },
-  {
-    title: "Browser",
-    items: [
-      "useMediaQuery",
-      "usePreferredColorScheme",
-      "usePreferredContrast",
-      "usePreferredDark",
-      "useDarkMode",
-      "useFavicon",
-      "useTitle",
-      "useScriptTag",
-      "usePermission",
-      "useLongPress",
-      "useObjectUrl",
-      "useIdle",
-      "useMediaDevices",
-      "useTextDirection",
-      "useMouse",
-      "useFps",
-      "useGeolocation",
-      "useFullscreen",
-      "useNetwork",
-      "useOnline",
-      "useOrientation",
-      "usePageLeave",
-      "useFileDialog",
-      "useScroll",
-      "useScrollLock",
-      "useInfiniteScroll",
-      "useKeyModifier",
-      "useMousePressed",
-      "useClipboard",
-    ],
-  },
-];
-
-const pages = menuGroup
-  .reduce((pre: string[], cur) => {
-    pre.push(...cur.items);
-    return pre;
-  }, [])
-  .map((page) => {
-    return { component: lazy(() => import(`../../components/${page}`)), page };
-  });
+import { menuGroup, pages } from "../../routes";
 
 const Main = () => {
   const pathname = useLocation().pathname.substring(1);
@@ -152,20 +42,18 @@ const Main = () => {
           </div>
         </div>
         <div className={styles.col19}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <section className={styles.content}>
-              <Routes>
-                {pages.map((page) => (
-                  <Route
-                    path={`/${page.page}`}
-                    element={<page.component />}
-                    key={page.page}
-                  />
-                ))}
-                <Route path={"*"} element={<NotFound />} key="404" />
-              </Routes>
-            </section>
-          </Suspense>
+          <section className={styles.content}>
+            <Routes>
+              {pages.map((page) => (
+                <Route
+                  path={`/${page.page}`}
+                  element={<page.component />}
+                  key={page.page}
+                />
+              ))}
+              <Route path={"*"} element={<NotFound />} key="404" />
+            </Routes>
+          </section>
         </div>
       </div>
     </div>

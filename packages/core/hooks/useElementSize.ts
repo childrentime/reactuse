@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BasicTarget } from "../utils/domTarget";
+import { BasicTarget } from "./utils/domTarget";
 import useResizeObserver from "./useResizeObserver";
 
 export default function useElementSize(

@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import { BasicTarget, getTargetElement } from "../utils/domTarget";
-import { IHookStateInitAction } from "../utils/hookState";
+import { BasicTarget, getTargetElement } from "./utils/domTarget";
+import { IHookStateInitAction } from "./utils/hookState";
 import useEventListener from "./useEventListener";
 import useMount from "./useMount";
 

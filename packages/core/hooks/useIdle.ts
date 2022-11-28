@@ -1,6 +1,6 @@
 import { throttle } from "lodash";
 import { useEffect, useState } from "react";
-import { off, on } from "../utils/browser";
+import { off, on } from "./utils/browser";
 
 const defaultEvents: (keyof WindowEventMap)[] = [
   "mousemove",

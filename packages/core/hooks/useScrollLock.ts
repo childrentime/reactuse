@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import { BasicTarget, getTargetElement } from "../utils/domTarget";
-import { isIOS } from "../utils/is";
+import { BasicTarget, getTargetElement } from "./utils/domTarget";
+import { isIOS } from "./utils/is";
 import useMount from "./useMount";
 import useEvent from "./useEvent";
 

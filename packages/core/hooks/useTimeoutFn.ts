@@ -1,4 +1,4 @@
-import { Stoppable } from "../utils/types";
+import { Stoppable } from "./utils/types";
 import { useEffect, useRef, useState } from "react";
 import useLatest from "./useLatest";
 import useEvent from "./useEvent";

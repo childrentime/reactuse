@@ -1,5 +1,5 @@
 import { useCallback, useRef } from "react";
-import { BasicTarget, getTargetElement } from "../utils/domTarget";
+import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import useDeepCompareEffect from "./useDeepCompareEffect";
 import useLatest from "./useLatest";
 

@@ -1,5 +1,5 @@
 import { useCallback, useRef } from "react";
-import { off, on } from "../utils/browser";
+import { off, on } from "./utils/browser";
 
 export interface Options {
   isPreventDefault?: boolean;

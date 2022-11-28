@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import { isDev, isFunction } from "../utils/is";
+import { isDev, isFunction } from "./utils/is";
 import useLatest from "./useLatest";
 import useUnmount from "./useUnmount";
 import { debounce } from "lodash";
-import { DebounceSettings } from "../utils/external";
+import { DebounceSettings } from "./utils/external";
 
 export default function useDebounceFn<T extends (...args: any) => any>(
   fn: T,

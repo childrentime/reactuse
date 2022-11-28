@@ -1,4 +1,4 @@
-import { BasicTarget, getTargetElement } from "../utils/domTarget";
+import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import { useEffect, useState } from "react";
 import useResizeObserver from "./useResizeObserver";
 import useEvent from "./useEvent";

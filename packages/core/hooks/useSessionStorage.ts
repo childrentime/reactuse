@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { isBrowser } from "../utils/is";
+import { isBrowser } from "./utils/is";
 import type { UseStorageOptions } from "./createStorage";
 import createStorage from "./createStorage";
 

@@ -1,4 +1,4 @@
-import { noop } from "../utils/is";
+import { noop } from "./utils/is";
 import { useRef, useState } from "react";
 import useMount from "./useMount";
 import useUnmount from "./useUnmount";

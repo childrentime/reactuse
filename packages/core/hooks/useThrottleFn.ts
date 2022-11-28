@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import { isDev, isFunction } from "../utils/is";
+import { isDev, isFunction } from "./utils/is";
 import useLatest from "./useLatest";
 import useUnmount from "./useUnmount";
 import { throttle } from "lodash";
-import { ThrottleSettings } from "../utils/external";
+import { ThrottleSettings } from "./utils/external";
 
 export default function useThrottleFn<T extends (...args: any) => any>(
   fn: T,

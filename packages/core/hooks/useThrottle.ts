@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ThrottleSettings } from "../utils/external";
+import { ThrottleSettings } from "./utils/external";
 import useThrottleFn from "./useThrottleFn";
 
 export default function useThrottle<T>(

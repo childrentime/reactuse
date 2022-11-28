@@ -1,6 +1,6 @@
 import { renderHook, act } from "@testing-library/react";
 import useThrottleFn from "../../hooks/useThrottleFn";
-import { sleep } from "../../utils/testingHelpers";
+import { sleep } from "../utils/testingHelpers";
 
 describe("useThrottleFn", () => {
   const setUp = ({ fn, wait }) => renderHook(() => useThrottleFn(fn, wait));
