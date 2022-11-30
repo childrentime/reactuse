@@ -23,10 +23,10 @@ export default function useClickOutSide(
     savedHandler.current(event);
   };
 
-  useEventListener("mousedown", listener, window, {
+  useEventListener("mousedown", listener, () => window, {
     passive: true,
   });
-  useEventListener("touchstart", listener, window, {
+  useEventListener("touchstart", listener, () => window, {
     passive: true,
   });
 }

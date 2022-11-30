@@ -51,8 +51,8 @@ export default function useMousePressed(
   }, []);
 
   useEventListener("mousedown", onPressed("mouse"), target, { passive: true });
-  useEventListener("mouseleave", onReleased, window, { passive: true });
-  useEventListener("mouseup", onReleased, window, { passive: true });
+  useEventListener("mouseleave", onReleased, () => window, { passive: true });
+  useEventListener("mouseup", onReleased, () => window, { passive: true });
 
   useMount(() => {
     const element = getTargetElement(target);

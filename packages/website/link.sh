@@ -10,5 +10,5 @@ yarn install
 yarn link react
 yarn link react-dom
 
-cd ./website
+cd ../website
 yarn link @reactuses/core
