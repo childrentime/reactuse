@@ -37,19 +37,20 @@ const renderPage = (url: string): string => {
 
   const html = renderToString(jsx);
 
-  return `
-  <!DOCTYPE html>
-  <html>
-    <head>
-    ${webExtractor.getLinkTags()}
-    ${webExtractor.getStyleTags()}
-    </head>
-    <body>
-      <div id="main">${html}</div>
-      ${webExtractor.getScriptTags()}
-    </body>
-  </html>
-  `;
+  return `<!DOCTYPE html>
+          <html lang = "en">
+            <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            ${webExtractor.getLinkTags()}
+            ${webExtractor.getStyleTags()}
+            </head>
+            <body>
+              <div id="main">${html}</div>
+              ${webExtractor.getScriptTags()}
+            </body>
+          </html>`;
 };
 
 // DEV SSR
@@ -76,7 +77,7 @@ if (process.env.NODE_ENV !== "production") {
 
 // PRO SSG
 if (process.env.NODE_ENV === "production") {
-  const desc = path.resolve(__dirname, "../dist");
+  const desc = path.resolve(__dirname, "../ssg");
   routes.push("index");
   for (const route of routes) {
     const html = renderPage(route);
@@ -84,8 +85,5 @@ if (process.env.NODE_ENV === "production") {
     fs.writeFile(`${desc}/${route}.html`, html);
   }
 
-  fs.copy(
-    path.resolve(__dirname, "../public/"),
-    path.resolve(__dirname, "../ssg")
-  );
+  fs.copy(path.resolve(__dirname, "../public/"), desc);
 }
