@@ -5,6 +5,7 @@ import webpack from "webpack";
 import webpackClientConfig from "./webpack.client";
 import webpackServerConfig from "./webpack.server";
 import { WebpackConfiguration } from "webpack-cli";
+import path from "path";
 
 const webpackRun = function (
   webpackConfig: WebpackConfiguration,
@@ -37,8 +38,14 @@ const serverSideBuild = (callback: (...args: any[]) => any) => {
   webpackRun(webpackServerConfig, callback);
 };
 
+const distClean = (callback: (...args: any[]) => any) => {
+  const dist = path.resolve(__dirname, "../ssg");
+  fs.removeSync(dist);
+  callback();
+};
+
 const task = series(
-  parallel(clientSideClean, serverSideClean),
+  parallel(clientSideClean, serverSideClean, distClean),
   parallel(clientSideBuild, serverSideBuild)
 );
 
