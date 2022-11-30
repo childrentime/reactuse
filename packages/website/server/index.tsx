@@ -76,7 +76,7 @@ if (process.env.NODE_ENV !== "production") {
 
 // PRO SSG
 if (process.env.NODE_ENV === "production") {
-  const desc = path.resolve(__dirname, "../ssg");
+  const desc = path.resolve(__dirname, "../dist");
   routes.push("index");
   for (const route of routes) {
     const html = renderPage(route);
