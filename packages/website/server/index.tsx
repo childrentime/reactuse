@@ -40,8 +40,16 @@ const renderPage = (url: string): string => {
   return `<!DOCTYPE html>
           <html lang = "en">
             <head>
+            <title>ReactUse Docs</title>
+            <meta name='google-site-verification' content='cYSXMQh7Yfm6rW16yR-5_x0jmMX_ABwMDwAoPPlPc1M'>
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="https://reactuse.com/">
+            <meta property="og:title" content="ReactUse Docs">
+            <meta property="og:description" content="Collection of essential React Hooks Utilities.">
             <meta charset="UTF-8">
+            <meta name='keywords' content='reactuse,react' />
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name='description' content='Collection of essential React Hooks Utilities.' />
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             ${webExtractor.getLinkTags()}
             ${webExtractor.getStyleTags()}
