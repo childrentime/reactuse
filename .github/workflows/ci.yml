@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+
+      - name: Enter repository
         run: cd packages/core
 
       - name: Set node version to ${{ matrix.node }}
@@ -48,6 +50,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+
+      - name: Enter repository
         run: cd packages/core
 
       - name: Set node version to ${{ matrix.node }}
