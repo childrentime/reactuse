@@ -22,6 +22,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+        run: cd packages/core
 
       - name: Set node version to ${{ matrix.node }}
         uses: actions/setup-node@v3
@@ -30,10 +31,10 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: cd packages/core && yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: Run build
-        run: cd packages/core && yarn build
+        run: yarn build
 
   test:
     name: Unit tests
@@ -47,6 +48,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+        run: cd packages/core
 
       - name: Set node version to ${{ matrix.node }}
         uses: actions/setup-node@v3
@@ -55,7 +57,7 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: cd packages/core && yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: Run unit tests
-        run: cd packages/core && yarn test
+        run: yarn test
