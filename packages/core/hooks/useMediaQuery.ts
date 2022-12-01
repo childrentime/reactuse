@@ -37,6 +37,7 @@ export default function useMediaQuery(query: string, defaultState?: boolean) {
     if ("addEventListener" in mql) {
       mql.addEventListener("change", onChange);
     } else {
+      // @ts-ignore
       mql.addListener(onChange);
     }
 
@@ -47,6 +48,7 @@ export default function useMediaQuery(query: string, defaultState?: boolean) {
       if ("removeEventListener" in mql) {
         mql.removeEventListener("change", onChange);
       } else {
+        // @ts-ignore
         mql.removeListener(onChange);
       }
     };
