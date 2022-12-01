@@ -16,15 +16,10 @@ assert(process.cwd() !== __dirname);
 
 async function buildMetaFiles() {
   const packageRoot = path.resolve(__dirname, "../");
-  const packageDist = path.resolve(packageRoot, "dist");
-
-  await fs.copyFile(
-    path.join(rootDir, "README.md"),
-    path.join(packageDist, "README.md")
-  );
+  const packageDist = path.resolve(packageRoot, "../dist");
 
   for (const file of FILES_COPY_ROOT) {
-    await fs.copyFile(path.join(rootDir, file), path.join(packageDist, file));
+    await fs.copyFile(path.join(rootDir, file), path.join(packageRoot, file));
   }
 
   const files = await fg(FILES_COPY_LOCAL, { cwd: packageRoot });
