@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [14.x, 16.x]
+        node: [18.x]
       fail-fast: false
 
     steps:
@@ -30,10 +30,10 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: cd packages/core && yarn install --frozen-lockfile
 
       - name: Run build
-        run: yarn build
+        run: cd packages/core && yarn build
 
   test:
     name: Unit tests
@@ -41,7 +41,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [14.x, 16.x]
+        node: [18.x]
       fail-fast: false
 
     steps:
@@ -55,7 +55,7 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: cd packages/core && yarn install --frozen-lockfile
 
       - name: Run unit tests
-        run: yarn test
+        run: cd packages/core && yarn test
