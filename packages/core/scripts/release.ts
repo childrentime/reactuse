@@ -3,7 +3,6 @@ import { readJSONSync } from "fs-extra";
 
 const { version } = readJSONSync("package.json");
 
-execSync("npm run update", { stdio: "inherit" });
 execSync("git add .", { stdio: "inherit" });
 
 execSync(`git commit -m "chore: release v${version}"`, { stdio: "inherit" });
