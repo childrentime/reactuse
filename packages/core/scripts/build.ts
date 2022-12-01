@@ -42,7 +42,7 @@ async function build() {
     stdio: "inherit",
   });
 
-  // await buildMetaFiles();
+  await buildMetaFiles();
 }
 
 build();

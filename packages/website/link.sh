@@ -9,6 +9,7 @@ yarn link
 yarn install
 yarn link react
 yarn link react-dom
+yarn build
 
 cd ../website
 yarn link @reactuses/core
