@@ -26,3 +26,4 @@ yarn-error.log*
 **/esm
 **/lib
 **/ssg
+**/yarn.lock
