@@ -1,3 +1,4 @@
+import { defaultWindow } from "./utils/browser";
 import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import { PointerType, Position } from "./utils/types";
 import { useState } from "react";
@@ -73,7 +74,10 @@ export default function useDraggable(
   target: BasicTarget<HTMLElement | SVGElement>,
   options: UseDraggableOptions = {}
 ): readonly [number, number, boolean] {
-  const draggingElement = getTargetElement(options.draggingElement, window);
+  const draggingElement = getTargetElement(
+    options.draggingElement,
+    defaultWindow
+  );
   const draggingHandle = getTargetElement(options.handle ?? target);
 
   const [position, setPositon] = useState<Position>(

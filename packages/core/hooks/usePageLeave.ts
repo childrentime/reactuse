@@ -13,9 +13,9 @@ export default function usePageLeave(): boolean {
     setIsLeft(!from);
   };
 
-  useEventListener("mouseout", handler, window, { passive: true });
-  useEventListener("mouseleave", handler, document, { passive: true });
-  useEventListener("mouseenter", handler, document, { passive: true });
+  useEventListener("mouseout", handler, () => window, { passive: true });
+  useEventListener("mouseleave", handler, () => document, { passive: true });
+  useEventListener("mouseenter", handler, () => document, { passive: true });
 
   return isLeft;
 }

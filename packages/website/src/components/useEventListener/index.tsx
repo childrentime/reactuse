@@ -36,7 +36,7 @@ const Demo = () => {
   useEventListener("dblclick", onDBClick);
 
   // example with document based event
-  useEventListener("visibilitychange", onVisibilityChange, document);
+  useEventListener("visibilitychange", onVisibilityChange, () => document);
 
   // example with element based event
   useEventListener("click", onClick, buttonRef);

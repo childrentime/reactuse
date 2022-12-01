@@ -86,12 +86,14 @@ if (process.env.NODE_ENV !== "production") {
 // PRO SSG
 if (process.env.NODE_ENV === "production") {
   const desc = path.resolve(__dirname, "../ssg");
-  routes.push("index");
   for (const route of routes) {
-    const html = renderPage(route);
+    const html = renderPage(`/${route}`);
     fs.ensureDir(desc);
     fs.writeFile(`${desc}/${route}.html`, html);
   }
+
+  const html = renderPage("/");
+  fs.writeFile(`${desc}/index.html`, html);
 
   fs.copy(path.resolve(__dirname, "../public/"), desc);
 }

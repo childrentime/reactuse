@@ -16,7 +16,7 @@ export default Page;
 const Demo = () => {
   const el = useRef<HTMLDivElement>(null);
 
-  const innerWidth = window ? window.innerWidth : 200;
+  const innerWidth = typeof window !== "undefined" ? window.innerWidth : 200;
   const [x, y, isDragging] = useDraggable(el, {
     initialValue: { x: innerWidth / 2.2, y: 120 },
     preventDefault: true,

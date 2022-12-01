@@ -33,7 +33,7 @@ export default function useFileDialog(
 
   const inputRef = useRef<HTMLInputElement>();
   const initFn = useCallback(() => {
-    if (!document) {
+    if (typeof document === "undefined") {
       return undefined;
     }
     const input = document.createElement("input");

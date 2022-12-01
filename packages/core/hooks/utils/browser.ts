@@ -1,3 +1,4 @@
+import { isBrowser } from "./is";
 import { Fn } from "./types";
 
 export function on<T extends Window | Document | HTMLElement | EventTarget>(
@@ -21,3 +22,5 @@ export function off<T extends Window | Document | HTMLElement | EventTarget>(
     );
   }
 }
+
+export const defaultWindow = /* #__PURE__ */ isBrowser ? window : undefined;
