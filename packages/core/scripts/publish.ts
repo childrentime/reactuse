@@ -13,6 +13,6 @@ if (version.includes("beta")) {
 
 execSync(command, {
   stdio: "inherit",
-  cwd: path.resolve(__dirname, "dist"),
+  cwd: path.resolve(__dirname, "../"),
 });
 consola.success(`Published @reactuse/core`);
