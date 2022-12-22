@@ -8,19 +8,6 @@ import fs from "fs-extra";
 import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
 
-const liveReloadServer = livereload.createServer();
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => {
-    liveReloadServer.refresh("/");
-  }, 100);
-});
-
-const app = express();
-
-app.use(connectLiveReload());
-app.use("/static", express.static(path.join(__dirname, "../public")));
-app.use(express.static(path.join(__dirname, "../public/favicon.ico")));
-
 const nodeStats = path.resolve(
   __dirname,
   "../public/dist/node/loadable-stats.json"
@@ -70,6 +57,18 @@ const renderPage = (url: string): string => {
 
 // DEV SSR
 if (process.env.NODE_ENV !== "production") {
+  const liveReloadServer = livereload.createServer();
+  liveReloadServer.server.once("connection", () => {
+    setTimeout(() => {
+      liveReloadServer.refresh("/");
+    }, 100);
+  });
+
+  const app = express();
+
+  app.use(connectLiveReload());
+  app.use("/static", express.static(path.join(__dirname, "../public")));
+  app.use(express.static(path.join(__dirname, "../public/favicon.ico")));
   app.get("*", (req, res) => {
     const html = renderPage(req.url);
     res.set("content-type", "text/html");
