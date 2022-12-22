@@ -41,3 +41,34 @@
   color: var(--c-bg) !important;
   box-shadow: 0px 1rem 3rem var(--c-primary-shadow) !important;
 }
+
+@media screen and (max-width: 840px) {
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .layout h1 {
+    font-size: 3.6rem;
+  }
+
+  .layout p {
+    font-size: 1.8rem;
+    margin-left: 20px;
+  }
+
+  .button {
+    padding: 1rem 3.5rem;
+  }
+}

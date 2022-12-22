@@ -207,3 +207,29 @@
   border-top: 0;
   opacity: 0.8;
 }
+
+@media screen and (max-width: 840px) {
+  .itemTitle {
+    padding-left: 15px;
+  }
+  .item {
+    padding-left: 15px;
+  }
+  .content {
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .col5 {
+    display: none;
+  }
+  .col19 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .content {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}

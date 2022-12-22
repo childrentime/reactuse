@@ -146,6 +146,7 @@
   color: var(--c-header-dark);
   font-size: 15px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .icon svg {
@@ -170,7 +171,6 @@
 }
 
 [cmdk-root] {
-  max-width: 640px;
   max-width: 640px;
   width: 100%;
   background: var(--c-dialog-bg);
@@ -253,4 +253,44 @@
   height: 64px;
   white-space: pre-wrap;
   color: var(--gray11);
+}
+
+.searchMobile {
+  display: none;
+}
+
+@media screen and (max-width: 840px) {
+  .searchMobile {
+    display: initial;
+  }
+  .search {
+    display: none;
+  }
+  .col5 {
+    flex: 0 0 50.83333333%;
+    max-width: 50.83333333%;
+  }
+
+  .col19 {
+    flex: 0 0 49.16666667%;
+    max-width: 49.16666667%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  [cmdk-root] {
+    max-width: 100%;
+  }
+
+  .dialog {
+    position: fixed;
+    left: 0%;
+    top: 10%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .logo {
+    padding-left: 0;
+  }
 }

@@ -1,4 +1,4 @@
-import { Link, useNavigate, useNavigation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./style.module.css";
 import logo from "../../assets/logo.svg";
 import moon from "../../assets/moon.svg";
@@ -8,6 +8,7 @@ import { GoMarkGithub } from "react-icons/go";
 import { useEffect, useRef, useState } from "react";
 import { Command } from "cmdk";
 import { routes } from "../../routes";
+import { FiSearch } from "react-icons/fi";
 
 type ColorMode = "dark" | "";
 const Header = () => {
@@ -100,6 +101,15 @@ const Header = () => {
             </button>
           </div>
           <div className={styles.metas}>
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                setOpen((open) => !open);
+              }}
+              className={`${styles.icon} ${styles.searchMobile}`}
+            >
+              <FiSearch />
+            </a>
             <a
               href="https://github.com/childrentime/reactuse"
               target="_blank"
