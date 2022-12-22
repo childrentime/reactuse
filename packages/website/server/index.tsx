@@ -2,17 +2,24 @@ import path from "path";
 import express from "express";
 import { renderToString } from "react-dom/server";
 import { ChunkExtractor } from "@loadable/server";
-import webpackClient from "../config/webpack.client";
-import webpackServer from "../config/webpack.server";
-import webpackDevMiddleware from "webpack-dev-middleware";
-import webpack from "webpack";
 import { StaticRouter } from "react-router-dom/server";
 import { routes } from "../src/routes";
 import fs from "fs-extra";
+import livereload from "livereload";
+import connectLiveReload from "connect-livereload";
+
+const liveReloadServer = livereload.createServer();
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+});
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(connectLiveReload());
+app.use("/static", express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../public/favicon.ico")));
 
 const nodeStats = path.resolve(
   __dirname,
@@ -63,24 +70,13 @@ const renderPage = (url: string): string => {
 
 // DEV SSR
 if (process.env.NODE_ENV !== "production") {
-  const compiler = webpack([webpackClient, webpackServer]);
-
-  app.use(
-    webpackDevMiddleware(compiler, {
-      publicPath: "/dist/web",
-      writeToDisk(filePath) {
-        return /dist\/node\//.test(filePath) || /loadable-stats/.test(filePath);
-      },
-    })
-  );
-
   app.get("*", (req, res) => {
     const html = renderPage(req.url);
     res.set("content-type", "text/html");
     res.send(html);
   });
 
-  app.listen(9000, () => console.log("Server started http://localhost:9000"));
+  app.listen(3000, () => console.log("Server started http://localhost:3000"));
 }
 
 // PRO SSG

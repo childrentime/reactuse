@@ -4,8 +4,22 @@ import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import nodeExternals from "webpack-node-externals";
 import LoadablePlugin from "@loadable/webpack-plugin";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
 const target = "node";
+const plugins = [new LoadablePlugin() as any, new MiniCssExtractPlugin()];
+if (development) {
+  plugins.push(new CleanWebpackPlugin());
+  plugins.push(new webpack.HotModuleReplacementPlugin());
+  plugins.push(
+    new ReactRefreshWebpackPlugin({
+      overlay: {
+        sockIntegration: "whm",
+      },
+    })
+  );
+}
 // 服务端资源打包，需要抽取没有BroswerRoute的部分
 const config: webpack.Configuration = {
   name: target,
@@ -17,7 +31,7 @@ const config: webpack.Configuration = {
   },
   output: {
     path: serverOutput,
-    publicPath: `/dist/${target}/`,
+    publicPath: development ? `/static/dist/${target}/` : `/dist/${target}/`,
     filename: "[name].js",
     libraryTarget: "commonjs2",
   },
@@ -87,7 +101,7 @@ const config: webpack.Configuration = {
     moduleIds: "named",
     chunkIds: "named",
   },
-  plugins: [new LoadablePlugin() as any, new MiniCssExtractPlugin()],
+  plugins,
 };
 
 export default config;

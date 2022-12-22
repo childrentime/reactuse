@@ -3,18 +3,40 @@ import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { clientOutput, development } from "./constant";
 import LoadablePlugin from "@loadable/webpack-plugin";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
 const target = "web";
+
+const plugins = [new LoadablePlugin() as any, new MiniCssExtractPlugin()];
+if (development) {
+  plugins.push(new CleanWebpackPlugin());
+  plugins.push(new webpack.HotModuleReplacementPlugin());
+  plugins.push(
+    new ReactRefreshWebpackPlugin({
+      overlay: {
+        sockIntegration: "whm",
+      },
+    })
+  );
+}
+
 const config: webpack.Configuration = {
   name: target,
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
   },
+  devtool: development ? "source-map" : false,
   mode: development ? "development" : "production",
-  entry: path.resolve(__dirname, "../src/main-web.tsx"),
+  entry: development
+    ? [
+        path.resolve(__dirname, "../src/main-web.tsx"),
+        "webpack-hot-middleware/client?path=//localhost:3001/static/__webpack_hmr&name=client",
+      ]
+    : path.resolve(__dirname, "../src/main-web.tsx"),
   output: {
     path: clientOutput,
-    publicPath: `/dist/${target}/`,
+    publicPath: development ? `/static/dist/${target}/` : `/dist/${target}/`,
     filename: "[name].js",
   },
   target,
@@ -72,7 +94,7 @@ const config: webpack.Configuration = {
       },
     ],
   },
-  plugins: [new LoadablePlugin() as any, new MiniCssExtractPlugin()],
+  plugins,
 };
 
 export default config;

@@ -1,6 +1,0 @@
-{
-  "ignore": ["public"],
-  "execMap": {
-    "tsx": "ts-node"
-  }
-}

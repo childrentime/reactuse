@@ -5,5 +5,3 @@ export const development =
 
 export const clientOutput = path.resolve(__dirname, "../public/dist/web");
 export const serverOutput = path.resolve(__dirname, "../public/dist/node");
-
-export const nodeOutput = path.resolve(__dirname, "../public/dist");
