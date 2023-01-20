@@ -71,6 +71,7 @@ import useWindowScroll from "./useWindowScroll";
 import useClipboard from "./useClipboard";
 import useClickOutside from "./useClickOutside";
 import useCycleList from "./useCycleList";
+import useFocus from "./useFocus";
 
 export {
   usePrevious,
@@ -146,4 +147,5 @@ export {
   useClipboard,
   useClickOutside,
   useCycleList,
+  useFocus,
 };

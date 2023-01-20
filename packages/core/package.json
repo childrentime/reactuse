@@ -25,6 +25,7 @@
     "lint": "eslint \"{hooks,tests}/**/*.{ts,tsx}\"",
     "build": "esno scripts/build.ts",
     "build:rollup": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" rollup -c",
+    "dev": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" rollup -c --watch",
     "publish:ci": "esno scripts/publish.ts",
     "release:prepare": "bump",
     "release": "esno scripts/release.ts",

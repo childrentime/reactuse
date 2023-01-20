@@ -4,6 +4,7 @@ const toString = Object.prototype.toString;
 
 export const isFunction = <T extends Fn>(val: any): val is T =>
   typeof val === "function";
+export const isDef = <T = any>(val?: T): val is T => typeof val !== "undefined";
 export const isUndef = (value: unknown): value is undefined =>
   typeof value === "undefined";
 export const isBoolean = (val: any): val is boolean => typeof val === "boolean";

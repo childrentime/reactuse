@@ -5,7 +5,7 @@ import { BasicTarget } from "./utils/domTarget";
 export default function useElementVisibility(
   target: BasicTarget<HTMLElement | SVGElement>,
   options: IntersectionObserverInit = {}
-): readonly [any, () => void] {
+) {
   const [visible, setVisible] = useState(false);
 
   const callback: IntersectionObserverCallback = useCallback((entries) => {
