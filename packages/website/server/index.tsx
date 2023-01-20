@@ -68,7 +68,7 @@ if (process.env.NODE_ENV !== "production") {
 
   app.use(connectLiveReload());
   app.use("/static", express.static(path.join(__dirname, "../public")));
-  app.use(express.static(path.join(__dirname, "../public/favicon.ico")));
+  app.use("/", express.static(path.join(__dirname, "../public/")));
   app.get("*", (req, res) => {
     const html = renderPage(req.url);
     res.set("content-type", "text/html");

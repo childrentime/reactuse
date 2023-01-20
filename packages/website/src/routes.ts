@@ -63,6 +63,7 @@ export const menuGroup: Menu[] = [
       "useWindowFocus",
       "useWindowScroll",
       "useWindowSize",
+      "useFocus",
     ],
   },
   {

@@ -16,7 +16,12 @@
 
 .layout p {
   font-size: 2.4rem;
-  margin-bottom: 4.8rem;
+  margin-bottom: 4rem;
+}
+
+.shell {
+  font-size: 2.4rem;
+  margin-bottom: 4rem;
 }
 
 .buttons {
