@@ -37,7 +37,7 @@
 
 * fix useWindowScroll error
 
-### 1.0.7(September 28, 2022)
+## 1.0.7(September 28, 2022)
 
 ### Core
 
@@ -45,3 +45,9 @@
 * add useClipboard
 * add useCycleList
 * refactor(useMediaQuery): rewrite with uses
+
+## 1.1.2(Jan 20th, 2023)
+
+### Core
+
+* add useFocus
