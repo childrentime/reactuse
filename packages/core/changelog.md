@@ -46,8 +46,14 @@
 * add useCycleList
 * refactor(useMediaQuery): rewrite with uses
 
-## 1.1.2(Jan 20th, 2023)
+## 1.1.2(Jan 20, 2023)
 
 ### Core
 
 * add useFocus
+
+## 1.1.3(Jan 21, 2023)
+
+### Core
+
+* add useControlled
