@@ -21,6 +21,7 @@ export const menuGroup: Menu[] = [
       "useMountedState",
       "useCounter",
       "useVirtualList",
+      "useControlled",
       "useCycleList",
     ],
   },

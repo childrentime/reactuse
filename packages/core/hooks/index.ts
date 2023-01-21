@@ -72,6 +72,7 @@ import useClipboard from "./useClipboard";
 import useClickOutside from "./useClickOutside";
 import useCycleList from "./useCycleList";
 import useFocus from "./useFocus";
+import useControlled from "./useControlled";
 
 export {
   usePrevious,
@@ -148,4 +149,5 @@ export {
   useClickOutside,
   useCycleList,
   useFocus,
+  useControlled,
 };
