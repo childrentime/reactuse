@@ -9,14 +9,15 @@ import { useEffect, useRef, useState } from "react";
 import { Command } from "cmdk";
 import { routes } from "../../routes";
 import { FiSearch } from "react-icons/fi";
+import { ToastContainer } from "react-toastify";
 
-type ColorMode = "dark" | "";
+type ColorMode = "dark" | "light";
 const Header = () => {
   const navigate = useNavigate();
   const [dark, setDark] = useDarkMode<ColorMode>();
   const toggleDark = () => {
     if (dark === "dark") {
-      setDark("");
+      setDark("light");
     } else {
       setDark("dark");
     }
@@ -125,6 +126,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <ToastContainer theme={dark!} />
     </header>
   );
 };

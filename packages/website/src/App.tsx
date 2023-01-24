@@ -1,6 +1,5 @@
 import Header from "./pages/header";
 import Main from "./pages/main";
-import { ToastContainer } from "react-toastify";
 import { Route, Routes } from "react-router-dom";
 import Index from "./pages/index";
 import "./main.css";
@@ -61,8 +60,6 @@ function App() {
           }
         />
       </Routes>
-
-      <ToastContainer />
     </>
   );
 }
