@@ -1,5 +1,7 @@
 tasks:
-  - init: yarn && yarm build
+  - init: cd packages && cd core && yarn
+    command: yarn dev
+  - init: cd packages && cd website && yarn link:all
     command: yarn dev
 ports:
   - port: 3000
