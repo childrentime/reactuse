@@ -73,6 +73,8 @@ import useClickOutside from "./useClickOutside";
 import useCycleList from "./useCycleList";
 import useFocus from "./useFocus";
 import useControlled from "./useControlled";
+import useOnceEffect from "./useOnceEffect";
+import useOnceLayoutEffect from "./useOnceLayoutEffect";
 
 export {
   usePrevious,
@@ -150,4 +152,6 @@ export {
   useCycleList,
   useFocus,
   useControlled,
+  useOnceEffect,
+  useOnceLayoutEffect,
 };

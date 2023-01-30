@@ -1,3 +1,4 @@
+import React from "react";
 import { Fn } from "./types";
 
 const toString = Object.prototype.toString;
@@ -27,3 +28,5 @@ export const isIOS =
   /* #__PURE__ */ isBrowser &&
   window?.navigator?.userAgent &&
   /iP(ad|hone|od)/.test(window.navigator.userAgent);
+
+export const isReactLegacy = !React.useId;

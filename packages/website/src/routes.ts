@@ -28,6 +28,8 @@ export const menuGroup: Menu[] = [
   {
     title: "Effects",
     items: [
+      "useOnceEffect",
+      "useOnceLayoutEffect",
       "useMount",
       "useUnmount",
       "useUpdateEffect",
