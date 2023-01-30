@@ -8,6 +8,9 @@ type PickFunction<T extends Fn> = (
   ...args: Parameters<T>
 ) => ReturnType<T>;
 
+/**
+ * keep function reference immutable
+ */
 export default function useEvent<T extends Fn>(fn: T) {
   if (isDev) {
     if (!isFunction(fn)) {
