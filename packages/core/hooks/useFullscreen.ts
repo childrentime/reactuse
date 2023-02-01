@@ -5,12 +5,15 @@ import useLatest from "./useLatest";
 import useUnmount from "./useUnmount";
 import useEvent from "./useEvent";
 
-export interface Options {
+export interface UseFullScreenOptions {
   onExit?: () => void;
   onEnter?: () => void;
 }
 
-export default function useFullscreen(target: BasicTarget, options?: Options) {
+export default function useFullscreen(
+  target: BasicTarget,
+  options?: UseFullScreenOptions
+) {
   const { onExit, onEnter } = options || {};
 
   const onExitRef = useLatest(onExit);
