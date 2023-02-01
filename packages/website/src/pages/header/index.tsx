@@ -120,8 +120,12 @@ const Header = () => {
               <GoMarkGithub />
             </a>
             <button onClick={toggleDark} className={styles.darkmode}>
-              {dark && <img alt="darkmode" src={moon} width={20} height={20} />}
-              {!dark && <img alt="darkmode" src={sun} width={20} height={20} />}
+              {dark === "dark" && (
+                <img alt="darkmode" src={moon} width={20} height={20} />
+              )}
+              {dark === "light" && (
+                <img alt="darkmode" src={sun} width={20} height={20} />
+              )}
             </button>
           </div>
         </div>
