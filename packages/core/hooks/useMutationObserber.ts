@@ -10,6 +10,7 @@ export default function useMutationObserver(
 ): () => void {
   const callbackRef = useLatest(callback);
   const observerRef = useRef<MutationObserver>();
+  const element = getTargetElement(target);
 
   const stop = useCallback(() => {
     if (observerRef.current) {
@@ -18,7 +19,6 @@ export default function useMutationObserver(
   }, []);
 
   useDeepCompareEffect(() => {
-    const element = getTargetElement(target);
     if (!element) {
       return;
     }
@@ -26,7 +26,7 @@ export default function useMutationObserver(
 
     observerRef.current.observe(element, options);
     return stop;
-  }, [options, target]);
+  }, [options, element]);
 
   return stop;
 }

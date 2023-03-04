@@ -10,6 +10,7 @@ export default function useIntersectionObserver(
 ): () => void {
   const savedCallback = useLatest(callback);
   const observerRef = useRef<IntersectionObserver>();
+  const element = getTargetElement(target);
 
   const stop = useCallback(() => {
     if (observerRef.current) {
@@ -18,7 +19,6 @@ export default function useIntersectionObserver(
   }, []);
 
   useDeepCompareEffect(() => {
-    const element = getTargetElement(target);
     if (!element) {
       return;
     }
@@ -30,7 +30,7 @@ export default function useIntersectionObserver(
     observerRef.current.observe(element);
 
     return stop;
-  }, [options, target]);
+  }, [options, element]);
 
   return stop;
 }

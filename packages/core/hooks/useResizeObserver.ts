@@ -3,7 +3,6 @@ import { useCallback, useRef } from "react";
 import useLatest from "./useLatest";
 import useDeepCompareEffect from "./useDeepCompareEffect";
 
-// TODO 当target可变的时候 我们需要跟踪这种变化
 export default function useResizeObserver(
   target: BasicTarget,
   callback: ResizeObserverCallback,
@@ -11,6 +10,7 @@ export default function useResizeObserver(
 ): () => void {
   const savedCallback = useLatest(callback);
   const observerRef = useRef<ResizeObserver>();
+  const element = getTargetElement(target);
 
   const stop = useCallback(() => {
     if (observerRef.current) {
@@ -18,7 +18,6 @@ export default function useResizeObserver(
     }
   }, []);
   useDeepCompareEffect(() => {
-    const element = getTargetElement(target);
     if (!element) {
       return;
     }
@@ -26,7 +25,7 @@ export default function useResizeObserver(
     observerRef.current.observe(element, options);
 
     return stop;
-  }, [options, target]);
+  }, [options, element]);
 
   return stop;
 }

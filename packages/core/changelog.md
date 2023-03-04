@@ -66,3 +66,10 @@
 * add useScrollIntoView
 * add useSticky
 * add useReducedMotion
+
+### 2.0.1(March 4, 2023)
+
+### Core
+
+* fixed some ssr error
+* fixed some test

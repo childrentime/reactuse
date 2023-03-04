@@ -22,8 +22,10 @@ const useSticky = ({
   React.Dispatch<React.SetStateAction<boolean>>
 ] => {
   const [isSticky, setSticky] = useState<boolean>(false);
+  const element = getTargetElement(targetElement);
+  const scrollParent =
+    getTargetElement(scrollElement) || getScrollParent(axis, element);
   const { run: scrollHandler } = useThrottleFn(() => {
-    const element = getTargetElement(targetElement);
     if (!element) {
       return;
     }
@@ -36,21 +38,16 @@ const useSticky = ({
   }, 50);
 
   useEffect(() => {
-    const element = getTargetElement(targetElement);
-    if (!element) {
+    if (!element || !scrollParent) {
       return;
     }
-    const scrollParent =
-      getTargetElement(scrollElement) || getScrollParent(axis, element);
-    if (!scrollParent) {
-      return;
-    }
+
     scrollParent.addEventListener("scroll", scrollHandler);
     scrollHandler();
     return () => {
       scrollParent.removeEventListener("scroll", scrollHandler);
     };
-  }, [axis, scrollElement, scrollHandler, targetElement]);
+  }, [axis, element, scrollHandler, scrollParent]);
   return [isSticky, setSticky];
 };
 

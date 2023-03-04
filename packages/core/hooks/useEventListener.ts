@@ -66,10 +66,9 @@ export default function useEventListener(
 ) {
   // Create a ref that stores handler
   const savedHandler = useLatest(handler);
+  const targetElement = getTargetElement(element, window);
 
   useDeepCompareEffect(() => {
-    // Define the listening target
-    const targetElement = getTargetElement(element, window);
     if (!(targetElement && targetElement.addEventListener)) {
       return;
     }
@@ -83,5 +82,5 @@ export default function useEventListener(
     return () => {
       off(targetElement, eventName, eventListener);
     };
-  }, [eventName, element, options, savedHandler]);
+  }, [eventName, targetElement, options, savedHandler]);
 }

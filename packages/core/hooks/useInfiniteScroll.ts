@@ -40,12 +40,12 @@ export default function useInfiniteScroll(
       ...options.offset,
     },
   });
+  const element = getTargetElement(target) as Element;
 
   const di = state[3][direction];
 
   useUpdateEffect(() => {
     const fn = async () => {
-      const element = getTargetElement(target) as Element;
       const previous = {
         height: element?.scrollHeight ?? 0,
         width: element?.scrollWidth ?? 0,
@@ -62,5 +62,5 @@ export default function useInfiniteScroll(
     };
     fn();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [di, options.preserveScrollPosition, target]);
+  }, [di, options.preserveScrollPosition, element]);
 }

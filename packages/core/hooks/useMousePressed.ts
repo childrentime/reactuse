@@ -36,6 +36,7 @@ export default function useMousePressed(
 
   const [pressed, setPressed] = useState(initialValue);
   const [sourceType, setSourceType] = useState<MouseSourceType>(null);
+  const element = getTargetElement(target);
 
   const onPressed = useCallback(
     (srcType: MouseSourceType) => () => {
@@ -54,7 +55,6 @@ export default function useMousePressed(
   useEventListener("mouseup", onReleased, () => window, { passive: true });
 
   useEffect(() => {
-    const element = getTargetElement(target);
     if (drag) {
       element?.addEventListener("dragstart", onPressed("mouse"), {
         passive: true,
@@ -91,7 +91,7 @@ export default function useMousePressed(
         element?.removeEventListener("touchcancel", onReleased);
       }
     };
-  }, [drag, onPressed, onReleased, target, touch]);
+  }, [drag, onPressed, onReleased, element, touch]);
 
   return [pressed, sourceType] as const;
 }

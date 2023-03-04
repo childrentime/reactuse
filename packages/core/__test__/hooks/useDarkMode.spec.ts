@@ -1,4 +1,4 @@
-import { act, renderHook } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 import useDarkMode from "../../hooks/useDarkMode";
 import { createMockMediaMatcher } from "../utils";
 
@@ -14,13 +14,18 @@ describe(useDarkMode, () => {
   });
   it("should return dark if media query matches", () => {
     const { result } = renderHook(() => useDarkMode());
-    expect(result.current[0]).toBe("dark");
+    waitFor(() => {
+      expect(result.current[0]).toBe("dark");
+    });
   });
 
   it("correctly updates darkmode", () => {
     const { result, rerender } = renderHook(() => useDarkMode());
     const [state, setState] = result.current;
-    expect(state).toBe("dark");
+    waitFor(() => {
+      expect(state).toBe("dark");
+    });
+
     act(() => setState("green"));
     rerender();
     expect(result.current[0]).toEqual("green");
@@ -30,40 +35,50 @@ describe(useDarkMode, () => {
 
   it("option selector", () => {
     const { result } = renderHook(() => useDarkMode({ selector: "body" }));
-    expect(result.current[0]).toBe("dark");
-    expect(document.body.className).toEqual("dark");
+    waitFor(() => {
+      expect(result.current[0]).toBe("dark");
+      expect(document.body.className).toEqual("dark");
+    });
   });
 
   it("option attribute", () => {
     const { result } = renderHook(() =>
       useDarkMode({ attribute: "className1" })
     );
-    expect(result.current[0]).toBe("dark");
-    expect(document.querySelector("html")?.getAttribute("className1")).toEqual(
-      "dark"
-    );
+    waitFor(() => {
+      expect(result.current[0]).toBe("dark");
+      expect(
+        document.querySelector("html")?.getAttribute("className1")
+      ).toEqual("dark");
+    });
   });
 
   it("option initialValue", () => {
     const { result } = renderHook(() => useDarkMode({ initialValue: "light" }));
-    expect(result.current[0]).toBe("light");
-    expect(document.querySelector("html")?.className).toEqual("light");
-    expect(localStorage.getItem("reactuses-color-scheme")).toEqual("light");
+    waitFor(() => {
+      expect(result.current[0]).toBe("light");
+      expect(document.querySelector("html")?.className).toEqual("light");
+      expect(localStorage.getItem("reactuses-color-scheme")).toEqual("light");
+    });
   });
 
   it("option storageKey", () => {
     const { result } = renderHook(() =>
       useDarkMode({ storageKey: "dark-mode" })
     );
-    expect(result.current[0]).toBe("dark");
-    expect(localStorage.getItem("dark-mode")).toEqual("dark");
+    waitFor(() => {
+      expect(result.current[0]).toBe("dark");
+      expect(localStorage.getItem("dark-mode")).toEqual("dark");
+    });
   });
 
   it("option storage", () => {
     const { result } = renderHook(() =>
       useDarkMode({ storage: () => sessionStorage })
     );
-    expect(result.current[0]).toBe("dark");
-    expect(sessionStorage.getItem("reactuses-color-scheme")).toEqual("dark");
+    waitFor(() => {
+      expect(result.current[0]).toBe("dark");
+      expect(sessionStorage.getItem("reactuses-color-scheme")).toEqual("dark");
+    });
   });
 });

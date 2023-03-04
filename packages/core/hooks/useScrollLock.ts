@@ -24,19 +24,18 @@ export default function useScrollLock(
   const [locked, setLocked] = useState(initialState);
 
   const initialOverflowRef = useRef<CSSStyleDeclaration["overflow"]>("scroll");
+  const element = getTargetElement(target) as HTMLElement;
 
   useEffect(() => {
-    const element = getTargetElement(target) as HTMLElement;
     if (element) {
       initialOverflowRef.current = element.style.overflow;
       if (locked) {
         element.style.overflow = "hidden";
       }
     }
-  }, [locked, target]);
+  }, [locked, element]);
 
   const lock = useEvent(() => {
-    const element = getTargetElement(target) as HTMLElement;
     if (!element || locked) {
       return;
     }
@@ -47,7 +46,6 @@ export default function useScrollLock(
   });
 
   const unlock = useEvent(() => {
-    const element = getTargetElement(target) as HTMLElement;
     if (!element || !locked) {
       return;
     }
