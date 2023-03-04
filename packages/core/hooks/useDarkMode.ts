@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback } from "react";
 import { isBrowser } from "./utils/is";
 import useStorage from "./createStorage";
 import usePreferredDark from "./usePreferredDark";
@@ -18,7 +18,8 @@ export interface UseDarkOptions<T> {
    */
   attribute?: string;
   /**
-   * The initial value write the target element
+   * The initial value write the target element, defaultValue follow system prefer color
+   * must be set in SSR
    * @default 'light | dark'
    */
   initialValue?: T;
@@ -55,21 +56,23 @@ export default function useDarkMode<T extends string | "light" | "dark">(
 
   const [dark, setDark] = useStorage<T>(storageKey, value as T, storage);
 
-  useEffect(() => {
-    const element = window?.document.querySelector(selector);
-    if (!element) {
-      return;
-    }
-    if (attribute === "class") {
-      dark && element.classList.add(dark);
-    } else {
-      dark && element.setAttribute(attribute, dark);
-    }
+  const wrappedSetDark = useCallback(
+    (latestDark: T) => {
+      const element = window?.document.querySelector(selector);
+      if (!element) {
+        return;
+      }
+      if (attribute === "class") {
+        latestDark && element.classList.add(latestDark);
+        dark && element.classList.remove(dark);
+      } else {
+        latestDark && element.setAttribute(attribute, latestDark);
+        dark && element.removeAttribute(attribute);
+      }
+      setDark(latestDark);
+    },
+    [attribute, dark, selector, setDark]
+  );
 
-    return () => {
-      dark && element?.classList.remove(dark);
-    };
-  }, [attribute, dark, selector]);
-
-  return [dark, setDark] as const;
+  return [dark, wrappedSetDark] as const;
 }

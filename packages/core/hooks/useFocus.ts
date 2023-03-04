@@ -28,14 +28,5 @@ export default function useFocus(
     }
   };
 
-  // const getFocus = useMemo(() => {
-  //   console.log(activeElement, element);
-  //   console.log(
-  //     isDef(activeElement) && isDef(element) && activeElement === element
-  //   );
-  //   return isDef(activeElement) && isDef(element) && activeElement === element;
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [activeElement]);
-
   return [focus, setFocus] as const;
 }

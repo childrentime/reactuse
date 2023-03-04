@@ -24,13 +24,13 @@ function App() {
           }
           var preferredTheme;
           try {
-            preferredTheme = localStorage.getItem('theme');
+            preferredTheme = localStorage.getItem('reactuses-color-scheme');
           } catch (err) { }
           window.__setPreferredTheme = function(newTheme) {
             preferredTheme = newTheme;
             setTheme(newTheme);
             try {
-              localStorage.setItem('theme', newTheme);
+              localStorage.setItem('reactuses-color-scheme', newTheme);
             } catch (err) { }
           };
           var initialTheme = preferredTheme;
@@ -39,11 +39,6 @@ function App() {
             initialTheme = darkQuery.matches ? 'dark' : 'light';
           }
           setTheme(initialTheme);
-          darkQuery.addEventListener('change', function (e) {
-            if (!preferredTheme) {
-              setTheme(e.matches ? 'dark' : 'light');
-            }
-          });
         })();
       `,
         }}

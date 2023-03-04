@@ -67,6 +67,7 @@ export const menuGroup: Menu[] = [
       "useWindowScroll",
       "useWindowSize",
       "useFocus",
+      "useSticky",
     ],
   },
   {
@@ -77,6 +78,8 @@ export const menuGroup: Menu[] = [
       "usePreferredContrast",
       "usePreferredDark",
       "useDarkMode",
+      "useScrollIntoView",
+      "useReducedMotion",
       "useFavicon",
       "useTitle",
       "useScriptTag",

@@ -30,7 +30,7 @@ export default function useIntersectionObserver(
     observerRef.current.observe(element);
 
     return stop;
-  }, [options]);
+  }, [options, target]);
 
   return stop;
 }

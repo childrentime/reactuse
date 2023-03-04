@@ -75,6 +75,9 @@ import useFocus from "./useFocus";
 import useControlled from "./useControlled";
 import useOnceEffect from "./useOnceEffect";
 import useOnceLayoutEffect from "./useOnceLayoutEffect";
+import useReducedMotion from "./useReduceMotion";
+import useScrollIntoView from "./useScrollIntoView";
+import useSticky from "./useSticky";
 
 export {
   usePrevious,
@@ -154,6 +157,9 @@ export {
   useControlled,
   useOnceEffect,
   useOnceLayoutEffect,
+  useReducedMotion,
+  useScrollIntoView,
+  useSticky,
 };
 
 export * from "./useToggle";
@@ -233,3 +239,6 @@ export * from "./useInfiniteScroll";
 export * from "./useKeyModifier";
 export * from "./useMousePressed";
 export * from "./useClipboard";
+export * from "./useReduceMotion";
+export * from "./useScrollIntoView";
+export * from "./useSticky";

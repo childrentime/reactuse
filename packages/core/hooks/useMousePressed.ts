@@ -1,8 +1,7 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import { IHookStateInitAction } from "./utils/hookState";
 import useEventListener from "./useEventListener";
-import useMount from "./useMount";
 
 export interface MousePressedOptions {
   /**
@@ -54,7 +53,7 @@ export default function useMousePressed(
   useEventListener("mouseleave", onReleased, () => window, { passive: true });
   useEventListener("mouseup", onReleased, () => window, { passive: true });
 
-  useMount(() => {
+  useEffect(() => {
     const element = getTargetElement(target);
     if (drag) {
       element?.addEventListener("dragstart", onPressed("mouse"), {
@@ -92,7 +91,7 @@ export default function useMousePressed(
         element?.removeEventListener("touchcancel", onReleased);
       }
     };
-  });
+  }, [drag, onPressed, onReleased, target, touch]);
 
   return [pressed, sourceType] as const;
 }

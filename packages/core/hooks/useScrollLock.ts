@@ -1,7 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import { isIOS } from "./utils/is";
-import useMount from "./useMount";
 import useEvent from "./useEvent";
 
 function preventDefault(rawEvent: TouchEvent): boolean {
@@ -26,7 +25,7 @@ export default function useScrollLock(
 
   const initialOverflowRef = useRef<CSSStyleDeclaration["overflow"]>("scroll");
 
-  useMount(() => {
+  useEffect(() => {
     const element = getTargetElement(target) as HTMLElement;
     if (element) {
       initialOverflowRef.current = element.style.overflow;
@@ -34,7 +33,7 @@ export default function useScrollLock(
         element.style.overflow = "hidden";
       }
     }
-  });
+  }, [locked, target]);
 
   const lock = useEvent(() => {
     const element = getTargetElement(target) as HTMLElement;
@@ -44,7 +43,6 @@ export default function useScrollLock(
     if (isIOS) {
       element.addEventListener("touchmove", preventDefault, { passive: false });
     }
-    element.style.overflow = "hidden";
     setLocked(true);
   });
 

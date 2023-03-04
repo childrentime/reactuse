@@ -13,7 +13,7 @@ const Demo = () => {
   const [isFullscreen, { enterFullscreen, exitFullscreen, toggleFullscreen }] =
     useFullscreen(ref);
   return (
-    <div ref={ref} style={{ background: "white" }}>
+    <div ref={ref}>
       <div style={{ marginBottom: 16 }}>
         {isFullscreen ? "Fullscreen" : "Not fullscreen"}
       </div>
@@ -45,7 +45,10 @@ export interface Options {
   onEnter?: () => void;
 }
 
-export default function useFullscreen(target: BasicTarget, options?: Options): boolean
+export default function useFullscreen(
+  target: BasicTarget,
+  options?: Options
+): boolean;
 ```
 
 ## Examples

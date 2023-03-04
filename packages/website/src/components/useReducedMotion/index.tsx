@@ -1,4 +1,4 @@
-import { usePreferredDark } from "@reactuses/core";
+import { useReducedMotion } from "@reactuses/core";
 import Layout from "../Layout";
 import file from "./README.md";
 
@@ -13,7 +13,7 @@ const Page = () => {
 export default Page;
 
 const Demo = () => {
-  const isDark = usePreferredDark(false);
+  const motion = useReducedMotion(false);
 
-  return <div>PreferredDark: {JSON.stringify(isDark)}</div>;
+  return <div>ReducedMotion: {JSON.stringify(motion)}</div>;
 };

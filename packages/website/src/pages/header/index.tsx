@@ -14,7 +14,9 @@ import { ToastContainer } from "react-toastify";
 type ColorMode = "dark" | "light";
 const Header = () => {
   const navigate = useNavigate();
-  const [dark, setDark] = useDarkMode<ColorMode>();
+  const [dark, setDark] = useDarkMode<ColorMode>({
+    initialValue: "light",
+  });
   const toggleDark = () => {
     if (dark === "dark") {
       setDark("light");

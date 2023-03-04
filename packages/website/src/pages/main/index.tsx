@@ -1,11 +1,30 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import styles from "./style.module.css";
 import NotFound from "../404/";
 import { menuGroup, pages } from "../../routes";
+import { useScrollIntoView } from "@reactuses/core";
 
 const Main = () => {
   const pathname = useLocation().pathname.substring(1);
+
+  const [element, setElement] = useState<Element | null>(null);
+  const { scrollIntoView } = useScrollIntoView<HTMLDivElement>({
+    offset: 60,
+    targetElement: element,
+    duration: 0,
+  });
+  useEffect(() => {
+    const node = document.getElementsByClassName(styles.itemSelect)[0];
+    if (!node) {
+      return;
+    }
+    setElement(node);
+  }, [pathname]);
+
+  useEffect(() => {
+    scrollIntoView({ alignment: "center" });
+  }, [element]);
 
   return (
     <div className={styles.main}>

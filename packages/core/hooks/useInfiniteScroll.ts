@@ -62,5 +62,5 @@ export default function useInfiniteScroll(
     };
     fn();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [di, options.preserveScrollPosition]);
+  }, [di, options.preserveScrollPosition, target]);
 }

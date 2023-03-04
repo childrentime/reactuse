@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { isBrowser } from "./utils/is";
 
 const getInitialState = (query: string, defaultState?: boolean) => {
-  if (isBrowser) {
-    return window.matchMedia(query).matches;
-  }
-
   // Prevent a React hydration mismatch when a default value is provided by not defaulting to window.matchMedia(query).matches.
   if (defaultState !== undefined) {
     return defaultState;
+  }
+
+  if (isBrowser) {
+    return window.matchMedia(query).matches;
   }
 
   // A default value has not been provided, and you are rendering on the server, warn of a possible hydration mismatch when defaulting to false.

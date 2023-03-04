@@ -1,7 +1,6 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { isFunction } from "./utils/is";
 import { guessSerializerType } from "./utils/serializer";
-import useUpdateEffect from "./useUpdateEffect";
 import useEvent from "./useEvent";
 
 export interface Serializer<T> {
@@ -60,6 +59,8 @@ export interface UseStorageOptions<T> {
    */
   onError?: (error: unknown) => void;
 }
+
+// to avoid SSR error, first return default value, then update it in useEffect
 export default function useStorage<
   T extends string | number | boolean | object | null
 >(
@@ -85,7 +86,7 @@ export default function useStorage<
   const type = guessSerializerType<T>(defaults);
   const serializer = options.serializer ?? StorageSerializers[type];
 
-  const getStoredValue = () => {
+  const getStoredValue = useEvent(() => {
     try {
       const raw = storage?.getItem(key);
       if (raw !== undefined && raw !== null) {
@@ -97,13 +98,13 @@ export default function useStorage<
     } catch (e) {
       onError(e);
     }
-  };
+  });
 
-  const [state, setState] = useState<T | null>(() => getStoredValue());
+  const [state, setState] = useState<T | null>(defaults);
 
-  useUpdateEffect(() => {
+  useEffect(() => {
     setState(getStoredValue());
-  }, [key]);
+  }, [getStoredValue, key]);
 
   const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
     (valOrFunc) => {
