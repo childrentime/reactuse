@@ -47,6 +47,7 @@ export const menuGroup: Menu[] = [
       "useEventEmitter",
       "useCustomCompareEffect",
       "useDeepCompareEffect",
+      "useAsyncEffect",
     ],
   },
   {

@@ -78,6 +78,7 @@ import useOnceLayoutEffect from "./useOnceLayoutEffect";
 import useReducedMotion from "./useReduceMotion";
 import useScrollIntoView from "./useScrollIntoView";
 import useSticky from "./useSticky";
+import useAsyncEffect from "./useAsyncEffect";
 
 export {
   usePrevious,
@@ -160,6 +161,7 @@ export {
   useReducedMotion,
   useScrollIntoView,
   useSticky,
+  useAsyncEffect,
 };
 
 export * from "./useToggle";
@@ -242,3 +244,4 @@ export * from "./useClipboard";
 export * from "./useReduceMotion";
 export * from "./useScrollIntoView";
 export * from "./useSticky";
+export * from "./useAsyncEffect";

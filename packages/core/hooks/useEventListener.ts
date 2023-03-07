@@ -1,5 +1,5 @@
 import useLatest from "./useLatest";
-import { off, on } from "./utils/browser";
+import { defaultWindow, off, on } from "./utils/browser";
 import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import useDeepCompareEffect from "./useDeepCompareEffect";
 
@@ -66,7 +66,7 @@ export default function useEventListener(
 ) {
   // Create a ref that stores handler
   const savedHandler = useLatest(handler);
-  const targetElement = getTargetElement(element, window);
+  const targetElement = getTargetElement(element, defaultWindow);
 
   useDeepCompareEffect(() => {
     if (!(targetElement && targetElement.addEventListener)) {
