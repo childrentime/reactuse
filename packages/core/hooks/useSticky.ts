@@ -1,4 +1,8 @@
-import { BasicTarget, getTargetElement } from "./utils/domTarget";
+import {
+  BasicTarget,
+  getTargetElement,
+  useLatestElement,
+} from "./utils/domTarget";
 import React, { useEffect, useState } from "react";
 import useThrottleFn from "./useThrottleFn";
 import { getScrollParent } from "./utils/scroll";
@@ -22,14 +26,13 @@ const useSticky = ({
   React.Dispatch<React.SetStateAction<boolean>>
 ] => {
   const [isSticky, setSticky] = useState<boolean>(false);
-  const element = getTargetElement(targetElement);
-  const scrollParent =
-    getTargetElement(scrollElement) || getScrollParent(axis, element);
+  const element = useLatestElement(targetElement);
+
   const { run: scrollHandler } = useThrottleFn(() => {
-    if (!element) {
+    if (!element.current) {
       return;
     }
-    const rect = element.getBoundingClientRect();
+    const rect = element.current.getBoundingClientRect();
     if (axis === "y") {
       setSticky(rect?.top <= nav);
     } else {
@@ -38,7 +41,9 @@ const useSticky = ({
   }, 50);
 
   useEffect(() => {
-    if (!element || !scrollParent) {
+    const scrollParent =
+      getTargetElement(scrollElement) || getScrollParent(axis, element.current);
+    if (!element.current || !scrollParent) {
       return;
     }
 
@@ -47,7 +52,7 @@ const useSticky = ({
     return () => {
       scrollParent.removeEventListener("scroll", scrollHandler);
     };
-  }, [axis, element, scrollHandler, scrollParent]);
+  }, [axis, element, scrollElement, scrollHandler]);
   return [isSticky, setSticky];
 };
 

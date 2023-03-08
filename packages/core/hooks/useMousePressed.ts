@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { BasicTarget, getTargetElement } from "./utils/domTarget";
+import { BasicTarget, useLatestElement } from "./utils/domTarget";
 import { IHookStateInitAction } from "./utils/hookState";
 import useEventListener from "./useEventListener";
 
@@ -36,7 +36,7 @@ export default function useMousePressed(
 
   const [pressed, setPressed] = useState(initialValue);
   const [sourceType, setSourceType] = useState<MouseSourceType>(null);
-  const element = getTargetElement(target);
+  const elementRef = useLatestElement(target);
 
   const onPressed = useCallback(
     (srcType: MouseSourceType) => () => {
@@ -55,6 +55,7 @@ export default function useMousePressed(
   useEventListener("mouseup", onReleased, () => window, { passive: true });
 
   useEffect(() => {
+    const element = elementRef.current;
     if (drag) {
       element?.addEventListener("dragstart", onPressed("mouse"), {
         passive: true,
@@ -91,7 +92,7 @@ export default function useMousePressed(
         element?.removeEventListener("touchcancel", onReleased);
       }
     };
-  }, [drag, onPressed, onReleased, element, touch]);
+  }, [drag, onPressed, onReleased, touch, elementRef]);
 
   return [pressed, sourceType] as const;
 }

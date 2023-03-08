@@ -1,4 +1,4 @@
-import { BasicTarget, getTargetElement } from "./utils/domTarget";
+import { BasicTarget, useLatestElement } from "./utils/domTarget";
 import useLatest from "./useLatest";
 import useDeepCompareEffect from "./useDeepCompareEffect";
 import { useCallback, useRef } from "react";
@@ -10,7 +10,7 @@ export default function useMutationObserver(
 ): () => void {
   const callbackRef = useLatest(callback);
   const observerRef = useRef<MutationObserver>();
-  const element = getTargetElement(target);
+  const element = useLatestElement(target);
 
   const stop = useCallback(() => {
     if (observerRef.current) {
@@ -19,12 +19,12 @@ export default function useMutationObserver(
   }, []);
 
   useDeepCompareEffect(() => {
-    if (!element) {
+    if (!element.current) {
       return;
     }
     observerRef.current = new MutationObserver(callbackRef.current);
 
-    observerRef.current.observe(element, options);
+    observerRef.current.observe(element.current, options);
     return stop;
   }, [options, element]);
 

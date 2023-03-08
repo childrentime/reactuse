@@ -8,14 +8,16 @@ import { useScrollIntoView } from "@reactuses/core";
 const Main = () => {
   const pathname = useLocation().pathname.substring(1);
 
-  const [element, setElement] = useState<Element | null>(null);
-  const { scrollIntoView } = useScrollIntoView<HTMLDivElement>({
+  const [element, setElement] = useState<HTMLElement | null>(null);
+  const { scrollIntoView } = useScrollIntoView({
     offset: 60,
     targetElement: element,
     duration: 0,
   });
   useEffect(() => {
-    const node = document.getElementsByClassName(styles.itemSelect)[0];
+    const node = document.getElementsByClassName(
+      styles.itemSelect
+    )[0] as HTMLElement;
     if (!node) {
       return;
     }

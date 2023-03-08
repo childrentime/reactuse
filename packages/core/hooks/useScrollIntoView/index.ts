@@ -2,7 +2,11 @@ import { useEffect, useRef } from "react";
 import useEvent from "../useEvent";
 import useEventListener from "../useEventListener";
 import useReducedMotion from "../useReduceMotion";
-import { BasicTarget, getTargetElement } from "../utils/domTarget";
+import {
+  BasicTarget,
+  getTargetElement,
+  useLatestElement,
+} from "../utils/domTarget";
 import {
   getScrollParent,
   getScrollStart,
@@ -64,11 +68,13 @@ export default function useScrollIntoView({
     }
   };
 
+  const element = useLatestElement(targetElement);
+
   const scrollIntoView = useEvent(
     ({ alignment = "start" }: ScrollIntoViewAnimation = {}) => {
-      const element = getTargetElement(targetElement);
       const parent =
-        getTargetElement(scrollElement) || getScrollParent(axis, element);
+        getTargetElement(scrollElement) ||
+        getScrollParent(axis, element.current);
       shouldStop.current = false;
 
       if (frameID.current) {
@@ -79,7 +85,7 @@ export default function useScrollIntoView({
       const change =
         getRelativePosition({
           parent: parent,
-          target: element,
+          target: element.current,
           axis,
           alignment,
           offset,

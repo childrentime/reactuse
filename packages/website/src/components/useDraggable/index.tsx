@@ -1,5 +1,5 @@
 import { useDraggable } from "@reactuses/core";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Layout from "../Layout";
 import file from "./README.md";
 
@@ -16,9 +16,14 @@ export default Page;
 const Demo = () => {
   const el = useRef<HTMLDivElement>(null);
 
-  const innerWidth = typeof window !== "undefined" ? window.innerWidth : 200;
+  const [initialValue, setInitialValue] = useState({ x: 200 / 2.2, y: 120 });
+
+  useEffect(() => {
+    setInitialValue({ x: window.innerWidth / 2.2, y: 120 });
+  }, []);
+
   const [x, y, isDragging] = useDraggable(el, {
-    initialValue: { x: innerWidth / 2.2, y: 120 },
+    initialValue,
     preventDefault: true,
   });
 

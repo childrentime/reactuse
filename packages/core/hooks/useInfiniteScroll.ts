@@ -1,4 +1,4 @@
-import { BasicTarget, getTargetElement } from "./utils/domTarget";
+import { BasicTarget, useLatestElement } from "./utils/domTarget";
 import useScroll, { UseScrollOptions } from "./useScroll";
 import useLatest from "./useLatest";
 import useUpdateEffect from "./useUpdateEffect";
@@ -27,7 +27,7 @@ export interface UseInfiniteScrollOptions extends UseScrollOptions {
 }
 
 export default function useInfiniteScroll(
-  target: BasicTarget<HTMLElement | SVGElement | Window | Document>,
+  target: BasicTarget<HTMLElement | SVGElement>,
   onLoadMore: (state: ReturnType<typeof useScroll>) => void | Promise<void>,
   options: UseInfiniteScrollOptions = {}
 ) {
@@ -40,23 +40,23 @@ export default function useInfiniteScroll(
       ...options.offset,
     },
   });
-  const element = getTargetElement(target) as Element;
+  const element = useLatestElement(target);
 
   const di = state[3][direction];
 
   useUpdateEffect(() => {
     const fn = async () => {
       const previous = {
-        height: element?.scrollHeight ?? 0,
-        width: element?.scrollWidth ?? 0,
+        height: element.current?.scrollHeight ?? 0,
+        width: element.current?.scrollWidth ?? 0,
       };
 
       await savedLoadMore.current(state);
 
-      if (options.preserveScrollPosition && element) {
-        element.scrollTo({
-          top: element.scrollHeight - previous.height,
-          left: element.scrollWidth - previous.width,
+      if (options.preserveScrollPosition && element.current) {
+        element.current.scrollTo({
+          top: element.current.scrollHeight - previous.height,
+          left: element.current.scrollWidth - previous.width,
         });
       }
     };

@@ -4,16 +4,15 @@ Lock scrolling of the element.
 
 ## Usage
 
->>> show code
+> > > show code
 
 ```tsx
-import { useScroll, useScrollLock } from "@reactuses/core";
+import { useScrollLock } from "@reactuses/core";
 import { CSSProperties, useRef } from "react";
 
 const Demo = () => {
   const elementRef = useRef<HTMLDivElement>(null);
   const [locked, setLocked] = useScrollLock(elementRef);
-  useScroll(elementRef);
 
   const absoluteStyle: CSSProperties = {
     paddingTop: "0.25rem",
@@ -106,7 +105,7 @@ const Demo = () => {
 };
 ```
 
->>>
+> > >
 
 ## Type Declarations
 
@@ -114,7 +113,7 @@ const Demo = () => {
 export default function useScrollLock(
   target: BasicTarget<HTMLElement | SVGElement | Window | Document>,
   initialState = false
-): readonly [boolean, (flag: boolean) => void]
+): readonly [boolean, (flag: boolean) => void];
 ```
 
 ## Examples

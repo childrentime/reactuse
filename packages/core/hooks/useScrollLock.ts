@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { BasicTarget, getTargetElement } from "./utils/domTarget";
+import { BasicTarget, useLatestElement } from "./utils/domTarget";
 import { isIOS } from "./utils/is";
 import useEvent from "./useEvent";
 
@@ -18,41 +18,43 @@ function preventDefault(rawEvent: TouchEvent): boolean {
 }
 
 export default function useScrollLock(
-  target: BasicTarget<HTMLElement | SVGElement | Window | Document>,
+  target: BasicTarget<HTMLElement>,
   initialState = false
 ): readonly [boolean, (flag: boolean) => void] {
   const [locked, setLocked] = useState(initialState);
 
   const initialOverflowRef = useRef<CSSStyleDeclaration["overflow"]>("scroll");
-  const element = getTargetElement(target) as HTMLElement;
+  const element = useLatestElement(target);
 
   useEffect(() => {
-    if (element) {
-      initialOverflowRef.current = element.style.overflow;
+    if (element.current) {
+      initialOverflowRef.current = element.current.style.overflow;
       if (locked) {
-        element.style.overflow = "hidden";
+        element.current.style.overflow = "hidden";
       }
     }
   }, [locked, element]);
 
   const lock = useEvent(() => {
-    if (!element || locked) {
+    if (!element.current || locked) {
       return;
     }
     if (isIOS) {
-      element.addEventListener("touchmove", preventDefault, { passive: false });
+      element.current.addEventListener("touchmove", preventDefault, {
+        passive: false,
+      });
     }
     setLocked(true);
   });
 
   const unlock = useEvent(() => {
-    if (!element || !locked) {
+    if (!element.current || !locked) {
       return;
     }
     if (isIOS) {
-      element.removeEventListener("touchmove", preventDefault);
+      element.current.removeEventListener("touchmove", preventDefault);
     }
-    element.style.overflow = initialOverflowRef.current;
+    element.current.style.overflow = initialOverflowRef.current;
     setLocked(false);
   });
 

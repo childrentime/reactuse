@@ -1,4 +1,4 @@
-import { useScroll, useScrollLock } from "@reactuses/core";
+import { useScrollLock } from "@reactuses/core";
 import { CSSProperties, useRef } from "react";
 import Layout from "../Layout";
 
@@ -16,8 +16,6 @@ export default Page;
 
 const Demo = () => {
   const elementRef = useRef<HTMLDivElement>(null);
-
-  useScroll(elementRef);
   const [locked, setLocked] = useScrollLock(elementRef);
 
   const absoluteStyle: CSSProperties = {

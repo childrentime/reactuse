@@ -1,7 +1,6 @@
-import { defaultWindow } from "./utils/browser";
 import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import { PointerType, Position } from "./utils/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useEventListener from "./useEventListener";
 
 export interface UseDraggableOptions {
@@ -74,15 +73,17 @@ export default function useDraggable(
   target: BasicTarget<HTMLElement | SVGElement>,
   options: UseDraggableOptions = {}
 ): readonly [number, number, boolean] {
-  const draggingElement = getTargetElement(
-    options.draggingElement,
-    defaultWindow
-  );
-  const draggingHandle = getTargetElement(options.handle ?? target);
+  const draggingElement = options.draggingElement;
+  const draggingHandle = options.handle ?? target;
 
   const [position, setPositon] = useState<Position>(
     options.initialValue ?? { x: 0, y: 0 }
   );
+
+  useEffect(() => {
+    setPositon(options.initialValue ?? { x: 0, y: 0 });
+  }, [options.initialValue]);
+
   const [pressedDelta, setPressedDelta] = useState<Position>();
 
   const filterEvent = (e: PointerEvent) => {

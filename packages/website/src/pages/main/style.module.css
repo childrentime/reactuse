@@ -37,6 +37,7 @@
 
 .menuRoot {
   margin-bottom: 40px;
+  list-style: none;
 }
 
 .itemTitle {

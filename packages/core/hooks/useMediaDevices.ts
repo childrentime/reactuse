@@ -45,7 +45,7 @@ function useMediaDevices() {
   return state;
 }
 
-const useMediaDevicesMock = () => ({});
+const useMediaDevicesMock = () => ({ devices: [] });
 
 export default isNavigator && !!navigator.mediaDevices
   ? useMediaDevices
