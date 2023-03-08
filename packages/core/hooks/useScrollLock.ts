@@ -33,7 +33,8 @@ export default function useScrollLock(
         element.current.style.overflow = "hidden";
       }
     }
-  }, [locked, element]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locked, element.current]);
 
   const lock = useEvent(() => {
     if (!element.current || locked) {

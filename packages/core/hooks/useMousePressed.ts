@@ -92,7 +92,8 @@ export default function useMousePressed(
         element?.removeEventListener("touchcancel", onReleased);
       }
     };
-  }, [drag, onPressed, onReleased, touch, elementRef]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [drag, onPressed, onReleased, touch, elementRef.current]);
 
   return [pressed, sourceType] as const;
 }

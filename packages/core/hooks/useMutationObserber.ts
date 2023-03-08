@@ -26,7 +26,7 @@ export default function useMutationObserver(
 
     observerRef.current.observe(element.current, options);
     return stop;
-  }, [options, element]);
+  }, [options, element.current]);
 
   return stop;
 }

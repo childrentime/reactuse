@@ -25,7 +25,7 @@ export default function useResizeObserver(
     observerRef.current.observe(element.current, options);
 
     return stop;
-  }, [options, element]);
+  }, [options, element.current]);
 
   return stop;
 }

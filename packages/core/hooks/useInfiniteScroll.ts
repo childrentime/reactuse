@@ -41,10 +41,12 @@ export default function useInfiniteScroll(
     },
   });
   const element = useLatestElement(target);
+  const latestOptions = useLatest(options);
 
   const di = state[3][direction];
 
   useUpdateEffect(() => {
+    const opts = latestOptions.current;
     const fn = async () => {
       const previous = {
         height: element.current?.scrollHeight ?? 0,
@@ -53,7 +55,7 @@ export default function useInfiniteScroll(
 
       await savedLoadMore.current(state);
 
-      if (options.preserveScrollPosition && element.current) {
+      if (opts.preserveScrollPosition && element.current) {
         element.current.scrollTo({
           top: element.current.scrollHeight - previous.height,
           left: element.current.scrollWidth - previous.width,
@@ -61,6 +63,5 @@ export default function useInfiniteScroll(
       }
     };
     fn();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [di, options.preserveScrollPosition, element]);
+  }, [di]);
 }

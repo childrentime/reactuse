@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 import useEventListener from "../../hooks/useEventListener";
 
 interface Props {
@@ -16,6 +16,7 @@ const propsList1: Props[] = [
       current: {
         addEventListener: jest.fn(),
         removeEventListener: jest.fn(),
+        name: "target1",
       },
     },
   },
@@ -26,6 +27,7 @@ const propsList1: Props[] = [
       current: {
         addEventListener: jest.fn(),
         removeEventListener: jest.fn(),
+        name: "target2",
       },
     },
   },
@@ -126,15 +128,21 @@ const checkOnDepsChanges = (
   );
 
   // target is different from previous
-  rerender({
-    name: props2.name,
-    handler: props2.handler,
-    target: props2.target,
-    options: props2.options,
+  act(() => {
+    rerender({
+      name: props2.name,
+      handler: props2.handler,
+      target: props2.target,
+      options: props2.options,
+    });
   });
-  expect(props1.target.current[removeEventListenerName]).toHaveBeenCalledTimes(
-    4
-  );
 
-  expect(props2.target.current[addEventListenerName]).toHaveBeenCalledTimes(1);
+  waitFor(() => {
+    expect(
+      props1.target.current[removeEventListenerName]
+    ).toHaveBeenCalledTimes(4);
+    expect(props2.target.current[addEventListenerName]).toHaveBeenCalledTimes(
+      1
+    );
+  });
 };
