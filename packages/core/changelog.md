@@ -74,7 +74,7 @@
 * fixed some ssr error
 * fixed some test
 
-### 2.1.0(March 8, 2023)
+### 2.2.0(March 8, 2023)
 
 ### Core
 
