@@ -2,13 +2,13 @@ import {
   Dispatch,
   SetStateAction,
   useCallback,
-  useEffect,
   useMemo,
   useState,
 } from "react";
 import { isFunction } from "./utils/is";
 import { guessSerializerType } from "./utils/serializer";
 import useEvent from "./useEvent";
+import useDeepCompareEffect from "./useDeepCompareEffect";
 
 export interface Serializer<T> {
   read(raw: string): T;
@@ -93,14 +93,13 @@ export default function useStorage<
   }
 
   const type = guessSerializerType<T>(defaults);
-  const serializer = useMemo(
-    () => options.serializer ?? StorageSerializers[type],
-    [options.serializer, type]
-  );
+  const serializer = useMemo(() => {
+    return options.serializer ?? StorageSerializers[type];
+  }, [options.serializer, type]);
 
   const [state, setState] = useState<T | null>(defaults);
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     const getStoredValue = () => {
       try {
         const raw = storage?.getItem(key);
