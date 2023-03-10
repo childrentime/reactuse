@@ -28,6 +28,28 @@ const Demo = () => {
 >>> Show Type Declarations
 
 ```ts
+export interface Serializer<T> {
+  read(raw: string): T
+  write(value: T): string
+}
+
+export interface UseStorageOptions<T> {
+  /**
+   * Custom data serialization
+   */
+  serializer?: Serializer<T>;
+  /**
+   * On error callback
+   *
+   * Default log error to `console.error`
+   */
+  onError?: (error: unknown) => void;
+  /**
+   * ignore default value when storage has value
+   */
+  ignoreDefaults?: boolean;
+}
+
 export default function useSessionStorage(
   key: string,
   defaults: string,

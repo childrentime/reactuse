@@ -13,9 +13,7 @@ const Page = () => {
 export default Page;
 
 const Demo = () => {
-  const [theme, setTheme] = useDarkMode<"light" | "dark">({
-    initialValue: "light",
-  });
+  const [theme, setTheme] = useDarkMode<"light" | "dark">();
 
   const toggleDark = () => {
     if (theme === "dark") {

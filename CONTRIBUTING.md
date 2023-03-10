@@ -31,13 +31,11 @@ This library is a collection of React hooks so a proposal for a new hook will ne
 
 ## Project Structure
 
-### Monorepo
-
-We use monorepo for multiple packages
+packages is divided into two parts.
 
 ``` md
 packages
-  core/           - the core package
+  core/           - the core hook package
   website/        - the document package
 ```
 

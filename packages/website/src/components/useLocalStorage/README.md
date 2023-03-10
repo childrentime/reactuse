@@ -45,6 +45,10 @@ export interface UseStorageOptions<T> {
    * Default log error to `console.error`
    */
   onError?: (error: unknown) => void;
+  /**
+   * ignore default value when storage has value
+   */
+  ignoreDefaults?: boolean;
 }
 
 export default function useLocalStorage(

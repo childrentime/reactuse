@@ -66,10 +66,6 @@ Note: If your website has a twinkle of color, you can add this code to the top o
 
 ## Type Declarations
 
-:::warning
-The initialValue parameter must be set when using server side rendering, we need it to keep consistency in client side and server side.
-:::
-
 > > > Show Type Declarations
 
 ```ts
@@ -88,8 +84,7 @@ export interface UseDarkOptions<T> {
    */
   attribute?: string;
   /**
-   * The initial value write the target element, defaultValue follow system prefer color
-   * must be set in SSR
+   * The initial classname value write the target element, Otherwise, it will follow the system by default
    * @default 'light | dark'
    */
   initialValue?: T;
