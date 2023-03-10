@@ -18,8 +18,7 @@ export interface UseDarkOptions<T> {
    */
   attribute?: string;
   /**
-   * The initial value write the target element, defaultValue follow system prefer color
-   * must be set in SSR
+   * The initial classname value write the target element, Otherwise, it will follow the system by default
    * @default 'light | dark'
    */
   initialValue?: T;
@@ -36,7 +35,7 @@ export interface UseDarkOptions<T> {
    */
   storage?: () => Storage;
 }
-export default function useDarkMode<T extends string | "light" | "dark">(
+export default function useDarkMode<T extends string>(
   options: UseDarkOptions<T> = {}
 ) {
   const {
@@ -48,13 +47,13 @@ export default function useDarkMode<T extends string | "light" | "dark">(
   } = options;
 
   const prefersDarkMode = usePreferredDark(false);
-  const value = initialValue
-    ? initialValue
-    : prefersDarkMode
-    ? "dark"
-    : "light";
+  const value = (
+    initialValue ? initialValue : prefersDarkMode ? "dark" : "light"
+  ) as T;
 
-  const [dark, setDark] = useStorage<T>(storageKey, value as T, storage);
+  const [dark, setDark] = useStorage<T>(storageKey, value, storage, {
+    ignoreDefaults: false,
+  });
 
   const wrappedSetDark = useCallback(
     (latestDark: T) => {

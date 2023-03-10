@@ -80,3 +80,11 @@
 
 * fixed some ssr error
 * fixed some test
+
+### 2.2.1(March 10, 2023)
+
+### Core
+
+* add test for useActiveElement
+* fix bug in useDarkMode
+* add Option ignoreDefault in useLocalStorage and useSessionStorage

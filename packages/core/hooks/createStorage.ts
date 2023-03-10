@@ -1,4 +1,11 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { isFunction } from "./utils/is";
 import { guessSerializerType } from "./utils/serializer";
 import useEvent from "./useEvent";
@@ -58,6 +65,10 @@ export interface UseStorageOptions<T> {
    * Default log error to `console.error`
    */
   onError?: (error: unknown) => void;
+  /**
+   * ignore default value when storage has value
+   */
+  ignoreDefaults?: boolean;
 }
 
 // to avoid SSR error, first return default value, then update it in useEffect
@@ -69,42 +80,43 @@ export default function useStorage<
   getStorage: () => Storage | undefined,
   options: UseStorageOptions<T> = {}
 ) {
+  const defaultOnError = useCallback((e) => {
+    console.error(e);
+  }, []);
   let storage: Storage | undefined;
-  const {
-    onError = (e) => {
-      console.error(e);
-    },
-  } = options;
-  const data = defaults;
+  const { onError = defaultOnError, ignoreDefaults = true } = options;
 
   try {
     storage = getStorage();
   } catch (err) {
-    console.error(err);
+    onError(err);
   }
 
   const type = guessSerializerType<T>(defaults);
-  const serializer = options.serializer ?? StorageSerializers[type];
-
-  const getStoredValue = useEvent(() => {
-    try {
-      const raw = storage?.getItem(key);
-      if (raw !== undefined && raw !== null) {
-        return serializer.read(raw);
-      } else {
-        storage?.setItem(key, serializer.write(data));
-        return data;
-      }
-    } catch (e) {
-      onError(e);
-    }
-  });
+  const serializer = useMemo(
+    () => options.serializer ?? StorageSerializers[type],
+    [options.serializer, type]
+  );
 
   const [state, setState] = useState<T | null>(defaults);
 
   useEffect(() => {
+    const getStoredValue = () => {
+      try {
+        const raw = storage?.getItem(key);
+        if (raw !== undefined && raw !== null && ignoreDefaults) {
+          return serializer.read(raw);
+        } else {
+          storage?.setItem(key, serializer.write(defaults));
+          return defaults;
+        }
+      } catch (e) {
+        onError(e);
+      }
+    };
+
     setState(getStoredValue());
-  }, [getStoredValue, key]);
+  }, [key, ignoreDefaults, defaults, serializer, storage, onError]);
 
   const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
     (valOrFunc) => {
