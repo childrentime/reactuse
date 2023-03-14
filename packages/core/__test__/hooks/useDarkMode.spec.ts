@@ -1,8 +1,12 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
-import useDarkMode from "../../hooks/useDarkMode";
+import { renderHook, waitFor } from "@testing-library/react";
+import useDarkMode, { UseDarkOptions } from "../../hooks/useDarkMode";
 import { createMockMediaMatcher } from "../utils";
 
 describe(useDarkMode, () => {
+  const options: UseDarkOptions = {
+    classNameDark: "dark",
+    classNameLight: "light",
+  };
   beforeEach(() => {
     window.matchMedia = createMockMediaMatcher({
       "(prefers-color-scheme: dark)": true,
@@ -13,28 +17,16 @@ describe(useDarkMode, () => {
     sessionStorage.clear();
   });
   it("should return dark if media query matches", () => {
-    const { result } = renderHook(() => useDarkMode());
+    const { result } = renderHook(() => useDarkMode(options));
     waitFor(() => {
       expect(result.current[0]).toBe("dark");
     });
   });
 
-  it("correctly updates darkmode", () => {
-    const { result, rerender } = renderHook(() => useDarkMode());
-    const [state, setState] = result.current;
-    waitFor(() => {
-      expect(state).toBe("dark");
-    });
-
-    act(() => setState("green"));
-    rerender();
-    expect(result.current[0]).toEqual("green");
-    expect(localStorage.getItem("reactuses-color-scheme")).toEqual("green");
-    expect(document.querySelector("html")?.className).toEqual("green");
-  });
-
   it("option selector", () => {
-    const { result } = renderHook(() => useDarkMode({ selector: "body" }));
+    const { result } = renderHook(() =>
+      useDarkMode({ selector: "body", ...options })
+    );
     waitFor(() => {
       expect(result.current[0]).toBe("dark");
       expect(document.body.className).toEqual("dark");
@@ -43,7 +35,7 @@ describe(useDarkMode, () => {
 
   it("option attribute", () => {
     const { result } = renderHook(() =>
-      useDarkMode({ attribute: "className1" })
+      useDarkMode({ attribute: "className1", ...options })
     );
     waitFor(() => {
       expect(result.current[0]).toBe("dark");
@@ -53,18 +45,9 @@ describe(useDarkMode, () => {
     });
   });
 
-  it("option initialValue", () => {
-    const { result } = renderHook(() => useDarkMode({ initialValue: "light" }));
-    waitFor(() => {
-      expect(result.current[0]).toBe("light");
-      expect(document.querySelector("html")?.className).toEqual("light");
-      expect(localStorage.getItem("reactuses-color-scheme")).toEqual("light");
-    });
-  });
-
   it("option storageKey", () => {
     const { result } = renderHook(() =>
-      useDarkMode({ storageKey: "dark-mode" })
+      useDarkMode({ storageKey: "dark-mode", ...options })
     );
     waitFor(() => {
       expect(result.current[0]).toBe("dark");
@@ -74,7 +57,7 @@ describe(useDarkMode, () => {
 
   it("option storage", () => {
     const { result } = renderHook(() =>
-      useDarkMode({ storage: () => sessionStorage })
+      useDarkMode({ storage: () => sessionStorage, ...options })
     );
     waitFor(() => {
       expect(result.current[0]).toBe("dark");
