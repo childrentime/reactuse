@@ -88,3 +88,11 @@
 * add test for useActiveElement
 * fix bug in useDarkMode
 * add Option ignoreDefault in useLocalStorage and useSessionStorage
+
+### 2.2.3(March 14, 2023)
+
+### Core
+
+* fix bug in useDarkMode
+* delete option ignoreDefault in useLocalStorage and useSessionStorage
+* add option csrData in useLocalStorage and useSessionStorage

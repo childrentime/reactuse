@@ -1,9 +1,8 @@
-import { useCallback } from "react";
+import { useEffect } from "react";
 import { isBrowser } from "./utils/is";
 import useStorage from "./createStorage";
-import usePreferredDark from "./usePreferredDark";
 
-export interface UseDarkOptions<T> {
+export interface UseDarkOptions {
   /**
    * CSS Selector for the target element applying to
    *
@@ -18,10 +17,10 @@ export interface UseDarkOptions<T> {
    */
   attribute?: string;
   /**
-   * The initial classname value write the target element, Otherwise, it will follow the system by default
-   * @default 'light | dark'
+   * isomorphic default value
+   * @default false
    */
-  initialValue?: T;
+  defaultValue?: boolean;
   /**
    * Key to persist the data into localStorage/sessionStorage.
    *
@@ -34,44 +33,67 @@ export interface UseDarkOptions<T> {
    * @default localStorage
    */
   storage?: () => Storage;
+  /**
+   * name dark  apply to element
+   */
+  classNameDark: string;
+  /**
+   * name light  apply to element
+   */
+  classNameLight: string;
 }
-export default function useDarkMode<T extends string>(
-  options: UseDarkOptions<T> = {}
-) {
+export default function useDarkMode(options: UseDarkOptions) {
   const {
     selector = "html",
     attribute = "class",
-    initialValue,
+    classNameDark = "",
+    classNameLight = "",
     storageKey = "reactuses-color-scheme",
     storage = () => (isBrowser ? localStorage : undefined),
+    defaultValue = false,
   } = options;
 
-  const prefersDarkMode = usePreferredDark(false);
-  const value = (
-    initialValue ? initialValue : prefersDarkMode ? "dark" : "light"
-  ) as T;
+  const value = (): boolean => {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  };
 
-  const [dark, setDark] = useStorage<T>(storageKey, value, storage, {
-    ignoreDefaults: false,
-  });
+  const [dark, setDark] = useStorage<boolean>(
+    storageKey,
+    defaultValue,
+    storage,
+    {
+      csrData: value,
+    }
+  );
 
-  const wrappedSetDark = useCallback(
-    (latestDark: T) => {
-      const element = window?.document.querySelector(selector);
+  useEffect(() => {
+    const element = window?.document.querySelector(selector);
+    if (!element) {
+      return;
+    }
+    if (attribute === "class") {
+      dark && classNameDark && element.classList.add(classNameDark);
+      !dark && classNameLight && element.classList.add(classNameLight);
+    } else {
+      dark && classNameDark && element.setAttribute(attribute, classNameDark);
+      !dark &&
+        classNameLight &&
+        element.setAttribute(attribute, classNameLight);
+    }
+
+    return () => {
       if (!element) {
         return;
       }
       if (attribute === "class") {
-        latestDark && element.classList.add(latestDark);
-        dark && element.classList.remove(dark);
+        dark && classNameDark && element.classList.remove(classNameDark);
+        !dark && classNameLight && element.classList.remove(classNameLight);
       } else {
-        latestDark && element.setAttribute(attribute, latestDark);
-        dark && element.removeAttribute(attribute);
+        dark && classNameDark && element.removeAttribute(attribute);
+        !dark && classNameLight && element.removeAttribute(attribute);
       }
-      setDark(latestDark);
-    },
-    [attribute, dark, selector, setDark]
-  );
+    };
+  }, [attribute, classNameDark, classNameLight, dark, selector]);
 
-  return [dark, wrappedSetDark] as const;
+  return [dark, () => setDark((dark) => !dark), setDark] as const;
 }

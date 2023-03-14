@@ -13,18 +13,14 @@ const Page = () => {
 export default Page;
 
 const Demo = () => {
-  const [theme, setTheme] = useDarkMode<"light" | "dark">();
+  const [theme, toggleDark] = useDarkMode({
+    classNameDark: "dark",
+    classNameLight: "light",
+  });
 
-  const toggleDark = () => {
-    if (theme === "dark") {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
-  };
   return (
     <div>
-      <div>theme: {theme}</div>
+      <div>theme: {theme ? "dark" : "light"}</div>
       <br />
       <div>
         <button onClick={toggleDark}>toggleDark</button>

@@ -11,17 +11,13 @@ import { routes } from "../../routes";
 import { FiSearch } from "react-icons/fi";
 import { ToastContainer } from "react-toastify";
 
-type ColorMode = "dark" | "light";
 const Header = () => {
   const navigate = useNavigate();
-  const [dark, setDark] = useDarkMode<ColorMode>();
-  const toggleDark = () => {
-    if (dark === "dark") {
-      setDark("light");
-    } else {
-      setDark("dark");
-    }
-  };
+  const [dark, toggleDark] = useDarkMode({
+    classNameDark: "dark",
+    classNameLight: "light",
+  });
+
   const [open, setOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -120,17 +116,13 @@ const Header = () => {
               <GoMarkGithub />
             </a>
             <button onClick={toggleDark} className={styles.darkmode}>
-              {dark === "dark" && (
-                <img alt="darkmode" src={moon} width={20} height={20} />
-              )}
-              {dark === "light" && (
-                <img alt="darkmode" src={sun} width={20} height={20} />
-              )}
+              {dark && <img alt="darkmode" src={moon} width={20} height={20} />}
+              {!dark && <img alt="darkmode" src={sun} width={20} height={20} />}
             </button>
           </div>
         </div>
       </div>
-      <ToastContainer theme={dark!} />
+      <ToastContainer theme={dark ? "dark" : "light"} />
     </header>
   );
 };

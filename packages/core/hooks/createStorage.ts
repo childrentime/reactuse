@@ -66,9 +66,9 @@ export interface UseStorageOptions<T> {
    */
   onError?: (error: unknown) => void;
   /**
-   * ignore default value when storage has value
+   * set to storage when nodata in effect, fallback to defaults
    */
-  ignoreDefaults?: boolean;
+  csrData?: T | (() => T);
 }
 
 // to avoid SSR error, first return default value, then update it in useEffect
@@ -84,7 +84,7 @@ export default function useStorage<
     console.error(e);
   }, []);
   let storage: Storage | undefined;
-  const { onError = defaultOnError, ignoreDefaults = true } = options;
+  const { onError = defaultOnError, csrData } = options;
 
   try {
     storage = getStorage();
@@ -100,14 +100,19 @@ export default function useStorage<
   const [state, setState] = useState<T | null>(defaults);
 
   useDeepCompareEffect(() => {
+    const data = csrData
+      ? isFunction(csrData)
+        ? csrData()
+        : csrData
+      : defaults;
     const getStoredValue = () => {
       try {
         const raw = storage?.getItem(key);
-        if (raw !== undefined && raw !== null && ignoreDefaults) {
+        if (raw !== undefined && raw !== null) {
           return serializer.read(raw);
         } else {
-          storage?.setItem(key, serializer.write(defaults));
-          return defaults;
+          storage?.setItem(key, serializer.write(data));
+          return data;
         }
       } catch (e) {
         onError(e);
@@ -115,7 +120,7 @@ export default function useStorage<
     };
 
     setState(getStoredValue());
-  }, [key, ignoreDefaults, defaults, serializer, storage, onError]);
+  }, [key, defaults, serializer, storage, onError]);
 
   const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
     (valOrFunc) => {

@@ -46,10 +46,11 @@ export interface UseStorageOptions<T> {
    */
   onError?: (error: unknown) => void;
   /**
-   * ignore default value when storage has value
+   * set to storage when nodata in effect, fallback to defaults
    */
-  ignoreDefaults?: boolean;
+  csrData?: T | (() => T);
 }
+
 
 export default function useLocalStorage(
   key: string,

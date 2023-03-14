@@ -3,19 +3,17 @@
 ## Usage
 
 ```tsx
-const Demo = () => {
-  const [theme, setTheme] = useDarkMode<"light" | "dark">();
+import { useDarkMode } from "@reactuses/core";
 
-  const toggleDark = () => {
-    if (theme === "dark") {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
-  };
+const Demo = () => {
+  const [theme, toggleDark] = useDarkMode({
+    classNameDark: "dark",
+    classNameLight: "light",
+  });
+
   return (
     <div>
-      <div>theme: {theme}</div>
+      <div>theme: {theme ? "dark" : "light"}</div>
       <br />
       <div>
         <button onClick={toggleDark}>toggleDark</button>
@@ -32,32 +30,22 @@ Note: If your website has a twinkle of color, you can add this code to the top o
   dangerouslySetInnerHTML={{
     // self execute
     __html: `
-        (function () {
-          function setTheme(newTheme) {
-            window.__theme = newTheme;
-            if (newTheme === 'dark') {
-              document.documentElement.classList.add('dark');
-            } else if (newTheme === 'light') {
-              document.documentElement.classList.remove('dark');
-            }
+       (function () {
+          function setDark(dark) {
+            dark &&  document.documentElement.classList.add('dark');
           }
-          var preferredTheme;
+          let store;
           try {
-            preferredTheme = localStorage.getItem('reactuses-color-scheme');
+            store = JSON.parse(localStorage.getItem('reactuses-color-scheme'));
           } catch (err) { }
-          window.__setPreferredTheme = function(newTheme) {
-            preferredTheme = newTheme;
-            setTheme(newTheme);
-            try {
-              localStorage.setItem('reactuses-color-scheme', newTheme);
-            } catch (err) { }
-          };
-          var initialTheme = preferredTheme;
-          var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
-          if (!initialTheme) {
-            initialTheme = darkQuery.matches ? 'dark' : 'light';
+          let dark;
+          if(store === null){
+            const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            dark = darkQuery.matches;
+          }else {
+            dark = store;
           }
-          setTheme(initialTheme);
+          setDark(dark)
         })();
       `,
   }}
@@ -69,7 +57,7 @@ Note: If your website has a twinkle of color, you can add this code to the top o
 > > > Show Type Declarations
 
 ```ts
-export interface UseDarkOptions<T> {
+export interface UseDarkOptions {
   /**
    * CSS Selector for the target element applying to
    *
@@ -84,10 +72,10 @@ export interface UseDarkOptions<T> {
    */
   attribute?: string;
   /**
-   * The initial classname value write the target element, Otherwise, it will follow the system by default
-   * @default 'light | dark'
+   * isomorphic default value
+   * @default false
    */
-  initialValue?: T;
+  defaultValue?: boolean;
   /**
    * Key to persist the data into localStorage/sessionStorage.
    *
@@ -100,11 +88,23 @@ export interface UseDarkOptions<T> {
    * @default localStorage
    */
   storage?: () => Storage;
+  /**
+   * name dark  apply to element
+   */
+  classNameDark: string;
+  /**
+   * name light  apply to element
+   */
+  classNameLight: string;
 }
 
-export default function useDarkMode<T extends string>(
-  options?: UseDarkOptions<T>
-): readonly [T, (latestDark: T) => void];
+export default function useDarkMode(
+  options: UseDarkOptions
+): readonly [
+  boolean | null,
+  () => void,
+  React.Dispatch<React.SetStateAction<boolean | null>>
+];
 ```
 
 > > >

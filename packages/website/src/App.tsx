@@ -14,31 +14,21 @@ function App() {
           // 增加一个自执行的函数
           __html: `
         (function () {
-          function setTheme(newTheme) {
-            window.__theme = newTheme;
-            if (newTheme === 'dark') {
-              document.documentElement.classList.add('dark');
-            } else if (newTheme === 'light') {
-              document.documentElement.classList.remove('dark');
-            }
+          function setDark(dark) {
+            dark &&  document.documentElement.classList.add('dark');
           }
-          var preferredTheme;
+          let store;
           try {
-            preferredTheme = localStorage.getItem('reactuses-color-scheme');
+            store = JSON.parse(localStorage.getItem('reactuses-color-scheme'));
           } catch (err) { }
-          window.__setPreferredTheme = function(newTheme) {
-            preferredTheme = newTheme;
-            setTheme(newTheme);
-            try {
-              localStorage.setItem('reactuses-color-scheme', newTheme);
-            } catch (err) { }
-          };
-          var initialTheme = preferredTheme;
-          var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
-          if (!initialTheme) {
-            initialTheme = darkQuery.matches ? 'dark' : 'light';
+          let dark;
+          if(store === null){
+            const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            dark = darkQuery.matches;
+          }else {
+            dark = store;
           }
-          setTheme(initialTheme);
+          setDark(dark)
         })();
       `,
         }}
