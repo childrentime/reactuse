@@ -1,4 +1,5 @@
-import { BasicTarget, getTargetElement } from "./utils/domTarget";
+import { defaultWindow } from "./utils/browser";
+import { BasicTarget, useLatestElement } from "./utils/domTarget";
 import useEventListener from "./useEventListener";
 import useLatest from "./useLatest";
 
@@ -8,25 +9,28 @@ export default function useClickOutSide(
   handler: (evt: EventType) => void
 ): void {
   const savedHandler = useLatest(handler);
+  const element = useLatestElement(target);
 
   const listener = (event: EventType) => {
-    const element = getTargetElement(target);
-    if (!element) {
+    if (!element.current) {
       return;
     }
 
     const elements = event.composedPath();
-    if (element === event.target || elements.includes(element)) {
+    if (
+      element.current === event.target ||
+      elements.includes(element.current)
+    ) {
       return;
     }
 
     savedHandler.current(event);
   };
 
-  useEventListener("mousedown", listener, () => window, {
+  useEventListener("mousedown", listener, defaultWindow, {
     passive: true,
   });
-  useEventListener("touchstart", listener, () => window, {
+  useEventListener("touchstart", listener, defaultWindow, {
     passive: true,
   });
 }

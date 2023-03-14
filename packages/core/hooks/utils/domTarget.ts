@@ -42,6 +42,6 @@ export function useLatestElement<T extends TargetType>(
   const ref = useRef(getTargetElement(target, defaultElement));
   useEffect(() => {
     ref.current = getTargetElement(target, defaultElement);
-  }, [defaultElement, target]);
+  });
   return ref;
 }
