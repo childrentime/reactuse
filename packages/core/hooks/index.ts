@@ -79,6 +79,7 @@ import useReducedMotion from "./useReduceMotion";
 import useScrollIntoView from "./useScrollIntoView";
 import useSticky from "./useSticky";
 import useAsyncEffect from "./useAsyncEffect";
+import useCountDown from "./useCountDown";
 
 export {
   usePrevious,
@@ -162,6 +163,7 @@ export {
   useScrollIntoView,
   useSticky,
   useAsyncEffect,
+  useCountDown,
 };
 
 export * from "./useToggle";
@@ -245,3 +247,4 @@ export * from "./useReduceMotion";
 export * from "./useScrollIntoView";
 export * from "./useSticky";
 export * from "./useAsyncEffect";
+export * from "./useCountDown";
