@@ -5,7 +5,7 @@
   "scripts": {
     "link:all": "bash link.sh",
     "dev": "cross-env NODE_ENV=development ts-node config/dev.ts",
-    "build": "yarn link:all && cross-env NODE_ENV=production gulp && cross-env NODE_ENV=production ts-node server/index.tsx"
+    "build": "cross-env NODE_ENV=production gulp && cross-env NODE_ENV=production ts-node server/index.tsx"
   },
   "dependencies": {
     "@babel/cli": "^7.19.3",
@@ -23,7 +23,7 @@
     "@loadable/server": "^5.15.2",
     "@loadable/webpack-plugin": "^5.15.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
-    "@reactuses/core": "^1.1.0",
+    "@reactuses/core": "workspace:*",
     "@types/connect-livereload": "^0.6.0",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.14",
@@ -52,6 +52,7 @@
     "express": "^4.18.2",
     "fs-extra": "^10.1.0",
     "gulp": "^4.0.2",
+    "highlight.js": "^11.7.0",
     "livereload": "^0.9.3",
     "markdown-it": "^13.0.1",
     "markdown-it-code-copy": "^0.1.1",
