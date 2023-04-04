@@ -10,6 +10,9 @@ importers:
       eslint:
         specifier: ^8.37.0
         version: 8.37.0
+      eslint-plugin-react-hooks:
+        specifier: ^4.6.0
+        version: 4.6.0(eslint@8.37.0)
       typescript:
         specifier: ^4.8.2
         version: 4.8.2
