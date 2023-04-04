@@ -1,11 +1,15 @@
 {
-  // "extends": "@ririd",
+  "extends": "@ririd",
+  "plugins": ["react-hooks"],
   "rules": {
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/ban-types": "warn",
     "@typescript-eslint/member-delimiter-style": ["error", { "multiline": { "delimiter": "semi", "requireLast": true } }],
     "semi": "off",
     "@typescript-eslint/semi": ["error", "always"],
-    "no-console": "warn"
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-console": "warn",
+    "curly": "off"
   }
 }
