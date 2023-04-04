@@ -1,6 +1,6 @@
-import type { Config } from "@jest/types";
+import type { Config } from "jest";
 
-export const baseJestConfig: Config.InitialOptions = {
+export const baseJestConfig: Config = {
   clearMocks: true,
   coverageDirectory: "coverage",
 };

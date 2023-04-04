@@ -1,7 +1,7 @@
-import type { Config } from "@jest/types";
+import type { Config } from "jest";
 import { baseJestConfig } from "./jest.config.base";
 
-const config: Config.InitialOptions = {
+const config: Config = {
   ...baseJestConfig,
   testEnvironment: "node", // browser-like
 };
