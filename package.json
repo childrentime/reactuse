@@ -14,5 +14,6 @@
     "@ririd/eslint-config": "0.4.0",
     "typescript": "^4.8.2",
     "eslint": "^8.37.0"
-  }
+  },
+  "packageManager": "pnpm@7.28.0"
 }
