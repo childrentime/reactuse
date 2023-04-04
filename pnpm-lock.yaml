@@ -89,9 +89,6 @@ importers:
       esbuild-register:
         specifier: ^3.4.1
         version: 3.4.1(esbuild@0.17.15)
-      eslint:
-        specifier: ^8.23.0
-        version: 8.23.0
       eslint-config-prettier:
         specifier: ^8.5.0
         version: 8.5.0(eslint@8.23.0)
