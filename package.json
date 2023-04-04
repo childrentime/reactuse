@@ -1,5 +1,6 @@
 {
   "name": "@reactuses/reactuses-monorepo",
+  "packageManager": "pnpm@8.1.0",
   "sideEffects": false,
   "license": "Unlicense",
   "homepage": "https://www.reactuse.com/",
