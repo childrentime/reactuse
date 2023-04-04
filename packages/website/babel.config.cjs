@@ -9,8 +9,8 @@ function isWebpack(caller) {
 export default (api) => {
   const web = api.caller(isWebTarget);
   const webpack = api.caller(isWebpack);
-  const isDevelopment =
-    !process.env.NODE_ENV || process.env.NODE_ENV === "development";
+  const isDevelopment
+    = !process.env.NODE_ENV || process.env.NODE_ENV === "development";
 
   return {
     presets: [

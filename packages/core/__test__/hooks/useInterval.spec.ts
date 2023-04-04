@@ -33,7 +33,7 @@ describe("useInterval", () => {
   it("immediate in options should work", () => {
     const options = { immediate: true };
     const callback = jest.fn();
-    const { rerender } = setUp({ fn: callback, delay: 20, options: options });
+    const { rerender } = setUp({ fn: callback, delay: 20, options });
     expect(callback).toBeCalled();
     expect(callback).toHaveBeenCalledTimes(1);
     jest.advanceTimersByTime(50);

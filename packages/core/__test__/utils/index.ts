@@ -1,5 +1,5 @@
-export const createMockMediaMatcher =
-  (matches: Record<string, boolean>) => (qs: string) => ({
+export const createMockMediaMatcher
+  = (matches: Record<string, boolean>) => (qs: string) => ({
     matches: matches[qs] ?? false,
     addListener: () => void 0,
     removeListener: () => void 0,

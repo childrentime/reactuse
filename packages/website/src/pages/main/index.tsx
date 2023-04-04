@@ -1,9 +1,9 @@
 import { Fragment, useEffect, useState } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
-import styles from "./style.module.css";
+import { useScrollIntoView } from "@reactuses/core";
 import NotFound from "../404/";
 import { menuGroup, pages } from "../../routes";
-import { useScrollIntoView } from "@reactuses/core";
+import styles from "./style.module.css";
 
 const Main = () => {
   const pathname = useLocation().pathname.substring(1);
@@ -16,7 +16,7 @@ const Main = () => {
   });
   useEffect(() => {
     const node = document.getElementsByClassName(
-      styles.itemSelect
+      styles.itemSelect,
     )[0] as HTMLElement;
     if (!node) {
       return;
@@ -65,7 +65,7 @@ const Main = () => {
         <div className={styles.col19}>
           <section className={styles.content}>
             <Routes>
-              {pages.map((page) => (
+              {pages.map(page => (
                 <Route
                   path={`/${page.page}`}
                   element={<page.component />}

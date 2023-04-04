@@ -1,5 +1,6 @@
 import { useObjectUrl } from "@reactuses/core";
-import { ChangeEvent, useState } from "react";
+import type { ChangeEvent } from "react";
+import { useState } from "react";
 import Layout from "../Layout";
 import file from "./README.md";
 

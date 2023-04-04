@@ -1,5 +1,6 @@
 import { useScrollLock } from "@reactuses/core";
-import { CSSProperties, useRef } from "react";
+import type { CSSProperties } from "react";
+import { useRef } from "react";
 import Layout from "../Layout";
 
 import file from "./README.md";

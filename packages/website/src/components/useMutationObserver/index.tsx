@@ -1,7 +1,8 @@
-import Layout from "../Layout";
-import file from "./README.md";
 import { useEffect, useRef, useState } from "react";
 import { useMutationObserver } from "@reactuses/core";
+import Layout from "../Layout";
+import file from "./README.md";
+
 const Page = () => {
   return (
     <Layout file={file}>
@@ -20,10 +21,10 @@ const Demo = () => {
 
   const stop = useMutationObserver(
     (mutationsList) => {
-      mutationsList.forEach(() => setCount((c) => c + 1));
+      mutationsList.forEach(() => setCount(c => c + 1));
     },
     ref,
-    { attributes: true }
+    { attributes: true },
   );
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const Demo = () => {
       >
         current width：{width}
       </div>
-      <button onClick={() => setWidth((w) => w + 10)}>widening</button>
+      <button onClick={() => setWidth(w => w + 10)}>widening</button>
       <button onClick={() => stop()}>stop observe</button>
       <p>Mutation count {count}</p>
     </div>

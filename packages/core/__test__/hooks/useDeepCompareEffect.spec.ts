@@ -10,10 +10,10 @@ const mockEffectCallback = jest.fn().mockReturnValue(mockEffectCleanup);
 
 it("should run provided object once", () => {
   const { rerender: rerenderNormal } = renderHook(() =>
-    useEffect(mockEffectNormal, [options])
+    useEffect(mockEffectNormal, [options]),
   );
   const { rerender: rerenderDeep } = renderHook(() =>
-    useDeepCompareEffect(mockEffectDeep, [options])
+    useDeepCompareEffect(mockEffectDeep, [options]),
   );
 
   expect(mockEffectNormal).toHaveBeenCalledTimes(1);
@@ -36,7 +36,7 @@ it("should run provided object once", () => {
 
 it("should run clean-up provided on unmount", () => {
   const { unmount } = renderHook(() =>
-    useDeepCompareEffect(mockEffectCallback, [options])
+    useDeepCompareEffect(mockEffectCallback, [options]),
   );
   expect(mockEffectCleanup).not.toHaveBeenCalled();
 

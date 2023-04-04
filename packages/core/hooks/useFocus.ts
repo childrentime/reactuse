@@ -1,11 +1,12 @@
 import { useState } from "react";
 import useEventListener from "./useEventListener";
 import useMount from "./useMount";
-import { BasicTarget, getTargetElement } from "./utils/domTarget";
+import type { BasicTarget } from "./utils/domTarget";
+import { getTargetElement } from "./utils/domTarget";
 
 export default function useFocus(
   target: BasicTarget<HTMLElement | SVGElement>,
-  initialValue = false
+  initialValue = false,
 ) {
   const [focus, innerSetFocus] = useState(initialValue);
 
@@ -23,7 +24,8 @@ export default function useFocus(
     }
     if (!value) {
       element.blur();
-    } else if (value) {
+    }
+    else if (value) {
       element.focus();
     }
   };

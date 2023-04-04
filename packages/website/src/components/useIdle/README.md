@@ -34,7 +34,7 @@ export default function useIdle(
   ms: number = oneMinute,
   initialState = false,
   events: (keyof WindowEventMap)[] = defaultEvents
-): boolean
+): boolean;
 ```
 
 ## Examples

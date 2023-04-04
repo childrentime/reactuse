@@ -17,7 +17,7 @@ export interface UseTextDirectionOptions {
   initialValue?: UseTextDirectionValue;
 }
 export default function useTextDirection(
-  options: UseTextDirectionOptions = {}
+  options: UseTextDirectionOptions = {},
 ) {
   const { selector = "html", initialValue = "ltr" } = options;
   const getValue = () => {
@@ -27,7 +27,8 @@ export default function useTextDirection(
           ?.querySelector(selector)
           ?.getAttribute("dir") as UseTextDirectionValue) ?? initialValue
       );
-    } else {
+    }
+    else {
       return initialValue;
     }
   };
@@ -39,7 +40,8 @@ export default function useTextDirection(
     }
     if (value !== null) {
       document.querySelector(selector)?.setAttribute("dir", value);
-    } else {
+    }
+    else {
       document.querySelector(selector)?.removeAttribute("dir");
     }
     setValue(value);

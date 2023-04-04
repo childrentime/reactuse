@@ -1,19 +1,19 @@
 import { useMemo } from "react";
+import { throttle } from "lodash";
 import { isDev, isFunction } from "./utils/is";
 import useLatest from "./useLatest";
 import useUnmount from "./useUnmount";
-import { throttle } from "lodash";
-import { ThrottleSettings } from "./utils/external";
+import type { ThrottleSettings } from "./utils/external";
 
 export default function useThrottleFn<T extends (...args: any) => any>(
   fn: T,
   wait?: number,
-  options?: ThrottleSettings
+  options?: ThrottleSettings,
 ) {
   if (isDev) {
     if (!isFunction(fn)) {
       console.error(
-        `useThrottleFn expected parameter is a function, got ${typeof fn}`
+        `useThrottleFn expected parameter is a function, got ${typeof fn}`,
       );
     }
   }
@@ -27,10 +27,10 @@ export default function useThrottleFn<T extends (...args: any) => any>(
           return fnRef.current(...args);
         },
         wait,
-        options
+        options,
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [],
   );
 
   useUnmount(() => {

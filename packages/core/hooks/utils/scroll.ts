@@ -14,9 +14,9 @@ export const setScrollParam = ({
   const method = axis === "y" ? "scrollTop" : "scrollLeft";
 
   if (parent) {
-    // eslint-disable-next-line no-param-reassign
     parent[method] = distance;
-  } else {
+  }
+  else {
     const { body, documentElement } = document;
 
     body[method] = distance;
@@ -33,8 +33,8 @@ const isScrollElement = (axis: "x" | "y", node: Element | null) => {
   const AXIS = axis === "x" ? "X" : "Y";
 
   return (
-    getComputedStyle(node)[`overflow${AXIS}`] === "auto" ||
-    getComputedStyle(node)[`overflow${AXIS}`] === "scroll"
+    getComputedStyle(node)[`overflow${AXIS}`] === "auto"
+    || getComputedStyle(node)[`overflow${AXIS}`] === "scroll"
   );
 };
 
@@ -42,7 +42,7 @@ const cache = new Map<Element, Element>();
 
 export const getScrollParent = (
   axis: "x" | "y",
-  node: Element | null | undefined
+  node: Element | null | undefined,
 ): Element | null => {
   if (!node || !node.parentElement) {
     return null;

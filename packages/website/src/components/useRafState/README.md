@@ -37,7 +37,7 @@ const Demo = () => {
 ```ts
 export default function useRafState<S>(
   initialState: S | (() => S)
-): readonly [S, Dispatch<SetStateAction<S>>]
+): readonly [S, Dispatch<SetStateAction<S>>];
 ```
 
 ## Examples

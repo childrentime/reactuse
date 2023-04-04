@@ -20,7 +20,7 @@ const Demo = () => {
       setText("Fired!");
     },
     3000,
-    { immediate: false }
+    { immediate: false },
   );
 
   return (

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { DebounceSettings } from "./utils/external";
+import type { DebounceSettings } from "./utils/external";
 import useDebounceFn from "./useDebounceFn";
 
 export default function useDebounce<T>(
   value: T,
   wait?: number,
-  options?: DebounceSettings
+  options?: DebounceSettings,
 ) {
   const [debounced, setDebounced] = useState(value);
 
@@ -14,7 +14,7 @@ export default function useDebounce<T>(
       setDebounced(value);
     },
     wait,
-    options
+    options,
   );
 
   useEffect(() => {

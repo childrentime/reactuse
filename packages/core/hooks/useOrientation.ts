@@ -13,7 +13,7 @@ const defaultState: OrientationState = {
 };
 
 export default function useOrientation(
-  initialState: OrientationState = defaultState
+  initialState: OrientationState = defaultState,
 ) {
   const [state, setState] = useState(initialState);
 
@@ -28,7 +28,8 @@ export default function useOrientation(
         if (orientation) {
           const { angle, type } = orientation;
           setState({ angle, type });
-        } else if (window.orientation !== undefined) {
+        }
+        else if (window.orientation !== undefined) {
           setState({
             angle:
               typeof window.orientation === "number" ? window.orientation : 0,

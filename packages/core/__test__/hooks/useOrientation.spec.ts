@@ -11,7 +11,7 @@ describe("useOrientation", () => {
       type: "landscape-primary",
       angle: 0,
     };
-    (window.orientation as number) = 0;
+    (window.orientation) = 0;
   });
 
   it("should be defined", () => {
@@ -24,7 +24,7 @@ describe("useOrientation", () => {
 
   function triggerOrientation(type: string, angle: number) {
     (window.screen.orientation.type as string) = type;
-    (window.screen.orientation.angle as number) = angle;
+    (window.screen.orientation.angle) = angle;
 
     window.dispatchEvent(new Event("orientationchange"));
   }

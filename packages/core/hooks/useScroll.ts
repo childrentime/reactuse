@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BasicTarget } from "./utils/domTarget";
+import type { BasicTarget } from "./utils/domTarget";
 import { noop } from "./utils/is";
 import useDebounceFn from "./useDebounceFn";
 import useEvent from "./useEvent";
@@ -62,24 +62,24 @@ const ARRIVED_STATE_THRESHOLD_PIXELS = 1;
 
 export default function useScroll(
   target: BasicTarget<HTMLElement | SVGElement | Window | Document>,
-  options: UseScrollOptions = {}
+  options: UseScrollOptions = {},
 ): readonly [
-  number,
-  number,
-  boolean,
-  {
-    left: boolean;
-    right: boolean;
-    top: boolean;
-    bottom: boolean;
-  },
-  {
-    left: boolean;
-    right: boolean;
-    top: boolean;
-    bottom: boolean;
-  }
-] {
+    number,
+    number,
+    boolean,
+    {
+      left: boolean;
+      right: boolean;
+      top: boolean;
+      bottom: boolean;
+    },
+    {
+      left: boolean;
+      right: boolean;
+      top: boolean;
+      bottom: boolean;
+    },
+  ] {
   const {
     throttle = 0,
     idle = 200,
@@ -139,16 +139,16 @@ export default function useScroll(
     setArrivedState({
       left: scrollLeft <= 0 + (offset.left || 0),
       right:
-        scrollLeft + eventTarget.clientWidth >=
-        eventTarget.scrollWidth -
-          (offset.right || 0) -
-          ARRIVED_STATE_THRESHOLD_PIXELS,
+        scrollLeft + eventTarget.clientWidth
+        >= eventTarget.scrollWidth
+          - (offset.right || 0)
+          - ARRIVED_STATE_THRESHOLD_PIXELS,
       top: scrollTop <= 0 + (offset.top || 0),
       bottom:
-        scrollTop + eventTarget.clientHeight >=
-        eventTarget.scrollHeight -
-          (offset.bottom || 0) -
-          ARRIVED_STATE_THRESHOLD_PIXELS,
+        scrollTop + eventTarget.clientHeight
+        >= eventTarget.scrollHeight
+          - (offset.bottom || 0)
+          - ARRIVED_STATE_THRESHOLD_PIXELS,
     });
     setIsScrolling(true);
     onScrollEnd(e);
@@ -161,7 +161,7 @@ export default function useScroll(
     "scroll",
     throttle ? throttleOnScroll : onScrollHandler,
     target,
-    eventListenerOptions
+    eventListenerOptions,
   );
 
   return [x, y, isScrolling, arrivedState, directions] as const;

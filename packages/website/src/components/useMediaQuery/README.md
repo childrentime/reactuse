@@ -18,7 +18,7 @@ const Demo = () => {
 export default function useMediaQuery(
   query: string,
   serverFallback?: boolean
-): boolean
+): boolean;
 ```
 
 The second parameter is only used as a fallback for server side rendering.

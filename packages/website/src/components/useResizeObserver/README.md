@@ -44,7 +44,7 @@ export default function useMutationObserver(
   callback: MutationCallback,
   target: BasicTarget,
   options: MutationObserverInit
-): () => void
+): () => void;
 ```
 
 ## Examples

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { isBrowser } from "./utils/is";
 import type { UseStorageOptions } from "./createStorage";
 import createStorage from "./createStorage";
@@ -30,12 +30,12 @@ export default function useLocalStorage<T = unknown>(
 ): readonly [T | null, Dispatch<SetStateAction<T | null>>];
 
 export default function useLocalStorage<
-  T extends string | number | boolean | object | null
+  T extends string | number | boolean | object | null,
 >(key: string, defaults: T, options: UseStorageOptions<T> = {}) {
   return createStorage(
     key,
     defaults,
     () => (isBrowser ? localStorage : undefined),
-    options
+    options,
   );
 }

@@ -29,8 +29,8 @@ const Demo = () => {
 
 ```ts
 export interface Serializer<T> {
-  read(raw: string): T
-  write(value: T): string
+  read(raw: string): T;
+  write(value: T): string;
 }
 
 export interface UseStorageOptions<T> {
@@ -78,7 +78,6 @@ export default function useSessionStorage<T = unknown>(
   defaults: null,
   options?: UseStorageOptions<T>
 ): readonly [T | null, Dispatch<SetStateAction<T | null>>];
-
 ```
 >>>
 

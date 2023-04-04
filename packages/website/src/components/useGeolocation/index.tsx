@@ -33,7 +33,7 @@ const Demo = () => {
             error: error ? error.message : error,
           },
           null,
-          2
+          2,
         )}
       </pre>
     </div>

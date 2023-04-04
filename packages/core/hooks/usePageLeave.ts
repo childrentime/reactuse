@@ -5,7 +5,8 @@ export default function usePageLeave(): boolean {
   const [isLeft, setIsLeft] = useState(false);
 
   const handler = (event: MouseEvent) => {
-    if (!window) return;
+    if (!window)
+      return;
 
     event = event || (window.event as any);
     // @ts-expect-error missing types

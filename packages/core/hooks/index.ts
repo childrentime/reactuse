@@ -1,3 +1,4 @@
+/* eslint-disable import/export */
 import usePrevious from "./usePrevious";
 import useLatest from "./useLatest";
 import useFirstMountState from "./useFirstMountState";

@@ -37,7 +37,7 @@ const Demo = () => {
 ## Type Declarations
 
 ```ts
-export default function useActiveElement<T extends Element>(): T | null
+export default function useActiveElement<T extends Element>(): T | null;
 ```
 
 ## Examples

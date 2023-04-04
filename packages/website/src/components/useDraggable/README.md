@@ -120,7 +120,7 @@ export interface UseDraggableOptions {
 export default function useDraggable(
   target: BasicTarget<HTMLElement | SVGElement>,
   options: UseDraggableOptions = {}
-): readonly [number, number, boolean]
+): readonly [number, number, boolean];
 ```
 
 ## Examples

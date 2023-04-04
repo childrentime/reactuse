@@ -67,7 +67,7 @@ export default function useElementBounding(
   readonly x: number;
   readonly y: number;
   readonly update: () => void;
-}
+};
 ```
 
 >>>

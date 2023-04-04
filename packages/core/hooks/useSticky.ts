@@ -1,9 +1,10 @@
+import type React from "react";
+import { useEffect, useState } from "react";
+import type { BasicTarget } from "./utils/domTarget";
 import {
-  BasicTarget,
   getTargetElement,
   useLatestElement,
 } from "./utils/domTarget";
-import React, { useEffect, useState } from "react";
 import useThrottleFn from "./useThrottleFn";
 import { getScrollParent } from "./utils/scroll";
 
@@ -23,7 +24,7 @@ const useSticky = ({
   nav = 0,
 }: UseStickyParams): [
   boolean,
-  React.Dispatch<React.SetStateAction<boolean>>
+  React.Dispatch<React.SetStateAction<boolean>>,
 ] => {
   const [isSticky, setSticky] = useState<boolean>(false);
   const element = useLatestElement(targetElement);
@@ -35,14 +36,15 @@ const useSticky = ({
     const rect = element.current.getBoundingClientRect();
     if (axis === "y") {
       setSticky(rect?.top <= nav);
-    } else {
+    }
+    else {
       setSticky(rect?.left <= nav);
     }
   }, 50);
 
   useEffect(() => {
-    const scrollParent =
-      getTargetElement(scrollElement) || getScrollParent(axis, element.current);
+    const scrollParent
+      = getTargetElement(scrollElement) || getScrollParent(axis, element.current);
     if (!element.current || !scrollParent) {
       return;
     }

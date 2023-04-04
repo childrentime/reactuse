@@ -1,21 +1,21 @@
-import path from "path";
+import path from "node:path";
 import express from "express";
 import { renderToString } from "react-dom/server";
 import { ChunkExtractor } from "@loadable/server";
 import { StaticRouter } from "react-router-dom/server";
-import { routes } from "../src/routes";
 import fs from "fs-extra";
 import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
+import { routes } from "../src/routes";
 
 const nodeStats = path.resolve(
   __dirname,
-  "../public/dist/node/loadable-stats.json"
+  "../public/dist/node/loadable-stats.json",
 );
 
 const webStats = path.resolve(
   __dirname,
-  "../public/dist/web/loadable-stats.json"
+  "../public/dist/web/loadable-stats.json",
 );
 
 const renderPage = (url: string): string => {
@@ -26,7 +26,7 @@ const renderPage = (url: string): string => {
   const jsx = webExtractor.collectChunks(
     <StaticRouter location={url}>
       <App />
-    </StaticRouter>
+    </StaticRouter>,
   );
 
   const html = renderToString(jsx);

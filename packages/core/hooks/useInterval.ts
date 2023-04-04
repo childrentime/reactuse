@@ -6,7 +6,7 @@ export default function useInterval(
   delay?: number | null,
   options?: {
     immediate?: boolean;
-  }
+  },
 ): void {
   const immediate = options?.immediate;
   const savedCallback = useLatest(callback);

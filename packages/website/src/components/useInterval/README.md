@@ -27,7 +27,7 @@ export default function useInterval(
   options?: {
     immediate?: boolean;
   }
-): void
+): void;
 ```
 
 ## Examples

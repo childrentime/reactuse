@@ -1,11 +1,12 @@
+import type { DependencyList } from "react";
+import { useEffect } from "react";
 import useMountedState from "./useMountedState";
-import { DependencyList, useEffect } from "react";
 import { noop } from "./utils/is";
 
 export default function useAsyncEffect<T extends void>(
   effect: () => Promise<T> | T,
   cleanup: typeof effect = <any>noop,
-  deps?: DependencyList
+  deps?: DependencyList,
 ) {
   const mounted = useMountedState();
   useEffect(() => {

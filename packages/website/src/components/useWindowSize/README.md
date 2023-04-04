@@ -28,7 +28,7 @@ export interface WindowSize {
   height: number;
 }
 
-export default function useWindowSize(): WindowSize
+export default function useWindowSize(): WindowSize;
 ```
 
 ## Examples

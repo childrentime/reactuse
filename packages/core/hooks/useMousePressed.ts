@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { BasicTarget, useLatestElement } from "./utils/domTarget";
-import { IHookStateInitAction } from "./utils/hookState";
+import type { BasicTarget } from "./utils/domTarget";
+import { useLatestElement } from "./utils/domTarget";
+import type { IHookStateInitAction } from "./utils/hookState";
 import useEventListener from "./useEventListener";
 
 export interface MousePressedOptions {
@@ -30,7 +31,7 @@ export type MouseSourceType = "mouse" | "touch" | null;
 
 export default function useMousePressed(
   target?: BasicTarget,
-  options: MousePressedOptions = {}
+  options: MousePressedOptions = {},
 ): readonly [boolean, MouseSourceType] {
   const { touch = true, drag = true, initialValue = false } = options;
 
@@ -43,7 +44,7 @@ export default function useMousePressed(
       setPressed(true);
       setSourceType(srcType);
     },
-    []
+    [],
   );
   const onReleased = useCallback(() => {
     setPressed(false);

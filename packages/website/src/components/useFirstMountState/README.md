@@ -24,7 +24,7 @@ const Demo = () => {
 ## Type Declarations
 
 ```ts
-export default function useFirstMountState(): boolean
+export default function useFirstMountState(): boolean;
 ```
 
 ## Examples

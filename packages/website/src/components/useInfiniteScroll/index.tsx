@@ -29,13 +29,13 @@ const Demo = () => {
       newData.push(...Array.from({ length: 5 }, (_, i) => length + i));
       setData(newData);
     },
-    { distance: 10 }
+    { distance: 10 },
   );
 
   return (
     <div>
       <div ref={ref} style={{ width: 300, height: 300, overflow: "scroll" }}>
-        {data.map((item) => (
+        {data.map(item => (
           <div key={item} style={{ padding: 12, border: "1px solid" }}>
             item-{item}
           </div>

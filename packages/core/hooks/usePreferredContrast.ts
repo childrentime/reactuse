@@ -3,7 +3,7 @@ import useMediaQuery from "./useMediaQuery";
 
 export type Contrast = "more" | "less" | "custom" | "no-preference";
 export default function usePreferredContrast(
-  defaultState?: Contrast
+  defaultState?: Contrast,
 ): Contrast {
   const isMore = useMediaQuery("(prefexrs-contrast: more)", false);
   const isLess = useMediaQuery("(prefers-contrast: less)", false);
@@ -16,8 +16,8 @@ export default function usePreferredContrast(
   return isMore
     ? "more"
     : isLess
-    ? "less"
-    : isCustom
-    ? "custom"
-    : "no-preference";
+      ? "less"
+      : isCustom
+        ? "custom"
+        : "no-preference";
 }

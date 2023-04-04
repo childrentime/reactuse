@@ -1,8 +1,8 @@
-import file from "./README.md";
 import { useRef } from "react";
 import { useDropZone } from "@reactuses/core";
 import Layout from "../Layout";
 import logo from "../../assets/favicon.ico";
+import file from "./README.md";
 
 const Page = () => {
   return (

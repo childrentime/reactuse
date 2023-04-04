@@ -3,7 +3,7 @@ import useEventListener from "./useEventListener";
 
 export default function useClipBorad(): readonly [
   string,
-  (txt: string) => Promise<void>
+  (txt: string) => Promise<void>,
 ] {
   const [text, setText] = useState("");
 

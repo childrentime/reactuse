@@ -37,7 +37,7 @@ const Demo = () => {
 export default function useCycleList<T>(
   list: T[],
   i = 0
-): readonly [T, (i?: number) => void, (i?: number) => void] 
+): readonly [T, (i?: number) => void, (i?: number) => void];
 ```
 
 ## Examples

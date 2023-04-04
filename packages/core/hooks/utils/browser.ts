@@ -1,5 +1,5 @@
 import { isBrowser } from "./is";
-import { Fn } from "./types";
+import type { Fn } from "./types";
 
 export function on<T extends Window | Document | HTMLElement | EventTarget>(
   obj: T | null,
@@ -7,7 +7,7 @@ export function on<T extends Window | Document | HTMLElement | EventTarget>(
 ): void {
   if (obj && obj.addEventListener) {
     obj.addEventListener(
-      ...(args as Parameters<HTMLElement["addEventListener"]>)
+      ...(args as Parameters<HTMLElement["addEventListener"]>),
     );
   }
 }
@@ -18,7 +18,7 @@ export function off<T extends Window | Document | HTMLElement | EventTarget>(
 ): void {
   if (obj && obj.removeEventListener) {
     obj.removeEventListener(
-      ...(args as Parameters<HTMLElement["removeEventListener"]>)
+      ...(args as Parameters<HTMLElement["removeEventListener"]>),
     );
   }
 }

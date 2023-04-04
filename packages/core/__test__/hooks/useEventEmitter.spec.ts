@@ -1,6 +1,7 @@
-import useEventEmitter from "../../hooks/useEventEmitter";
 import { act, renderHook } from "@testing-library/react";
 import { useEffect, useState } from "react";
+import useEventEmitter from "../../hooks/useEventEmitter";
+
 describe(useEventEmitter, () => {
   const setUp = () =>
     renderHook(() => {
@@ -9,10 +10,10 @@ describe(useEventEmitter, () => {
 
       useEffect(() => {
         event((val) => {
-          setCount((c) => c + val);
+          setCount(c => c + val);
         });
         event((val) => {
-          setCount((c) => c + val + 10);
+          setCount(c => c + val + 10);
         });
       }, [event]);
 

@@ -15,7 +15,7 @@ const Demo = () => {
     <div>
       <input
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
         placeholder="Typed value"
         style={{ width: 280 }}
       />
@@ -37,7 +37,7 @@ export default function useThrottle<T>(
   value: T,
   wait?: number,
   options?: ThrottleSettings
-): T
+): T;
 ```
 
 ## Examples

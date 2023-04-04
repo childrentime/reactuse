@@ -1,8 +1,8 @@
 import MarkdownIt from "markdown-it";
 import MarkdownItHightlight from "markdown-it-highlightjs";
 import MarkdownItExpandable from "markdown-it-expandable";
-import MarkdownItCopy from "./markdown-code-copy";
 import MarkdownItContainer from "markdown-it-container";
+import MarkdownItCopy from "./markdown-code-copy";
 
 const markdown = new MarkdownIt({});
 

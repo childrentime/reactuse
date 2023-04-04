@@ -40,7 +40,7 @@ const Demo = () => {
 export default function useClipBorad(): readonly [
   string,
   (txt: string) => Promise<void>
-]
+];
 ```
 
 ## Examples

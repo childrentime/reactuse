@@ -54,7 +54,7 @@ export type MouseSourceType = "mouse" | "touch" | null;
 export default function useMousePressed(
   target?: BasicTarget,
   options: MousePressedOptions = {}
-): readonly [boolean, MouseSourceType]
+): readonly [boolean, MouseSourceType];
 ```
 
 >>>

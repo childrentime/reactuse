@@ -1,4 +1,5 @@
-import { act, renderHook, RenderHookResult } from "@testing-library/react";
+import type { RenderHookResult } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 import { useState } from "react";
 import useEvent from "../../hooks/useEvent";
 
@@ -6,7 +7,7 @@ const useCount = () => {
   const [count, setCount] = useState(0);
 
   const addCount = () => {
-    setCount((c) => c + 1);
+    setCount(c => c + 1);
   };
 
   const stableFn = useEvent(() => count);
@@ -56,7 +57,7 @@ describe("useEvent", () => {
       .mockImplementation(() => void 0);
     renderHook(() => useEvent(1 as any));
     expect(errSpy).toBeCalledWith(
-      "useEvent expected parameter is a function, got number"
+      "useEvent expected parameter is a function, got number",
     );
     errSpy.mockRestore();
   });

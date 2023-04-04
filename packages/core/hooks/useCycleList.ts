@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function useCycleList<T>(
   list: T[],
-  i = 0
+  i = 0,
 ): readonly [T, (i?: number) => void, (i?: number) => void] {
   const [index, setIndex] = useState(i);
 

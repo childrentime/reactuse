@@ -14,13 +14,12 @@ const Demo = () => {
   });
   return <div>{value}</div>;
 };
-
 ```
 
 ## Type Declarations
 
 ```ts
-export default function useMount(fn: () => void): void
+export default function useMount(fn: () => void): void;
 ```
 
 ## Examples

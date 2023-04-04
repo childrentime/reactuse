@@ -15,7 +15,7 @@ const oneMinute = 60e3;
 export default function useIdle(
   ms: number = oneMinute,
   initialState = false,
-  events: (keyof WindowEventMap)[] = defaultEvents
+  events: (keyof WindowEventMap)[] = defaultEvents,
 ): boolean {
   const [state, setState] = useState<boolean>(initialState);
 

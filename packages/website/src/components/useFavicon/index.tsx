@@ -1,9 +1,9 @@
-import Layout from "../Layout";
-import file from "./README.md";
 import { useState } from "react";
 import { useFavicon } from "@reactuses/core";
+import Layout from "../Layout";
 import logo from "../../assets/favicon.ico";
 import twitter from "../../assets/twitter-pip.2.ico";
+import file from "./README.md";
 
 const Page = () => {
   return (

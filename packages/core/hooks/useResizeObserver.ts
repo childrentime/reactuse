@@ -1,12 +1,13 @@
-import { BasicTarget, useLatestElement } from "./utils/domTarget";
 import { useCallback, useRef } from "react";
+import type { BasicTarget } from "./utils/domTarget";
+import { useLatestElement } from "./utils/domTarget";
 import useLatest from "./useLatest";
 import useDeepCompareEffect from "./useDeepCompareEffect";
 
 export default function useResizeObserver(
   target: BasicTarget,
   callback: ResizeObserverCallback,
-  options: ResizeObserverOptions = {}
+  options: ResizeObserverOptions = {},
 ): () => void {
   const savedCallback = useLatest(callback);
   const observerRef = useRef<ResizeObserver>();

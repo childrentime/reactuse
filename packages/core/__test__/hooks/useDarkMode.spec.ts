@@ -1,5 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import useDarkMode, { UseDarkOptions } from "../../hooks/useDarkMode";
+import type { UseDarkOptions } from "../../hooks/useDarkMode";
+import useDarkMode from "../../hooks/useDarkMode";
 import { createMockMediaMatcher } from "../utils";
 
 describe(useDarkMode, () => {
@@ -25,7 +26,7 @@ describe(useDarkMode, () => {
 
   it("option selector", () => {
     const { result } = renderHook(() =>
-      useDarkMode({ selector: "body", ...options })
+      useDarkMode({ selector: "body", ...options }),
     );
     waitFor(() => {
       expect(result.current[0]).toBe("dark");
@@ -35,19 +36,19 @@ describe(useDarkMode, () => {
 
   it("option attribute", () => {
     const { result } = renderHook(() =>
-      useDarkMode({ attribute: "className1", ...options })
+      useDarkMode({ attribute: "className1", ...options }),
     );
     waitFor(() => {
       expect(result.current[0]).toBe("dark");
       expect(
-        document.querySelector("html")?.getAttribute("className1")
+        document.querySelector("html")?.getAttribute("className1"),
       ).toEqual("dark");
     });
   });
 
   it("option storageKey", () => {
     const { result } = renderHook(() =>
-      useDarkMode({ storageKey: "dark-mode", ...options })
+      useDarkMode({ storageKey: "dark-mode", ...options }),
     );
     waitFor(() => {
       expect(result.current[0]).toBe("dark");
@@ -57,7 +58,7 @@ describe(useDarkMode, () => {
 
   it("option storage", () => {
     const { result } = renderHook(() =>
-      useDarkMode({ storage: () => sessionStorage, ...options })
+      useDarkMode({ storage: () => sessionStorage, ...options }),
     );
     waitFor(() => {
       expect(result.current[0]).toBe("dark");

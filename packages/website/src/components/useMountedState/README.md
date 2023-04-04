@@ -17,13 +17,12 @@ const Demo = () => {
   }, []);
   return <div>This component is {isMounted() ? "MOUNTED" : "NOT MOUNTED"}</div>;
 };
-
 ```
 
 ## Type Declarations
 
 ```ts
-export default function useMountedState(): () => boolean
+export default function useMountedState(): () => boolean;
 ```
 
 ## Examples

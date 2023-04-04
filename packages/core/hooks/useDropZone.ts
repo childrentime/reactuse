@@ -1,10 +1,10 @@
-import { BasicTarget } from "./utils/domTarget";
 import { useRef, useState } from "react";
+import type { BasicTarget } from "./utils/domTarget";
 import useEventListener from "./useEventListener";
 
 export default function useDropZone(
   target: BasicTarget<EventTarget>,
-  onDrop?: (files: File[] | null) => void
+  onDrop?: (files: File[] | null) => void,
 ): boolean {
   const [over, setOver] = useState(false);
   const counter = useRef(0);
@@ -16,14 +16,14 @@ export default function useDropZone(
       counter.current += 1;
       setOver(true);
     },
-    target
+    target,
   );
   useEventListener(
     "dragover",
     (event) => {
       event.preventDefault();
     },
-    target
+    target,
   );
   useEventListener(
     "dragleave",
@@ -34,7 +34,7 @@ export default function useDropZone(
         setOver(false);
       }
     },
-    target
+    target,
   );
   useEventListener(
     "drop",
@@ -45,7 +45,7 @@ export default function useDropZone(
       const files = Array.from(event.dataTransfer?.files ?? []);
       onDrop?.(files.length === 0 ? null : files);
     },
-    target
+    target,
   );
 
   return over;

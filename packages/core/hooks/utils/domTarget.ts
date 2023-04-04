@@ -1,4 +1,5 @@
-import { MutableRefObject, useEffect, useRef } from "react";
+import type { MutableRefObject } from "react";
+import { useEffect, useRef } from "react";
 import { isBrowser, isFunction } from "./is";
 
 type TargetValue<T> = T | undefined | null;
@@ -12,7 +13,7 @@ export type BasicTarget<T extends TargetType = Element> =
 
 export function getTargetElement<T extends TargetType>(
   target: BasicTarget<T>,
-  defaultElement?: T
+  defaultElement?: T,
 ) {
   if (!isBrowser) {
     return undefined;
@@ -26,9 +27,11 @@ export function getTargetElement<T extends TargetType>(
 
   if (isFunction(target)) {
     targetElement = target();
-  } else if ("current" in target) {
+  }
+  else if ("current" in target) {
     targetElement = target.current;
-  } else {
+  }
+  else {
     targetElement = target;
   }
 
@@ -37,7 +40,7 @@ export function getTargetElement<T extends TargetType>(
 
 export function useLatestElement<T extends TargetType>(
   target: BasicTarget<T>,
-  defaultElement?: T
+  defaultElement?: T,
 ) {
   const ref = useRef(getTargetElement(target, defaultElement));
   useEffect(() => {

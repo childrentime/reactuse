@@ -9,11 +9,11 @@ import { useScriptTag } from "@reactuses/core";
 import { useEffect, useState } from "react";
 
 // it's an example, use your types instead
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 declare const jQuery: any;
 const Demo = () => {
   const [, status] = useScriptTag(
-    `https://code.jquery.com/jquery-3.5.1.min.js`
+    "https://code.jquery.com/jquery-3.5.1.min.js"
   );
 
   const [version, setVersion] = useState(0);
@@ -65,14 +65,14 @@ export interface UseScriptTagOptions {
 
   crossOrigin?: "anonymous" | "use-credentials";
   referrerPolicy?:
-    | "no-referrer"
-    | "no-referrer-when-downgrade"
-    | "origin"
-    | "origin-when-cross-origin"
-    | "same-origin"
-    | "strict-origin"
-    | "strict-origin-when-cross-origin"
-    | "unsafe-url";
+  | "no-referrer"
+  | "no-referrer-when-downgrade"
+  | "origin"
+  | "origin-when-cross-origin"
+  | "same-origin"
+  | "strict-origin"
+  | "strict-origin-when-cross-origin"
+  | "unsafe-url";
   noModule?: boolean;
 
   defer?: boolean;

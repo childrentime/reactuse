@@ -38,27 +38,27 @@ export interface ScrollIntoViewAnimation {
 }
 
 export interface ScrollIntoViewParams {
-    /** callback fired after scroll */
-    onScrollFinish?: () => void;
-    /** duration of scroll in milliseconds */
-    duration?: number;
-    /** axis of scroll */
-    axis?: "x" | "y";
-    /** custom mathematical easing function */
-    easing?: (t: number) => number;
-    /** additional distance between nearest edge and element */
-    offset?: number;
-    /** indicator if animation may be interrupted by user scrolling */
-    cancelable?: boolean;
-    /** prevents content jumping in scrolling lists with multiple targets */
-    isList?: boolean;
-    targetElement: BasicTarget<HTMLElement>;
-    scrollElement?: BasicTarget<HTMLElement>;
+  /** callback fired after scroll */
+  onScrollFinish?: () => void;
+  /** duration of scroll in milliseconds */
+  duration?: number;
+  /** axis of scroll */
+  axis?: "x" | "y";
+  /** custom mathematical easing function */
+  easing?: (t: number) => number;
+  /** additional distance between nearest edge and element */
+  offset?: number;
+  /** indicator if animation may be interrupted by user scrolling */
+  cancelable?: boolean;
+  /** prevents content jumping in scrolling lists with multiple targets */
+  isList?: boolean;
+  targetElement: BasicTarget<HTMLElement>;
+  scrollElement?: BasicTarget<HTMLElement>;
 }
 export function useScrollIntoView({ duration, axis, onScrollFinish, easing, offset, cancelable, isList, targetElement, scrollElement, }: ScrollIntoViewParams): {
-    scrollIntoView: ({ alignment }?: ScrollIntoViewAnimation) => void;
-    cancel: () => void;
-}
+  scrollIntoView: ({ alignment }?: ScrollIntoViewAnimation) => void;
+  cancel: () => void;
+};
 ```
 
 >>>

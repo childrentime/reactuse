@@ -192,7 +192,7 @@ export default function useScroll(
     top: boolean;
     bottom: boolean;
   }
-]
+];
 ```
 
 >>>

@@ -1,5 +1,5 @@
 import { useEventEmitter } from "@reactuses/core";
-import { IDisposable } from "@reactuses/core/hooks/useEventEmitter";
+import type { IDisposable } from "@reactuses/core/hooks/useEventEmitter";
 import { useEffect, useRef, useState } from "react";
 import Layout from "../Layout";
 import file from "./README.md";
@@ -21,9 +21,9 @@ const Demo = () => {
   const event1 = useRef<IDisposable>();
   useEffect(() => {
     event((val) => {
-      setState((s) => s + val);
+      setState(s => s + val);
     });
-    event1.current = event((val) => setState((s) => s + val + 10));
+    event1.current = event(val => setState(s => s + val + 10));
   }, [event]);
 
   return (

@@ -26,10 +26,10 @@ describe("useDebounce", () => {
 
   it("should has same value if time is advanced less than the given time", () => {
     const { result, rerender } = renderHook(
-      (props) => useDebounce(props, 100),
+      props => useDebounce(props, 100),
       {
         initialProps: 0,
-      }
+      },
     );
     expect(result.current).toBe(0);
     act(() => {
@@ -40,7 +40,7 @@ describe("useDebounce", () => {
   });
 
   it("should not update the value after the given time", () => {
-    const hook = renderHook((props) => useDebounce(props, 100), {
+    const hook = renderHook(props => useDebounce(props, 100), {
       initialProps: 0,
     });
     expect(hook.result.current).toBe(0);
@@ -51,7 +51,7 @@ describe("useDebounce", () => {
   });
 
   it("should cancel timeout on unmount", () => {
-    const hook = renderHook((props) => useDebounce(props, 100), {
+    const hook = renderHook(props => useDebounce(props, 100), {
       initialProps: 0,
     });
     expect(hook.result.current).toBe(0);
@@ -67,7 +67,7 @@ describe("useDebounce", () => {
   });
 
   it("default useDebounce should work", async () => {
-    const hook = renderHook((props) => useDebounce(props, 100), {
+    const hook = renderHook(props => useDebounce(props, 100), {
       initialProps: 0,
     });
     expect(hook.result.current).toEqual(0);
@@ -94,7 +94,7 @@ describe("useDebounce", () => {
     jest.useRealTimers();
     let mountedState = 0;
     const { result, rerender } = renderHook(() =>
-      useDebounce(mountedState, 200)
+      useDebounce(mountedState, 200),
     );
     expect(result.current).toEqual(0);
 

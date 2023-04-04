@@ -1,10 +1,10 @@
+import path from "node:path";
 import webpack from "webpack";
-import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { clientOutput, development } from "./constant";
 import LoadablePlugin from "@loadable/webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import { clientOutput, development } from "./constant";
 
 const target = "web";
 
@@ -17,7 +17,7 @@ if (development) {
       overlay: {
         sockIntegration: "whm",
       },
-    })
+    }),
   );
 }
 

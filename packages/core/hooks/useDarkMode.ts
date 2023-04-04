@@ -63,7 +63,7 @@ export default function useDarkMode(options: UseDarkOptions) {
     storage,
     {
       csrData: value,
-    }
+    },
   );
 
   useEffect(() => {
@@ -74,11 +74,12 @@ export default function useDarkMode(options: UseDarkOptions) {
     if (attribute === "class") {
       dark && classNameDark && element.classList.add(classNameDark);
       !dark && classNameLight && element.classList.add(classNameLight);
-    } else {
+    }
+    else {
       dark && classNameDark && element.setAttribute(attribute, classNameDark);
-      !dark &&
-        classNameLight &&
-        element.setAttribute(attribute, classNameLight);
+      !dark
+        && classNameLight
+        && element.setAttribute(attribute, classNameLight);
     }
 
     return () => {
@@ -88,12 +89,13 @@ export default function useDarkMode(options: UseDarkOptions) {
       if (attribute === "class") {
         dark && classNameDark && element.classList.remove(classNameDark);
         !dark && classNameLight && element.classList.remove(classNameLight);
-      } else {
+      }
+      else {
         dark && classNameDark && element.removeAttribute(attribute);
         !dark && classNameLight && element.removeAttribute(attribute);
       }
     };
   }, [attribute, classNameDark, classNameLight, dark, selector]);
 
-  return [dark, () => setDark((dark) => !dark), setDark] as const;
+  return [dark, () => setDark(dark => !dark), setDark] as const;
 }

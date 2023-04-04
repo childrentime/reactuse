@@ -1,7 +1,7 @@
 import { useTextDirection } from "@reactuses/core";
+import { useMemo } from "react";
 import Layout from "../Layout";
 import file from "./README.md";
-import { useMemo } from "react";
 
 const Page = () => {
   return (
@@ -23,7 +23,7 @@ const Demo = () => {
       dir === "ltr"
         ? "This paragraph is in English and correctly goes left to right."
         : "This paragraph is in English but incorrectly goes right to left.",
-    [dir]
+    [dir],
   );
 
   const handleOnClick = () => {

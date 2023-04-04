@@ -25,8 +25,7 @@ export interface UseFpsOptions {
   every?: number;
 }
 
-
-function useFps(options?: UseFpsOptions): number
+function useFps(options?: UseFpsOptions): number;
 ```
 
 ## Examples

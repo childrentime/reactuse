@@ -5,7 +5,7 @@ export type RafLoopReturns = readonly [() => void, () => void, () => boolean];
 
 export default function useRafFn(
   callback: FrameRequestCallback,
-  initiallyActive = true
+  initiallyActive = true,
 ): RafLoopReturns {
   const raf = useRef<number | null>(null);
   const rafActivity = useRef<boolean>(false);
@@ -18,7 +18,7 @@ export default function useRafFn(
         raf.current = requestAnimationFrame(step);
       }
     },
-    [rafCallback]
+    [rafCallback],
   );
 
   const result = useMemo(
@@ -40,7 +40,7 @@ export default function useRafFn(
         },
         (): boolean => rafActivity.current, // isActive
       ] as const,
-    [step]
+    [step],
   );
 
   useEffect(() => {

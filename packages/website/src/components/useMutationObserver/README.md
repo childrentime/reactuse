@@ -15,7 +15,7 @@ const Demo = () => {
 
   const stop = useMutationObserver(
     (mutationsList) => {
-      mutationsList.forEach(() => setCount((c) => c + 1));
+      mutationsList.forEach(() => setCount(c => c + 1));
     },
     ref,
     { attributes: true }
@@ -38,7 +38,7 @@ const Demo = () => {
       >
         current width：{width}
       </div>
-      <button onClick={() => setWidth((w) => w + 10)}>widening</button>
+      <button onClick={() => setWidth(w => w + 10)}>widening</button>
       <button onClick={() => stop()}>stop observe</button>
       <p>Mutation count {count}</p>
     </div>
@@ -53,7 +53,7 @@ export default function useMutationObserver(
   callback: MutationCallback,
   target: BasicTarget,
   options: MutationObserverInit
-): () => void
+): () => void;
 ```
 
 ## Examples

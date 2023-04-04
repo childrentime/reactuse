@@ -21,7 +21,7 @@ export const getHMSTime = (timeDiff: number): [string, string, string] => {
 const useCountDown = (
   time: number,
   format: (number) => [string, string, string] = getHMSTime,
-  callback?: () => void
+  callback?: () => void,
 ) => {
   const [remainTime, setRemainTime] = useState(time);
   const [delay, setDelay] = useState<number | null>(1000);

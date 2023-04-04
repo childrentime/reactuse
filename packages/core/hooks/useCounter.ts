@@ -4,28 +4,30 @@ import useEvent from "./useEvent";
 export default function useCounter(
   initialValue: number | (() => number) = 0,
   max: number | null = null,
-  min: number | null = null
+  min: number | null = null,
 ) {
   // avoid exec init code every render
   const initFunc = () => {
-    let init =
-      typeof initialValue === "function" ? initialValue() : initialValue;
+    let init
+      = typeof initialValue === "function" ? initialValue() : initialValue;
 
-    typeof init !== "number" &&
-      console.error(
-        "initialValue has to be a number, got " + typeof initialValue
+    typeof init !== "number"
+      && console.error(
+        `initialValue has to be a number, got ${typeof initialValue}`,
       );
 
     if (typeof min === "number") {
       init = Math.max(init, min);
-    } else if (min !== null) {
-      console.error("min has to be a number, got " + typeof min);
+    }
+    else if (min !== null) {
+      console.error(`min has to be a number, got ${typeof min}`);
     }
 
     if (typeof max === "number") {
       init = Math.min(init, max);
-    } else if (max !== null) {
-      console.error("max has to be a number, got " + typeof max);
+    }
+    else if (max !== null) {
+      console.error(`max has to be a number, got ${typeof max}`);
     }
 
     return init;
@@ -46,15 +48,15 @@ export default function useCounter(
         }
         return nextValue;
       });
-    }
+    },
   );
 
   const inc = (delta = 1) => {
-    set((value) => value + delta);
+    set(value => value + delta);
   };
 
   const dec = (delta = 1) => {
-    set((value) => value - delta);
+    set(value => value - delta);
   };
 
   const reset = () => {

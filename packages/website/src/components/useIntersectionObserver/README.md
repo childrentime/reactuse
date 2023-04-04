@@ -75,7 +75,7 @@ const Demo = () => {
 export default function useIntersectionObserver(
   target: BasicTarget,
   options: IntersectionObserverInit
-): () => void
+): () => void;
 ```
 
 ## Examples

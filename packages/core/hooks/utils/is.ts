@@ -1,5 +1,5 @@
 import React from "react";
-import { Fn } from "./types";
+import type { Fn } from "./types";
 
 const toString = Object.prototype.toString;
 
@@ -16,17 +16,17 @@ export const isString = (val: unknown): val is string =>
 export const isObject = (val: any): val is object =>
   toString.call(val) === "[object Object]";
 
-export const isDev =
-  process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test";
+export const isDev
+  = process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test";
 
 export const isBrowser = typeof window !== "undefined";
 export const isNavigator = typeof navigator !== "undefined";
-// eslint-disable-next-line @typescript-eslint/no-empty-function
+
 export const noop = () => {};
 
-export const isIOS =
-  /* #__PURE__ */ isBrowser &&
-  window?.navigator?.userAgent &&
-  /iP(ad|hone|od)/.test(window.navigator.userAgent);
+export const isIOS
+/* #__PURE__ */ = isBrowser
+  && window?.navigator?.userAgent
+  && /iP(ad|hone|od)/.test(window.navigator.userAgent);
 
 export const isReactLegacy = !React.useId;

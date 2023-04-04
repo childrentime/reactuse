@@ -19,7 +19,7 @@ const Demo = () => {
   const update = useUpdate();
 
   const [loopStop, loopStart, isActive] = useRafFn((time) => {
-    setTicks((ticks) => ticks + 1);
+    setTicks(ticks => ticks + 1);
     setLastCall(time);
   });
 

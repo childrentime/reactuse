@@ -1,4 +1,5 @@
-import { BasicTarget, getTargetElement } from "./utils/domTarget";
+import type { BasicTarget } from "./utils/domTarget";
+import { getTargetElement } from "./utils/domTarget";
 import useEventListener from "./useEventListener";
 import useRafState from "./useRafState";
 
@@ -55,8 +56,8 @@ export default function useMouse(target?: BasicTarget): CursorState {
       };
       const targetElement = getTargetElement(target);
       if (targetElement) {
-        const { left, top, width, height } =
-          targetElement.getBoundingClientRect();
+        const { left, top, width, height }
+          = targetElement.getBoundingClientRect();
         newState.elementPosX = left + window.pageXOffset;
         newState.elementPosY = top + window.pageYOffset;
         newState.elementX = pageX - newState.elementPosX;
@@ -66,7 +67,7 @@ export default function useMouse(target?: BasicTarget): CursorState {
       }
       setState(newState);
     },
-    () => document
+    () => document,
   );
 
   return state;

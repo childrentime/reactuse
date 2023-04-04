@@ -16,7 +16,7 @@ const Demo = () => {
 ## Type Declarations
 
 ```ts
-export default function useOnline(): boolean | undefined
+export default function useOnline(): boolean | undefined;
 ```
 
 ## Examples

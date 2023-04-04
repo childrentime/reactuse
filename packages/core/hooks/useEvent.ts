@@ -1,5 +1,5 @@
-import { useRef, useCallback } from "react";
-import { Fn } from "./utils/types";
+import { useCallback, useRef } from "react";
+import type { Fn } from "./utils/types";
 import { isDev, isFunction } from "./utils/is";
 import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect";
 
@@ -15,7 +15,7 @@ export default function useEvent<T extends Fn>(fn: T) {
   if (isDev) {
     if (!isFunction(fn)) {
       console.error(
-        `useEvent expected parameter is a function, got ${typeof fn}`
+        `useEvent expected parameter is a function, got ${typeof fn}`,
       );
     }
   }

@@ -1,5 +1,6 @@
 import { useScroll } from "@reactuses/core";
-import { CSSProperties, useMemo, useRef } from "react";
+import type { CSSProperties } from "react";
+import { useMemo, useRef } from "react";
 import Layout from "../Layout";
 
 import file from "./README.md";
@@ -19,7 +20,7 @@ const Demo = () => {
   const [x, y, isScrolling, arrivedState, directions] = useScroll(elementRef);
   const { left, right, top, bottom } = useMemo(
     () => arrivedState,
-    [arrivedState]
+    [arrivedState],
   );
   const {
     left: toLeft,
