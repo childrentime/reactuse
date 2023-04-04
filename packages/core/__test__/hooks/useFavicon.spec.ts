@@ -33,23 +33,23 @@ describe("useFavicon", () => {
   });
 
   it("should set the elements href to the provided string", () => {
-    renderHook(() => useFavicon("https://github.com/streamich/react-use"));
+    renderHook(() => useFavicon("https://github.com/childrentime/reactuse"));
     const favicon = document.querySelector(
       "link[rel*='icon']"
     ) as HTMLLinkElement;
 
-    expect(favicon.href).toBe("https://github.com/streamich/react-use");
+    expect(favicon.href).toBe("https://github.com/childrentime/reactuse");
   });
 
   it("should update an existing favicon", () => {
     const hook = renderHook((props) => useFavicon(props), {
-      initialProps: "https://github.com/streamich/react-use",
+      initialProps: "https://github.com/childrentime/reactuse",
     });
     const favicon = document.querySelector(
       "link[rel*='icon']"
     ) as HTMLLinkElement;
 
-    expect(favicon.href).toBe("https://github.com/streamich/react-use");
+    expect(favicon.href).toBe("https://github.com/childrentime/reactuse");
     hook.rerender("https://en.wikipedia.org/wiki/Favicon");
     expect(favicon.href).toBe("https://en.wikipedia.org/wiki/Favicon");
   });
