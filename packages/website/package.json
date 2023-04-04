@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "link:all": "bash link.sh",
+    "prebuild": "bash prebuild.sh",
     "dev": "cross-env NODE_ENV=development ts-node config/dev.ts",
-    "build": "cross-env NODE_ENV=production gulp && cross-env NODE_ENV=production ts-node server/index.tsx"
+    "build": "pnpm run prebuild && cross-env NODE_ENV=production gulp && cross-env NODE_ENV=production ts-node server/index.tsx"
   },
   "dependencies": {
     "@babel/cli": "^7.19.3",
