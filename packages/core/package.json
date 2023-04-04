@@ -4,6 +4,14 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "files": [
     "dist",
     "package.json",
@@ -85,5 +93,8 @@
     "hook",
     "hooks",
     "component"
-  ]
+  ],
+  "engines": {
+    "pnpm": "7"
+  }
 }
