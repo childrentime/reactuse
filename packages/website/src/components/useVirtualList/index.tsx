@@ -1,7 +1,7 @@
-import Layout from "../Layout";
-import file from "./README.md";
 import { useMemo, useState } from "react";
 import { useVirtualList } from "@reactuses/core";
+import Layout from "../Layout";
+import file from "./README.md";
 
 const Page = () => {
   return (
@@ -13,7 +13,7 @@ const Page = () => {
 
 export default Page;
 
-const allItems = Array.from(Array(9999).keys()).map((i) => ({
+const allItems = Array.from(Array(9999).keys()).map(i => ({
   height: i % 2 === 0 ? 42 : 84,
   size: i % 2 === 0 ? "small" : "large",
 }));
@@ -23,15 +23,15 @@ const Demo = () => {
   const [search, setSearch] = useState("");
 
   const filteredItems = useMemo(() => {
-    return allItems.filter((i) => i.size.startsWith(search.toLowerCase()));
+    return allItems.filter(i => i.size.startsWith(search.toLowerCase()));
   }, [search]);
 
   const { list, containerProps, wrapperProps, scrollTo } = useVirtualList(
     filteredItems,
     {
-      itemHeight: (i) => filteredItems[i].height + 8,
+      itemHeight: i => filteredItems[i].height + 8,
       overscan: 10,
-    }
+    },
   );
 
   const handleScrollTo = () => {
@@ -44,7 +44,7 @@ const Demo = () => {
         <div> Jump to index</div>
         <input
           value={index}
-          onChange={(v) => setIndex(v.currentTarget.valueAsNumber)}
+          onChange={v => setIndex(v.currentTarget.valueAsNumber)}
           placeholder="Index"
           type="number"
         />
@@ -57,7 +57,7 @@ const Demo = () => {
         <input
           value={search}
           placeholder="e.g. small, medium, large"
-          onChange={(v) => setSearch(v.currentTarget.value)}
+          onChange={v => setSearch(v.currentTarget.value)}
           type="search"
           style={{ minWidth: "20rem" }}
         />

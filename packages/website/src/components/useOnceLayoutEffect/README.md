@@ -13,11 +13,11 @@ const Demo = () => {
   const [onceLayoutEffect, setOnceLayoutEffect] = useState(0);
 
   useOnceLayoutEffect(() => {
-    setOnceLayoutEffect((onceEffect) => onceEffect + 1);
+    setOnceLayoutEffect(onceEffect => onceEffect + 1);
   }, []);
 
   useLayoutEffect(() => {
-    setLayoutEffect((effect) => effect + 1);
+    setLayoutEffect(effect => effect + 1);
   }, []);
 
   return (
@@ -28,7 +28,6 @@ const Demo = () => {
     </div>
   );
 };
-
 ```
 
 ## Examples

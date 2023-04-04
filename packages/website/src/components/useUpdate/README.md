@@ -21,7 +21,7 @@ const Demo = () => {
 ## Type Declarations
 
 ```ts
-export default function useUpdate(): () => void
+export default function useUpdate(): () => void;
 ```
 
 ## Examples

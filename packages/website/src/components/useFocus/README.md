@@ -70,7 +70,7 @@ const Demo = () => {
 ## Type Declarations
 
 ```ts
-function useFocus(target: BasicTarget<HTMLElement | SVGElement>, initialValue?: boolean): readonly [boolean, (value: boolean) => void]
+function useFocus(target: BasicTarget<HTMLElement | SVGElement>, initialValue?: boolean): readonly [boolean, (value: boolean) => void];
 ```
 
 ## Examples

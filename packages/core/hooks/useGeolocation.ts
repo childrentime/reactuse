@@ -16,8 +16,8 @@ export default function useGeolocation(options: Partial<PositionOptions> = {}) {
     maximumAge = 30000,
     timeout = 27000,
   } = options;
-  const [coordinates, setCoordinates] =
-    useState<GeolocationPosition["coords"]>(initCoord);
+  const [coordinates, setCoordinates]
+    = useState<GeolocationPosition["coords"]>(initCoord);
   const [locatedAt, setLocatedAt] = useState<number | null>(null);
   const [error, setError] = useState<GeolocationPositionError | null>(null);
 
@@ -42,7 +42,7 @@ export default function useGeolocation(options: Partial<PositionOptions> = {}) {
         enableHighAccuracy,
         maximumAge,
         timeout,
-      }
+      },
     );
 
     return () => {

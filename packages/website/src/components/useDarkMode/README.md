@@ -49,7 +49,7 @@ Note: If your website has a twinkle of color, you can add this code to the top o
         })();
       `,
   }}
-/>
+/>;
 ```
 
 ## Type Declarations

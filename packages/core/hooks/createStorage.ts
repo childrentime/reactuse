@@ -1,6 +1,8 @@
-import {
+import type {
   Dispatch,
   SetStateAction,
+} from "react";
+import {
   useCallback,
   useMemo,
   useState,
@@ -73,12 +75,12 @@ export interface UseStorageOptions<T> {
 
 // to avoid SSR error, first return default value, then update it in useEffect
 export default function useStorage<
-  T extends string | number | boolean | object | null
+  T extends string | number | boolean | object | null,
 >(
   key: string,
   defaults: T,
   getStorage: () => Storage | undefined,
-  options: UseStorageOptions<T> = {}
+  options: UseStorageOptions<T> = {},
 ) {
   const defaultOnError = useCallback((e) => {
     console.error(e);
@@ -88,7 +90,8 @@ export default function useStorage<
 
   try {
     storage = getStorage();
-  } catch (err) {
+  }
+  catch (err) {
     onError(err);
   }
 
@@ -110,11 +113,13 @@ export default function useStorage<
         const raw = storage?.getItem(key);
         if (raw !== undefined && raw !== null) {
           return serializer.read(raw);
-        } else {
+        }
+        else {
           storage?.setItem(key, serializer.write(data));
           return data;
         }
-      } catch (e) {
+      }
+      catch (e) {
         onError(e);
       }
     };
@@ -129,14 +134,16 @@ export default function useStorage<
 
       if (currentState === null) {
         storage?.removeItem(key);
-      } else {
+      }
+      else {
         try {
           storage?.setItem(key, serializer.write(currentState));
-        } catch (e) {
+        }
+        catch (e) {
           onError(e);
         }
       }
-    }
+    },
   );
 
   return [state, updateState] as const;

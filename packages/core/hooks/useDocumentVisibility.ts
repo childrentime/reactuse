@@ -5,7 +5,8 @@ export default function useDocumentVisibility(): DocumentVisibilityState {
   const [visible, setVisible] = useState<DocumentVisibilityState>(() => {
     if (typeof document === "undefined") {
       return "visible";
-    } else {
+    }
+    else {
       return document.visibilityState;
     }
   });
@@ -15,7 +16,7 @@ export default function useDocumentVisibility(): DocumentVisibilityState {
     () => {
       setVisible(document.visibilityState);
     },
-    () => document
+    () => document,
   );
 
   return visible;

@@ -1,5 +1,5 @@
-import useScriptTag from "../../hooks/useScriptTag";
 import { act, renderHook } from "@testing-library/react";
+import useScriptTag from "../../hooks/useScriptTag";
 
 describe(useScriptTag, () => {
   const src = "https://code.jquery.com/jquery-3.5.1.min.js";
@@ -9,7 +9,7 @@ describe(useScriptTag, () => {
 
   beforeEach(() => {
     const els = document.querySelectorAll<HTMLScriptElement>("script");
-    els.forEach((el) => document.head.removeChild(el));
+    els.forEach(el => document.head.removeChild(el));
   });
 
   it("should add script tag", async () => {
@@ -20,7 +20,6 @@ describe(useScriptTag, () => {
     expect(scriptTagElement()).toBeNull();
 
     renderHook(() => {
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
       const [scriptTag] = useScriptTag(src, () => {}, { immediate: true });
 
       return {
@@ -80,7 +79,7 @@ describe(useScriptTag, () => {
 
     renderHook(() => {
       const [scriptTag] = useScriptTag(src, () => {}, {
-        attrs: { id: "id-value", "data-test": "data-test-value" },
+        attrs: { "id": "id-value", "data-test": "data-test-value" },
         immediate: true,
       });
 

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { BasicTarget, useLatestElement } from "./utils/domTarget";
+import type { BasicTarget } from "./utils/domTarget";
+import { useLatestElement } from "./utils/domTarget";
 import { isIOS } from "./utils/is";
 import useEvent from "./useEvent";
 
@@ -19,7 +20,7 @@ function preventDefault(rawEvent: TouchEvent): boolean {
 
 export default function useScrollLock(
   target: BasicTarget<HTMLElement>,
-  initialState = false
+  initialState = false,
 ): readonly [boolean, (flag: boolean) => void] {
   const [locked, setLocked] = useState(initialState);
 
@@ -62,7 +63,8 @@ export default function useScrollLock(
   const set = useEvent((flag: boolean) => {
     if (flag) {
       lock();
-    } else {
+    }
+    else {
       unlock();
     }
   });

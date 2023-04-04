@@ -26,7 +26,7 @@ const Demo = () => {
       setData(result);
     },
     () => {},
-    []
+    [],
   );
   return <div>data: {data}</div>;
 };

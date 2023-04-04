@@ -14,11 +14,11 @@ const Page = () => {
 export default Page;
 
 // it's an example, use your types instead
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 declare const jQuery: any;
 const Demo = () => {
   const [, status] = useScriptTag(
-    `https://code.jquery.com/jquery-3.5.1.min.js`
+    "https://code.jquery.com/jquery-3.5.1.min.js",
   );
 
   const [version, setVersion] = useState(0);

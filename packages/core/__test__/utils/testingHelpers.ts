@@ -11,9 +11,10 @@ export function request(req) {
     setTimeout(() => {
       if (req === 0) {
         reject(new Error("fail"));
-      } else {
+      }
+      else {
         resolve("success");
       }
-    }, 1000)
+    }, 1000),
   );
 }

@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import { useEffect } from "react";
-import useCustomCompareEffect from "../../hooks/useCustomCompareEffect";
 import { isEqual } from "lodash";
+import useCustomCompareEffect from "../../hooks/useCustomCompareEffect";
 
 let options = { max: 10 };
 const mockEffectNormal = jest.fn();
@@ -11,10 +11,10 @@ const mockEffectCallback = jest.fn().mockReturnValue(mockEffectCleanup);
 
 it("should run provided object once", () => {
   const { rerender: rerenderNormal } = renderHook(() =>
-    useEffect(mockEffectNormal, [options])
+    useEffect(mockEffectNormal, [options]),
   );
   const { rerender: rerenderDeep } = renderHook(() =>
-    useCustomCompareEffect(mockEffectDeep, [options], isEqual)
+    useCustomCompareEffect(mockEffectDeep, [options], isEqual),
   );
 
   expect(mockEffectNormal).toHaveBeenCalledTimes(1);
@@ -37,7 +37,7 @@ it("should run provided object once", () => {
 
 it("should run clean-up provided on unmount", () => {
   const { unmount } = renderHook(() =>
-    useCustomCompareEffect(mockEffectCallback, [options], isEqual)
+    useCustomCompareEffect(mockEffectCallback, [options], isEqual),
   );
   expect(mockEffectCleanup).not.toHaveBeenCalled();
 

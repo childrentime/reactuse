@@ -21,7 +21,7 @@ The defaultState? parameter must be set when using server side rendering, we nee
 :::
 
 ```ts
-export default function usePreferredDark(defaultState?: boolean): boolean
+export default function usePreferredDark(defaultState?: boolean): boolean;
 ```
 
 ## Examples

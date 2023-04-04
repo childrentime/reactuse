@@ -1,5 +1,5 @@
-import { noop } from "./utils/is";
 import { useRef, useState } from "react";
+import { noop } from "./utils/is";
 import useMount from "./useMount";
 import useUnmount from "./useUnmount";
 
@@ -34,14 +34,14 @@ export interface UseScriptTagOptions {
 
   crossOrigin?: "anonymous" | "use-credentials";
   referrerPolicy?:
-    | "no-referrer"
-    | "no-referrer-when-downgrade"
-    | "origin"
-    | "origin-when-cross-origin"
-    | "same-origin"
-    | "strict-origin"
-    | "strict-origin-when-cross-origin"
-    | "unsafe-url";
+  | "no-referrer"
+  | "no-referrer-when-downgrade"
+  | "origin"
+  | "origin-when-cross-origin"
+  | "same-origin"
+  | "strict-origin"
+  | "strict-origin-when-cross-origin"
+  | "unsafe-url";
   noModule?: boolean;
 
   defer?: boolean;
@@ -58,7 +58,7 @@ export type Status = "idle" | "loading" | "ready" | "error";
 export default function useScriptTag(
   src: string,
   onLoaded: (el: HTMLScriptElement) => void = noop,
-  options: UseScriptTagOptions = {}
+  options: UseScriptTagOptions = {},
 ) {
   const {
     immediate = true,
@@ -82,7 +82,7 @@ export default function useScriptTag(
    * @returns Promise<HTMLScriptElement>
    */
   const loadScript = (
-    waitForScriptLoad: boolean
+    waitForScriptLoad: boolean,
   ): Promise<HTMLScriptElement | boolean> =>
     new Promise((resolve, reject) => {
       // Some little closure for resolving the Promise.
@@ -108,7 +108,7 @@ export default function useScriptTag(
       let shouldAppend = false;
 
       let el = document.querySelector<HTMLScriptElement>(
-        `script[src="${src}"]`
+        `script[src="${src}"]`,
       );
 
       // Script tag not found, preparing the element for appending
@@ -133,7 +133,7 @@ export default function useScriptTag(
         }
 
         Object.entries(attrs).forEach(([name, value]) =>
-          el?.setAttribute(name, value)
+          el?.setAttribute(name, value),
         );
 
         // Enables shouldAppend
@@ -180,7 +180,7 @@ export default function useScriptTag(
    * @returns Promise<HTMLScriptElement>
    */
   const load = (
-    waitForScriptLoad = true
+    waitForScriptLoad = true,
   ): Promise<HTMLScriptElement | boolean> => {
     if (!_promise.current) {
       _promise.current = loadScript(waitForScriptLoad);
@@ -204,7 +204,7 @@ export default function useScriptTag(
     }
 
     const el = document.querySelector<HTMLScriptElement>(
-      `script[src="${src}"]`
+      `script[src="${src}"]`,
     );
     if (el) {
       document.head.removeChild(el);

@@ -24,7 +24,7 @@ The defaultState? parameter must be set when using server side rendering, we nee
 export type ColorScheme = "dark" | "light" | "no-preference";
 export default function usePreferredColorScheme(
   defaultState?: ColorScheme
-): ColorScheme
+): ColorScheme;
 ```
 
 ## Examples

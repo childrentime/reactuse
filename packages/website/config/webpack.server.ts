@@ -1,11 +1,11 @@
-import { development, serverOutput } from "./constant";
+import path from "node:path";
 import webpack from "webpack";
-import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import nodeExternals from "webpack-node-externals";
 import LoadablePlugin from "@loadable/webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import { development, serverOutput } from "./constant";
 
 const target = "node";
 const plugins = [new LoadablePlugin() as any, new MiniCssExtractPlugin()];
@@ -17,7 +17,7 @@ if (development) {
       overlay: {
         sockIntegration: "whm",
       },
-    })
+    }),
   );
 }
 // 服务端资源打包，需要抽取没有BroswerRoute的部分

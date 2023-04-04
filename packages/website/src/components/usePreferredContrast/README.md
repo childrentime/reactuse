@@ -24,7 +24,7 @@ The defaultState? parameter must be set when using server side rendering, we nee
 export type Contrast = "more" | "less" | "custom" | "no-preference";
 export default function usePreferredContrast(
   defaultState?: Contrast
-): Contrast
+): Contrast;
 ```
 
 ## Examples

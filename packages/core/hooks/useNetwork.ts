@@ -9,14 +9,14 @@ export interface INetworkInformation extends EventTarget {
   readonly rtt: number;
   readonly saveData: boolean;
   readonly type:
-    | "bluetooth"
-    | "cellular"
-    | "ethernet"
-    | "none"
-    | "wifi"
-    | "wimax"
-    | "other"
-    | "unknown";
+  | "bluetooth"
+  | "cellular"
+  | "ethernet"
+  | "none"
+  | "wifi"
+  | "wimax"
+  | "other"
+  | "unknown";
 
   onChange: (event: Event) => void;
 }
@@ -76,19 +76,19 @@ export interface IUseNetworkState {
 }
 
 const nav:
-  | (Navigator &
-      Partial<
+| (Navigator &
+Partial<
         Record<
           "connection" | "mozConnection" | "webkitConnection",
           INetworkInformation
         >
       >)
-  | undefined = isNavigator ? (navigator as any) : undefined;
-const conn: INetworkInformation | undefined =
-  nav && (nav.connection || nav.mozConnection || nav.webkitConnection);
+| undefined = isNavigator ? (navigator as any) : undefined;
+const conn: INetworkInformation | undefined
+  = nav && (nav.connection || nav.mozConnection || nav.webkitConnection);
 
 function getConnectionState(
-  previousState?: IUseNetworkState
+  previousState?: IUseNetworkState,
 ): IUseNetworkState {
   const online = nav?.onLine;
   const previousOnline = previousState?.online;

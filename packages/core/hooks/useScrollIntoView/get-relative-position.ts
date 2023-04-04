@@ -33,8 +33,8 @@ export const getRelativePosition = ({
 
     if (alignment === "start") {
       const distance = diff - offset;
-      const shouldScroll =
-        distance <= targetPosition.height * (isList ? 0 : 1) || !isList;
+      const shouldScroll
+        = distance <= targetPosition.height * (isList ? 0 : 1) || !isList;
 
       return shouldScroll ? distance : 0;
     }
@@ -45,8 +45,8 @@ export const getRelativePosition = ({
 
     if (alignment === "end") {
       const distance = diff + offset - parentHeight + targetPosition.height;
-      const shouldScroll =
-        distance >= -targetPosition.height * (isList ? 0 : 1) || !isList;
+      const shouldScroll
+        = distance >= -targetPosition.height * (isList ? 0 : 1) || !isList;
 
       return shouldScroll ? distance : 0;
     }

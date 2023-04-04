@@ -33,7 +33,7 @@ const Demo = () => {
 ```ts
 export default function useObjectUrl(
   object: Blob | MediaSource | undefined
-): string | undefined
+): string | undefined;
 ```
 
 ## Examples

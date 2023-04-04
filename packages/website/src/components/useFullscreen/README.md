@@ -10,8 +10,8 @@ import { useRef } from "react";
 
 const Demo = () => {
   const ref = useRef(null);
-  const [isFullscreen, { enterFullscreen, exitFullscreen, toggleFullscreen }] =
-    useFullscreen(ref);
+  const [isFullscreen, { enterFullscreen, exitFullscreen, toggleFullscreen }]
+    = useFullscreen(ref);
   return (
     <div ref={ref}>
       <div style={{ marginBottom: 16 }}>

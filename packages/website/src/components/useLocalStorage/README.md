@@ -21,7 +21,6 @@ const Demo = () => {
     </div>
   );
 };
-
 ```
 
 ## Type Declarations

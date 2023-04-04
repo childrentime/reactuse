@@ -1,5 +1,6 @@
-import { BasicTarget, getTargetElement } from "./utils/domTarget";
 import { useEffect, useState } from "react";
+import type { BasicTarget } from "./utils/domTarget";
+import { getTargetElement } from "./utils/domTarget";
 import useResizeObserver from "./useResizeObserver";
 import useEvent from "./useEvent";
 
@@ -34,18 +35,18 @@ export interface UseElementBoundingOptions {
 
 export default function useElementBounding(
   target: BasicTarget,
-  options: UseElementBoundingOptions = {}
+  options: UseElementBoundingOptions = {},
 ): {
-  readonly height: number;
-  readonly bottom: number;
-  readonly left: number;
-  readonly right: number;
-  readonly top: number;
-  readonly width: number;
-  readonly x: number;
-  readonly y: number;
-  readonly update: () => void;
-} {
+    readonly height: number;
+    readonly bottom: number;
+    readonly left: number;
+    readonly right: number;
+    readonly top: number;
+    readonly width: number;
+    readonly x: number;
+    readonly y: number;
+    readonly update: () => void;
+  } {
   const {
     reset = true,
     windowResize = true,

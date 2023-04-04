@@ -44,9 +44,9 @@ export type GeneralPermissionDescriptor =
 
 export default function usePermission(
   permissionDesc:
-    | GeneralPermissionDescriptor
-    | GeneralPermissionDescriptor["name"]
-): IState
+  | GeneralPermissionDescriptor
+  | GeneralPermissionDescriptor["name"]
+): IState;
 ```
 
 >>>

@@ -38,10 +38,10 @@ export default function useDebounceFn<T extends (...args: any) => any>(
   wait?: number,
   options?: DebounceSettings
 ): {
-    run: DebouncedFunc<(...args: Parameters<T>) => ReturnType<T>>;
-    cancel: () => void;
-    flush: () => ReturnType<T> | undefined;
-}
+  run: DebouncedFunc<(...args: Parameters<T>) => ReturnType<T>>;
+  cancel: () => void;
+  flush: () => ReturnType<T> | undefined;
+};
 ```
 
 ## Examples

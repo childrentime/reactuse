@@ -18,11 +18,11 @@ const Demo = () => {
   const [onceEffect, setOnceEffect] = useState(0);
 
   useOnceEffect(() => {
-    setOnceEffect((onceEffect) => onceEffect + 1);
+    setOnceEffect(onceEffect => onceEffect + 1);
   }, []);
 
   useEffect(() => {
-    setEffect((effect) => effect + 1);
+    setEffect(effect => effect + 1);
   }, []);
 
   return (

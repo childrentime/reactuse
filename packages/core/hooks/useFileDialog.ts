@@ -1,5 +1,4 @@
-import { useCallback, useState } from "react";
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 
 export interface UseFileDialogOptions {
   /**
@@ -23,12 +22,12 @@ const DEFAULT_OPTIONS: UseFileDialogOptions = {
 };
 
 export default function useFileDialog(
-  options: UseFileDialogOptions = {}
+  options: UseFileDialogOptions = {},
 ): readonly [
-  FileList | null,
-  (localOptions?: Partial<UseFileDialogOptions>) => void,
-  () => void
-] {
+    FileList | null,
+    (localOptions?: Partial<UseFileDialogOptions>) => void,
+    () => void,
+  ] {
   const [files, setFiles] = useState<FileList | null>(null);
 
   const inputRef = useRef<HTMLInputElement>();

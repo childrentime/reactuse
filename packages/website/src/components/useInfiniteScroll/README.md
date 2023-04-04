@@ -29,7 +29,7 @@ const Demo = () => {
   return (
     <div>
       <div ref={ref} style={{ width: 300, height: 300, overflow: "scroll" }}>
-        {data.map((item) => (
+        {data.map(item => (
           <div key={item} style={{ padding: 12, border: "1px solid" }}>
             item-{item}
           </div>
@@ -72,7 +72,7 @@ export default function useInfiniteScroll(
   target: BasicTarget<HTMLElement | SVGElement | Window | Document>,
   onLoadMore: (state: ReturnType<typeof useScroll>) => void | Promise<void>,
   options: UseInfiniteScrollOptions = {}
-)
+);
 ```
 
 >>>

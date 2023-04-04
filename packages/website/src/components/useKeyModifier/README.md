@@ -63,7 +63,7 @@ export interface UseModifierOptions {
 export default function useKeyModifier(
   modifier: KeyModifier,
   options: UseModifierOptions = {}
-): boolean
+): boolean;
 ```
 
 ## Examples

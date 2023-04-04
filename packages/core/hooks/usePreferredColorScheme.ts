@@ -3,7 +3,7 @@ import useMediaQuery from "./useMediaQuery";
 
 export type ColorScheme = "dark" | "light" | "no-preference";
 export default function usePreferredColorScheme(
-  defaultState?: ColorScheme
+  defaultState?: ColorScheme,
 ): ColorScheme {
   const isLight = useMediaQuery("(prefers-color-scheme: light)", false);
   const isDark = useMediaQuery("(prefers-color-scheme: dark)", false);

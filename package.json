@@ -1,6 +1,6 @@
 {
   "name": "@reactuses/reactuses-monorepo",
-  "sideEffects": false,
+  "packageManager": "pnpm@7.28.0",
   "license": "Unlicense",
   "homepage": "https://www.reactuse.com/",
   "repository": {
@@ -10,14 +10,14 @@
   "bugs": {
     "url": "https://github.com/childrentime/reactuse/issues"
   },
+  "sideEffects": false,
   "scripts": {
     "lint": "eslint ."
   },
   "devDependencies": {
     "@ririd/eslint-config": "0.4.1",
-    "typescript": "^4.8.2",
     "eslint": "^8.37.0",
-    "eslint-plugin-react-hooks": "^4.6.0"
-  },
-  "packageManager": "pnpm@7.28.0"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "typescript": "^4.8.2"
+  }
 }

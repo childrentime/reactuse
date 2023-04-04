@@ -1,5 +1,6 @@
-import { RenderHookResult, renderHook, act } from "@testing-library/react";
-import { DebouncedFunc } from "lodash";
+import type { RenderHookResult } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
+import type { DebouncedFunc } from "lodash";
 import useDebounceFn from "../../hooks/useDebounceFn";
 import { sleep } from "../utils/testingHelpers";
 

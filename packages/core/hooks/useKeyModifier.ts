@@ -41,7 +41,7 @@ export interface UseModifierOptions {
 
 export default function useKeyModifier(
   modifier: KeyModifier,
-  options: UseModifierOptions = {}
+  options: UseModifierOptions = {},
 ): boolean {
   const { events = defaultEvents, initial = false } = options;
 

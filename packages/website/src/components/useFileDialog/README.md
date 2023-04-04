@@ -62,7 +62,7 @@ export default function useFileDialog(
   FileList | null,
   (localOptions?: Partial<UseFileDialogOptions>) => void,
   () => void
-]
+];
 ```
 
 ## Examples

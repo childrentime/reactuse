@@ -45,7 +45,7 @@ export interface UseTimeoutFnOptions {
   immediate?: boolean;
 }
 
-export default function useTimeout(ms = 0, options: UseTimeoutFnOptions = {}): Stoppable
+export default function useTimeout(ms = 0, options: UseTimeoutFnOptions = {}): Stoppable;
 ```
 
 ## Examples

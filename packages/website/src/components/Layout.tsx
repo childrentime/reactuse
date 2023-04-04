@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
 const Layout = (props: { file: string; children: ReactElement }) => {
   const { file } = props;

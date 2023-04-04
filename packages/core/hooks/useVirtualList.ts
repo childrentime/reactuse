@@ -1,6 +1,8 @@
-import {
+import type {
   CSSProperties,
   RefObject,
+} from "react";
+import {
   useCallback,
   useEffect,
   useMemo,
@@ -53,7 +55,7 @@ export interface UseVirtualListReturn<T> {
 
 export default function useVirtualList<T = any>(
   list: T[] = [],
-  options: UseVirtualListOptions
+  options: UseVirtualListOptions,
 ): UseVirtualListReturn<T> {
   const containerRef = useRef<HTMLElement>(null);
   const [width, height] = useElementSize(containerRef);
@@ -80,7 +82,7 @@ export default function useVirtualList<T = any>(
       }
       return capacity - start;
     },
-    [itemHeight, list]
+    [itemHeight, list],
   );
 
   const getOffset = useCallback(
@@ -100,7 +102,7 @@ export default function useVirtualList<T = any>(
       }
       return offset + 1;
     },
-    [itemHeight, list]
+    [itemHeight, list],
   );
 
   const calculateRange = useEvent(() => {
@@ -121,7 +123,7 @@ export default function useVirtualList<T = any>(
           .map((ele, index) => ({
             data: ele,
             index: index + state.current.start,
-          }))
+          })),
       );
     }
   });
@@ -148,7 +150,7 @@ export default function useVirtualList<T = any>(
         .reduce((sum, _, i) => sum + itemHeight(i), 0);
       return height;
     },
-    [itemHeight, list]
+    [itemHeight, list],
   );
 
   const scrollTo = useEvent((index: number) => {
@@ -160,7 +162,7 @@ export default function useVirtualList<T = any>(
 
   const offsetTop = useMemo(
     () => getDistanceTop(state.current.start),
-    [getDistanceTop]
+    [getDistanceTop],
   );
 
   const wrapperProps = useMemo(() => {

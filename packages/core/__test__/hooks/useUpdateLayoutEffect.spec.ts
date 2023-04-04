@@ -7,7 +7,7 @@ describe("useUpdateLayoutEffect", () => {
     const hook = renderHook(() =>
       useUpdateLayoutEffect(() => {
         mountedState = 2;
-      })
+      }),
     );
     expect(mountedState).toEqual(1);
     hook.rerender();
@@ -18,7 +18,7 @@ describe("useUpdateLayoutEffect", () => {
     const hook = renderHook(() =>
       useUpdateLayoutEffect(() => {
         mountedState = 3;
-      }, [mountedState])
+      }, [mountedState]),
     );
     expect(mountedState).toEqual(1);
     hook.rerender();

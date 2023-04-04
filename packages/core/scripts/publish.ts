@@ -1,5 +1,5 @@
-import { execSync } from "child_process";
-import path from "path";
+import { execSync } from "node:child_process";
+import path from "node:path";
 import consola from "consola";
 import { version } from "../package.json";
 
@@ -15,4 +15,4 @@ execSync(command, {
   stdio: "inherit",
   cwd: path.resolve(__dirname, "../"),
 });
-consola.success(`Published @reactuse/core`);
+consola.success("Published @reactuse/core");

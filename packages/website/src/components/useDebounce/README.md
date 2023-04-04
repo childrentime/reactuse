@@ -15,7 +15,7 @@ const Demo = () => {
     <div>
       <input
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
         placeholder="Typed value"
         style={{ width: 280 }}
       />
@@ -38,7 +38,7 @@ export default function useDebounce<T>(
   value: T,
   wait?: number,
   options?: DebounceSettings
-): T
+): T;
 ```
 
 ## Examples

@@ -26,10 +26,10 @@ describe("useThrottle", () => {
 
   it("should has same value if time is advanced less than the given time", () => {
     const { result, rerender } = renderHook(
-      (props) => useThrottle(props, 100),
+      props => useThrottle(props, 100),
       {
         initialProps: 0,
-      }
+      },
     );
     expect(result.current).toBe(0);
     rerender(1);
@@ -38,7 +38,7 @@ describe("useThrottle", () => {
   });
 
   it("should not update the value after the given time", () => {
-    const hook = renderHook((props) => useThrottle(props, 100), {
+    const hook = renderHook(props => useThrottle(props, 100), {
       initialProps: 0,
     });
     expect(hook.result.current).toBe(0);
@@ -47,7 +47,7 @@ describe("useThrottle", () => {
   });
 
   it("should cancel timeout on unmount", () => {
-    const hook = renderHook((props) => useThrottle(props, 100), {
+    const hook = renderHook(props => useThrottle(props, 100), {
       initialProps: 0,
     });
     expect(hook.result.current).toBe(0);
@@ -60,7 +60,7 @@ describe("useThrottle", () => {
 
   it("default useThrottle should work", async () => {
     jest.useRealTimers();
-    const hook = renderHook((props) => useThrottle(props, 500), {
+    const hook = renderHook(props => useThrottle(props, 500), {
       initialProps: 1,
     });
 

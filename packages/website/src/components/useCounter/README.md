@@ -57,7 +57,7 @@ export default function useCounter(
   initialValue: number | (() => number) = 0,
   max: number | null = null,
   min: number | null = null
-): readonly [number, (newState: number | ((prev: number) => number) | (() => number)) => void, (delta?: number) => void, (delta?: number) => void, () => void]
+): readonly [number, (newState: number | ((prev: number) => number) | (() => number)) => void, (delta?: number) => void, (delta?: number) => void, () => void];
 ```
 
 ## Examples

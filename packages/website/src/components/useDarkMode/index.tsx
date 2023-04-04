@@ -1,6 +1,6 @@
+import { useDarkMode } from "@reactuses/core";
 import Layout from "../Layout";
 import file from "./README.md";
-import { useDarkMode } from "@reactuses/core";
 
 const Page = () => {
   return (

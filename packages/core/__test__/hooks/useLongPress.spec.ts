@@ -49,7 +49,7 @@ it("should call provided callback onMouseDown", () => {
 it("should call provided callback with custom delay", () => {
   const customDelay = 1000;
   const { result } = renderHook(() =>
-    useLongPress(callback, { delay: customDelay })
+    useLongPress(callback, { delay: customDelay }),
   );
   const { onMouseDown } = result.current;
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+
 export default function useObjectUrl(
-  object: Blob | MediaSource | undefined
+  object: Blob | MediaSource | undefined,
 ): string | undefined {
   const [url, setUrl] = useState<string>();
 

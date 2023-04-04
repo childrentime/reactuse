@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import useRafFn from "./useRafFn";
+
 export interface UseFpsOptions {
   /**
    * Calculate the FPS on every x frames.
@@ -29,8 +30,8 @@ function useFps(options?: UseFpsOptions): number {
   return fps;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/ban-ts-comment
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 const useFpsMock = (options?: UseFpsOptions) => 0;
 
 export default typeof performance === "undefined" ? useFpsMock : useFps;

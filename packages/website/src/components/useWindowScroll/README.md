@@ -37,7 +37,7 @@ export interface State {
   x: number;
   y: number;
 }
-export default function useWindowScroll(): State
+export default function useWindowScroll(): State;
 ```
 
 ## Examples

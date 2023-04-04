@@ -1,7 +1,7 @@
-import path from "path";
-import assert from "assert";
+import path from "node:path";
+import assert from "node:assert";
+import { execSync as exec } from "node:child_process";
 import consola from "consola";
-import { execSync as exec } from "child_process";
 import fs from "fs-extra";
 import fg from "fast-glob";
 
@@ -26,7 +26,7 @@ async function buildMetaFiles() {
   for (const file of files) {
     await fs.copyFile(
       path.join(packageRoot, file),
-      path.join(packageDist, file)
+      path.join(packageDist, file),
     );
   }
 }

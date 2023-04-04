@@ -16,9 +16,9 @@ const Demo = () => {
   const event1 = useRef<IDisposable>();
   useEffect(() => {
     event((val) => {
-      setState((s) => s + val);
+      setState(s => s + val);
     });
-    event1.current = event((val) => setState((s) => s + val + 10));
+    event1.current = event(val => setState(s => s + val + 10));
   }, [event]);
 
   return (

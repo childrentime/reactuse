@@ -1,5 +1,7 @@
-import { BasicTarget, useLatestElement } from "./utils/domTarget";
-import useScroll, { UseScrollOptions } from "./useScroll";
+import type { BasicTarget } from "./utils/domTarget";
+import { useLatestElement } from "./utils/domTarget";
+import type { UseScrollOptions } from "./useScroll";
+import useScroll from "./useScroll";
 import useLatest from "./useLatest";
 import useUpdateEffect from "./useUpdateEffect";
 
@@ -29,7 +31,7 @@ export interface UseInfiniteScrollOptions extends UseScrollOptions {
 export default function useInfiniteScroll(
   target: BasicTarget<HTMLElement | SVGElement>,
   onLoadMore: (state: ReturnType<typeof useScroll>) => void | Promise<void>,
-  options: UseInfiniteScrollOptions = {}
+  options: UseInfiniteScrollOptions = {},
 ) {
   const savedLoadMore = useLatest(onLoadMore);
   const direction = options.direction ?? "bottom";

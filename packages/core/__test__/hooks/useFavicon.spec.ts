@@ -23,10 +23,10 @@ describe("useFavicon", () => {
     expect(faviconAfterHook).toBeInstanceOf(HTMLLinkElement);
   });
 
-  it('should set the elements rel to "icon"', () => {
+  it("should set the elements rel to \"icon\"", () => {
     renderHook(() => useFavicon("My-favicon"));
     const favicon = document.querySelector(
-      "link[rel*='icon']"
+      "link[rel*='icon']",
     ) as HTMLLinkElement;
 
     expect(favicon.rel).toBe("icon");
@@ -35,18 +35,18 @@ describe("useFavicon", () => {
   it("should set the elements href to the provided string", () => {
     renderHook(() => useFavicon("https://github.com/childrentime/reactuse"));
     const favicon = document.querySelector(
-      "link[rel*='icon']"
+      "link[rel*='icon']",
     ) as HTMLLinkElement;
 
     expect(favicon.href).toBe("https://github.com/childrentime/reactuse");
   });
 
   it("should update an existing favicon", () => {
-    const hook = renderHook((props) => useFavicon(props), {
+    const hook = renderHook(props => useFavicon(props), {
       initialProps: "https://github.com/childrentime/reactuse",
     });
     const favicon = document.querySelector(
-      "link[rel*='icon']"
+      "link[rel*='icon']",
     ) as HTMLLinkElement;
 
     expect(favicon.href).toBe("https://github.com/childrentime/reactuse");

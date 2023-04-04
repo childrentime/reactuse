@@ -26,14 +26,14 @@ export interface INetworkInformation extends EventTarget {
   readonly rtt: number;
   readonly saveData: boolean;
   readonly type:
-    | "bluetooth"
-    | "cellular"
-    | "ethernet"
-    | "none"
-    | "wifi"
-    | "wimax"
-    | "other"
-    | "unknown";
+  | "bluetooth"
+  | "cellular"
+  | "ethernet"
+  | "none"
+  | "wifi"
+  | "wimax"
+  | "other"
+  | "unknown";
 
   onChange: (event: Event) => void;
 }
@@ -92,7 +92,7 @@ export interface IUseNetworkState {
   type: INetworkInformation["type"] | undefined;
 }
 
-export default function useNetwork(): IUseNetworkState
+export default function useNetwork(): IUseNetworkState;
 ```
 
 ## Examples

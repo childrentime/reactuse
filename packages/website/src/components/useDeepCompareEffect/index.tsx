@@ -14,7 +14,6 @@ const Page = () => {
 export default Page;
 
 const Demo = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [count, setCount] = useState(0);
   const effectCountRef = useRef(0);
   const deepCompareCountRef = useRef(0);
@@ -36,7 +35,7 @@ const Demo = () => {
       <p>effectCount: {effectCountRef.current}</p>
       <p>deepCompareCount: {deepCompareCountRef.current}</p>
       <p>
-        <button type="button" onClick={() => setCount((c) => c + 1)}>
+        <button type="button" onClick={() => setCount(c => c + 1)}>
           reRender
         </button>
       </p>

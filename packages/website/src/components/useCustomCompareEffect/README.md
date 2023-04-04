@@ -13,7 +13,7 @@ const Demo = () => {
   const [count, setCount] = useState(0);
   useCustomCompareEffect(
     () => {
-      setCount((c) => c + 1);
+      setCount(c => c + 1);
     },
     [person],
     (prevDeps, nextDeps) => prevDeps[0].id === nextDeps[0].id
@@ -39,7 +39,6 @@ const Demo = () => {
     </div>
   );
 };
-
 ```
 
 ## Type Declarations
@@ -58,7 +57,7 @@ export default function useCustomCompareEffect<TDeps extends DependencyList>(
   effect: EffectCallback,
   deps: TDeps,
   depsEqual: DepsEqualFnType<TDeps>
-): void
+): void;
 ```
 
 ## Examples

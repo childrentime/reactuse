@@ -1,21 +1,22 @@
-import { clientOutput, serverOutput } from "./constant";
+import path from "node:path";
 import fs from "fs-extra";
-import { series, parallel } from "gulp";
+import { parallel, series } from "gulp";
 import webpack from "webpack";
+import type { WebpackConfiguration } from "webpack-cli";
+import { clientOutput, serverOutput } from "./constant";
 import webpackClientConfig from "./webpack.client";
 import webpackServerConfig from "./webpack.server";
-import { WebpackConfiguration } from "webpack-cli";
-import path from "path";
 
 const webpackRun = function (
   webpackConfig: WebpackConfiguration,
-  callback: any
+  callback: any,
 ) {
   const compiler = webpack(webpackConfig);
-  compiler.run(function (error) {
+  compiler.run((error) => {
     if (!error) {
       callback && callback();
-    } else {
+    }
+    else {
       throw error;
     }
   });
@@ -46,7 +47,7 @@ const distClean = (callback: (...args: any[]) => any) => {
 
 const task = series(
   parallel(clientSideClean, serverSideClean, distClean),
-  parallel(clientSideBuild, serverSideBuild)
+  parallel(clientSideBuild, serverSideBuild),
 );
 
 export default task;

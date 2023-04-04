@@ -27,14 +27,14 @@ export type GeneralPermissionDescriptor =
 
 export default function usePermission(
   permissionDesc:
-    | GeneralPermissionDescriptor
-    | GeneralPermissionDescriptor["name"]
+  | GeneralPermissionDescriptor
+  | GeneralPermissionDescriptor["name"],
 ): IState {
   const [state, setState] = useState<IState>("");
 
   useEffect(() => {
-    const desc =
-      typeof permissionDesc === "string"
+    const desc
+      = typeof permissionDesc === "string"
         ? ({ name: permissionDesc } as PermissionDescriptor)
         : (permissionDesc as PermissionDescriptor);
     let mounted = true;

@@ -1,5 +1,5 @@
-import { isBrowser } from "./utils/is";
 import { useState } from "react";
+import { isBrowser } from "./utils/is";
 import useEventListener from "./useEventListener";
 
 export default function useWindowsFocus(): boolean {

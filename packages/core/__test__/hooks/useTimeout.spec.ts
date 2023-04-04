@@ -35,7 +35,7 @@ function getHook(ms = 5, options = { immediate: false }) {
         spy();
         return useTimeout(delay, opts);
       },
-      { initialProps: { delay: ms, opts: options } }
+      { initialProps: { delay: ms, opts: options } },
     ),
   ] as const;
 }

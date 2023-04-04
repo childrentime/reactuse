@@ -44,7 +44,7 @@ export interface CursorState {
   elementPosY: number;
 }
 
-export default function useMouse(target?: BasicTarget): CursorState
+export default function useMouse(target?: BasicTarget): CursorState;
 ```
 
 ## Examples

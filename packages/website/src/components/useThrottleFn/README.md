@@ -32,16 +32,15 @@ export interface ThrottleSettings {
   trailing?: boolean | undefined;
 }
 
-
 export default function useThrottleFn<T extends (...args: any) => any>(
   fn: T,
   wait?: number,
   options?: ThrottleSettings
 ): {
-    run: DebouncedFunc<(...args: Parameters<T>) => ReturnType<T>>;
-    cancel: () => void;
-    flush: () => ReturnType<T> | undefined;
-}
+  run: DebouncedFunc<(...args: Parameters<T>) => ReturnType<T>>;
+  cancel: () => void;
+  flush: () => ReturnType<T> | undefined;
+};
 ```
 
 ## Examples

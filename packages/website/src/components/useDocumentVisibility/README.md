@@ -22,7 +22,7 @@ const Demo = () => {
 ## Type Declarations
 
 ```ts
-export default function useDocumentVisibility(): DocumentVisibilityState
+export default function useDocumentVisibility(): DocumentVisibilityState;
 ```
 
 ## Examples

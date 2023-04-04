@@ -1,6 +1,7 @@
 import useLatest from "./useLatest";
 import { defaultWindow, off, on } from "./utils/browser";
-import { BasicTarget, useLatestElement } from "./utils/domTarget";
+import type { BasicTarget } from "./utils/domTarget";
+import { useLatestElement } from "./utils/domTarget";
 import useDeepCompareEffect from "./useDeepCompareEffect";
 
 export type Target = BasicTarget<
@@ -25,8 +26,7 @@ export default function useEventListener<K extends keyof DocumentEventMap>(
 
 // Overload 3 HTMLElement Event based useEventListener interface
 export default function useEventListener<
-  K extends keyof HTMLElementEventMap,
-  T extends HTMLElement = HTMLDivElement
+  K extends keyof HTMLElementEventMap, T extends HTMLElement = HTMLDivElement,
 >(
   eventName: K,
   handler: (event: HTMLElementEventMap[K]) => void,
@@ -62,7 +62,7 @@ export default function useEventListener(
   eventName: string,
   handler: (...p: any) => void,
   element?: Target,
-  options?: boolean | AddEventListenerOptions
+  options?: boolean | AddEventListenerOptions,
 ) {
   // Create a ref that stores handler
   const savedHandler = useLatest(handler);
@@ -75,7 +75,7 @@ export default function useEventListener(
     }
 
     // Create event listener that calls handler function stored in ref
-    const eventListener: typeof handler = (event) =>
+    const eventListener: typeof handler = event =>
       savedHandler.current(event);
 
     on(targetElement, eventName, eventListener, options);

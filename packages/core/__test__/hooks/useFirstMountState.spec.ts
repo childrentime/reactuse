@@ -8,7 +8,7 @@ describe("useFirstMountState", () => {
 
   it("should return boolean", () => {
     expect(renderHook(() => useFirstMountState()).result.current).toEqual(
-      expect.any(Boolean)
+      expect.any(Boolean),
     );
   });
 

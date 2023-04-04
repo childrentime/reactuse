@@ -26,7 +26,7 @@ describe("useMutationObserver", () => {
   it("should callback work when target style be changed", async () => {
     const callback = jest.fn();
     const { rerender } = renderHook(() =>
-      useMutationObserver(callback, () => container, options)
+      useMutationObserver(callback, () => container, options),
     );
     container.style.backgroundColor = "#000";
     await rerender();
@@ -36,7 +36,7 @@ describe("useMutationObserver", () => {
   it("should callback work when target node tree be changed", async () => {
     const callback = jest.fn();
     const { rerender } = renderHook(() =>
-      useMutationObserver(callback, () => container, options)
+      useMutationObserver(callback, () => container, options),
     );
     const paraEl = document.createElement("p");
     container.appendChild(paraEl);
@@ -47,7 +47,7 @@ describe("useMutationObserver", () => {
   it("should not work when target is null", async () => {
     const callback = jest.fn();
     const { rerender } = renderHook(() =>
-      useMutationObserver(callback, null, options)
+      useMutationObserver(callback, null, options),
     );
     container.style.backgroundColor = "#000";
     rerender();
@@ -56,7 +56,7 @@ describe("useMutationObserver", () => {
 
   it("should work when target changed", async () => {
     const props = {
-      container: container,
+      container,
       callback: jest.fn(),
     };
     const props1 = {
@@ -67,7 +67,7 @@ describe("useMutationObserver", () => {
       () => useMutationObserver(props.callback, () => props.container, options),
       {
         initialProps: props,
-      }
+      },
     );
     container.style.backgroundColor = "#000";
     await rerender();

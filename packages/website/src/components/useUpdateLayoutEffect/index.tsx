@@ -1,5 +1,5 @@
 import { useUpdateLayoutEffect } from "@reactuses/core";
-import { useState, useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import Layout from "../Layout";
 import file from "./README.md";
 
@@ -19,11 +19,11 @@ const Demo = () => {
   const [updateLayoutEffectCount, setUpdateLayoutEffectCount] = useState(0);
 
   useLayoutEffect(() => {
-    setLayoutEffectCount((c) => c + 1);
+    setLayoutEffectCount(c => c + 1);
   }, [count]);
 
   useUpdateLayoutEffect(() => {
-    setUpdateLayoutEffectCount((c) => c + 1);
+    setUpdateLayoutEffectCount(c => c + 1);
     return () => {
       // do something
     };
@@ -34,7 +34,7 @@ const Demo = () => {
       <p>layoutEffectCount: {layoutEffectCount}</p>
       <p>updateLayoutEffectCount: {updateLayoutEffectCount}</p>
       <p>
-        <button type="button" onClick={() => setCount((c) => c + 1)}>
+        <button type="button" onClick={() => setCount(c => c + 1)}>
           reRender
         </button>
       </p>

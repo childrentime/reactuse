@@ -1,6 +1,7 @@
-import { BasicTarget, getTargetElement } from "./utils/domTarget";
-import { PointerType, Position } from "./utils/types";
 import { useEffect, useState } from "react";
+import type { BasicTarget } from "./utils/domTarget";
+import { getTargetElement } from "./utils/domTarget";
+import type { PointerType, Position } from "./utils/types";
 import useEventListener from "./useEventListener";
 
 export interface UseDraggableOptions {
@@ -71,13 +72,13 @@ export interface UseDraggableOptions {
 
 export default function useDraggable(
   target: BasicTarget<HTMLElement | SVGElement>,
-  options: UseDraggableOptions = {}
+  options: UseDraggableOptions = {},
 ): readonly [number, number, boolean] {
   const draggingElement = options.draggingElement;
   const draggingHandle = options.handle ?? target;
 
   const [position, setPositon] = useState<Position>(
-    options.initialValue ?? { x: 0, y: 0 }
+    options.initialValue ?? { x: 0, y: 0 },
   );
 
   useEffect(() => {

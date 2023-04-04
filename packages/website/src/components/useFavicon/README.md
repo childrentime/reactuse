@@ -33,7 +33,6 @@ const Demo = () => {
     </div>
   );
 };
-
 ```
 
 ## Type Declarations
@@ -43,7 +42,7 @@ export default function useFavicon(
   href: string,
   baseUrl = "",
   rel = "icon"
-): void
+): void;
 ```
 
 ## Examples

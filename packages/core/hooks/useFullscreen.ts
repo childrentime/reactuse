@@ -1,6 +1,7 @@
 import { useState } from "react";
 import screenfull from "screenfull";
-import { BasicTarget, getTargetElement } from "./utils/domTarget";
+import type { BasicTarget } from "./utils/domTarget";
+import { getTargetElement } from "./utils/domTarget";
 import useLatest from "./useLatest";
 import useUnmount from "./useUnmount";
 import useEvent from "./useEvent";
@@ -12,7 +13,7 @@ export interface UseFullScreenOptions {
 
 export default function useFullscreen(
   target: BasicTarget,
-  options?: UseFullScreenOptions
+  options?: UseFullScreenOptions,
 ) {
   const { onExit, onEnter } = options || {};
 
@@ -26,7 +27,8 @@ export default function useFullscreen(
       const { isFullscreen } = screenfull;
       if (isFullscreen) {
         onEnterRef.current?.();
-      } else {
+      }
+      else {
         screenfull.off("change", onChange);
         onExitRef.current?.();
       }
@@ -44,7 +46,8 @@ export default function useFullscreen(
       try {
         screenfull.request(el);
         screenfull.on("change", onChange);
-      } catch (error) {
+      }
+      catch (error) {
         console.error(error);
       }
     }
@@ -59,7 +62,8 @@ export default function useFullscreen(
   const toggleFullscreen = () => {
     if (state) {
       exitFullscreen();
-    } else {
+    }
+    else {
       enterFullscreen();
     }
   };

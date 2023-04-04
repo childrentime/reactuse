@@ -17,7 +17,7 @@ const Demo = () => {
 ## Type Declarations
 
 ```ts
-export default function usePageLeave(): boolean
+export default function usePageLeave(): boolean;
 ```
 
 ## Examples

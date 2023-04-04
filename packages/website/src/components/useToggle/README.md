@@ -26,7 +26,7 @@ const Demo = () => {
 ```ts
 export default function useToggle(
   initialValue: boolean
-): [boolean, (nextValue?: any) => void]
+): [boolean, (nextValue?: any) => void];
 ```
 
 ## Examples

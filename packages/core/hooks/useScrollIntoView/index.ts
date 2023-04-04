@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react";
 import useEvent from "../useEvent";
 import useEventListener from "../useEventListener";
 import useReducedMotion from "../useReduceMotion";
+import type { BasicTarget } from "../utils/domTarget";
 import {
-  BasicTarget,
   getTargetElement,
   useLatestElement,
 } from "../utils/domTarget";
@@ -72,19 +72,19 @@ export default function useScrollIntoView({
 
   const scrollIntoView = useEvent(
     ({ alignment = "start" }: ScrollIntoViewAnimation = {}) => {
-      const parent =
-        getTargetElement(scrollElement) ||
-        getScrollParent(axis, element.current);
+      const parent
+        = getTargetElement(scrollElement)
+        || getScrollParent(axis, element.current);
       shouldStop.current = false;
 
       if (frameID.current) {
         cancel();
       }
 
-      const start = getScrollStart({ parent: parent, axis }) ?? 0;
-      const change =
-        getRelativePosition({
-          parent: parent,
+      const start = getScrollStart({ parent, axis }) ?? 0;
+      const change
+        = getRelativePosition({
+          parent,
           target: element.current,
           axis,
           alignment,
@@ -106,14 +106,15 @@ export default function useScrollIntoView({
         const distance = start + change * easing(t);
 
         setScrollParam({
-          parent: parent,
+          parent,
           axis,
           distance,
         });
 
         if (!shouldStop.current && t < 1) {
           frameID.current = requestAnimationFrame(animateScroll);
-        } else {
+        }
+        else {
           typeof onScrollFinish === "function" && onScrollFinish();
           startTime.current = 0;
           frameID.current = 0;
@@ -121,7 +122,7 @@ export default function useScrollIntoView({
         }
       };
       animateScroll();
-    }
+    },
   );
 
   const handleStop = () => {

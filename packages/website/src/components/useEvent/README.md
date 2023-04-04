@@ -24,7 +24,7 @@ const Demo = () => {
       <button
         type="button"
         onClick={() => {
-          setCount((c) => c + 1);
+          setCount(c => c + 1);
         }}
       >
         Add Count
@@ -45,7 +45,7 @@ const Demo = () => {
 ## Type Declarations
 
 ```ts
-export default function useEvent<T extends Fn>(fn: T)
+export default function useEvent<T extends Fn>(fn: T);
 ```
 
 ## Examples

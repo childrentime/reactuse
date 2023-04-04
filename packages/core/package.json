@@ -1,24 +1,6 @@
 {
   "name": "@reactuses/core",
   "version": "2.2.4",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "files": [
-    "dist",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
-  "sideEffects": false,
   "license": "Unlicense",
   "homepage": "https://www.reactuse.com/",
   "repository": {
@@ -28,6 +10,35 @@
   },
   "bugs": {
     "url": "https://github.com/childrentime/reactuse/issues"
+  },
+  "keywords": [
+    "react",
+    "react-use",
+    "react hooks",
+    "hook",
+    "hooks",
+    "component"
+  ],
+  "sideEffects": false,
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "engines": {
+    "pnpm": "7"
   },
   "scripts": {
     "lint": "eslint \"{hooks,tests}/**/*.{ts,tsx}\"",
@@ -39,6 +50,9 @@
     "release": "esno scripts/release.ts",
     "test": "jest",
     "test:coverage": "jest --coverage"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0  || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
     "@testing-library/react": "^13.4.0",
@@ -82,19 +96,5 @@
     "rollup-plugin-esbuild": "^4.10.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.2"
-  },
-  "peerDependencies": {
-    "react": "^16.8.0  || ^17.0.0 || ^18.0.0"
-  },
-  "keywords": [
-    "react",
-    "react-use",
-    "react hooks",
-    "hook",
-    "hooks",
-    "component"
-  ],
-  "engines": {
-    "pnpm": "7"
   }
 }

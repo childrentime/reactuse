@@ -1,6 +1,6 @@
+import { Route, Routes } from "react-router-dom";
 import Header from "./pages/header";
 import Main from "./pages/main";
-import { Route, Routes } from "react-router-dom";
 import Index from "./pages/index";
 import "./main.css";
 import "highlight.js/styles/stackoverflow-light.css";

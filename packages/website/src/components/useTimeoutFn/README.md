@@ -49,7 +49,7 @@ export default function useTimeoutFn(
   cb: (...args: unknown[]) => any,
   interval: number,
   options: UseTimeoutFnOptions = {}
-): Stoppable
+): Stoppable;
 ```
 
 ## Examples

@@ -1,6 +1,7 @@
 import { act, renderHook } from "@testing-library/react";
-import useTimeoutFn, { UseTimeoutFnOptions } from "../../hooks/useTimeoutFn";
-import { Fn } from "../../hooks/utils/types";
+import type { UseTimeoutFnOptions } from "../../hooks/useTimeoutFn";
+import useTimeoutFn from "../../hooks/useTimeoutFn";
+import type { Fn } from "../../hooks/utils/types";
 
 describe("useTimeoutFn", () => {
   beforeAll(() => {
@@ -31,7 +32,7 @@ describe("useTimeoutFn", () => {
   function getHook(
     ms = 5,
     fn: Fn = jest.fn(),
-    options: UseTimeoutFnOptions = { immediate: true }
+    options: UseTimeoutFnOptions = { immediate: true },
   ) {
     return [
       fn,

@@ -19,7 +19,7 @@ const Demo = () => {
 ## Type Declarations
 
 ```ts
-export default function useUnmount(fn: () => void): void
+export default function useUnmount(fn: () => void): void;
 ```
 
 ## Examples

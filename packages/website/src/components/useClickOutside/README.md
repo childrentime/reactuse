@@ -66,7 +66,7 @@ type EventType = MouseEvent | TouchEvent;
 export default function useClickOutSide(
   target: BasicTarget,
   handler: (evt: EventType) => void
-): void
+): void;
 ```
 
 ## Examples

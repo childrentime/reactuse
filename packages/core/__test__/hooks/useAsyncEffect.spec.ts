@@ -36,7 +36,7 @@ describe("useAsyncEffect", () => {
         },
         async () => {
           cleanup = await getMockedData();
-        }
+        },
       );
     });
 
@@ -74,7 +74,7 @@ describe("useAsyncEffect", () => {
         },
         () => {
           cleanup = 100;
-        }
+        },
       );
     });
     expect(data).toEqual(200);

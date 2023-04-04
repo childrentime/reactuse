@@ -57,7 +57,7 @@ const Demo = () => {
 export default function useElementVisibility(
   target: BasicTarget<HTMLElement | SVGElement>,
   options: IntersectionObserverInit = {}
-): boolean
+): boolean;
 ```
 
 ## Examples

@@ -30,7 +30,7 @@ const Demo = () => {
       <button
         type="button"
         onClick={() => {
-          setCount((c) => c + 1);
+          setCount(c => c + 1);
         }}
       >
         Add Count
