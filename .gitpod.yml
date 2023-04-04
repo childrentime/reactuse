@@ -1,8 +1,8 @@
 tasks:
-  - init: cd packages && cd core && yarn
-    command: yarn dev
-  - init: cd packages && cd website && yarn link:all
-    command: yarn dev
+  - init: cd packages && cd core
+    command: pnpm run dev
+  - init: cd packages && cd website
+    command: pnpm run dev
 ports:
   - port: 3000
     onOpen: open-preview

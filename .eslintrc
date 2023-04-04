@@ -1,0 +1,11 @@
+{
+  // "extends": "@ririd",
+  "rules": {
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/ban-types": "warn",
+    "@typescript-eslint/member-delimiter-style": ["error", { "multiline": { "delimiter": "semi", "requireLast": true } }],
+    "semi": "off",
+    "@typescript-eslint/semi": ["error", "always"],
+    "no-console": "warn"
+  }
+}

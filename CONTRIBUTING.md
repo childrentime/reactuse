@@ -7,7 +7,7 @@ Thanks for being willing to contribute 🙌 If you contribute to this project, y
 ## Project setup
 
 1. Fork and clone the repo
-1. Run `yarn install` to install dependencies
+1. Run `pnpm install` to install dependencies
 1. Create a branch for your PR with `git checkout -b pr/your-branch-name`
 
 > Tip: Keep your `master` branch pointing at the original repository and make
@@ -43,8 +43,8 @@ packages
 
 Before you start working, it's better to open an issue to discuss first.
 
-1. Create `packages/core/hooks/useYourHookName.ts` and `packages/website/src/components/useYourHookName` dir, run `yarn start` to start the document development server and start coding your hook.
-2. Create `packages/core/__test__/hooks/useYourHookName.ts`, run `yarn test` to start the test runner in watch mode and start writing tests for your hook
+1. Create `packages/core/hooks/useYourHookName.ts` and `packages/website/src/components/useYourHookName` dir, run `pnpm start` to start the document development server and start coding your hook.
+2. Create `packages/core/__test__/hooks/useYourHookName.ts`, run `pnpm test` to start the test runner in watch mode and start writing tests for your hook
 3. Export your hook from `package/core/index.ts`
 
 You can also write your tests first if you prefer [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development).

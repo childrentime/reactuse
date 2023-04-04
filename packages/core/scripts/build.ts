@@ -33,7 +33,7 @@ async function buildMetaFiles() {
 
 async function build() {
   consola.info("Rollup");
-  exec(`yarn run build:rollup${watch ? " -- --watch" : ""}`, {
+  exec(`pnpm run build:rollup${watch ? " -- --watch" : ""}`, {
     stdio: "inherit",
   });
 

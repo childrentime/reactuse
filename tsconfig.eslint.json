@@ -1,0 +1,4 @@
+{
+  "extends": "./packages/core/tsconfig.json",
+  "include": ["packages/core", "packages/website"]
+}

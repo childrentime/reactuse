@@ -11,5 +11,8 @@
     "typescriptreact",
     "vue",
     "html"
+  ],
+  "conventionalCommits.scopes": [
+    "website"
   ]
 }

@@ -59,7 +59,6 @@
     "consola": "^2.15.3",
     "cross-env": "^7.0.3",
     "esbuild-register": "^3.4.1",
-    "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.31.5",
     "eslint-plugin-react-hooks": "^4.6.0",

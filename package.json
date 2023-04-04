@@ -1,0 +1,18 @@
+{
+  "name": "@reactuses/reactuses-monorepo",
+  "sideEffects": false,
+  "license": "Unlicense",
+  "homepage": "https://www.reactuse.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/childrentime/reactuse"
+  },
+  "bugs": {
+    "url": "https://github.com/childrentime/reactuse/issues"
+  },
+  "devDependencies": {
+    "@ririd/eslint-config": "0.4.0",
+    "typescript": "^4.8.2",
+    "eslint": "^8.37.0"
+  }
+}
