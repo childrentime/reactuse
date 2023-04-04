@@ -12,7 +12,8 @@
     "vue",
     "html"
   ],
-  "conventionalCommits.scopes": [
-    "website"
-  ]
+  "conventionalCommits.scopes": ["website"],
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }

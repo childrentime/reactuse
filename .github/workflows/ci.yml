@@ -33,7 +33,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Run build
         run: cd packages/core && pnpm run build
@@ -61,7 +61,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Run unit tests
         run: cd packages/core && pnpm run test
