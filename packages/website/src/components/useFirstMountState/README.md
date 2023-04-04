@@ -5,7 +5,7 @@ React state hook that returns true if component is just mounted.
 ## Usage
 
 ```tsx
-import { useFirstMountState } from "react-use";
+import { useFirstMountState } from "@reactuses/core";
 
 const Demo = () => {
   const isFirstMount = useFirstMountState();
