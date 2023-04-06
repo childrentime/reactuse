@@ -6,14 +6,15 @@ interface IProps<T> {
   state?: T;
 }
 
-export default function useControlled({
-  controlled,
-  defaultValue: defaultProp,
-  state = "value",
-}: IProps<string>) {
+export default function useControlled<T = string>(props?: IProps<T>): readonly [T, (newValue: T) => void] {
+  const { controlled, defaultValue: defaultProp, state } = props ?? {
+    controlled: undefined,
+    defaultValue: undefined,
+    state: "value" as T,
+  };
   const { current: isControlled } = useRef(controlled !== undefined);
   const [valueState, setValue] = useState(defaultProp);
-  const value = isControlled ? controlled : valueState;
+  const value = (isControlled ? controlled : valueState) as T;
 
   useEffect(() => {
     if (isControlled !== (controlled !== undefined)) {
@@ -35,7 +36,7 @@ export default function useControlled({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state, controlled]);
 
-  const setValueIfUncontrolled = useCallback((newValue: string) => {
+  const setValueIfUncontrolled = useCallback((newValue: T) => {
     if (!isControlled) {
       setValue(newValue);
     }
