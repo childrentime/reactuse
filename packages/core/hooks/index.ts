@@ -81,6 +81,9 @@ import useScrollIntoView from "./useScrollIntoView";
 import useSticky from "./useSticky";
 import useAsyncEffect from "./useAsyncEffect";
 import useCountDown from "./useCountDown";
+import useSupported from "./useSupported";
+import useTextSelection from "./useTextSelection";
+import useEyeDropper from "./useEyeDropper";
 
 export {
   usePrevious,
@@ -165,6 +168,9 @@ export {
   useSticky,
   useAsyncEffect,
   useCountDown,
+  useSupported,
+  useTextSelection,
+  useEyeDropper,
 };
 
 export * from "./useToggle";
@@ -249,3 +255,6 @@ export * from "./useScrollIntoView";
 export * from "./useSticky";
 export * from "./useAsyncEffect";
 export * from "./useCountDown";
+export * from "./useSupported";
+export * from "./useTextSelection";
+export * from "./useEyeDropper";
