@@ -24,6 +24,8 @@ export const menuGroup: Menu[] = [
       "useControlled",
       "useCycleList",
       "useCountDown",
+      "useTextSelection",
+      "useSupported",
     ],
   },
   {
@@ -106,6 +108,7 @@ export const menuGroup: Menu[] = [
       "useKeyModifier",
       "useMousePressed",
       "useClipboard",
+      "useEyeDropper",
     ],
   },
 ];
