@@ -6,12 +6,6 @@ interface IProps<T> {
   state?: T;
 }
 
-export default function useControlled<T = string>({
-  controlled,
-  defaultValue,
-  state,
-}: IProps<T>): readonly [T, (newValue: T) => void];
-
 export default function useControlled({
   controlled,
   defaultValue: defaultProp,
