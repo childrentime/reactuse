@@ -1,6 +1,9 @@
 {
   "editor.tabSize": 2,
-  "conventionalCommits.scopes": ["website"],
+  "conventionalCommits.scopes": [
+    "website",
+    "core"
+  ],
   "eslint.validate": [
     "typescript",
     "javascriptreact",
