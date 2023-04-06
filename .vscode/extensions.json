@@ -1,6 +1,8 @@
 {
   "recommendations": [
     "DavidAnson.vscode-markdownlint",
-    "esbenp.prettier-vscode"
+    "dbaeumer.vscode-eslint",
+    "vivaxy.vscode-conventional-commits",
+    "GitHub.vscode-pull-request-github"
   ]
 }
