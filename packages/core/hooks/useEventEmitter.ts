@@ -36,6 +36,7 @@ export interface UseEventEmitterReturn<T, U = void> {
 
 export default function useEventEmitter<T, U = void>() {
   const listeners = useRef<IListener<T, U>[]>([]);
+  const _disposed = useRef<boolean>(false);
   const _event = useRef<IEvent<T, U>>((listener: (arg1: T, arg2: U) => any) => {
     listeners.current.push(listener);
     const disposable = {
@@ -52,8 +53,6 @@ export default function useEventEmitter<T, U = void>() {
     };
     return disposable;
   });
-
-  const _disposed = useRef<boolean>(false);
 
   const fire = (arg1: T, arg2: U): void => {
     const queue: IListener<T, U>[] = [];
