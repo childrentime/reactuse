@@ -11,13 +11,13 @@
     "url": "https://github.com/childrentime/reactuse/issues"
   },
   "sideEffects": false,
-  "scripts": {
-    "lint": "eslint ."
-  },
   "devDependencies": {
     "@ririd/eslint-config": "0.4.1",
     "eslint": "^8.37.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.2",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "eslint-plugin-react": "^7.31.5",
+    "eslint-plugin-react-hooks": "^4.6.0"
   }
 }

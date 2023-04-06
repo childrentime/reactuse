@@ -13,10 +13,6 @@ export default function useFocus(
   useEventListener("focus", () => innerSetFocus(true), target);
   useEventListener("blur", () => innerSetFocus(false), target);
 
-  useMount(() => {
-    setFocus(focus);
-  });
-
   const setFocus = (value: boolean) => {
     const element = getTargetElement(target);
     if (!element) {
@@ -29,6 +25,10 @@ export default function useFocus(
       element.focus();
     }
   };
+
+  useMount(() => {
+    setFocus(focus);
+  });
 
   return [focus, setFocus] as const;
 }
