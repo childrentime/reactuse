@@ -102,3 +102,11 @@
 ### Core
 
 * add useCountDown Hook
+
+### 2.2.5(April 6, 2023)
+
+### Core
+
+* add useSupported
+* add useTextSelection
+* add useEyeDropper
