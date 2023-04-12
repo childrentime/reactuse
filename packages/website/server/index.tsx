@@ -6,7 +6,12 @@ import { StaticRouter } from "react-router-dom/server";
 import fs from "fs-extra";
 import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
-import { routes } from "../src/routes";
+import routesJSON from "../src/routes.json";
+
+const routes = routesJSON.main.reduce((pre: string[], cur) => {
+  pre.push(...cur.items);
+  return pre;
+}, []);
 
 const nodeStats = path.resolve(
   __dirname,
@@ -36,6 +41,8 @@ const renderPage = (url: string): string => {
             <head>
             <title>ReactUse Docs</title>
             <meta name='google-site-verification' content='cYSXMQh7Yfm6rW16yR-5_x0jmMX_ABwMDwAoPPlPc1M'>
+            <meta name="msvalidate.01" content="FCAB31FC7E191890AC6C3BC3A945596A" />
+            <meta name="baidu-site-verification" content="code-WMH1e8oKID" />
             <meta property="og:type" content="website">
             <meta property="og:url" content="https://reactuse.com/">
             <meta property="og:title" content="ReactUse Docs">
