@@ -6,7 +6,12 @@ import { StaticRouter } from "react-router-dom/server";
 import fs from "fs-extra";
 import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
-import { routes } from "../src/routes";
+import routesJSON from "../src/routes.json";
+
+const routes = routesJSON.main.reduce((pre: string[], cur) => {
+  pre.push(...cur.items);
+  return pre;
+}, []);
 
 const nodeStats = path.resolve(
   __dirname,
