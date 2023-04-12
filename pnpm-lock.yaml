@@ -7,12 +7,24 @@ importers:
       '@ririd/eslint-config':
         specifier: 0.4.1
         version: 0.4.1(eslint@8.37.0)(typescript@4.8.2)
+      '@types/fs-extra':
+        specifier: ^9.0.13
+        version: 9.0.13
+      '@types/node':
+        specifier: ^18.11.9
+        version: 18.11.9
+      '@types/prompts':
+        specifier: ^2.4.4
+        version: 2.4.4
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.36.1
         version: 5.57.1(@typescript-eslint/parser@5.57.1)(eslint@8.37.0)(typescript@4.8.2)
       '@typescript-eslint/parser':
         specifier: ^5.36.1
         version: 5.57.1(eslint@8.37.0)(typescript@4.8.2)
+      chalk:
+        specifier: 4.1.2
+        version: 4.1.2
       eslint:
         specifier: ^8.37.0
         version: 8.37.0
@@ -22,6 +34,15 @@ importers:
       eslint-plugin-react-hooks:
         specifier: ^4.6.0
         version: 4.6.0(eslint@8.37.0)
+      fs-extra:
+        specifier: ^10.1.0
+        version: 10.1.0
+      prompts:
+        specifier: ^2.4.2
+        version: 2.4.2
+      ts-node:
+        specifier: ^10.9.1
+        version: 10.9.1(@types/node@18.11.9)(typescript@4.8.2)
       typescript:
         specifier: ^4.8.2
         version: 4.8.2
@@ -2914,6 +2935,13 @@ packages:
 
   /@types/prettier@2.7.2:
     resolution: {integrity: sha512-KufADq8uQqo1pYKVIYzfKbJfBAc0sOeXqGbFaSpv8MRmC/zXgowNZmFcbngndGk922QDmOASEXUZCaY48gs4cg==}
+    dev: true
+
+  /@types/prompts@2.4.4:
+    resolution: {integrity: sha512-p5N9uoTH76lLvSAaYSZtBCdEXzpOOufsRjnhjVSrZGXikVGHX9+cc9ERtHRV4hvBKHyZb1bg4K+56Bd2TqUn4A==}
+    dependencies:
+      '@types/node': 18.11.9
+      kleur: 3.0.3
     dev: true
 
   /@types/prop-types@15.7.5:

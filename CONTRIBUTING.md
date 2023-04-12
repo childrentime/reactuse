@@ -47,6 +47,8 @@ Before you start working, it's better to open an issue to discuss first.
 2. Create `packages/core/hooks/useYourHookName/index.spec.ts`, run `pnpm test` to start the test runner in watch mode and start writing tests for your hook
 3. Export your hook from `package/core/index.ts`
 
+You can run `pnpm run newHook` to auto generate these files.
+
 You can also write your tests first if you prefer [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development).
 
 ### Updating an existing hook
