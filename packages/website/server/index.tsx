@@ -3,9 +3,10 @@ import express from "express";
 import { renderToString } from "react-dom/server";
 import { ChunkExtractor } from "@loadable/server";
 import { StaticRouter } from "react-router-dom/server";
-import fs from "fs-extra";
+import fs, { createWriteStream } from "fs-extra";
 import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
+import { SitemapStream } from "sitemap";
 import routesJSON from "../src/routes.json";
 
 const routes = routesJSON.main.reduce((pre: string[], cur) => {
@@ -98,4 +99,15 @@ if (process.env.NODE_ENV === "production") {
   fs.writeFile(`${desc}/index.html`, html);
 
   fs.copy(path.resolve(__dirname, "../public/"), desc);
+
+  // Generate site map
+  const smStream = new SitemapStream({
+    hostname: "https://www.reactuse.com",
+  });
+  const writeStream = createWriteStream(`${desc}/sitemap.xml`);
+  smStream.pipe(writeStream);
+  for (const route of routes) {
+    smStream.write({ url: `/${route}.html` });
+  }
+  smStream.end();
 }
