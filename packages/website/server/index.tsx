@@ -107,7 +107,7 @@ if (process.env.NODE_ENV === "production") {
   const writeStream = createWriteStream(`${desc}/sitemap.xml`);
   smStream.pipe(writeStream);
   for (const route of routes) {
-    smStream.write({ url: `/${route}.html` });
+    smStream.write({ url: `/${route}` });
   }
   smStream.end();
 }
