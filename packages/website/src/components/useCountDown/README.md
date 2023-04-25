@@ -17,7 +17,9 @@ const Demo = () => {
   // note: If your app is running in server side, must pass the same time as the client
   // this demo is not running in server side
   const [hour, minute, second] = useCountDown(diffInSec);
-  return <div>{`${hour}:${minute}:${second}`}</div>;
+  return (
+    <div suppressHydrationWarning={true}>{`${hour}:${minute}:${second}`}</div>
+  );
 };
 ```
 
@@ -25,7 +27,7 @@ const Demo = () => {
 
 If the time is less than 0, by default we'll return 00 for both, and if the time is more than 100 hours, we'll return 99, 59, 59. You can pass your custom format function.
 
-```ts
+```typescript
 useCountDown(time: number, format?: ((number: any) => [string, string, string]) | undefined, callback?: (() => void) | undefined): readonly [string, string, string]
 ```
 
