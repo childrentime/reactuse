@@ -110,3 +110,9 @@
 * add useSupported
 * add useTextSelection
 * add useEyeDropper
+
+## 2.2.6(May 8, 2023)
+
+### Core
+
+* fix esm import error

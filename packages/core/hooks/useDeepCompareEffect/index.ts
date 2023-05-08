@@ -1,15 +1,16 @@
-import { isEqual } from "lodash";
+import lodash from "lodash";
 import type { DependencyList, EffectCallback } from "react";
 import useCustomCompareEffect from "../useCustomCompareEffect";
 
 const isPrimitive = (val: any) => val !== Object(val);
 
+const { isEqual } = lodash;
 export default function useDeepCompareEffect(
   effect: EffectCallback,
   deps: DependencyList,
 ): void {
   if (process.env.NODE_ENV !== "production") {
-    if (!(Array.isArray(deps)) || !deps.length) {
+    if (!Array.isArray(deps) || !deps.length) {
       console.warn(
         "`useDeepCompareEffect` should not be used with no dependencies. Use React.useEffect instead.",
       );
