@@ -3,7 +3,7 @@
   "plugins": ["react-hooks"],
   "overrides": [
     {
-      "files": ["packages/website/src/components/**"],
+      "files": ["packages/website/src/components/**", "packages/**/demo.tsx"],
       "rules": {
         "no-alert": "off"
       }
@@ -21,7 +21,7 @@
     "@typescript-eslint/quotes": ["error", "double"],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "no-console": "warn",
+    "no-console": "off",
     "curly": "off",
     "import/export": "warn"
   }

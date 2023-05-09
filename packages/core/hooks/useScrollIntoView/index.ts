@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import useEvent from "../useEvent";
 import useEventListener from "../useEventListener";
-import useReducedMotion from "../useReduceMotion";
+import useReducedMotion from "../useReducedMotion";
 import type { BasicTarget } from "../utils/domTarget";
 import {
   getTargetElement,
