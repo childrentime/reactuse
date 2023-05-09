@@ -1,10 +1,9 @@
-import lodash from "lodash";
+import { isEqual } from "lodash-es";
 import type { DependencyList, EffectCallback } from "react";
 import useCustomCompareEffect from "../useCustomCompareEffect";
 
 const isPrimitive = (val: any) => val !== Object(val);
 
-const { isEqual } = lodash;
 export default function useDeepCompareEffect(
   effect: EffectCallback,
   deps: DependencyList,

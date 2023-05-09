@@ -1,4 +1,4 @@
-import lodash from "lodash";
+import { throttle } from "lodash-es";
 import { useEffect, useState } from "react";
 import { off, on } from "../utils/browser";
 
@@ -11,8 +11,6 @@ const defaultEvents: (keyof WindowEventMap)[] = [
   "wheel",
 ];
 const oneMinute = 60e3;
-
-const { throttle } = lodash;
 
 export default function useIdle(
   ms: number = oneMinute,
