@@ -1,6 +1,6 @@
 {
   "name": "@reactuses/core",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "license": "Unlicense",
   "homepage": "https://www.reactuse.com/",
   "repository": {
@@ -52,10 +52,12 @@
     "react": "^16.8.0  || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "screenfull": "^5.0.0"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.7",
+    "lodash": "^4.17.21",
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
@@ -66,6 +68,7 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^14.1.0",
     "@rollup/plugin-replace": "^4.0.0",
+    "@testing-library/react": "^13.4.0",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^27.5.2",
     "@types/lodash": "^4.14.184",
@@ -87,7 +90,6 @@
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-esbuild": "^4.10.1",
     "ts-node": "^10.9.1",
-    "typescript": "^4.8.2",
-    "@testing-library/react": "^13.4.0"
+    "typescript": "^4.8.2"
   }
 }
