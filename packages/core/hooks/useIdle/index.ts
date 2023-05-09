@@ -1,4 +1,4 @@
-import { throttle } from "lodash";
+import { throttle } from "lodash-es";
 import { useEffect, useState } from "react";
 import { off, on } from "../utils/browser";
 

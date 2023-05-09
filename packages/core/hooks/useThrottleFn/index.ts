@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { throttle } from "lodash";
+import { throttle } from "lodash-es";
 import { isDev, isFunction } from "../utils/is";
 import useLatest from "../useLatest";
 import useUnmount from "../useUnmount";
