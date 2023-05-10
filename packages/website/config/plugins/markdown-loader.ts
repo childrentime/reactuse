@@ -18,11 +18,6 @@ export default () => (
   </div>
 )
 `;
-// export default () => React.createElement("React.Fragment", {},
-//   React.createElement('div', {dangerouslySetInnerHTML: {__html: ${before}}}),
-//   React.createElement(Demo),
-//   React.createElement('div', {dangerouslySetInnerHTML: {__html: ${after}}}),
-// )
 
 export default function markdownLoader(this: LoaderContext<any>, source: string) {
   const [beforeDemo, afterDemo] = source.split("%%DEMO%%");
@@ -31,7 +26,7 @@ export default function markdownLoader(this: LoaderContext<any>, source: string)
 
   const before = JSON.stringify(markdown.render(beforeDemo));
   const after = JSON.stringify(markdown.render(afterDemo));
-  // const result = `export default ${JSON.stringify(content)}`;
+
   const result = getComp(before, after, demoPath);
   return result;
 }
