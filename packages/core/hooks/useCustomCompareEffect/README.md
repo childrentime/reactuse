@@ -40,22 +40,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-import { DependencyList, EffectCallback, useEffect, useRef } from "react";
-
-const isPrimitive = (val: any) => val !== Object(val);
-
-type DepsEqualFnType<TDeps extends DependencyList> = (
-  prevDeps: TDeps,
-  nextDeps: TDeps
-) => boolean;
-
-export default function useCustomCompareEffect<TDeps extends DependencyList>(
-  effect: EffectCallback,
-  deps: TDeps,
-  depsEqual: DepsEqualFnType<TDeps>
-): void;
-```

@@ -18,9 +18,3 @@ const Demo = () => {
   return <div>{message.current}</div>;
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useDocumentVisibility(): DocumentVisibilityState;
-```

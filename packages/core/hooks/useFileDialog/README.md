@@ -36,31 +36,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export interface UseFileDialogOptions {
-  /**
-   * @default true
-   */
-  multiple?: boolean;
-  /**
-   * @default '*'
-   */
-  accept?: string;
-  /**
-   * Select the input source for the capture file.
-   * @see [HTMLInputElement Capture](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)
-   */
-  capture?: string;
-}
-
-export default function useFileDialog(
-  options: UseFileDialogOptions = {}
-): readonly [
-  FileList | null,
-  (localOptions?: Partial<UseFileDialogOptions>) => void,
-  () => void
-];
-```

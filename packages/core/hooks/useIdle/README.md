@@ -17,22 +17,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-const defaultEvents: (keyof WindowEventMap)[] = [
-  "mousemove",
-  "mousedown",
-  "resize",
-  "keydown",
-  "touchstart",
-  "wheel",
-];
-
-export default function useIdle(
-  ms: number = oneMinute,
-  initialState = false,
-  events: (keyof WindowEventMap)[] = defaultEvents
-): boolean;
-```

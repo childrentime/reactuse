@@ -24,19 +24,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export interface DebounceSettings {
-  leading?: boolean;
-  trailing?: boolean;
-  maxWait?: number;
-}
-
-export default function useDebounce<T>(
-  value: T,
-  wait?: number,
-  options?: DebounceSettings
-): T;
-```

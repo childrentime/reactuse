@@ -13,17 +13,3 @@ const Demo = () => {
   return <div>FPS: {fps}</div>;
 };
 ```
-
-## Type Declarations
-
-```ts
-export interface UseFpsOptions {
-  /**
-   * Calculate the FPS on every x frames.
-   * @default 10
-   */
-  every?: number;
-}
-
-function useFps(options?: UseFpsOptions): number;
-```

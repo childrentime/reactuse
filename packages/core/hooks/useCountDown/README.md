@@ -22,11 +22,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-If the time is less than 0, by default we'll return 00 for both, and if the time is more than 100 hours, we'll return 99, 59, 59. You can pass your custom format function.
-
-```typescript
-useCountDown(time: number, format?: ((number: any) => [string, string, string]) | undefined, callback?: (() => void) | undefined): readonly [string, string, string]
-```

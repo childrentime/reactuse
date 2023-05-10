@@ -20,9 +20,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useWindowsFocus(): boolean;
-```

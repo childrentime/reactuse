@@ -12,9 +12,3 @@ const Demo = () => {
   return <div>{online}</div>;
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useOnline(): boolean | undefined;
-```

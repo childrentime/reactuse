@@ -34,13 +34,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useFavicon(
-  href: string,
-  baseUrl = "",
-  rel = "icon"
-): void;
-```

@@ -26,11 +26,3 @@ const Demo = () => {
   return <div>data: {data}</div>;
 };
 ```
-
-<Demo />
-
-## Type Declarations
-
-```ts
-export default function useAsyncEffect<T extends void>(effect: () => Promise<T> | T, cleanup?: (() => Promise<T> | T) | undefined, deps?: DependencyList): void;
-```

@@ -15,9 +15,3 @@ const Demo = () => {
   return <div>{value}</div>;
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useUnmount(fn: () => void): void;
-```

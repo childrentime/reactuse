@@ -24,18 +24,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export interface ThrottleSettings {
-  leading?: boolean | undefined;
-  trailing?: boolean | undefined;
-}
-
-export default function useThrottle<T>(
-  value: T,
-  wait?: number,
-  options?: ThrottleSettings
-): T;
-```

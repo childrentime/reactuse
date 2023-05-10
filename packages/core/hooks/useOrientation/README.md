@@ -15,20 +15,3 @@ const Demo = () => {
   return <pre>{JSON.stringify(state, null, 2)}</pre>;
 };
 ```
-
-## Type Declarations
-
-```ts
-export interface OrientationState {
-  angle: number;
-  type: string;
-}
-
-export default function useOrientation(
-  initialState: OrientationState = defaultState
-): readonly [
-  OrientationState,
-  (type: OrientationLockType) => Promise<void> | undefined,
-  () => void
-];
-```

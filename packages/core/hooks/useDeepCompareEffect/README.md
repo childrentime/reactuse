@@ -37,12 +37,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useDeepCompareEffect(
-  effect: EffectCallback,
-  deps: DependencyList
-): void;
-```

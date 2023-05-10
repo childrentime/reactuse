@@ -47,14 +47,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-interface IProps<T> {
-  controlled?: T;
-  defaultValue?: T;
-  state?: T;
-}
-function useControlled<T = string>({ controlled, defaultValue, state, }: IProps<T>): readonly [T, (newValue: T) => void];
-```

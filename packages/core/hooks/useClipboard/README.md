@@ -33,12 +33,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useClipBorad(): readonly [
-  string,
-  (txt: string) => Promise<void>
-];
-```

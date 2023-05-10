@@ -29,13 +29,3 @@ export default function App() {
   );
 }
 ```
-
-## Type Declarations
-
-```ts
-export interface State {
-  x: number;
-  y: number;
-}
-export default function useWindowScroll(): State;
-```

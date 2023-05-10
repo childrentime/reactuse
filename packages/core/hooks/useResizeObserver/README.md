@@ -36,13 +36,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useMutationObserver(
-  callback: MutationCallback,
-  target: BasicTarget,
-  options: MutationObserverInit
-): () => void;
-```

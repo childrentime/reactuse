@@ -37,13 +37,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useGeolocation(options?: Partial<PositionOptions>): {
-  readonly coordinates: GeolocationCoordinates;
-  readonly locatedAt: number | null;
-  readonly error: GeolocationPositionError | null;
-};
-```

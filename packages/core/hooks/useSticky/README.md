@@ -43,21 +43,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export interface UseStickyParams {
-  targetElement: BasicTarget<HTMLElement>;
-  scrollElement?: BasicTarget<HTMLElement>;
-  /** axis of scroll */
-  axis?: "x" | "y";
-  /** cover height or width */
-  nav: number;
-}
-
-export default function useSticky ({ targetElement, scrollElement, axis, nav, }: UseStickyParams) => [
-    boolean,
-    React.Dispatch<React.SetStateAction<boolean>>
-]
-```
