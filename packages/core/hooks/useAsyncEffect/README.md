@@ -27,6 +27,8 @@ const Demo = () => {
 };
 ```
 
+<Demo />
+
 ## Type Declarations
 
 ```ts

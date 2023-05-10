@@ -90,9 +90,14 @@ const config: webpack.Configuration = {
       },
       {
         test: /\.md$/,
-        use: {
-          loader: path.resolve(__dirname, "./markdown-loader.ts"),
-        },
+        use: [
+          {
+            loader: path.resolve(__dirname, "./plugins/markdown-loader.ts"),
+          },
+          {
+            loader: path.resolve(__dirname, "./plugins/pre-markdown-loader.ts"),
+          },
+        ],
       },
     ],
   },
