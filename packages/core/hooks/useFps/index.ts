@@ -30,6 +30,7 @@ function useFps(options?: UseFpsOptions): number {
   return fps;
 }
 
+// @ts-expect-error un-use
 // eslint-disable-next-line unused-imports/no-unused-vars
 const useFpsMock = (options?: UseFpsOptions) => 0;
 

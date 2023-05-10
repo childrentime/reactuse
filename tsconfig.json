@@ -16,7 +16,8 @@
     "jsx": "react-jsx",
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
     "include": [
     "packages/core/hooks",
