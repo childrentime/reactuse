@@ -30,8 +30,7 @@ function useFps(options?: UseFpsOptions): number {
   return fps;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
+// @ts-expect-error un-use
 // eslint-disable-next-line unused-imports/no-unused-vars
 const useFpsMock = (options?: UseFpsOptions) => 0;
 

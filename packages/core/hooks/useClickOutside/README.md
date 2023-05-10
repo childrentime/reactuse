@@ -57,14 +57,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-type EventType = MouseEvent | TouchEvent;
-
-export default function useClickOutSide(
-  target: BasicTarget,
-  handler: (evt: EventType) => void
-): void;
-```

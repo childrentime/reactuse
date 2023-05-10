@@ -32,14 +32,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export type RafLoopReturns = readonly [() => void, () => void, () => boolean];
-
-export default function useRafFn(
-  callback: FrameRequestCallback,
-  initiallyActive = true
-): RafLoopReturns;
-```

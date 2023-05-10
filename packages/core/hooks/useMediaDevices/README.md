@@ -13,16 +13,3 @@ const Demo = () => {
   return <pre>{JSON.stringify(state, null, 2)}</pre>;
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useMediaDevices(): {
-  devices: {
-    deviceId: string;
-    groupId: string;
-    kind: MediaDeviceKind;
-    label: string;
-  }[];
-};
-```

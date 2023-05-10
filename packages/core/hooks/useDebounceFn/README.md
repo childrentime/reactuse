@@ -23,23 +23,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export interface DebounceSettings {
-  leading?: boolean;
-  trailing?: boolean;
-  maxWait?: number;
-}
-
-export default function useDebounceFn<T extends (...args: any) => any>(
-  fn: T,
-  wait?: number,
-  options?: DebounceSettings
-): {
-  run: DebouncedFunc<(...args: Parameters<T>) => ReturnType<T>>;
-  cancel: () => void;
-  flush: () => ReturnType<T> | undefined;
-};
-```

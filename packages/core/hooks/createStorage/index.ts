@@ -82,7 +82,7 @@ export default function useStorage<
   getStorage: () => Storage | undefined,
   options: UseStorageOptions<T> = {},
 ) {
-  const defaultOnError = useCallback((e) => {
+  const defaultOnError = useCallback((e: any) => {
     console.error(e);
   }, []);
   let storage: Storage | undefined;

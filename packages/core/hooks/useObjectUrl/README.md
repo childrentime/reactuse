@@ -27,11 +27,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useObjectUrl(
-  object: Blob | MediaSource | undefined
-): string | undefined;
-```

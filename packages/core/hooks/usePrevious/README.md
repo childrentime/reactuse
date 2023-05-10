@@ -22,9 +22,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function usePreferredDark(): boolean;
-```

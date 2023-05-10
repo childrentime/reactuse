@@ -19,9 +19,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-declare function useSupported(callback: () => unknown, sync?: boolean): boolean;
-```

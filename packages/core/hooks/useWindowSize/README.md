@@ -19,14 +19,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export interface WindowSize {
-  width: number;
-  height: number;
-}
-
-export default function useWindowSize(): WindowSize;
-```

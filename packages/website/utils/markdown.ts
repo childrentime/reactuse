@@ -4,7 +4,7 @@ import MarkdownItExpandable from "markdown-it-expandable";
 import MarkdownItContainer from "markdown-it-container";
 import MarkdownItCopy from "./markdown-code-copy";
 
-const markdown = new MarkdownIt({});
+const markdown = new MarkdownIt({ html: true });
 
 markdown.use(MarkdownItContainer, "warning");
 markdown.use(MarkdownItHightlight);

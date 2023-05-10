@@ -33,12 +33,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useDropZone(
-  target: BasicTarget<HTMLElement>,
-  onDrop?: (files: File[] | null) => void
-): boolean;
-```

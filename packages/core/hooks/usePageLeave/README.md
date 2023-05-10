@@ -13,9 +13,3 @@ const Demo = () => {
   return <div>isLeft: {JSON.stringify(isLeft)}</div>;
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function usePageLeave(): boolean;
-```

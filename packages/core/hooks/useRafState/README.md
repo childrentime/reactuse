@@ -31,11 +31,3 @@ const Demo = () => {
   return <pre>{JSON.stringify(state, null, 2)}</pre>;
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useRafState<S>(
-  initialState: S | (() => S)
-): readonly [S, Dispatch<SetStateAction<S>>];
-```

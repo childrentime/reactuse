@@ -36,17 +36,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export interface Options {
-  onExit?: () => void;
-  onEnter?: () => void;
-}
-
-export default function useFullscreen(
-  target: BasicTarget,
-  options?: Options
-): boolean;
-```

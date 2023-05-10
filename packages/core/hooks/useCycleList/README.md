@@ -30,12 +30,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useCycleList<T>(
-  list: T[],
-  i = 0
-): readonly [T, (i?: number) => void, (i?: number) => void];
-```

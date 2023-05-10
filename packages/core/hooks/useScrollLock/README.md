@@ -106,12 +106,3 @@ const Demo = () => {
 ```
 
 > > >
-
-## Type Declarations
-
-```ts
-export default function useScrollLock(
-  target: BasicTarget<HTMLElement | SVGElement | Window | Document>,
-  initialState = false
-): readonly [boolean, (flag: boolean) => void];
-```

@@ -68,12 +68,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useIntersectionObserver(
-  target: BasicTarget,
-  options: IntersectionObserverInit
-): () => void;
-```

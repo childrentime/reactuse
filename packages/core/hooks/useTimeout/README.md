@@ -31,19 +31,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export type Stoppable = [boolean, Fn, Fn];
-export interface UseTimeoutFnOptions {
-  /**
-   * Start the timer immediate after calling this function
-   *
-   * @default false
-   */
-  immediate?: boolean;
-}
-
-export default function useTimeout(ms = 0, options: UseTimeoutFnOptions = {}): Stoppable;
-```

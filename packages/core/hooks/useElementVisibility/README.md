@@ -50,12 +50,3 @@ const Demo = () => {
 };
 ```
 
-
-## Type Declarations
-
-```ts
-export default function useElementVisibility(
-  target: BasicTarget<HTMLElement | SVGElement>,
-  options: IntersectionObserverInit = {}
-): boolean;
-```

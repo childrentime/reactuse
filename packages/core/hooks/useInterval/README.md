@@ -17,15 +17,3 @@ const Demo = () => {
   return <div>count: {count}</div>;
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useInterval(
-  callback: () => void,
-  delay?: number | null,
-  options?: {
-    immediate?: boolean;
-  }
-): void;
-```

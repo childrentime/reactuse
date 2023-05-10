@@ -37,27 +37,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export type UseTextDirectionValue = "ltr" | "rtl" | "auto";
-export interface UseTextDirectionOptions {
-  /**
-   * CSS Selector for the target element applying to
-   *
-   * @default 'html'
-   */
-  selector?: string;
-  /**
-   * Initial value
-   *
-   * @default 'ltr'
-   */
-  initialValue?: UseTextDirectionValue;
-}
-
-export default function useTextDirection(
-  options?: UseTextDirectionOptions
-): readonly [UseTextDirectionValue, (value: UseTextDirectionValue) => void];
-```

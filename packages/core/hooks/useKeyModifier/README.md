@@ -40,28 +40,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export interface UseModifierOptions {
-  /**
-   * Event names that will prompt update to modifier states
-   *
-   * @default ['mousedown', 'mouseup', 'keydown', 'keyup']
-   */
-  events?: (keyof WindowEventMap)[];
-
-  /**
-   * Initial value of the returned ref
-   *
-   * @default false
-   */
-  initial?: boolean;
-}
-
-export default function useKeyModifier(
-  modifier: KeyModifier,
-  options: UseModifierOptions = {}
-): boolean;
-```

@@ -20,9 +20,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-declare function useTextSelection(): Selection | null;
-```

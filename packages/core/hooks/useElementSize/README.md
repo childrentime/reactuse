@@ -27,12 +27,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useElementSize(
-  target: BasicTarget,
-  options: ResizeObserverOptions = {}
-): readonly [number, number];
-```

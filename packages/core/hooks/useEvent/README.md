@@ -41,9 +41,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useEvent<T extends Fn>(fn: T);
-```

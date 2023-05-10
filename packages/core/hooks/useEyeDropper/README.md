@@ -31,16 +31,3 @@ const Demo = () => {
   return <span>Not Supported by Your Browser</span>;
 };
 ```
-
-## Type Declarations
-
-```ts
-interface EyeDropperOpenOptions {
-  signal?: AbortSignal;
-}
-interface EyeDropperOpenReturnType {
-  sRGBHex: string;
-}
-declare function useEyeDropper(): readonly [boolean, (options?: EyeDropperOpenOptions) => Promise<EyeDropperOpenReturnType>];
-declare type UseEyeDropperReturn = ReturnType<typeof useEyeDropper>;
-```

@@ -28,9 +28,3 @@ const Demo = () => {
   );
 };
 ```
-
-## Type Declarations
-
-```ts
-export default function useLatest<T>(value: T): React.MutableRefObject<T>;
-```
