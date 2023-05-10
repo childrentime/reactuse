@@ -10,9 +10,9 @@ const major = +semver[0];
 
 if (major < 14) {
   console.error(
-    `You are running Node ${currentNodeVersion}.\n` +
-      "equires Node 14 or higher. \n" +
-      "Please update your version of Node."
+    `You are running Node ${currentNodeVersion}.\n`
+      + "equires Node 14 or higher. \n"
+      + "Please update your version of Node.",
   );
   process.exit(1);
 }
@@ -60,9 +60,9 @@ const menus = menuGroup.main.map((menu) => {
   });
 
   if (
-    typeof hookName === "undefined" ||
-    typeof description === "undefined" ||
-    typeof category === "undefined"
+    typeof hookName === "undefined"
+    || typeof description === "undefined"
+    || typeof category === "undefined"
   ) {
     return;
   }
@@ -92,9 +92,8 @@ const menus = menuGroup.main.map((menu) => {
   const exportRegex = /(export\s*\*\s*from\s*['"][^'"]*['"]\s*;\s*)/g;
 
   // import
-  let result,
-    lastIndex = 0;
-  while ((result = importRegex.exec(fileContent)) !== null) {
+  let lastIndex = 0;
+  while ((importRegex.exec(fileContent)) !== null) {
     lastIndex = importRegex.lastIndex;
   }
   fileContent = [
@@ -108,7 +107,7 @@ const menus = menuGroup.main.map((menu) => {
 
   // export
   lastIndex = 0;
-  while ((result = exportRegex.exec(fileContent)) !== null) {
+  while ((exportRegex.exec(fileContent)) !== null) {
     lastIndex = exportRegex.lastIndex;
   }
 
@@ -123,45 +122,45 @@ const menus = menuGroup.main.map((menu) => {
   const exportObjectRegex = /export\s+{([^}]+)}/g;
   fileContent = fileContent.replace(exportObjectRegex, (match, p1: string) => {
     // 将导出项按照逗号分割为数组
-    let exports = p1
+    const exports = p1
       .split(",")
-      .map((s) => s.trim())
-      .filter((s) => s.length > 0);
+      .map(s => s.trim())
+      .filter(s => s.length > 0);
     // 添加新的导出项
     exports.push(`${hookName},`);
     // 去重，重新组合为导出语句
-    let newExports = Array.from(new Set(exports)).join(",\n  ");
+    const newExports = Array.from(new Set(exports)).join(",\n  ");
     return `export {\n  ${newExports}\n}`;
   });
 
-  fs.writeFileSync(indexPath,fileContent)
+  fs.writeFileSync(indexPath, fileContent);
 
   // add docs
   const docs = path.resolve(
     __dirname,
-    `../packages/website/src/components/${hookName}`
+    `../packages/core/hooks/${hookName}`,
   );
-  const docsIndex = `${docs}/index.tsx`;
+  const docsDemo = `${docs}/demo.tsx`;
   const docsMD = `${docs}/README.md`;
   fs.ensureDirSync(docs);
-  fs.ensureFileSync(docsIndex);
+  fs.ensureFileSync(docsDemo);
   fs.ensureFileSync(docsMD);
 
-  const docsIndexTemplate = fs
-    .readFileSync(path.resolve(__dirname, "./templates/index.tsx"), "utf-8")
+  const docsDemoTemplate = fs
+    .readFileSync(path.resolve(__dirname, "./templates/demo.tsx"), "utf-8")
     .replaceAll(markUp, hookName);
   const docsMDTemplate = `# ${hookName}\n\n${description}\n${fs.readFileSync(
     path.resolve(__dirname, "./templates/README.md"),
-    "utf-8"
+    "utf-8",
   )}`;
 
-  fs.writeFileSync(docsIndex, docsIndexTemplate);
+  fs.writeFileSync(docsDemo, docsDemoTemplate);
   fs.writeFileSync(docsMD, docsMDTemplate);
 
   // add  routes
   const routesPath = path.resolve(
     __dirname,
-    "../packages/website/src/routes.json"
+    "../packages/website/src/routes.json",
   );
 
   menuGroup.main[category].items.push(hookName);

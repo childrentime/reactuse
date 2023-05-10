@@ -65,13 +65,14 @@ const Main = () => {
         <div className={styles.col19}>
           <section className={styles.content}>
             <Routes>
-              {pages.map(page => (
+              {pages.map((page: any) => (
                 <Route
                   path={`/${page.page}`}
-                  element={<page.component />}
+                  element={<Doc demo={page.demo} readme={page.readme} />}
                   key={page.page}
                 />
-              ))}
+              ),
+              )}
               <Route path={"*"} element={<NotFound />} key="404" />
             </Routes>
           </section>
@@ -80,5 +81,15 @@ const Main = () => {
     </div>
   );
 };
+
+function Doc(props: { readme: () => JSX.Element; demo: () => JSX.Element }) {
+  return (
+    <div>
+      <props.readme />
+      <h2>Example</h2>
+      <props.demo />
+    </div>
+  );
+}
 
 export default Main;

@@ -8,19 +8,22 @@ interface Menu {
 
 export const menuGroup: Menu[] = routesJSON.main;
 
-export const pages = menuGroup
+const pages = menuGroup
   .reduce((pre: string[], cur) => {
     pre.push(...cur.items);
     return pre;
   }, [])
   .map((page) => {
     return {
-      component: loadable(() => import(`./components/${page}`)),
+      demo: loadable(() => import(`../node_modules/@reactuses/core/hooks/${page}/demo`)),
+      readme: loadable(() => import(`../node_modules/@reactuses/core/hooks/${page}/README.md`) as any),
       page,
     };
   });
 
-export const routes = menuGroup.reduce((pre: string[], cur) => {
+const routes = menuGroup.reduce((pre: string[], cur) => {
   pre.push(...cur.items);
   return pre;
 }, []);
+
+export { pages, routes };
