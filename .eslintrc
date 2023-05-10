@@ -24,5 +24,8 @@
     "no-console": "off",
     "curly": "off",
     "import/export": "warn"
-  }
+  },
+  "ignorePatterns":[
+    "scripts/templates/**"
+  ]
 }

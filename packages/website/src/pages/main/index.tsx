@@ -82,16 +82,6 @@ const Main = () => {
   );
 };
 
-export const useClientOnly = () => {
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  return hasMounted;
-};
-
 function Doc(props: { readme: () => JSX.Element; demo: () => JSX.Element }) {
   return (
     <div>

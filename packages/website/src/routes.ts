@@ -8,7 +8,7 @@ interface Menu {
 
 export const menuGroup: Menu[] = routesJSON.main;
 
-const pages: any = menuGroup
+const pages = menuGroup
   .reduce((pre: string[], cur) => {
     pre.push(...cur.items);
     return pre;
