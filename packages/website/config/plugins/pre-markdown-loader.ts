@@ -1,5 +1,13 @@
+import { resolve } from "node:path";
 import type { LoaderContext } from "webpack";
+import fs from "fs-extra";
 import { getTypeDefinition, replacer } from "../../utils/utils";
+
+const DIR_TYPES = resolve(__dirname, "../../../../types/packages");
+const hasTypes = fs.existsSync(DIR_TYPES);
+if (!hasTypes) {
+  console.warn("No types dist found, run `npm run build:types` first.");
+}
 
 export default async function (this: LoaderContext<never>, content: string) {
   const callback = this.async();
@@ -8,7 +16,9 @@ export default async function (this: LoaderContext<never>, content: string) {
   const [pkg, _hooks, name, _i] = resourcePath.split("\\").slice(-4);
   const { typeDeclarations } = await getMarkdownSection(pkg, name);
 
-  content = replacer(content, typeDeclarations, "TYPE", "tail");
+  if (hasTypes) {
+    content = replacer(content, typeDeclarations, "TYPE", "tail");
+  }
 
   callback(null, content);
 }
