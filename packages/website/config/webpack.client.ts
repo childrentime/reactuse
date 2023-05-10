@@ -92,6 +92,12 @@ const config: webpack.Configuration = {
         test: /\.md$/,
         use: [
           {
+            loader: "babel-loader",
+            options: {
+              caller: { target },
+            },
+          },
+          {
             loader: path.resolve(__dirname, "./plugins/markdown-loader.ts"),
           },
           {

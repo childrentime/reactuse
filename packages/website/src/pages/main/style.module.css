@@ -10,7 +10,7 @@
   flex-flow: wrap;
   overflow: hidden;
   position: fixed;
-  top: 90px;
+  top: 64px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -113,7 +113,7 @@
 }
 
 .content {
-  padding: 0 170px 32px 64px;
+  padding: 32px 170px 32px 64px;
 }
 
 .content h1 {
@@ -146,7 +146,7 @@
   background-image: none;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -158,6 +158,14 @@
   border-radius: 2px;
   border-color: var(--c-button-border);
   background-color: var(--c-button-bg);
+}
+
+.content button:hover {
+  filter: brightness(.9);
+}
+
+.content button:active {
+  filter: brightness(.8);
 }
 
 .content input {

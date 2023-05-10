@@ -1,0 +1,12 @@
+.prose .code-block {
+  border-radius: 6px;
+  overflow: hidden;
+  line-height: 21px;
+  font-size: 16px;
+}
+
+.prose .demo-container {
+  background-color: var(--c-hj-b);
+  padding: 16px;
+  border-radius: 6px;
+}

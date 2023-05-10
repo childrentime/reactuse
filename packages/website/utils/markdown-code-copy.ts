@@ -21,7 +21,7 @@ function renderCode(origRule: RenderRule) {
     }
 
     return `
-<div style="position: relative">
+<div style="position: relative" class="code-block">
 	${origRendered}
 	<div class=${options.class} data-clipboard-text="${content}"  title="Copy">
     <div class = ${options.imageClass}></div>

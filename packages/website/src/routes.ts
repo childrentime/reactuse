@@ -1,4 +1,5 @@
 import loadable from "@loadable/component";
+import React from "react";
 import routesJSON from "./routes.json";
 
 interface Menu {
@@ -15,8 +16,9 @@ const pages = menuGroup
   }, [])
   .map((page) => {
     return {
-      demo: loadable(() => import(`../node_modules/@reactuses/core/hooks/${page}/demo`)),
-      readme: loadable(() => import(`../node_modules/@reactuses/core/hooks/${page}/README.md`) as any),
+      element: loadable(() => import(`../node_modules/@reactuses/core/hooks/${page}/README.md`) as any, {
+        fallback: React.createElement("div", {}, "Loading..."),
+      }),
       page,
     };
   });

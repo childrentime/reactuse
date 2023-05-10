@@ -16,6 +16,8 @@ export default async function (this: LoaderContext<never>, content: string) {
   const [pkg, _hooks, name, _i] = resourcePath.split("\\").slice(-4);
   const { typeDeclarations } = await getMarkdownSection(pkg, name);
 
+  content = replacer(content, "%%DEMO%%", "DEMO", "tail");
+
   if (hasTypes) {
     content = replacer(content, typeDeclarations, "TYPE", "tail");
   }
