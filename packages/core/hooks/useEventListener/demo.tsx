@@ -30,7 +30,7 @@ export default () => {
   useEventListener("click", onClick, buttonRef);
 
   return (
-    <div style={{ minHeight: "200vh" }}>
+    <div>
       <p>{state}</p>
       <button ref={buttonRef}>Click me</button>
     </div>

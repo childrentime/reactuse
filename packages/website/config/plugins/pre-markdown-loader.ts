@@ -1,4 +1,4 @@
-import { resolve } from "node:path";
+import { resolve, sep } from "node:path";
 import type { LoaderContext } from "webpack";
 import fs from "fs-extra";
 import { getTypeDefinition, replacer } from "../../utils/utils";
@@ -13,8 +13,10 @@ export default async function (this: LoaderContext<never>, content: string) {
   const callback = this.async();
 
   const { resourcePath } = this;
-  const [pkg, _hooks, name, _i] = resourcePath.split("\\").slice(-4);
+  const [pkg, _hooks, name, _i] = resourcePath.split(sep).slice(-4);
   const { typeDeclarations } = await getMarkdownSection(pkg, name);
+
+  content = replacer(content, "%%DEMO%%", "DEMO", "tail");
 
   if (hasTypes) {
     content = replacer(content, typeDeclarations, "TYPE", "tail");

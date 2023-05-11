@@ -112,6 +112,12 @@ p code {
   outline: none;
   height: 20px;
   width: 20px;
+  opacity: .2;
+  transition: opacity .1s;
+}
+
+.markdown-it-code-copy:hover {
+  opacity: .4;
 }
 
 .markdown-it-copy-image {
