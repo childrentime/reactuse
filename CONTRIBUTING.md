@@ -43,7 +43,7 @@ packages
 
 Before you start working, it's better to open an issue to discuss first.
 
-1. Create `packages/core/hooks/useYourHookName/@(index.ts|demo.tsx|README.md)`, run `pnpm start` to start the document development server and start coding your hook.
+1. Create `packages/core/hooks/useYourHookName/@(index.ts|demo.tsx|README.md)`, run `pnpm run docs:dev` to start the document development server and start coding your hook.
 2. Create `packages/core/hooks/useYourHookName/index.spec.ts`, run `pnpm test` to start the test runner in watch mode and start writing tests for your hook
 3. Export your hook from `package/core/index.ts`
 
