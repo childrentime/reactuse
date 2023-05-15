@@ -9,6 +9,7 @@
         "useFirstMountState",
         "useThrottle",
         "useDebounce",
+        "useCookie",
         "useLocalStorage",
         "useSessionStorage",
         "useRafState",

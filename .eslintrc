@@ -23,7 +23,8 @@
     "react-hooks/exhaustive-deps": "warn",
     "no-console": "off",
     "curly": "off",
-    "import/export": "warn"
+    "import/export": "warn",
+    "unused-imports/no-unused-vars": "off"
   },
   "ignorePatterns":[
     "scripts/templates/**"
