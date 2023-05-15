@@ -84,6 +84,7 @@ import useCountDown from "./useCountDown";
 import useSupported from "./useSupported";
 import useTextSelection from "./useTextSelection";
 import useEyeDropper from "./useEyeDropper";
+import useCookie from "./useCookie";
 
 export {
   usePrevious,
@@ -171,6 +172,7 @@ export {
   useSupported,
   useTextSelection,
   useEyeDropper,
+  useCookie,
 };
 
 export * from "./useToggle";
@@ -258,3 +260,4 @@ export * from "./useCountDown";
 export * from "./useSupported";
 export * from "./useTextSelection";
 export * from "./useEyeDropper";
+export * from "./useCookie";
