@@ -16,7 +16,8 @@
     "lint": "eslint .",
     "docs:dev": "pnpm --filter website run dev",
     "build": "pnpm --filter @reactuses/core run build",
-    "build:types": "tsc --emitDeclarationOnly"
+    "build:types": "tsc --emitDeclarationOnly",
+    "core:dev": "pnpm --filter core run dev & pnpm build:types"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
