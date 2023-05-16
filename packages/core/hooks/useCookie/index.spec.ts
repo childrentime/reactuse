@@ -50,7 +50,7 @@ describe("useCookie", () => {
       defaultValue: "false",
     });
     expect(anotherHook.result.current.state).toBe("false");
-    expect(Cookies.get(COOKIE)).toBeUndefined();
+    expect(Cookies.get(COOKIE)).toBe("false")
     act(() => {
       // @ts-expect-error test empty
       hook.result.current.setState();
@@ -84,14 +84,15 @@ describe("useCookie", () => {
   it("using the same cookie name", () => {
     const COOKIE_NAME = "test-same-cookie-name";
     const { result: result1 } = setUp(COOKIE_NAME, { defaultValue: "A" });
+    // already has cookie, use it.
     const { result: result2 } = setUp(COOKIE_NAME, { defaultValue: "B" });
     expect(result1.current.state).toBe("A");
-    expect(result2.current.state).toBe("B");
+    expect(result2.current.state).toBe("A");
     act(() => {
       result1.current.setState("C");
     });
     expect(result1.current.state).toBe("C");
-    expect(result2.current.state).toBe("B");
+    expect(result2.current.state).toBe("A");
     expect(Cookies.get(COOKIE_NAME)).toBe("C");
     act(() => {
       result2.current.setState("D");
