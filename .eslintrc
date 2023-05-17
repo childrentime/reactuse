@@ -16,15 +16,16 @@
       "error",
       { "multiline": { "delimiter": "semi", "requireLast": true } }
     ],
-    "semi": "off",
     "@typescript-eslint/semi": ["error", "always"],
     "@typescript-eslint/quotes": ["error", "double"],
+    "semi": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "no-console": "off",
     "curly": "off",
     "import/export": "warn",
-    "unused-imports/no-unused-vars": "off"
+    "unused-imports/no-unused-vars": "off",
+    "react/no-unknown-property": "off"
   },
   "ignorePatterns":[
     "scripts/templates/**"

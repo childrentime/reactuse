@@ -19,8 +19,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-    "include": [
-    "packages/core/hooks",
+  "include": [
+    "packages/core/hooks"
   ],
   "exclude": [
     "node_modules",
