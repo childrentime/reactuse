@@ -50,7 +50,7 @@ describe("useCookie", () => {
       defaultValue: "false",
     });
     expect(anotherHook.result.current.state).toBe("false");
-    expect(Cookies.get(COOKIE)).toBe("false")
+    expect(Cookies.get(COOKIE)).toBe("false");
     act(() => {
       // @ts-expect-error test empty
       hook.result.current.setState();

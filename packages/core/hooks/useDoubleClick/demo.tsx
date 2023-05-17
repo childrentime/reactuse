@@ -3,17 +3,17 @@ import { useRef, useState } from "react";
 
 export default () => {
   const element = useRef<HTMLButtonElement>(null);
-  const [text,setText] = useState('no click')
+  const [text, setText] = useState("no click");
 
   useDoubleClick({
     target: element,
     onSingleClick: () => {
-      setText('single click')
+      setText("single click");
     },
     onDoubleClick: () => {
-      setText('double click')
-    }
-  })
+      setText("double click");
+    },
+  });
   return (
     <div>
       <button ref={element}>Click Me</button>

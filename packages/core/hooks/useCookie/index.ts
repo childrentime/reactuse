@@ -16,7 +16,7 @@ export default function useCookie(
   key: string,
   options: CookieOptions = {
     defaultValue: "",
-  }
+  },
 ) {
   const { defaultValue, csrData, ...cookieOptions } = options;
   const [cookieValue, setCookieValue] = useState<CookieState>(defaultValue);
@@ -27,17 +27,19 @@ export default function useCookie(
         ? csrData()
         : csrData
       : isFunction(defaultValue)
-      ? defaultValue()
-      : defaultValue;
+        ? defaultValue()
+        : defaultValue;
 
     const getStoredValue = () => {
       const raw = Cookies.get(key);
       if (raw !== undefined && raw !== null) {
         return raw;
-      } else {
+      }
+      else {
         if (data === undefined) {
           Cookies.remove(key);
-        } else {
+        }
+        else {
           Cookies.set(key, data, cookieOptions);
         }
         return data;
@@ -53,13 +55,14 @@ export default function useCookie(
 
       if (value === undefined) {
         Cookies.remove(key);
-      } else {
+      }
+      else {
         Cookies.set(key, value, cookieOptions);
       }
 
       setCookieValue(value);
     },
-    [key, cookieValue]
+    [key, cookieValue],
   );
 
   const refreshCookie = useCallback(() => {
