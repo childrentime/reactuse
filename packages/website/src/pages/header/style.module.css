@@ -160,16 +160,6 @@
   top: 10%;
 }
 
-[cmdk-dialog] {
-  background-color: rgba(101, 108, 133, 0.8);
-  height: 100vh;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  z-index: 200;
-}
-
 [cmdk-root] {
   max-width: 640px;
   width: 100%;
