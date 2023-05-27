@@ -3,9 +3,9 @@ import fs from "fs-extra";
 import { parallel, series } from "gulp";
 import webpack from "webpack";
 import type { WebpackConfiguration } from "webpack-cli";
-import { clientOutput, serverOutput } from "./constant";
-import webpackClientConfig from "./webpack.client";
-import webpackServerConfig from "./webpack.server";
+import { clientWebOutput, serverWebOutput } from "./constant";
+import webpackClientConfig from "./webpack.web.client";
+import webpackServerConfig from "./webpack.web.server";
 
 const webpackRun = function (
   webpackConfig: WebpackConfiguration,
@@ -26,12 +26,12 @@ const clientSideBuild = (callback: (...args: any[]) => any) => {
 };
 
 const clientSideClean = (callback: (...args: any[]) => any) => {
-  fs.removeSync(clientOutput);
+  fs.removeSync(clientWebOutput);
   callback();
 };
 
 const serverSideClean = (callback: (...args: any[]) => any) => {
-  fs.removeSync(serverOutput);
+  fs.removeSync(serverWebOutput);
   callback();
 };
 

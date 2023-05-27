@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "prebuild": "bash prebuild.sh",
-    "dev": "cross-env NODE_ENV=development ts-node config/dev.ts",
-    "build": "pnpm run prebuild && cross-env NODE_ENV=production gulp && cross-env NODE_ENV=production ts-node server/index.tsx"
+    "build": "pnpm run prebuild && cross-env NODE_ENV=production gulp && cross-env NODE_ENV=production ts-node server/prod.tsx",
+    "dev": "cross-env NODE_ENV=development ts-node server/app.tsx"
   },
   "dependencies": {
     "@loadable/babel-plugin": "^5.13.2",
@@ -29,6 +29,7 @@
     "@types/webpack-node-externals": "^2.5.3",
     "babel-loader": "^9.1.0",
     "clean-webpack-plugin": "^4.0.0",
+    "clear-module": "^4.1.2",
     "clipboard": "^2.0.11",
     "cmdk": "^0.1.20",
     "connect-livereload": "^0.6.1",

@@ -1,45 +1,37 @@
 import path from "node:path";
-import webpack from "webpack";
+import type webpack from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import nodeExternals from "webpack-node-externals";
 import LoadablePlugin from "@loadable/webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import { clientOutput, development } from "./constant";
+import { development, serverWebOutput } from "./constant";
 
-const target = "web";
-
+const target = "node";
 const plugins = [new LoadablePlugin() as any, new MiniCssExtractPlugin()];
 if (development) {
   plugins.push(new CleanWebpackPlugin());
-  plugins.push(new webpack.HotModuleReplacementPlugin());
   plugins.push(
-    new ReactRefreshWebpackPlugin({
-      overlay: {
-        sockIntegration: "whm",
-      },
-    }),
+    new ReactRefreshWebpackPlugin(),
   );
 }
-
+// 服务端资源打包，需要抽取没有BroswerRoute的部分
 const config: webpack.Configuration = {
   name: target,
+  mode: development ? "development" : "production",
+  target,
+  entry: {
+    main: path.resolve(__dirname, "../src/main-node.tsx"),
+  },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
   },
-  devtool: development ? "source-map" : false,
-  mode: development ? "development" : "production",
-  entry: development
-    ? [
-        path.resolve(__dirname, "../src/main-web.tsx"),
-        "webpack-hot-middleware/client?path=//localhost:3001/static/__webpack_hmr&name=client",
-      ]
-    : path.resolve(__dirname, "../src/main-web.tsx"),
   output: {
-    path: clientOutput,
+    path: serverWebOutput,
     publicPath: development ? `/static/dist/${target}/` : `/dist/${target}/`,
     filename: "[name].js",
+    libraryTarget: "commonjs2",
   },
-  target,
   module: {
     rules: [
       {
@@ -73,7 +65,7 @@ const config: webpack.Configuration = {
             options: {
               importLoaders: 1,
               modules: {
-                localIdentName: "[local]--[hash:base64:5]",
+                localIdentName: development ? "[name]_[local]_[hash:base64:5]" : "[hash:base64:8]",
               },
             },
           },
@@ -106,6 +98,16 @@ const config: webpack.Configuration = {
         ],
       },
     ],
+  },
+  externals: [
+    "@loadable/component",
+    nodeExternals({
+      allowlist: [/\.(css)$/],
+    }),
+  ],
+  optimization: {
+    moduleIds: "named",
+    chunkIds: "named",
   },
   plugins,
 };

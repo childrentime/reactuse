@@ -1,37 +1,22 @@
 import path from "node:path";
-import webpack from "webpack";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import type webpack from "webpack";
 import nodeExternals from "webpack-node-externals";
-import LoadablePlugin from "@loadable/webpack-plugin";
-import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import { development, serverOutput } from "./constant";
+import { serverOutput } from "./constant";
 
 const target = "node";
-const plugins = [new LoadablePlugin() as any, new MiniCssExtractPlugin()];
-if (development) {
-  plugins.push(new CleanWebpackPlugin());
-  plugins.push(new webpack.HotModuleReplacementPlugin());
-  plugins.push(
-    new ReactRefreshWebpackPlugin({
-      overlay: {
-        sockIntegration: "whm",
-      },
-    }),
-  );
-}
-// 服务端资源打包，需要抽取没有BroswerRoute的部分
+const plugins = [new CleanWebpackPlugin()];
+
 const config: webpack.Configuration = {
   name: target,
-  mode: development ? "development" : "production",
+  mode: "development",
   target,
-  entry: path.resolve(__dirname, "../src/main-node.tsx"),
+  entry: path.resolve(__dirname, "../server/dev.tsx"),
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
   },
   output: {
     path: serverOutput,
-    publicPath: development ? `/static/dist/${target}/` : `/dist/${target}/`,
     filename: "[name].js",
     libraryTarget: "commonjs2",
   },
@@ -47,67 +32,11 @@ const config: webpack.Configuration = {
         },
         exclude: /node_modules/,
       },
-      // 服务端资源打包不需要打包css到bundle
-      // 但是需要将css抽取成为link标签插入到html中。
-      {
-        test: /\.css$/i,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          "css-loader",
-        ],
-        exclude: /\.module\.css$/,
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1,
-              modules: {
-                localIdentName: "[local]--[hash:base64:5]",
-              },
-            },
-          },
-        ],
-        include: /\.module\.css$/,
-      },
-      {
-        test: /\.(png|jpg|gif|svg|svg+xml)$/i,
-        type: "asset",
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf|ico)$/i,
-        type: "asset",
-      },
-      {
-        test: /\.md$/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              caller: { target },
-            },
-          },
-          {
-            loader: path.resolve(__dirname, "./plugins/markdown-loader.ts"),
-          },
-          {
-            loader: path.resolve(__dirname, "./plugins/pre-markdown-loader.ts"),
-          },
-        ],
-      },
+
     ],
   },
   externals: [
-    "@loadable/component",
     nodeExternals({
-      allowlist: [/\.(css)$/],
     }),
   ],
   optimization: {
