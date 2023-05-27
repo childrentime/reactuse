@@ -28,6 +28,7 @@
     "react/no-unknown-property": "off"
   },
   "ignorePatterns":[
-    "scripts/templates/**"
+    "scripts/templates/**",
+    "**/common-server"
   ]
 }
