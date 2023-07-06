@@ -116,3 +116,10 @@
 ### Core
 
 * fix esm import error
+
+## 2.2.9(Jul 6, 2023)
+
+### Core
+
+* add useSetState
+* add useMeasure
