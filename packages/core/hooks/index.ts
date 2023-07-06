@@ -86,6 +86,8 @@ import useTextSelection from "./useTextSelection";
 import useEyeDropper from "./useEyeDropper";
 import useCookie from "./useCookie";
 import useDoubleClick from "./useDoubleClick";
+import useSetState from "./useSetState";
+import useMeasure from "./useMeasure";
 
 export {
   usePrevious,
@@ -175,6 +177,8 @@ export {
   useEyeDropper,
   useCookie,
   useDoubleClick,
+  useSetState,
+  useMeasure,
 };
 
 export * from "./useToggle";
@@ -264,3 +268,5 @@ export * from "./useTextSelection";
 export * from "./useEyeDropper";
 export * from "./useCookie";
 export * from "./useDoubleClick";
+export * from "./useSetState";
+export * from "./useMeasure";
