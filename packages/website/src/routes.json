@@ -20,7 +20,8 @@
         "useCycleList",
         "useCountDown",
         "useTextSelection",
-        "useSupported"
+        "useSupported",
+        "useSetState"
       ]
     },
     {
@@ -67,7 +68,8 @@
         "useWindowSize",
         "useFocus",
         "useSticky",
-        "useDoubleClick"
+        "useDoubleClick",
+        "useMeasure"
       ]
     },
     {
