@@ -5,7 +5,8 @@
   "scripts": {
     "prebuild": "bash prebuild.sh",
     "build": "pnpm run prebuild && cross-env NODE_ENV=production gulp && cross-env NODE_ENV=production ts-node server/prod.tsx",
-    "dev": "cross-env NODE_ENV=development ts-node server/app.tsx"
+    "dev": "cross-env NODE_ENV=development ts-node server/app.tsx",
+    "vite": "tsx server"
   },
   "dependencies": {
     "@loadable/babel-plugin": "^5.13.2",
@@ -14,6 +15,7 @@
     "@loadable/webpack-plugin": "^5.15.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@reactuses/core": "workspace:*",
+    "@types/compression": "^1.7.2",
     "@types/connect-livereload": "^0.6.0",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.14",
@@ -27,11 +29,13 @@
     "@types/nodemon": "^1.19.2",
     "@types/webpack-hot-middleware": "^2.25.6",
     "@types/webpack-node-externals": "^2.5.3",
+    "@vitejs/plugin-react": "^4.0.2",
     "babel-loader": "^9.1.0",
     "clean-webpack-plugin": "^4.0.0",
     "clear-module": "^4.1.2",
     "clipboard": "^2.0.11",
     "cmdk": "^0.1.20",
+    "compression": "^1.7.4",
     "connect-livereload": "^0.6.1",
     "cors": "^2.8.5",
     "css-loader": "^6.7.1",
@@ -54,7 +58,9 @@
     "react-router-dom": "6",
     "react-toastify": "^9.1.1",
     "sitemap": "^7.1.1",
+    "tsx": "^3.12.7",
     "type-fest": "^3.3.0",
+    "vite": "^4.4.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-middleware": "^5.3.3",

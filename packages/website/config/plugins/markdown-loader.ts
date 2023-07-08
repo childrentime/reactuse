@@ -19,10 +19,15 @@ export default () => (
 )
 `;
 
-export default function markdownLoader(this: LoaderContext<any>, source: string) {
+export default function markdownLoader(
+  this: LoaderContext<any>,
+  source: string,
+) {
   const [beforeDemo, afterDemo] = source.split("%%DEMO%%");
   const { resourcePath } = this;
-  const demoPath = resourcePath.replace("README.md", "demo.tsx").replaceAll("\\", "/");
+  const demoPath = resourcePath
+    .replace("README.md", "demo.tsx")
+    .replaceAll("\\", "/");
 
   const before = JSON.stringify(markdown.render(beforeDemo));
   const after = JSON.stringify(markdown.render(afterDemo));

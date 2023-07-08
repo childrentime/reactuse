@@ -24,3 +24,5 @@ loadableReady(() => {
     </React.StrictMode>,
   );
 });
+
+console.log("hydrated");

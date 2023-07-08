@@ -16,7 +16,7 @@ const pages = menuGroup
   }, [])
   .map((page) => {
     return {
-      element: loadable(() => import(`../node_modules/@reactuses/core/hooks/${page}/README.md`) as any, {
+      element: loadable(() => import(`../node_modules/@reactuses/core/hooks/${page}/README.md`), {
         fallback: React.createElement("div", {}, "Loading..."),
       }),
       page,
