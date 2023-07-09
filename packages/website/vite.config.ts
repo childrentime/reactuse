@@ -5,10 +5,8 @@ import pluginMD from "./vitePlugins/pluginMD";
 export default defineConfig(async () => {
   return {
     plugins: [
+      react(),
       await pluginMD(),
-      react({
-        include: /\.(md|js|jsx|ts|tsx)$/,
-      }),
     ],
     build: {
       minify: "esbuild",

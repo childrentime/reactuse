@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import express from "express";
-import type { ModuleNode, ViteDevServer } from "vite";
+import type { ViteDevServer } from "vite";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -69,13 +69,12 @@ export async function createServer(
         render = (await import("./dist/server/main-node.js")).render;
       }
 
-      // todo need extract css every route need
-      const clientModule = (await vite.moduleGraph.getModuleByUrl(
-        "/src/App.tsx",
-      )) as ModuleNode;
-      const cssUrls = clientModule.ssrTransformResult!.deps!.filter(d =>
-        d.endsWith(".css"),
-      );
+      const mod = await vite.moduleGraph.getModuleByUrl("/src/App.tsx") as any;
+      const cssUrls = mod.ssrTransformResult.deps.filter(d => d.endsWith(".css"));
+      console.log("urls", cssUrls);
+
+      const assets = global.css;
+      console.log("assets", assets);
       const stylesTag = [...cssUrls]
         .map((url) => {
           return `<link rel="stylesheet" type="text/css" href="${url}">`;
@@ -84,9 +83,11 @@ export async function createServer(
 
       const appHtml = render(url);
 
+      console.log("appHtml", appHtml);
+
       const html = template
         .replace("<!--app-html-->", appHtml)
-        .replace("<!--dev-css-->", stylesTag);
+        .replace("<!--app-css-->", stylesTag);
 
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
     }
@@ -102,7 +103,7 @@ export async function createServer(
 }
 
 createServer().then(({ app }) =>
-  app.listen(5173, () => {
-    console.log("http://localhost:5173");
+  app.listen(8888, () => {
+    console.log("http://localhost:8888");
   }),
 );

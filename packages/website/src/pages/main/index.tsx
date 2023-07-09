@@ -68,11 +68,10 @@ const Main = () => {
               {pages.map(page => (
                 <Route
                   path={`/${page.page}`}
-                  element={<page.element />}
+                  element={page.element}
                   key={page.page}
                 />
-              ),
-              )}
+              ))}
               <Route path={"*"} element={<NotFound />} key="404" />
             </Routes>
           </section>
