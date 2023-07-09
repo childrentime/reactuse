@@ -16,6 +16,7 @@ const pages = menuGroup
   }, [])
   .map((page) => {
     return {
+      // FIX ME should not return loading... in renderToString()
       element: React.createElement(loadable(() => import(`../node_modules/@reactuses/core/hooks/${page}/README.md`)), {
         fallback: React.createElement("div", {}, "Loading..."),
       }),

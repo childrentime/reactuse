@@ -71,10 +71,8 @@ export async function createServer(
 
       const mod = await vite.moduleGraph.getModuleByUrl("/src/App.tsx") as any;
       const cssUrls = mod.ssrTransformResult.deps.filter(d => d.endsWith(".css"));
-      console.log("urls", cssUrls);
 
-      const assets = global.css;
-      console.log("assets", assets);
+      // FIXME should convert css to critical styles in first screen
       const stylesTag = [...cssUrls]
         .map((url) => {
           return `<link rel="stylesheet" type="text/css" href="${url}">`;
@@ -82,8 +80,6 @@ export async function createServer(
         .join("");
 
       const appHtml = render(url);
-
-      console.log("appHtml", appHtml);
 
       const html = template
         .replace("<!--app-html-->", appHtml)
