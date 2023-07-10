@@ -1,8 +1,9 @@
 import { Fragment, useEffect, useState } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { useScrollIntoView } from "@reactuses/core";
+import { routes } from "website:routes";
 import NotFound from "../404/";
-import { menuGroup, pages } from "../../routes";
+import { menuGroup } from "../../routes";
 import styles from "./style.module.css";
 
 const Main = () => {
@@ -65,11 +66,11 @@ const Main = () => {
         <div className={styles.col19}>
           <section className={styles.content}>
             <Routes>
-              {pages.map(page => (
+              {routes.map(page => (
                 <Route
-                  path={`/${page.page}`}
+                  path={`/${page.path}`}
                   element={page.element}
-                  key={page.page}
+                  key={page.path}
                 />
               ))}
               <Route path={"*"} element={<NotFound />} key="404" />
