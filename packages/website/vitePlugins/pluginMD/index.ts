@@ -1,4 +1,3 @@
-import path from "node:path";
 import type { Plugin } from "vite";
 import fs from "fs-extra";
 import { transformSync } from "@babel/core";
@@ -15,9 +14,9 @@ export default async function pluginMD(): Promise<Plugin> {
     enforce: "pre",
     async transform(src: string, id: string) {
       if (fileRegex.test(id)) {
-        const index = id.lastIndexOf(path.sep);
+        const index = id.lastIndexOf("/");
         const prePath = id.slice(0, index);
-        const name = prePath.slice(prePath.lastIndexOf(path.sep) + 1);
+        const name = prePath.slice(prePath.lastIndexOf("/") + 1);
 
         const { typeDeclarations } = await getMarkdownSection(pkg, name);
 
