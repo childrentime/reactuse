@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import express from "express";
-import type { ViteDevServer } from "vite";
+import type { ModuleNode, ViteDevServer } from "vite";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -69,10 +69,23 @@ export async function createServer(
         render = (await import("./dist/server/main-node.js")).render;
       }
 
-      const mod = await vite.moduleGraph.getModuleByUrl("/src/App.tsx") as any;
-      const cssUrls = mod.ssrTransformResult.deps.filter(d => d.endsWith(".css"));
+      const mod = await vite.moduleGraph.getModuleByUrl("/src/App.tsx") as ModuleNode;
 
-      // FIXME should convert css to critical styles in first screen
+      const cssUrls = new Set<string>();
+      const collectCss = async (mod: ModuleNode) => {
+        const deps = mod?.ssrTransformResult?.deps || [];
+        for (const dep of deps) {
+          if (dep.endsWith(".css")) {
+            cssUrls.add(dep);
+          }
+          else if (dep.endsWith(".tsx")) {
+            const depModule = await vite.moduleGraph.getModuleByUrl(dep);
+            depModule && collectCss(depModule);
+          }
+        }
+      };
+      await collectCss(mod);
+
       const stylesTag = [...cssUrls]
         .map((url) => {
           return `<link rel="stylesheet" type="text/css" href="${url}">`;
