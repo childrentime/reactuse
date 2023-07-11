@@ -22,7 +22,7 @@ const Main = () => {
   });
   useEffect(() => {
     const node = document.getElementsByClassName(
-      styles.itemSelect
+      styles.itemSelect,
     )[0] as HTMLElement;
     if (!node) {
       return;
@@ -81,7 +81,7 @@ const Main = () => {
           <section className={styles.content}>
             <Suspense fallback="Loading...">
               <Routes>
-                {routes.map((page) => (
+                {routes.map(page => (
                   <Suspense fallback="Loading ..." key={page.path}>
                     <Route path={`/${page.path}`} element={<page.element />} />
                   </Suspense>
