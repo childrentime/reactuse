@@ -11,7 +11,7 @@ export interface Route {
 
 const CONVENTIONAL_ROUTE_ID = "website:routes";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname = path.posix.dirname(fileURLToPath(import.meta.url));
 
 const menuGroup = routesJSON.main;
 const routeObjects = menuGroup.reduce((pre: string[], cur) => {
@@ -25,7 +25,7 @@ const generateRoutesCode = () => {
 
   ${routeObjects
     .map((route, index) => {
-      const importPath = path.resolve(__dirname, `../../node_modules/@reactuses/core/hooks/${route}/README.md`);
+      const importPath = path.posix.resolve(__dirname, `../../node_modules/@reactuses/core/hooks/${route}/README.md`);
       return `const Route${index} = lazy(() => import('${importPath}'));`;
     })
     .join("\n")}
