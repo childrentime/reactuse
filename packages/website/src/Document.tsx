@@ -11,10 +11,10 @@ export default function Document(
     switch (fileType) {
       case "svg":
         return (
-          <link rel="icon" type="image/svg+xml" href={asset} key={asset} />
+          <link rel="preload" type="image/svg+xml" href={asset} key={asset} as="image"/>
         );
       case "png":
-        return <link rel="icon" type="image/png" href={asset} key={asset} />;
+        return <link rel="preload" type="image/png" href={asset} key={asset} as="image"/>;
       case "ico":
         return <link rel="icon" type="image/x-icon" href={asset} key={asset} />;
       case "css":

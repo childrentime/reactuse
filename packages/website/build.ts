@@ -1,7 +1,4 @@
 import { build as viteBuild, InlineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import pluginMD from "./vitePlugins/pluginMD";
-import pluginRoutes from "./vitePlugins/pluginRoutes";
 import path from "path";
 import { fileURLToPath } from "url";
 import routesJSON from "./src/routes.json";
@@ -24,10 +21,9 @@ async function bundle() {
   const resolveViteConfig = async (ssr: boolean): Promise<InlineConfig> => {
     return {
       mode: "production",
-      plugins: [await pluginMD(), react(), pluginRoutes()],
       root,
       build: {
-        minify: false,
+        minify: 'esbuild',
         ssr,
         outDir: ssr
           ? path.join(root, "./dist/server")
@@ -73,7 +69,6 @@ async function bundle() {
 
     fs.copy(path.resolve(__dirname, "./dist/client"), desc);
 
-    console.log("finish");
   } catch (error) {
     console.log("error", error);
   }
