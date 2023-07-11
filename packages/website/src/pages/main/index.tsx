@@ -1,8 +1,14 @@
-import { Fragment, useEffect, useState } from "react";
-import { Link, Route, Routes, useLocation } from "react-router-dom";
+import {
+  Fragment,
+  Suspense,
+  startTransition,
+  useEffect,
+  useState,
+} from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useScrollIntoView } from "@reactuses/core";
+import { menuGroup, routes } from "website:routes";
 import NotFound from "../404/";
-import { menuGroup, pages } from "../../routes";
 import styles from "./style.module.css";
 
 const Main = () => {
@@ -28,6 +34,8 @@ const Main = () => {
     scrollIntoView({ alignment: "center" });
   }, [element]);
 
+  const navigate = useNavigate();
+
   return (
     <div className={styles.main}>
       <div className={styles.row}>
@@ -49,9 +57,16 @@ const Main = () => {
                               pathname === item ? styles.itemSelect : ""
                             }`}
                           >
-                            <Link to={`/${item}`} className={styles.itemLink}>
+                            <div
+                              className={styles.itemLink}
+                              onClick={() => {
+                                startTransition(() => {
+                                  navigate(`/${item}`);
+                                });
+                              }}
+                            >
                               {item}
-                            </Link>
+                            </div>
                           </li>
                         );
                       })}
@@ -64,17 +79,16 @@ const Main = () => {
         </div>
         <div className={styles.col19}>
           <section className={styles.content}>
-            <Routes>
-              {pages.map(page => (
-                <Route
-                  path={`/${page.page}`}
-                  element={<page.element />}
-                  key={page.page}
-                />
-              ),
-              )}
-              <Route path={"*"} element={<NotFound />} key="404" />
-            </Routes>
+            <Suspense fallback="Loading...">
+              <Routes>
+                {routes.map(page => (
+                  <Suspense fallback="Loading ..." key={page.path}>
+                    <Route path={`/${page.path}`} element={<page.element />} />
+                  </Suspense>
+                ))}
+                <Route path={"*"} element={<NotFound />} key="404" />
+              </Routes>
+            </Suspense>
           </section>
         </div>
       </div>

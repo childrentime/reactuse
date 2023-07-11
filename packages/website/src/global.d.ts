@@ -29,3 +29,15 @@ declare module "*.ico" {
 }
 
 declare module "markdown-it-code-copy";
+
+declare module "website:routes" {
+  import { Route } from "../vitePlugins/pluginRoutes";
+  interface Menu {
+    title: string;
+    items: string[];
+  }
+  const routes: Route[];
+  const pages: string[];
+  const menuGroup: Menu[];
+  export { routes, pages, menuGroup };
+}

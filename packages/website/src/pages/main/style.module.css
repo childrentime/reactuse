@@ -70,6 +70,10 @@
   text-align: left;
 }
 
+.itemLink {
+  cursor: pointer;
+}
+
 .itemSelect {
   background-color: var(--c-menu-select);
 }

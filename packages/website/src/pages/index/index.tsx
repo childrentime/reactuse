@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { startTransition } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./style.module.css";
 
 const Page = () => {
+  const navigate = useNavigate();
   return (
     <div className={styles.layout}>
       <h1>React Use</h1>
@@ -10,12 +12,16 @@ const Page = () => {
         <span>npm i @reactuses/core</span>
       </div>
       <div className={styles.buttons}>
-        <Link
+        <div
           className={`${styles.primary} ${styles.button}`}
-          to={"/useToggle"}
+          onClick={() => {
+            startTransition(() => {
+              navigate("/useToggle");
+            });
+          }}
         >
           Get Started
-        </Link>
+        </div>
         <a
           href="https://github.com/childrentime/reactuse"
           target="_blank"

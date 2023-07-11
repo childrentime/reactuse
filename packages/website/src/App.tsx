@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./pages/header";
 import Main from "./pages/main";
 import Index from "./pages/index";
-import "./styles/prose.css";
 import "./main.css";
 import "highlight.js/styles/stackoverflow-light.css";
 import "react-toastify/dist/ReactToastify.css";

@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "module": "ESNext",
+    "target": "ES2015",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -9,7 +10,6 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "CommonJS",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -22,5 +22,5 @@
     "transpileOnly": true,
     "files": true
   },
-  "include": ["src", "server", "utils", "config"]
+  "include": ["src", "server", "utils", "config", "vitePlugins", "server.ts"]
 }

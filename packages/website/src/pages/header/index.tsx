@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useClickOutside, useDarkMode } from "@reactuses/core";
 import { GoMarkGithub } from "react-icons/go";
-import { useEffect, useRef, useState } from "react";
+import { startTransition, useEffect, useRef, useState } from "react";
 import { Command } from "cmdk";
 import { FiSearch } from "react-icons/fi";
 import { ToastContainer } from "react-toastify";
-import { routes } from "../../routes";
+import { pages } from "website:routes";
 import sun from "../../assets/sun.svg";
 import moon from "../../assets/moon.svg";
 import logo from "../../assets/logo.svg";
@@ -48,13 +48,15 @@ const Header = () => {
         <Command.Input autoFocus placeholder="Search for apis..." />
         <Command.List>
           <Command.Empty>No results found.</Command.Empty>
-          {routes.map(item => (
+          {pages.map(item => (
             <Command.Item
               key={item}
               value={item}
               onSelect={() => {
                 setOpen(false);
-                navigate(`/${item}`);
+                startTransition(() => {
+                  navigate(`/${item}`);
+                });
               }}
             >
               {item}

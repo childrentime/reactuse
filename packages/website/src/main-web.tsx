@@ -1,4 +1,3 @@
-import { loadableReady } from "@loadable/component";
 import ClipboardJS from "clipboard";
 import React from "react";
 import { hydrateRoot } from "react-dom/client";
@@ -13,14 +12,14 @@ clip.on("success", () => {
   });
 });
 
-loadableReady(() => {
-  const root = document.getElementById("main") as HTMLElement;
-  hydrateRoot(
-    root,
-    <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </React.StrictMode>,
-  );
-});
+const root = document.getElementById("main") as HTMLElement;
+hydrateRoot(
+  root,
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+);
+
+console.log("hydrated");
