@@ -10,8 +10,5 @@ export default defineConfig(async () => {
       await pluginMD(),
       pluginRoutes(),
     ],
-    build: {
-      minify: "esbuild",
-    },
   };
 });

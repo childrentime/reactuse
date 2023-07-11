@@ -8,7 +8,10 @@ const fileRegex = /\.md$/;
 
 const pkg = "core";
 
+const isDev = process.env.NODE_ENV !== "production";
+
 export default async function pluginMD(): Promise<Plugin> {
+  const visitor = new Set<string>();
   return {
     name: "plugin-markdown",
     enforce: "pre",
@@ -22,18 +25,29 @@ export default async function pluginMD(): Promise<Plugin> {
 
         const demoPath = id.replace("README.md", "demo.tsx");
         const demoString = fs.readFileSync(demoPath, "utf-8");
-        const demoHtml = JSON.stringify(markdown.render(
-          `\`\`\`typescript\n${demoString.trim()}\n\`\`\``,
-        ));
+        const demoHtml = JSON.stringify(
+          markdown.render(`\`\`\`typescript\n${demoString.trim()}\n\`\`\``)
+        );
         const originHtml = JSON.stringify(markdown.render(src));
-        const typeDeclarationsHtml = JSON.stringify(markdown.render(typeDeclarations));
+        const typeDeclarationsHtml = JSON.stringify(
+          markdown.render(typeDeclarations)
+        );
+
+        // FIXME it seems like markdown has transfromed twice in production mode
+        if (name === "useToggle") {
+          console.log("html", name, id, typeof src, visitor.has(id), visitor);
+        }
+
+        if (!isDev && visitor.has(id)) {
+          return;
+        }
+        visitor.add(name);
 
         const reactCode = `
         import Demo from '${demoPath}';
         function Layout() {
           return <div className="prose">
             <div dangerouslySetInnerHTML={{__html: ${originHtml}}} />
-            <div dangerouslySetInnerHTML={{ __html: ${demoHtml} }} />
             <div>
               <h2>Example</h2>
               <div className="demo-container">
@@ -48,9 +62,14 @@ export default async function pluginMD(): Promise<Plugin> {
         try {
           const compiled = transformSync(reactCode, {
             ast: false,
-            presets: [["@babel/preset-react", {
-              runtime: "automatic",
-            }]],
+            presets: [
+              [
+                "@babel/preset-react",
+                {
+                  runtime: "automatic",
+                },
+              ],
+            ],
           })!.code;
 
           const code = `${compiled}\nexport default Layout\n`;
@@ -58,8 +77,7 @@ export default async function pluginMD(): Promise<Plugin> {
           return {
             code,
           };
-        }
-        catch (error) {
+        } catch (error) {
           console.log("error", error);
         }
       }

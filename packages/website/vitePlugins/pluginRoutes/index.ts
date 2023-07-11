@@ -13,31 +13,31 @@ const CONVENTIONAL_ROUTE_ID = "website:routes";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const routes = routesJSON.main.reduce((pre: string[], cur) => {
+const menuGroup = routesJSON.main;
+const routeObjects = menuGroup.reduce((pre: string[], cur) => {
   pre.push(...cur.items);
   return pre;
 }, []);
 
-const generateRoutesCode = (ssr: boolean) => {
+const generateRoutesCode = () => {
   return `
-  import React from 'react';
-  ${ssr ? "" : "import loadable from \"@loadable/component\";"}
+  import React, {lazy} from 'react'
 
-  ${routes
+  ${routeObjects
     .map((route, index) => {
       const importPath = path.resolve(__dirname, `../../node_modules/@reactuses/core/hooks/${route}/README.md`);
-      return ssr
-        ? `import Route${index} from "${importPath}";`
-        : `const Route${index} = loadable(() => import('${importPath}'));`;
+      return `const Route${index} = lazy(() => import('${importPath}'));`;
     })
     .join("\n")}
   export const routes = [
-    ${routes
+    ${routeObjects
       .map((route, index) => {
-        return `{ path: '${route}', element: React.createElement(Route${index}) }`;
+        return `{ path: '${route}', element: Route${index} }`;
       })
       .join(",\n")}
   ];
+  export const pages = ${JSON.stringify(routeObjects)}
+  export const menuGroup = ${JSON.stringify(menuGroup)};
   `;
 };
 
@@ -52,9 +52,7 @@ export default function pluginRoutes(): Plugin {
 
     load(id: string) {
       if (id === `\0${CONVENTIONAL_ROUTE_ID}`) {
-        // FIXME when set it to true, it will load all routes code
-        // But when it set to false, it will not load markdown string in server
-        return generateRoutesCode(true);
+        return generateRoutesCode();
       }
     },
   };

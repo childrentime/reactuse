@@ -39,6 +39,7 @@
   -webkit-transition-duration: 200ms;
   transition-duration: 200ms;
   margin: 1.5rem;
+  display: inline-block;
 }
 
 .primary {

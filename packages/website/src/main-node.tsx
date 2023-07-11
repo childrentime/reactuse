@@ -1,15 +1,52 @@
 import { StaticRouter } from "react-router-dom/server";
-import { renderToString } from "react-dom/server";
 import App from "./App";
+import { Writable } from "node:stream";
+import { renderToPipeableStream } from "react-dom/server";
+import Document from "./Document";
 
-export const render = (url: string): string => {
+const isDev = process.env.NODE_ENV !== "production";
+
+const renderToString = (element: JSX.Element): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const stream = renderToPipeableStream(element, {
+      bootstrapModules: !isDev ? ["/main-web.js"] : ["/src/main-web.tsx"],
+      onAllReady() {
+        const chunks: Buffer[] = [];
+
+        const writable = new Writable({
+          write(chunk, encoding, callback) {
+            chunks.push(Buffer.from(chunk));
+            callback();
+          },
+        });
+
+        writable.on("error", (error) => reject(error));
+
+        writable.on("finish", () => {
+          resolve(Buffer.concat(chunks).toString("utf8"));
+        });
+
+        stream.pipe(writable);
+      },
+      onError(error) {
+        reject(error);
+      },
+    });
+  });
+
+export const render = async (
+  url: string,
+  assets: string[]
+): Promise<string> => {
   const jsx = (
-    <StaticRouter location={url}>
-      <App />
-    </StaticRouter>
+    <Document assets={assets}>
+      <StaticRouter location={url}>
+        <App />
+      </StaticRouter>
+    </Document>
   );
 
-  const html = renderToString(jsx);
+  const html = await renderToString(jsx);
 
   return html;
 };
