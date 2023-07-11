@@ -1,4 +1,10 @@
-import { Fragment, Suspense, startTransition, useEffect, useState } from "react";
+import {
+  Fragment,
+  Suspense,
+  startTransition,
+  useEffect,
+  useState,
+} from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useScrollIntoView } from "@reactuses/core";
 import { menuGroup, routes } from "website:routes";
@@ -16,7 +22,7 @@ const Main = () => {
   });
   useEffect(() => {
     const node = document.getElementsByClassName(
-      styles.itemSelect,
+      styles.itemSelect
     )[0] as HTMLElement;
     if (!node) {
       return;
@@ -73,14 +79,16 @@ const Main = () => {
         </div>
         <div className={styles.col19}>
           <section className={styles.content}>
-            <Routes>
-              {routes.map(page => (
-                <Suspense fallback="Loading ..." key={page.path}>
-                  <Route path={`/${page.path}`} element={<page.element />} />
-                </Suspense>
-              ))}
-              <Route path={"*"} element={<NotFound />} key="404" />
-            </Routes>
+            <Suspense fallback="Loading...">
+              <Routes>
+                {routes.map((page) => (
+                  <Suspense fallback="Loading ..." key={page.path}>
+                    <Route path={`/${page.path}`} element={<page.element />} />
+                  </Suspense>
+                ))}
+                <Route path={"*"} element={<NotFound />} key="404" />
+              </Routes>
+            </Suspense>
           </section>
         </div>
       </div>
