@@ -1,8 +1,8 @@
 import path from "node:path";
 import fs from "fs-extra";
 
-const { join, resolve } = path.posix;
-const DIR_TYPES = resolve(__dirname, "../../../types/packages");
+const { resolve, join } = path.posix;
+const DIR_TYPES = resolve(__dirname, "../../../../types/packages");
 
 export async function getTypeDefinition(
   pkg: string,
@@ -10,6 +10,7 @@ export async function getTypeDefinition(
 ): Promise<string | undefined> {
   const typingFilepath = join(DIR_TYPES, `${pkg}/hooks/${name}/index.d.ts`);
 
+  console.log("file", typingFilepath);
   if (!fs.existsSync(typingFilepath))
     return;
 
