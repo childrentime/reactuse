@@ -33,7 +33,7 @@ export async function createServer(root = process.cwd(), hmrPort?: number) {
       const { render } = await vite.ssrLoadModule("/src/main-node.tsx");
 
       const mod = (await vite.moduleGraph.getModuleByUrl(
-        "/src/App.tsx"
+        "/src/App.tsx",
       )) as ModuleNode;
 
       const assetsUrls = new Set<string>();
@@ -41,13 +41,14 @@ export async function createServer(root = process.cwd(), hmrPort?: number) {
         const deps = mod?.ssrTransformResult?.deps || [];
         for (const dep of deps) {
           if (
-            dep.endsWith(".css") ||
-            dep.endsWith(".png") ||
-            dep.endsWith(".ico") ||
-            dep.endsWith("svg")
+            dep.endsWith(".css")
+            || dep.endsWith(".png")
+            || dep.endsWith(".ico")
+            || dep.endsWith("svg")
           ) {
             assetsUrls.add(dep);
-          } else if (dep.endsWith(".tsx")) {
+          }
+          else if (dep.endsWith(".tsx")) {
             const depModule = await vite.moduleGraph.getModuleByUrl(dep);
             depModule && collectAssets(depModule);
           }
@@ -59,7 +60,8 @@ export async function createServer(root = process.cwd(), hmrPort?: number) {
       const html = await vite.transformIndexHtml(url, appHtml);
 
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
-    } catch (e: any) {
+    }
+    catch (e: any) {
       vite.ssrFixStacktrace(e);
       console.log(e.stack);
       res.status(500).end(e.stack);
@@ -72,5 +74,5 @@ export async function createServer(root = process.cwd(), hmrPort?: number) {
 createServer().then(({ app }) =>
   app.listen(8888, () => {
     console.log("http://localhost:8888");
-  })
+  }),
 );

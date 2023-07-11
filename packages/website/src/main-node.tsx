@@ -1,7 +1,7 @@
-import { StaticRouter } from "react-router-dom/server";
-import App from "./App";
 import { Writable } from "node:stream";
+import { StaticRouter } from "react-router-dom/server";
 import { renderToPipeableStream } from "react-dom/server";
+import App from "./App";
 import Document from "./Document";
 
 const isDev = process.env.NODE_ENV !== "production";
@@ -20,7 +20,7 @@ const renderToString = (element: JSX.Element): Promise<string> =>
           },
         });
 
-        writable.on("error", (error) => reject(error));
+        writable.on("error", error => reject(error));
 
         writable.on("finish", () => {
           resolve(Buffer.concat(chunks).toString("utf8"));
@@ -36,7 +36,7 @@ const renderToString = (element: JSX.Element): Promise<string> =>
 
 export const render = async (
   url: string,
-  assets: string[]
+  assets: string[],
 ): Promise<string> => {
   const jsx = (
     <Document assets={assets}>

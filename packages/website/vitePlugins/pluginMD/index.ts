@@ -23,11 +23,11 @@ export default async function pluginMD(): Promise<Plugin> {
         const demoPath = id.replace("README.md", "demo.tsx");
         const demoString = fs.readFileSync(demoPath, "utf-8");
         const demoHtml = JSON.stringify(
-          markdown.render(`\`\`\`typescript\n${demoString.trim()}\n\`\`\``)
+          markdown.render(`\`\`\`typescript\n${demoString.trim()}\n\`\`\``),
         );
         const originHtml = JSON.stringify(markdown.render(src));
         const typeDeclarationsHtml = JSON.stringify(
-          markdown.render(typeDeclarations)
+          markdown.render(typeDeclarations),
         );
 
         const reactCode = `
@@ -66,7 +66,8 @@ export default async function pluginMD(): Promise<Plugin> {
           return {
             code,
           };
-        } catch (error) {
+        }
+        catch (error) {
           console.log("error", error);
         }
       }

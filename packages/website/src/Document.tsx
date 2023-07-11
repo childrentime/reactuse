@@ -1,7 +1,7 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 export default function Document(
-  props: PropsWithChildren<{ assets: string[] }>
+  props: PropsWithChildren<{ assets: string[] }>,
 ) {
   const { children, assets } = props;
 
@@ -11,18 +11,52 @@ export default function Document(
     switch (fileType) {
       case "svg":
         return (
-          <link rel="preload" type="image/svg+xml" href={asset} key={asset} as="image"/>
+          <link
+            rel="preload"
+            type="image/svg+xml"
+            href={asset}
+            key={asset}
+            as="image"
+          />
         );
       case "png":
-        return <link rel="preload" type="image/png" href={asset} key={asset} as="image"/>;
+        return (
+          <link
+            rel="preload"
+            type="image/png"
+            href={asset}
+            key={asset}
+            as="image"
+          />
+        );
       case "ico":
-        return <link rel="icon" type="image/x-icon" href={asset} key={asset} />;
+        return (
+          <link
+            rel="icon"
+            type="image/x-icon"
+            href={asset}
+            key={asset}
+          />
+        );
       case "css":
         return (
-          <link rel="stylesheet" type="text/css" href={asset} key={asset} />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href={asset}
+            key={asset}
+          />
         );
       case "js":
-        return <link rel="preload" href={asset} key={asset} as="script" crossOrigin="anonymous"/>;
+        return (
+          <link
+            rel="preload"
+            href={asset}
+            key={asset}
+            as="script"
+            crossOrigin="anonymous"
+          />
+        );
       default:
         return <link href={asset} key={asset} />;
     }
@@ -53,7 +87,7 @@ export default function Document(
           content="Collection of essential React Hooks Utilities."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         {Assest}
       </head>
       <body>

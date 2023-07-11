@@ -22,5 +22,5 @@
     "transpileOnly": true,
     "files": true
   },
-  "include": ["src", "server", "utils", "config", "vitePlugins","server.ts"]
+  "include": ["src", "server", "utils", "config", "vitePlugins", "server.ts"]
 }

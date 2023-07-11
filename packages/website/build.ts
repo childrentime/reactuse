@@ -1,9 +1,10 @@
-import { build as viteBuild, InlineConfig } from "vite";
-import path from "path";
-import { fileURLToPath } from "url";
-import routesJSON from "./src/routes.json";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import type { InlineConfig } from "vite";
+import { build as viteBuild } from "vite";
 import fs, { createWriteStream } from "fs-extra";
 import { SitemapStream } from "sitemap";
+import routesJSON from "./src/routes.json";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const routes = routesJSON.main.reduce((pre: string[], cur) => {
@@ -38,7 +39,7 @@ async function bundle() {
             entryFileNames: ssr ? "main-node.js" : "main-web.js",
           },
         },
-        copyPublicDir: ssr ? false : true,
+        copyPublicDir: !ssr,
       },
     };
   };
@@ -56,7 +57,7 @@ async function bundle() {
 
     const assets = fs
       .readdirSync("./dist/client/assets")
-      .map((asset) => `/assets/${asset}`);
+      .map(asset => `/assets/${asset}`);
 
     for (const route of routes) {
       const html = await render(`/${route}`, assets);
@@ -80,7 +81,8 @@ async function bundle() {
       smStream.write({ url: `/${route}` });
     }
     smStream.end();
-  } catch (error) {
+  }
+  catch (error) {
     console.log("error", error);
   }
 }

@@ -1,7 +1,7 @@
-import { Fragment, Suspense, useEffect, useState,startTransition } from "react";
+import { Fragment, Suspense, startTransition, useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useScrollIntoView } from "@reactuses/core";
-import { routes, menuGroup } from "website:routes";
+import { menuGroup, routes } from "website:routes";
 import NotFound from "../404/";
 import styles from "./style.module.css";
 
@@ -16,7 +16,7 @@ const Main = () => {
   });
   useEffect(() => {
     const node = document.getElementsByClassName(
-      styles.itemSelect
+      styles.itemSelect,
     )[0] as HTMLElement;
     if (!node) {
       return;
@@ -51,11 +51,14 @@ const Main = () => {
                               pathname === item ? styles.itemSelect : ""
                             }`}
                           >
-                            <div className={styles.itemLink} onClick={() => {
-                              startTransition(() => {
-                                navigate(`/${item}`)
-                              })
-                            }}>
+                            <div
+                              className={styles.itemLink}
+                              onClick={() => {
+                                startTransition(() => {
+                                  navigate(`/${item}`);
+                                });
+                              }}
+                            >
                               {item}
                             </div>
                           </li>
@@ -71,7 +74,7 @@ const Main = () => {
         <div className={styles.col19}>
           <section className={styles.content}>
             <Routes>
-              {routes.map((page) => (
+              {routes.map(page => (
                 <Suspense fallback="Loading ..." key={page.path}>
                   <Route path={`/${page.path}`} element={<page.element />} />
                 </Suspense>
