@@ -6,7 +6,7 @@
     "prebuild": "bash prebuild.sh",
     "dev": "cross-env NODE_ENV=development tsx server.ts",
     "build": "cross-env NODE_ENV=production tsx build.ts",
-    "preview": "serve viteSSG"
+    "preview": "serve ssg"
   },
   "dependencies": {
     "@babel/core": "^7.20.2",

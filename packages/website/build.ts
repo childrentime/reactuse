@@ -2,7 +2,8 @@ import { build as viteBuild, InlineConfig } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
 import routesJSON from "./src/routes.json";
-import fs from "fs-extra";
+import fs, { createWriteStream } from "fs-extra";
+import { SitemapStream } from "sitemap";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const routes = routesJSON.main.reduce((pre: string[], cur) => {
@@ -10,7 +11,7 @@ const routes = routesJSON.main.reduce((pre: string[], cur) => {
   return pre;
 }, []);
 
-const desc = path.resolve(__dirname, "./viteSSG");
+const desc = path.resolve(__dirname, "./ssg");
 
 const root = path.resolve(__dirname, "./");
 
@@ -23,7 +24,7 @@ async function bundle() {
       mode: "production",
       root,
       build: {
-        minify: 'esbuild',
+        minify: "esbuild",
         ssr,
         outDir: ssr
           ? path.join(root, "./dist/server")
@@ -69,6 +70,16 @@ async function bundle() {
 
     fs.copy(path.resolve(__dirname, "./dist/client"), desc);
 
+    // Generate site map
+    const smStream = new SitemapStream({
+      hostname: "https://www.reactuse.com",
+    });
+    const writeStream = createWriteStream(`${desc}/sitemap.xml`);
+    smStream.pipe(writeStream);
+    for (const route of routes) {
+      smStream.write({ url: `/${route}` });
+    }
+    smStream.end();
   } catch (error) {
     console.log("error", error);
   }

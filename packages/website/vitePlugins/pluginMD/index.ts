@@ -1,8 +1,8 @@
 import type { Plugin } from "vite";
 import fs from "fs-extra";
 import { transformSync } from "@babel/core";
-import markdown from "../../utils/markdown";
-import { getMarkdownSection } from "../../config/plugins/pre-markdown-loader";
+import markdown from "./markdown";
+import { getMarkdownSection } from "./utils";
 
 const fileRegex = /\.md$/;
 
