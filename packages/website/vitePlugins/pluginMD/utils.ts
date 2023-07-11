@@ -1,6 +1,7 @@
-import { join, resolve } from "node:path";
+import path from "node:path";
 import fs from "fs-extra";
 
+const { join, resolve } = path.posix;
 const DIR_TYPES = resolve(__dirname, "../../../types/packages");
 
 export async function getTypeDefinition(
