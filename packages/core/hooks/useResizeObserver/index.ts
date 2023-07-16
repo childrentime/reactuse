@@ -19,14 +19,14 @@ export default function useResizeObserver(
     }
   }, []);
   useDeepCompareEffect(() => {
-    if (!element.current) {
+    if (!element) {
       return;
     }
     observerRef.current = new ResizeObserver(savedCallback.current);
-    observerRef.current.observe(element.current, options);
+    observerRef.current.observe(element, options);
 
     return stop;
-  }, [options, element.current]);
+  }, [options, element]);
 
   return stop;
 }

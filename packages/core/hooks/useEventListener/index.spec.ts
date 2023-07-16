@@ -1,4 +1,4 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 import useEventListener from ".";
 
 interface Props {
@@ -38,7 +38,7 @@ describe(useEventListener, () => {
     checkOnMountAndUnmount(
       propsList1[0],
       "addEventListener",
-      "removeEventListener",
+      "removeEventListener"
     );
   });
 
@@ -47,7 +47,7 @@ describe(useEventListener, () => {
       propsList1[0],
       propsList1[1],
       "addEventListener",
-      "removeEventListener",
+      "removeEventListener"
     );
   });
 });
@@ -55,18 +55,18 @@ describe(useEventListener, () => {
 function checkOnMountAndUnmount(
   props: Props,
   addEventListenerName: string,
-  removeEventListenerName: string,
+  removeEventListenerName: string
 ) {
   const { unmount } = renderHook(
     (p: Props) => useEventListener(p.name, p.handler, p.target, p.options),
     {
       initialProps: props,
-    },
+    }
   );
   expect(props.target.current[addEventListenerName]).toHaveBeenCalledTimes(1);
   unmount();
   expect(props.target.current[removeEventListenerName]).toHaveBeenCalledTimes(
-    1,
+    1
   );
 }
 
@@ -74,13 +74,13 @@ function checkOnDepsChanges(
   props1: Props,
   props2: Props,
   addEventListenerName: string,
-  removeEventListenerName: string,
+  removeEventListenerName: string
 ) {
   const { rerender } = renderHook(
     (p: Props) => useEventListener(p.name, p.handler, p.target, p.options),
     {
       initialProps: props1,
-    },
+    }
   );
   expect(props1.target.current[addEventListenerName]).toHaveBeenCalledTimes(1);
 
@@ -101,7 +101,7 @@ function checkOnDepsChanges(
     options: props1.options,
   });
   expect(props1.target.current[removeEventListenerName]).toHaveBeenCalledTimes(
-    1,
+    1
   );
   expect(props1.target.current[addEventListenerName]).toHaveBeenCalledTimes(2);
 
@@ -113,7 +113,7 @@ function checkOnDepsChanges(
     options: { a: "opt1" },
   });
   expect(props1.target.current[removeEventListenerName]).toHaveBeenCalledTimes(
-    2,
+    2
   );
 
   // options is different from previous
@@ -124,7 +124,7 @@ function checkOnDepsChanges(
     options: props2.options,
   });
   expect(props1.target.current[removeEventListenerName]).toHaveBeenCalledTimes(
-    3,
+    3
   );
 
   // target is different from previous
@@ -137,12 +137,8 @@ function checkOnDepsChanges(
     });
   });
 
-  waitFor(() => {
-    expect(
-      props1.target.current[removeEventListenerName],
-    ).toHaveBeenCalledTimes(4);
-    expect(props2.target.current[addEventListenerName]).toHaveBeenCalledTimes(
-      1,
-    );
-  });
+  expect(props1.target.current[removeEventListenerName]).toHaveBeenCalledTimes(
+    4
+  );
+  expect(props2.target.current[addEventListenerName]).toHaveBeenCalledTimes(1);
 }

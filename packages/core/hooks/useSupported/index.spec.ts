@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { renderHook } from "@testing-library/react";
 import useSupported from ".";
 
 describe("useSupported", () => {
@@ -6,15 +6,17 @@ describe("useSupported", () => {
     expect(useSupported).toBeDefined();
   });
 
-  it("should support getBattery if mocked", () => {
-    const { result, rerender } = renderHook(() => useSupported(() => navigator && "getBattery" in navigator));
-    waitFor(() => {
-      expect(result.current).toBe(false);
-    });
+  it("should support getBattery if mocked", async () => {
+    const { result  } = renderHook(() =>
+      useSupported(() => navigator && "getBattery" in navigator)
+    );
+    expect(result.current).toBe(false);
+
     (window.navigator as any).getBattery = jest.fn;
-    rerender();
-    waitFor(() => {
-      expect(result.current).toBe(true);
-    });
+
+    const { result: result2 } = renderHook(() =>
+      useSupported(() => navigator && "getBattery" in navigator)
+    );
+    expect(result2.current).toBe(true);
   });
 });

@@ -1,4 +1,4 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 import useActiveElement from ".";
 
 describe("useActiveElement", () => {
@@ -15,20 +15,15 @@ describe("useActiveElement", () => {
   it("test focus/blur element", () => {
     const { result } = renderHook(() => useActiveElement());
     expect(result.current).toBe(null);
+
     act(() => {
       input.focus();
     });
-
-    waitFor(() => {
-      expect(result.current).toEqual(input);
-    });
+    expect(result.current).toEqual(input);
 
     act(() => {
       input.blur();
     });
-
-    waitFor(() => {
-      expect(result.current).toEqual(document.body);
-    });
+    expect(result.current).toEqual(document.body);
   });
 });

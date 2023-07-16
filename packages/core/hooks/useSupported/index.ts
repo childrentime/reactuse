@@ -9,6 +9,7 @@ export default function useSupported(
 
   const effect = sync ? useIsomorphicLayoutEffect : useEffect;
   effect(() => {
+    console.log('???')
     setSupported(Boolean(callback()));
   }, []);
 
