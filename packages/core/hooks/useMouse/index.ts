@@ -56,8 +56,8 @@ export default function useMouse(target?: BasicTarget): CursorState {
       };
       const targetElement = getTargetElement(target);
       if (targetElement) {
-        const { left, top, width, height } =
-          targetElement.getBoundingClientRect();
+        const { left, top, width, height }
+          = targetElement.getBoundingClientRect();
         newState.elementPosX = left + window.pageXOffset;
         newState.elementPosY = top + window.pageYOffset;
         newState.elementX = pageX - newState.elementPosX;
@@ -67,7 +67,7 @@ export default function useMouse(target?: BasicTarget): CursorState {
       }
       setState(newState);
     },
-    () => document
+    () => document,
   );
 
   return state;

@@ -24,7 +24,7 @@ describe(useDarkMode, () => {
 
   it("option selector", () => {
     const { result } = renderHook(() =>
-      useDarkMode({ selector: "body", ...options })
+      useDarkMode({ selector: "body", ...options }),
     );
     expect(result.current[0]).toBe(true);
     expect(document.body.className).toEqual("dark");
@@ -32,18 +32,18 @@ describe(useDarkMode, () => {
 
   it("option attribute", () => {
     const { result } = renderHook(() =>
-      useDarkMode({ attribute: "className1", ...options })
+      useDarkMode({ attribute: "className1", ...options }),
     );
 
     expect(result.current[0]).toBe(true);
     expect(document.querySelector("html")?.getAttribute("className1")).toEqual(
-      "dark"
+      "dark",
     );
   });
 
   it("option storageKey", () => {
     const { result } = renderHook(() =>
-      useDarkMode({ storageKey: "dark-mode", ...options })
+      useDarkMode({ storageKey: "dark-mode", ...options }),
     );
 
     expect(result.current[0]).toBe(true);
@@ -52,7 +52,7 @@ describe(useDarkMode, () => {
 
   it("option storage", () => {
     const { result } = renderHook(() =>
-      useDarkMode({ storage: () => sessionStorage, ...options })
+      useDarkMode({ storage: () => sessionStorage, ...options }),
     );
 
     expect(result.current[0]).toBe(true);

@@ -67,7 +67,7 @@ describe("useMutationObserver", () => {
       () => useMutationObserver(props.callback, () => props.container, options),
       {
         initialProps: props,
-      }
+      },
     );
     container.style.backgroundColor = "#000";
 

@@ -1,5 +1,5 @@
-import { MutableRefObject, useState } from "react";
-import { useEffect } from "react";
+import type { MutableRefObject } from "react";
+import { useEffect, useState } from "react";
 import { isBrowser, isFunction } from "./is";
 
 type TargetValue<T> = T | undefined | null;
@@ -38,13 +38,12 @@ export function getTargetElement<T extends TargetType>(
   return targetElement;
 }
 
-
 export function useLatestElement<T extends TargetType>(
   target: BasicTarget<T>,
   defaultElement?: T,
 ) {
   const [latestElement, setLatestElement] = useState(
-    getTargetElement(target, defaultElement)
+    getTargetElement(target, defaultElement),
   );
 
   useEffect(() => {

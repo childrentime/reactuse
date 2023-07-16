@@ -64,9 +64,8 @@ export default function useEventListener(
   element?: Target,
   options?: boolean | AddEventListenerOptions,
 ) {
-
   const savedHandler = useLatest(handler);
-  const targetElement = useLatestElement(element, defaultWindow)
+  const targetElement = useLatestElement(element, defaultWindow);
 
   useDeepCompareEffect(() => {
     if (!(targetElement && targetElement.addEventListener)) {

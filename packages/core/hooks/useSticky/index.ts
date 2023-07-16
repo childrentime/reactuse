@@ -45,7 +45,7 @@ const useSticky = ({
   useEffect(() => {
     const scrollParent
       = getTargetElement(scrollElement) || getScrollParent(axis, element);
-    if (!element|| !scrollParent) {
+    if (!element || !scrollParent) {
       return;
     }
 

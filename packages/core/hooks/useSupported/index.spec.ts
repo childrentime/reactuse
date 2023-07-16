@@ -7,15 +7,15 @@ describe("useSupported", () => {
   });
 
   it("should support getBattery if mocked", async () => {
-    const { result  } = renderHook(() =>
-      useSupported(() => navigator && "getBattery" in navigator)
+    const { result } = renderHook(() =>
+      useSupported(() => navigator && "getBattery" in navigator),
     );
     expect(result.current).toBe(false);
 
     (window.navigator as any).getBattery = jest.fn;
 
     const { result: result2 } = renderHook(() =>
-      useSupported(() => navigator && "getBattery" in navigator)
+      useSupported(() => navigator && "getBattery" in navigator),
     );
     expect(result2.current).toBe(true);
   });

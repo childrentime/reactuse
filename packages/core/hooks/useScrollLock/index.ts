@@ -34,7 +34,6 @@ export default function useScrollLock(
         element.style.overflow = "hidden";
       }
     }
-
   }, [locked, element]);
 
   const lock = useEvent(() => {

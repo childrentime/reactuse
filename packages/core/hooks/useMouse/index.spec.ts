@@ -9,7 +9,7 @@ describe("useMouse", () => {
         clientY: y,
         screenX: x,
         screenY: y,
-      })
+      }),
     );
   }
 
@@ -47,12 +47,12 @@ describe("useMouse", () => {
     const events: Record<string, any> = {};
     const getBoundingClientRectMock = jest.spyOn(
       HTMLElement.prototype,
-      "getBoundingClientRect"
+      "getBoundingClientRect",
     );
     jest.spyOn(document, "addEventListener").mockImplementation(
       jest.fn((event: any, callback: any) => {
         events[event] = callback;
-      })
+      }),
     );
 
     const targetEl = document.createElement("div");
