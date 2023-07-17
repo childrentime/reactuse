@@ -20,7 +20,7 @@ export default function useIntersectionObserver(
   }, []);
 
   useDeepCompareEffect(() => {
-    if (!element.current) {
+    if (!element) {
       return;
     }
 
@@ -28,10 +28,10 @@ export default function useIntersectionObserver(
       savedCallback.current,
       options,
     );
-    observerRef.current.observe(element.current);
+    observerRef.current.observe(element);
 
     return stop;
-  }, [options, element.current]);
+  }, [options, element]);
 
   return stop;
 }

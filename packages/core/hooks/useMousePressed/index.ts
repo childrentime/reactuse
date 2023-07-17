@@ -37,7 +37,7 @@ export default function useMousePressed(
 
   const [pressed, setPressed] = useState(initialValue);
   const [sourceType, setSourceType] = useState<MouseSourceType>(null);
-  const elementRef = useLatestElement(target);
+  const element = useLatestElement(target);
 
   const onPressed = useCallback(
     (srcType: MouseSourceType) => () => {
@@ -56,7 +56,6 @@ export default function useMousePressed(
   useEventListener("mouseup", onReleased, () => window, { passive: true });
 
   useEffect(() => {
-    const element = elementRef.current;
     if (drag) {
       element?.addEventListener("dragstart", onPressed("mouse"), {
         passive: true,
@@ -93,8 +92,7 @@ export default function useMousePressed(
         element?.removeEventListener("touchcancel", onReleased);
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [drag, onPressed, onReleased, touch, elementRef.current]);
+  }, [drag, onPressed, onReleased, touch, element]);
 
   return [pressed, sourceType] as const;
 }

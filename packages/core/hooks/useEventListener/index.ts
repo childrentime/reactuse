@@ -64,27 +64,24 @@ export default function useEventListener(
   element?: Target,
   options?: boolean | AddEventListenerOptions,
 ) {
-  // Create a ref that stores handler
   const savedHandler = useLatest(handler);
-  const targetElementRef = useLatestElement(element, defaultWindow);
+  const targetElement = useLatestElement(element, defaultWindow);
 
   useDeepCompareEffect(() => {
-    const targetElement = targetElementRef.current;
     if (!(targetElement && targetElement.addEventListener)) {
       return;
     }
 
-    // Create event listener that calls handler function stored in ref
     const eventListener: typeof handler = event =>
       savedHandler.current(event);
 
     on(targetElement, eventName, eventListener, options);
-    // Remove event listener on cleanup
+
     return () => {
       if (!(targetElement && targetElement.removeEventListener)) {
         return;
       }
       off(targetElement, eventName, eventListener);
     };
-  }, [eventName, targetElementRef.current, options, savedHandler]);
+  }, [eventName, targetElement, options, savedHandler]);
 }

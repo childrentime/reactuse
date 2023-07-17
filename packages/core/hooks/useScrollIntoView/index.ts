@@ -74,7 +74,7 @@ export default function useScrollIntoView({
     ({ alignment = "start" }: ScrollIntoViewAnimation = {}) => {
       const parent
         = getTargetElement(scrollElement)
-        || getScrollParent(axis, element.current);
+        || getScrollParent(axis, element);
       shouldStop.current = false;
 
       if (frameID.current) {
@@ -85,7 +85,7 @@ export default function useScrollIntoView({
       const change
         = getRelativePosition({
           parent,
-          target: element.current,
+          target: element,
           axis,
           alignment,
           offset,

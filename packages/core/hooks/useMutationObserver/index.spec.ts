@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 import useMutationObserver from ".";
 
 const options: MutationObserverInit = {
@@ -25,33 +25,33 @@ describe("useMutationObserver", () => {
 
   it("should callback work when target style be changed", async () => {
     const callback = jest.fn();
-    const { rerender } = renderHook(() =>
-      useMutationObserver(callback, () => container, options),
-    );
+    renderHook(() => useMutationObserver(callback, () => container, options));
     container.style.backgroundColor = "#000";
-    await rerender();
-    expect(callback).toBeCalled();
+
+    await waitFor(() => {
+      expect(callback).toBeCalled();
+    });
   });
 
   it("should callback work when target node tree be changed", async () => {
     const callback = jest.fn();
-    const { rerender } = renderHook(() =>
-      useMutationObserver(callback, () => container, options),
-    );
+    renderHook(() => useMutationObserver(callback, () => container, options));
     const paraEl = document.createElement("p");
     container.appendChild(paraEl);
-    await rerender();
-    expect(callback).toBeCalled();
+
+    await waitFor(() => {
+      expect(callback).toBeCalled();
+    });
   });
 
   it("should not work when target is null", async () => {
     const callback = jest.fn();
-    const { rerender } = renderHook(() =>
-      useMutationObserver(callback, null, options),
-    );
+    renderHook(() => useMutationObserver(callback, null, options));
     container.style.backgroundColor = "#000";
-    rerender();
-    expect(callback).not.toBeCalled();
+
+    await waitFor(() => {
+      expect(callback).not.toBeCalled();
+    });
   });
 
   it("should work when target changed", async () => {
@@ -70,12 +70,16 @@ describe("useMutationObserver", () => {
       },
     );
     container.style.backgroundColor = "#000";
-    await rerender();
-    expect(props.callback).toBeCalled();
-    rerender(props1);
-    waitFor(() => {
-      expect(props1.callback).not.toBeCalled();
+
+    await waitFor(() => {
+      expect(props.callback).toBeCalled();
     });
+
+    act(() => {
+      rerender(props1);
+    });
+
+    expect(props1.callback).not.toBeCalled();
 
     container1.style.backgroundColor = "#000";
     waitFor(() => {

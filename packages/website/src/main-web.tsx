@@ -21,5 +21,3 @@ hydrateRoot(
     </BrowserRouter>
   </React.StrictMode>,
 );
-
-console.log("hydrated");

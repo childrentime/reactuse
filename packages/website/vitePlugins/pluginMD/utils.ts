@@ -10,7 +10,6 @@ export async function getTypeDefinition(
 ): Promise<string | undefined> {
   const typingFilepath = join(DIR_TYPES, `${pkg}/hooks/${name}/index.d.ts`);
 
-  console.log("file", typingFilepath);
   if (!fs.existsSync(typingFilepath))
     return;
 

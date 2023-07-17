@@ -1,4 +1,4 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 import useEventListener from ".";
 
 interface Props {
@@ -137,12 +137,8 @@ function checkOnDepsChanges(
     });
   });
 
-  waitFor(() => {
-    expect(
-      props1.target.current[removeEventListenerName],
-    ).toHaveBeenCalledTimes(4);
-    expect(props2.target.current[addEventListenerName]).toHaveBeenCalledTimes(
-      1,
-    );
-  });
+  expect(props1.target.current[removeEventListenerName]).toHaveBeenCalledTimes(
+    4,
+  );
+  expect(props2.target.current[addEventListenerName]).toHaveBeenCalledTimes(1);
 }

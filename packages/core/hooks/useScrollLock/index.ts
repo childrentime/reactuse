@@ -28,21 +28,20 @@ export default function useScrollLock(
   const element = useLatestElement(target);
 
   useEffect(() => {
-    if (element.current) {
-      initialOverflowRef.current = element.current.style.overflow;
+    if (element) {
+      initialOverflowRef.current = element.style.overflow;
       if (locked) {
-        element.current.style.overflow = "hidden";
+        element.style.overflow = "hidden";
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [locked, element.current]);
+  }, [locked, element]);
 
   const lock = useEvent(() => {
-    if (!element.current || locked) {
+    if (!element || locked) {
       return;
     }
     if (isIOS) {
-      element.current.addEventListener("touchmove", preventDefault, {
+      element.addEventListener("touchmove", preventDefault, {
         passive: false,
       });
     }
@@ -50,13 +49,13 @@ export default function useScrollLock(
   });
 
   const unlock = useEvent(() => {
-    if (!element.current || !locked) {
+    if (!element || !locked) {
       return;
     }
     if (isIOS) {
-      element.current.removeEventListener("touchmove", preventDefault);
+      element.removeEventListener("touchmove", preventDefault);
     }
-    element.current.style.overflow = initialOverflowRef.current;
+    element.style.overflow = initialOverflowRef.current;
     setLocked(false);
   });
 

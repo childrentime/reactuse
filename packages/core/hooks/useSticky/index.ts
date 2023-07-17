@@ -30,10 +30,10 @@ const useSticky = ({
   const element = useLatestElement(targetElement);
 
   const { run: scrollHandler } = useThrottleFn(() => {
-    if (!element.current) {
+    if (!element) {
       return;
     }
-    const rect = element.current.getBoundingClientRect();
+    const rect = element.getBoundingClientRect();
     if (axis === "y") {
       setSticky(rect?.top <= nav);
     }
@@ -44,8 +44,8 @@ const useSticky = ({
 
   useEffect(() => {
     const scrollParent
-      = getTargetElement(scrollElement) || getScrollParent(axis, element.current);
-    if (!element.current || !scrollParent) {
+      = getTargetElement(scrollElement) || getScrollParent(axis, element);
+    if (!element || !scrollParent) {
       return;
     }
 

@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 import useMouse from ".";
 
 describe("useMouse", () => {
@@ -13,22 +13,34 @@ describe("useMouse", () => {
     );
   }
 
+  let mockRaf: jest.SpyInstance;
+  beforeAll(() => {
+    mockRaf = jest
+      .spyOn(window, "requestAnimationFrame")
+      .mockImplementation((cb: FrameRequestCallback) => {
+        cb(0);
+        return 0;
+      });
+  });
+
+  afterAll(() => {
+    mockRaf.mockRestore();
+  });
+
   it("on mouseMove", async () => {
-    const hook = renderHook(() => useMouse());
+    const hook = renderHook(() => useMouse(document.documentElement));
     expect(hook.result.current.pageX).toEqual(NaN);
     expect(hook.result.current.pageY).toEqual(NaN);
 
-    moveMouse(10, 10);
-
-    // can't manually set pageX & pageY for mouseEvent, default undefined here.
-    waitFor(() => {
-      expect(hook.result.current.pageY).toEqual(undefined);
-      expect(hook.result.current.clientX).toEqual(10);
-      expect(hook.result.current.clientY).toEqual(10);
-      expect(hook.result.current.screenX).toEqual(10);
-      expect(hook.result.current.screenY).toEqual(10);
-      expect(hook.result.current.pageX).toEqual(undefined);
+    act(() => {
+      moveMouse(10, 10);
     });
+    expect(hook.result.current.pageY).toEqual(undefined);
+    expect(hook.result.current.clientX).toEqual(10);
+    expect(hook.result.current.clientY).toEqual(10);
+    expect(hook.result.current.screenX).toEqual(10);
+    expect(hook.result.current.screenY).toEqual(10);
+    expect(hook.result.current.pageX).toEqual(undefined);
   });
 
   it("should be work with target", async () => {
@@ -51,13 +63,14 @@ describe("useMouse", () => {
       height: 200,
     } as DOMRect);
     const { result } = renderHook(() => useMouse(targetEl));
-    events.mousemove({ pageX: 100, pageY: 100 });
 
-    waitFor(() => {
-      expect(result.current.elementX).toBe(0);
-      expect(result.current.elementY).toBe(0);
-      expect(result.current.elementPosX).toBe(100);
-      expect(result.current.elementPosY).toBe(100);
+    act(() => {
+      events.mousemove({ pageX: 100, pageY: 100 });
     });
+
+    expect(result.current.elementX).toBe(0);
+    expect(result.current.elementY).toBe(0);
+    expect(result.current.elementPosX).toBe(100);
+    expect(result.current.elementPosY).toBe(100);
   });
 });

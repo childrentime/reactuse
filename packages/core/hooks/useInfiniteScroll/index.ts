@@ -51,16 +51,16 @@ export default function useInfiniteScroll(
     const opts = latestOptions.current;
     const fn = async () => {
       const previous = {
-        height: element.current?.scrollHeight ?? 0,
-        width: element.current?.scrollWidth ?? 0,
+        height: element?.scrollHeight ?? 0,
+        width: element?.scrollWidth ?? 0,
       };
 
       await savedLoadMore.current(state);
 
-      if (opts.preserveScrollPosition && element.current) {
-        element.current.scrollTo({
-          top: element.current.scrollHeight - previous.height,
-          left: element.current.scrollWidth - previous.width,
+      if (opts.preserveScrollPosition && element) {
+        element.scrollTo({
+          top: element.scrollHeight - previous.height,
+          left: element.scrollWidth - previous.width,
         });
       }
     };

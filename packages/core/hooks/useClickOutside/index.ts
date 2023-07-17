@@ -13,14 +13,14 @@ export default function useClickOutSide(
   const element = useLatestElement(target);
 
   const listener = (event: EventType) => {
-    if (!element.current) {
+    if (!element) {
       return;
     }
 
     const elements = event.composedPath();
     if (
-      element.current === event.target
-      || elements.includes(element.current)
+      element === event.target
+      || elements.includes(element)
     ) {
       return;
     }
