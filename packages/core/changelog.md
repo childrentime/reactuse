@@ -123,3 +123,11 @@
 
 * add useSetState
 * add useMeasure
+
+## 3.0.0(Jul 7, 2023)
+
+## Core
+
+### Breaking Change
+
+* Dynamic dom element passing parameters is now supported
