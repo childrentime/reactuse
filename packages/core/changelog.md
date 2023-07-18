@@ -138,9 +138,15 @@
 
 * useMediaDevices support request permissons, and change return result to array.
 
-# 3.0.1(Jul 18, 2023)
+# 3.0.2(Jul 18, 2023)
 
 ## Core
 
 * fix useMediaDevices in firefox.
+
+# 3.0.3(Jul 18, 2023)
+
+## Core
+
+* fix useMediaDevices when create default value;
 
