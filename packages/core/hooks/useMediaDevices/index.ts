@@ -18,9 +18,10 @@ export interface UseMediaDeviceOptions {
    */
   constraints?: MediaStreamConstraints;
 }
+
+const defaultConstints = { audio: true, video: true };
 function useMediaDevices(options: UseMediaDeviceOptions = {}) {
-  const { requestPermissions, constraints = { audio: true, video: true } }
-    = options;
+  const { requestPermissions, constraints = defaultConstints } = options;
   const [state, setState] = useState<{
     devices: {
       deviceId: string;
@@ -69,9 +70,11 @@ function useMediaDevices(options: UseMediaDeviceOptions = {}) {
     let state: PermissionState | undefined;
 
     try {
-      state = (await navigator!.permissions.query({
-        name: "camera",
-      } as unknown as PermissionDescriptor)).state;
+      state = (
+        await navigator!.permissions.query({
+          name: "camera",
+        } as unknown as PermissionDescriptor)
+      ).state;
     }
     catch (error) {
       state = "prompt";
