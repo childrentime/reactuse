@@ -131,3 +131,9 @@
 ### Breaking Change
 
 * Dynamic dom element passing parameters is now supported
+
+# 3.0.1(Jul 18, 2023)
+
+## Core
+
+* useMediaDevices support request permissons, and change return result to array.
