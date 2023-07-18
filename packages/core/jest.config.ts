@@ -6,6 +6,7 @@ const config: Config = {
   testEnvironment: "jsdom", // browser-like
   moduleNameMapper: {
     "^lodash-es$": "lodash",
+    "^@testing-library/react$": "@reactuses/test"
   },
   transformIgnorePatterns: [
     "node_modules/(?!(lodash-es)/)",
