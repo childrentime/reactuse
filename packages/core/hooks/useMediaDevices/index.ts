@@ -66,17 +66,18 @@ function useMediaDevices(options: UseMediaDeviceOptions = {}) {
       return true;
     }
 
-    let state: PermissionState | undefined = undefined;
+    let state: PermissionState | undefined;
 
     try {
-        state = (await navigator!.permissions.query({
-      name: "camera",
-    } as unknown as PermissionDescriptor)).state;
-    } catch (error) {
-      state = 'prompt';
+      state = (await navigator!.permissions.query({
+        name: "camera",
+      } as unknown as PermissionDescriptor)).state;
+    }
+    catch (error) {
+      state = "prompt";
     }
 
-    if (state!== "granted") {
+    if (state !== "granted") {
       stream.current = await navigator!.mediaDevices.getUserMedia(constraints);
       onChange();
       permissionGranted.current = true;
@@ -106,7 +107,5 @@ function useMediaDevices(options: UseMediaDeviceOptions = {}) {
 
   return [state, ensurePermissions] as const;
 }
-
-
 
 export default useMediaDevices;
