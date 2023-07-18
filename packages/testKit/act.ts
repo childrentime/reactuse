@@ -33,9 +33,9 @@ const act: typeof reactAct = (callback) => {
     const actResult = reactAct(() => {
       const result = callback();
       if (
-        result !== null &&
-        typeof result === "object" &&
-        typeof result.then === "function"
+        result !== null
+        && typeof result === "object"
+        && typeof result.then === "function"
       ) {
         callbackNeedsToBeAwaited = true;
       }
@@ -53,15 +53,17 @@ const act: typeof reactAct = (callback) => {
             (error) => {
               setIsReactActEnvironment(previousActEnvironment);
               reject(error);
-            }
+            },
           );
         },
       } as any;
-    } else {
+    }
+    else {
       setIsReactActEnvironment(previousActEnvironment);
       return actResult;
     }
-  } catch (error) {
+  }
+  catch (error) {
     setIsReactActEnvironment(previousActEnvironment);
     throw error;
   }

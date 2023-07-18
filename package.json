@@ -21,6 +21,10 @@
     "core:dev": "pnpm --filter core run dev & pnpm build:types",
     "core:test": "pnpm --filter core run test"
   },
+  "dependencies": {
+    "bunchee": "^3.5.1",
+    "tsup": "^7.1.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
@@ -69,9 +73,5 @@
         "typescript"
       ]
     }
-  },
-  "dependencies": {
-    "bunchee": "^3.5.1",
-    "tsup": "^7.1.0"
   }
 }

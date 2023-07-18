@@ -1,5 +1,7 @@
-import { createRoot, Root } from "react-dom/client";
-import { createRef, MutableRefObject, useEffect } from "react";
+import type { Root } from "react-dom/client";
+import { createRoot } from "react-dom/client";
+import type { MutableRefObject } from "react";
+import { createRef, useEffect } from "react";
 import { act } from "./act";
 
 const mountedMap = new Map<HTMLDivElement, Root>();
@@ -30,12 +32,12 @@ export interface IRenderHookResult<Props, Result> {
 
 const renderHook = <Result, Props>(
   renderCallback: (initialProps: Props) => Result,
-  options: IRenderHookOptions<Props> = {}
+  options: IRenderHookOptions<Props> = {},
 ): IRenderHookResult<Props, Result> => {
   const { initialProps } = options;
 
-  let result = createRef<Result>() as MutableRefObject<Result>;
-  let root: Root | undefined = undefined;
+  const result = createRef<Result>() as MutableRefObject<Result>;
+  let root: Root | undefined;
   const container = document.body.appendChild(document.createElement("div"));
 
   const TestComponent = ({ renderCallbackProps }) => {
@@ -53,7 +55,7 @@ const renderHook = <Result, Props>(
         mountedMap.set(container, root);
       }
       root.render(
-        <TestComponent renderCallbackProps={rerenderCallbackProps} />
+        <TestComponent renderCallbackProps={rerenderCallbackProps} />,
       );
     });
   };

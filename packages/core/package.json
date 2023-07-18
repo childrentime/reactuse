@@ -45,8 +45,9 @@
     "publish:ci": "esno scripts/publish.ts",
     "release:prepare": "bump",
     "release": "esno scripts/release.ts",
-    "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test": "pnpm run prebuild && jest",
+    "test:coverage": "pnpm run prebuild  && jest --coverage",
+    "prebuild": "bash prebuild.sh"
   },
   "peerDependencies": {
     "react": "^16.8.0  || ^17.0.0 || ^18.0.0"
@@ -57,8 +58,8 @@
     "screenfull": "^5.0.0"
   },
   "devDependencies": {
-    "@reactuses/test": "workspace:*",
     "@jsdevtools/version-bump-prompt": "^6.1.0",
+    "@reactuses/test": "workspace:*",
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^14.1.0",
