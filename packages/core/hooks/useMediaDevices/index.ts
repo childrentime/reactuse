@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import useSupported from "../useSupported";
 import { off, on } from "../utils/browser";
-import { isNavigator, noop } from "../utils/is";
+import { noop } from "../utils/is";
 
 export interface UseMediaDeviceOptions {
   /**
@@ -65,11 +65,18 @@ function useMediaDevices(options: UseMediaDeviceOptions = {}) {
     if (permissionGranted.current) {
       return true;
     }
-    const permissionStatus = await navigator!.permissions.query({
-      name: "camera",
-    } as unknown as PermissionDescriptor);
 
-    if (permissionStatus.state !== "granted") {
+    let state: PermissionState | undefined = undefined;
+
+    try {
+        state = (await navigator!.permissions.query({
+      name: "camera",
+    } as unknown as PermissionDescriptor)).state;
+    } catch (error) {
+      state = 'prompt';
+    }
+
+    if (state!== "granted") {
       stream.current = await navigator!.mediaDevices.getUserMedia(constraints);
       onChange();
       permissionGranted.current = true;
@@ -100,8 +107,6 @@ function useMediaDevices(options: UseMediaDeviceOptions = {}) {
   return [state, ensurePermissions] as const;
 }
 
-const useMediaDevicesMock = () => [{ devices: [] }, () => {}];
 
-export default isNavigator && !!navigator.mediaDevices
-  ? useMediaDevices
-  : useMediaDevicesMock;
+
+export default useMediaDevices;
