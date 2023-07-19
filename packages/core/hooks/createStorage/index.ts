@@ -1,12 +1,5 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-} from "react";
-import {
-  useMemo,
-  useState,
-} from "react";
+import type { Dispatch, SetStateAction } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { isFunction } from "../utils/is";
 import { guessSerializerType } from "../utils/serializer";
 import useEvent from "../useEvent";
@@ -73,8 +66,6 @@ export interface UseStorageOptions<T> {
   csrData?: T | (() => T);
 }
 
-
-
 // to avoid SSR error, first return default value, then update it in useEffect
 export default function useStorage<
   T extends string | number | boolean | object | null,
@@ -84,7 +75,6 @@ export default function useStorage<
   getStorage: () => Storage | undefined,
   options: UseStorageOptions<T> = defaultOptions,
 ) {
-
   let storage: Storage | undefined;
   const { onError = defaultOnError, csrData } = options;
 
@@ -125,7 +115,7 @@ export default function useStorage<
     };
 
     setState(getStoredValue());
-  }, [key, defaults, serializer, storage, onError]);
+  }, [key, defaults, serializer, storage, onError, csrData]);
 
   const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
     (valOrFunc) => {

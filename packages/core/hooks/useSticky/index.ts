@@ -15,7 +15,7 @@ export interface UseStickyParams {
 const useSticky = (
   targetElement: BasicTarget<HTMLElement>,
   { axis = "y", nav = 0 }: UseStickyParams,
-  scrollElement?: BasicTarget<HTMLElement>
+  scrollElement?: BasicTarget<HTMLElement>,
 ): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
   const [isSticky, setSticky] = useState<boolean>(false);
   const element = useLatestElement(targetElement);
@@ -27,14 +27,15 @@ const useSticky = (
     const rect = element.getBoundingClientRect();
     if (axis === "y") {
       setSticky(rect?.top <= nav);
-    } else {
+    }
+    else {
       setSticky(rect?.left <= nav);
     }
   }, 50);
 
   useEffect(() => {
-    const scrollParent =
-      getTargetElement(scrollElement) || getScrollParent(axis, element);
+    const scrollParent
+      = getTargetElement(scrollElement) || getScrollParent(axis, element);
     if (!element || !scrollParent) {
       return;
     }

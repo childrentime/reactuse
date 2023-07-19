@@ -36,7 +36,7 @@ describe(useLocalStorage, () => {
 
   it("correctly updates localStorage", () => {
     const { result, rerender } = renderHook(() =>
-      useLocalStorage("foo", "bar")
+      useLocalStorage("foo", "bar"),
     );
 
     const [, setFoo] = result.current;
@@ -57,12 +57,12 @@ describe(useLocalStorage, () => {
 
   it("sets initialState if initialState is an object", () => {
     renderHook(() => useLocalStorage("foo", { bar: true }));
-    expect(localStorage.getItem("foo")).toEqual('{"bar":true}');
+    expect(localStorage.getItem("foo")).toEqual("{\"bar\":true}");
   });
 
   it("correctly and promptly returns a new value", () => {
     const { result, rerender } = renderHook(() =>
-      useLocalStorage("foo", "bar")
+      useLocalStorage("foo", "bar"),
     );
 
     const [, setFoo] = result.current;
@@ -97,7 +97,7 @@ describe(useLocalStorage, () => {
   it("safely initializes objects to localStorage", () => {
     const defaultsValue = { ok: true };
     const { result } = renderHook(() =>
-      useLocalStorage<{ ok: boolean }>("foo", defaultsValue)
+      useLocalStorage<{ ok: boolean }>("foo", defaultsValue),
     );
     const [foo] = result.current;
     expect(foo?.ok).toEqual(true);
@@ -106,7 +106,7 @@ describe(useLocalStorage, () => {
   it("safely sets objects to localStorage", () => {
     const defaultsValue = { ok: true };
     const { result, rerender } = renderHook(() =>
-      useLocalStorage<{ ok: any }>("foo", defaultsValue)
+      useLocalStorage<{ ok: any }>("foo", defaultsValue),
     );
 
     const [, setFoo] = result.current;
@@ -120,7 +120,7 @@ describe(useLocalStorage, () => {
   it("safely returns objects from updates", () => {
     const defaultsValue = { ok: true };
     const { result, rerender } = renderHook(() =>
-      useLocalStorage<{ ok: any }>("foo", defaultsValue)
+      useLocalStorage<{ ok: any }>("foo", defaultsValue),
     );
 
     const [, setFoo] = result.current;
@@ -135,11 +135,11 @@ describe(useLocalStorage, () => {
   it("sets localStorage from the function updater", () => {
     const defaultValue = { foo: "bar" };
     const { result, rerender } = renderHook(() =>
-      useLocalStorage<{ foo: string; fizz?: string }>("foo", defaultValue)
+      useLocalStorage<{ foo: string; fizz?: string }>("foo", defaultValue),
     );
 
     const [, setFoo] = result.current;
-    act(() => setFoo((state) => ({ ...state!, fizz: "buzz" })));
+    act(() => setFoo(state => ({ ...state!, fizz: "buzz" })));
     rerender();
 
     const [value] = result.current;
@@ -150,7 +150,7 @@ describe(useLocalStorage, () => {
   it("memoizes an object between rerenders", () => {
     const defaultValue = { ok: true };
     const { result, rerender } = renderHook(() =>
-      useLocalStorage("foo", defaultValue)
+      useLocalStorage("foo", defaultValue),
     );
     (() => {
       return result.current;
@@ -166,7 +166,7 @@ describe(useLocalStorage, () => {
     const defaultValue = { ok: true };
     localStorage.setItem("foo", JSON.stringify({ ok: true }));
     const { result, rerender } = renderHook(() =>
-      useLocalStorage("foo", defaultValue)
+      useLocalStorage("foo", defaultValue),
     );
 
     const [r1] = result.current;
@@ -179,7 +179,7 @@ describe(useLocalStorage, () => {
     const defaultValue = { ok: true };
     localStorage.setItem("foo", JSON.stringify({ ok: true }));
     const { result, rerender } = renderHook(() =>
-      useLocalStorage("foo", defaultValue)
+      useLocalStorage("foo", defaultValue),
     );
     const [, s1] = result.current;
     rerender();
@@ -192,7 +192,7 @@ describe(useLocalStorage, () => {
     localStorage.setItem("KEY", "2000-01-01T00:00:00.000Z");
 
     const { result, rerender } = renderHook(() =>
-      useLocalStorage("KEY", defaultValue)
+      useLocalStorage("KEY", defaultValue),
     );
     const [state, setState] = result.current;
     expect(state).toEqual(new Date("2000-01-01T00:00:00.000Z"));
@@ -207,36 +207,36 @@ describe(useLocalStorage, () => {
       [2, 2],
     ]);
     const { result, rerender } = renderHook(() =>
-      useLocalStorage("key", defaultValue)
+      useLocalStorage("key", defaultValue),
     );
     const [state, setState] = result.current;
     expect(state).toEqual(
       new Map<number, string | number>([
         [1, "a"],
         [2, 2],
-      ])
+      ]),
     );
     act(() =>
       setState(
         new Map<number, string | number>([
           [1, "a"],
           [2, 3],
-        ])
-      )
+        ]),
+      ),
     );
     rerender();
     expect(result.current[0]).toEqual(
       new Map<number, string | number>([
         [1, "a"],
         [2, 3],
-      ])
+      ]),
     );
   });
 
   it("set", () => {
     const defaultValue = new Set<string | number>([1, "a"]);
     const { result, rerender } = renderHook(() =>
-      useLocalStorage("key", defaultValue)
+      useLocalStorage("key", defaultValue),
     );
     const [state, setState] = result.current;
     expect(state).toEqual(new Set<string | number>([1, "a"]));
@@ -250,13 +250,13 @@ describe(useLocalStorage, () => {
       serializer: { read: JSON.parse, write: JSON.stringify },
     };
     const { result, rerender } = renderHook(() =>
-      useLocalStorage<any>("key", 0, serializer)
+      useLocalStorage<any>("key", 0, serializer),
     );
     const [state, setState] = result.current;
     expect(state).toEqual(0);
     act(() => setState({ name: "a", data: 123 }));
     rerender();
     expect(result.current[0]).toEqual({ name: "a", data: 123 });
-    expect(localStorage.getItem("key")).toEqual('{"name":"a","data":123}');
+    expect(localStorage.getItem("key")).toEqual("{\"name\":\"a\",\"data\":123}");
   });
 });

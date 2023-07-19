@@ -46,7 +46,7 @@ export interface UseVirtualListReturn<T> {
 
 export default function useVirtualList<T = any>(
   list: T[] = [],
-  options: UseVirtualListOptions
+  options: UseVirtualListOptions,
 ): UseVirtualListReturn<T> {
   const containerRef = useRef<HTMLElement>(null);
   const [width, height] = useElementSize(containerRef);
@@ -107,17 +107,10 @@ export default function useVirtualList<T = any>(
         list.slice(start, end).map((ele, index) => ({
           data: ele,
           index: index + start,
-        }))
+        })),
       );
     }
   });
-
-  const scrollTo = (index: number) => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = getDistanceTop(index);
-      calculateRange();
-    }
-  };
 
   useEffect(() => {
     calculateRange();
@@ -141,7 +134,7 @@ export default function useVirtualList<T = any>(
         .reduce((sum, _, i) => sum + itemHeight(i), 0);
       return height;
     },
-    [itemHeight, list]
+    [itemHeight, list],
   );
 
   const offsetTop = getDistanceTop(state.current.start);
@@ -155,6 +148,13 @@ export default function useVirtualList<T = any>(
       },
     };
   }, [totalHeight, offsetTop]);
+
+  const scrollTo = (index: number) => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = getDistanceTop(index);
+      calculateRange();
+    }
+  };
 
   const containerStyle: Partial<CSSProperties> = useMemo(() => {
     return { overflowY: "auto", height: containerHeight };

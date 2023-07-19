@@ -2,7 +2,7 @@ import { useDebounce } from "@reactuses/core";
 import { useState } from "react";
 
 export default () => {
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>("");
   const debouncedValue = useDebounce(value, 500);
 
   return (

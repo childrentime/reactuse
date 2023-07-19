@@ -32,7 +32,7 @@ export interface UseInfiniteScrollOptions extends UseScrollOptions {
 export default function useInfiniteScroll(
   target: BasicTarget<HTMLElement | SVGElement>,
   onLoadMore: (state: ReturnType<typeof useScroll>) => void | Promise<void>,
-  options: UseInfiniteScrollOptions = defaultOptions
+  options: UseInfiniteScrollOptions = defaultOptions,
 ) {
   const savedLoadMore = useLatest(onLoadMore);
   const direction = options.direction ?? "bottom";

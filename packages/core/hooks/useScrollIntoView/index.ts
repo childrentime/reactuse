@@ -71,8 +71,8 @@ export default function useScrollIntoView(
 
   const scrollIntoView = useEvent(
     ({ alignment = "start" }: ScrollIntoViewAnimation = {}) => {
-      const parent =
-        getTargetElement(scrollElement) || getScrollParent(axis, element);
+      const parent
+        = getTargetElement(scrollElement) || getScrollParent(axis, element);
       shouldStop.current = false;
 
       if (frameID.current) {
@@ -80,8 +80,8 @@ export default function useScrollIntoView(
       }
 
       const start = getScrollStart({ parent, axis }) ?? 0;
-      const change =
-        getRelativePosition({
+      const change
+        = getRelativePosition({
           parent,
           target: element,
           axis,
@@ -111,7 +111,8 @@ export default function useScrollIntoView(
 
         if (!shouldStop.current && t < 1) {
           frameID.current = requestAnimationFrame(animateScroll);
-        } else {
+        }
+        else {
           typeof onScrollFinish === "function" && onScrollFinish();
           startTime.current = 0;
           frameID.current = 0;
@@ -119,7 +120,7 @@ export default function useScrollIntoView(
         }
       };
       animateScroll();
-    }
+    },
   );
 
   const handleStop = () => {

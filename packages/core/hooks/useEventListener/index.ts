@@ -1,8 +1,8 @@
+import { useEffect } from "react";
 import useLatest from "../useLatest";
 import { defaultWindow, off, on } from "../utils/browser";
 import type { BasicTarget } from "../utils/domTarget";
 import { useLatestElement } from "../utils/domTarget";
-import { useEffect } from "react";
 import { defaultOptions } from "../utils/defaults";
 
 export type Target = BasicTarget<

@@ -34,7 +34,7 @@ const listenerOptions = { passive: true };
 
 export default function useMousePressed(
   target?: BasicTarget,
-  options: MousePressedOptions = defaultOptions
+  options: MousePressedOptions = defaultOptions,
 ): readonly [boolean, MouseSourceType] {
   const { touch = true, drag = true, initialValue = false } = options;
 
@@ -47,7 +47,7 @@ export default function useMousePressed(
       setPressed(true);
       setSourceType(srcType);
     },
-    []
+    [],
   );
   const onReleased = useCallback(() => {
     setPressed(false);
@@ -63,7 +63,7 @@ export default function useMousePressed(
       element?.addEventListener(
         "dragstart",
         onPressed("mouse"),
-        listenerOptions
+        listenerOptions,
       );
       element?.addEventListener("drop", onReleased, listenerOptions);
       element?.addEventListener("dragend", onReleased, listenerOptions);
@@ -73,7 +73,7 @@ export default function useMousePressed(
       element?.addEventListener(
         "touchstart",
         onPressed("touch"),
-        listenerOptions
+        listenerOptions,
       );
       element?.addEventListener("touchend", onReleased, listenerOptions);
       element?.addEventListener("touchcancel", onReleased, listenerOptions);

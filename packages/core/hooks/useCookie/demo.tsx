@@ -9,7 +9,7 @@ export default () => {
   const cookieName = "cookie-key";
   const [cookieValue, updateCookie, refreshCookie] = useCookie(
     cookieName,
-    defaultOption
+    defaultOption,
   );
 
   const updateButtonClick = () => {
@@ -24,7 +24,8 @@ export default () => {
     if ("cookieStore" in window) {
       const store = window.cookieStore as any;
       store.set({ name: cookieName, value: "changed" });
-    } else {
+    }
+    else {
       document.cookie = `${cookieName}=changed; path=/`;
     }
   };

@@ -3,7 +3,7 @@ import { useRef } from "react";
 
 export default () => {
   const targetRef = useRef<HTMLParagraphElement>(null);
-  const { scrollIntoView } = useScrollIntoView(targetRef,{
+  const { scrollIntoView } = useScrollIntoView(targetRef, {
     offset: 60,
   });
 

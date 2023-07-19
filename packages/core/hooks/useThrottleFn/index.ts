@@ -8,12 +8,12 @@ import type { ThrottleSettings } from "../utils/external";
 export default function useThrottleFn<T extends (...args: any) => any>(
   fn: T,
   wait?: number,
-  options?: ThrottleSettings
+  options?: ThrottleSettings,
 ) {
   if (isDev) {
     if (!isFunction(fn)) {
       console.error(
-        `useThrottleFn expected parameter is a function, got ${typeof fn}`
+        `useThrottleFn expected parameter is a function, got ${typeof fn}`,
       );
     }
   }
@@ -27,9 +27,9 @@ export default function useThrottleFn<T extends (...args: any) => any>(
           return fnRef.current(...args);
         },
         wait,
-        options
+        options,
       ),
-    [wait, options]
+    [wait, options],
   );
 
   useUnmount(() => {

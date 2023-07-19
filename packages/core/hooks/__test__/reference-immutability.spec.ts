@@ -11,7 +11,7 @@ interface UseReferenceImmutabilityOptions {
 const NESTED_UPDATE_LIMIT = 50;
 
 const useReferenceImmutability = (
-  options: UseReferenceImmutabilityOptions = {}
+  options: UseReferenceImmutabilityOptions = {},
 ) => {
   const { info } = options;
   const [loop, setLoop] = useState(0);
@@ -19,7 +19,7 @@ const useReferenceImmutability = (
   useEffect(() => {
     if (loop > NESTED_UPDATE_LIMIT) {
       throw new Error(
-        `[Error: Uncaught "Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.%s"]`
+        "[Error: Uncaught \"Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.%s\"]",
       );
     }
     setLoop(loop + 1);
@@ -38,16 +38,17 @@ describe("reference-immutability", () => {
 
   afterEach(() => {
     jest.restoreAllMocks();
-  })
+  });
   it("should throw when pass mutable data", () => {
     try {
       // avoid render and unmount race condition
       flushSync(() => {
         renderHook(() => useReferenceImmutability({ info: {} }));
       });
-    } catch (error) {
+    }
+    catch (error) {
       expect(error).toMatchInlineSnapshot(
-        `[Error: Uncaught [Error: [Error: Uncaught "Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.%s"]]]`
+        "[Error: Uncaught [Error: [Error: Uncaught \"Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.%s\"]]]",
       );
     }
   });

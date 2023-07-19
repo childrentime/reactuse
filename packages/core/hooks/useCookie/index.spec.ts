@@ -6,7 +6,7 @@ describe("useCookie", () => {
   const setUp = (
     key: string,
     defaultValue,
-    options?: Cookies.CookieAttributes
+    options?: Cookies.CookieAttributes,
   ) =>
     renderHook(() => {
       const [state, setState, refresh] = useCookie(key, options, defaultValue);
@@ -69,7 +69,7 @@ describe("useCookie", () => {
     const hook = setUp(COOKIE, "hello world");
     expect(hook.result.current.state).toBe("hello world");
     act(() => {
-      hook.result.current.setState((state) => `${state}, zhangsan`);
+      hook.result.current.setState(state => `${state}, zhangsan`);
     });
     expect(hook.result.current.state).toBe("hello world, zhangsan");
   });

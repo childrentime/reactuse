@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { isFunction, isString } from "../utils/is";
 import { defaultOptions } from "../utils/defaults";
@@ -11,7 +11,6 @@ export default function useCookie(
   defaultValue?: string | (() => string),
   csrData?: UseCookieState | (() => UseCookieState),
 ) {
-
   const [cookieValue, setCookieValue] = useState<UseCookieState>(defaultValue);
 
   useEffect(() => {
@@ -20,17 +19,19 @@ export default function useCookie(
         ? csrData()
         : csrData
       : isFunction(defaultValue)
-      ? defaultValue()
-      : defaultValue;
+        ? defaultValue()
+        : defaultValue;
 
     const getStoredValue = () => {
       const raw = Cookies.get(key);
       if (raw !== undefined && raw !== null) {
         return raw;
-      } else {
+      }
+      else {
         if (data === undefined) {
           Cookies.remove(key);
-        } else {
+        }
+        else {
           Cookies.set(key, data, options);
         }
         return data;
@@ -42,19 +43,20 @@ export default function useCookie(
 
   const updateCookie = useCallback(
     (
-      newValue: UseCookieState | ((prevState: UseCookieState) => UseCookieState)
+      newValue: UseCookieState | ((prevState: UseCookieState) => UseCookieState),
     ) => {
       const value = isFunction(newValue) ? newValue(cookieValue) : newValue;
 
       if (value === undefined) {
         Cookies.remove(key);
-      } else {
+      }
+      else {
         Cookies.set(key, value, options);
       }
 
       setCookieValue(value);
     },
-    [key, cookieValue]
+    [key, cookieValue, options],
   );
 
   const refreshCookie = useCallback(() => {

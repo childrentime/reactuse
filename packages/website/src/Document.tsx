@@ -5,54 +5,60 @@ export default function Document(
 ) {
   const { children, assets } = props;
 
-  const Assest = assets.map((asset) => {
-    const fileType = asset.slice(asset.lastIndexOf(".") + 1);
+  const Assest = assets
+    .filter((asset) => {
+      const fileType = asset.slice(asset.lastIndexOf(".") + 1);
+      if (fileType === "js") {
+        return false;
+      }
+      return true;
+    })
+    .map((asset) => {
+      const fileType = asset.slice(asset.lastIndexOf(".") + 1);
+      switch (fileType) {
+        case "svg":
+          return (
+            <link
+              rel="preload"
+              type="image/svg+xml"
+              href={asset}
+              key={asset}
+              as="image"
+            />
+          );
+        case "png":
+          return (
+            <link
+              rel="preload"
+              type="image/png"
+              href={asset}
+              key={asset}
+              as="image"
+            />
+          );
+        case "ico":
+          return (
+            <link
+              rel="icon"
+              type="image/x-icon"
+              href={asset}
+              key={asset}
+            />
+          );
+        case "css":
+          return (
+            <link
+              rel="stylesheet"
+              type="text/css"
+              href={asset}
+              key={asset}
+            />
+          );
 
-    switch (fileType) {
-      case "svg":
-        return (
-          <link
-            rel="preload"
-            type="image/svg+xml"
-            href={asset}
-            key={asset}
-            as="image"
-          />
-        );
-      case "png":
-        return (
-          <link
-            rel="preload"
-            type="image/png"
-            href={asset}
-            key={asset}
-            as="image"
-          />
-        );
-      case "ico":
-        return (
-          <link
-            rel="icon"
-            type="image/x-icon"
-            href={asset}
-            key={asset}
-          />
-        );
-      case "css":
-        return (
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href={asset}
-            key={asset}
-          />
-        );
-      case "js":
-        break;
-      default:
-        return <link href={asset} key={asset} />;
-    }
-  });
+        default:
+          return <link href={asset} key={asset} />;
+      }
+    });
 
   return (
     <html lang="en">

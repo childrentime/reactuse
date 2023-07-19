@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useEventListener from "../useEventListener";
 
 export default function useWindowsFocus(
-  defauleValue: boolean = false
+  defauleValue = false,
 ): boolean {
   const [focused, setFocused] = useState(defauleValue);
 
