@@ -15,9 +15,8 @@ const Main = () => {
   const pathname = useLocation().pathname.substring(1);
 
   const [element, setElement] = useState<HTMLElement | null>(null);
-  const { scrollIntoView } = useScrollIntoView({
+  const { scrollIntoView } = useScrollIntoView(element, {
     offset: 60,
-    targetElement: element,
     duration: 0,
   });
   useEffect(() => {
@@ -27,7 +26,9 @@ const Main = () => {
     if (!node) {
       return;
     }
-    setElement(node);
+    startTransition(() => {
+      setElement(node);
+    });
   }, [pathname]);
 
   useEffect(() => {

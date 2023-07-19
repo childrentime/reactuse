@@ -130,7 +130,7 @@ importers:
         version: 4.0.0(rollup@2.79.0)
       '@testing-library/react':
         specifier: ^13.4.0
-        version: 13.4.0(react@18.2.0)
+        version: 13.4.0(react-dom@18.2.0)(react@18.2.0)
       '@types/jest':
         specifier: ^27.5.2
         version: 27.5.2
@@ -158,6 +158,9 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
       rollup:
         specifier: ^2.79.0
         version: 2.79.0
@@ -3436,7 +3439,7 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@testing-library/react@13.4.0(react@18.2.0):
+  /@testing-library/react@13.4.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-sXOGON+WNTh3MLE9rve97ftaZukN3oNf2KjDy7YTx6hcTO2uuLHuCGynMDhFwGw/jYf4OJ2Qk0i4i79qMNNkyw==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -3452,6 +3455,7 @@ packages:
       '@testing-library/dom': 8.20.0
       '@types/react-dom': 18.0.6
       react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
   /@tootallnate/once@2.0.0:
@@ -7942,7 +7946,6 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
-    dev: false
 
   /react-icons@4.4.0(react@18.2.0):
     resolution: {integrity: sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg==}
@@ -8380,7 +8383,6 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /screenfull@5.0.0:
     resolution: {integrity: sha512-yShzhaIoE9OtOhWVyBBffA6V98CDCoyHTsp8228blmqYy1Z5bddzE/4FPiJKlr8DVR4VBiiUyfPzIQPIYDkeMA==}

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useMutationObserver } from "@reactuses/core";
 
+const options = { attributes: true };
 export default () => {
   const [width, setWidth] = useState(200);
   const [count, setCount] = useState(0);
@@ -9,10 +10,10 @@ export default () => {
 
   const stop = useMutationObserver(
     (mutationsList) => {
-      mutationsList.forEach(() => setCount(c => c + 1));
+      mutationsList.forEach(() => setCount((c) => c + 1));
     },
     ref,
-    { attributes: true },
+    options
   );
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default () => {
       >
         current width：{width}
       </div>
-      <button onClick={() => setWidth(w => w + 10)}>widening</button>
+      <button onClick={() => setWidth((w) => w + 10)}>widening</button>
       <button onClick={() => stop()}>stop observe</button>
       <p>Mutation count {count}</p>
     </div>

@@ -10,7 +10,7 @@ export default () => {
     () => {
       const length = data.length + 1;
       const newData = data.slice();
-      if (newData.length === 40) {
+      if (newData.length === 400) {
         return;
       }
       newData.push(...Array.from({ length: 5 }, (_, i) => length + i));

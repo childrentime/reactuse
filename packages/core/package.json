@@ -72,6 +72,7 @@
     "jest-environment-jsdom": "^29.0.2",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rollup": "^2.79.0",
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-esbuild": "^4.10.1"

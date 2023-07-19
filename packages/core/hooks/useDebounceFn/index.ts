@@ -8,12 +8,12 @@ import type { DebounceSettings } from "../utils/external";
 export default function useDebounceFn<T extends (...args: any) => any>(
   fn: T,
   wait?: number,
-  options?: DebounceSettings,
+  options?: DebounceSettings
 ) {
   if (isDev) {
     if (!isFunction(fn)) {
       console.error(
-        `useDebounceFn expected parameter is a function, got ${typeof fn}`,
+        `useDebounceFn expected parameter is a function, got ${typeof fn}`
       );
     }
   }
@@ -27,10 +27,9 @@ export default function useDebounceFn<T extends (...args: any) => any>(
           return fnRef.current(...args);
         },
         wait,
-        options,
+        options
       ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [options, wait]
   );
 
   useUnmount(() => {

@@ -2,7 +2,8 @@ import useLatest from "../useLatest";
 import { defaultWindow, off, on } from "../utils/browser";
 import type { BasicTarget } from "../utils/domTarget";
 import { useLatestElement } from "../utils/domTarget";
-import useDeepCompareEffect from "../useDeepCompareEffect";
+import { useEffect } from "react";
+import { defaultOptions } from "../utils/defaults";
 
 export type Target = BasicTarget<
   HTMLElement | Element | Window | Document | EventTarget
@@ -62,12 +63,12 @@ export default function useEventListener(
   eventName: string,
   handler: (...p: any) => void,
   element?: Target,
-  options?: boolean | AddEventListenerOptions,
+  options: boolean | AddEventListenerOptions = defaultOptions,
 ) {
   const savedHandler = useLatest(handler);
   const targetElement = useLatestElement(element, defaultWindow);
 
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     if (!(targetElement && targetElement.addEventListener)) {
       return;
     }

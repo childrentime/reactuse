@@ -48,15 +48,7 @@ export default function Document(
           />
         );
       case "js":
-        return (
-          <link
-            rel="preload"
-            href={asset}
-            key={asset}
-            as="script"
-            crossOrigin="anonymous"
-          />
-        );
+        break;
       default:
         return <link href={asset} key={asset} />;
     }

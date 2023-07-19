@@ -1,11 +1,16 @@
 import { useCookie } from "@reactuses/core";
 
+const defaultOption = {
+  path: "/",
+  defaultValue: "default-value",
+};
+
 export default () => {
   const cookieName = "cookie-key";
-  const [cookieValue, updateCookie, refreshCookie] = useCookie(cookieName, {
-    path: "/",
-    defaultValue: "default-value",
-  });
+  const [cookieValue, updateCookie, refreshCookie] = useCookie(
+    cookieName,
+    defaultOption
+  );
 
   const updateButtonClick = () => {
     updateCookie("new-cookie-value");
@@ -19,8 +24,7 @@ export default () => {
     if ("cookieStore" in window) {
       const store = window.cookieStore as any;
       store.set({ name: cookieName, value: "changed" });
-    }
-    else {
+    } else {
       document.cookie = `${cookieName}=changed; path=/`;
     }
   };

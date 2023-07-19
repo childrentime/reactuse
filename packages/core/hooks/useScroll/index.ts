@@ -5,6 +5,7 @@ import useDebounceFn from "../useDebounceFn";
 import useEvent from "../useEvent";
 import useEventListener from "../useEventListener";
 import useThrottleFn from "../useThrottleFn";
+import { defaultOptions } from "../utils/defaults";
 
 export interface UseScrollOptions {
   /**
@@ -60,26 +61,31 @@ export interface UseScrollOptions {
  */
 const ARRIVED_STATE_THRESHOLD_PIXELS = 1;
 
+const defaultListerOptions = {
+  capture: false,
+  passive: true,
+};
+
 export default function useScroll(
   target: BasicTarget<HTMLElement | SVGElement | Window | Document>,
-  options: UseScrollOptions = {},
+  options: UseScrollOptions = defaultOptions
 ): readonly [
-    number,
-    number,
-    boolean,
-    {
-      left: boolean;
-      right: boolean;
-      top: boolean;
-      bottom: boolean;
-    },
-    {
-      left: boolean;
-      right: boolean;
-      top: boolean;
-      bottom: boolean;
-    },
-  ] {
+  number,
+  number,
+  boolean,
+  {
+    left: boolean;
+    right: boolean;
+    top: boolean;
+    bottom: boolean;
+  },
+  {
+    left: boolean;
+    right: boolean;
+    top: boolean;
+    bottom: boolean;
+  }
+] {
   const {
     throttle = 0,
     idle = 200,
@@ -91,10 +97,7 @@ export default function useScroll(
       top: 0,
       bottom: 0,
     },
-    eventListenerOptions = {
-      capture: false,
-      passive: true,
-    },
+    eventListenerOptions = defaultListerOptions,
   } = options;
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
@@ -139,16 +142,16 @@ export default function useScroll(
     setArrivedState({
       left: scrollLeft <= 0 + (offset.left || 0),
       right:
-        scrollLeft + eventTarget.clientWidth
-        >= eventTarget.scrollWidth
-          - (offset.right || 0)
-          - ARRIVED_STATE_THRESHOLD_PIXELS,
+        scrollLeft + eventTarget.clientWidth >=
+        eventTarget.scrollWidth -
+          (offset.right || 0) -
+          ARRIVED_STATE_THRESHOLD_PIXELS,
       top: scrollTop <= 0 + (offset.top || 0),
       bottom:
-        scrollTop + eventTarget.clientHeight
-        >= eventTarget.scrollHeight
-          - (offset.bottom || 0)
-          - ARRIVED_STATE_THRESHOLD_PIXELS,
+        scrollTop + eventTarget.clientHeight >=
+        eventTarget.scrollHeight -
+          (offset.bottom || 0) -
+          ARRIVED_STATE_THRESHOLD_PIXELS,
     });
     setIsScrolling(true);
     onScrollEnd(e);
@@ -161,7 +164,7 @@ export default function useScroll(
     "scroll",
     throttle ? throttleOnScroll : onScrollHandler,
     target,
-    eventListenerOptions,
+    eventListenerOptions
   );
 
   return [x, y, isScrolling, arrivedState, directions] as const;

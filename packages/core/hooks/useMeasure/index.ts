@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useResizeObserver from "../useResizeObserver";
+import { defaultOptions } from "../utils/defaults";
 import type { BasicTarget } from "../utils/domTarget";
 
 export type UseMeasureRect = Omit<DOMRectReadOnly, "toJSON">;
@@ -17,7 +18,7 @@ const defaultState: UseMeasureRect = {
 
 export default function useMeasure(
   target: BasicTarget,
-  options: ResizeObserverOptions = {},
+  options: ResizeObserverOptions = defaultOptions,
 ) {
   const [rect, setRect] = useState<UseMeasureRect>(defaultState);
 

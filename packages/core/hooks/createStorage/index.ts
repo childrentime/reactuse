@@ -1,16 +1,16 @@
-import type {
+import {
   Dispatch,
   SetStateAction,
+  useEffect,
 } from "react";
 import {
-  useCallback,
   useMemo,
   useState,
 } from "react";
 import { isFunction } from "../utils/is";
 import { guessSerializerType } from "../utils/serializer";
 import useEvent from "../useEvent";
-import useDeepCompareEffect from "../useDeepCompareEffect";
+import { defaultOnError, defaultOptions } from "../utils/defaults";
 
 export interface Serializer<T> {
   read(raw: string): T;
@@ -73,6 +73,8 @@ export interface UseStorageOptions<T> {
   csrData?: T | (() => T);
 }
 
+
+
 // to avoid SSR error, first return default value, then update it in useEffect
 export default function useStorage<
   T extends string | number | boolean | object | null,
@@ -80,11 +82,9 @@ export default function useStorage<
   key: string,
   defaults: T,
   getStorage: () => Storage | undefined,
-  options: UseStorageOptions<T> = {},
+  options: UseStorageOptions<T> = defaultOptions,
 ) {
-  const defaultOnError = useCallback((e: any) => {
-    console.error(e);
-  }, []);
+
   let storage: Storage | undefined;
   const { onError = defaultOnError, csrData } = options;
 
@@ -102,7 +102,7 @@ export default function useStorage<
 
   const [state, setState] = useState<T | null>(defaults);
 
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     const data = csrData
       ? isFunction(csrData)
         ? csrData()

@@ -1,13 +1,13 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import type { BasicTarget } from "../utils/domTarget";
 import { useLatestElement } from "../utils/domTarget";
-import useDeepCompareEffect from "../useDeepCompareEffect";
 import useLatest from "../useLatest";
+import { defaultOptions } from "../utils/defaults";
 
 export default function useIntersectionObserver(
   target: BasicTarget,
   callback: IntersectionObserverCallback,
-  options: IntersectionObserverInit = {},
+  options: IntersectionObserverInit = defaultOptions,
 ): () => void {
   const savedCallback = useLatest(callback);
   const observerRef = useRef<IntersectionObserver>();
@@ -19,7 +19,7 @@ export default function useIntersectionObserver(
     }
   }, []);
 
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     if (!element) {
       return;
     }

@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import useRafFn from "../useRafFn";
+import { defaultOptions } from "../utils/defaults";
 
 export interface UseFpsOptions {
   /**
@@ -9,9 +10,9 @@ export interface UseFpsOptions {
   every?: number;
 }
 
-function useFps(options?: UseFpsOptions): number {
+function useFps(options: UseFpsOptions = defaultOptions): number {
   const [fps, setFps] = useState(0);
-  const every = options?.every ?? 10;
+  const every = options.every ?? 10;
 
   const last = useRef(performance.now());
   const ticks = useRef(0);

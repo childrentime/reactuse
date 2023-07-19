@@ -2,6 +2,7 @@ import type { Dispatch, SetStateAction } from "react";
 import { isBrowser } from "../utils/is";
 import type { UseStorageOptions } from "../createStorage";
 import createStorage from "../createStorage";
+import { defaultOptions } from "../utils/defaults";
 
 export default function useLocalStorage(
   key: string,
@@ -31,7 +32,7 @@ export default function useLocalStorage<T = unknown>(
 
 export default function useLocalStorage<
   T extends string | number | boolean | object | null,
->(key: string, defaults: T, options: UseStorageOptions<T> = {}) {
+>(key: string, defaults: T, options: UseStorageOptions<T> = defaultOptions) {
   return createStorage(
     key,
     defaults,

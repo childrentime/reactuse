@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { noop } from "../utils/is";
 import useMount from "../useMount";
 import useUnmount from "../useUnmount";
+import { defaultOptions } from "../utils/defaults";
 
 export interface UseScriptTagOptions {
   /**
@@ -58,7 +59,7 @@ export type Status = "idle" | "loading" | "ready" | "error";
 export default function useScriptTag(
   src: string,
   onLoaded: (el: HTMLScriptElement) => void = noop,
-  options: UseScriptTagOptions = {},
+  options: UseScriptTagOptions = defaultOptions,
 ) {
   const {
     immediate = true,

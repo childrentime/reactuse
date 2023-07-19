@@ -4,8 +4,7 @@ import { useRef } from "react";
 
 export default () => {
   const element = useRef<HTMLDivElement>(null);
-  const [isSticky] = useSticky({
-    targetElement: element,
+  const [isSticky] = useSticky(element, {
     // header fixed height
     nav: 64,
   });

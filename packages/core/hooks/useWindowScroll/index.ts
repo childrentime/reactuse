@@ -2,12 +2,17 @@ import useEventListener from "../useEventListener";
 import useIsomorphicLayoutEffect from "../useIsomorphicLayoutEffect";
 import useRafState from "../useRafState";
 
-export interface State {
+export interface UseWindowScrollState {
   x: number;
   y: number;
 }
-export default function useWindowScroll(): State {
-  const [state, setState] = useRafState<State>(() => ({
+
+const listenerOptions = {
+  capture: false,
+  passive: true,
+};
+export default function useWindowScroll(): UseWindowScrollState {
+  const [state, setState] = useRafState<UseWindowScrollState>(() => ({
     x: 0,
     y: 0,
   }));
@@ -16,10 +21,7 @@ export default function useWindowScroll(): State {
     setState({ x: window.scrollX, y: window.scrollY });
   };
 
-  useEventListener("scroll", handleScroll, window, {
-    capture: false,
-    passive: true,
-  });
+  useEventListener("scroll", handleScroll, window, listenerOptions);
 
   // Set scroll at the first client-side load
   useIsomorphicLayoutEffect(() => {

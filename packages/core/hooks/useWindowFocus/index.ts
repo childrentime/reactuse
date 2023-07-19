@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { isBrowser } from "../utils/is";
+import { useEffect, useState } from "react";
 import useEventListener from "../useEventListener";
 
-export default function useWindowsFocus(): boolean {
-  const [focused, setFocused] = useState(() => {
-    if (!isBrowser) {
-      return false;
-    }
-    return window.document.hasFocus();
-  });
+export default function useWindowsFocus(
+  defauleValue: boolean = false
+): boolean {
+  const [focused, setFocused] = useState(defauleValue);
+
+  useEffect(() => {
+    setFocused(window.document.hasFocus());
+  }, []);
 
   useEventListener("blur", () => {
     setFocused(false);
