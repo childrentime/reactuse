@@ -32,10 +32,10 @@ export default function useLocalStorage<T = unknown>(
 
 export default function useLocalStorage<
   T extends string | number | boolean | object | null,
->(key: string, defaults: T, options: UseStorageOptions<T> = defaultOptions) {
+>(key: string, defaultValue?: T, options: UseStorageOptions<T> = defaultOptions) {
   return createStorage(
     key,
-    defaults,
+    defaultValue,
     () => (isBrowser ? localStorage : undefined),
     options,
   );

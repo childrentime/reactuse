@@ -1,6 +1,6 @@
 declare module "*.md" {
-  const filepath: string;
-  export default filepath;
+  const m: () => JSX.Element;
+  export default m;
 }
 
 declare module "*.ico" {

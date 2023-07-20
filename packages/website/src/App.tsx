@@ -1,12 +1,30 @@
 import { Route, Routes } from "react-router-dom";
+import { menuGroup, routes } from "website:routes";
 import Header from "./pages/header";
-import Main from "./pages/main";
 import Index from "./pages/index";
 import "./main.css";
 import "highlight.js/styles/stackoverflow-light.css";
 import "react-toastify/dist/ReactToastify.css";
+import type { IMenu } from "./layout";
+import Layout from "./layout";
+import { guideMenu, guideRoutes } from "./pages/guide";
 
 function App() {
+  const mainMenus: IMenu[] = menuGroup.map((menus) => {
+    const { title } = menus;
+    const items = menus.items.slice().map((item) => {
+      return {
+        path: item,
+        title: item,
+      };
+    });
+
+    return {
+      title,
+      items,
+    };
+  });
+
   return (
     <>
       <script
@@ -37,12 +55,12 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Index />} key="main page" />
         <Route
-          path={"*"}
-          element={
-            <>
-              <Main />
-            </>
-          }
+          path={"/core/*"}
+          element={<Layout menuGroup={mainMenus} routes={routes} />}
+        />
+        <Route
+          path={"/guide/*"}
+          element={<Layout menuGroup={guideMenu} routes={guideRoutes} />}
         />
       </Routes>
     </>

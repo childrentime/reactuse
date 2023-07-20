@@ -55,7 +55,7 @@ const Header = () => {
               onSelect={() => {
                 setOpen(false);
                 startTransition(() => {
-                  navigate(`/${item}`);
+                  navigate(`/core/${item}`);
                 });
               }}
             >
@@ -100,7 +100,33 @@ const Header = () => {
               </span>
             </button>
           </div>
+
           <div className={styles.metas}>
+            <div className={styles.routes}>
+              <button
+                className={styles.route}
+                type="button"
+                onClick={() => {
+                  startTransition(() => {
+                    navigate("/guide/getStarted");
+                  });
+                }}
+              >
+                Guide
+              </button>
+              <button
+                className={styles.route}
+                type="button"
+                onClick={() => {
+                  startTransition(() => {
+                    navigate("/core/useToggle");
+                  });
+                }}
+              >
+                Core
+              </button>
+            </div>
+            <div className={styles.line} />
             <a
               onClick={(e) => {
                 e.preventDefault();

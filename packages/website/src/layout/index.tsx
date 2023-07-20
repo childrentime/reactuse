@@ -1,24 +1,45 @@
+import type { LazyExoticComponent } from "react";
 import {
   Fragment,
   Suspense,
   startTransition,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useScrollIntoView } from "@reactuses/core";
-import { menuGroup, routes } from "website:routes";
-import NotFound from "../404/";
+import NotFound from "../pages/404";
 import styles from "./style.module.css";
 
-const Main = () => {
-  const pathname = useLocation().pathname.substring(1);
+export interface IMenu {
+  title: string;
+  items: { path: string; title: string }[];
+}
+
+export interface IRoute {
+  path: string;
+  element: LazyExoticComponent<any>;
+}
+export interface IProps {
+  routes: IRoute[];
+  menuGroup: IMenu[];
+}
+const Layout = (props: IProps) => {
+  const { menuGroup, routes } = props;
+  const pathname = useLocation().pathname.split("/").pop() || "";
 
   const [element, setElement] = useState<HTMLElement | null>(null);
-  const { scrollIntoView } = useScrollIntoView(element, {
-    offset: 60,
-    duration: 0,
-  });
+  const useScrollIntoViewOptions = useMemo(() => {
+    return {
+      offset: 60,
+      duration: 0,
+    };
+  }, []);
+  const { scrollIntoView } = useScrollIntoView(
+    element,
+    useScrollIntoViewOptions,
+  );
   useEffect(() => {
     const node = document.getElementsByClassName(
       styles.itemSelect,
@@ -33,7 +54,7 @@ const Main = () => {
 
   useEffect(() => {
     scrollIntoView({ alignment: "center" });
-  }, [element]);
+  }, [scrollIntoView]);
 
   const navigate = useNavigate();
 
@@ -51,22 +72,22 @@ const Main = () => {
                         {menu.title}
                       </div>
                       {menu.items.map((item) => {
+                        const selected
+                          = pathname === item.path ? styles.itemSelect : "";
                         return (
                           <li
-                            key={item}
-                            className={`${styles.item} ${
-                              pathname === item ? styles.itemSelect : ""
-                            }`}
+                            key={item.path}
+                            className={`${styles.item} ${selected}`}
                           >
                             <div
                               className={styles.itemLink}
                               onClick={() => {
                                 startTransition(() => {
-                                  navigate(`/${item}`);
+                                  navigate(`${item.path}`);
                                 });
                               }}
                             >
-                              {item}
+                              {item.title}
                             </div>
                           </li>
                         );
@@ -97,4 +118,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Layout;

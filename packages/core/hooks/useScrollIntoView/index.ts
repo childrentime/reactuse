@@ -120,8 +120,7 @@ export default function useScrollIntoView(
         }
       };
       animateScroll();
-    },
-  );
+    });
 
   const handleStop = () => {
     if (cancelable) {

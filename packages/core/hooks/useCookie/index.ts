@@ -1,45 +1,57 @@
 import { useCallback, useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { isFunction, isString } from "../utils/is";
+import { isBrowser, isFunction, isString } from "../utils/is";
 import { defaultOptions } from "../utils/defaults";
 
 export type UseCookieState = string | undefined;
 
+const getInitialState = (key: string, defaultValue?: string) => {
+  // Prevent a React hydration mismatch when a default value is provided.
+  if (defaultValue !== undefined) {
+    return defaultValue;
+  }
+
+  if (isBrowser) {
+    return Cookies.get(key);
+  }
+
+  if (process.env.NODE_ENV !== "production") {
+    console.warn(
+      "`useCookie` When server side rendering, defaultValue should be defined to prevent a hydration mismatches.",
+    );
+  }
+
+  return "";
+};
+
 export default function useCookie(
   key: string,
   options: Cookies.CookieAttributes = defaultOptions,
-  defaultValue?: string | (() => string),
-  csrData?: UseCookieState | (() => UseCookieState),
+  defaultValue?: string,
 ) {
-  const [cookieValue, setCookieValue] = useState<UseCookieState>(defaultValue);
+  const [cookieValue, setCookieValue] = useState<UseCookieState>(
+    getInitialState(key, defaultValue),
+  );
 
   useEffect(() => {
-    const data = csrData
-      ? isFunction(csrData)
-        ? csrData()
-        : csrData
-      : isFunction(defaultValue)
-        ? defaultValue()
-        : defaultValue;
-
     const getStoredValue = () => {
       const raw = Cookies.get(key);
       if (raw !== undefined && raw !== null) {
         return raw;
       }
       else {
-        if (data === undefined) {
+        if (defaultValue === undefined) {
           Cookies.remove(key);
         }
         else {
-          Cookies.set(key, data, options);
+          Cookies.set(key, defaultValue, options);
         }
-        return data;
+        return defaultValue;
       }
     };
 
     setCookieValue(getStoredValue());
-  }, [csrData, defaultValue, key, options]);
+  }, [defaultValue, key, options]);
 
   const updateCookie = useCallback(
     (

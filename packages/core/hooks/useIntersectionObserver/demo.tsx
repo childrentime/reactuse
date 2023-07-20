@@ -10,6 +10,11 @@ const Spacer = () => (
   />
 );
 
+const options = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 1,
+};
 export default () => {
   const intersectionRef = useRef(null);
   const [entry, setEntry] = useState<IntersectionObserverEntry[]>([]);
@@ -18,11 +23,7 @@ export default () => {
     (entry) => {
       setEntry(entry);
     },
-    {
-      root: null,
-      rootMargin: "0px",
-      threshold: 1,
-    },
+    options,
   );
 
   return (

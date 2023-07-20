@@ -1,5 +1,5 @@
 export function guessSerializerType<T>(rawInit: T) {
-  return rawInit == null
+  return rawInit == null || rawInit === undefined
     ? "any"
     : rawInit instanceof Set
       ? "set"

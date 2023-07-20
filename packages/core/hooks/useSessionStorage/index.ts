@@ -32,10 +32,10 @@ export default function useSessionStorage<T = unknown>(
 
 export default function useSessionStorage<
   T extends string | number | boolean | object | null,
->(key: string, defaults: T, options: UseStorageOptions<T> = defaultOptions) {
+>(key: string, defaultValue?: T, options: UseStorageOptions<T> = defaultOptions) {
   return createStorage(
     key,
-    defaults,
+    defaultValue,
     () => (isBrowser ? sessionStorage : undefined),
     options,
   );

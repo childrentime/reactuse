@@ -8,15 +8,12 @@ const Page = () => {
     <div className={styles.layout}>
       <h1>React Use</h1>
       <p>Collection of Essential React Hooks Utilities</p>
-      <div className={styles.shell}>
-        <span>npm i @reactuses/core</span>
-      </div>
       <div className={styles.buttons}>
         <div
           className={`${styles.primary} ${styles.button}`}
           onClick={() => {
             startTransition(() => {
-              navigate("/useToggle");
+              navigate("/guide/getStarted");
             });
           }}
         >
