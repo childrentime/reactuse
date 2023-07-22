@@ -41,3 +41,5 @@ declare module "website:routes" {
   const menuGroup: Menu[];
   export { routes, pages, menuGroup };
 }
+
+declare module 'markdown-it-table';

@@ -89,7 +89,7 @@ export default function Document(
         {Assest}
       </head>
       <body>
-        <div id="main">{children}</div>
+        <div id="main" className="markdown-body">{children}</div>
       </body>
     </html>
   );

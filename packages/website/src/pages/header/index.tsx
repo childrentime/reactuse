@@ -70,7 +70,7 @@ const Header = () => {
       </Command.Dialog>
       <div className={styles.row}>
         <div className={styles.col5}>
-          <h1>
+          <h1 className={styles.logoTitle}>
             <Link to={"/"} className={styles.logo}>
               <img src={logo} alt="logo" />
               reactuses

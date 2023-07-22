@@ -3,7 +3,6 @@
   width: 100%;
   z-index: 101;
   max-width: 100%;
-  background: var(--c-bg);
   box-shadow: 0 2px 8px var(--c-header-box);
   top: 0;
   left: 0;
@@ -29,11 +28,16 @@
   justify-content: space-between;
 }
 
+.logoTitle {
+  margin: 0 !important;
+  border :0 !important;
+}
+
 .logo {
   height: 64px;
   padding-left: 40px;
   overflow: hidden;
-  color: var(--c-text);
+  color: var(--c-text) !important;
   font-weight: 700;
   font-size: 20px;
   font-family: PuHuiTi, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -67,8 +71,8 @@
   line-height: 30px;
   margin-right: 20px;
   border: none;
-  background: var(--c-bg);
   position: relative;
+  background-color: var(--color-canvas-default);
 }
 
 .line {

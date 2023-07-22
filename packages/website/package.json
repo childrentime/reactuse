@@ -21,6 +21,7 @@
     "cmdk": "^0.1.20",
     "compression": "^1.7.4",
     "express": "^4.18.2",
+    "github-markdown-css": "^5.2.0",
     "highlight.js": "^11.7.0",
     "markdown-it": "^13.0.1",
     "markdown-it-code-copy": "^0.1.1",

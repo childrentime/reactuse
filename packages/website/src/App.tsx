@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Layout from "./layout";
 import { guideMenu, guideRoutes } from "./pages/guide";
 import { mainMenus } from "./constant";
+import "./github-markdown.css";
 
 function App() {
   return (
