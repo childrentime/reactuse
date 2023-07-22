@@ -1,10 +1,11 @@
 import { useState } from "react";
 import type { BasicTarget } from "../utils/domTarget";
 import useResizeObserver from "../useResizeObserver";
+import { defaultOptions } from "../utils/defaults";
 
 export default function useElementSize(
   target: BasicTarget,
-  options: ResizeObserverOptions = {},
+  options: ResizeObserverOptions = defaultOptions,
 ): readonly [number, number] {
   const { box = "content-box" } = options;
 

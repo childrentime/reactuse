@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { defaultOptions } from "../utils/defaults";
 import { isBrowser } from "../utils/is";
 
 export type UseTextDirectionValue = "ltr" | "rtl" | "auto";
@@ -17,7 +18,7 @@ export interface UseTextDirectionOptions {
   initialValue?: UseTextDirectionValue;
 }
 export default function useTextDirection(
-  options: UseTextDirectionOptions = {},
+  options: UseTextDirectionOptions = defaultOptions,
 ) {
   const { selector = "html", initialValue = "ltr" } = options;
   const getValue = () => {

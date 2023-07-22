@@ -1,10 +1,14 @@
 import { Route, Routes } from "react-router-dom";
+import { routes } from "website:routes";
 import Header from "./pages/header";
-import Main from "./pages/main";
 import Index from "./pages/index";
 import "./main.css";
 import "highlight.js/styles/stackoverflow-light.css";
 import "react-toastify/dist/ReactToastify.css";
+import Layout from "./layout";
+import { guideMenu, guideRoutes } from "./pages/guide";
+import { mainMenus } from "./constant";
+import "./github-markdown.css";
 
 function App() {
   return (
@@ -37,12 +41,12 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Index />} key="main page" />
         <Route
-          path={"*"}
-          element={
-            <>
-              <Main />
-            </>
-          }
+          path={"/core/*"}
+          element={<Layout menuGroup={mainMenus} routes={routes} />}
+        />
+        <Route
+          path={"/guide/*"}
+          element={<Layout menuGroup={guideMenu} routes={guideRoutes} />}
         />
       </Routes>
     </>

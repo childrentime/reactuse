@@ -1,14 +1,5 @@
-import type {
-  CSSProperties,
-  RefObject,
-} from "react";
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import type { CSSProperties, RefObject } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useElementSize from "../useElementSize";
 import useEvent from "../useEvent";
 
@@ -63,47 +54,41 @@ export default function useVirtualList<T = any>(
   const { itemHeight, overscan = 5, containerHeight = 300 } = options;
   const state = useRef({ start: 0, end: 10 });
 
-  const getViewCapacity = useCallback(
-    (containerHeight: number) => {
-      if (typeof itemHeight === "number") {
-        return Math.ceil(containerHeight / itemHeight);
-      }
+  const getViewCapacity = (containerHeight: number) => {
+    if (typeof itemHeight === "number") {
+      return Math.ceil(containerHeight / itemHeight);
+    }
 
-      const { start = 0 } = state.current;
-      let sum = 0;
-      let capacity = 0;
-      for (let i = start; i < list.length; i++) {
-        const height = itemHeight(i);
-        sum += height;
-        if (sum >= containerHeight) {
-          capacity = i;
-          break;
-        }
+    const { start = 0 } = state.current;
+    let sum = 0;
+    let capacity = 0;
+    for (let i = start; i < list.length; i++) {
+      const height = itemHeight(i);
+      sum += height;
+      if (sum >= containerHeight) {
+        capacity = i;
+        break;
       }
-      return capacity - start;
-    },
-    [itemHeight, list],
-  );
+    }
+    return capacity - start;
+  };
 
-  const getOffset = useCallback(
-    (scrollTop: number) => {
-      if (typeof itemHeight === "number")
-        return Math.floor(scrollTop / itemHeight) + 1;
+  const getOffset = (scrollTop: number) => {
+    if (typeof itemHeight === "number")
+      return Math.floor(scrollTop / itemHeight) + 1;
 
-      let sum = 0;
-      let offset = 0;
-      for (let i = 0; i < list.length; i++) {
-        const height = itemHeight(i);
-        sum += height;
-        if (sum >= scrollTop) {
-          offset = i;
-          break;
-        }
+    let sum = 0;
+    let offset = 0;
+    for (let i = 0; i < list.length; i++) {
+      const height = itemHeight(i);
+      sum += height;
+      if (sum >= scrollTop) {
+        offset = i;
+        break;
       }
-      return offset + 1;
-    },
-    [itemHeight, list],
-  );
+    }
+    return offset + 1;
+  };
 
   const calculateRange = useEvent(() => {
     const element = containerRef.current;
@@ -117,20 +102,19 @@ export default function useVirtualList<T = any>(
         start: from < 0 ? 0 : from,
         end: to > list.length ? list.length : to,
       };
+      const { start, end } = state.current;
       setCurrentList(
-        list
-          .slice(state.current.start, state.current.end)
-          .map((ele, index) => ({
-            data: ele,
-            index: index + state.current.start,
-          })),
+        list.slice(start, end).map((ele, index) => ({
+          data: ele,
+          index: index + start,
+        })),
       );
     }
   });
 
   useEffect(() => {
     calculateRange();
-  }, [width, height, list, calculateRange]);
+  }, [width, height, list]);
 
   const totalHeight = useMemo(() => {
     if (typeof itemHeight === "number") {
@@ -153,17 +137,7 @@ export default function useVirtualList<T = any>(
     [itemHeight, list],
   );
 
-  const scrollTo = useEvent((index: number) => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = getDistanceTop(index);
-      calculateRange();
-    }
-  });
-
-  const offsetTop = useMemo(
-    () => getDistanceTop(state.current.start),
-    [getDistanceTop],
-  );
+  const offsetTop = getDistanceTop(state.current.start);
 
   const wrapperProps = useMemo(() => {
     return {
@@ -173,7 +147,14 @@ export default function useVirtualList<T = any>(
         marginTop: `${offsetTop}px`,
       },
     };
-  }, [offsetTop, totalHeight]);
+  }, [totalHeight, offsetTop]);
+
+  const scrollTo = (index: number) => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = getDistanceTop(index);
+      calculateRange();
+    }
+  };
 
   const containerStyle: Partial<CSSProperties> = useMemo(() => {
     return { overflowY: "auto", height: containerHeight };

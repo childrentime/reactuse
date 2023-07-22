@@ -2,11 +2,9 @@ import { useEffect, useRef } from "react";
 import useEvent from "../useEvent";
 import useEventListener from "../useEventListener";
 import useReducedMotion from "../useReducedMotion";
+import { defaultOptions } from "../utils/defaults";
 import type { BasicTarget } from "../utils/domTarget";
-import {
-  getTargetElement,
-  useLatestElement,
-} from "../utils/domTarget";
+import { getTargetElement, useLatestElement } from "../utils/domTarget";
 import {
   getScrollParent,
   getScrollStart,
@@ -41,21 +39,22 @@ export interface ScrollIntoViewParams {
 
   /** prevents content jumping in scrolling lists with multiple targets */
   isList?: boolean;
-  targetElement: BasicTarget<HTMLElement>;
-  scrollElement?: BasicTarget<HTMLElement>;
 }
 
-export default function useScrollIntoView({
-  duration = 1250,
-  axis = "y",
-  onScrollFinish,
-  easing = easeInOutQuad,
-  offset = 0,
-  cancelable = true,
-  isList = false,
-  targetElement,
-  scrollElement,
-}: ScrollIntoViewParams) {
+const listenerOptions = { passive: true };
+export default function useScrollIntoView(
+  targetElement: BasicTarget<HTMLElement>,
+  {
+    duration = 1250,
+    axis = "y",
+    onScrollFinish,
+    easing = easeInOutQuad,
+    offset = 0,
+    cancelable = true,
+    isList = false,
+  }: ScrollIntoViewParams = defaultOptions,
+  scrollElement?: BasicTarget<HTMLElement>,
+) {
   const frameID = useRef(0);
   const startTime = useRef(0);
   const shouldStop = useRef(false);
@@ -73,8 +72,7 @@ export default function useScrollIntoView({
   const scrollIntoView = useEvent(
     ({ alignment = "start" }: ScrollIntoViewAnimation = {}) => {
       const parent
-        = getTargetElement(scrollElement)
-        || getScrollParent(axis, element);
+        = getTargetElement(scrollElement) || getScrollParent(axis, element);
       shouldStop.current = false;
 
       if (frameID.current) {
@@ -122,8 +120,7 @@ export default function useScrollIntoView({
         }
       };
       animateScroll();
-    },
-  );
+    });
 
   const handleStop = () => {
     if (cancelable) {
@@ -131,8 +128,8 @@ export default function useScrollIntoView({
     }
   };
 
-  useEventListener("wheel", handleStop, null, { passive: true });
-  useEventListener("touchmove", handleStop, null, { passive: true });
+  useEventListener("wheel", handleStop, null, listenerOptions);
+  useEventListener("touchmove", handleStop, null, listenerOptions);
 
   useEffect(() => cancel, []);
 

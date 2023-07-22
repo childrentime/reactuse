@@ -1,68 +1,74 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { isFunction, isString } from "../utils/is";
-import useDeepCompareEffect from "../useDeepCompareEffect";
+import { isBrowser, isFunction, isString } from "../utils/is";
+import { defaultOptions } from "../utils/defaults";
 
-export type CookieState = string | undefined;
-export interface CookieOptions extends Cookies.CookieAttributes {
-  defaultValue?: string | (() => string);
-  /**
-   * set to storage when nodata in effect, fallback to defaultValue
-   */
-  csrData?: CookieState | (() => CookieState);
-}
+export type UseCookieState = string | undefined;
+
+const getInitialState = (key: string, defaultValue?: string) => {
+  // Prevent a React hydration mismatch when a default value is provided.
+  if (defaultValue !== undefined) {
+    return defaultValue;
+  }
+
+  if (isBrowser) {
+    return Cookies.get(key);
+  }
+
+  if (process.env.NODE_ENV !== "production") {
+    console.warn(
+      "`useCookie` When server side rendering, defaultValue should be defined to prevent a hydration mismatches.",
+    );
+  }
+
+  return "";
+};
 
 export default function useCookie(
   key: string,
-  options: CookieOptions = {
-    defaultValue: "",
-  },
+  options: Cookies.CookieAttributes = defaultOptions,
+  defaultValue?: string,
 ) {
-  const { defaultValue, csrData, ...cookieOptions } = options;
-  const [cookieValue, setCookieValue] = useState<CookieState>(defaultValue);
+  const [cookieValue, setCookieValue] = useState<UseCookieState>(
+    getInitialState(key, defaultValue),
+  );
 
-  useDeepCompareEffect(() => {
-    const data = csrData
-      ? isFunction(csrData)
-        ? csrData()
-        : csrData
-      : isFunction(defaultValue)
-        ? defaultValue()
-        : defaultValue;
-
+  useEffect(() => {
     const getStoredValue = () => {
       const raw = Cookies.get(key);
       if (raw !== undefined && raw !== null) {
         return raw;
       }
       else {
-        if (data === undefined) {
+        if (defaultValue === undefined) {
           Cookies.remove(key);
         }
         else {
-          Cookies.set(key, data, cookieOptions);
+          Cookies.set(key, defaultValue, options);
         }
-        return data;
+        return defaultValue;
       }
     };
 
     setCookieValue(getStoredValue());
-  }, [csrData, defaultValue, key, cookieOptions]);
+  }, [defaultValue, key, options]);
 
   const updateCookie = useCallback(
-    (newValue: CookieState | ((prevState: CookieState) => CookieState)) => {
+    (
+      newValue: UseCookieState | ((prevState: UseCookieState) => UseCookieState),
+    ) => {
       const value = isFunction(newValue) ? newValue(cookieValue) : newValue;
 
       if (value === undefined) {
         Cookies.remove(key);
       }
       else {
-        Cookies.set(key, value, cookieOptions);
+        Cookies.set(key, value, options);
       }
 
       setCookieValue(value);
     },
-    [key, cookieValue],
+    [key, cookieValue, options],
   );
 
   const refreshCookie = useCallback(() => {
@@ -73,5 +79,5 @@ export default function useCookie(
     }
   }, [key]);
 
-  return Object.freeze([cookieValue, updateCookie, refreshCookie] as const);
+  return [cookieValue, updateCookie, refreshCookie] as const;
 }

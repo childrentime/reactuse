@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useMutationObserver } from "@reactuses/core";
 
+const options = { attributes: true };
 export default () => {
   const [width, setWidth] = useState(200);
   const [count, setCount] = useState(0);
@@ -12,7 +13,7 @@ export default () => {
       mutationsList.forEach(() => setCount(c => c + 1));
     },
     ref,
-    { attributes: true },
+    options,
   );
 
   useEffect(() => {

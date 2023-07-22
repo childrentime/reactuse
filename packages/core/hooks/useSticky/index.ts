@@ -1,31 +1,22 @@
 import type React from "react";
 import { useEffect, useState } from "react";
 import type { BasicTarget } from "../utils/domTarget";
-import {
-  getTargetElement,
-  useLatestElement,
-} from "../utils/domTarget";
+import { getTargetElement, useLatestElement } from "../utils/domTarget";
 import useThrottleFn from "../useThrottleFn";
 import { getScrollParent } from "../utils/scroll";
 
 export interface UseStickyParams {
-  targetElement: BasicTarget<HTMLElement>;
-  scrollElement?: BasicTarget<HTMLElement>;
   /** axis of scroll */
   axis?: "x" | "y";
   /** cover height or width */
   nav: number;
 }
 
-const useSticky = ({
-  targetElement,
-  scrollElement,
-  axis = "y",
-  nav = 0,
-}: UseStickyParams): [
-  boolean,
-  React.Dispatch<React.SetStateAction<boolean>>,
-] => {
+const useSticky = (
+  targetElement: BasicTarget<HTMLElement>,
+  { axis = "y", nav = 0 }: UseStickyParams,
+  scrollElement?: BasicTarget<HTMLElement>,
+): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
   const [isSticky, setSticky] = useState<boolean>(false);
   const element = useLatestElement(targetElement);
 

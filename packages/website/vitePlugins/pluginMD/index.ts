@@ -3,6 +3,7 @@ import fs from "fs-extra";
 import { transformSync } from "@babel/core";
 import markdown from "./markdown";
 import { getMarkdownSection } from "./utils";
+import { getHookTemplate, getNormalTemplate } from "./template";
 
 const fileRegex = /\.md$/;
 
@@ -14,39 +15,38 @@ export default async function pluginMD(): Promise<Plugin> {
     enforce: "pre",
     async transform(src: string, id: string) {
       if (fileRegex.test(id)) {
-        const index = id.lastIndexOf("/");
-        const prePath = id.slice(0, index);
-        const name = prePath.slice(prePath.lastIndexOf("/") + 1);
+        const isHook = id.includes("hooks");
+        const getHookCode = async () => {
+          const index = id.lastIndexOf("/");
+          const prePath = id.slice(0, index);
+          const name = prePath.slice(prePath.lastIndexOf("/") + 1);
 
-        const { typeDeclarations } = await getMarkdownSection(pkg, name);
+          const { typeDeclarations } = await getMarkdownSection(pkg, name);
 
-        const demoPath = id.replace("README.md", "demo.tsx");
-        const demoString = fs.readFileSync(demoPath, "utf-8");
-        const demoHtml = JSON.stringify(
-          markdown.render(`\`\`\`typescript\n${demoString.trim()}\n\`\`\``),
-        );
-        const originHtml = JSON.stringify(markdown.render(src));
-        const typeDeclarationsHtml = JSON.stringify(
-          markdown.render(typeDeclarations),
-        );
+          const demoPath = id.replace("README.md", "demo.tsx");
+          const demoString = fs.readFileSync(demoPath, "utf-8");
+          const demoHtml = JSON.stringify(
+            markdown.render(`\`\`\`typescript\n${demoString.trim()}\n\`\`\``),
+          );
+          const originHtml = JSON.stringify(markdown.render(src));
+          const typeDeclarationsHtml = JSON.stringify(
+            markdown.render(typeDeclarations),
+          );
 
-        const reactCode = `
-        import Demo from '${demoPath}';
-        function Layout() {
-          return <div className="prose">
-            <div dangerouslySetInnerHTML={{__html: ${originHtml}}} />
-            <h2>Usage</h2>
-            <div dangerouslySetInnerHTML={{__html: ${demoHtml}}} />
-            <div>
-              <h2>Example</h2>
-              <div className="demo-container">
-                <Demo />
-              </div>
-            </div>
-            <div dangerouslySetInnerHTML={{__html: ${typeDeclarationsHtml}}} />
-          </div>
-        }
-        `;
+          return getHookTemplate(
+            demoPath,
+            originHtml,
+            demoHtml,
+            typeDeclarationsHtml,
+          );
+        };
+
+        const getNormalCode = () => {
+          const html = JSON.stringify(markdown.render(src));
+          return getNormalTemplate(html);
+        };
+
+        const reactCode = isHook ? await getHookCode() : getNormalCode();
 
         try {
           const compiled = transformSync(reactCode, {

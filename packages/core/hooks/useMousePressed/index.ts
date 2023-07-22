@@ -3,6 +3,7 @@ import type { BasicTarget } from "../utils/domTarget";
 import { useLatestElement } from "../utils/domTarget";
 import type { IHookStateInitAction } from "../utils/hookState";
 import useEventListener from "../useEventListener";
+import { defaultOptions } from "../utils/defaults";
 
 export interface MousePressedOptions {
   /**
@@ -29,9 +30,11 @@ export interface MousePressedOptions {
 
 export type MouseSourceType = "mouse" | "touch" | null;
 
+const listenerOptions = { passive: true };
+
 export default function useMousePressed(
   target?: BasicTarget,
-  options: MousePressedOptions = {},
+  options: MousePressedOptions = defaultOptions,
 ): readonly [boolean, MouseSourceType] {
   const { touch = true, drag = true, initialValue = false } = options;
 
@@ -51,33 +54,29 @@ export default function useMousePressed(
     setSourceType(null);
   }, []);
 
-  useEventListener("mousedown", onPressed("mouse"), target, { passive: true });
-  useEventListener("mouseleave", onReleased, () => window, { passive: true });
-  useEventListener("mouseup", onReleased, () => window, { passive: true });
+  useEventListener("mousedown", onPressed("mouse"), target, listenerOptions);
+  useEventListener("mouseleave", onReleased, () => window, listenerOptions);
+  useEventListener("mouseup", onReleased, () => window, listenerOptions);
 
   useEffect(() => {
     if (drag) {
-      element?.addEventListener("dragstart", onPressed("mouse"), {
-        passive: true,
-      });
-      element?.addEventListener("drop", onReleased, {
-        passive: true,
-      });
-      element?.addEventListener("dragend", onReleased, {
-        passive: true,
-      });
+      element?.addEventListener(
+        "dragstart",
+        onPressed("mouse"),
+        listenerOptions,
+      );
+      element?.addEventListener("drop", onReleased, listenerOptions);
+      element?.addEventListener("dragend", onReleased, listenerOptions);
     }
 
     if (touch) {
-      element?.addEventListener("touchstart", onPressed("touch"), {
-        passive: true,
-      });
-      element?.addEventListener("touchend", onReleased, {
-        passive: true,
-      });
-      element?.addEventListener("touchcancel", onReleased, {
-        passive: true,
-      });
+      element?.addEventListener(
+        "touchstart",
+        onPressed("touch"),
+        listenerOptions,
+      );
+      element?.addEventListener("touchend", onReleased, listenerOptions);
+      element?.addEventListener("touchcancel", onReleased, listenerOptions);
     }
 
     return () => {

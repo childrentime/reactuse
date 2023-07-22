@@ -1,16 +1,9 @@
-import type {
-  Dispatch,
-  SetStateAction,
-} from "react";
-import {
-  useCallback,
-  useMemo,
-  useState,
-} from "react";
-import { isFunction } from "../utils/is";
+import type { Dispatch, SetStateAction } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { isBrowser, isFunction } from "../utils/is";
 import { guessSerializerType } from "../utils/serializer";
 import useEvent from "../useEvent";
-import useDeepCompareEffect from "../useDeepCompareEffect";
+import { defaultOnError, defaultOptions } from "../utils/defaults";
 
 export interface Serializer<T> {
   read(raw: string): T;
@@ -72,19 +65,49 @@ export interface UseStorageOptions<T> {
    */
   csrData?: T | (() => T);
 }
+const getInitialState = (
+  key: string,
+  defaultValue?: any,
+  storage?: Storage,
+  serializer?: Serializer<any>,
+  onError?: (error: unknown) => void,
+) => {
+  // Prevent a React hydration mismatch when a default value is provided.
+  if (defaultValue !== undefined) {
+    return defaultValue;
+  }
 
-// to avoid SSR error, first return default value, then update it in useEffect
+  if (isBrowser) {
+    try {
+      const raw = storage?.getItem(key);
+      if (raw !== undefined && raw !== null) {
+        return serializer?.read(raw);
+      }
+    }
+    catch (error) {
+      onError?.(error);
+    }
+  }
+
+  // A default value has not been provided, and you are rendering on the server, warn of a possible hydration mismatch when defaulting to false.
+  if (process.env.NODE_ENV !== "production") {
+    console.warn(
+      "`createStorage` When server side rendering, defaultValue should be defined to prevent a hydration mismatches.",
+    );
+  }
+
+  return null;
+};
+
 export default function useStorage<
   T extends string | number | boolean | object | null,
 >(
   key: string,
-  defaults: T,
-  getStorage: () => Storage | undefined,
-  options: UseStorageOptions<T> = {},
+  defaultValue?: T,
+  getStorage: () => Storage | undefined = () =>
+    isBrowser ? sessionStorage : undefined,
+  options: UseStorageOptions<T> = defaultOptions,
 ) {
-  const defaultOnError = useCallback((e: any) => {
-    console.error(e);
-  }, []);
   let storage: Storage | undefined;
   const { onError = defaultOnError, csrData } = options;
 
@@ -95,19 +118,21 @@ export default function useStorage<
     onError(err);
   }
 
-  const type = guessSerializerType<T>(defaults);
+  const type = guessSerializerType<T | undefined>(defaultValue);
   const serializer = useMemo(() => {
     return options.serializer ?? StorageSerializers[type];
   }, [options.serializer, type]);
 
-  const [state, setState] = useState<T | null>(defaults);
+  const [state, setState] = useState<T | null>(
+    getInitialState(key, defaultValue, storage, serializer, onError),
+  );
 
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     const data = csrData
       ? isFunction(csrData)
         ? csrData()
         : csrData
-      : defaults;
+      : defaultValue;
     const getStoredValue = () => {
       try {
         const raw = storage?.getItem(key);
@@ -125,7 +150,7 @@ export default function useStorage<
     };
 
     setState(getStoredValue());
-  }, [key, defaults, serializer, storage, onError]);
+  }, [key, defaultValue, serializer, storage, onError, csrData]);
 
   const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
     (valOrFunc) => {

@@ -1,0 +1,63 @@
+
+.menuGroup {
+  border-bottom: 1px solid var(--c-divider);
+  height: 48px;
+  overflow: hidden;
+  transition: border-color 0.5s;
+}
+
+.menuGroupOpen {
+  height: auto;
+}
+
+
+.item {
+  visibility: hidden;
+}
+
+.itemOpen {
+  visibility: visible;
+}
+
+.menuButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 4px 11px 0;
+  width: 100%;
+  line-height: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-text);
+  transition: color 0.25s;
+  border: 0;
+  background-color: transparent;
+}
+
+.group {
+  padding-top: 4px;
+}
+
+.group:first-child {
+  padding-top: 0;
+}
+
+.title {
+  line-height: 32px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text);
+  transition: color 0.25s;
+}
+
+.link {
+  display: block;
+  margin-left: 12px;
+  line-height: 32px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--c-text);
+  transition: color 0.25s;
+  border: 0;
+  background-color: transparent;
+}

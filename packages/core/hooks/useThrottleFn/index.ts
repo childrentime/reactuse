@@ -29,8 +29,7 @@ export default function useThrottleFn<T extends (...args: any) => any>(
         wait,
         options,
       ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [wait, options],
   );
 
   useUnmount(() => {

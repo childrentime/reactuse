@@ -5,6 +5,7 @@ import useDebounceFn from "../useDebounceFn";
 import useEvent from "../useEvent";
 import useEventListener from "../useEventListener";
 import useThrottleFn from "../useThrottleFn";
+import { defaultOptions } from "../utils/defaults";
 
 export interface UseScrollOptions {
   /**
@@ -60,9 +61,14 @@ export interface UseScrollOptions {
  */
 const ARRIVED_STATE_THRESHOLD_PIXELS = 1;
 
+const defaultListerOptions = {
+  capture: false,
+  passive: true,
+};
+
 export default function useScroll(
   target: BasicTarget<HTMLElement | SVGElement | Window | Document>,
-  options: UseScrollOptions = {},
+  options: UseScrollOptions = defaultOptions,
 ): readonly [
     number,
     number,
@@ -91,10 +97,7 @@ export default function useScroll(
       top: 0,
       bottom: 0,
     },
-    eventListenerOptions = {
-      capture: false,
-      passive: true,
-    },
+    eventListenerOptions = defaultListerOptions,
   } = options;
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);

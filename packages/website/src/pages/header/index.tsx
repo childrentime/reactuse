@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useClickOutside, useDarkMode } from "@reactuses/core";
+import { useClickOutside, useDarkMode, useToggle } from "@reactuses/core";
 import { GoMarkGithub } from "react-icons/go";
+import { HiMenu } from "react-icons/hi";
+import { IoMdClose } from "react-icons/io";
 import { startTransition, useEffect, useRef, useState } from "react";
 import { Command } from "cmdk";
 import { FiSearch } from "react-icons/fi";
@@ -10,6 +12,7 @@ import sun from "../../assets/sun.svg";
 import moon from "../../assets/moon.svg";
 import logo from "../../assets/logo.svg";
 import styles from "./style.module.css";
+import MobileFixed from "./mobileFixed/mobile-fixed";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -19,6 +22,7 @@ const Header = () => {
   });
 
   const [open, setOpen] = useState(false);
+  const [menuOpen, toggleMenuOpen] = useToggle(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(modalRef, () => {
@@ -55,7 +59,7 @@ const Header = () => {
               onSelect={() => {
                 setOpen(false);
                 startTransition(() => {
-                  navigate(`/${item}`);
+                  navigate(`/core/${item}`);
                 });
               }}
             >
@@ -66,7 +70,7 @@ const Header = () => {
       </Command.Dialog>
       <div className={styles.row}>
         <div className={styles.col5}>
-          <h1>
+          <h1 className={styles.logoTitle}>
             <Link to={"/"} className={styles.logo}>
               <img src={logo} alt="logo" />
               reactuses
@@ -100,7 +104,33 @@ const Header = () => {
               </span>
             </button>
           </div>
+
           <div className={styles.metas}>
+            <div className={styles.routes}>
+              <button
+                className={styles.route}
+                type="button"
+                onClick={() => {
+                  startTransition(() => {
+                    navigate("/guide/getStarted");
+                  });
+                }}
+              >
+                Guide
+              </button>
+              <button
+                className={styles.route}
+                type="button"
+                onClick={() => {
+                  startTransition(() => {
+                    navigate("/core/useToggle");
+                  });
+                }}
+              >
+                Core
+              </button>
+            </div>
+            <div className={styles.line} />
             <a
               onClick={(e) => {
                 e.preventDefault();
@@ -113,7 +143,7 @@ const Header = () => {
             <a
               href="https://github.com/childrentime/reactuse"
               target="_blank"
-              className={styles.icon}
+              className={`${styles.icon} ${styles.github}`}
               rel="noreferrer"
             >
               <GoMarkGithub />
@@ -136,9 +166,16 @@ const Header = () => {
                 />
               )}
             </button>
+            <button
+              className={`${styles.mobileMenu} ${styles.icon}`}
+              onClick={toggleMenuOpen}
+            >
+              {menuOpen ? <IoMdClose /> : <HiMenu />}
+            </button>
           </div>
         </div>
       </div>
+      <MobileFixed show={menuOpen} toggleShow={toggleMenuOpen} />
       <ToastContainer theme={dark ? "dark" : "light"} />
     </header>
   );

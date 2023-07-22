@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Stoppable } from "../utils/types";
 import useLatest from "../useLatest";
 import useEvent from "../useEvent";
+import { defaultOptions } from "../utils/defaults";
 
 export interface UseTimeoutFnOptions {
   /**
@@ -21,7 +22,7 @@ export interface UseTimeoutFnOptions {
 export default function useTimeoutFn(
   cb: (...args: unknown[]) => any,
   interval: number,
-  options: UseTimeoutFnOptions = {},
+  options: UseTimeoutFnOptions = defaultOptions,
 ): Stoppable {
   const { immediate = true } = options;
   const [pending, setPending] = useState(false);

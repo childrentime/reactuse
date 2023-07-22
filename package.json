@@ -18,7 +18,8 @@
     "docs:dev": "pnpm --filter website run dev",
     "build": "pnpm --filter @reactuses/core run build",
     "build:types": "tsc --emitDeclarationOnly",
-    "core:dev": "pnpm --filter core run dev & pnpm build:types"
+    "core:dev": "pnpm --filter core run dev & pnpm build:types",
+    "size": "tsx scripts/exportSize.mts"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
@@ -47,11 +48,15 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "esno": "^0.16.3",
+    "export-size": "^0.5.2",
     "fast-glob": "^3.2.12",
+    "filesize": "^8.0.7",
     "fs-extra": "^10.1.0",
     "lodash-es": "^4.17.21",
+    "markdown-table": "^3.0.3",
     "prompts": "^2.4.2",
     "ts-node": "^10.9.1",
+    "tsx": "^3.12.7",
     "typescript": "^4.9.5"
   },
   "pnpm": {

@@ -14,12 +14,16 @@ export default () => {
     return allItems.filter(i => i.size.startsWith(search.toLowerCase()));
   }, [search]);
 
-  const { list, containerProps, wrapperProps, scrollTo } = useVirtualList(
-    filteredItems,
-    {
+  const useVirtualListOptions = useMemo(() => {
+    return {
       itemHeight: i => filteredItems[i].height + 8,
       overscan: 10,
-    },
+    };
+  }, [filteredItems]);
+
+  const { list, containerProps, wrapperProps, scrollTo } = useVirtualList(
+    filteredItems,
+    useVirtualListOptions,
   );
 
   const handleScrollTo = () => {

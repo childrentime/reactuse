@@ -1,5 +1,6 @@
 import { useCallback, useRef } from "react";
 import { off, on } from "../utils/browser";
+import { defaultOptions } from "../utils/defaults";
 
 export interface UseLongPressOptions {
   isPreventDefault?: boolean;
@@ -22,7 +23,7 @@ const preventDefault = (ev: Event) => {
 
 export default function useLongPress(
   callback: (e: TouchEvent | MouseEvent) => void,
-  { isPreventDefault = true, delay = 300 }: UseLongPressOptions = {},
+  { isPreventDefault = true, delay = 300 }: UseLongPressOptions = defaultOptions,
 ) {
   const timeout = useRef<ReturnType<typeof setTimeout>>();
   const target = useRef<EventTarget>();

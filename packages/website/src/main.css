@@ -16,11 +16,11 @@ body {
   font-family: Avenir, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Arial, Noto Sans, sans-serif, apple color emoji,
     segoe ui emoji, Segoe UI Symbol, noto color emoji, sans-serif;
-  background-color: var(--c-bg);
 }
 
-.main {
-  min-height: 100vh;
+#main {
+  min-height: 100vh !important;
+  background-color: var(--color-canvas-default);
 }
 
 pre code {
@@ -55,6 +55,7 @@ pre code {
   --c-warning-text: #746000;
   --c-dialog-bg: #ffffff;
   --c-dialog-select: hsl(0, 0%, 95.1%);
+  --c-divider: rgb(60 60 67);
 }
 
 html.dark {
@@ -64,10 +65,10 @@ html.dark {
   --c-header-dark: #c8d1da;
   --c-menu-title: #ebedef;
   --c-menu-under: #adbac7;
-  --c-menu-select: #131111;
+  --c-menu-select: #2d72d2;
   --c-primary: #1890ff;
-  --c-primary-shadow: #2431a25d;
-  --c-box-shadow: rgb(16 17 26);
+  --c-primary-shadow: rgba(45, 114, 210, 0.3);
+  --c-box-shadow: rgb(33 33 26);
   --c-hj-c: #fff;
   --c-hj-b: #1c1b1b;
   --c-p-code: #080b0c;
@@ -84,6 +85,7 @@ html.dark {
   --c-warning-text: #362e00;
   --c-dialog-bg: black;
   --c-dialog-select: hsl(0, 0%, 13.6%);
+  --c-divider: rgb(60 60 67);
 }
 
 * {
@@ -112,12 +114,12 @@ p code {
   outline: none;
   height: 20px;
   width: 20px;
-  opacity: .2;
-  transition: opacity .1s;
+  opacity: 0.2;
+  transition: opacity 0.1s;
 }
 
 .markdown-it-code-copy:hover {
-  opacity: .4;
+  opacity: 0.4;
 }
 
 .markdown-it-copy-image {
@@ -144,7 +146,6 @@ p code {
   color: var(--c-warning-text);
 }
 
-
 .prose .code-block {
   border-radius: 6px;
   overflow: hidden;
@@ -156,4 +157,9 @@ p code {
   background-color: var(--c-hj-b);
   padding: 16px;
   border-radius: 6px;
+}
+
+kbd {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
 }

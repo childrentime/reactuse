@@ -1,13 +1,13 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import type { BasicTarget } from "../utils/domTarget";
 import { useLatestElement } from "../utils/domTarget";
 import useLatest from "../useLatest";
-import useDeepCompareEffect from "../useDeepCompareEffect";
+import { defaultOptions } from "../utils/defaults";
 
 export default function useMutationObserver(
   callback: MutationCallback,
   target: BasicTarget,
-  options: MutationObserverInit = {},
+  options: MutationObserverInit = defaultOptions,
 ): () => void {
   const callbackRef = useLatest(callback);
   const observerRef = useRef<MutationObserver>();
@@ -19,7 +19,7 @@ export default function useMutationObserver(
     }
   }, []);
 
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     if (!element) {
       return;
     }

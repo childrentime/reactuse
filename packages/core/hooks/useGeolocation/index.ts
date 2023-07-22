@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { defaultOptions } from "../utils/defaults";
 
 const initCoord = {
   accuracy: 0,
@@ -10,7 +11,7 @@ const initCoord = {
   speed: null,
 };
 
-export default function useGeolocation(options: Partial<PositionOptions> = {}) {
+export default function useGeolocation(options: Partial<PositionOptions> = defaultOptions) {
   const {
     enableHighAccuracy = true,
     maximumAge = 30000,

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useMount from "../useMount";
 import { off, on } from "../utils/browser";
+import { defaultOptions } from "../utils/defaults";
 
 export type KeyModifier =
   | "Alt"
@@ -41,7 +42,7 @@ export interface UseModifierOptions {
 
 export default function useKeyModifier(
   modifier: KeyModifier,
-  options: UseModifierOptions = {},
+  options: UseModifierOptions = defaultOptions,
 ): boolean {
   const { events = defaultEvents, initial = false } = options;
 

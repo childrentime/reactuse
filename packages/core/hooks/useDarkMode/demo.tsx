@@ -4,6 +4,7 @@ export default () => {
   const [theme, toggleDark] = useDarkMode({
     classNameDark: "dark",
     classNameLight: "light",
+    defaultValue: false,
   });
 
   return (

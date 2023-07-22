@@ -3,6 +3,7 @@ import type { BasicTarget } from "../utils/domTarget";
 import { getTargetElement } from "../utils/domTarget";
 import useResizeObserver from "../useResizeObserver";
 import useEvent from "../useEvent";
+import { defaultOptions } from "../utils/defaults";
 
 export interface UseElementBoundingOptions {
   /**
@@ -35,7 +36,7 @@ export interface UseElementBoundingOptions {
 
 export default function useElementBounding(
   target: BasicTarget,
-  options: UseElementBoundingOptions = {},
+  options: UseElementBoundingOptions = defaultOptions,
 ): {
     readonly height: number;
     readonly bottom: number;

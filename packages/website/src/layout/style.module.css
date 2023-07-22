@@ -1,7 +1,7 @@
 .main {
   padding: 40px 0 0;
   padding-top: 90px;
-  background: var(--c-bg);
+  background-color: var(--color-canvas-default);
 }
 
 .row {
@@ -14,7 +14,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--c-bg);
 }
 
 .col5 {
@@ -38,12 +37,14 @@
 .menuRoot {
   margin-bottom: 40px;
   list-style: none;
+  padding: 0 !important;
+  background-color: var(--color-canvas-default);
 }
 
 .itemTitle {
   margin-top: 16px;
   margin-bottom: 16px;
-  font-size: 13px;
+  font-size: 18px;
   padding: 8px 16px;
   padding-left: 40px;
   color: var(--c-menu-title);
@@ -72,6 +73,7 @@
 
 .itemLink {
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .itemSelect {
@@ -118,6 +120,7 @@
 
 .content {
   padding: 32px 170px 32px 64px;
+  background-color: var(--color-canvas-default);
 }
 
 .content h1 {
@@ -183,7 +186,6 @@
   line-height: 1.21428571em;
   font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
   padding: 0.67857143em 1em;
-  background: var(--c-bg);
   border: 1px solid var(--c-input-border);
   color: var(--c-input);
   border-radius: 0.28571429rem;
@@ -206,7 +208,6 @@
   border-radius: 4px;
   margin: 0.5rem 0;
   outline: none;
-  background: var(--c-bg);
   color: var(--c-text);
   transition: background-color 0.5s;
   width: 200px;

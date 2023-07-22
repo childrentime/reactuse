@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import useLatest from "../useLatest";
+import { defaultOptions } from "../utils/defaults";
 
 export default function useInterval(
   callback: () => void,
   delay?: number | null,
-  options?: {
+  options: {
     immediate?: boolean;
-  },
+  } = defaultOptions,
 ): void {
-  const immediate = options?.immediate;
+  const immediate = options.immediate;
   const savedCallback = useLatest(callback);
 
   useEffect(() => {

@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from "react";
+import { defaultOptions } from "../utils/defaults";
 
 export interface UseFileDialogOptions {
   /**
@@ -22,7 +23,7 @@ const DEFAULT_OPTIONS: UseFileDialogOptions = {
 };
 
 export default function useFileDialog(
-  options: UseFileDialogOptions = {},
+  options: UseFileDialogOptions = defaultOptions,
 ): readonly [
     FileList | null,
     (localOptions?: Partial<UseFileDialogOptions>) => void,

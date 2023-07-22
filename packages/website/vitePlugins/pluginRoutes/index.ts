@@ -6,7 +6,7 @@ import routesJSON from "../../src/routes.json";
 
 export interface Route {
   path: string;
-  element: React.ReactElement;
+  element: () => React.ReactElement;
 }
 
 const CONVENTIONAL_ROUTE_ID = "website:routes";

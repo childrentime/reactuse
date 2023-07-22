@@ -1,6 +1,6 @@
 declare module "*.md" {
-  const filepath: string;
-  export default filepath;
+  const m: () => JSX.Element;
+  export default m;
 }
 
 declare module "*.ico" {
@@ -41,3 +41,5 @@ declare module "website:routes" {
   const menuGroup: Menu[];
   export { routes, pages, menuGroup };
 }
+
+declare module 'markdown-it-table';
