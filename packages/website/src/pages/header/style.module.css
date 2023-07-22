@@ -279,7 +279,21 @@
   display: none;
 }
 
-@media screen and (max-width: 840px) {
+.mobileMenu {
+  display: inline-block;
+  border: 0;
+  background: 0 0;
+  line-height: 20px;
+  color: var(--c-header-dark);
+  font-size: 15px;
+  cursor: pointer;
+  margin-right: 16px;
+  position: relative;
+  top: 2px;
+  display: none;
+}
+
+@media screen and (max-width: 950px) {
   .searchMobile {
     display: initial;
   }
@@ -312,5 +326,20 @@
 @media screen and (max-width: 640px) {
   .logo {
     padding-left: 0;
+  }
+  .routes {
+    display: none;
+  }
+  .line {
+    display: none;
+  }
+  .github {
+    display: none;
+  }
+  .darkmode {
+    display: none;
+  }
+  .mobileMenu {
+    display: inline-block;
   }
 }

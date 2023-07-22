@@ -1,30 +1,15 @@
 import { Route, Routes } from "react-router-dom";
-import { menuGroup, routes } from "website:routes";
+import { routes } from "website:routes";
 import Header from "./pages/header";
 import Index from "./pages/index";
 import "./main.css";
 import "highlight.js/styles/stackoverflow-light.css";
 import "react-toastify/dist/ReactToastify.css";
-import type { IMenu } from "./layout";
 import Layout from "./layout";
 import { guideMenu, guideRoutes } from "./pages/guide";
+import { mainMenus } from "./constant";
 
 function App() {
-  const mainMenus: IMenu[] = menuGroup.map((menus) => {
-    const { title } = menus;
-    const items = menus.items.slice().map((item) => {
-      return {
-        path: item,
-        title: item,
-      };
-    });
-
-    return {
-      title,
-      items,
-    };
-  });
-
   return (
     <>
       <script

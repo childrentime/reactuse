@@ -55,6 +55,7 @@ pre code {
   --c-warning-text: #746000;
   --c-dialog-bg: #ffffff;
   --c-dialog-select: hsl(0, 0%, 95.1%);
+  --c-divider: rgb(60 60 67);
 }
 
 html.dark {
@@ -84,6 +85,7 @@ html.dark {
   --c-warning-text: #362e00;
   --c-dialog-bg: black;
   --c-dialog-select: hsl(0, 0%, 13.6%);
+  --c-divider: rgb(60 60 67);
 }
 
 * {
