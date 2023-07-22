@@ -150,3 +150,10 @@
 
 * fix useMediaDevices when create default value;
 
+# 4.0.0(Ju1 22, 2023)
+
+## Core
+
+### Breaking Changes
+
+* options are now consider reference immutable.
