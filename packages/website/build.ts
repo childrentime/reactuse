@@ -4,6 +4,7 @@ import type { InlineConfig } from "vite";
 import { build as viteBuild } from "vite";
 import fs, { createWriteStream } from "fs-extra";
 import { SitemapStream } from "sitemap";
+import { guideRoutes } from "./src/pages/guide";
 import routesJSON from "./src/routes.json";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -11,6 +12,8 @@ const routes = routesJSON.main.reduce((pre: string[], cur) => {
   pre.push(...cur.items);
   return pre;
 }, []);
+
+const guides = guideRoutes.map(route => route.path);
 
 const desc = path.resolve(__dirname, "./ssg");
 
@@ -44,8 +47,8 @@ async function bundle() {
     };
   };
 
-  fs.removeSync("./viteSSG");
-  fs.mkdirSync("./viteSSG");
+  fs.removeSync("./ssg");
+  fs.mkdirSync("./ssg");
 
   try {
     await Promise.all([
@@ -59,17 +62,22 @@ async function bundle() {
       .readdirSync("./dist/client/assets")
       .map(asset => `/assets/${asset}`);
 
+    fs.ensureDir(desc);
+    fs.ensureDir(`${desc}/core`);
+    fs.ensureDir(`${desc}/guide`);
+
     for (const route of routes) {
       const html = await render(`/${route}`, assets);
-
-      fs.ensureDir(desc);
-      fs.writeFile(`${desc}/${route}.html`, html);
+      await fs.writeFile(`${desc}/core/${route}.html`, html);
     }
-
+    for (const route of guides) {
+      const html = await render(`/${route}`, assets);
+      await fs.writeFile(`${desc}/guide/${route}.html`, html);
+    }
     const html = await render("/", assets);
-    fs.writeFile(`${desc}/index.html`, html);
+    await fs.writeFile(`${desc}/index.html`, html);
 
-    fs.copy(path.resolve(__dirname, "./dist/client"), desc);
+    await fs.copy(path.resolve(__dirname, "./dist/client"), desc);
 
     // Generate site map
     const smStream = new SitemapStream({
@@ -77,8 +85,12 @@ async function bundle() {
     });
     const writeStream = createWriteStream(`${desc}/sitemap.xml`);
     smStream.pipe(writeStream);
+    smStream.write({ url: "/" });
     for (const route of routes) {
-      smStream.write({ url: `/${route}` });
+      smStream.write({ url: `/core/${route}` });
+    }
+    for (const route of guides) {
+      smStream.write({ url: `/guide/${route}` });
     }
     smStream.end();
   }
