@@ -2,14 +2,14 @@ import { useCookie } from "@reactuses/core";
 
 const defaultOption = {
   path: "/",
-  defaultValue: "default-value",
 };
 
-export default () => {
+export default function Demo() {
   const cookieName = "cookie-key";
   const [cookieValue, updateCookie, refreshCookie] = useCookie(
     cookieName,
     defaultOption,
+    'default-value'
   );
 
   const updateButtonClick = () => {
