@@ -9,13 +9,13 @@
   status = 200
 
 [[redirects]]
-  from = "core/*.html"
-  to = "/core/:splat.html"
+  from = "core/*"
+  to = "/core/:splat"
   status = 200
 
 [[redirects]]
-  from = "guide/*.html"
-  to = "/guide/:splat.html"
+  from = "guide/*"
+  to = "/guide/:splat"
   status = 200
 
 [build]
