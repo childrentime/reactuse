@@ -9,7 +9,7 @@ export default function Demo() {
   const [cookieValue, updateCookie, refreshCookie] = useCookie(
     cookieName,
     defaultOption,
-    'default-value'
+    "default-value",
   );
 
   const updateButtonClick = () => {
@@ -42,4 +42,4 @@ export default function Demo() {
       <button onClick={refreshCookie}>Refresh the cookie</button>
     </div>
   );
-};
+}

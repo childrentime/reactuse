@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function Demo() {
   const visibility = useDocumentVisibility("hidden");
   const [message, setMessage] = useState(
-    "💡 Minimize the page or switch tab then return"
+    "💡 Minimize the page or switch tab then return",
   );
 
   useEffect(() => {
@@ -12,7 +12,8 @@ export default function Demo() {
       setTimeout(() => {
         setMessage("🎉 Welcome back!");
       }, 2000);
-    } else {
+    }
+    else {
       setTimeout(() => {
         setMessage("🥰 Take a break");
       }, 2000);

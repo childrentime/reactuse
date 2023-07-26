@@ -38,7 +38,7 @@ export default function useDocumentVisibility(
 
   useEffect(() => {
     setVisible(document.visibilityState);
-  }, [])
+  }, []);
 
   return visible;
 }
