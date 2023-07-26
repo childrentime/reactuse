@@ -8,15 +8,5 @@
   to = "/index.html"
   status = 200
 
-[[redirects]]
-  from = "core/*.html"
-  to = "/core/:splat.html"
-  status = 200
-
-[[redirects]]
-  from = "guide/*.html"
-  to = "/guide/:splat.html"
-  status = 200
-
 [build]
   command = "pnpm run build"

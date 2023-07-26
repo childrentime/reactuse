@@ -67,11 +67,11 @@ async function bundle() {
     fs.ensureDir(`${desc}/guide`);
 
     for (const route of routes) {
-      const html = await render(`/${route}`, assets);
+      const html = await render(`/core/${route}`, assets);
       await fs.writeFile(`${desc}/core/${route}.html`, html);
     }
     for (const route of guides) {
-      const html = await render(`/${route}`, assets);
+      const html = await render(`/guide/${route}`, assets);
       await fs.writeFile(`${desc}/guide/${route}.html`, html);
     }
     const html = await render("/", assets);
