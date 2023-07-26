@@ -158,7 +158,7 @@
 
 * options are now consider reference immutable.
 
-# 4.0.0(Ju1 26, 2023)
+# 4.0.1(Ju1 26, 2023)
 
 ## Core
 
