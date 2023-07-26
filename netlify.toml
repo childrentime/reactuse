@@ -1,22 +1,23 @@
 [build.environment]
-  NPM_FLAGS = "--version"
-  NODE_OPTIONS = "--max_old_space_size=4096"
-  NODE_VERSION = "18"
+NPM_FLAGS = "--version"
+NODE_OPTIONS = "--max_old_space_size=4096"
+NODE_VERSION = "18"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/core/*"
+to = "/core/:splat"
+status = 200
 
 [[redirects]]
-  from = "/core/*"
-  to = "/core/:splat"
-  status = 200
+from = "/guide/*"
+to = "/guide/:splat"
+status = 200
 
 [[redirects]]
-  from = "/guide/*"
-  to = "/guide/:splat"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200
+
 
 [build]
-  command = "pnpm run build"
+command = "pnpm run build"
