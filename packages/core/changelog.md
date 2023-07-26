@@ -157,3 +157,10 @@
 ### Breaking Changes
 
 * options are now consider reference immutable.
+
+# 4.0.1(Ju1 26, 2023)
+
+## Core
+
+* fix useClickOutside.
+

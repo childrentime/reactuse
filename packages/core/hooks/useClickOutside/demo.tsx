@@ -1,7 +1,7 @@
 import { useClickOutside } from "@reactuses/core";
 import { useRef, useState } from "react";
 
-export default () => {
+export default function Demo() {
   const [visible, setVisible] = useState(false);
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -49,4 +49,4 @@ export default () => {
       )}
     </div>
   );
-};
+}
