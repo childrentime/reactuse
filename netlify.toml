@@ -9,12 +9,12 @@
   status = 200
 
 [[redirects]]
-  from = "core/*"
+  from = "/core/*"
   to = "/core/:splat"
   status = 200
 
 [[redirects]]
-  from = "guide/*"
+  from = "/guide/*"
   to = "/guide/:splat"
   status = 200
 
