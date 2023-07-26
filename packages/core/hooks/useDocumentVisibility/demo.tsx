@@ -1,13 +1,23 @@
 import { useDocumentVisibility } from "@reactuses/core";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
-export default () => {
-  const visibility = useDocumentVisibility();
-  const message = useRef("💡 Minimize the page or switch tab then return");
+export default function Demo() {
+  const visibility = useDocumentVisibility("hidden");
+  const [message, setMessage] = useState(
+    "💡 Minimize the page or switch tab then return"
+  );
 
   useEffect(() => {
-    message.current = "🎉 Welcome back!";
+    if (visibility === "visible") {
+      setTimeout(() => {
+        setMessage("🎉 Welcome back!");
+      }, 2000);
+    } else {
+      setTimeout(() => {
+        setMessage("🥰 Take a break");
+      }, 2000);
+    }
   }, [visibility]);
 
-  return <div>{message.current}</div>;
-};
+  return <div>{message}</div>;
+}

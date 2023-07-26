@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useEventListener from "../useEventListener";
 import { isBrowser } from "../utils/is";
 
@@ -35,6 +35,10 @@ export default function useDocumentVisibility(
     },
     () => document,
   );
+
+  useEffect(() => {
+    setVisible(document.visibilityState);
+  }, [])
 
   return visible;
 }
