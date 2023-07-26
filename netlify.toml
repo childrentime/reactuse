@@ -4,6 +4,12 @@ NODE_OPTIONS = "--max_old_space_size=4096"
 NODE_VERSION = "18"
 
 [[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+
+[[redirects]]
 from = "/core/*"
 to = "/core/:splat.html"
 status = 200
@@ -11,11 +17,6 @@ status = 200
 [[redirects]]
 from = "/guide/*"
 to = "/guide/:splat.html"
-status = 200
-
-[[redirects]]
-from = "/*"
-to = "/index.html"
 status = 200
 
 
