@@ -5,13 +5,15 @@ NODE_VERSION = "18"
 
 [[redirects]]
 from = "/core/*"
-to = "/core/:splat.html"
+to = "/core/:splat"
 status = 200
+force = true
 
 [[redirects]]
 from = "/guide/*"
-to = "/guide/:splat.html"
+to = "/guide/:splat"
 status = 200
+force = true
 
 [[redirects]]
 from = "/*"
