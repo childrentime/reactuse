@@ -10,5 +10,8 @@ export default defineConfig(async () => {
       await pluginMD(),
       pluginRoutes(),
     ],
+    ssgOptions: {
+      rootContainerId: "main",
+    },
   };
 });
