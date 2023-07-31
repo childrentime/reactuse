@@ -23,13 +23,13 @@ output.push({
   format: "cjs",
 });
 configs.push({
-  external: ["react", "lodash"],
+  external: ["react", "lodash-es", "screenfull"],
   input,
   output,
   plugins: [esbuildPlugin, json(), resolve({ extensions: [".ts"] }), common()],
 });
 configs.push({
-  external: ["react", "lodash"],
+  external: ["react", "lodash-es", "screenfull"],
   input,
   output: {
     file: path.resolve(__dirname, "../dist/index.d.ts"),
