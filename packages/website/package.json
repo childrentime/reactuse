@@ -2,11 +2,13 @@
   "name": "website",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "prebuild": "bash prebuild.sh",
+    "postinstall": "pnpm -w run build",
     "dev": "vite-react-ssg dev",
-    "build": "pnpm run prebuild && cross-env NODE_ENV=production tsx build.ts",
-    "preview": "serve ssg"
+    "build": "cross-env NODE_ENV=production vite-react-ssg build",
+    "preview": "serve dist"
   },
   "dependencies": {
     "@babel/core": "^7.20.2",

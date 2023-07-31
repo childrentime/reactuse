@@ -1,16 +1,11 @@
-import { Route, Routes } from "react-router-dom";
-import { routes } from "website:routes";
-import Header from "./pages/header";
-import Index from "./pages/index";
-import "./main.css";
+import { Outlet } from "react-router-dom";
+import Header from "../pages/header";
+import "../main.css";
 import "highlight.js/styles/stackoverflow-light.css";
 import "react-toastify/dist/ReactToastify.css";
-import Layout from "./layout";
-import { guideMenu, guideRoutes } from "./pages/guide";
-import { mainMenus } from "./constant";
-import "./github-markdown.css";
+import "../github-markdown.css";
 
-function App() {
+export default function BaseLayout() {
   return (
     <>
       <script
@@ -38,19 +33,7 @@ function App() {
         }}
       />
       <Header />
-      <Routes>
-        <Route path={"/"} element={<Index />} key="main page" />
-        <Route
-          path={"/core/*"}
-          element={<Layout menuGroup={mainMenus} routes={routes} />}
-        />
-        <Route
-          path={"/guide/*"}
-          element={<Layout menuGroup={guideMenu} routes={guideRoutes} />}
-        />
-      </Routes>
+      <Outlet />
     </>
-  );
+  )
 }
-
-export default App;

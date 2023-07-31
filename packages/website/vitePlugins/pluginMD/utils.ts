@@ -1,14 +1,12 @@
 import path from "node:path";
 import fs from "fs-extra";
-
-const { resolve, join } = path.posix;
-const DIR_TYPES = resolve(__dirname, "../../../../types/packages");
+const DIR_TYPES = path.resolve(__dirname, "../../../../types/packages");
 
 export async function getTypeDefinition(
   pkg: string,
   name: string,
 ): Promise<string | undefined> {
-  const typingFilepath = join(DIR_TYPES, `${pkg}/hooks/${name}/index.d.ts`);
+  const typingFilepath = path.join(DIR_TYPES, `${pkg}/hooks/${name}/index.d.ts`);
 
   if (!fs.existsSync(typingFilepath))
     return;
