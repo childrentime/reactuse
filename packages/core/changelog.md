@@ -164,3 +164,9 @@
 
 * fix useClickOutside.
 
+# 4.0.3(Ju1 26, 2023)
+
+## Core
+
+* fix useElementVisibility
+* fix external deps
