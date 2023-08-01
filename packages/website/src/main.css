@@ -94,7 +94,6 @@ html.dark {
 
 .hljs {
   color: var(--c-hj-c) !important;
-  background: var(--c-hj-b) !important;
 }
 
 p code {
