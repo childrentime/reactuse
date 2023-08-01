@@ -8,7 +8,7 @@ import { mainMenus } from "./constant";
 
 export const routes: RouteRecord[] = [
   {
-    path: '/',
+    path: "/",
     Component: BaseLayout,
     children: [
       {
@@ -35,6 +35,6 @@ export const routes: RouteRecord[] = [
           };
         }),
       },
-    ]
-  }
+    ],
+  },
 ];

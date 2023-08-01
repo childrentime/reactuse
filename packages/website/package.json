@@ -1,8 +1,8 @@
 {
   "name": "website",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "prebuild": "bash prebuild.sh",
     "postinstall": "pnpm -w run build",

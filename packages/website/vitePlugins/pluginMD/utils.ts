@@ -1,5 +1,6 @@
 import path from "node:path";
 import fs from "fs-extra";
+
 const DIR_TYPES = path.resolve(__dirname, "../../../../types/packages");
 
 export async function getTypeDefinition(

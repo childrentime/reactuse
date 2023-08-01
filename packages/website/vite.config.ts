@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import pluginMD from "./vitePlugins/pluginMD";
 import pluginRoutes from "./vitePlugins/pluginRoutes";
-import { createSitemapGener } from './scripts/sitemap-gen'
+import { createSitemapGener } from "./scripts/sitemap-gen";
 
 const sitemapGener = createSitemapGener();
 
@@ -14,7 +14,7 @@ export default defineConfig(async () => {
       pluginRoutes(),
     ],
     ssr: {
-      noExternal: ['react-icons/**']
+      noExternal: ["react-icons/**"],
     },
     ssgOptions: {
       rootContainerId: "main",
@@ -25,8 +25,8 @@ export default defineConfig(async () => {
         sitemapGener.end();
       },
       includedRoutes: (paths: string[]) => {
-        return paths.filter(path => !['core', 'guide'].includes(path))
-      }
+        return paths.filter(path => !["core", "guide"].includes(path));
+      },
     },
   };
 });
