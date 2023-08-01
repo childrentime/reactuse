@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "prebuild": "bash prebuild.sh",
-    "postinstall": "pnpm -w run build",
+    "postinstall": "pnpm -w run /^build.*/",
     "dev": "vite-react-ssg dev",
     "build": "cross-env NODE_ENV=production vite-react-ssg build",
     "preview": "serve dist"
