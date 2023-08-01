@@ -18,7 +18,10 @@ export const routes: RouteRecord[] = [
       {
         path: "core",
         element: <Layout menuGroup={mainMenus} />,
-        children: coreRoutes.map((page) => {
+        children: coreRoutes.map((page, index) => {
+          if (index === 0) {
+            page.preload();
+          }
           return {
             path: `${page.path}`,
             Component: page.element,

@@ -1,4 +1,4 @@
-html.dark .markdown-body {
+html.dark {
   color-scheme: dark;
   --color-prettylights-syntax-comment: #8b949e;
   --color-prettylights-syntax-constant: #79c0ff;
@@ -44,7 +44,7 @@ html.dark .markdown-body {
   --color-danger-fg: #f85149;
 }
 
-html .markdown-body {
+html {
   color-scheme: light;
   --color-prettylights-syntax-comment: #6e7781;
   --color-prettylights-syntax-constant: #0550ae;

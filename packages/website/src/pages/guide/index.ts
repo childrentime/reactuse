@@ -39,3 +39,6 @@ export const guideRoutes: IRoute[] = [
     element: lazy(() => import("./exportSize.md")),
   },
 ];
+
+// preload
+import("./getStarted.md");
