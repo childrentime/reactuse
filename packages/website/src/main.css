@@ -158,6 +158,20 @@ p code {
   border-radius: 6px;
 }
 
+.prose .meta-data {
+  display: grid;
+  grid-template-columns: 100px auto;
+  margin: 16px 0 24px;
+  gap: 8px;
+  opacity: .8;
+  transform: scale(.85);
+  transform-origin: 0 50%;
+}
+
+.prose .meta-data div:nth-child(odd) {
+  opacity: .8;
+}
+
 kbd {
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;

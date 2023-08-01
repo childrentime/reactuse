@@ -21,14 +21,15 @@ export default async function pluginMD(): Promise<Plugin> {
           const prePath = id.slice(0, index);
           const name = prePath.slice(prePath.lastIndexOf("/") + 1);
 
-          const { typeDeclarations } = await getMarkdownSection(pkg, name);
+          const { typeDeclarations, hookMeta } = await getMarkdownSection(pkg, name);
 
           const demoPath = id.replace("README.md", "demo.tsx");
           const demoString = fs.readFileSync(demoPath, "utf-8");
           const demoHtml = JSON.stringify(
             markdown.render(`\`\`\`typescript\n${demoString.trim()}\n\`\`\``),
           );
-          const originHtml = JSON.stringify(markdown.render(src));
+          let originHtml = markdown.render(src);
+          originHtml = JSON.stringify(originHtml.replace("</h1>", `</h1>${hookMeta}`));
           const typeDeclarationsHtml = JSON.stringify(
             markdown.render(typeDeclarations),
           );

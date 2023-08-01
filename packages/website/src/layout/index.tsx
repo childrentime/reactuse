@@ -1,13 +1,13 @@
 import type { LazyExoticComponent } from "react";
 import {
   Fragment,
-  Suspense,
   startTransition,
   useEffect,
   useMemo,
   useState,
 } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { NavLink } from "vite-react-ssg";
 import { useScrollIntoView } from "@reactuses/core";
 import styles from "./style.module.css";
 
@@ -72,24 +72,18 @@ const Layout = (props: IProps) => {
                           {menu.title}
                         </div>
                         {menu.items.map((item) => {
-                          const selected
-                          = pathname === item.path ? styles.itemSelect : "";
                           return (
-                            <li
+                            <NavLink
+                              to={item.path}
                               key={item.path}
-                              className={`${styles.item} ${selected}`}
+                              className={({ isActive }) => `${styles.item} ${isActive ? styles.itemSelect : ""}`}
                             >
                               <div
                                 className={styles.itemLink}
-                                onClick={() => {
-                                  startTransition(() => {
-                                    navigate(`${item.path}`);
-                                  });
-                                }}
                               >
                                 {item.title}
                               </div>
-                            </li>
+                            </NavLink>
                           );
                         })}
                       </Fragment>
@@ -100,10 +94,8 @@ const Layout = (props: IProps) => {
             </div>
           </div>
           <div className={styles.col19}>
-            <section className={styles.content}>
-              <Suspense fallback="Loading...">
-                <Outlet />
-              </Suspense>
+            <section className={`${styles.content} markdown-body`}>
+              <Outlet />
             </section>
           </div>
         </div>

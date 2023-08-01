@@ -2,6 +2,8 @@ import path from "node:path";
 import fs from "fs-extra";
 
 const DIR_TYPES = path.resolve(__dirname, "../../../../types/packages");
+const EXPORT_SIZE = path.resolve(__dirname, "../../src/pages/guide/exportSize.md");
+const ROUTES_JSON = path.resolve(__dirname, "../../src/routes.json");
 
 export async function getTypeDefinition(
   pkg: string,
@@ -77,7 +79,27 @@ ${code}
 
   const typeDeclarations = `${typingSection}\n`;
 
+  const hookMeta = getHookMeta(name);
+
   return {
     typeDeclarations,
+    hookMeta,
   };
+}
+
+function getHookMeta(name: string) {
+  if (!fs.existsSync(EXPORT_SIZE)) {
+    return "";
+  }
+  const sizeMD = fs.readFileSync(EXPORT_SIZE, "utf-8");
+  const sizeRE = new RegExp(`${name}.*?\\|(.*?)\\|`);
+  let [_, size] = sizeMD.match(sizeRE) ?? [];
+  if (!size) {
+    return "";
+  }
+  size = size.trim();
+  const routes = JSON.parse(fs.readFileSync(ROUTES_JSON, "utf-8"));
+  const category = routes.main.find((item: any) => item.items.includes(name)).title;
+
+  return `<div class="meta-data"><div> Category </div><div> ${category} </div><div> Export Size </div><div> ${size} </div></div>`;
 }

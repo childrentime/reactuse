@@ -61,6 +61,7 @@
 }
 
 .item {
+  display: block;
   position: relative;
   height: 40px;
   line-height: 40px;
@@ -69,6 +70,7 @@
   margin-bottom: 8px;
   margin-top: 4px;
   text-align: left;
+  text-decoration: none;
 }
 
 .itemLink {

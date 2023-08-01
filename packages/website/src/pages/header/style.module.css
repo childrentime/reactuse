@@ -195,6 +195,7 @@
 }
 
 [cmdk-root] {
+  --cmdk-shadow: 0 16px 70px rgba(0,0,0,.2);
   max-width: 640px;
   width: 100%;
   background: var(--c-dialog-bg);
@@ -212,7 +213,7 @@
   outline: none;
   background: var(--bg);
   color: var(--gray12);
-  border-bottom: 1px solid var(--gray6);
+  border-bottom: 1px solid #e2e2e2;;
   border-radius: 0;
   caret-color: #6e5ed2;
   margin: 0;

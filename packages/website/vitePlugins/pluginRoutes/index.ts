@@ -30,13 +30,16 @@ const generateRoutesCode = () => {
         __dirname,
         `../../node_modules/@reactuses/core/hooks/${route}/README.md`,
       );
-      return `const Route${index} = lazy(() => import('${importPath}'));`;
+      return `
+      const preload${index} = () => import('${importPath}');
+      const Route${index} = lazy(() => import('${importPath}'));
+      `;
     })
     .join("\n")}
   export const routes = [
     ${routeObjects
       .map((route, index) => {
-        return `{ path: '${route}', element: Route${index} }`;
+        return `{ path: '${route}', element: Route${index}, preload: preload${index} }`;
       })
       .join(",\n")}
   ];
