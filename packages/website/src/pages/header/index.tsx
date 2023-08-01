@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useClickOutside, useDarkMode, useToggle } from "@reactuses/core";
+import { useClickOutside, useDarkMode, useMount, useToggle } from "@reactuses/core";
 import { GoMarkGithub } from "react-icons/go";
 import { HiMenu } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
@@ -25,15 +25,25 @@ const Header = () => {
   const [menuOpen, toggleMenuOpen] = useToggle(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
+  // Reference https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/components/VPNavBarSearch.vue#L140-L147
+  const [metaKey, setMetaKey] = useState("Meta");
+  useMount(() => {
+    setMetaKey(/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)
+      ? "⌘"
+      : "Ctrl",
+    );
+  });
+
   useClickOutside(modalRef, () => {
     setOpen(false);
   });
 
-  // Toggle the menu when ⌘K is pressed
+  // Toggle the menu when ⌘K or CtrlK is pressed
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && e.metaKey) {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         setOpen(open => !open);
+        e.preventDefault();
       }
     };
 
@@ -99,8 +109,8 @@ const Header = () => {
                 <span className={styles.placeHolder}>Search</span>
               </span>
               <span className={styles.buttonKeys}>
-                <kbd className={styles.buttonKeyLeft}>⌘</kbd>
-                <kbd className={styles.buttonKeyRight}>K</kbd>
+                <kbd className={styles.buttonKeyLeft}>{ metaKey }</kbd>
+                <kbd className={styles.buttonKeyRight}> K</kbd>
               </span>
             </button>
           </div>
