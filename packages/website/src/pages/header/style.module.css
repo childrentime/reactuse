@@ -138,9 +138,7 @@
   font-weight: 500;
   width: 18px;
   color: var(--c-bg);
-  position: absolute;
-  top: 1px;
-  left: 0;
+  font-size: 12px;
 }
 
 .buttonKeyRight {
@@ -149,8 +147,6 @@
   font-weight: 500;
   width: 18px;
   color: var(--c-bg);
-  position: absolute;
-  left: 20px;
 }
 
 .metas {
