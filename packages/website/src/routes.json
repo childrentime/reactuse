@@ -21,7 +21,8 @@
         "useCountDown",
         "useTextSelection",
         "useSupported",
-        "useSetState"
+        "useSetState",
+        "useHover"
       ]
     },
     {

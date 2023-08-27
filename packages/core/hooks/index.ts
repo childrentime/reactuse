@@ -88,6 +88,7 @@ import useCookie from "./useCookie";
 import useDoubleClick from "./useDoubleClick";
 import useSetState from "./useSetState";
 import useMeasure from "./useMeasure";
+import useHover from "./useHover";
 
 export {
   usePrevious,
@@ -179,6 +180,7 @@ export {
   useDoubleClick,
   useSetState,
   useMeasure,
+  useHover,
 };
 
 export * from "./useToggle";
@@ -270,3 +272,4 @@ export * from "./useCookie";
 export * from "./useDoubleClick";
 export * from "./useSetState";
 export * from "./useMeasure";
+export * from "./useHover";
