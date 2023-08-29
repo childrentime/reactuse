@@ -1,7 +1,7 @@
 import { useScrollIntoView } from "@reactuses/core";
 import { useRef } from "react";
 
-export default () => {
+export default function Demo() {
   const targetRef = useRef<HTMLParagraphElement>(null);
   const { scrollIntoView } = useScrollIntoView(targetRef, {
     offset: 60,
@@ -16,4 +16,4 @@ export default () => {
       <p ref={targetRef}>Hello there</p>
     </div>
   );
-};
+}

@@ -29,8 +29,8 @@ describe("useMouse", () => {
 
   it("on mouseMove", async () => {
     const hook = renderHook(() => useMouse(document.documentElement));
-    expect(hook.result.current.pageX).toEqual(NaN);
-    expect(hook.result.current.pageY).toEqual(NaN);
+    expect(hook.result.current.pageX).toEqual(Number.NaN);
+    expect(hook.result.current.pageY).toEqual(Number.NaN);
 
     act(() => {
       moveMouse(10, 10);

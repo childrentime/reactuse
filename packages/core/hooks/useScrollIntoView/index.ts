@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import useEvent from "../useEvent";
 import useEventListener from "../useEventListener";
 import useReducedMotion from "../useReducedMotion";
 import { defaultOptions } from "../utils/defaults";
@@ -69,58 +68,59 @@ export default function useScrollIntoView(
 
   const element = useLatestElement(targetElement);
 
-  const scrollIntoView = useEvent(
-    ({ alignment = "start" }: ScrollIntoViewAnimation = {}) => {
-      const parent
-        = getTargetElement(scrollElement) || getScrollParent(axis, element);
-      shouldStop.current = false;
+  const scrollIntoView = ({
+    alignment = "start",
+  }: ScrollIntoViewAnimation = {}) => {
+    const parent
+      = getTargetElement(scrollElement) || getScrollParent(axis, element);
+    shouldStop.current = false;
 
-      if (frameID.current) {
-        cancel();
+    if (frameID.current) {
+      cancel();
+    }
+
+    const start = getScrollStart({ parent, axis }) ?? 0;
+    const change
+      = getRelativePosition({
+        parent,
+        target: element,
+        axis,
+        alignment,
+        offset,
+        isList,
+      }) - (parent ? 0 : start);
+
+    const animateScroll = () => {
+      if (startTime.current === 0) {
+        startTime.current = performance.now();
       }
 
-      const start = getScrollStart({ parent, axis }) ?? 0;
-      const change
-        = getRelativePosition({
-          parent,
-          target: element,
-          axis,
-          alignment,
-          offset,
-          isList,
-        }) - (parent ? 0 : start);
+      const now = performance.now();
+      const elapsed = now - startTime.current;
 
-      const animateScroll = () => {
-        if (startTime.current === 0) {
-          startTime.current = performance.now();
-        }
+      // easing timing progress
+      const t = reducedMotion || duration === 0 ? 1 : elapsed / duration;
 
-        const now = performance.now();
-        const elapsed = now - startTime.current;
+      const distance = start + change * easing(t);
 
-        // easing timing progress
-        const t = reducedMotion || duration === 0 ? 1 : elapsed / duration;
+      setScrollParam({
+        parent,
+        axis,
+        distance,
+      });
 
-        const distance = start + change * easing(t);
-
-        setScrollParam({
-          parent,
-          axis,
-          distance,
-        });
-
-        if (!shouldStop.current && t < 1) {
-          frameID.current = requestAnimationFrame(animateScroll);
-        }
-        else {
-          typeof onScrollFinish === "function" && onScrollFinish();
-          startTime.current = 0;
-          frameID.current = 0;
-          cancel();
-        }
-      };
-      animateScroll();
-    });
+      if (!shouldStop.current && t < 1) {
+        frameID.current = requestAnimationFrame(animateScroll);
+      }
+      else {
+        typeof onScrollFinish === "function" && onScrollFinish();
+        startTime.current = 0;
+        frameID.current = 0;
+        cancel();
+      }
+    };
+    animateScroll();
+  };
 
   const handleStop = () => {
     if (cancelable) {

@@ -6,7 +6,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { NavLink } from "vite-react-ssg";
 import { useScrollIntoView } from "@reactuses/core";
 import styles from "./style.module.css";
@@ -25,7 +25,7 @@ export interface IProps {
   menuGroup: IMenu[];
 }
 const Layout = (props: IProps) => {
-  const { menuGroup, routes } = props;
+  const { menuGroup } = props;
   const pathname = useLocation().pathname.split("/").pop() || "";
 
   const [element, setElement] = useState<HTMLElement | null>(null);
@@ -54,8 +54,6 @@ const Layout = (props: IProps) => {
   useEffect(() => {
     scrollIntoView({ alignment: "center" });
   }, [scrollIntoView]);
-
-  const navigate = useNavigate();
 
   return (
     <>

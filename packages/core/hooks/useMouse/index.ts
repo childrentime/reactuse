@@ -19,18 +19,18 @@ export interface CursorState {
 }
 
 const initState: CursorState = {
-  screenX: NaN,
-  screenY: NaN,
-  clientX: NaN,
-  clientY: NaN,
-  pageX: NaN,
-  pageY: NaN,
-  elementX: NaN,
-  elementY: NaN,
-  elementH: NaN,
-  elementW: NaN,
-  elementPosX: NaN,
-  elementPosY: NaN,
+  screenX: Number.NaN,
+  screenY: Number.NaN,
+  clientX: Number.NaN,
+  clientY: Number.NaN,
+  pageX: Number.NaN,
+  pageY: Number.NaN,
+  elementX: Number.NaN,
+  elementY: Number.NaN,
+  elementH: Number.NaN,
+  elementW: Number.NaN,
+  elementPosX: Number.NaN,
+  elementPosY: Number.NaN,
 };
 
 export default function useMouse(target?: BasicTarget): CursorState {
@@ -47,12 +47,12 @@ export default function useMouse(target?: BasicTarget): CursorState {
         clientY,
         pageX,
         pageY,
-        elementX: NaN,
-        elementY: NaN,
-        elementH: NaN,
-        elementW: NaN,
-        elementPosX: NaN,
-        elementPosY: NaN,
+        elementX: Number.NaN,
+        elementY: Number.NaN,
+        elementH: Number.NaN,
+        elementW: Number.NaN,
+        elementPosX: Number.NaN,
+        elementPosY: Number.NaN,
       };
       const targetElement = getTargetElement(target);
       if (targetElement) {

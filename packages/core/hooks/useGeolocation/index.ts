@@ -3,8 +3,8 @@ import { defaultOptions } from "../utils/defaults";
 
 const initCoord = {
   accuracy: 0,
-  latitude: Infinity,
-  longitude: Infinity,
+  latitude: Number.POSITIVE_INFINITY,
+  longitude: Number.POSITIVE_INFINITY,
   altitude: null,
   altitudeAccuracy: null,
   heading: null,
