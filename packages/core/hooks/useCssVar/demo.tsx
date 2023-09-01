@@ -27,4 +27,4 @@ export default function Demo() {
       <button onClick={switchColor}>Change Color</button>
     </section>
   );
-};
+}

@@ -2,7 +2,6 @@ import { useScreenSafeArea } from "@reactuses/core";
 
 export default function Demo() {
   const [top, right, bottom, left] = useScreenSafeArea();
-  console.log("top", top);
   return (
     <div>
       <div>

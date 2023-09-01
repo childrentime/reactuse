@@ -75,10 +75,10 @@ export default function useCssVar<T extends HTMLElement = HTMLElement>(
       .getComputedStyle(element)
       .getPropertyValue(prop)
       ?.trim();
-    /** if var don't has value and defaultValue exist*/
+    /** if var don't has value and defaultValue exist */
     if (!value && defaultValue) {
       set(defaultValue);
-    }else {
+    } else {
       updateCssVar();
     }
     if (!observe) {
@@ -95,7 +95,7 @@ export default function useCssVar<T extends HTMLElement = HTMLElement>(
         observerRef.current.disconnect();
       }
     };
-  }, [observe, element, updateCssVar]);
+  }, [observe, element, updateCssVar, set, defaultValue, prop]);
 
   return [variable, set] as const;
 }

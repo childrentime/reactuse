@@ -33,18 +33,24 @@ export default function useScreenSafeArea() {
 
   useEffect(() => {
     update();
-  }, [])
+  }, [update]);
   useEventListener("resize", update);
 
-  return [top.current, right.current, bottom.current, left.current, update] as const;
+  return [
+    top.current,
+    right.current,
+    bottom.current,
+    left.current,
+    update,
+  ] as const;
 }
 
 function getValue(
   position:
-    | typeof topVarName
-    | typeof leftVarName
-    | typeof rightVarName
-    | typeof bottomVarName
+  | typeof topVarName
+  | typeof leftVarName
+  | typeof rightVarName
+  | typeof bottomVarName,
 ) {
   return getComputedStyle(document.documentElement).getPropertyValue(position);
 }
