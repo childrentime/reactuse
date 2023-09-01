@@ -27,7 +27,7 @@ const getInitialState = (defaultValue?: string) => {
 
   if (process.env.NODE_ENV !== "production") {
     console.warn(
-      "`useCssVar` When server side rendering, defaultValue should be defined to prevent a hydration mismatches."
+      "`useCssVar` When server side rendering, defaultValue should be defined to prevent a hydration mismatches.",
     );
   }
 
@@ -38,11 +38,11 @@ export default function useCssVar<T extends HTMLElement = HTMLElement>(
   prop: string,
   target: BasicTarget<T>,
   defaultValue?: string,
-  options: UseCssVarOptions = defaultOptions
+  options: UseCssVarOptions = defaultOptions,
 ) {
   const { observe } = options;
   const [variable, setVariable] = useState<string>(
-    getInitialState(defaultValue)
+    getInitialState(defaultValue),
   );
   const element = useLatestElement(target);
   const observerRef = useRef<MutationObserver>();
@@ -54,7 +54,7 @@ export default function useCssVar<T extends HTMLElement = HTMLElement>(
         setVariable(v);
       }
     },
-    [element, prop]
+    [element, prop],
   );
 
   const updateCssVar = useCallback(() => {
@@ -78,7 +78,8 @@ export default function useCssVar<T extends HTMLElement = HTMLElement>(
     /** if var don't has value and defaultValue exist */
     if (!value && defaultValue) {
       set(defaultValue);
-    } else {
+    }
+    else {
       updateCssVar();
     }
     if (!observe) {
