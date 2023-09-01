@@ -89,6 +89,8 @@ import useDoubleClick from "./useDoubleClick";
 import useSetState from "./useSetState";
 import useMeasure from "./useMeasure";
 import useHover from "./useHover";
+import useScreenSafeArea from "./useScreenSafeArea";
+import useCssVar from "./useCssVar";
 
 export {
   usePrevious,
@@ -181,6 +183,8 @@ export {
   useSetState,
   useMeasure,
   useHover,
+  useScreenSafeArea,
+  useCssVar,
 };
 
 export * from "./useToggle";
@@ -273,3 +277,5 @@ export * from "./useDoubleClick";
 export * from "./useSetState";
 export * from "./useMeasure";
 export * from "./useHover";
+export * from "./useScreenSafeArea";
+export * from "./useCssVar";

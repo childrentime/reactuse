@@ -107,7 +107,9 @@
         "useKeyModifier",
         "useMousePressed",
         "useClipboard",
-        "useEyeDropper"
+        "useEyeDropper",
+        "useScreenSafeArea",
+        "useCssVar"
       ]
     }
   ]
