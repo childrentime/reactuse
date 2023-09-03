@@ -1,6 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useClickOutside, useDarkMode, useMount, useToggle } from "@reactuses/core";
+import {
+  useClickOutside,
+  useDarkMode,
+  useMount,
+  useToggle,
+} from "@reactuses/core";
 import { GoMarkGithub } from "react-icons/go";
+import { FaDiscord } from "react-icons/fa";
 import { HiMenu } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 import { startTransition, useEffect, useRef, useState } from "react";
@@ -28,9 +34,8 @@ const Header = () => {
   // Reference https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/components/VPNavBarSearch.vue#L140-L147
   const [metaKey, setMetaKey] = useState("Meta");
   useMount(() => {
-    setMetaKey(/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)
-      ? "⌘"
-      : "Ctrl",
+    setMetaKey(
+      /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform) ? "⌘" : "Ctrl",
     );
   });
 
@@ -109,7 +114,7 @@ const Header = () => {
                 <span className={styles.placeHolder}>Search</span>
               </span>
               <span className={styles.buttonKeys}>
-                <kbd className={styles.buttonKeyLeft}>{ metaKey }</kbd>
+                <kbd className={styles.buttonKeyLeft}>{metaKey}</kbd>
                 <kbd className={styles.buttonKeyRight}> K</kbd>
               </span>
             </button>
@@ -158,6 +163,14 @@ const Header = () => {
             >
               <GoMarkGithub />
             </a>
+            <a
+              href="https://discord.gg/WzDtCCFF"
+              target="_blank"
+              className={`${styles.icon} ${styles.discord}`}
+              rel="noreferrer"
+            >
+              <FaDiscord />
+            </a>
             <button onClick={toggleDark} className={styles.darkmode}>
               {dark && (
                 <img
@@ -176,6 +189,7 @@ const Header = () => {
                 />
               )}
             </button>
+
             <button
               className={`${styles.mobileMenu} ${styles.icon}`}
               onClick={toggleMenuOpen}
