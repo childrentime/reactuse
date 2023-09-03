@@ -170,3 +170,15 @@
 
 * fix useElementVisibility
 * fix external deps
+
+# 4.0.6(Aug 27, 2023)
+
+## Core
+
+* feat: add useHover hook
+
+# 4.0.7(Sep 3, 2023)
+
+## Core
+
+* feat: add useCssVar, useScreenSafeArea
