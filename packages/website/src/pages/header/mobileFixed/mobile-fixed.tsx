@@ -1,5 +1,6 @@
 import { useDarkMode } from "@reactuses/core";
 import { GoMarkGithub } from "react-icons/go";
+import { FaDiscord } from "react-icons/fa";
 import sun from "../../../assets/sun.svg";
 import moon from "../../../assets/moon.svg";
 import { guideMenu } from "../../guide";
@@ -46,6 +47,14 @@ const MobileFixed = (props: IProps) => {
               rel="noreferrer"
             >
               <GoMarkGithub />
+            </a>
+            <a
+              href="https://discord.gg/WzDtCCFF"
+              target="_blank"
+              className={`${styles.icon} ${styles.discord}`}
+              rel="noreferrer"
+            >
+              <FaDiscord />
             </a>
             <button onClick={toggleDark} className={styles.darkmode}>
               {dark && (

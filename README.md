@@ -32,7 +32,7 @@ Collection of essential React Hooks Utilities.
 ```tsx harmony
 import { useToggle } from "@reactuses/core";
 
-const Demo = () => {
+function Demo() {
   const [on, toggle] = useToggle(true);
 
   return (
@@ -43,7 +43,7 @@ const Demo = () => {
       <button onClick={() => toggle(false)}>set OFF</button>
     </div>
   );
-};
+}
 ```
 
 Refer to [documentations](https://reactuse.com/) for more details.
@@ -53,6 +53,12 @@ Refer to [documentations](https://reactuse.com/) for more details.
 ## Documentation & Live Examples
 
 * [Documentation](https://reactuse.com/)
+
+<hr/>
+
+## Feedback
+
+You can submit an [issue](https://github.com/childrentime/reactuse/issues) or provide feedback on [Discord](https://discord.gg/WzDtCCFF).
 
 <hr/>
 

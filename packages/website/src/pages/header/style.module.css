@@ -343,4 +343,7 @@
   .mobileMenu {
     display: inline-block;
   }
+  .discord {
+    display: none;
+  }
 }
