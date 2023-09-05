@@ -5,6 +5,7 @@ import { guideMenu, guideRoutes } from "./pages/guide";
 import Layout from "./layout";
 import BaseLayout from "./layout/BaseLayout";
 import { mainMenus } from "./constant";
+import NotFound from "./pages/404";
 
 export const routes: RouteRecord[] = [
   {
@@ -39,5 +40,13 @@ export const routes: RouteRecord[] = [
         }),
       },
     ],
+  },
+  {
+    path: "*",
+    Component: BaseLayout,
+    children: [{
+      path: "*",
+      element: <NotFound />,
+    }],
   },
 ];

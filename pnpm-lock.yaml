@@ -279,8 +279,8 @@ importers:
         specifier: ^4.4.1
         version: 4.4.1(@types/node@18.16.6)
       vite-react-ssg:
-        specifier: 0.2.0
-        version: 0.2.0(react-dom@18.2.0)(react-router-dom@6.14.2)(react@18.2.0)(vite@4.4.1)
+        specifier: 0.3.3
+        version: 0.3.3(react-dom@18.2.0)(react-router-dom@6.14.2)(react@18.2.0)(vite@4.4.1)
 
 packages:
 
@@ -9966,7 +9966,7 @@ packages:
       is-arguments: 1.1.1
       is-generator-function: 1.0.10
       is-typed-array: 1.1.10
-      which-typed-array: 1.1.9
+      which-typed-array: 1.1.11
     dev: false
 
   /utils-merge@1.0.1:
@@ -9999,8 +9999,8 @@ packages:
     engines: {node: '>= 0.8'}
     dev: false
 
-  /vite-react-ssg@0.2.0(react-dom@18.2.0)(react-router-dom@6.14.2)(react@18.2.0)(vite@4.4.1):
-    resolution: {integrity: sha512-BXlvN+qpLl/hkxgNbpwzGOfNqoSgebEnDm6xe49svlAmvKhqYM05cCvQ/FCd0cR4h5eKbbCzoYmo6TQKDV/36A==}
+  /vite-react-ssg@0.3.3(react-dom@18.2.0)(react-router-dom@6.14.2)(react@18.2.0)(vite@4.4.1):
+    resolution: {integrity: sha512-Ag2o32VcQH/z6A3Bid1bMmO9A0MU6HCYzvA7Kwj0SsLsI+DhXQS25M+yS5x0K5HD6+XSxC3R7/9BCoCKPZ7M7g==}
     hasBin: true
     peerDependencies:
       critters: ^0.0.19
@@ -10197,7 +10197,6 @@ packages:
       for-each: 0.3.3
       gopd: 1.0.1
       has-tostringtag: 1.0.0
-    dev: true
 
   /which-typed-array@1.1.9:
     resolution: {integrity: sha512-w9c4xkx6mPidwp7180ckYWfMmvxpjlZuIudNtDf4N/tTAUB8VJbX25qZoAsrtGuYNnGw3pa0AXgbGKRB8/EceA==}
@@ -10209,6 +10208,7 @@ packages:
       gopd: 1.0.1
       has-tostringtag: 1.0.0
       is-typed-array: 1.1.10
+    dev: true
 
   /which@2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
