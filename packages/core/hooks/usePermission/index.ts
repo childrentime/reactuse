@@ -47,8 +47,7 @@ export default function usePermission(
       setState(() => permissionStatus?.state ?? "");
     };
 
-    navigator.permissions
-      .query(desc)
+    navigator.permissions?.query(desc)
       .then((status) => {
         permissionStatus = status;
         on(permissionStatus, "change", onChange);
