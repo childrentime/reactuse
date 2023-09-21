@@ -37,15 +37,6 @@ importers:
       '@types/fs-extra':
         specifier: ^9.0.13
         version: 9.0.13
-      '@types/js-cookie':
-        specifier: ^3.0.3
-        version: 3.0.3
-      '@types/lodash':
-        specifier: ^4.14.184
-        version: 4.14.184
-      '@types/lodash-es':
-        specifier: ^4.17.7
-        version: 4.17.7
       '@types/node':
         specifier: ^18.16.6
         version: 18.16.6
@@ -146,6 +137,15 @@ importers:
       '@types/jest':
         specifier: ^27.5.2
         version: 27.5.2
+      '@types/js-cookie':
+        specifier: ^3.0.3
+        version: 3.0.3
+      '@types/lodash':
+        specifier: ^4.14.184
+        version: 4.14.184
+      '@types/lodash-es':
+        specifier: ^4.17.7
+        version: 4.17.7
       babel-jest:
         specifier: ^29.0.2
         version: 29.0.2(@babel/core@7.20.2)
