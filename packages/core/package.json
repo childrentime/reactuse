@@ -57,9 +57,6 @@
     "screenfull": "^5.0.0"
   },
   "devDependencies": {
-    "@types/js-cookie": "^3.0.3",
-    "@types/lodash": "^4.14.184",
-    "@types/lodash-es": "^4.17.7",
     "@jsdevtools/version-bump-prompt": "^6.1.0",
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-json": "^4.1.0",
@@ -67,6 +64,9 @@
     "@rollup/plugin-replace": "^4.0.0",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^27.5.2",
+    "@types/js-cookie": "^3.0.3",
+    "@types/lodash": "^4.14.184",
+    "@types/lodash-es": "^4.17.7",
     "babel-jest": "^29.0.2",
     "consola": "^2.15.3",
     "esbuild": "^0.17.15",
