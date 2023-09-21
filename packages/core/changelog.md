@@ -182,3 +182,11 @@
 ## Core
 
 * feat: add useCssVar, useScreenSafeArea
+
+# 4.0.8(Sep 21, 2023)
+
+## Core
+
+* usePermission: Do not fail on Safari 15
+
+* move types package to devDeps
