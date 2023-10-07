@@ -190,3 +190,10 @@
 * usePermission: Do not fail on Safari 15
 
 * move types package to devDeps
+
+# 4.0.9(Oct 07, 2023)
+
+## Core
+
+* feat: add useWebNotification
+
