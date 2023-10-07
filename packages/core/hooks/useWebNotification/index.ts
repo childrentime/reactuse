@@ -5,26 +5,9 @@ import { defaultOptions } from "../utils/defaults";
 
 export default function useWebNotification(requestPermissions = false) {
   const isSupported = useSupported(() => !!window && "Notification" in window);
-  const permissionGranted = useRef(
-    isSupported
-      && "permission" in Notification
-      && Notification.permission === "granted",
-  );
+  const permissionGranted = useRef(false);
 
   const notificationRef = useRef<Notification | null>(null);
-
-  const ensurePermissions = useCallback(async () => {
-    if (!isSupported)
-      return;
-
-    if (!permissionGranted.current && Notification.permission !== "denied") {
-      const result = await Notification.requestPermission();
-      if (result === "granted")
-        permissionGranted.current = true;
-    }
-
-    return permissionGranted.current;
-  }, [isSupported]);
 
   const show = (
     title: string,
@@ -49,6 +32,26 @@ export default function useWebNotification(requestPermissions = false) {
   }, []);
 
   useEffect(() => {
+    permissionGranted.current
+      = isSupported
+      && "permission" in Notification
+      && Notification.permission === "granted";
+  }, [isSupported]);
+
+  const ensurePermissions = useCallback(async () => {
+    if (!isSupported)
+      return;
+
+    if (!permissionGranted.current && Notification.permission !== "denied") {
+      const result = await Notification.requestPermission();
+      if (result === "granted")
+        permissionGranted.current = true;
+    }
+
+    return permissionGranted.current;
+  }, [isSupported]);
+
+  useEffect(() => {
     if (requestPermissions) {
       ensurePermissions();
     }
@@ -56,5 +59,5 @@ export default function useWebNotification(requestPermissions = false) {
 
   useUnmount(close);
 
-  return [isSupported, show, close] as const;
+  return [isSupported, show, close, ensurePermissions] as const;
 }
