@@ -91,6 +91,7 @@ import useMeasure from "./useMeasure";
 import useHover from "./useHover";
 import useScreenSafeArea from "./useScreenSafeArea";
 import useCssVar from "./useCssVar";
+import useWebNotification from "./useWebNotification";
 
 export {
   usePrevious,
@@ -185,6 +186,7 @@ export {
   useHover,
   useScreenSafeArea,
   useCssVar,
+  useWebNotification,
 };
 
 export * from "./useToggle";
@@ -279,3 +281,4 @@ export * from "./useMeasure";
 export * from "./useHover";
 export * from "./useScreenSafeArea";
 export * from "./useCssVar";
+export * from "./useWebNotification";
