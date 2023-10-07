@@ -59,5 +59,11 @@ export default function useWebNotification(requestPermissions = false) {
 
   useUnmount(close);
 
-  return [isSupported, show, close, ensurePermissions] as const;
+  return {
+    isSupported,
+    show,
+    close,
+    ensurePermissions,
+    permissionGranted,
+  } as const;
 }

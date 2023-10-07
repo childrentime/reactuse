@@ -1,7 +1,8 @@
 import useWebNotification from ".";
 
 export default function Demo() {
-  const [isSupported, show, close] = useWebNotification();
+  const { isSupported, show, close }
+    = useWebNotification(true);
   return (
     <div>
       <p>Supported: {JSON.stringify(isSupported)}</p>
