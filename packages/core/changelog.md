@@ -197,3 +197,10 @@
 
 * feat: add useWebNotification
 
+
+# 4.0.10(Oct 08, 2023)
+
+## Core
+
+* feat: add useLocationSelector
+
