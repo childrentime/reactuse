@@ -2,7 +2,7 @@ import { useLocationSelector } from "@reactuses/core";
 import { useEffect, useRef } from "react";
 
 function CurrentPathname() {
-  const pathname = useLocationSelector((location) => location.pathname);
+  const pathname = useLocationSelector(location => location.pathname);
   const ref = useRef(0);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function CurrentPathname() {
 }
 
 function CurrentHash() {
-  const hash = useLocationSelector((location) => location.hash || 'nohash');
+  const hash = useLocationSelector(location => location.hash || "nohash");
   const ref = useRef(0);
 
   useEffect(() => {

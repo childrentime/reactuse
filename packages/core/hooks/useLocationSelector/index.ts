@@ -15,11 +15,11 @@ export default function useLocationSelector<R>(
    * @description server fallback
    * @default undefined
    */
-  fallback?: R
+  fallback?: R,
 ) {
   return useSyncExternalStore<R | undefined>(
     subscribe,
     () => selector(location),
-    () => fallback
+    () => fallback,
   );
 }
