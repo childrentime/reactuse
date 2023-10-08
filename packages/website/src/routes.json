@@ -110,7 +110,8 @@
         "useEyeDropper",
         "useScreenSafeArea",
         "useCssVar",
-        "useWebNotification"
+        "useWebNotification",
+        "useLocationSelector"
       ]
     }
   ]
