@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
 
 function subscribe(callback: () => void) {
   window.addEventListener("popstate", callback);
