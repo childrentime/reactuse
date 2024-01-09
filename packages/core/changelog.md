@@ -204,3 +204,10 @@
 
 * feat: add useLocationSelector
 
+# 4.0.11(Jan 09, 2024)
+
+## Core
+
+* perf: reduce useWindowSize re-render
+
+
