@@ -41,6 +41,6 @@
     "tsx": "^3.12.7",
     "type-fest": "^3.3.0",
     "vite": "^4.4.1",
-    "vite-react-ssg": "0.3.3"
+    "vite-react-ssg": "0.5.2"
   }
 }
