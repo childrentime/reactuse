@@ -23,7 +23,6 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     }
@@ -54,7 +53,8 @@
   "dependencies": {
     "js-cookie": "^3.0.5",
     "lodash-es": "^4.17.21",
-    "screenfull": "^5.0.0"
+    "screenfull": "^5.0.0",
+    "use-sync-external-store": "^1.2.0"
   },
   "devDependencies": {
     "@jsdevtools/version-bump-prompt": "^6.1.0",
@@ -67,6 +67,7 @@
     "@types/js-cookie": "^3.0.3",
     "@types/lodash": "^4.14.184",
     "@types/lodash-es": "^4.17.7",
+    "@types/use-sync-external-store": "^0.0.6",
     "babel-jest": "^29.0.2",
     "consola": "^2.15.3",
     "esbuild": "^0.17.15",

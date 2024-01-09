@@ -1,4 +1,5 @@
-import { useCallback, useRef, useSyncExternalStore } from "react";
+import { useRef } from "react";
+import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
 
 export interface WindowSize {
   width: number;
@@ -23,7 +24,7 @@ export default function useWindowSize() {
     width: 0,
     height: 0,
   });
-  const isEqual = useCallback((prev: WindowSize, current: WindowSize) => {
+  const isEqual = (prev: WindowSize, current: WindowSize) => {
     for (const _ in stateDependencies) {
       const t = _ as keyof StateDependencies;
       if (current[t] !== prev[t]) {
@@ -31,8 +32,7 @@ export default function useWindowSize() {
       }
     }
     return true;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(stateDependencies)]);
+  };
 
   const cached = useSyncExternalStore(
     subscribe,
