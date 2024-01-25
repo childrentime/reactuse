@@ -2,7 +2,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
-    "target": "ES6",
+    "target": "ES2016",
     "module": "CommonJS",
     "moduleResolution": "node",
     "declaration": true,

@@ -10,7 +10,7 @@ const watch = process.argv.includes("--watch");
 
 const FILES_COPY_ROOT = ["LICENSE", "README.md"];
 
-const FILES_COPY_LOCAL = ["*.cjs", "*.mjs", "*.d.ts"];
+const FILES_COPY_LOCAL = ["*.cjs", "*.mjs", "*.d.ts", "*.d.cts", "*.d.mts"];
 
 assert(process.cwd() !== __dirname);
 
@@ -32,8 +32,8 @@ async function buildMetaFiles() {
 }
 
 async function build() {
-  consola.info("Rollup");
-  exec(`pnpm run build:rollup${watch ? " -- --watch" : ""}`, {
+  consola.info("Bunchee");
+  exec(`pnpm run build:bunchee${watch ? " -- --watch" : ""}`, {
     stdio: "inherit",
   });
 

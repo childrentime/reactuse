@@ -1,6 +1,6 @@
 {
   "name": "@reactuses/core",
-  "version": "4.0.11",
+  "version": "4.0.13",
   "license": "Unlicense",
   "homepage": "https://www.reactuse.com/",
   "repository": {
@@ -23,8 +23,14 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
   "main": "./dist/index.cjs",
@@ -39,8 +45,8 @@
   "scripts": {
     "lint": "eslint \"{hooks,tests}/**/*.{ts,tsx}\"",
     "build": "esno scripts/build.ts",
-    "build:rollup": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" rollup -c",
-    "dev": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" rollup -c --watch",
+    "build:bunchee": "bunchee",
+    "dev": "bunchee --watch",
     "publish:ci": "esno scripts/publish.ts",
     "release:prepare": "bump",
     "release": "esno scripts/release.ts",
@@ -58,10 +64,10 @@
   },
   "devDependencies": {
     "@jsdevtools/version-bump-prompt": "^6.1.0",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^14.1.0",
-    "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.5",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^27.5.2",
     "@types/js-cookie": "^3.0.3",
@@ -70,15 +76,15 @@
     "@types/use-sync-external-store": "^0.0.6",
     "babel-jest": "^29.0.2",
     "consola": "^2.15.3",
-    "esbuild": "^0.17.15",
+    "esbuild": "^0.19.11",
     "esbuild-register": "^3.4.1",
     "jest": "^29.0.2",
     "jest-environment-jsdom": "^29.0.2",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rollup": "^2.79.0",
-    "rollup-plugin-dts": "^4.2.2",
-    "rollup-plugin-esbuild": "^4.10.1"
+    "rollup": "^4.9.4",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-esbuild": "^6.1.0"
   }
 }
