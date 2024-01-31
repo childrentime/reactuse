@@ -1,7 +1,5 @@
 import type { RefObject } from "react";
 
-export type EventType = MouseEvent | TouchEvent;
-
 /**
  * @title useClickOutside
  */
@@ -16,3 +14,5 @@ export type UseClickOutsideType = (
    * @en listener fucntion
    */
   handler: (evt: EventType) => void) => void;
+
+export type EventType = MouseEvent | TouchEvent;

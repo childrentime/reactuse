@@ -1,19 +1,7 @@
+import type { RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { BasicTarget } from "../utils/domTarget";
-import { useLatestElement } from "../utils/domTarget";
 import { isBrowser } from "../utils/is";
-
-export interface UseCssVarOptions {
-  /**
-   * Use MutationObserver to monitor variable changes
-   * @default false
-   */
-  observe?: boolean;
-}
-
-const defaultOptions: UseCssVarOptions = {
-  observe: false,
-};
+import { type UseCssVarOptions, type UseCssVarType, defaultOptions } from "./interface";
 
 const getInitialState = (defaultValue?: string) => {
   // Prevent a React hydration mismatch when a default value is provided.
@@ -34,17 +22,17 @@ const getInitialState = (defaultValue?: string) => {
   return "";
 };
 
-export default function useCssVar<T extends HTMLElement = HTMLElement>(
+export const useCssVar: UseCssVarType = <T extends HTMLElement = HTMLElement>(
   prop: string,
-  target: BasicTarget<T>,
+  target: RefObject<T>,
   defaultValue?: string,
   options: UseCssVarOptions = defaultOptions,
-) {
+) => {
   const { observe } = options;
   const [variable, setVariable] = useState<string>(
     getInitialState(defaultValue),
   );
-  const element = useLatestElement(target);
+  const element = target.current;
   const observerRef = useRef<MutationObserver>();
 
   const set = useCallback(
@@ -99,4 +87,4 @@ export default function useCssVar<T extends HTMLElement = HTMLElement>(
   }, [observe, element, updateCssVar, set, defaultValue, prop]);
 
   return [variable, set] as const;
-}
+};
