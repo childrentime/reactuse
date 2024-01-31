@@ -1,18 +1,14 @@
 import type { DependencyList, EffectCallback } from "react";
 import { useEffect, useRef } from "react";
+import type { DepsEqualFnType, UseCustomCompareEffectType } from "./interface";
 
 const isPrimitive = (val: any) => val !== Object(val);
 
-type DepsEqualFnType<TDeps extends DependencyList> = (
-  prevDeps: TDeps,
-  nextDeps: TDeps
-) => boolean;
-
-export default function useCustomCompareEffect<TDeps extends DependencyList>(
+export const useCustomCompareEffect: UseCustomCompareEffectType = <TDeps extends DependencyList>(
   effect: EffectCallback,
   deps: TDeps,
   depsEqual: DepsEqualFnType<TDeps>,
-): void {
+): void => {
   if (process.env.NODE_ENV !== "production") {
     if (!(Array.isArray(deps)) || !deps.length) {
       console.warn(
@@ -41,4 +37,4 @@ export default function useCustomCompareEffect<TDeps extends DependencyList>(
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(effect, ref.current);
-}
+};
