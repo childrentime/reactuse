@@ -2,9 +2,9 @@ import type { DependencyList } from "react";
 import { useEffect } from "react";
 import useMountedState from "../useMountedState";
 import { noop } from "../utils/is";
-import type { useAsyncEffectType } from "./interface";
+import type { UseAsyncEffectType } from "./interface";
 
-export const useAsyncEffect: useAsyncEffectType = <T> (
+export const useAsyncEffect: UseAsyncEffectType = <T> (
   effect: () => Promise<T> | T,
   cleanup: typeof effect = <any>noop,
   deps?: DependencyList,

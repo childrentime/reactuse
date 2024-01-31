@@ -13,6 +13,7 @@ function injectLoader(content) {
 function getAPI(component) {
   const pathname = path.resolve(__dirname, `../api/${component}-README.md`);
   if (!fs.existsSync(pathname)) {
+    console.log("pathname not exsit", pathname);
     return "";
   }
   return `## API\n\nimport API from \'${pathname}\'\n\n<API />`;

@@ -1,10 +1,10 @@
 import { useCallback, useState } from "react";
 import useEventListener from "../useEventListener";
 
-export default function useClipBorad(): readonly [
+export const useClipBorad = (): readonly [
   string,
   (txt: string) => Promise<void>,
-] {
+] => {
   const [text, setText] = useState("");
 
   const updateText = useCallback(() => {
@@ -23,4 +23,4 @@ export default function useClipBorad(): readonly [
   }, []);
 
   return [text, copy] as const;
-}
+};

@@ -5,7 +5,7 @@ export type EventType = MouseEvent | TouchEvent;
 /**
  * @title useClickOutside
  */
-export type useClickOutsideType = (
+export type UseClickOutsideType = (
   /**
    * @zh dom对象
    * @en dom element
