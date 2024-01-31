@@ -62,8 +62,12 @@
         "react",
         "react-dom",
         "@babel/*",
-        "typescript"
+        "typescript",
+        "@types/react"
       ]
     }
+  },
+  "dependencies": {
+    "bunchee": "^4.4.3"
   }
 }

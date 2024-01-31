@@ -1,0 +1,10 @@
+{
+  "label": "STATE",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "React State Hook"
+  },
+  "collapsible": true,
+  "collapsed": false
+}
