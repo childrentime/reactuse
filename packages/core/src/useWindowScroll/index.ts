@@ -1,17 +1,14 @@
 import useEventListener from "../useEventListener";
 import useIsomorphicLayoutEffect from "../useIsomorphicLayoutEffect";
 import useRafState from "../useRafState";
-
-export interface UseWindowScrollState {
-  x: number;
-  y: number;
-}
+import type { UseWindowScrollState } from "./interface";
 
 const listenerOptions = {
   capture: false,
   passive: true,
 };
-export default function useWindowScroll(): UseWindowScrollState {
+
+export const useWindowScroll = (): UseWindowScrollState => {
   const [state, setState] = useRafState<UseWindowScrollState>(() => ({
     x: 0,
     y: 0,
@@ -29,4 +26,4 @@ export default function useWindowScroll(): UseWindowScrollState {
   }, []);
 
   return state;
-}
+};

@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
+import type { UseWindowSize } from "./interface";
 
-export interface WindowSize {
+interface WindowSize {
   width: number;
   height: number;
 }
@@ -18,7 +19,7 @@ const subscribe = (callback: () => void) => {
   };
 };
 
-export default function useWindowSize() {
+export const useWindowSize: UseWindowSize = () => {
   const stateDependencies = useRef<StateDependencies>({}).current;
   const previous = useRef<WindowSize>({
     width: 0,
@@ -62,4 +63,4 @@ export default function useWindowSize() {
       return cached.height;
     },
   };
-}
+};
