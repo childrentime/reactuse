@@ -18,7 +18,7 @@ export const getHMSTime = (timeDiff: number): [string, string, string] => {
   return [padZero(hour), padZero(minute), padZero(second)];
 };
 
-const useCountDown = (
+export const useCountDown = (
   time: number,
   format: (num: number) => [string, string, string] = getHMSTime,
   callback?: () => void,
@@ -44,5 +44,3 @@ const useCountDown = (
 
   return [hour, minute, secoud] as const;
 };
-
-export default useCountDown;

@@ -1,0 +1,23 @@
+# useElementBounding
+
+React Element Hook that tracks bounding box of an HTML element
+
+
+## Usage
+
+```tsx live
+
+function demo() {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  const rect = useElementBounding(ref);
+  return (
+    <div>
+      <p> Resize the box to see changes</p>
+      <textarea ref={ref} readOnly value={JSON.stringify(rect, null, 2)} />
+    </div>
+  );
+};
+
+```
+
+%%API%%

@@ -1,0 +1,38 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.STATE": {
+    "message": "STATE",
+    "description": "The label for category STATE in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.STATE.link.generated-index.description": {
+    "message": "React State Hook",
+    "description": "The generated-index page description for category STATE in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Effect": {
+    "message": "Effect",
+    "description": "The label for category Effect in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Effect.link.generated-index.description": {
+    "message": "React Effect Hook",
+    "description": "The generated-index page description for category Effect in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Element": {
+    "message": "Element",
+    "description": "The label for category Element in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Element.link.generated-index.description": {
+    "message": "React Dom Element Hook",
+    "description": "The generated-index page description for category Element in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Broswer": {
+    "message": "Broswer",
+    "description": "The label for category Broswer in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Broswer.link.generated-index.description": {
+    "message": "React BOM Hook",
+    "description": "The generated-index page description for category Broswer in sidebar tutorialSidebar"
+  }
+}

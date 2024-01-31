@@ -1,0 +1,37 @@
+# useClipboard
+
+Copy text to a user's clipboard
+
+
+## Usage
+
+```tsx live
+
+function demo() {
+  const [value, setValue] = useState("");
+  const [text, copy] = useClipboard();
+  const permissionRead = usePermission("clipboard-read");
+  const permissionWrite = usePermission("clipboard-write");
+  return (
+    <div>
+      <p>
+        Clipboard Permission: read <b>{permissionRead}</b> | write&nbsp;
+        <b>{permissionWrite}</b>
+      </p>
+      <p>
+        Current copied: <code>{text || "none"}</code>
+      </p>
+      <input
+        value={value}
+        onChange={(event) => {
+          setValue(event.currentTarget.value);
+        }}
+      />
+      <button onClick={() => copy(value)}>Copy</button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

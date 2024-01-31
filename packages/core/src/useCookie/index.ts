@@ -50,7 +50,8 @@ export const useCookie: UseCookieType = (
     };
 
     setCookieValue(getStoredValue());
-  }, [defaultValue, key, options]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue, key, JSON.stringify(options)]);
 
   const updateCookie = useCallback(
     (
@@ -67,7 +68,8 @@ export const useCookie: UseCookieType = (
 
       setCookieValue(value);
     },
-    [key, cookieValue, options],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [key, cookieValue, JSON.stringify(options)],
   );
 
   const refreshCookie = useCallback(() => {

@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import clsx from "clsx";
 import Heading from "@theme/Heading";
+import Translate, { translate } from "@docusaurus/Translate";
 import styles from "./styles.module.css";
 
 interface FeatureItem {
@@ -10,33 +12,36 @@ interface FeatureItem {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Easy to Use",
+    title: translate({
+      message: "Import on demand",
+    }),
     Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
     description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
+      <Translate>
+        Each component can be introduced separately and has good tree-shaking optimization
+      </Translate>
     ),
   },
   {
-    title: "Focus on What Matters",
+    title: translate({
+      message: "Server-side rendering",
+    }),
     Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
     description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
+      <Translate>
+        Friendly server-side rendering support
+      </Translate>
     ),
   },
   {
-    title: "Powered by React",
+    title: translate({
+      message: "Friendly typescript support",
+    }),
     Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
     description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
+      <Translate>
+        Built with Typescript, providing a nice component type system
+      </Translate>
     ),
   },
 ];
