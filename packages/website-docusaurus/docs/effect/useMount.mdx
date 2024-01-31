@@ -1,0 +1,20 @@
+# useMount
+
+React lifecycle hook that executes a function after the component is mounted
+
+
+## Usage
+
+```tsx live
+
+function demo() {
+  const [value, setValue] = useState("UnMounted");
+  useMount(() => {
+    setValue("Mounted");
+  });
+  return <div>{value}</div>;
+};
+
+```
+
+%%API%%

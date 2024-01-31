@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react";
 import useEventListener from "../useEventListener";
+import type { useActiveElementType } from "./interface";
 
-export default function useActiveElement<T extends Element>(): T | null {
+export const useActiveElement: useActiveElementType = <T extends Element>(): T | null => {
   const [active, setActive] = useState<T | null>(null);
 
   const listener = useCallback(() => {
@@ -11,4 +12,4 @@ export default function useActiveElement<T extends Element>(): T | null {
   useEventListener("focus", listener, () => window, true);
 
   return active;
-}
+};

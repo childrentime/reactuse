@@ -1,0 +1,23 @@
+# useMountedState
+
+Lifecycle hook providing ability to check component's mount state.
+Returns a function that will return `true` if component mounted and `false` otherwise
+
+
+## Usage
+
+```tsx live
+
+function demo() {
+  const isMounted = useMountedState();
+
+  const [, update] = useState(0);
+  useEffect(() => {
+    update(1);
+  }, []);
+  return <div>This component is {isMounted() ? "MOUNTED" : "NOT MOUNTED"}</div>;
+};
+
+```
+
+%%API%%

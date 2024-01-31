@@ -1,22 +1,21 @@
+import type { RefObject } from "react";
 import { defaultWindow } from "../utils/browser";
-import type { BasicTarget } from "../utils/domTarget";
-import { getTargetElement } from "../utils/domTarget";
 import useEventListener from "../useEventListener";
 import useLatest from "../useLatest";
-
-type EventType = MouseEvent | TouchEvent;
+import type { EventType } from "./interface";
 
 const listerOptions = {
   passive: true,
 };
+
 export default function useClickOutside(
-  target: BasicTarget,
+  target: RefObject<Element>,
   handler: (evt: EventType) => void,
 ): void {
   const savedHandler = useLatest(handler);
 
   const listener = (event: EventType) => {
-    const element = getTargetElement(target);
+    const element = target.current;
     if (!element) {
       return;
     }

@@ -45,8 +45,8 @@
   "scripts": {
     "lint": "eslint \"{hooks,tests}/**/*.{ts,tsx}\"",
     "build": "esno scripts/build.ts",
-    "build:bunchee": "bunchee",
     "dev": "bunchee --watch",
+    "gend": "tsx scripts/tsdoc.ts",
     "publish:ci": "esno scripts/publish.ts",
     "release:prepare": "bump",
     "release": "esno scripts/release.ts",
@@ -60,6 +60,7 @@
     "js-cookie": "^3.0.5",
     "lodash-es": "^4.17.21",
     "screenfull": "^5.0.0",
+    "ts-document": "^0.8.0",
     "use-sync-external-store": "^1.2.0"
   },
   "devDependencies": {

@@ -2,12 +2,13 @@ import type { DependencyList } from "react";
 import { useEffect } from "react";
 import useMountedState from "../useMountedState";
 import { noop } from "../utils/is";
+import type { useAsyncEffectType } from "./interface";
 
-export default function useAsyncEffect<T extends void>(
+export const useAsyncEffect: useAsyncEffectType = <T> (
   effect: () => Promise<T> | T,
   cleanup: typeof effect = <any>noop,
   deps?: DependencyList,
-) {
+) => {
   const mounted = useMountedState();
   useEffect(() => {
     const execute = async () => {
@@ -25,4 +26,4 @@ export default function useAsyncEffect<T extends void>(
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
-}
+};

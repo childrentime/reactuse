@@ -1,0 +1,10 @@
+{
+  "label": "Effect",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "React Effect Hook"
+  },
+  "collapsible": true,
+  "collapsed": true
+}

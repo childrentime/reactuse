@@ -30,7 +30,7 @@ const config: Config = {
   },
 
   themes: ["@docusaurus/theme-live-codeblock"],
-
+  plugins: ["./webpack.plugin.js"],
   presets: [
     [
       "classic",
@@ -108,10 +108,6 @@ const config: Config = {
         {
           title: "More",
           items: [
-            {
-              label: "Blog",
-              to: "/blog",
-            },
             {
               label: "GitHub",
               href: "https://github.com/facebook/docusaurus",

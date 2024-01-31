@@ -1,0 +1,10 @@
+{
+  "label": "Broswer",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "React BOM Hook"
+  },
+  "collapsible": true,
+  "collapsed": true
+}

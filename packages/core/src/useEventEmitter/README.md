@@ -1,3 +1,0 @@
-# useEventEmitter
-
-A basic eventemitter
