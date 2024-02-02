@@ -1,10 +1,10 @@
 import type { DependencyList, EffectCallback } from "react";
 import { useEffect, useRef } from "react";
-import type { DepsEqualFnType, UseCustomCompareEffectType } from "./interface";
+import type { DepsEqualFnType, UseCustomCompareEffect } from "./interface";
 
 const isPrimitive = (val: any) => val !== Object(val);
 
-export const useCustomCompareEffect: UseCustomCompareEffectType = <TDeps extends DependencyList>(
+export const useCustomCompareEffect: UseCustomCompareEffect = <TDeps extends DependencyList>(
   effect: EffectCallback,
   deps: TDeps,
   depsEqual: DepsEqualFnType<TDeps>,

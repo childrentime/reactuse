@@ -13,7 +13,7 @@ export type UseCookieState = string | undefined;
   * - 更新 cookie 值的函数。
   * - 刷新 cookie 值的函数，以防其他事件更改它。
  */
-export type UseCookieType = (
+export type UseCookie = (
   /**
    * @zh 键值
    * @en key

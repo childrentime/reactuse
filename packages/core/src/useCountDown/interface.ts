@@ -9,7 +9,7 @@
   * - 分钟。
   * - 秒数。
  */
-export type UseCountDownType = (
+export type UseCountDown = (
   /**
    * @zh 时间差
    * @en time differ

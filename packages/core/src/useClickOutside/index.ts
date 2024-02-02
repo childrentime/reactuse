@@ -2,16 +2,16 @@ import type { RefObject } from "react";
 import { defaultWindow } from "../utils/browser";
 import useEventListener from "../useEventListener";
 import useLatest from "../useLatest";
-import type { EventType } from "./interface";
+import type { EventType, UseClickOutside } from "./interface";
 
 const listerOptions = {
   passive: true,
 };
 
-export default function useClickOutside(
+export const useClickOutside: UseClickOutside = (
   target: RefObject<Element>,
   handler: (evt: EventType) => void,
-): void {
+): void => {
   const savedHandler = useLatest(handler);
 
   const listener = (event: EventType) => {
@@ -30,4 +30,4 @@ export default function useClickOutside(
 
   useEventListener("mousedown", listener, defaultWindow, listerOptions);
   useEventListener("touchstart", listener, defaultWindow, listerOptions);
-}
+};

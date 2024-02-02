@@ -1,6 +1,7 @@
 import { useState } from "react";
+import type { UseCycleList } from "./interface";
 
-export const useCycleList = <T> (
+export const useCycleList: UseCycleList = <T> (
   list: T[],
   i = 0,
 ): readonly [T, (i?: number) => void, (i?: number) => void] => {

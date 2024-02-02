@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import type { DebounceSettings } from "../utils/external";
+import type { DebounceSettings } from "lodash-es";
 import useDebounceFn from "../useDebounceFn";
+import type { UseDebounce } from "./interface";
 
-export default function useDebounce<T>(
+export const useDebounce: UseDebounce = <T>(
   value: T,
   wait?: number,
   options?: DebounceSettings,
-) {
+) => {
   const [debounced, setDebounced] = useState(value);
 
   const { run } = useDebounceFn(
@@ -22,4 +23,4 @@ export default function useDebounce<T>(
   }, [run, value]);
 
   return debounced;
-}
+};

@@ -1,7 +1,7 @@
 ### useWindowScroll
 
 #### Returns
-`import("/Users/lianwenwu/work/github/reactuse/packages/core/src/useWindowScroll/interface").UseWindowScrollState`
+`import("/Users/zhangyuanqing/works/github/reactuse/packages/core/src/useWindowScroll/interface").UseWindowScrollState`
 
 #### Arguments
 

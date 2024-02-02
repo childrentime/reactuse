@@ -8,7 +8,7 @@ export type DepsEqualFnType<TDeps extends DependencyList> = (
 /**
  * @title useCustomCompareEffect
  */
-export type UseCustomCompareEffectType = <TDeps extends DependencyList>(
+export type UseCustomCompareEffect = <TDeps extends DependencyList>(
   /**
    * @zh 副作用函数
    * @en effect callback

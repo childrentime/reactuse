@@ -13,7 +13,7 @@ export const defaultOptions: UseCssVarOptions = {
  * - css 变量值
  * - 更新 css 变量值的函数
  */
-export type UseCssVarType = <T extends HTMLElement = HTMLElement>(
+export type UseCssVar = <T extends HTMLElement = HTMLElement>(
   /**
    * @zh 属性值，比如 --color
    * @en prop, eg: --color

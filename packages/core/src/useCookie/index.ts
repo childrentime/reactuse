@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { isBrowser, isFunction, isString } from "../utils/is";
 import { defaultOptions } from "../utils/defaults";
-import type { UseCookieState, UseCookieType } from "./interface";
+import type { UseCookie, UseCookieState } from "./interface";
 
 const getInitialState = (key: string, defaultValue?: string) => {
   // Prevent a React hydration mismatch when a default value is provided.
@@ -23,7 +23,7 @@ const getInitialState = (key: string, defaultValue?: string) => {
   return "";
 };
 
-export const useCookie: UseCookieType = (
+export const useCookie: UseCookie = (
   key: string,
   options: Cookies.CookieAttributes = defaultOptions,
   defaultValue?: string,

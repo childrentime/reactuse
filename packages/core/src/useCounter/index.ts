@@ -1,8 +1,8 @@
 import { useState } from "react";
 import useEvent from "../useEvent";
-import type { UseCounterType } from "./interface";
+import type { UseCounter } from "./interface";
 
-export const useCounter: UseCounterType = (
+export const useCounter: UseCounter = (
   initialValue: number | (() => number) = 0,
   max: number | null = null,
   min: number | null = null,

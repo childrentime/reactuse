@@ -13,7 +13,7 @@
  * - 递减计数器的函数。 它可以选择接受一个数字来减少计数器，默认为 1。
  * - 将计数器重置为其初始值的函数。
  */
-export type UseCounterType = (
+export type UseCounter = (
   /**
    * @zh 初始值，可以为数字或者一个初始化的函数
    * @en The initial value of the counter. It can be a number or a function that returns a number. If not provided, the counter will start from 0.

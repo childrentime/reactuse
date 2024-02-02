@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react";
 import useEventListener from "../useEventListener";
+import type { UseClipBorad } from "./interface";
 
-export const useClipBorad = (): readonly [
+export const useClipBorad: UseClipBorad = (): readonly [
   string,
   (txt: string) => Promise<void>,
 ] => {

@@ -3,7 +3,7 @@ import type { RefObject } from "react";
 /**
  * @title useClickOutside
  */
-export type UseClickOutsideType = (
+export type UseClickOutside = (
   /**
    * @zh dom对象
    * @en dom element

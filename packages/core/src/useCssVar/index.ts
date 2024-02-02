@@ -1,7 +1,7 @@
 import type { RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { isBrowser } from "../utils/is";
-import { type UseCssVarOptions, type UseCssVarType, defaultOptions } from "./interface";
+import { type UseCssVar, type UseCssVarOptions, defaultOptions } from "./interface";
 
 const getInitialState = (defaultValue?: string) => {
   // Prevent a React hydration mismatch when a default value is provided.
@@ -22,7 +22,7 @@ const getInitialState = (defaultValue?: string) => {
   return "";
 };
 
-export const useCssVar: UseCssVarType = <T extends HTMLElement = HTMLElement>(
+export const useCssVar: UseCssVar = <T extends HTMLElement = HTMLElement>(
   prop: string,
   target: RefObject<T>,
   defaultValue?: string,

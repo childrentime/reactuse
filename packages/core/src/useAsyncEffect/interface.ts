@@ -4,7 +4,7 @@ import type { DependencyList } from "react";
  *
  * @title useAsyncEffect
  */
-export type UseAsyncEffectType = <T>(
+export type UseAsyncEffect = <T>(
    /**
    * @zh 支持promise的副作用函数
    * @en effect that support promise
