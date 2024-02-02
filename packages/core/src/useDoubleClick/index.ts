@@ -1,21 +1,13 @@
 import { useCallback } from "react";
 import useEventListener from "../useEventListener";
-import type { BasicTarget } from "../utils/domTarget";
-import { useLatestElement } from "../utils/domTarget";
+import type { UseDoubleClick, UseDoubleClickProps } from "./interface";
 
-export default function useDoubleClick({
+export const useDoubleClick: UseDoubleClick = ({
   target,
   latency = 300,
   onSingleClick = () => {},
   onDoubleClick = () => {},
-}: {
-  target: BasicTarget;
-  latency?: number;
-  onSingleClick?: (e?: MouseEvent | TouchEvent) => void;
-  onDoubleClick?: (e?: MouseEvent | TouchEvent) => void;
-}) {
-  const element = useLatestElement(target);
-
+}: UseDoubleClickProps) => {
   const handle = useCallback(
     (
       onSingleClick: (e?: MouseEvent | TouchEvent) => void,
@@ -48,6 +40,6 @@ export default function useDoubleClick({
 
   const handleTouchEnd = handle(onSingleClick, onDoubleClick);
 
-  useEventListener("click", handleClick, element);
-  useEventListener("touchend", handleTouchEnd, element, { passive: false });
-}
+  useEventListener("click", handleClick, target);
+  useEventListener("touchend", handleTouchEnd, target, { passive: false });
+};
