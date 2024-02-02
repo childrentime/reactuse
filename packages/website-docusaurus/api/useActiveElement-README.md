@@ -1,6 +1,8 @@
 ### useActiveElement
 
+Returns an instance of the type parameter `T` or `null`.
+
 #### Returns
-`T`: 返回类型参数 `T` 或 `null` 的实例
+`T`
 
 #### Arguments

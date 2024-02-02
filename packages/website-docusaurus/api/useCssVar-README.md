@@ -1,9 +1,11 @@
 ### useCssVar
 
+A tuple with the following elements:
+- The current value of the css var.
+- A function to update the value of the css var.
+
 #### Returns
-`readonly [string, (v: string) => void]`: 包含以下元素的元组：
-- css 变量值
-- 更新 css 变量值的函数
+`readonly [string, (v: string) => void]`
 
 #### Arguments
 |Argument|Description|Type|DefaultValue|

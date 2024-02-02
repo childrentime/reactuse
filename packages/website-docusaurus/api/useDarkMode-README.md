@@ -12,11 +12,13 @@
 
 ### useDarkMode
 
+A tuple with the following elements:
+- The current value of the dark state.
+- A function to toggle the dark state.
+-  A function to update the dark state.
+
 #### Returns
-`readonly [boolean, () => void, React.Dispatch<React.SetStateAction<boolean>>]`: 包含以下元素的元组：
-- 黑暗状态的当前值。
-- 切换黑暗状态的功能。
-- 更新黑暗状态的功能。
+`readonly [boolean, () => void, React.Dispatch<React.SetStateAction<boolean>>]`
 
 #### Arguments
 |Argument|Description|Type|DefaultValue|

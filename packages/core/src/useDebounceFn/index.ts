@@ -1,15 +1,16 @@
 import { useMemo } from "react";
+import type { DebounceSettings } from "lodash-es";
 import { debounce } from "lodash-es";
 import { isDev, isFunction } from "../utils/is";
 import useLatest from "../useLatest";
 import useUnmount from "../useUnmount";
-import type { DebounceSettings } from "../utils/external";
+import type { UseDebounceFn } from "./interface";
 
-export default function useDebounceFn<T extends (...args: any) => any>(
+export const useDebounceFn: UseDebounceFn = <T extends (...args: any) => any>(
   fn: T,
   wait?: number,
   options?: DebounceSettings,
-) {
+) => {
   if (isDev) {
     if (!isFunction(fn)) {
       console.error(
@@ -29,7 +30,8 @@ export default function useDebounceFn<T extends (...args: any) => any>(
         wait,
         options,
       ),
-    [options, wait],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [JSON.stringify(options), wait],
   );
 
   useUnmount(() => {
@@ -41,4 +43,4 @@ export default function useDebounceFn<T extends (...args: any) => any>(
     cancel: debounced.cancel,
     flush: debounced.flush,
   };
-}
+};

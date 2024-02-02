@@ -12,11 +12,13 @@
 
 ### useDarkMode
 
-#### Returns
-`readonly [boolean, () => void, React.Dispatch<React.SetStateAction<boolean>>]`: 包含以下元素的元组：
+包含以下元素的元组：
 - 黑暗状态的当前值。
 - 切换黑暗状态的功能。
 - 更新黑暗状态的功能。
+
+#### Returns
+`readonly [boolean, () => void, React.Dispatch<React.SetStateAction<boolean>>]`
 
 #### Arguments
 |参数名|描述|类型|默认值|

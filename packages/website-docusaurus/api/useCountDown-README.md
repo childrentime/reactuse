@@ -1,10 +1,12 @@
 ### useCountdown
 
+A tuple with the following elements:
+- hour
+- minute.
+- second.
+
 #### Returns
-`readonly [string, string, string]`: 包含以下元素的元组：
-- 小时。
-- 分钟。
-- 秒数。
+`readonly [string, string, string]`
 
 #### Arguments
 |Argument|Description|Type|DefaultValue|
