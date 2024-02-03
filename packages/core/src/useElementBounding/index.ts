@@ -1,7 +1,7 @@
 import type { RefObject } from "react";
 import { useEffect, useState } from "react";
 import useResizeObserver from "../useResizeObserver";
-import useEvent from "../useEvent";
+import { useEvent } from "../useEvent";
 import { defaultOptions } from "../utils/defaults";
 import type { UseElementBounding, UseElementBoundingOptions, UseElementBoundingReturn } from "./interface";
 
