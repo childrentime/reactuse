@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["es5", "es6"],
+    "target": "es5",
+    "noImplicitAny": false,
+    "strict": true,
+    "outDir": "lib",
+    "jsx": "react",
+    "declaration": true,
+    "typeRoots": ["node_modules/@types"],
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "strictNullChecks": true
+  },
+  "include": ["src/**/*.ts"]
+}

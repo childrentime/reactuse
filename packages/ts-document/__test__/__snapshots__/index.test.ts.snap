@@ -1,0 +1,1650 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generate basic 1`] = `
+Object {
+  "A": Object {
+    "data": Array [
+      Object {
+        "isOptional": true,
+        "name": "action",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "自定义操作项",
+          },
+          Object {
+            "name": "en",
+            "value": "this is action",
+          },
+          Object {
+            "name": "version",
+            "value": "2.15.0",
+          },
+        ],
+        "type": "ReactNode",
+      },
+      Object {
+        "isOptional": true,
+        "name": "closable",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "是否可以关闭",
+          },
+          Object {
+            "name": "en",
+            "value": "Whether Alert can be closed",
+          },
+          Object {
+            "name": "defaultValue",
+            "value": "{}",
+          },
+        ],
+        "type": "[InnerProps](#InnerProps)",
+      },
+    ],
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "A",
+      },
+      Object {
+        "name": "zh",
+        "value": "这是接口描述。",
+      },
+      Object {
+        "name": "en",
+        "value": "This is interface description.",
+      },
+    ],
+  },
+  "InnerProps": Object {
+    "data": "export interface InnerProps {
+  /**
+   * @zh 位置
+   * @en position
+   */
+  position?: string;
+  /**
+   * @zh 尺寸
+   * @en Size
+   */
+  size?: string;
+}
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "InnerProps",
+      },
+    ],
+  },
+}
+`;
+
+exports[`generate defaultTypeMap 1`] = `
+Object {
+  "A": Object {
+    "data": Array [
+      Object {
+        "isOptional": false,
+        "name": "style",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "节点样式",
+          },
+          Object {
+            "name": "en",
+            "value": "Additional style",
+          },
+        ],
+        "type": "CSSProperties",
+      },
+      Object {
+        "isOptional": false,
+        "name": "className",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "节点类名",
+          },
+          Object {
+            "name": "en",
+            "value": "Additional css class",
+          },
+        ],
+        "type": "string \\\\| string[]",
+      },
+    ],
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "A",
+      },
+    ],
+  },
+}
+`;
+
+exports[`generate escape 1`] = `
+Object {
+  "A": Object {
+    "data": Array [
+      Object {
+        "isOptional": true,
+        "name": "size",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "尺寸",
+          },
+          Object {
+            "name": "en",
+            "value": "size",
+          },
+        ],
+        "type": "'mini' | 'large' | 'default'",
+      },
+      Object {
+        "isOptional": true,
+        "name": "fetchData",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "获取数据函数",
+          },
+          Object {
+            "name": "en",
+            "value": "Function to fetch data",
+          },
+        ],
+        "type": "() => Promise<string>",
+      },
+    ],
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "A",
+      },
+      Object {
+        "name": "zh",
+        "value": "这是接口描述。",
+      },
+      Object {
+        "name": "en",
+        "value": "This is interface description.",
+      },
+    ],
+  },
+}
+`;
+
+exports[`generate extends 1`] = `
+Object {
+  "Alert": Object {
+    "data": Array [
+      Object {
+        "isOptional": false,
+        "name": "action",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "自定义操作项",
+          },
+          Object {
+            "name": "en",
+            "value": "this is action",
+          },
+          Object {
+            "name": "version",
+            "value": "2.15.0",
+          },
+        ],
+        "type": "ReactElement",
+      },
+      Object {
+        "isOptional": true,
+        "name": "closable",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "是否可以关闭",
+          },
+          Object {
+            "name": "en",
+            "value": "Whether Alert can be closed",
+          },
+          Object {
+            "name": "defaultValue",
+            "value": "false",
+          },
+        ],
+        "type": "{a: boolean;b: string;}",
+      },
+      Object {
+        "isOptional": true,
+        "name": "callback",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "回调参数",
+          },
+          Object {
+            "name": "en",
+            "value": "Callback function",
+          },
+        ],
+        "type": "(option: [Option](#Option)) => void",
+      },
+      Object {
+        "isOptional": true,
+        "name": "bb",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "BB",
+          },
+          Object {
+            "name": "en",
+            "value": "bb",
+          },
+        ],
+        "type": "boolean",
+      },
+      Object {
+        "isOptional": true,
+        "name": "animation",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "动画",
+          },
+          Object {
+            "name": "en",
+            "value": "animation",
+          },
+        ],
+        "type": "boolean \\\\| string",
+      },
+    ],
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "Alert",
+      },
+      Object {
+        "name": "zh",
+        "value": "向用户显示警告的信息时，通过警告提示，展现需要关注的信息。",
+      },
+      Object {
+        "name": "en",
+        "value": "Display warning information to the user. the Alert is used to display the information that needs attention.",
+      },
+    ],
+  },
+  "Option": Object {
+    "data": "export type Option = {
+  a: string;
+  b: string;
+};
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "Option",
+      },
+    ],
+  },
+  "Test": Object {
+    "data": Array [
+      Object {
+        "isOptional": true,
+        "name": "position",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "位置",
+          },
+          Object {
+            "name": "en",
+            "value": "position",
+          },
+        ],
+        "type": "string",
+      },
+      Object {
+        "isOptional": true,
+        "name": "size",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "尺寸",
+          },
+          Object {
+            "name": "en",
+            "value": "Size",
+          },
+        ],
+        "type": "string",
+      },
+      Object {
+        "isOptional": false,
+        "name": "action",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "自定义操作项",
+          },
+          Object {
+            "name": "en",
+            "value": "this is action",
+          },
+          Object {
+            "name": "version",
+            "value": "2.15.0",
+          },
+        ],
+        "type": "ReactElement",
+      },
+      Object {
+        "isOptional": true,
+        "name": "closable",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "是否可以关闭",
+          },
+          Object {
+            "name": "en",
+            "value": "Whether Alert can be closed",
+          },
+          Object {
+            "name": "defaultValue",
+            "value": "false",
+          },
+        ],
+        "type": "{a: boolean;b: string;}",
+      },
+      Object {
+        "isOptional": true,
+        "name": "callback",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "回调参数",
+          },
+          Object {
+            "name": "en",
+            "value": "Callback function",
+          },
+        ],
+        "type": "(option: [Option](#Option)) => void",
+      },
+      Object {
+        "isOptional": true,
+        "name": "bb",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "BB",
+          },
+          Object {
+            "name": "en",
+            "value": "bb",
+          },
+        ],
+        "type": "boolean",
+      },
+      Object {
+        "isOptional": true,
+        "name": "animation",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "动画",
+          },
+          Object {
+            "name": "en",
+            "value": "animation",
+          },
+        ],
+        "type": "boolean \\\\| string",
+      },
+    ],
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "Test",
+      },
+    ],
+  },
+}
+`;
+
+exports[`generate function type 1`] = `
+Object {
+  "Add": Object {
+    "params": Array [
+      Object {
+        "initializerText": null,
+        "isOptional": false,
+        "name": "a",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "被加数",
+          },
+          Object {
+            "name": "en",
+            "value": "First number",
+          },
+        ],
+        "type": "number",
+      },
+      Object {
+        "initializerText": "5",
+        "isOptional": true,
+        "name": "b",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "加数",
+          },
+          Object {
+            "name": "en",
+            "value": "Second number",
+          },
+        ],
+        "type": "number",
+      },
+    ],
+    "returns": "number",
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "Add",
+      },
+      Object {
+        "name": "en",
+        "value": "Add two numbers",
+      },
+      Object {
+        "name": "zh",
+        "value": "两数相加",
+      },
+      Object {
+        "name": "returns",
+        "value": "Sum of two numbers",
+      },
+      Object {
+        "name": "version",
+        "value": "1.0.0",
+      },
+    ],
+  },
+  "ButtonType": Object {
+    "data": "type ButtonType = {
+  size?: 'mini' | 'large' | 'default';
+  color?: string;
+};
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "ButtonType",
+      },
+    ],
+  },
+  "Plus": Object {
+    "params": Array [
+      Object {
+        "initializerText": null,
+        "isOptional": false,
+        "name": "a",
+        "tags": Array [
+          Object {
+            "name": "en",
+            "value": "First number",
+          },
+          Object {
+            "name": "zh",
+            "value": "被乘数",
+          },
+        ],
+        "type": "number",
+      },
+      Object {
+        "initializerText": "1",
+        "isOptional": false,
+        "name": "b",
+        "tags": Array [
+          Object {
+            "name": "en",
+            "value": "Second number",
+          },
+          Object {
+            "name": "zh",
+            "value": "乘数",
+          },
+          Object {
+            "name": "defaultValue",
+            "value": "1",
+          },
+        ],
+        "type": "number",
+      },
+    ],
+    "returns": "number",
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "Plus",
+      },
+      Object {
+        "name": "zh",
+        "value": "两数相乘",
+      },
+      Object {
+        "name": "en",
+        "value": "Multiply two numbers",
+      },
+      Object {
+        "name": "returns",
+        "value": "Product of two numbers",
+      },
+    ],
+  },
+  "function with nest type": Object {
+    "params": Array [
+      Object {
+        "initializerText": null,
+        "isOptional": false,
+        "name": "buttonProps",
+        "tags": Array [],
+        "type": "Partial&lt;[ButtonType](#ButtonType)&gt;",
+      },
+    ],
+    "returns": "any",
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "function with nest type",
+      },
+    ],
+  },
+}
+`;
+
+exports[`generate nested types 1`] = `
+Object {
+  "A": Object {
+    "data": Array [
+      Object {
+        "isOptional": true,
+        "name": "treeSelectDataType",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "树选择数据属性",
+          },
+          Object {
+            "name": "en",
+            "value": "treeSelectDataType",
+          },
+        ],
+        "type": "[TreeSelectDataType](#TreeSelectDataType)",
+      },
+      Object {
+        "isOptional": false,
+        "name": "onClick",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "点击回调",
+          },
+          Object {
+            "name": "en",
+            "value": "onClick",
+          },
+        ],
+        "type": "(num: number) => void",
+      },
+      Object {
+        "isOptional": false,
+        "name": "b",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "属性 B",
+          },
+          Object {
+            "name": "en",
+            "value": "BProps",
+          },
+        ],
+        "type": "[BlinkProps](blink#Blink)",
+      },
+      Object {
+        "isOptional": false,
+        "name": "unionBlink",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "属性 baseB",
+          },
+          Object {
+            "name": "en",
+            "value": "baseBlink",
+          },
+        ],
+        "type": "[UnionBlinkProps](#UnionBlinkProps)",
+      },
+      Object {
+        "isOptional": true,
+        "name": "action",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "操作项",
+          },
+          Object {
+            "name": "en",
+            "value": "action",
+          },
+        ],
+        "type": "ReactNode",
+      },
+      Object {
+        "isOptional": true,
+        "name": "owner",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "负责人",
+          },
+          Object {
+            "name": "en",
+            "value": "owner",
+          },
+        ],
+        "type": "Partial&lt;[Owner](#Owner)&gt;",
+      },
+      Object {
+        "isOptional": true,
+        "name": "size",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "尺寸",
+          },
+          Object {
+            "name": "en",
+            "value": "size",
+          },
+        ],
+        "type": "[Size](#Size)",
+      },
+      Object {
+        "isOptional": true,
+        "name": "columns",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "列配置",
+          },
+          Object {
+            "name": "en",
+            "value": "column settings",
+          },
+          Object {
+            "name": "defaultValue",
+            "value": "{}",
+          },
+        ],
+        "type": "[ColProps](#ColProps)",
+      },
+      Object {
+        "isOptional": false,
+        "name": "sorter",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "排序",
+          },
+          Object {
+            "name": "en",
+            "value": "sorter",
+          },
+        ],
+        "type": "(a: [SorterProps](#SorterProps), b: [SorterProps](#SorterProps)) =&gt; Promise&lt;void&gt;",
+      },
+      Object {
+        "isOptional": true,
+        "name": "direction",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "方向",
+          },
+          Object {
+            "name": "en",
+            "value": "direction",
+          },
+        ],
+        "type": "[Direction](#Direction)",
+      },
+      Object {
+        "isOptional": false,
+        "name": "option",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "选项",
+          },
+          Object {
+            "name": "en",
+            "value": "option",
+          },
+        ],
+        "type": "[OptionInfo](#OptionInfo)",
+      },
+    ],
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "A",
+      },
+      Object {
+        "name": "zh",
+        "value": "这是接口描述。",
+      },
+      Object {
+        "name": "en",
+        "value": "This is interface description.",
+      },
+    ],
+  },
+  "ColProps": Object {
+    "data": "export interface ColProps {
+  // width of the column
+  width?: number;
+  name?: string;
+  onColumnCallback: (param: onColumnCallbackProps) => number;
+}
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "ColProps",
+      },
+    ],
+  },
+  "Direction": Object {
+    "data": "enum Direction {
+  LEFT,
+  RIGHT,
+  UP,
+  DOWN
+}
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "Direction",
+      },
+    ],
+  },
+  "InnerMethodsReturnType": Object {
+    "data": "interface InnerMethodsReturnType {
+  text: string;
+}
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "InnerMethodsReturnType",
+      },
+    ],
+  },
+  "OptionInfo": Object {
+    "data": "export interface OptionInfo extends PropsWithChildren<BlinkProps> {
+  valid: boolean;
+  index: number;
+  origin: 'children' | 'options' | 'userCreatedOptions' | 'userCreatingOption';
+}
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "OptionInfo",
+      },
+    ],
+  },
+  "Owner": Object {
+    "data": "interface Owner {
+  name: string;
+  age: number;
+}
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "Owner",
+      },
+    ],
+  },
+  "Size": Object {
+    "data": "export type Size = number | string | SizeObject;
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "Size",
+      },
+    ],
+  },
+  "SizeObject": Object {
+    "data": "type SizeObject = {
+  [key in string]: number;
+};
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "SizeObject",
+      },
+    ],
+  },
+  "SorterProps": Object {
+    "data": "interface SorterProps {
+  counter: number;
+}
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "SorterProps",
+      },
+    ],
+  },
+  "TreeDataType": Object {
+    "data": "export type TreeDataType = {
+  key?: string;
+  _index?: number;
+  children: TreeDataType[];
+  loadMore: (data: TreeDataType) => void;
+};
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "TreeDataType",
+      },
+    ],
+  },
+  "TreeSelectDataType": Object {
+    "data": "export type TreeSelectDataType = TreeDataType & {
+  getInnerMethods: (inner: boolean) => InnerMethodsReturnType;
+};
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "TreeSelectDataType",
+      },
+    ],
+  },
+  "UnionBlinkProps": Object {
+    "data": "type UnionBlinkProps = ClinkProps & BlinkProps;
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "UnionBlinkProps",
+      },
+    ],
+  },
+  "onColumnCallbackProps": Object {
+    "data": "interface onColumnCallbackProps {
+  // index of column
+  index: string;
+  position: {
+    x: number;
+    y: number;
+  };
+}
+",
+    "isNestedType": true,
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "onColumnCallbackProps",
+      },
+    ],
+  },
+}
+`;
+
+exports[`generate sort property 1`] = `
+Object {
+  "Button": Object {
+    "data": Array [
+      Object {
+        "isOptional": true,
+        "name": "size",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "尺寸",
+          },
+          Object {
+            "name": "en",
+            "value": "Size",
+          },
+          Object {
+            "name": "defaultValue",
+            "value": "default",
+          },
+        ],
+        "type": "'mini' \\\\| 'large' \\\\| 'default'",
+      },
+      Object {
+        "isOptional": true,
+        "name": "readonly",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "只读",
+          },
+          Object {
+            "name": "en",
+            "value": "Readonly",
+          },
+        ],
+        "type": "boolean",
+      },
+      Object {
+        "isOptional": true,
+        "name": "disabled",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "禁用",
+          },
+          Object {
+            "name": "en",
+            "value": "Disabled",
+          },
+        ],
+        "type": "boolean",
+      },
+      Object {
+        "isOptional": true,
+        "name": "tabIndex",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "TabIndex",
+          },
+          Object {
+            "name": "en",
+            "value": "TabIndex",
+          },
+        ],
+        "type": "number",
+      },
+      Object {
+        "isOptional": true,
+        "name": "color",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "颜色",
+          },
+          Object {
+            "name": "en",
+            "value": "Color",
+          },
+          Object {
+            "name": "version",
+            "value": "1.2.0",
+          },
+        ],
+        "type": "string",
+      },
+      Object {
+        "isOptional": true,
+        "name": "renderText",
+        "tags": Array [
+          Object {
+            "name": "zh",
+            "value": "自定义文本渲染",
+          },
+          Object {
+            "name": "en",
+            "value": "Custom text render",
+          },
+        ],
+        "type": "() => string",
+      },
+    ],
+    "tags": Array [
+      Object {
+        "name": "title",
+        "value": "Button",
+      },
+      Object {
+        "name": "zh",
+        "value": "按钮",
+      },
+      Object {
+        "name": "en",
+        "value": "Button",
+      },
+    ],
+  },
+}
+`;
+
+exports[`generateMarkdown basic 1`] = `
+Object {
+  "A": "### A
+
+这是接口描述。
+
+|参数名|描述|类型|默认值|版本|
+|---|---|---|---|---|
+|action|自定义操作项|ReactNode |\`-\`|2.15.0|
+|closable|是否可以关闭|[InnerProps](#InnerProps) |\`{}\`|-|",
+  "InnerProps": "### InnerProps
+
+\`\`\`js
+export interface InnerProps {
+  /**
+   * @zh 位置
+   * @en position
+   */
+  position?: string;
+  /**
+   * @zh 尺寸
+   * @en Size
+   */
+  size?: string;
+}
+\`\`\`",
+}
+`;
+
+exports[`generateMarkdown basic 2`] = `
+Object {
+  "A": "### A
+
+This is interface description.
+
+|Property|Description|Type|DefaultValue|Version|
+|---|---|---|---|---|
+|action|this is action|ReactNode |\`-\`|2.15.0|
+|closable|Whether Alert can be closed|[InnerProps](#InnerProps) |\`{}\`|-|",
+  "InnerProps": "### InnerProps
+
+\`\`\`js
+export interface InnerProps {
+  /**
+   * @zh 位置
+   * @en position
+   */
+  position?: string;
+  /**
+   * @zh 尺寸
+   * @en Size
+   */
+  size?: string;
+}
+\`\`\`",
+}
+`;
+
+exports[`generateMarkdown custom project 1`] = `
+Object {
+  "Add": "### Add
+
+两数相加
+
+#### Since
+1.0.0
+
+#### Returns
+\`number\`: Sum of two numbers
+
+#### Arguments
+|参数名|描述|类型|默认值|
+|---|---|---|---|
+|a|被加数|number  **(必填)**|-|
+|b|加数|number |\`5\`|",
+  "ButtonType": "### ButtonType
+
+\`\`\`js
+type ButtonType = {
+  size?: 'mini' | 'large' | 'default';
+  color?: string;
+};
+\`\`\`",
+  "Plus": "### Plus
+
+两数相乘
+
+#### Returns
+\`number\`: Product of two numbers
+
+#### Arguments
+|参数名|描述|类型|默认值|
+|---|---|---|---|
+|a|被乘数|number  **(必填)**|-|
+|b|乘数|number  **(必填)**|\`1\`|",
+  "function with nest type": "### function with nest type
+
+#### Returns
+\`any\`
+
+#### Arguments
+|参数名|描述|类型|默认值|
+|---|---|---|---|
+|buttonProps|-|Partial&lt;[ButtonType](#ButtonType)&gt;  **(必填)**|-|",
+}
+`;
+
+exports[`generateMarkdown custom project 2`] = `
+Array [
+  "### Plus
+
+Multiply two numbers
+
+#### Returns
+\`number\`: Product of two numbers
+
+#### Arguments
+|Argument|Description|Type|DefaultValue|
+|---|---|---|---|
+|a|First number|number  **(Required)**|-|
+|b|Second number|number  **(Required)**|\`1\`|",
+  "### Add
+
+Add two numbers
+
+#### Since
+1.0.0
+
+#### Returns
+\`number\`: Sum of two numbers
+
+#### Arguments
+|Argument|Description|Type|DefaultValue|
+|---|---|---|---|
+|a|First number|number  **(Required)**|-|
+|b|Second number|number |\`5\`|",
+  "### function with nest type
+
+#### Returns
+\`any\`
+
+#### Arguments
+|Argument|Description|Type|DefaultValue|
+|---|---|---|---|
+|buttonProps|-|Partial&lt;[ButtonType](#ButtonType)&gt;  **(Required)**|-|",
+  "### ButtonType
+
+\`\`\`js
+type ButtonType = {
+  size?: 'mini' | 'large' | 'default';
+  color?: string;
+};
+\`\`\`",
+]
+`;
+
+exports[`generateMarkdown escape 1`] = `
+Object {
+  "A": "### A
+
+这是接口描述。
+
+|参数名|描述|类型|默认值|
+|---|---|---|---|
+|size|尺寸|'mini' | 'large' | 'default' |\`-\`|
+|fetchData|获取数据函数|() => Promise<string> |\`-\`|",
+}
+`;
+
+exports[`generateMarkdown escape 2`] = `
+Object {
+  "A": "### A
+
+This is interface description.
+
+|Property|Description|Type|DefaultValue|
+|---|---|---|---|
+|size|size|'mini' | 'large' | 'default' |\`-\`|
+|fetchData|Function to fetch data|() => Promise<string> |\`-\`|",
+}
+`;
+
+exports[`generateMarkdown extends 1`] = `
+Object {
+  "Alert": "### Alert
+
+向用户显示警告的信息时，通过警告提示，展现需要关注的信息。
+
+|参数名|描述|类型|默认值|版本|
+|---|---|---|---|---|
+|action|自定义操作项|ReactElement  **(必填)**|\`-\`|2.15.0|
+|closable|是否可以关闭|{a: boolean;b: string;} |\`false\`|-|
+|callback|回调参数|(option: [Option](#Option)) => void |\`-\`|-|
+|bb|BB|boolean |\`-\`|-|
+|animation|动画|boolean \\\\| string |\`-\`|-|",
+  "Option": "### Option
+
+\`\`\`js
+export type Option = {
+  a: string;
+  b: string;
+};
+\`\`\`",
+  "Test": "### Test
+
+|参数名|描述|类型|默认值|版本|
+|---|---|---|---|---|
+|position|位置|string |\`-\`|-|
+|size|尺寸|string |\`-\`|-|
+|action|自定义操作项|ReactElement  **(必填)**|\`-\`|2.15.0|
+|closable|是否可以关闭|{a: boolean;b: string;} |\`false\`|-|
+|callback|回调参数|(option: [Option](#Option)) => void |\`-\`|-|
+|bb|BB|boolean |\`-\`|-|
+|animation|动画|boolean \\\\| string |\`-\`|-|",
+}
+`;
+
+exports[`generateMarkdown extends 2`] = `
+Object {
+  "Alert": "### Alert
+
+Display warning information to the user. the Alert is used to display the information that needs attention.
+
+|Property|Description|Type|DefaultValue|Version|
+|---|---|---|---|---|
+|action|this is action|ReactElement  **(Required)**|\`-\`|2.15.0|
+|closable|Whether Alert can be closed|{a: boolean;b: string;} |\`false\`|-|
+|callback|Callback function|(option: [Option](#Option)) => void |\`-\`|-|
+|bb|bb|boolean |\`-\`|-|
+|animation|animation|boolean \\\\| string |\`-\`|-|",
+  "Option": "### Option
+
+\`\`\`js
+export type Option = {
+  a: string;
+  b: string;
+};
+\`\`\`",
+  "Test": "### Test
+
+|Property|Description|Type|DefaultValue|Version|
+|---|---|---|---|---|
+|position|position|string |\`-\`|-|
+|size|Size|string |\`-\`|-|
+|action|this is action|ReactElement  **(Required)**|\`-\`|2.15.0|
+|closable|Whether Alert can be closed|{a: boolean;b: string;} |\`false\`|-|
+|callback|Callback function|(option: [Option](#Option)) => void |\`-\`|-|
+|bb|bb|boolean |\`-\`|-|
+|animation|animation|boolean \\\\| string |\`-\`|-|",
+}
+`;
+
+exports[`generateMarkdown function type 1`] = `
+Object {
+  "Add": "### Add
+
+两数相加
+
+#### Since
+1.0.0
+
+#### Returns
+\`number\`: Sum of two numbers
+
+#### Arguments
+|参数名|描述|类型|默认值|
+|---|---|---|---|
+|a|被加数|number  **(必填)**|-|
+|b|加数|number |\`5\`|",
+  "ButtonType": "### ButtonType
+
+\`\`\`js
+type ButtonType = {
+  size?: 'mini' | 'large' | 'default';
+  color?: string;
+};
+\`\`\`",
+  "Plus": "### Plus
+
+两数相乘
+
+#### Returns
+\`number\`: Product of two numbers
+
+#### Arguments
+|参数名|描述|类型|默认值|
+|---|---|---|---|
+|a|被乘数|number  **(必填)**|-|
+|b|乘数|number  **(必填)**|\`1\`|",
+  "function with nest type": "### function with nest type
+
+#### Returns
+\`any\`
+
+#### Arguments
+|参数名|描述|类型|默认值|
+|---|---|---|---|
+|buttonProps|-|Partial&lt;[ButtonType](#ButtonType)&gt;  **(必填)**|-|",
+}
+`;
+
+exports[`generateMarkdown function type 2`] = `
+Array [
+  "### Plus
+
+Multiply two numbers
+
+#### Returns
+\`number\`: Product of two numbers
+
+#### Arguments
+|Argument|Description|Type|DefaultValue|
+|---|---|---|---|
+|a|First number|number  **(Required)**|-|
+|b|Second number|number  **(Required)**|\`1\`|",
+  "### Add
+
+Add two numbers
+
+#### Since
+1.0.0
+
+#### Returns
+\`number\`: Sum of two numbers
+
+#### Arguments
+|Argument|Description|Type|DefaultValue|
+|---|---|---|---|
+|a|First number|number  **(Required)**|-|
+|b|Second number|number |\`5\`|",
+  "### function with nest type
+
+#### Returns
+\`any\`
+
+#### Arguments
+|Argument|Description|Type|DefaultValue|
+|---|---|---|---|
+|buttonProps|-|Partial&lt;[ButtonType](#ButtonType)&gt;  **(Required)**|-|",
+  "### ButtonType
+
+\`\`\`js
+type ButtonType = {
+  size?: 'mini' | 'large' | 'default';
+  color?: string;
+};
+\`\`\`",
+]
+`;
+
+exports[`generateMarkdown nested types 1`] = `
+Object {
+  "A": "### A
+
+这是接口描述。
+
+|参数名|描述|类型|默认值|
+|---|---|---|---|
+|treeSelectDataType|树选择数据属性|[TreeSelectDataType](#TreeSelectDataType) |\`-\`|
+|onClick|点击回调|(num: number) => void  **(必填)**|\`-\`|
+|b|属性 B|[BlinkProps](blink#Blink)  **(必填)**|\`-\`|
+|unionBlink|属性 baseB|[UnionBlinkProps](#UnionBlinkProps)  **(必填)**|\`-\`|
+|action|操作项|ReactNode |\`-\`|
+|owner|负责人|Partial&lt;[Owner](#Owner)&gt; |\`-\`|
+|size|尺寸|[Size](#Size) |\`-\`|
+|columns|列配置|[ColProps](#ColProps) |\`{}\`|
+|sorter|排序|(a: [SorterProps](#SorterProps), b: [SorterProps](#SorterProps)) =&gt; Promise&lt;void&gt;  **(必填)**|\`-\`|
+|direction|方向|[Direction](#Direction) |\`-\`|
+|option|选项|[OptionInfo](#OptionInfo)  **(必填)**|\`-\`|",
+  "ColProps": "### ColProps
+
+\`\`\`js
+export interface ColProps {
+  // width of the column
+  width?: number;
+  name?: string;
+  onColumnCallback: (param: onColumnCallbackProps) => number;
+}
+\`\`\`",
+  "Direction": "### Direction
+
+\`\`\`js
+enum Direction {
+  LEFT,
+  RIGHT,
+  UP,
+  DOWN
+}
+\`\`\`",
+  "InnerMethodsReturnType": "### InnerMethodsReturnType
+
+\`\`\`js
+interface InnerMethodsReturnType {
+  text: string;
+}
+\`\`\`",
+  "OptionInfo": "### OptionInfo
+
+\`\`\`js
+export interface OptionInfo extends PropsWithChildren<BlinkProps> {
+  valid: boolean;
+  index: number;
+  origin: 'children' | 'options' | 'userCreatedOptions' | 'userCreatingOption';
+}
+\`\`\`",
+  "Owner": "### Owner
+
+\`\`\`js
+interface Owner {
+  name: string;
+  age: number;
+}
+\`\`\`",
+  "Size": "### Size
+
+\`\`\`js
+export type Size = number | string | SizeObject;
+\`\`\`",
+  "SizeObject": "### SizeObject
+
+\`\`\`js
+type SizeObject = {
+  [key in string]: number;
+};
+\`\`\`",
+  "SorterProps": "### SorterProps
+
+\`\`\`js
+interface SorterProps {
+  counter: number;
+}
+\`\`\`",
+  "TreeDataType": "### TreeDataType
+
+\`\`\`js
+export type TreeDataType = {
+  key?: string;
+  _index?: number;
+  children: TreeDataType[];
+  loadMore: (data: TreeDataType) => void;
+};
+\`\`\`",
+  "TreeSelectDataType": "### TreeSelectDataType
+
+\`\`\`js
+export type TreeSelectDataType = TreeDataType & {
+  getInnerMethods: (inner: boolean) => InnerMethodsReturnType;
+};
+\`\`\`",
+  "UnionBlinkProps": "### UnionBlinkProps
+
+\`\`\`js
+type UnionBlinkProps = ClinkProps & BlinkProps;
+\`\`\`",
+  "onColumnCallbackProps": "### onColumnCallbackProps
+
+\`\`\`js
+interface onColumnCallbackProps {
+  // index of column
+  index: string;
+  position: {
+    x: number;
+    y: number;
+  };
+}
+\`\`\`",
+}
+`;
+
+exports[`generateMarkdown nested types 2`] = `
+Object {
+  "A": "### A
+
+This is interface description.
+
+|Property|Description|Type|DefaultValue|
+|---|---|---|---|
+|treeSelectDataType|treeSelectDataType|[TreeSelectDataType](#TreeSelectDataType) |\`-\`|
+|onClick|onClick|(num: number) => void  **(Required)**|\`-\`|
+|b|BProps|[BlinkProps](blink#Blink)  **(Required)**|\`-\`|
+|unionBlink|baseBlink|[UnionBlinkProps](#UnionBlinkProps)  **(Required)**|\`-\`|
+|action|action|ReactNode |\`-\`|
+|owner|owner|Partial&lt;[Owner](#Owner)&gt; |\`-\`|
+|size|size|[Size](#Size) |\`-\`|
+|columns|column settings|[ColProps](#ColProps) |\`{}\`|
+|sorter|sorter|(a: [SorterProps](#SorterProps), b: [SorterProps](#SorterProps)) =&gt; Promise&lt;void&gt;  **(Required)**|\`-\`|
+|direction|direction|[Direction](#Direction) |\`-\`|
+|option|option|[OptionInfo](#OptionInfo)  **(Required)**|\`-\`|",
+  "ColProps": "### ColProps
+
+\`\`\`js
+export interface ColProps {
+  // width of the column
+  width?: number;
+  name?: string;
+  onColumnCallback: (param: onColumnCallbackProps) => number;
+}
+\`\`\`",
+  "Direction": "### Direction
+
+\`\`\`js
+enum Direction {
+  LEFT,
+  RIGHT,
+  UP,
+  DOWN
+}
+\`\`\`",
+  "InnerMethodsReturnType": "### InnerMethodsReturnType
+
+\`\`\`js
+interface InnerMethodsReturnType {
+  text: string;
+}
+\`\`\`",
+  "OptionInfo": "### OptionInfo
+
+\`\`\`js
+export interface OptionInfo extends PropsWithChildren<BlinkProps> {
+  valid: boolean;
+  index: number;
+  origin: 'children' | 'options' | 'userCreatedOptions' | 'userCreatingOption';
+}
+\`\`\`",
+  "Owner": "### Owner
+
+\`\`\`js
+interface Owner {
+  name: string;
+  age: number;
+}
+\`\`\`",
+  "Size": "### Size
+
+\`\`\`js
+export type Size = number | string | SizeObject;
+\`\`\`",
+  "SizeObject": "### SizeObject
+
+\`\`\`js
+type SizeObject = {
+  [key in string]: number;
+};
+\`\`\`",
+  "SorterProps": "### SorterProps
+
+\`\`\`js
+interface SorterProps {
+  counter: number;
+}
+\`\`\`",
+  "TreeDataType": "### TreeDataType
+
+\`\`\`js
+export type TreeDataType = {
+  key?: string;
+  _index?: number;
+  children: TreeDataType[];
+  loadMore: (data: TreeDataType) => void;
+};
+\`\`\`",
+  "TreeSelectDataType": "### TreeSelectDataType
+
+\`\`\`js
+export type TreeSelectDataType = TreeDataType & {
+  getInnerMethods: (inner: boolean) => InnerMethodsReturnType;
+};
+\`\`\`",
+  "UnionBlinkProps": "### UnionBlinkProps
+
+\`\`\`js
+type UnionBlinkProps = ClinkProps & BlinkProps;
+\`\`\`",
+  "onColumnCallbackProps": "### onColumnCallbackProps
+
+\`\`\`js
+interface onColumnCallbackProps {
+  // index of column
+  index: string;
+  position: {
+    x: number;
+    y: number;
+  };
+}
+\`\`\`",
+}
+`;

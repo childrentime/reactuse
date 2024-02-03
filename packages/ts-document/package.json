@@ -1,0 +1,52 @@
+{
+  "name": "@reactuses/ts-document",
+  "version": "0.8.0",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "prepublishOnly": "npm run test && npm run tsc",
+    "tsc": "rm -rf lib/ && tsc",
+    "tsc:watch": "tsc -w",
+    "lint": "eslint src/ --fix --ext .ts,.tsx",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PengJiyuan/ts-document.git"
+  },
+  "keywords": [
+    "docgen",
+    "react",
+    "typescript"
+  ],
+  "author": "PengJiyuan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PengJiyuan/ts-document/issues"
+  },
+  "homepage": "https://github.com/PengJiyuan/ts-document#readme",
+  "peerDependencies": {
+    "typescript": ">= 4.3.x"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@types/node": "^15.14.9",
+    "@types/react": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
+    "eslint": "^7.30.0",
+    "jest": "^27.0.6",
+    "prettier": "^2.0.5",
+    "react": "^17.0.2",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "ts-morph": "^21.0.1",
+    "tsx": "^4.7.0"
+  },
+  "files": [
+    "lib"
+  ]
+}
