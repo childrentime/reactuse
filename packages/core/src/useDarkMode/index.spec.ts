@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import { createMockMediaMatcher } from "../../.test";
-import type { UseDarkOptions } from ".";
-import useDarkMode from ".";
+import type { UseDarkOptions } from "./interface";
+import { useDarkMode } from ".";
 
 describe(useDarkMode, () => {
   const options: UseDarkOptions = {

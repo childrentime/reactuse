@@ -2,7 +2,7 @@ import type { Dispatch, SetStateAction } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { isBrowser, isFunction } from "../utils/is";
 import { guessSerializerType } from "../utils/serializer";
-import useEvent from "../useEvent";
+import { useEvent } from "../useEvent";
 import { defaultOnError, defaultOptions } from "../utils/defaults";
 
 export interface Serializer<T> {

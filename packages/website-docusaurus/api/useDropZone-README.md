@@ -1,7 +1,7 @@
 ### useDropZone
 
 #### Returns
-`boolean`
+`boolean`: Whether the file is on the zone
 
 #### Arguments
 |Argument|Description|Type|DefaultValue|

@@ -1,7 +1,7 @@
 import type { RenderHookResult } from "@testing-library/react";
 import { act, renderHook } from "@testing-library/react";
 import { useState } from "react";
-import useEvent from ".";
+import { useEvent } from ".";
 
 const useCount = () => {
   const [count, setCount] = useState(0);
