@@ -2,6 +2,8 @@ import type { RefObject } from "react";
 
 /**
  * @title useDropZone
+ * @returns 文件是否在区域上
+ * @returns_en Whether the file is on the zone
  */
 export type UseDropZone = (
   /**

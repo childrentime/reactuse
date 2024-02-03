@@ -12,13 +12,11 @@
 
 ### useDarkMode
 
-A tuple with the following elements:
+#### Returns
+`SetStateAction<boolean | null>>]`: A tuple with the following elements:
 - The current value of the dark state.
 - A function to toggle the dark state.
 -  A function to update the dark state.
-
-#### Returns
-`readonly [boolean, () => void, React.Dispatch<React.SetStateAction<boolean>>]`
 
 #### Arguments
 |Argument|Description|Type|DefaultValue|

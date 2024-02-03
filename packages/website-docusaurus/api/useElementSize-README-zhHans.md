@@ -9,4 +9,4 @@
 |参数名|描述|类型|默认值|
 |---|---|---|---|
 |target|dom对象|React.RefObject&lt;Element&gt;  **(必填)**|-|
-|options|`resizeObserver` 参数|ResizeObserverOptions |-|
+|options|`resizeObserver` 参数|ResizeObserverOptions \| undefined |-|

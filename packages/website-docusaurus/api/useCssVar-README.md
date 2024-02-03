@@ -1,19 +1,17 @@
 ### useCssVar
 
-A tuple with the following elements:
+#### Returns
+`readonly [string, (v: string) => void]`: A tuple with the following elements:
 - The current value of the css var.
 - A function to update the value of the css var.
-
-#### Returns
-`readonly [string, (v: string) => void]`
 
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
 |prop|prop, eg: --color|string  **(Required)**|-|
 |target|dom element|React.RefObject&lt;T&gt;  **(Required)**|-|
-|defaultValue|default value|string |-|
-|options|options|[UseCssVarOptions](#UseCssVarOptions) |-|
+|defaultValue|default value|string \| undefined |-|
+|options|options|[UseCssVarOptions](#UseCssVarOptions) \| undefined |-|
 
 ### UseCssVarOptions
 

@@ -1,13 +1,16 @@
 ### useDraggable
 
 #### Returns
-`readonly [number, number, boolean]`
+`readonly [number, number, boolean]`: A tuple with the following elements:
+- x
+- y
+- Whether the element is being dragged
 
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
 |target|dom element|React.RefObject&lt;HTMLElement \| SVGElement&gt;  **(Required)**|-|
-|options|optional params|[UseDraggableOptions](#UseDraggableOptions) |-|
+|options|optional params|[UseDraggableOptions](#UseDraggableOptions) \| undefined |-|
 
 ### UseDraggableOptions
 

@@ -1,9 +1,9 @@
 /**
  * @title useWindowSize
- * @returns A object with the following elements:
+ * @returns_en A object with the following elements:
  * - width: The current window width.
  * - height: The current window height.
- * @returns {zh} 包含以下元素的对象：
+ * @returns 包含以下元素的对象：
   * - width：当前视窗宽度。
   * - height： 当前视窗高度。
  */

@@ -1,6 +1,6 @@
 import { dirname, resolve } from "node:path";
 import fs from "node:fs";
-import { generateMarkdown } from "ts-document";
+import { generateMarkdown } from "@reactuses/ts-document";
 import fg from "fast-glob";
 import type { GenerateMarkdownConfig } from "ts-document/lib/interface";
 

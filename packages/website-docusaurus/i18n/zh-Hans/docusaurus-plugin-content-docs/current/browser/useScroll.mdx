@@ -7,7 +7,7 @@ React Sensor Hook that tracks scroll position and stat
 
 ```tsx live
 
-function demo() {
+function Demo() {
   const elementRef = useRef<HTMLDivElement>(null);
   const [x, y, isScrolling, arrivedState, directions] = useScroll(elementRef);
   const { left, right, top, bottom } = useMemo(

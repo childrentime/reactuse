@@ -7,7 +7,7 @@ React side-effect hook to query permission status of browser APIs
 
 ```tsx live
 
-function demo() {
+function Demo() {
   const state = usePermission({ name: "microphone" });
 
   return <pre>{JSON.stringify(state, null, 2)}</pre>;

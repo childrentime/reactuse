@@ -49,14 +49,61 @@ export interface UseElementBoundingOptions {
   immediate?: boolean;
 }
 
+/**
+ * @title UseElementBoundingReturn
+ */
 export interface UseElementBoundingReturn {
+  /**
+   * @en Height of the element
+   * @zh 元素的高度
+   */
   readonly height: number;
+
+  /**
+   * @en Bottom position of the element
+   * @zh 元素的底部位置
+   */
   readonly bottom: number;
+
+  /**
+   * @en Left position of the element
+   * @zh 元素的左侧位置
+   */
   readonly left: number;
+
+  /**
+   * @en Right position of the element
+   * @zh 元素的右侧位置
+   */
   readonly right: number;
+
+  /**
+   * @en Top position of the element
+   * @zh 元素的顶部位置
+   */
   readonly top: number;
+
+  /**
+   * @en Width of the element
+   * @zh 元素的宽度
+   */
   readonly width: number;
+
+  /**
+   * @en X position of the element
+   * @zh 元素的 X 位置
+   */
   readonly x: number;
+
+  /**
+   * @en Y position of the element
+   * @zh 元素的 Y 位置
+   */
   readonly y: number;
+
+  /**
+   * @en Manual update
+   * @zh 手动更新
+   */
   readonly update: () => void;
 }

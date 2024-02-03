@@ -1,12 +1,12 @@
+import type { RefObject } from "react";
 import { useCallback, useState } from "react";
 import useIntersectionObserver from "../useIntersectionObserver";
 import { defaultOptions } from "../utils/defaults";
-import type { BasicTarget } from "../utils/domTarget";
 
-export default function useElementVisibility(
-  target: BasicTarget<HTMLElement | SVGElement>,
+export const useElementVisibility = (
+  target: RefObject<HTMLElement | SVGElement>,
   options: IntersectionObserverInit = defaultOptions,
-) {
+) => {
   const [visible, setVisible] = useState(false);
 
   const callback: IntersectionObserverCallback = useCallback((entries) => {
@@ -23,4 +23,4 @@ export default function useElementVisibility(
   const stop = useIntersectionObserver(target, callback, options);
 
   return [visible, stop] as const;
-}
+};

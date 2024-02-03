@@ -1,8 +1,6 @@
 ### useClipBoard
 
-Returns a readonly tuple.
-
 #### Returns
-`readonly [string, (txt: string) => Promise<void>]`
+`readonly [string, (txt: string) => Promise<void>]`: Returns a readonly tuple.
 
 #### Arguments

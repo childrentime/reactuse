@@ -7,7 +7,7 @@ React Sensor Hook that tracks size of an HTML element. [ResizeObserver MDN](http
 
 ```tsx live
 
-function demo() {
+function Demo() {
   const ref = useRef<HTMLTextAreaElement>(null);
 
   const [width, height] = useElementSize(ref, { box: "border-box" });

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
+import ResizeObserver from "resize-observer-polyfill";
 import type { BasicTarget } from "../utils/domTarget";
 import { useLatestElement } from "../utils/domTarget";
 import useLatest from "../useLatest";

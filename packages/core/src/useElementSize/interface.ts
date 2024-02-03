@@ -2,10 +2,10 @@ import type { RefObject } from "react";
 
 /**
  * @title useElementSize
- * @returns {en} A tuple with the following elements:
+ * @returns_en A tuple with the following elements:
  * - width
  * - height
- * @returns {zh} 包含以下元素的元组：
+ * @returns 包含以下元素的元组：
  * - 元素宽度。
  * - 元素高度。
  */

@@ -1,11 +1,9 @@
 ### useDocumentVisiblity
 
-document visibility
-
 #### Returns
-`any`
+`DocumentVisibilityState`: document visibility
 
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|defaultValue|default value|any |-|
+|defaultValue|default value|DocumentVisibilityState \| undefined |-|

@@ -1,10 +1,10 @@
 /**
  * @title useCountdown
- * @returns @en A tuple with the following elements:
+ * @returns_en A tuple with the following elements:
  * - hour
  * - minute.
  * - second.
- * @returns @zh 包含以下元素的元组：
+ * @returns 包含以下元素的元组：
   * - 小时。
   * - 分钟。
   * - 秒数。

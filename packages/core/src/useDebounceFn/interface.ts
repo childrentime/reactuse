@@ -2,11 +2,11 @@ import type { DebounceSettings, DebouncedFunc } from "lodash";
 
 /**
  * @title useDebounceFn
- * @returns @en A object with the following elements:
+ * @returns_en A object with the following elements:
  * - run: exec function.
  * - cancel: cancel exec function.
  * - flush:  immediately exec function
- * @returns @zh 具有以下元素的对象:
+ * @returns 具有以下元素的对象:
  * - run：执行函数。
  * - cancel：取消执行函数。
  * - flush: 立即执行函数

@@ -1,7 +1,7 @@
 /**
  * @title useDocumentVisiblity
- * @returns @en document visibility
- * @returns @zh 文档可见性
+ * @returns_en document visibility
+ * @returns 文档可见性
  */
 export type UseDocumentVisibility = (
   /**

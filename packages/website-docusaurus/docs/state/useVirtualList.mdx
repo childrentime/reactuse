@@ -5,7 +5,7 @@ React hook that allows you to use virtual list to render huge chunks of list dat
 ## Usage
 
 ```tsx live
-function demo() {
+function Demo() {
   const allItems = Array.from(Array(9999).keys()).map((i) => ({
     height: i % 2 === 0 ? 42 : 84,
     size: i % 2 === 0 ? "small" : "large",

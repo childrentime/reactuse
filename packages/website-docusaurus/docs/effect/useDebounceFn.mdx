@@ -7,7 +7,7 @@ React hooks that [debounce](https://lodash.com/docs/4.17.15#debounce) function
 
 ```tsx live
 
-function demo() {
+function Demo() {
   const [value, setValue] = useState(0);
   const { run } = useDebounceFn(() => {
     setValue(value + 1);

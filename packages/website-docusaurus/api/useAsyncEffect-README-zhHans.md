@@ -8,4 +8,4 @@
 |---|---|---|---|
 |effect|支持promise的副作用函数|() =&gt; T \| Promise&lt;T&gt;  **(必填)**|-|
 |cleanup|清理函数|() =&gt; T \| Promise&lt;T&gt;  **(必填)**|`() => {}`|
-|deps|依赖列表|React.DependencyList |-|
+|deps|依赖列表|React.DependencyList \| undefined |-|

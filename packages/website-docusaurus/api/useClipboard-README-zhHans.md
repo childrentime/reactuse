@@ -1,8 +1,6 @@
 ### useClipBoard
 
-返回只读元组.
-
 #### Returns
-`readonly [string, (txt: string) => Promise<void>]`
+`readonly [string, (txt: string) => Promise<void>]`: 返回只读元组.
 
 #### Arguments

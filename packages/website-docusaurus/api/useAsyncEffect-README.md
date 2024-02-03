@@ -8,4 +8,4 @@
 |---|---|---|---|
 |effect|effect that support promise|() =&gt; T \| Promise&lt;T&gt;  **(Required)**|-|
 |cleanup|cleanup function|() =&gt; T \| Promise&lt;T&gt;  **(Required)**|`() => {}`|
-|deps|dependency list|React.DependencyList |-|
+|deps|dependency list|React.DependencyList \| undefined |-|

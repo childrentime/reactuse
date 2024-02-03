@@ -7,7 +7,7 @@ React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) function
 
 ```tsx live
 
-function demo() {
+function Demo() {
   const [value, setValue] = useState(0);
   const { run } = useThrottleFn(() => {
     setValue(value + 1);

@@ -3,6 +3,14 @@ import type { PointerType, Position } from "../utils/types";
 
 /**
  * @title useDraggable
+ * @returns 包含以下元素的元组：
+ * - x
+ * - y
+ * - 元素是否在拖动中
+ * @returns_en A tuple with the following elements:
+ * - x
+ * - y
+ * - Whether the element is being dragged
  */
 export type UseDraggable = (
   /**

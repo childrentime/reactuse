@@ -6,10 +6,10 @@ export const defaultOptions: UseCssVarOptions = {
 
 /**
  * @title useCssVar
- * @returns @en A tuple with the following elements:
+ * @returns_en A tuple with the following elements:
  * - The current value of the css var.
  * - A function to update the value of the css var.
- *  @returns @zh 包含以下元素的元组：
+ *  @returns 包含以下元素的元组：
  * - css 变量值
  * - 更新 css 变量值的函数
  */

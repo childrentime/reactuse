@@ -21,7 +21,7 @@ const options = {
   rootMargin: "0px",
   threshold: 1,
 };
-function demo() {
+function Demo() {
   const intersectionRef = useRef(null);
   const [entry, setEntry] = useState<IntersectionObserverEntry[]>([]);
   const stop = useIntersectionObserver(

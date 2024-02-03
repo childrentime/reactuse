@@ -2,21 +2,20 @@
 
 React hook that facilitates the storage, updating and deletion of values within the CookieStore
 
-
 ## Usage
 
 ```tsx live
 function Demo() {
-    const defaultOption = {
+  const defaultOption = {
     path: "/",
   };
+
   const cookieName = "cookie-key";
   const [cookieValue, updateCookie, refreshCookie] = useCookie(
     cookieName,
     defaultOption,
-    "default-value",
+    "default-value"
   );
-  console.log("???")
 
   const updateButtonClick = () => {
     updateCookie("new-cookie-value");
@@ -30,8 +29,7 @@ function Demo() {
     if ("cookieStore" in window) {
       const store = window.cookieStore as any;
       store.set({ name: cookieName, value: "changed" });
-    }
-    else {
+    } else {
       document.cookie = `${cookieName}=changed; path=/`;
     }
   };
@@ -49,7 +47,6 @@ function Demo() {
     </div>
   );
 }
-
 ```
 
 %%API%%

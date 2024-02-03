@@ -7,7 +7,7 @@ React state hook that only updates state in the callback of [requestAnimationFra
 
 ```tsx live
 
-function demo() {
+function Demo() {
   const [state, setState] = useRafState({ x: 0, y: 0 });
 
   useMount(() => {

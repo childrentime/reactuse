@@ -7,7 +7,7 @@ React sensor hook that tracks dimensions of an HTML element using the Resize Obs
 
 ```tsx live
 
-function demo() {
+function Demo() {
   const ref = useRef<HTMLTextAreaElement>(null);
   const [rect, stop] = useMeasure(ref);
 

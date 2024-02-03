@@ -47,11 +47,11 @@ export interface UseDarkOptions {
 
 /**
  * @title useDarkMode
- * @returns @en A tuple with the following elements:
+ * @returns_en A tuple with the following elements:
  * - The current value of the dark state.
  * - A function to toggle the dark state.
  * -  A function to update the dark state.
- * @returns @zh 包含以下元素的元组：
+ * @returns 包含以下元素的元组：
  * - 黑暗状态的当前值。
  * - 切换黑暗状态的功能。
  * - 更新黑暗状态的功能。

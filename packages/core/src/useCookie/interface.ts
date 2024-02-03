@@ -8,7 +8,7 @@ export type UseCookieState = string | undefined;
  * - cookie 的当前值。
  * - 更新 cookie 值的函数。
  * - 刷新 cookie 值的函数，以防其他事件更改它。
- * @returns {en} A tuple with the following elements:
+ * @returns_en A tuple with the following elements:
  * - The current value of the cookie.
  * - A function to update the value of the cookie.
  * - A function to refresh the value of the cookie, incase other events change it.
