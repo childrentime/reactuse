@@ -1,7 +1,7 @@
 import type { RefObject } from "react";
 import { useEffect, useState } from "react";
 import type { PointerType, Position } from "../utils/types";
-import useEventListener from "../useEventListener";
+import { useEventListener } from "../useEventListener";
 import type { UseDraggable, UseDraggableOptions } from "./interface";
 
 export const useDraggable: UseDraggable = (

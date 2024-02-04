@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import type { UseObjectUrl } from "./interface";
 
-export default function useObjectUrl(
-  object: Blob | MediaSource | undefined,
-): string | undefined {
+export const useObjectUrl: UseObjectUrl = (
+  object: Blob | MediaSource,
+): string | undefined => {
   const [url, setUrl] = useState<string>();
 
   useEffect(() => {
@@ -19,4 +20,4 @@ export default function useObjectUrl(
   }, [object]);
 
   return url;
-}
+};
