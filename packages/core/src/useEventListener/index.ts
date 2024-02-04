@@ -1,11 +1,11 @@
-import type { RefObject } from "react";
-import useLatest from "../useLatest";
+import { useLatest } from "../useLatest";
 import { defaultWindow, off, on } from "../utils/browser";
 import { defaultOptions } from "../utils/defaults";
+import type { BasicTarget } from "../utils/domTarget";
 import { getTargetElement } from "../utils/domTarget";
 import { useDeepCompareEffect } from "../useDeepCompareEffect";
 
-export type Target = HTMLElement | Element | Window | Document | EventTarget | null | undefined | RefObject<Element>;
+export type Target = BasicTarget<HTMLElement | Element | Window | Document | EventTarget>;
 
 // Overload 1 Window Event based useEventListener interface
 export function useEventListener<K extends keyof WindowEventMap>(

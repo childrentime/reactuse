@@ -1,11 +1,9 @@
 import type { MutableRefObject } from "react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import type { UseLatest } from "./interface";
 
-export default function useLatest<T>(value: T): MutableRefObject<T> {
+export const useLatest: UseLatest = <T>(value: T): MutableRefObject<T> => {
   const ref = useRef(value);
-  useEffect(() => {
-    ref.current = value;
-  }, [value]);
-
+  ref.current = value;
   return ref;
-}
+};

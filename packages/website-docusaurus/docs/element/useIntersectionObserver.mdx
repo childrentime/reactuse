@@ -2,26 +2,25 @@
 
 React sensor hook that tracks the changes in the intersection of a target element with an ancestor element or with a top-level document's viewport. Uses the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) and returns a [IntersectionObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry)
 
-
 ## Usage
 
-```tsx
-
-const Spacer = () => (
-  <div
-    style={{
-      width: "200px",
-      height: "300px",
-    }}
-  />
-);
-
-const options = {
-  root: null,
-  rootMargin: "0px",
-  threshold: 1,
-};
+```tsx live
 function Demo() {
+  const Spacer = () => (
+    <div
+      style={{
+        width: "200px",
+        height: "300px",
+      }}
+    />
+  );
+
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 1,
+  };
+
   const intersectionRef = useRef(null);
   const [entry, setEntry] = useState<IntersectionObserverEntry[]>([]);
   const stop = useIntersectionObserver(
@@ -29,7 +28,7 @@ function Demo() {
     (entry) => {
       setEntry(entry);
     },
-    options,
+    options
   );
 
   return (
@@ -65,8 +64,7 @@ function Demo() {
       <Spacer />
     </div>
   );
-};
-
+}
 ```
 
 %%API%%

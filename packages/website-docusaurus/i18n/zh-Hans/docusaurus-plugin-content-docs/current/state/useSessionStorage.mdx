@@ -1,14 +1,12 @@
 # useSessionStorage
 
-React side-effect hook that manages a single `sessionStorage` key
-
+轻松管理 `sessionStorage`
 
 ## Usage
 
 ```tsx live
 
 function Demo() {
-  // bind string
   const [value, setValue] = useSessionStorage("my-key", "key");
 
   return (
@@ -16,7 +14,6 @@ function Demo() {
       <div>Value: {value}</div>
       <button onClick={() => setValue("bar")}>bar</button>
       <button onClick={() => setValue("baz")}>baz</button>
-      {/* delete data from storage */}
       <button onClick={() => setValue(null)}>Remove</button>
     </div>
   );

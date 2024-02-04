@@ -1,12 +1,11 @@
 # useLocationSelector
 
-Selectively retrieve properties from location. This hook will only re-render when the value you return is changed.
-For more information, [see](https://thisweekinreact.com/articles/useSyncExternalStore-the-underrated-react-api)
-
+有选择地从 `location` 检索属性。 仅当您返回的值更改时，此 Hook 才会重新渲染。
+有关更多信息，请参阅（https://thisweekinreact.com/articles/useSyncExternalStore-the-undererated-react-api）
 
 ## Usage
 
-```tsx live
+```tsx live noInline
 
 function CurrentPathname() {
   const pathname = useLocationSelector(location => location.pathname);
@@ -58,6 +57,7 @@ function Demo() {
   );
 }
 
+render(<Demo/>)
 ```
 
 %%API%%

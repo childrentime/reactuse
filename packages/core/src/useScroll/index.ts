@@ -1,58 +1,13 @@
+import type { RefObject } from "react";
 import { useState } from "react";
-import type { BasicTarget } from "../utils/domTarget";
 import { noop } from "../utils/is";
-import useDebounceFn from "../useDebounceFn";
-import useEvent from "../useEvent";
-import useEventListener from "../useEventListener";
+import { useDebounceFn } from "../useDebounceFn";
+import { useEvent } from "../useEvent";
+import { useEventListener } from "../useEventListener";
 import useThrottleFn from "../useThrottleFn";
 import { defaultOptions } from "../utils/defaults";
+import type { UseScroll, UseScrollOptions } from "./interface";
 
-export interface UseScrollOptions {
-  /**
-   * Throttle time for scroll event, it’s disabled by default.
-   *
-   * @default 0
-   */
-  throttle?: number;
-
-  /**
-   * The check time when scrolling ends.
-   * This configuration will be setting to (throttle + idle) when the `throttle` is configured.
-   *
-   * @default 200
-   */
-  idle?: number;
-
-  /**
-   * Offset arrived states by x pixels
-   *
-   */
-  offset?: {
-    left?: number;
-    right?: number;
-    top?: number;
-    bottom?: number;
-  };
-
-  /**
-   * Trigger it when scrolling.
-   *
-   */
-  onScroll?: (e: Event) => void;
-
-  /**
-   * Trigger it when scrolling ends.
-   *
-   */
-  onStop?: (e: Event) => void;
-
-  /**
-   * Listener options for scroll event.
-   *
-   * @default {capture: false, passive: true}
-   */
-  eventListenerOptions?: boolean | AddEventListenerOptions;
-}
 /**
  * We have to check if the scroll amount is close enough to some threshold in order to
  * more accurately calculate arrivedState. This is because scrollTop/scrollLeft are non-rounded
@@ -66,26 +21,26 @@ const defaultListerOptions = {
   passive: true,
 };
 
-export default function useScroll(
-  target: BasicTarget<HTMLElement | SVGElement | Window | Document>,
+export const useScroll: UseScroll = (
+  target: RefObject<Element> | Window | Document,
   options: UseScrollOptions = defaultOptions,
 ): readonly [
-    number,
-    number,
-    boolean,
-    {
-      left: boolean;
-      right: boolean;
-      top: boolean;
-      bottom: boolean;
-    },
-    {
-      left: boolean;
-      right: boolean;
-      top: boolean;
-      bottom: boolean;
-    },
-  ] {
+  number,
+  number,
+  boolean,
+  {
+    left: boolean;
+    right: boolean;
+    top: boolean;
+    bottom: boolean;
+  },
+  {
+    left: boolean;
+    right: boolean;
+    top: boolean;
+    bottom: boolean;
+  },
+] => {
   const {
     throttle = 0,
     idle = 200,
@@ -168,4 +123,4 @@ export default function useScroll(
   );
 
   return [x, y, isScrolling, arrivedState, directions] as const;
-}
+};

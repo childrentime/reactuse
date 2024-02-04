@@ -1,14 +1,12 @@
 # useMutationObserver
 
-Watch for changes being made to the DOM tree. [MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
-
+使用 [MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) 检测 DOM 的更改
 
 ## Usage
 
 ```tsx live
-
-const options = { attributes: true };
 function Demo() {
+  const options = { attributes: true };
   const [width, setWidth] = useState(200);
   const [count, setCount] = useState(0);
 

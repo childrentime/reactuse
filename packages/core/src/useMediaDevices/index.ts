@@ -2,25 +2,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import useSupported from "../useSupported";
 import { off, on } from "../utils/browser";
 import { noop } from "../utils/is";
-
-export interface UseMediaDeviceOptions {
-  /**
-   * Request for permissions immediately if it's not granted,
-   * otherwise label and deviceIds could be empty
-   *
-   * @default false
-   */
-  requestPermissions?: boolean;
-  /**
-   * Request for types of media permissions
-   *
-   * @default { audio: true, video: true }
-   */
-  constraints?: MediaStreamConstraints;
-}
+import type { UseMediaDeviceOptions, UseMediaDevices } from "./interface";
 
 const defaultConstints = { audio: true, video: true };
-function useMediaDevices(options: UseMediaDeviceOptions = {}) {
+
+export const useMediaDevices: UseMediaDevices = (options: UseMediaDeviceOptions = {}) => {
   const { requestPermissions, constraints = defaultConstints } = options;
   const [state, setState] = useState<{
     devices: {
@@ -109,6 +95,4 @@ function useMediaDevices(options: UseMediaDeviceOptions = {}) {
   }, [onChange, isSupported, requestPermissions, ensurePermissions]);
 
   return [state, ensurePermissions] as const;
-}
-
-export default useMediaDevices;
+};

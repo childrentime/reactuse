@@ -2,20 +2,7 @@ import { useState } from "react";
 import useMount from "../useMount";
 import { off, on } from "../utils/browser";
 import { defaultOptions } from "../utils/defaults";
-
-export type KeyModifier =
-  | "Alt"
-  | "AltGraph"
-  | "CapsLock"
-  | "Control"
-  | "Fn"
-  | "FnLock"
-  | "Meta"
-  | "NumLock"
-  | "ScrollLock"
-  | "Shift"
-  | "Symbol"
-  | "SymbolLock";
+import type { KeyModifier, UseKeyModifier, UseModifierOptions } from "./interface";
 
 const defaultEvents: (keyof WindowEventMap)[] = [
   "mousedown",
@@ -24,26 +11,10 @@ const defaultEvents: (keyof WindowEventMap)[] = [
   "keyup",
 ];
 
-export interface UseModifierOptions {
-  /**
-   * Event names that will prompt update to modifier states
-   *
-   * @default ['mousedown', 'mouseup', 'keydown', 'keyup']
-   */
-  events?: (keyof WindowEventMap)[];
-
-  /**
-   * Initial value of the returned ref
-   *
-   * @default false
-   */
-  initial?: boolean;
-}
-
-export default function useKeyModifier(
+export const useKeyModifier: UseKeyModifier = (
   modifier: KeyModifier,
   options: UseModifierOptions = defaultOptions,
-): boolean {
+): boolean => {
   const { events = defaultEvents, initial = false } = options;
 
   const [state, setState] = useState<boolean>(initial);
@@ -69,4 +40,4 @@ export default function useKeyModifier(
   });
 
   return state;
-}
+};

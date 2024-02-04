@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { defaultOptions } from "../utils/defaults";
+import type { UseGeolocation } from "./interface";
 
 const initCoord = {
   accuracy: 0,
@@ -11,7 +12,7 @@ const initCoord = {
   speed: null,
 };
 
-export default function useGeolocation(options: Partial<PositionOptions> = defaultOptions) {
+export const useGeolocation: UseGeolocation = (options: Partial<PositionOptions> = defaultOptions) => {
   const {
     enableHighAccuracy = true,
     maximumAge = 30000,
@@ -58,4 +59,4 @@ export default function useGeolocation(options: Partial<PositionOptions> = defau
     locatedAt,
     error,
   } as const;
-}
+};

@@ -23,7 +23,7 @@ export const useDarkMode: UseDarkMode = (options: UseDarkOptions) => {
     defaultValue,
     storage,
     {
-      csrData: value,
+      effectStorageValue: value,
     },
   );
 
