@@ -1,13 +1,14 @@
 # useFavicon
 
-React side-effect hook sets the favicon of the page
-
+设置页面的 favicon 图标。
 
 ## Usage
 
 ```tsx live
 
 function Demo() {
+  const logo = 'https://react.dev/favicon.ico';
+  const twitter = 'https://twitter.com/favicon.ico';
   const [icon, setIcon] = useState(twitter);
   useFavicon(icon);
   return (

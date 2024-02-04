@@ -24,7 +24,7 @@ function generateMarkdown(
     return;
   }
 
-  const schemas = generate(file, config,lang);
+  const schemas = generate(file, config, lang);
 
   if (!schemas) {
     return;
@@ -112,6 +112,12 @@ function generateMarkdown(
           description ? '\n\n' : ''
         }${BASE_TITLE_PREFIX}# Returns\n\`${typeOfReturn}\`${returns ? `: ${returns}` : ''}`;
         table = `${BASE_TITLE_PREFIX}# Arguments\n${table}`;
+      }
+
+      const {type} = schema;
+
+      if(type){
+        table = `${BASE_TITLE_PREFIX}# Type\n\n\`${type}\`\n${table}`
       }
 
       return [markdownTitle, description, table].filter(Boolean).join('\n\n');

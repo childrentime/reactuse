@@ -1,43 +1,10 @@
 import { useRef } from "react";
+import type { UseEventEmitterEvent, UseEventEmitterListener } from "./interface";
 
-export interface IListener<T, U = void> {
-  (arg1: T, arg2: U): void;
-}
-
-export interface IDisposable {
-  dispose(): void;
-}
-
-export interface IEvent<T, U = void> {
-  (listener: (arg1: T, arg2: U) => any): IDisposable;
-}
-
-export interface IEventOnce<T, U = void> {
-  (listener: (arg1: T, arg2: U) => any): void;
-}
-
-export interface UseEventEmitterReturn<T, U = void> {
-  /**
-   * Subscribe to an event. When calling emit, the listeners will execute.
-   * @param listener watch listener.
-   * @returns a stop function to remove the current callback.
-   */
-  event: IEvent<T, U>;
-  /**
-   * fire an event, the corresponding event listeners will execute.
-   * @param event data sent.
-   */
-  fire: (arg1: T, arg2: U) => void;
-  /**
-   * Remove all corresponding listener.
-   */
-  dispose: () => void;
-}
-
-export default function useEventEmitter<T, U = void>() {
-  const listeners = useRef<IListener<T, U>[]>([]);
+export const useEventEmitter = <T, U = void>() => {
+  const listeners = useRef<UseEventEmitterListener<T, U>[]>([]);
   const _disposed = useRef<boolean>(false);
-  const _event = useRef<IEvent<T, U>>((listener: (arg1: T, arg2: U) => any) => {
+  const _event = useRef<UseEventEmitterEvent<T, U>>((listener: (arg1: T, arg2: U) => any) => {
     listeners.current.push(listener);
     const disposable = {
       dispose: () => {
@@ -55,7 +22,7 @@ export default function useEventEmitter<T, U = void>() {
   });
 
   const fire = (arg1: T, arg2: U): void => {
-    const queue: IListener<T, U>[] = [];
+    const queue: UseEventEmitterListener<T, U>[] = [];
 
     for (let i = 0; i < listeners.current.length; i++) {
       queue.push(listeners.current[i]);
@@ -74,4 +41,4 @@ export default function useEventEmitter<T, U = void>() {
   };
 
   return [_event.current, fire, dispose] as const;
-}
+};

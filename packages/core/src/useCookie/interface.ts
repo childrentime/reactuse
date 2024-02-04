@@ -1,7 +1,5 @@
 import type Cookies from "js-cookie";
 
-export type UseCookieState = string | undefined;
-
 /**
  * @title useCookie
  * @returns 包含以下元素的元组：
@@ -36,3 +34,8 @@ export type UseCookie = (
   ) => void,
   () => void,
 ];
+
+/**
+ * @title useCookieState
+ */
+export type UseCookieState = string | undefined;

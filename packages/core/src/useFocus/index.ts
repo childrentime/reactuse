@@ -1,13 +1,14 @@
+import type { RefObject } from "react";
 import { useState } from "react";
-import useEventListener from "../useEventListener";
+import { useEventListener } from "../useEventListener";
 import useMount from "../useMount";
-import type { BasicTarget } from "../utils/domTarget";
 import { getTargetElement } from "../utils/domTarget";
+import type { UseFocus } from "./interface";
 
-export default function useFocus(
-  target: BasicTarget<HTMLElement | SVGElement>,
+export const useFocus: UseFocus = (
+  target: RefObject<HTMLElement | SVGElement>,
   initialValue = false,
-) {
+) => {
   const [focus, innerSetFocus] = useState(initialValue);
 
   useEventListener("focus", () => innerSetFocus(true), target);
@@ -31,4 +32,4 @@ export default function useFocus(
   });
 
   return [focus, setFocus] as const;
-}
+};

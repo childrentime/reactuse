@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 
-export default function useFavicon(
+export const useFavicon = (
   href: string,
   baseUrl = "",
   rel = "icon",
-): void {
+): void => {
   useEffect(() => {
     const url = `${baseUrl}${href}`;
     const element = document.head.querySelectorAll<HTMLLinkElement>(
@@ -19,4 +19,4 @@ export default function useFavicon(
       document.getElementsByTagName("head")[0].appendChild(link);
     }
   }, [baseUrl, href, rel]);
-}
+};

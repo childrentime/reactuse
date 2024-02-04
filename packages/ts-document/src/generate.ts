@@ -315,6 +315,11 @@ function getPropertySchema(
 ): PropertyType | null {
   const name = sym.getName();
   const declaration = sym.getDeclarations()[0];
+
+  if(!declaration){
+    return null
+  }
+
   const typeText = declaration.getText();
   const extract = extractFromPropertyText(typeText);
 
@@ -386,7 +391,10 @@ function getFunctionSchema(
           null,
       };
     }),
-    returns: declaration.getReturnType().getText().replace(/.*\./, ''),
+    returns: declaration
+      .getReturnType()
+      .getText()
+      .replace(/import\(.*?\)\./g, ''),
   };
 }
 
@@ -480,6 +488,9 @@ function generateSchema(
           schema && data.push(schema);
         });
         schema = { tags, data };
+        if (data.length === 0) {
+          schema = { ...schema, type: declaration.getText() };
+        }
       }
 
       if (typeof propertySorter === 'function') {

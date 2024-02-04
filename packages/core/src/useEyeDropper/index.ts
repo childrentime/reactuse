@@ -1,15 +1,8 @@
 import { useCallback } from "react";
 import useSupported from "../useSupported";
+import type { UseEyeDropper, UseEyeDropperOpenOptions, UseEyeDropperOpenReturnType } from "./interface";
 
-interface EyeDropperOpenOptions {
-  signal?: AbortSignal;
-}
-
-export interface EyeDropperOpenReturnType {
-  sRGBHex: string;
-}
-
-export default function useEyeDropper() {
+export const useEyeDropper: UseEyeDropper = () => {
   const isSupported = useSupported(
     () => typeof window !== "undefined" && "EyeDropper" in window,
     true,
@@ -17,8 +10,8 @@ export default function useEyeDropper() {
 
   const open = useCallback(
     async (
-      options: EyeDropperOpenOptions = {},
-    ): Promise<EyeDropperOpenReturnType> => {
+      options: UseEyeDropperOpenOptions = {},
+    ): Promise<UseEyeDropperOpenReturnType> => {
       if (!isSupported) {
         return {
           sRGBHex: "",
@@ -32,6 +25,6 @@ export default function useEyeDropper() {
   );
 
   return [isSupported, open] as const;
-}
+};
 
 export type UseEyeDropperReturn = ReturnType<typeof useEyeDropper>;

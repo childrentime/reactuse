@@ -2,7 +2,7 @@ import { dirname, resolve } from "node:path";
 import fs from "node:fs";
 import { generateMarkdown } from "@reactuses/ts-document";
 import fg from "fast-glob";
-import type { GenerateMarkdownConfig } from "ts-document/lib/interface";
+import type { GenerateMarkdownConfig } from "@reactuses/ts-document/lib/interface";
 
 const cwd = resolve(__dirname, "../src");
 const interfaces = fg.sync("**/interface.ts", { cwd, absolute: true });

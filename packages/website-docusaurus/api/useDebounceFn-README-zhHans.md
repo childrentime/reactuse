@@ -1,7 +1,7 @@
 ### useDebounceFn
 
 #### Returns
-`args_0: Parameters<T>) => ReturnType<T>>; cancel: () => void; flush: any; }`: 具有以下元素的对象:
+`{ run: _.DebouncedFunc<(...args_0: Parameters<T>) => ReturnType<T>>; cancel: () => void; flush: any; }`: 具有以下元素的对象:
 - run：执行函数。
 - cancel：取消执行函数。
 - flush: 立即执行函数

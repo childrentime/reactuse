@@ -19,12 +19,14 @@ export type FunctionSchema = {
   tags: TagType[];
   params: Array<PropertyType & { initializerText: string | null }>;
   returns: string;
+  type?: string;
 };
 
 // Schema parsed from interface declaration
 export type InterfaceSchema = {
   tags: TagType[];
   data: PropertyType[];
+  type?: string;
 };
 
 // Schema parsed from nested type declaration
@@ -32,6 +34,7 @@ export type NestedTypeSchema = {
   tags: TagType[];
   data: string;
   isNestedType: true;
+  type?: string;
 };
 
 export interface LinkFormatterParam {
