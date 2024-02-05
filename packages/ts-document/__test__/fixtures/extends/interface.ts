@@ -1,7 +1,7 @@
-import { ReactNode, ReactElement } from 'react';
-import { AProps, CProps as DProps, Option } from './a';
+import type { ReactElement, ReactNode } from "react";
+import type { AProps, CProps as DProps, Option } from "./a";
 
-type ExtendType = Pick<Pick<AProps & DProps, 'bb' | 'animation'>, 'animation' | 'bb'>;
+type ExtendType = Pick<Pick<AProps & DProps, "bb" | "animation">, "animation" | "bb">;
 
 /**
  * @title Alert

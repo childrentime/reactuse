@@ -1,48 +1,49 @@
-import {
-  Project,
-  SourceFile,
-  TypeChecker,
-  Symbol,
+import type {
   FunctionDeclaration,
   InterfaceDeclaration,
-  TypeAliasDeclaration,
-  Node,
+  SourceFile,
   Type,
-  ts,
-  SyntaxKind,
-} from 'ts-morph';
+  TypeAliasDeclaration,
+  TypeChecker,
+} from "ts-morph";
 import {
-  PropertyType,
-  GenerateConfig,
+  Node,
+  Project,
+  SyntaxKind,
+  ts,
+} from "ts-morph";
+import type {
   DefaultTypeMapT,
-  TagType,
   FunctionSchema,
+  GenerateConfig,
+  InterfaceSchema,
+  LinkFormatter,
+  NestedTypeSchema,
+  PropertyType,
   Schema,
   SchemaList,
-  InterfaceSchema,
-  NestedTypeSchema,
-  LinkFormatter,
-} from './interface';
-import { defaultTypeMap, defaultLinkFormatter } from './default';
-import { toSingleLine } from './util';
+  TagType,
+} from "./interface";
+import { defaultLinkFormatter, defaultTypeMap } from "./default";
+import { toSingleLine } from "./util";
 
 const dummyProject = new Project({ useInMemoryFileSystem: true });
 
 type DeclarationCanBeParsed = InterfaceDeclaration | TypeAliasDeclaration | FunctionDeclaration;
 
-type ExtractType = {
+interface ExtractType {
   name: string;
   type: string;
   isOptional: boolean;
-};
+}
 
-const KEYWORDS_TO_SKIP = ['Omit'];
+const KEYWORDS_TO_SKIP = ["Omit"];
 
-const TAG_NAMES_FOR_DESCRIPTION = ['zh', 'en'];
+const TAG_NAMES_FOR_DESCRIPTION = ["zh", "en"];
 
 const internalProject = new Project({
   compilerOptions: {
-    jsx: 'react' as any,
+    jsx: "react" as any,
     strictNullChecks: true,
   },
 });
@@ -62,7 +63,7 @@ function extractFromPropertyText(text: string): ExtractType | undefined {
     return;
   }
   const name = regexResult[1];
-  const isOptional = regexResult[2] === '?';
+  const isOptional = regexResult[2] === "?";
   const type = regexResult[3];
 
   return {
@@ -73,23 +74,24 @@ function extractFromPropertyText(text: string): ExtractType | undefined {
 }
 
 // Get key-value pairs from jsDoc of Declarations
-function getDeclarationTags(declaration: DeclarationCanBeParsed, lang = 'en') {
+function getDeclarationTags(declaration: DeclarationCanBeParsed, lang = "en") {
   const tags: Map<string, string> = new Map();
   const rawTags = declaration.getJsDocs()[0]?.getTags() || [];
   let title;
 
   for (const tag of rawTags) {
     const name = tag.getTagName();
-    const value = tag.getCommentText() || '';
+    const value = tag.getCommentText() || "";
 
-    if (name === 'title') {
+    if (name === "title") {
       title = value;
       continue;
     }
 
     if (name.includes(lang)) {
-      tags.set(name.slice(0, name.indexOf('_')), value);
-    } else {
+      tags.set(name.slice(0, name.indexOf("_")), value);
+    }
+    else {
       if (tags.has(name)) {
         continue;
       }
@@ -104,17 +106,17 @@ function getDeclarationTags(declaration: DeclarationCanBeParsed, lang = 'en') {
 }
 
 // Get key-value pairs from jsDoc of Symbol
-function getSymbolTags(sym: Symbol, strictComment = false): TagType[] {
+function getSymbolTags(sym: symbol, strictComment = false): TagType[] {
   const jsDocTags = sym.compilerSymbol.getJsDocTags();
-  const tags: TagType[] = jsDocTags.map((tag) => ({
+  const tags: TagType[] = jsDocTags.map(tag => ({
     name: tag.name,
-    value: tag.text?.[0].text || '',
+    value: tag.text?.[0].text || "",
   }));
 
   // Try to extend property description from common comment
   if (!strictComment) {
     const [commonComment] = sym.compilerSymbol.getDocumentationComment(undefined);
-    if (commonComment && commonComment.kind === 'text' && commonComment.text) {
+    if (commonComment && commonComment.kind === "text" && commonComment.text) {
       TAG_NAMES_FOR_DESCRIPTION.forEach((tagNameForDescription) => {
         if (!tags.find(({ name }) => name === tagNameForDescription)) {
           tags.push({ name: tagNameForDescription, value: commonComment.text });
@@ -132,10 +134,10 @@ function getSymbolByType(type: Type) {
 
 function hasJSDocTitle(
   declaration: Node<ts.Node> | DeclarationCanBeParsed,
-  parsedNestedTypeSet: Set<Type>
+  parsedNestedTypeSet: Set<Type>,
 ) {
-  const { title } =
-    (declaration && 'getJsDocs' in declaration && getDeclarationTags(declaration)) || {};
+  const { title }
+    = (declaration && "getJsDocs" in declaration && getDeclarationTags(declaration)) || {};
   if (title) {
     // Type with @title in JSDoc is used to format link but not dumped as nested types onto page
     parsedNestedTypeSet.add(declaration.getType());
@@ -157,8 +159,8 @@ function isTarget(type: Type, parsedNestedTypeSet: Set<Type>) {
   const defPath = declaration?.getSourceFile()?.getFilePath();
   if (
     // Types from node_modules
-    defPath &&
-    config.ignoreNestedType!(defPath)
+    defPath
+    && config.ignoreNestedType!(defPath)
   ) {
     return false;
   }
@@ -177,14 +179,14 @@ function isAliasDeclaration(type: Type) {
   return false;
 }
 
-function getDeclarationBySymbol(symbol?: Symbol) {
+function getDeclarationBySymbol(symbol?: symbol) {
   return symbol?.getDeclarations()?.[0];
 }
 
-function getDeclarationTextBySymbol(symbol?: Symbol) {
+function getDeclarationTextBySymbol(symbol?: symbol) {
   const declaration = getDeclarationBySymbol(symbol);
   // Four spaces -> two spaces and add a new line at the end
-  return `${(declaration?.print() || '').replace(/ {4}/g, ' '.repeat(2))}\n`;
+  return `${(declaration?.print() || "").replace(/ {4}/g, " ".repeat(2))}\n`;
 }
 
 /**
@@ -197,7 +199,7 @@ function getDeclarationTextBySymbol(symbol?: Symbol) {
 function dumpNestedTypes(
   declaration: Node<ts.Node> | undefined,
   nestedTypeList: SchemaList,
-  parsedNestedTypes: Set<Type>
+  parsedNestedTypes: Set<Type>,
 ) {
   if (declaration == null) {
     return;
@@ -211,10 +213,10 @@ function dumpNestedTypes(
     const title = symbolOfIdentifier?.getName();
     if (
       // Only interested in type nodes that has title and matches our target check
-      !Node.isTypeNode(descendant) ||
-      !title ||
-      KEYWORDS_TO_SKIP.includes(title) ||
-      !isTarget(typeOfIdentifier, parsedNestedTypes)
+      !Node.isTypeNode(descendant)
+      || !title
+      || KEYWORDS_TO_SKIP.includes(title)
+      || !isTarget(typeOfIdentifier, parsedNestedTypes)
     ) {
       return;
     }
@@ -222,7 +224,7 @@ function dumpNestedTypes(
     const schema: NestedTypeSchema = {
       tags: [
         {
-          name: 'title',
+          name: "title",
           value: title,
         },
       ],
@@ -234,7 +236,7 @@ function dumpNestedTypes(
       schema,
     });
     if (typeOfIdentifier.isUnionOrIntersection()) {
-      const method = typeOfIdentifier.isUnion() ? 'getUnionTypes' : 'getIntersectionTypes';
+      const method = typeOfIdentifier.isUnion() ? "getUnionTypes" : "getIntersectionTypes";
       // Recursively iterate subTypes
       const subTypes = typeOfIdentifier[method]() || [];
       subTypes.forEach((subType) => {
@@ -243,7 +245,8 @@ function dumpNestedTypes(
           dumpNestedTypes(getDeclarationBySymbol(subTypeSymbol), nestedTypeList, parsedNestedTypes);
         }
       });
-    } else if (typeOfIdentifier.isInterface()) {
+    }
+    else if (typeOfIdentifier.isInterface()) {
       // Recursively iterate children properties
       (getDeclarationBySymbol(symbolOfIdentifier) as InterfaceDeclaration)
         .getProperties()
@@ -259,14 +262,14 @@ function getDisplayTypeWithLink(
   originTypeText: string,
   nestedTypeList: SchemaList,
   parsedNestedTypeSet: Set<Type>,
-  linkFormatter: LinkFormatter
+  linkFormatter: LinkFormatter,
 ) {
   const sourceFile = dummyProject.createSourceFile(
-    './dummy.ts',
+    "./dummy.ts",
     toSingleLine(originTypeText, config.escapeChars),
     {
       overwrite: true,
-    }
+    },
   );
   sourceFile.transform((traversal) => {
     const node = traversal.visitChildren();
@@ -279,12 +282,13 @@ function getDisplayTypeWithLink(
         if (!typeName || typeName !== nodeTypeText) {
           continue;
         }
-        const matchedNestedType = nestedTypeList.find((item) => item.title === typeName);
+        const matchedNestedType = nestedTypeList.find(item => item.title === typeName);
         let link;
         if (matchedNestedType) {
           // Type that is available on the current page and doesn't have JSDoc @title
           link = linkFormatter({ typeName });
-        } else {
+        }
+        else {
           const declaration: any = getDeclarationBySymbol(getSymbolByType(parsedNestedType));
           const definitionPath = declaration?.getSourceFile()?.getFilePath();
           const { title } = (declaration?.getJsDocs && getDeclarationTags(declaration)) || {};
@@ -306,12 +310,12 @@ function getDisplayTypeWithLink(
 
 // Get Json schema of interface's property
 function getPropertySchema(
-  sym: Symbol,
+  sym: symbol,
   defaultT: DefaultTypeMapT,
   strictComment = false,
   nestedTypeList: SchemaList,
   parsedNestedTypeSet: Set<Type>,
-  linkFormatter: LinkFormatter
+  linkFormatter: LinkFormatter,
 ): PropertyType | null {
   const name = sym.getName();
   const declaration = sym.getDeclarations()[0];
@@ -328,7 +332,7 @@ function getPropertySchema(
   }
 
   const tags = getSymbolTags(sym, strictComment);
-  if (tags.find(({ name }) => name && TAG_NAMES_FOR_DESCRIPTION.indexOf(name) > -1)) {
+  if (tags.find(({ name }) => name && TAG_NAMES_FOR_DESCRIPTION.includes(name))) {
     // Deeply analyze nested types
     dumpNestedTypes(declaration, nestedTypeList, parsedNestedTypeSet);
 
@@ -336,7 +340,7 @@ function getPropertySchema(
       extract.type,
       nestedTypeList,
       parsedNestedTypeSet,
-      linkFormatter
+      linkFormatter,
     );
 
     return {
@@ -362,22 +366,22 @@ function getFunctionSchema(
   strictComment = false,
   nestedTypeList: SchemaList,
   parsedNestedTypeSet: Set<Type>,
-  linkFormatter: LinkFormatter
-): Pick<FunctionSchema, 'params' | 'returns'> {
+  linkFormatter: LinkFormatter,
+): Pick<FunctionSchema, "params" | "returns"> {
   return {
     params: declaration.getParameters().map((para) => {
       // Deeply analyze nested types
       dumpNestedTypes(para, nestedTypeList, parsedNestedTypeSet);
 
-      const tags = getSymbolTags(para.getSymbol() as Symbol, strictComment);
+      const tags = getSymbolTags(para.getSymbol() as symbol, strictComment);
       const typeWithLink = getDisplayTypeWithLink(
         para
           .getType()
           .getText()
-          .replace(/import\([^)]+\)\./g, ''),
+          .replace(/import\([^)]+\)\./g, ""),
         nestedTypeList,
         parsedNestedTypeSet,
-        linkFormatter
+        linkFormatter,
       );
 
       return {
@@ -386,15 +390,15 @@ function getFunctionSchema(
         type: typeWithLink,
         isOptional: para.isOptional(),
         initializerText:
-          para.getInitializer()?.getText() ||
-          tags.find(({ name }) => name === 'default' || name === 'defaultValue')?.value ||
-          null,
+          para.getInitializer()?.getText()
+          || tags.find(({ name }) => name === "default" || name === "defaultValue")?.value
+          || null,
       };
     }),
     returns: declaration
       .getReturnType()
       .getText()
-      .replace(/import\(.*?\)\./g, ''),
+      .replace(/import\(.*?\)\./g, ""),
   };
 }
 
@@ -402,7 +406,7 @@ function generateSchema(
   sourceFile: SourceFile,
   typeChecker: TypeChecker,
   config?: GenerateConfig,
-  lang?: string
+  lang?: string,
 ) {
   const interfaces = sourceFile?.getInterfaces() || [];
   const typeAliases = sourceFile?.getTypeAliases() || [];
@@ -424,26 +428,26 @@ function generateSchema(
     .forEach((declaration) => {
       const { title, tags } = getDeclarationTags(declaration, lang);
       const dType = declaration.getKindName() as
-        | 'InterfaceDeclaration'
-        | 'FunctionDeclaration'
-        | 'TypeAliasDeclaration';
+        | "InterfaceDeclaration"
+        | "FunctionDeclaration"
+        | "TypeAliasDeclaration";
 
       if (!title) {
         return;
       }
 
       let schema: Schema;
-      const typeNode =
-        dType === 'FunctionDeclaration'
+      const typeNode
+        = dType === "FunctionDeclaration"
           ? (declaration as FunctionDeclaration)
-          : dType === 'TypeAliasDeclaration'
-          ? (declaration as TypeAliasDeclaration).getTypeNode()
-          : null;
+          : dType === "TypeAliasDeclaration"
+            ? (declaration as TypeAliasDeclaration).getTypeNode()
+            : null;
 
       // Function declaration
       if (
-        typeNode &&
-        ['FunctionDeclaration', 'FunctionType'].indexOf(typeNode.getKindName()) > -1
+        typeNode
+        && ["FunctionDeclaration", "FunctionType"].includes(typeNode.getKindName())
       ) {
         schema = {
           tags,
@@ -452,12 +456,12 @@ function generateSchema(
             strictComment,
             nestedTypeList,
             parsedNestedTypeSet,
-            linkFormatter
+            linkFormatter,
           ),
         };
       }
       // Interface declaration
-      else if (dType === 'InterfaceDeclaration') {
+      else if (dType === "InterfaceDeclaration") {
         const data: PropertyType[] = [];
         typeChecker.getPropertiesOfType(declaration.getType()).forEach((a) => {
           const schema = getPropertySchema(
@@ -466,7 +470,7 @@ function generateSchema(
             strictComment,
             nestedTypeList,
             parsedNestedTypeSet,
-            linkFormatter
+            linkFormatter,
           );
           schema && data.push(schema);
         });
@@ -474,13 +478,15 @@ function generateSchema(
         if (data.length === 0) {
           schema = { ...schema, type: declaration.getText() };
         }
-      } else {
+      }
+      else {
         // TypeAliasDeclaration
         const data: PropertyType[] = [];
         const type = typeChecker.getTypeAtLocation(declaration);
         if (type.isUnion()) {
           schema = { tags, data, type: declaration.getText() };
-        } else {
+        }
+        else {
           typeChecker.getPropertiesOfType(declaration.getType()).forEach((a) => {
             const schema = getPropertySchema(
               a,
@@ -488,7 +494,7 @@ function generateSchema(
               strictComment,
               nestedTypeList,
               parsedNestedTypeSet,
-              linkFormatter
+              linkFormatter,
             );
             schema && data.push(schema);
           });
@@ -496,7 +502,7 @@ function generateSchema(
         }
       }
 
-      if (typeof propertySorter === 'function') {
+      if (typeof propertySorter === "function") {
         (schema as InterfaceSchema).data?.sort(propertySorter);
         (schema as FunctionSchema).params?.sort(propertySorter);
       }
@@ -523,12 +529,12 @@ function generateSchema(
 function generate(
   file: string,
   config?: GenerateConfig,
-  lang?: string
+  lang?: string,
 ): Record<string, Schema> | Array<{ title: string; schema: Schema }> | undefined {
   config = {
     sourceFilesPaths: [],
     ignoreNestedType(definitionFilePath: string) {
-      return definitionFilePath.includes('/node_modules/');
+      return definitionFilePath.includes("/node_modules/");
     },
     escapeChars: true,
     ...config,

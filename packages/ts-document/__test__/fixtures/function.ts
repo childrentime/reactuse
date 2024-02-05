@@ -35,15 +35,15 @@ function Add(
    * @zh 加数
    * @en Second number
    */
-  b = 5
+  b = 5,
 ) {
   return a + b;
 }
 
-type ButtonType = {
-  size?: 'mini' | 'large' | 'default';
+interface ButtonType {
+  size?: "mini" | "large" | "default";
   color?: string;
-};
+}
 
 /**
  * @title function with nest type

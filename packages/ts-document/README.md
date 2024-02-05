@@ -16,11 +16,11 @@ npm i ts-document -D
 ```
 
 ```js
-const { generate, generateMarkdown } = require('ts-document');
+const { generate, generateMarkdown } = require("ts-document");
 
-generate('interface.ts', config);
+generate("interface.ts", config);
 
-generateMarkdown('interface.ts', config);
+generateMarkdown("interface.ts", config);
 ```
 
 ### interface.ts
@@ -28,7 +28,7 @@ generateMarkdown('interface.ts', config);
 ts-document will only extract interface and type with jsDoc tag `title`。
 
 ```ts
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 /**
  * @title Alert
@@ -73,9 +73,9 @@ interface InnerProps {
 ## Generate jsDoc schema
 
 ```js
-const { generate } = require('ts-document');
+const { generate } = require("ts-document");
 
-generate('interface.ts');
+generate("interface.ts");
 ```
 
 output
@@ -144,9 +144,9 @@ output
 ## Generate markdown document
 
 ```js
-const { generateMarkdown } = require('ts-document');
+const { generateMarkdown } = require("ts-document");
 
-generateMarkdown('interface.ts');
+generateMarkdown("interface.ts");
 ```
 
 output

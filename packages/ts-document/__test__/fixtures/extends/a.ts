@@ -1,4 +1,5 @@
-import { BProps } from "./b";
+import type { BProps } from "./b";
+
 /**
  * @title A
  */
@@ -23,7 +24,7 @@ export interface CProps {
   bb?: boolean;
 }
 
-export type Option = {
+export interface Option {
   a: string;
   b: string;
-};
+}

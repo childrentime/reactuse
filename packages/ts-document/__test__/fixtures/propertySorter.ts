@@ -3,7 +3,7 @@
  * @zh 按钮
  * @en Button
  */
-type ButtonType = {
+interface ButtonType {
   /**
    * @zh 自定义文本渲染
    * @en Custom text render
@@ -14,7 +14,7 @@ type ButtonType = {
    * @en Size
    * @defaultValue default
    */
-  size?: 'mini' | 'large' | 'default';
+  size?: "mini" | "large" | "default";
   /**
    * @zh TabIndex
    * @en TabIndex
@@ -36,4 +36,4 @@ type ButtonType = {
    * @en Disabled
    */
   disabled?: boolean;
-};
+}

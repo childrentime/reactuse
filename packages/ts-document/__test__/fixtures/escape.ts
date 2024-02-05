@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 /**
  * @title A
  *
@@ -10,14 +8,12 @@ import { ReactNode } from 'react';
 export interface AProps {
   /**
    * @zh 尺寸
-   * @en size 
+   * @en size
    */
-  size?: 'mini' | 'large' | 'default';
+  size?: "mini" | "large" | "default";
   /**
    * @zh 获取数据函数
    * @en Function to fetch data
    */
   fetchData?: () => Promise<string>;
 }
-
-

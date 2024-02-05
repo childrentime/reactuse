@@ -1,4 +1,4 @@
-const path = require("path");
+const path = require("node:path");
 const { generateMarkdown } = require("../lib");
 
 const md = generateMarkdown(path.resolve(__dirname, "readme.tsx"), {

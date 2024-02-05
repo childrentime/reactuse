@@ -1,10 +1,10 @@
-import { ReactNode, PropsWithChildren } from 'react';
-import { BlinkProps, ClinkProps, ShouldBeIgnoredProps } from './components/Blink/interface';
+import type { PropsWithChildren, ReactNode } from "react";
+import type { BlinkProps, ClinkProps, ShouldBeIgnoredProps } from "./components/Blink/interface";
 
 export interface OptionInfo extends PropsWithChildren<BlinkProps> {
   valid: boolean;
   index: number;
-  origin: 'children' | 'options' | 'userCreatedOptions' | 'userCreatingOption';
+  origin: "children" | "options" | "userCreatedOptions" | "userCreatingOption";
 }
 
 /**
@@ -110,12 +110,12 @@ export type TreeSelectDataType = TreeDataType & {
   getInnerMethods: (inner: boolean) => InnerMethodsReturnType;
 };
 
-export type TreeDataType = {
+export interface TreeDataType {
   key?: string;
   _index?: number;
   children: TreeDataType[];
   loadMore: (data: TreeDataType) => void;
-};
+}
 
 interface InnerMethodsReturnType {
   text: string;

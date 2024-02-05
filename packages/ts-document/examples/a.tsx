@@ -35,7 +35,7 @@ function Add(
    * @zh 加数
    * @en Second number
    */
-  b = 5
+  b = 5,
 ) {
   return a + b;
 }
@@ -45,17 +45,17 @@ function Add(
  * @zh 按钮
  * @en Button
  */
-type ButtonType = {
+interface ButtonType {
   /**
    * @zh 尺寸
    * @en Size
    * @defaultValue default
    */
-  size?: 'mini' | 'large' | 'default';
+  size?: "mini" | "large" | "default";
   /**
    * @zh 颜色
    * @en Color
    * @version 1.2.0
    */
   color?: string;
-};
+}

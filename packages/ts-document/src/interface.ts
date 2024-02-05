@@ -1,41 +1,41 @@
-import { Project } from 'ts-morph';
+import type { Project } from "ts-morph";
 
 // K-V pair parsed from jsDoc
-export type TagType = {
+export interface TagType {
   name: string;
   value: string;
-};
+}
 
 // Schema parsed from Symbol
-export type PropertyType = {
+export interface PropertyType {
   name: string;
   type: string;
   isOptional: boolean;
   tags: TagType[];
-};
+}
 
 // Schema parsed from function declaration
-export type FunctionSchema = {
+export interface FunctionSchema {
   tags: TagType[];
   params: Array<PropertyType & { initializerText: string | null }>;
   returns: string;
   type?: string;
-};
+}
 
 // Schema parsed from interface declaration
-export type InterfaceSchema = {
+export interface InterfaceSchema {
   tags: TagType[];
   data: PropertyType[];
   type?: string;
-};
+}
 
 // Schema parsed from nested type declaration
-export type NestedTypeSchema = {
+export interface NestedTypeSchema {
   tags: TagType[];
   data: string;
   isNestedType: true;
   type?: string;
-};
+}
 
 export interface LinkFormatterParam {
   typeName: string;
@@ -51,11 +51,11 @@ export type SchemaList = Array<{ title: string; schema: Schema }>;
 export type Schema = FunctionSchema | InterfaceSchema | NestedTypeSchema;
 
 // Table type in markdown generated
-export type MarkdownTableType = 'interface' | 'parameter';
+export type MarkdownTableType = "interface" | "parameter";
 
 export type DefaultTypeMapT = Record<string, { type: string; tags: TagType[] }>;
 
-export type GenerateConfig = {
+export interface GenerateConfig {
   defaultTypeMap?: DefaultTypeMapT;
   sourceFilesPaths: string | string[];
   /**
@@ -85,11 +85,11 @@ export type GenerateConfig = {
    */
   ignoreNestedType?: (definitionFilePath: string) => boolean;
   /*
-   * Whether to escape characters for extracted type text. 
+   * Whether to escape characters for extracted type text.
    * E.g. `|` will be escaped to `\|`, `<Promise>` will be escaped to `&lt;Promise&gt;`.
    */
-   escapeChars?: boolean;
-};
+  escapeChars?: boolean;
+}
 
 export type GenerateMarkdownConfig = GenerateConfig & {
   lang?: string;
