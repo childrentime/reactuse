@@ -478,8 +478,6 @@ function generateSchema(
         // TypeAliasDeclaration
         const data: PropertyType[] = [];
         const type = typeChecker.getTypeAtLocation(declaration);
-
-        console.log('type',type.isUnion(),declaration.getType().getText())
         if (type.isUnion()) {
           schema = { tags, data, type: declaration.getText() };
         } else {
