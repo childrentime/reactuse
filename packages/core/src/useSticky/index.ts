@@ -1,24 +1,18 @@
 import type React from "react";
 import { useEffect, useState } from "react";
 import type { BasicTarget } from "../utils/domTarget";
-import { getTargetElement, useLatestElement } from "../utils/domTarget";
+import { getTargetElement } from "../utils/domTarget";
 import useThrottleFn from "../useThrottleFn";
 import { getScrollParent } from "../utils/scroll";
+import type { UseStickyParams } from "./interface";
 
-export interface UseStickyParams {
-  /** axis of scroll */
-  axis?: "x" | "y";
-  /** cover height or width */
-  nav: number;
-}
-
-const useSticky = (
+export const useSticky = (
   targetElement: BasicTarget<HTMLElement>,
   { axis = "y", nav = 0 }: UseStickyParams,
   scrollElement?: BasicTarget<HTMLElement>,
 ): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
   const [isSticky, setSticky] = useState<boolean>(false);
-  const element = useLatestElement(targetElement);
+  const element = getTargetElement(targetElement);
 
   const { run: scrollHandler } = useThrottleFn(() => {
     if (!element) {
@@ -48,5 +42,3 @@ const useSticky = (
   }, [axis, element, scrollElement, scrollHandler]);
   return [isSticky, setSticky];
 };
-
-export default useSticky;

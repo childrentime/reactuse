@@ -1,17 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import type { Stoppable } from "../utils/types";
-import useLatest from "../useLatest";
-import useEvent from "../useEvent";
+import { useLatest } from "../useLatest";
+import { useEvent } from "../useEvent";
 import { defaultOptions } from "../utils/defaults";
+import type { UseTimeoutFn, UseTimeoutFnOptions } from "./interface";
 
-export interface UseTimeoutFnOptions {
-  /**
-   * Start the timer immediate after calling this function
-   *
-   * @default false
-   */
-  immediate?: boolean;
-}
 /**
  * Wrapper for `setTimeout` with controls.
  *
@@ -19,11 +12,11 @@ export interface UseTimeoutFnOptions {
  * @param interval
  * @param options
  */
-export default function useTimeoutFn(
+export const useTimeoutFn: UseTimeoutFn = (
   cb: (...args: unknown[]) => any,
   interval: number,
   options: UseTimeoutFnOptions = defaultOptions,
-): Stoppable {
+): Stoppable => {
   const { immediate = true } = options;
   const [pending, setPending] = useState(false);
   const savedCallback = useLatest(cb);
@@ -58,4 +51,4 @@ export default function useTimeoutFn(
   }, [stop, immediate, interval, start]);
 
   return [pending, start, stop];
-}
+};

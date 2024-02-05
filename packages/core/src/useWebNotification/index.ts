@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef } from "react";
-import useSupported from "../useSupported";
-import useUnmount from "../useUnmount";
+import { useSupported } from "../useSupported";
+import { useUnmount } from "../useUnmount";
 import { defaultOptions } from "../utils/defaults";
+import type { UseWebNotification } from "./interface";
 
-export default function useWebNotification(requestPermissions = false) {
+export const useWebNotification: UseWebNotification = (requestPermissions = false) => {
   const isSupported = useSupported(() => !!window && "Notification" in window);
   const permissionGranted = useRef(false);
 
@@ -66,4 +67,4 @@ export default function useWebNotification(requestPermissions = false) {
     ensurePermissions,
     permissionGranted,
   } as const;
-}
+};

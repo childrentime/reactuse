@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import useIsomorphicLayoutEffect from "../useIsomorphicLayoutEffect";
 
-export default function useSupported(
+export const useSupported = (
   callback: () => unknown,
   sync = false,
-): boolean {
+): boolean => {
   const [supported, setSupported] = useState(false);
 
   const effect = sync ? useIsomorphicLayoutEffect : useEffect;
@@ -13,4 +13,4 @@ export default function useSupported(
   }, []);
 
   return supported;
-}
+};

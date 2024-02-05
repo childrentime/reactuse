@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
-import useEventListener from "../useEventListener";
-import useReducedMotion from "../useReducedMotion";
+import { useEventListener } from "../useEventListener";
+import { useReducedMotion } from "../useReducedMotion";
 import { defaultOptions } from "../utils/defaults";
 import type { BasicTarget } from "../utils/domTarget";
-import { getTargetElement, useLatestElement } from "../utils/domTarget";
+import { getTargetElement } from "../utils/domTarget";
 import {
   getScrollParent,
   getScrollStart,
@@ -11,37 +11,11 @@ import {
 } from "../utils/scroll";
 import { easeInOutQuad } from "./ease-in-out-quad";
 import { getRelativePosition } from "./get-relative-position";
-
-export interface ScrollIntoViewAnimation {
-  /** target element alignment relatively to parent based on current axis */
-  alignment?: "start" | "end" | "center";
-}
-
-export interface ScrollIntoViewParams {
-  /** callback fired after scroll */
-  onScrollFinish?: () => void;
-
-  /** duration of scroll in milliseconds */
-  duration?: number;
-
-  /** axis of scroll */
-  axis?: "x" | "y";
-
-  /** custom mathematical easing function */
-  easing?: (t: number) => number;
-
-  /** additional distance between nearest edge and element */
-  offset?: number;
-
-  /** indicator if animation may be interrupted by user scrolling */
-  cancelable?: boolean;
-
-  /** prevents content jumping in scrolling lists with multiple targets */
-  isList?: boolean;
-}
+import type { UseScrollIntoView, UseScrollIntoViewAnimation, UseScrollIntoViewParams } from "./interface";
 
 const listenerOptions = { passive: true };
-export default function useScrollIntoView(
+
+export const useScrollIntoView: UseScrollIntoView = (
   targetElement: BasicTarget<HTMLElement>,
   {
     duration = 1250,
@@ -51,9 +25,9 @@ export default function useScrollIntoView(
     offset = 0,
     cancelable = true,
     isList = false,
-  }: ScrollIntoViewParams = defaultOptions,
+  }: UseScrollIntoViewParams = defaultOptions,
   scrollElement?: BasicTarget<HTMLElement>,
-) {
+) => {
   const frameID = useRef(0);
   const startTime = useRef(0);
   const shouldStop = useRef(false);
@@ -66,11 +40,11 @@ export default function useScrollIntoView(
     }
   };
 
-  const element = useLatestElement(targetElement);
+  const element = getTargetElement(targetElement);
 
   const scrollIntoView = ({
     alignment = "start",
-  }: ScrollIntoViewAnimation = {}) => {
+  }: UseScrollIntoViewAnimation = {}) => {
     const parent
       = getTargetElement(scrollElement) || getScrollParent(axis, element);
     shouldStop.current = false;
@@ -137,4 +111,4 @@ export default function useScrollIntoView(
     scrollIntoView,
     cancel,
   };
-}
+};

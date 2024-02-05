@@ -11,7 +11,7 @@ const leftVarName = "--reactuse-safe-area-left";
 
 const defaultElement = () => document.documentElement;
 
-export default function useScreenSafeArea() {
+export const useScreenSafeArea = () => {
   const top = useRef("");
   const right = useRef("");
   const bottom = useRef("");
@@ -43,7 +43,7 @@ export default function useScreenSafeArea() {
     left.current,
     update,
   ] as const;
-}
+};
 
 function getValue(
   position:

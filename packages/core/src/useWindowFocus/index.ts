@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import useEventListener from "../useEventListener";
+import { useEventListener } from "../useEventListener";
 
-export default function useWindowsFocus(
+export const useWindowsFocus = (
   defauleValue = false,
-): boolean {
+): boolean => {
   const [focused, setFocused] = useState(defauleValue);
 
   useEffect(() => {
@@ -19,4 +19,4 @@ export default function useWindowsFocus(
   });
 
   return focused;
-}
+};

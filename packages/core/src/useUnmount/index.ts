@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import useLatest from "../useLatest";
+import { useLatest } from "../useLatest";
 import { isDev, isFunction } from "../utils/is";
 
-export default function useUnmount(fn: () => void) {
+export const useUnmount = (fn: () => void) => {
   if (isDev) {
     if (!isFunction(fn)) {
       console.error(
@@ -19,4 +19,4 @@ export default function useUnmount(fn: () => void) {
     },
     [fnRef],
   );
-}
+};

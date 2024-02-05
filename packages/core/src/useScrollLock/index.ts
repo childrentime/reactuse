@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import type { BasicTarget } from "../utils/domTarget";
-import { useLatestElement } from "../utils/domTarget";
+import { type BasicTarget, getTargetElement } from "../utils/domTarget";
 import { isIOS } from "../utils/is";
-import useEvent from "../useEvent";
+import { useEvent } from "../useEvent";
+import type { UseScrollLock } from "./interface";
 
 function preventDefault(rawEvent: TouchEvent): boolean {
   const e = rawEvent || window.event;
@@ -18,14 +18,14 @@ function preventDefault(rawEvent: TouchEvent): boolean {
   return false;
 }
 
-export default function useScrollLock(
+export const useScrollLock: UseScrollLock = (
   target: BasicTarget<HTMLElement>,
   initialState = false,
-): readonly [boolean, (flag: boolean) => void] {
+): readonly [boolean, (flag: boolean) => void] => {
   const [locked, setLocked] = useState(initialState);
 
   const initialOverflowRef = useRef<CSSStyleDeclaration["overflow"]>("scroll");
-  const element = useLatestElement(target);
+  const element = getTargetElement(target);
 
   useEffect(() => {
     if (element) {
@@ -69,4 +69,4 @@ export default function useScrollLock(
   });
 
   return [locked, set] as const;
-}
+};
