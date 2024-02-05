@@ -29,7 +29,22 @@ const config: Config = {
     locales: ["en", "zh-Hans"],
   },
 
-  themes: ["@docusaurus/theme-live-codeblock"],
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      {
+        // ... Your options.
+        // `hashed` is recommended as long-term-cache of index file is possible.
+        hashed: true,
+        // For Docs using Chinese, The `language` is recommended to set to:
+        // ```
+        language: ["en", "zh"],
+        // ```
+      },
+    ],
+    "@docusaurus/theme-live-codeblock",
+  ],
   plugins: ["./webpack.plugin.js"],
   presets: [
     [
@@ -50,8 +65,61 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: "img/docusaurus-social-card.jpg",
+    metadata: [
+      {
+        name: "google-site-verification",
+        content: "cYSXMQh7Yfm6rW16yR-5_x0jmMX_ABwMDwAoPPlPc1M",
+      },
+      {
+        name: "msvalidate.01",
+        content: "FCAB31FC7E191890AC6C3BC3A945596A",
+      },
+      {
+        name: "baidu-site-verification",
+        content: "code-WMH1e8oKID",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        property: "og:url",
+        content: "https://reactuse.com/",
+      },
+      {
+        property: "og:title",
+        content: "ReactUse Docs",
+      },
+      {
+        property: "og:description",
+        content: "Collection of essential React Hooks Utilities.",
+      },
+      {
+        property: "description",
+        content: "Collection of essential React Hooks Utilities.",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+      {
+        property: "twitter:domain",
+        content: "reactuse.com",
+      },
+      {
+        property: "twitter:url",
+        content: "https://www.reactuse.com/",
+      },
+      {
+        property: "twitter:title",
+        content: "ReactUse Docs",
+      },
+      {
+        property: "twitter:description",
+        content: "Collection of essential React Hooks Utilities.",
+      },
+    ],
+    image: "img/og.png",
     navbar: {
       title: "React Use",
       logo: {

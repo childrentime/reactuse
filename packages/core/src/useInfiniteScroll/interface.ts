@@ -34,8 +34,8 @@ export type UseInfiniteScrollLoadMore = (
     number,
     number,
     boolean,
-    UseScrollArrivedState,
-    UseScrollDirection,
+    UseInfiniteScrollArrivedState,
+    UseInfiniteScrollDirection,
   ]
 ) => void | Promise<void>;
 /**
@@ -65,9 +65,9 @@ export interface UseInfiniteScrollOptions extends UseScrollOptions {
 }
 
 /**
- * @title UseScrollArrivedState
+ * @title UseInfiniteScrollArrivedState
  */
-export interface UseScrollArrivedState {
+export interface UseInfiniteScrollArrivedState {
   /**
    * @en arrived left
    * @zh 到达左边
@@ -91,9 +91,9 @@ export interface UseScrollArrivedState {
 }
 
 /**
- * @title UseScrollDirection
+ * @title UseInfiniteScrollDirection
  */
-export interface UseScrollDirection {
+export interface UseInfiniteScrollDirection {
   /**
    * @en scroll left
    * @zh 向左滚动

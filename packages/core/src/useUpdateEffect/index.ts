@@ -1,4 +1,4 @@
 import { useEffect } from "react";
 import createUpdateEffect from "../createUpdateEffect";
 
-export default createUpdateEffect(useEffect);
+export const useUpdateEffect = createUpdateEffect(useEffect);

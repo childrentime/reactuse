@@ -2,14 +2,14 @@ import { useMemo } from "react";
 import type { ThrottleSettings } from "lodash-es";
 import { throttle } from "lodash-es";
 import { isDev, isFunction } from "../utils/is";
-import useLatest from "../useLatest";
-import useUnmount from "../useUnmount";
+import { useLatest } from "../useLatest";
+import { useUnmount } from "../useUnmount";
 
-export default function useThrottleFn<T extends (...args: any) => any>(
+export const useThrottleFn = <T extends (...args: any) => any>(
   fn: T,
   wait?: number,
   options?: ThrottleSettings,
-) {
+) => {
   if (isDev) {
     if (!isFunction(fn)) {
       console.error(
@@ -29,7 +29,8 @@ export default function useThrottleFn<T extends (...args: any) => any>(
         wait,
         options,
       ),
-    [wait, options],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [wait, JSON.stringify(options)],
   );
 
   useUnmount(() => {
@@ -41,4 +42,4 @@ export default function useThrottleFn<T extends (...args: any) => any>(
     cancel: throttled.cancel,
     flush: throttled.flush,
   };
-}
+};

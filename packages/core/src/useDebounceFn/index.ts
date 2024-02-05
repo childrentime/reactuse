@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import type { DebounceSettings } from "lodash-es";
 import { debounce } from "lodash-es";
 import { isDev, isFunction } from "../utils/is";
-import useLatest from "../useLatest";
-import useUnmount from "../useUnmount";
+import { useLatest } from "../useLatest";
+import { useUnmount } from "../useUnmount";
 import type { UseDebounceFn } from "./interface";
 
 export const useDebounceFn: UseDebounceFn = <T extends (...args: any) => any>(

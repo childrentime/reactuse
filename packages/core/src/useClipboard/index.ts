@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
-import useEventListener from "../useEventListener";
-import type { UseClipBorad } from "./interface";
+import { useEventListener } from "../useEventListener";
+import type { UseClipboard } from "./interface";
 
-export const useClipBorad: UseClipBorad = (): readonly [
+export const useClipboard: UseClipboard = (): readonly [
   string,
   (txt: string) => Promise<void>,
 ] => {
