@@ -4,14 +4,8 @@ NODE_OPTIONS = "--max_old_space_size=4096"
 NODE_VERSION = "18"
 
 [[redirects]]
-from = "/core/*"
-to = "/core/:splat"
-status = 200
-force = true
-
-[[redirects]]
-from = "/guide/*"
-to = "/guide/:splat"
+from = "/zh-Hans/*"
+to = "/zh-Hans/:splat"
 status = 200
 force = true
 
@@ -19,7 +13,6 @@ force = true
 from = "/*"
 to = "/index.html"
 status = 200
-
 
 [build]
 command = "pnpm run build"
