@@ -1,4 +1,4 @@
-import useHover from ".";
+import { useHover } from ".";
 
 describe("useHover", () => {
   it("should be defined", () => {

@@ -1,0 +1,24 @@
+# useWindowsFocus
+
+使用 `window.onfocus` and `window.onblur` 事件跟踪页面焦点
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const focus = useWindowsFocus();
+  return (
+    <div>
+      <p>
+        {focus
+          ? "💡 Click somewhere outside of the document to unfocus."
+          : "ℹ Tab is unfocused"}
+      </p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

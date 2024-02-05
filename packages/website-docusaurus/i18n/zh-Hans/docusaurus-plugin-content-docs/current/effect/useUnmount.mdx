@@ -1,0 +1,19 @@
+# useUnmount
+
+组件卸载的时候执行
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [value] = useState("mounted");
+  useUnmount(() => {
+    alert("UnMounted");
+  });
+  return <div>{value}</div>;
+};
+
+```
+
+%%API%%

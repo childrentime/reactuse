@@ -1,79 +1,13 @@
+import type { RefObject } from "react";
 import { useEffect, useState } from "react";
-import type { BasicTarget } from "../utils/domTarget";
-import { getTargetElement } from "../utils/domTarget";
 import type { PointerType, Position } from "../utils/types";
-import useEventListener from "../useEventListener";
+import { useEventListener } from "../useEventListener";
+import type { UseDraggable, UseDraggableOptions } from "./interface";
 
-export interface UseDraggableOptions {
-  /**
-   * Only start the dragging when click on the element directly
-   *
-   * @default false
-   */
-  exact?: boolean;
-
-  /**
-   * Prevent events defaults
-   *
-   * @default false
-   */
-  preventDefault?: boolean;
-
-  /**
-   * Prevent events propagation
-   *
-   * @default false
-   */
-  stopPropagation?: boolean;
-
-  /**
-   * Element to attach `pointermove` and `pointerup` events to.
-   *
-   * @default window
-   */
-  draggingElement?: BasicTarget<HTMLElement | SVGElement | Window | Document>;
-
-  /**
-   * Handle that triggers the drag event
-   *
-   * @default target
-   */
-  handle?: BasicTarget<HTMLElement | SVGElement>;
-
-  /**
-   * Pointer types that listen to.
-   *
-   * @default ['mouse', 'touch', 'pen']
-   */
-  pointerTypes?: PointerType[];
-
-  /**
-   * Initial position of the element.
-   *
-   * @default { x: 0, y: 0 }
-   */
-  initialValue?: Position;
-
-  /**
-   * Callback when the dragging starts. Return `false` to prevent dragging.
-   */
-  onStart?: (position: Position, event: PointerEvent) => void | false;
-
-  /**
-   * Callback during dragging.
-   */
-  onMove?: (position: Position, event: PointerEvent) => void;
-
-  /**
-   * Callback when dragging end.
-   */
-  onEnd?: (position: Position, event: PointerEvent) => void;
-}
-
-export default function useDraggable(
-  target: BasicTarget<HTMLElement | SVGElement>,
+export const useDraggable: UseDraggable = (
+  target: RefObject<HTMLElement | SVGElement>,
   options: UseDraggableOptions = {},
-): readonly [number, number, boolean] {
+): readonly [number, number, boolean] => {
   const draggingElement = options.draggingElement;
   const draggingHandle = options.handle ?? target;
 
@@ -104,7 +38,7 @@ export default function useDraggable(
   };
 
   const start = (e: PointerEvent) => {
-    const element = getTargetElement(target);
+    const element = target.current;
     if (!filterEvent(e) || !element) {
       return;
     }
@@ -155,4 +89,4 @@ export default function useDraggable(
   useEventListener("pointerup", end, draggingElement, true);
 
   return [position.x, position.y, !!pressedDelta] as const;
-}
+};

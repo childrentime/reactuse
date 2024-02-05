@@ -1,0 +1,48 @@
+{
+  "name": "@reactuses/ts-document",
+  "version": "0.8.0",
+  "description": "",
+  "author": "PengJiyuan",
+  "license": "MIT",
+  "homepage": "https://github.com/PengJiyuan/ts-document#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PengJiyuan/ts-document.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PengJiyuan/ts-document/issues"
+  },
+  "keywords": [
+    "docgen",
+    "react",
+    "typescript"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "prepublishOnly": "npm run test && npm run tsc",
+    "tsc": "rm -rf lib/ && tsc",
+    "tsc:watch": "tsc -w",
+    "test": "jest"
+  },
+  "peerDependencies": {
+    "typescript": ">= 4.3.x"
+  },
+  "dependencies": {
+    "ts-morph": "^21.0.1",
+    "tsx": "^4.7.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@types/node": "^15.14.9",
+    "@types/react": "^17.0.11",
+    "jest": "^27.0.6",
+    "prettier": "^2.0.5",
+    "react": "^17.0.2",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.5"
+  }
+}

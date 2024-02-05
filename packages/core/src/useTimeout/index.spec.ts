@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import useTimeout from ".";
+import { useTimeout } from ".";
 
 beforeAll(() => {
   jest.useFakeTimers();

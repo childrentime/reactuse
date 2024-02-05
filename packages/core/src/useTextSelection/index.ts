@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import useEventListener from "../useEventListener";
-import useUpdate from "../useUpdate";
+import { useEventListener } from "../useEventListener";
+import { useUpdate } from "../useUpdate";
+import type { UseTextSelection } from "./interface";
 
-export default function useTextSelection(): Selection | null {
+export const useTextSelection: UseTextSelection = (): Selection | null => {
   const [selection, setSelection] = useState<Selection | null>(null);
   const forceUpdate = useUpdate();
 
@@ -19,4 +20,4 @@ export default function useTextSelection(): Selection | null {
   }, []);
 
   return selection;
-}
+};

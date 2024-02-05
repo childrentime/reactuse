@@ -1,34 +1,19 @@
 import { useCallback, useRef, useState } from "react";
 import { defaultOptions } from "../utils/defaults";
-
-export interface UseFileDialogOptions {
-  /**
-   * @default true
-   */
-  multiple?: boolean;
-  /**
-   * @default '*'
-   */
-  accept?: string;
-  /**
-   * Select the input source for the capture file.
-   * @see [HTMLInputElement Capture](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)
-   */
-  capture?: string;
-}
+import type { UseFileDialog, UseFileDialogOptions } from "./interface";
 
 const DEFAULT_OPTIONS: UseFileDialogOptions = {
   multiple: true,
   accept: "*",
 };
 
-export default function useFileDialog(
+export const useFileDialog: UseFileDialog = (
   options: UseFileDialogOptions = defaultOptions,
 ): readonly [
     FileList | null,
     (localOptions?: Partial<UseFileDialogOptions>) => void,
     () => void,
-  ] {
+  ] => {
   const [files, setFiles] = useState<FileList | null>(null);
 
   const inputRef = useRef<HTMLInputElement>();
@@ -72,4 +57,4 @@ export default function useFileDialog(
   };
 
   return [files, open, reset] as const;
-}
+};

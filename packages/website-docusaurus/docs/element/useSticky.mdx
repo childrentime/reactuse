@@ -1,0 +1,44 @@
+# useSticky
+
+React Hook that tracks element sticky
+
+
+## Usage
+
+```tsx live
+function Demo() {
+  const element = useRef<HTMLDivElement>(null);
+  const [isSticky] = useSticky(element, {
+    // header fixed height
+    nav: 64,
+  });
+
+  const stickyStyle: CSSProperties = isSticky
+    ? {
+        position: "fixed",
+        top: 64,
+        zIndex: 50,
+        height: 20,
+      }
+    : {
+        height: 20,
+      };
+
+  const guardStyle: CSSProperties = {
+    width: 1,
+    height: 1,
+  };
+
+  return (
+    <div style={{height: 300,overflow: 'scroll'}}>
+      <div ref={element} style={guardStyle} />
+      <button style={stickyStyle}>
+        {isSticky ? "stickying" : "not sticky"}
+      </button>
+      <div style={{ height: "100vh" }} />
+    </div>
+  );
+};
+```
+
+%%API%%

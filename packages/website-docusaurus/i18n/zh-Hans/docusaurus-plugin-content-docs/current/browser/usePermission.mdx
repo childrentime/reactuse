@@ -1,0 +1,17 @@
+# usePermission
+
+浏览器权限查询
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const state = usePermission({ name: "microphone" });
+
+  return <pre>{JSON.stringify(state, null, 2)}</pre>;
+};
+
+```
+
+%%API%%

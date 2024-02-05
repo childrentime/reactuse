@@ -1,0 +1,30 @@
+# useAsyncEffect
+
+React useEffect with async await support. Note it don't support generator function
+
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [data, setData] = useState(0);
+
+  useAsyncEffect(
+    async () => {
+      const result = await new Promise<number>((resolve) => {
+        setTimeout(() => {
+          resolve(200);
+        }, 5000);
+      });
+      setData(result);
+    },
+    () => {},
+    [],
+  );
+  return <div>data: {data}</div>;
+};
+
+```
+
+%%API%%

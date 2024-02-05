@@ -1,4 +1,4 @@
-import useCssVar from ".";
+import { useCssVar } from ".";
 
 describe("useCssVar", () => {
   it("should be defined", () => {

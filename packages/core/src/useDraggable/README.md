@@ -1,3 +1,0 @@
-# useDraggable
-
-Make elements draggable

@@ -1,11 +1,12 @@
+import type { RefObject } from "react";
 import { useRef, useState } from "react";
-import type { BasicTarget } from "../utils/domTarget";
-import useEventListener from "../useEventListener";
+import { useEventListener } from "../useEventListener";
+import type { UseDropZone } from "./interface";
 
-export default function useDropZone(
-  target: BasicTarget<EventTarget>,
+export const useDropZone: UseDropZone = (
+  target: RefObject<EventTarget>,
   onDrop?: (files: File[] | null) => void,
-): boolean {
+): boolean => {
   const [over, setOver] = useState(false);
   const counter = useRef(0);
 
@@ -49,4 +50,4 @@ export default function useDropZone(
   );
 
   return over;
-}
+};

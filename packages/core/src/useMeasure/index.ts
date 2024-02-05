@@ -1,9 +1,8 @@
+import type { RefObject } from "react";
 import { useState } from "react";
-import useResizeObserver from "../useResizeObserver";
+import { useResizeObserver } from "../useResizeObserver";
 import { defaultOptions } from "../utils/defaults";
-import type { BasicTarget } from "../utils/domTarget";
-
-export type UseMeasureRect = Omit<DOMRectReadOnly, "toJSON">;
+import type { UseMeasure, UseMeasureRect } from "./interface";
 
 const defaultState: UseMeasureRect = {
   x: 0,
@@ -16,10 +15,10 @@ const defaultState: UseMeasureRect = {
   right: 0,
 };
 
-export default function useMeasure(
-  target: BasicTarget,
+export const useMeasure: UseMeasure = (
+  target: RefObject<Element>,
   options: ResizeObserverOptions = defaultOptions,
-) {
+) => {
   const [rect, setRect] = useState<UseMeasureRect>(defaultState);
 
   const stop = useResizeObserver(
@@ -35,4 +34,4 @@ export default function useMeasure(
   );
 
   return [rect, stop] as const;
-}
+};

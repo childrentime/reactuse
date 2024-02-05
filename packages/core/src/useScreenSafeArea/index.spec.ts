@@ -1,4 +1,4 @@
-import useScreenSafeArea from ".";
+import { useScreenSafeArea } from ".";
 
 describe("useScreenSafeArea", () => {
   it("should be defined", () => {

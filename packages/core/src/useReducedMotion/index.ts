@@ -1,5 +1,5 @@
-import useMediaQuery from "../useMediaQuery";
+import { useMediaQuery } from "../useMediaQuery";
 
-export default function useReducedMotion(defaultState?: boolean) {
+export const useReducedMotion = (defaultState?: boolean) => {
   return useMediaQuery("(prefers-reduced-motion: reduce)", defaultState);
-}
+};

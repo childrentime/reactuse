@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { createMockMediaMatcher } from "../../.test";
-import usePreferredDark from ".";
+import { usePreferredDark } from ".";
 
 describe(usePreferredDark, () => {
   it("should return true if media query matches", () => {

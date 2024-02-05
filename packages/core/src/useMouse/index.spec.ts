@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import useMouse from ".";
+import { useMouse } from ".";
 
 describe("useMouse", () => {
   function moveMouse(x: number, y: number) {

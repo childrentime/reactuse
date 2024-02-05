@@ -1,14 +1,15 @@
 import { useEffect } from "react";
-import useLatest from "../useLatest";
+import { useLatest } from "../useLatest";
 import { defaultOptions } from "../utils/defaults";
+import type { UseInterval } from "./interface";
 
-export default function useInterval(
+export const useInterval: UseInterval = (
   callback: () => void,
   delay?: number | null,
   options: {
     immediate?: boolean;
   } = defaultOptions,
-): void {
+): void => {
   const immediate = options.immediate;
   const savedCallback = useLatest(callback);
 
@@ -24,4 +25,4 @@ export default function useInterval(
     return undefined;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [delay, immediate]);
-}
+};

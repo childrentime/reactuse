@@ -1,0 +1,19 @@
+# useMount
+
+组件挂载后执行一次副作用的 React Hook
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [value, setValue] = useState("UnMounted");
+  useMount(() => {
+    setValue("Mounted");
+  });
+  return <div>{value}</div>;
+};
+
+```
+
+%%API%%

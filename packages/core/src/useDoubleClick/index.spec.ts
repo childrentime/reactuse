@@ -1,4 +1,4 @@
-import useDoubleClick from ".";
+import { useDoubleClick } from ".";
 
 describe("useDoubleClick", () => {
   it("should be defined", () => {

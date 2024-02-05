@@ -1,0 +1,32 @@
+# useOnceLayoutEffect
+
+避免 React18 useLayoutEffect 运行两次
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [updateEffect, setLayoutEffect] = useState(0);
+  const [onceLayoutEffect, setOnceLayoutEffect] = useState(0);
+
+  useOnceLayoutEffect(() => {
+    setOnceLayoutEffect(onceEffect => onceEffect + 1);
+  }, []);
+
+  useLayoutEffect(() => {
+    setLayoutEffect(effect => effect + 1);
+  }, []);
+
+  return (
+    <div>
+      <div>onceEffect: {onceLayoutEffect}</div>
+      <br />
+      <div>effect: {updateEffect}</div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

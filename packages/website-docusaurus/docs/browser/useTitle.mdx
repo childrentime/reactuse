@@ -1,0 +1,23 @@
+# useTitle
+
+set document title.
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [title, setTitle] = useState("title");
+
+  useTitle(title);
+
+  return (
+    <div>
+      <button onClick={() => setTitle("newTitle")}>Change Title</button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

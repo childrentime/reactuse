@@ -1,0 +1,41 @@
+# useWebNotification
+
+通知 API 的 Web 通知接口用于配置并向用户显示桌面通知。
+
+:::warning
+注意：对于Mac系统的用户，需要在系统设置中启用Chrome的通知功能。 如果系统中没有启用Chrome的通知，即使前端页面请求权限成功，也不会显示通知。
+:::
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const { isSupported, show, close }
+    = useWebNotification(true);
+  return (
+    <div>
+      <p>Supported: {JSON.stringify(isSupported)}</p>
+      {isSupported
+        ? (
+          <div>
+            <button
+              onClick={() => {
+                show("Hello, world from ReactUse!");
+              }}
+            >
+              Show Notification
+            </button>
+            <button onClick={close}>Close</button>
+          </div>
+          )
+        : (
+          <div>The Notification Web API is not supported in your browser.</div>
+          )}
+    </div>
+  );
+}
+
+```
+
+%%API%%

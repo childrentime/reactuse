@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useEventListener from "../useEventListener";
+import { useEventListener } from "../useEventListener";
 import { isBrowser } from "../utils/is";
 
 const getInitialState = (defaultValue?: DocumentVisibilityState) => {
@@ -21,9 +21,9 @@ const getInitialState = (defaultValue?: DocumentVisibilityState) => {
   return "visible";
 };
 
-export default function useDocumentVisibility(
+export const useDocumentVisibility = (
   defaultValue?: DocumentVisibilityState,
-): DocumentVisibilityState {
+): DocumentVisibilityState => {
   const [visible, setVisible] = useState<DocumentVisibilityState>(
     getInitialState(defaultValue),
   );
@@ -41,4 +41,4 @@ export default function useDocumentVisibility(
   }, []);
 
   return visible;
-}
+};

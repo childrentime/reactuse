@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import useRafState from ".";
+import { useRafState } from ".";
 
 describe("useRafState", () => {
   it("should be defined", () => {

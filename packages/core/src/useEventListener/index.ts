@@ -1,16 +1,14 @@
-import { useEffect } from "react";
-import useLatest from "../useLatest";
+import { useLatest } from "../useLatest";
 import { defaultWindow, off, on } from "../utils/browser";
-import type { BasicTarget } from "../utils/domTarget";
-import { useLatestElement } from "../utils/domTarget";
 import { defaultOptions } from "../utils/defaults";
+import type { BasicTarget } from "../utils/domTarget";
+import { getTargetElement } from "../utils/domTarget";
+import { useDeepCompareEffect } from "../useDeepCompareEffect";
 
-export type Target = BasicTarget<
-  HTMLElement | Element | Window | Document | EventTarget
->;
+export type Target = BasicTarget<HTMLElement | Element | Window | Document | EventTarget>;
 
 // Overload 1 Window Event based useEventListener interface
-export default function useEventListener<K extends keyof WindowEventMap>(
+export function useEventListener<K extends keyof WindowEventMap>(
   eventName: K,
   handler: (event: WindowEventMap[K]) => void,
   element?: Window,
@@ -18,7 +16,7 @@ export default function useEventListener<K extends keyof WindowEventMap>(
 ): void;
 
 // Overload 2 Document Event based useEventListener interface
-export default function useEventListener<K extends keyof DocumentEventMap>(
+export function useEventListener<K extends keyof DocumentEventMap>(
   eventName: K,
   handler: (event: DocumentEventMap[K]) => void,
   element: Document,
@@ -26,8 +24,9 @@ export default function useEventListener<K extends keyof DocumentEventMap>(
 ): void;
 
 // Overload 3 HTMLElement Event based useEventListener interface
-export default function useEventListener<
-  K extends keyof HTMLElementEventMap, T extends HTMLElement = HTMLDivElement,
+export function useEventListener<
+  K extends keyof HTMLElementEventMap,
+  T extends HTMLElement = HTMLDivElement,
 >(
   eventName: K,
   handler: (event: HTMLElementEventMap[K]) => void,
@@ -36,7 +35,7 @@ export default function useEventListener<
 ): void;
 
 // Overload 4 Element Event based useEventListener interface
-export default function useEventListener<K extends keyof ElementEventMap>(
+export function useEventListener<K extends keyof ElementEventMap>(
   eventName: K,
   handler: (event: ElementEventMap[K]) => void,
   element: Element,
@@ -44,7 +43,7 @@ export default function useEventListener<K extends keyof ElementEventMap>(
 ): void;
 
 // Overload 5 Element Event based useEventListener interface
-export default function useEventListener<K = Event>(
+export function useEventListener<K = Event>(
   eventName: string,
   handler: (event: K) => void,
   element: EventTarget | null | undefined,
@@ -52,23 +51,23 @@ export default function useEventListener<K = Event>(
 ): void;
 
 // Overload 6
-export default function useEventListener(
+export function useEventListener(
   eventName: string,
   handler: (...p: any) => void,
   element?: Target,
   options?: boolean | AddEventListenerOptions
 ): void;
 
-export default function useEventListener(
+export function useEventListener(
   eventName: string,
   handler: (...p: any) => void,
   element?: Target,
   options: boolean | AddEventListenerOptions = defaultOptions,
 ) {
   const savedHandler = useLatest(handler);
-  const targetElement = useLatestElement(element, defaultWindow);
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
+    const targetElement = getTargetElement(element, defaultWindow);
     if (!(targetElement && targetElement.addEventListener)) {
       return;
     }
@@ -84,5 +83,5 @@ export default function useEventListener(
       }
       off(targetElement, eventName, eventListener);
     };
-  }, [eventName, targetElement, options, savedHandler]);
+  }, [eventName, element, options]);
 }

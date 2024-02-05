@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { createMockRaf } from "../../.test";
-import useRafFn from ".";
+import { useRafFn } from ".";
 
 describe("useRafFn", () => {
   const mockRaf = createMockRaf();

@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import { useEffect, useState } from "react";
-import useEventEmitter from ".";
+import { useEventEmitter } from ".";
 
 describe(useEventEmitter, () => {
   const setUp = () =>

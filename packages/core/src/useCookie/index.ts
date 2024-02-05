@@ -2,8 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { isBrowser, isFunction, isString } from "../utils/is";
 import { defaultOptions } from "../utils/defaults";
-
-export type UseCookieState = string | undefined;
+import type { UseCookie, UseCookieState } from "./interface";
 
 const getInitialState = (key: string, defaultValue?: string) => {
   // Prevent a React hydration mismatch when a default value is provided.
@@ -24,11 +23,11 @@ const getInitialState = (key: string, defaultValue?: string) => {
   return "";
 };
 
-export default function useCookie(
+export const useCookie: UseCookie = (
   key: string,
   options: Cookies.CookieAttributes = defaultOptions,
   defaultValue?: string,
-) {
+) => {
   const [cookieValue, setCookieValue] = useState<UseCookieState>(
     getInitialState(key, defaultValue),
   );
@@ -51,7 +50,8 @@ export default function useCookie(
     };
 
     setCookieValue(getStoredValue());
-  }, [defaultValue, key, options]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue, key, JSON.stringify(options)]);
 
   const updateCookie = useCallback(
     (
@@ -68,7 +68,8 @@ export default function useCookie(
 
       setCookieValue(value);
     },
-    [key, cookieValue, options],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [key, cookieValue, JSON.stringify(options)],
   );
 
   const refreshCookie = useCallback(() => {
@@ -80,4 +81,4 @@ export default function useCookie(
   }, [key]);
 
   return [cookieValue, updateCookie, refreshCookie] as const;
-}
+};

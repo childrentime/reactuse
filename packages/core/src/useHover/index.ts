@@ -1,10 +1,10 @@
+import type { RefObject } from "react";
 import { useCallback, useState } from "react";
-import useEventListener from "../useEventListener";
-import type { BasicTarget } from "../utils/domTarget";
+import { useEventListener } from "../useEventListener";
 
-export default function useHover<T extends HTMLElement = HTMLDivElement>(
-  target: BasicTarget<T>,
-) {
+export const useHover = <T extends Element = HTMLDivElement>(
+  target: RefObject<T>,
+) => {
   const [hovered, setHovered] = useState(false);
 
   const onMouseEnter = useCallback(() => setHovered(true), []);
@@ -14,4 +14,4 @@ export default function useHover<T extends HTMLElement = HTMLDivElement>(
   useEventListener("mouseleave", onMouseLeave, target);
 
   return hovered;
-}
+};

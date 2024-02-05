@@ -1,10 +1,10 @@
 import type { Dispatch, SetStateAction } from "react";
 import { useCallback, useRef, useState } from "react";
-import useUnmount from "../useUnmount";
+import { useUnmount } from "../useUnmount";
 
-export default function useRafState<S>(
+export const useRafState = <S>(
   initialState: S | (() => S),
-): readonly [S, Dispatch<SetStateAction<S>>] {
+): readonly [S, Dispatch<SetStateAction<S>>] => {
   const frame = useRef(0);
   const [state, setState] = useState(initialState);
 
@@ -21,4 +21,4 @@ export default function useRafState<S>(
   });
 
   return [state, setRafState] as const;
-}
+};

@@ -13,13 +13,15 @@
   "sideEffects": false,
   "scripts": {
     "newHook": "ts-node scripts/newHook.ts",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint ./packages/core && eslint ./packages/ts-document",
+    "lint:fix": "eslint ./packages/core --fix && eslint ./packages/ts-document --fix",
     "docs:dev": "pnpm --filter website run dev",
     "build": "pnpm --filter @reactuses/core run build",
-    "build:types": "tsc --emitDeclarationOnly",
     "core:dev": "pnpm --filter core run dev & pnpm build:types",
     "size": "tsx scripts/exportSize.mts"
+  },
+  "dependencies": {
+    "bunchee": "^4.4.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
@@ -62,8 +64,12 @@
         "react",
         "react-dom",
         "@babel/*",
-        "typescript"
+        "typescript",
+        "@types/react"
       ]
+    },
+    "patchedDependencies": {
+      "react-live@4.1.5": "patches/react-live@4.1.5.patch"
     }
   }
 }

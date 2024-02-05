@@ -20,7 +20,7 @@
     "noUnusedParameters": true
   },
   "include": [
-    "packages/core/hooks"
+    "packages/core/src"
   ],
   "exclude": [
     "node_modules",

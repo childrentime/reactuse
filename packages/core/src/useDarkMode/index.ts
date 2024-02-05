@@ -1,48 +1,9 @@
 import { useEffect } from "react";
 import { isBrowser } from "../utils/is";
 import useStorage from "../createStorage";
+import type { UseDarkMode, UseDarkOptions } from "./interface";
 
-export interface UseDarkOptions {
-  /**
-   * CSS Selector for the target element applying to
-   *
-   * @default 'html'
-   */
-  selector?: string;
-
-  /**
-   * HTML attribute applying the target element
-   *
-   * @default 'class'
-   */
-  attribute?: string;
-  /**
-   * isomorphic default value
-   * @default false
-   */
-  defaultValue?: boolean;
-  /**
-   * Key to persist the data into localStorage/sessionStorage.
-   *
-   * @default 'reactuses-color-scheme'
-   */
-  storageKey?: string;
-  /**
-   * Storage object, can be localStorage or sessionStorage
-   *
-   * @default localStorage
-   */
-  storage?: () => Storage;
-  /**
-   * name dark  apply to element
-   */
-  classNameDark: string;
-  /**
-   * name light  apply to element
-   */
-  classNameLight: string;
-}
-export default function useDarkMode(options: UseDarkOptions) {
+export const useDarkMode: UseDarkMode = (options: UseDarkOptions) => {
   const {
     selector = "html",
     attribute = "class",
@@ -62,7 +23,7 @@ export default function useDarkMode(options: UseDarkOptions) {
     defaultValue,
     storage,
     {
-      csrData: value,
+      effectStorageValue: value,
     },
   );
 
@@ -98,4 +59,4 @@ export default function useDarkMode(options: UseDarkOptions) {
   }, [attribute, classNameDark, classNameLight, dark, selector]);
 
   return [dark, () => setDark(dark => !dark), setDark] as const;
-}
+};

@@ -1,0 +1,30 @@
+# useObjectUrl
+
+轻松创建对象 URL。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [file, setFile] = useState<File>();
+  const url = useObjectUrl(file);
+
+  const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const target = e.target;
+    const files = target.files;
+    setFile(files && files.length > 0 ? files[0] : undefined);
+  };
+  return (
+    <div>
+      <p>Select File</p>
+      <input type="file" onChange={onFileChange} />
+      <p>Object Url</p>
+      <div>{url}</div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

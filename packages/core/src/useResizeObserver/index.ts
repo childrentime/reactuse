@@ -1,24 +1,24 @@
-import { useCallback, useEffect, useRef } from "react";
-import type { BasicTarget } from "../utils/domTarget";
-import { useLatestElement } from "../utils/domTarget";
-import useLatest from "../useLatest";
+import type { RefObject } from "react";
+import { useCallback, useRef } from "react";
+import { useLatest } from "../useLatest";
 import { defaultOptions } from "../utils/defaults";
+import { useDeepCompareEffect } from "../useDeepCompareEffect";
 
-export default function useResizeObserver(
-  target: BasicTarget,
+export const useResizeObserver = (
+  target: RefObject<Element>,
   callback: ResizeObserverCallback,
   options: ResizeObserverOptions = defaultOptions,
-): () => void {
+): () => void => {
   const savedCallback = useLatest(callback);
   const observerRef = useRef<ResizeObserver>();
-  const element = useLatestElement(target);
 
   const stop = useCallback(() => {
     if (observerRef.current) {
       observerRef.current.disconnect();
     }
   }, []);
-  useEffect(() => {
+  useDeepCompareEffect(() => {
+    const element = target.current;
     if (!element) {
       return;
     }
@@ -26,7 +26,7 @@ export default function useResizeObserver(
     observerRef.current.observe(element, options);
 
     return stop;
-  }, [options, element]);
+  }, [savedCallback, stop, target, options]);
 
   return stop;
-}
+};

@@ -1,0 +1,34 @@
+# useDocumentVisibility
+
+React Sensor Hook that tracks [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState)
+
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const visibility = useDocumentVisibility("hidden");
+  const [message, setMessage] = useState(
+    "💡 Minimize the page or switch tab then return",
+  );
+
+  useEffect(() => {
+    if (visibility === "visible") {
+      setTimeout(() => {
+        setMessage("🎉 Welcome back!");
+      }, 2000);
+    }
+    else {
+      setTimeout(() => {
+        setMessage("🥰 Take a break");
+      }, 2000);
+    }
+  }, [visibility]);
+
+  return <div>{message}</div>;
+}
+
+```
+
+%%API%%

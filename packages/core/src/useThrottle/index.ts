@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import type { ThrottleSettings } from "../utils/external";
-import useThrottleFn from "../useThrottleFn";
+import type { ThrottleSettings } from "lodash-es";
+import { useThrottleFn } from "../useThrottleFn";
+import type { UseThrottle } from "./interface";
 
-export default function useThrottle<T>(
+export const useThrottle: UseThrottle = <T>(
   value: T,
   wait?: number,
   options?: ThrottleSettings,
-) {
+) => {
   const [throttled, setThrottled] = useState(value);
 
   const { run } = useThrottleFn(
@@ -22,4 +23,4 @@ export default function useThrottle<T>(
   }, [run, value]);
 
   return throttled;
-}
+};

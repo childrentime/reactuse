@@ -1,0 +1,34 @@
+# useEyeDropper
+
+使用 [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) 来选择颜色。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [color, setColor] = useState("");
+  const [supported, open] = useEyeDropper();
+
+  if (supported) {
+    return (
+      <div style={{ padding: 40 }}>
+        Supported: {supported.toString()}
+        <br />
+        Color: {color}
+        <button
+          type="button"
+          onClick={async () => setColor((await open()).sRGBHex)}
+        >
+          Pick color
+        </button>
+      </div>
+    );
+  }
+
+  return <span>Not Supported by Your Browser</span>;
+};
+
+```
+
+%%API%%

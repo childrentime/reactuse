@@ -1,3 +1,0 @@
-# useScriptTag
-
-Script tag injecting

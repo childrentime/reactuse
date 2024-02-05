@@ -1,66 +1,15 @@
 import { useRef, useState } from "react";
 import { noop } from "../utils/is";
-import useMount from "../useMount";
-import useUnmount from "../useUnmount";
+import { useMount } from "../useMount";
+import { useUnmount } from "../useUnmount";
 import { defaultOptions } from "../utils/defaults";
+import type { UseScriptTag, UseScriptTagOptions, UseScriptTagStatus } from "./interface";
 
-export interface UseScriptTagOptions {
-  /**
-   * Load the script immediately
-   *
-   * @default true
-   */
-  immediate?: boolean;
-
-  /**
-   * Add `async` attribute to the script tag
-   *
-   * @default true
-   */
-  async?: boolean;
-
-  /**
-   * Script type
-   *
-   * @default 'text/javascript'
-   */
-  type?: string;
-
-  /**
-   * Manual controls the timing of loading and unloading
-   *
-   * @default false
-   */
-  manual?: boolean;
-
-  crossOrigin?: "anonymous" | "use-credentials";
-  referrerPolicy?:
-  | "no-referrer"
-  | "no-referrer-when-downgrade"
-  | "origin"
-  | "origin-when-cross-origin"
-  | "same-origin"
-  | "strict-origin"
-  | "strict-origin-when-cross-origin"
-  | "unsafe-url";
-  noModule?: boolean;
-
-  defer?: boolean;
-
-  /**
-   * Add custom attribute to the script tag
-   *
-   */
-  attrs?: Record<string, string>;
-}
-
-export type Status = "idle" | "loading" | "ready" | "error";
-
-export default function useScriptTag(
+export const useScriptTag: UseScriptTag = (
   src: string,
   onLoaded: (el: HTMLScriptElement) => void = noop,
   options: UseScriptTagOptions = defaultOptions,
-) {
+) => {
   const {
     immediate = true,
     manual = false,
@@ -74,7 +23,7 @@ export default function useScriptTag(
   } = options;
   const scriptTag = useRef<HTMLScriptElement | null>(null);
   const _promise = useRef<Promise<HTMLScriptElement | boolean> | null>(null);
-  const [status, setStatus] = useState<Status>(src ? "loading" : "idle");
+  const [status, setStatus] = useState<UseScriptTagStatus>(src ? "loading" : "idle");
 
   /**
    * Load the script specified via `src`.
@@ -142,7 +91,7 @@ export default function useScriptTag(
       }
       // Script tag already exists, resolve the loading Promise with it.
       else if (el.hasAttribute("data-loaded")) {
-        setStatus(el.getAttribute("data-status") as Status);
+        setStatus(el.getAttribute("data-status") as UseScriptTagStatus);
         resolveWithElement(el);
       }
 
@@ -225,4 +174,4 @@ export default function useScriptTag(
   });
 
   return [scriptTag.current, status, load, unload] as const;
-}
+};

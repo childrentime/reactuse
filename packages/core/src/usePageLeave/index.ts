@@ -1,7 +1,7 @@
 import { useState } from "react";
-import useEventListener from "../useEventListener";
+import { useEventListener } from "../useEventListener";
 
-export default function usePageLeave(): boolean {
+export const usePageLeave = (): boolean => {
   const [isLeft, setIsLeft] = useState(false);
 
   const handler = (event: MouseEvent) => {
@@ -19,4 +19,4 @@ export default function usePageLeave(): boolean {
   useEventListener("mouseenter", handler, () => document, { passive: true });
 
   return isLeft;
-}
+};

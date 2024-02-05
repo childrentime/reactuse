@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import useUpdateLayoutEffect from ".";
+import { useUpdateLayoutEffect } from ".";
 
 describe("useUpdateLayoutEffect", () => {
   it("test on mounted", async () => {

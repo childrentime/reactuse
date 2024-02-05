@@ -1,10 +1,11 @@
 import { useCallback, useState } from "react";
-import useEventListener from "../useEventListener";
+import { useEventListener } from "../useEventListener";
+import type { UseClipboard } from "./interface";
 
-export default function useClipBorad(): readonly [
+export const useClipboard: UseClipboard = (): readonly [
   string,
   (txt: string) => Promise<void>,
-] {
+] => {
   const [text, setText] = useState("");
 
   const updateText = useCallback(() => {
@@ -23,4 +24,4 @@ export default function useClipBorad(): readonly [
   }, []);
 
   return [text, copy] as const;
-}
+};

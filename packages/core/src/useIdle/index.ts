@@ -1,6 +1,7 @@
 import { throttle } from "lodash-es";
 import { useEffect, useState } from "react";
 import { off, on } from "../utils/browser";
+import type { UseIdle } from "./interface";
 
 const defaultEvents: (keyof WindowEventMap)[] = [
   "mousemove",
@@ -12,11 +13,11 @@ const defaultEvents: (keyof WindowEventMap)[] = [
 ];
 const oneMinute = 60e3;
 
-export default function useIdle(
+export const useIdle: UseIdle = (
   ms: number = oneMinute,
   initialState = false,
   events: (keyof WindowEventMap)[] = defaultEvents,
-): boolean {
+): boolean => {
   const [state, setState] = useState<boolean>(initialState);
 
   useEffect(() => {
@@ -63,4 +64,4 @@ export default function useIdle(
   }, [ms, events]);
 
   return state;
-}
+};

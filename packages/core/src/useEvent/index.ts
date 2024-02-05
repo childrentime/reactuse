@@ -1,7 +1,8 @@
 import { useCallback, useRef } from "react";
 import type { Fn } from "../utils/types";
 import { isDev, isFunction } from "../utils/is";
-import useIsomorphicLayoutEffect from "../useIsomorphicLayoutEffect";
+import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
+import type { UseEvent } from "./interface";
 
 type PickFunction<T extends Fn> = (
   this: ThisParameterType<T>,
@@ -11,7 +12,7 @@ type PickFunction<T extends Fn> = (
 /**
  * keep function reference immutable
  */
-export default function useEvent<T extends Fn>(fn: T) {
+export const useEvent: UseEvent = <T extends Fn>(fn: T) => {
   if (isDev) {
     if (!isFunction(fn)) {
       console.error(
@@ -28,4 +29,4 @@ export default function useEvent<T extends Fn>(fn: T) {
     const fn = handlerRef.current;
     return fn(...args);
   }, []) as T;
-}
+};

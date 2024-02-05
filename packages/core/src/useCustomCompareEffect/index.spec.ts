@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import { useEffect } from "react";
 import { isEqual } from "lodash";
-import useCustomCompareEffect from ".";
+import { useCustomCompareEffect } from ".";
 
 let options = { max: 10 };
 const mockEffectNormal = jest.fn();

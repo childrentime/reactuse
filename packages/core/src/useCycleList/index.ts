@@ -1,9 +1,10 @@
 import { useState } from "react";
+import type { UseCycleList } from "./interface";
 
-export default function useCycleList<T>(
+export const useCycleList: UseCycleList = <T> (
   list: T[],
   i = 0,
-): readonly [T, (i?: number) => void, (i?: number) => void] {
+): readonly [T, (i?: number) => void, (i?: number) => void] => {
   const [index, setIndex] = useState(i);
 
   const set = (i: number) => {
@@ -21,4 +22,4 @@ export default function useCycleList<T>(
   };
 
   return [list[index], next, prev] as const;
-}
+};

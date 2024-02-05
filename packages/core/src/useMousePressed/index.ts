@@ -1,49 +1,23 @@
+import type { RefObject } from "react";
 import { useCallback, useEffect, useState } from "react";
-import type { BasicTarget } from "../utils/domTarget";
-import { useLatestElement } from "../utils/domTarget";
-import type { IHookStateInitAction } from "../utils/hookState";
-import useEventListener from "../useEventListener";
+import { useEventListener } from "../useEventListener";
 import { defaultOptions } from "../utils/defaults";
-
-export interface MousePressedOptions {
-  /**
-   * Listen to `touchstart` `touchend` events
-   *
-   * @default true
-   */
-  touch?: boolean;
-
-  /**
-   * Listen to `dragstart` `drop` and `dragend` events
-   *
-   * @default true
-   */
-  drag?: boolean;
-
-  /**
-   * Initial values
-   *
-   * @default false
-   */
-  initialValue?: IHookStateInitAction<boolean>;
-}
-
-export type MouseSourceType = "mouse" | "touch" | null;
+import type { UseMousePressedOptions, UseMousePressedSourceType } from "./interface";
 
 const listenerOptions = { passive: true };
 
-export default function useMousePressed(
-  target?: BasicTarget,
-  options: MousePressedOptions = defaultOptions,
-): readonly [boolean, MouseSourceType] {
+export const useMousePressed = (
+  target?: RefObject<Element>,
+  options: UseMousePressedOptions = defaultOptions,
+): readonly [boolean, UseMousePressedSourceType] => {
   const { touch = true, drag = true, initialValue = false } = options;
 
   const [pressed, setPressed] = useState(initialValue);
-  const [sourceType, setSourceType] = useState<MouseSourceType>(null);
-  const element = useLatestElement(target);
+  const [sourceType, setSourceType] = useState<UseMousePressedSourceType>(null);
+  const element = target?.current;
 
   const onPressed = useCallback(
-    (srcType: MouseSourceType) => () => {
+    (srcType: UseMousePressedSourceType) => () => {
       setPressed(true);
       setSourceType(srcType);
     },
@@ -94,4 +68,4 @@ export default function useMousePressed(
   }, [drag, onPressed, onReleased, touch, element]);
 
   return [pressed, sourceType] as const;
-}
+};

@@ -1,39 +1,16 @@
-import type { BasicTarget } from "../utils/domTarget";
-import { useLatestElement } from "../utils/domTarget";
-import type { UseScrollOptions } from "../useScroll";
-import useScroll from "../useScroll";
-import useLatest from "../useLatest";
-import useUpdateEffect from "../useUpdateEffect";
+import type { RefObject } from "react";
+import { useScroll } from "../useScroll";
+import { useLatest } from "../useLatest";
+import { useUpdateEffect } from "../useUpdateEffect";
 import { defaultOptions } from "../utils/defaults";
+import { getTargetElement } from "../utils/domTarget";
+import type { UseInfiniteScroll, UseInfiniteScrollOptions } from "./interface";
 
-export interface UseInfiniteScrollOptions extends UseScrollOptions {
-  /**
-   * The minimum distance between the bottom of the element and the bottom of the viewport
-   *
-   * @default 0
-   */
-  distance?: number;
-
-  /**
-   * The direction in which to listen the scroll.
-   *
-   * @default 'bottom'
-   */
-  direction?: "top" | "bottom" | "left" | "right";
-
-  /**
-   * Whether to preserve the current scroll position when loading more items.
-   *
-   * @default false
-   */
-  preserveScrollPosition?: boolean;
-}
-
-export default function useInfiniteScroll(
-  target: BasicTarget<HTMLElement | SVGElement>,
+export const useInfiniteScroll: UseInfiniteScroll = (
+  target: RefObject<Element>,
   onLoadMore: (state: ReturnType<typeof useScroll>) => void | Promise<void>,
   options: UseInfiniteScrollOptions = defaultOptions,
-) {
+) => {
   const savedLoadMore = useLatest(onLoadMore);
   const direction = options.direction ?? "bottom";
   const state = useScroll(target, {
@@ -43,11 +20,11 @@ export default function useInfiniteScroll(
       ...options.offset,
     },
   });
-  const element = useLatestElement(target);
 
   const di = state[3][direction];
 
   useUpdateEffect(() => {
+    const element = getTargetElement(target);
     const fn = async () => {
       const previous = {
         height: element?.scrollHeight ?? 0,
@@ -64,5 +41,5 @@ export default function useInfiniteScroll(
       }
     };
     fn();
-  }, [di, options.preserveScrollPosition]);
-}
+  }, [di, options.preserveScrollPosition, target]);
+};

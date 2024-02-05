@@ -1,4 +1,4 @@
-import useMeasure from ".";
+import { useMeasure } from ".";
 
 describe("useMeasure", () => {
   it("should be defined", () => {

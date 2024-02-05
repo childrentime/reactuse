@@ -1,0 +1,32 @@
+# useMeasure
+
+使用 `Resize Observer API` 跟踪 HTML 元素的尺寸
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  const [rect, stop] = useMeasure(ref);
+
+  return (
+    <div>
+      <div>Resize the box to see changes</div>
+      <div>
+        <button onClick={() => stop()}>stop observe</button>
+      </div>
+      <br />
+      <textarea
+        ref={ref}
+        disabled
+        style={{ width: 286, height: 166 }}
+        value={JSON.stringify(rect, null, 2)}
+      />
+    </div>
+  );
+};
+
+```
+
+%%API%%

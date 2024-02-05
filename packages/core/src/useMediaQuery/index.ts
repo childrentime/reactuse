@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { isBrowser } from "../utils/is";
+import type { UseMediaQuery } from "./interface";
 
 const getInitialState = (query: string, defaultState?: boolean) => {
   // Prevent a React hydration mismatch when a default value is provided by not defaulting to window.matchMedia(query).matches.
@@ -21,7 +22,7 @@ const getInitialState = (query: string, defaultState?: boolean) => {
   return false;
 };
 
-export default function useMediaQuery(query: string, defaultState?: boolean) {
+export const useMediaQuery: UseMediaQuery = (query: string, defaultState?: boolean) => {
   const [state, setState] = useState(getInitialState(query, defaultState));
 
   useEffect(() => {
@@ -55,4 +56,4 @@ export default function useMediaQuery(query: string, defaultState?: boolean) {
   }, [query]);
 
   return state;
-}
+};

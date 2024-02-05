@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef } from "react";
-import useLatest from "../useLatest";
+import { useLatest } from "../useLatest";
+import type { UseRafFn } from "./interface";
 
-export type RafLoopReturns = readonly [() => void, () => void, () => boolean];
-
-export default function useRafFn(
+export const useRafFn: UseRafFn = (
   callback: FrameRequestCallback,
   initiallyActive = true,
-): RafLoopReturns {
+) => {
   const raf = useRef<number | null>(null);
   const rafActivity = useRef<boolean>(false);
   const rafCallback = useLatest(callback);
@@ -52,4 +51,4 @@ export default function useRafFn(
   }, [initiallyActive, result]);
 
   return result;
-}
+};

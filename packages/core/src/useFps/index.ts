@@ -1,16 +1,9 @@
 import { useRef, useState } from "react";
-import useRafFn from "../useRafFn";
+import { useRafFn } from "../useRafFn";
 import { defaultOptions } from "../utils/defaults";
+import type { UseFpsOptions } from "./interface";
 
-export interface UseFpsOptions {
-  /**
-   * Calculate the FPS on every x frames.
-   * @default 10
-   */
-  every?: number;
-}
-
-function useFps(options: UseFpsOptions = defaultOptions): number {
+export const useFps = (options: UseFpsOptions = defaultOptions): number => {
   const [fps, setFps] = useState(0);
   const every = options.every ?? 10;
 
@@ -29,9 +22,4 @@ function useFps(options: UseFpsOptions = defaultOptions): number {
   });
 
   return fps;
-}
-
-// @ts-expect-error un-use
-const useFpsMock = (options?: UseFpsOptions) => 0;
-
-export default typeof performance === "undefined" ? useFpsMock : useFps;
+};

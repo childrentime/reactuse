@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
-import useCssVar from "../useCssVar";
-import useDebounceFn from "../useDebounceFn";
-import useEventListener from "../useEventListener";
-import useUpdate from "../useUpdate";
+import { useCssVar } from "../useCssVar";
+import { useDebounceFn } from "../useDebounceFn";
+import { useEventListener } from "../useEventListener";
+import { useUpdate } from "../useUpdate";
 
 const topVarName = "--reactuse-safe-area-top";
 const rightVarName = "--reactuse-safe-area-right";
@@ -11,7 +11,7 @@ const leftVarName = "--reactuse-safe-area-left";
 
 const defaultElement = () => document.documentElement;
 
-export default function useScreenSafeArea() {
+export const useScreenSafeArea = () => {
   const top = useRef("");
   const right = useRef("");
   const bottom = useRef("");
@@ -43,7 +43,7 @@ export default function useScreenSafeArea() {
     left.current,
     update,
   ] as const;
-}
+};
 
 function getValue(
   position:

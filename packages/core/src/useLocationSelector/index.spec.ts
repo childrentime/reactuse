@@ -1,4 +1,4 @@
-import useLocationSelector from ".";
+import { useLocationSelector } from ".";
 
 describe("useLocationSelector", () => {
   it("should be defined", () => {

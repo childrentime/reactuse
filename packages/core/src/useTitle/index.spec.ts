@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import useTitle from ".";
+import { useTitle } from ".";
 
 afterEach(() => {
   if (document.title) {

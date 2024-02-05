@@ -1,53 +1,14 @@
+import type { RefObject } from "react";
 import { useEffect, useState } from "react";
-import type { BasicTarget } from "../utils/domTarget";
-import { getTargetElement } from "../utils/domTarget";
-import useResizeObserver from "../useResizeObserver";
-import useEvent from "../useEvent";
+import { useResizeObserver } from "../useResizeObserver";
+import { useEvent } from "../useEvent";
 import { defaultOptions } from "../utils/defaults";
+import type { UseElementBounding, UseElementBoundingOptions, UseElementBoundingReturn } from "./interface";
 
-export interface UseElementBoundingOptions {
-  /**
-   * Reset values to 0 on component unmounted
-   *
-   * @default true
-   */
-  reset?: boolean;
-
-  /**
-   * Listen to window resize event
-   *
-   * @default true
-   */
-  windowResize?: boolean;
-  /**
-   * Listen to window scroll event
-   *
-   * @default true
-   */
-  windowScroll?: boolean;
-
-  /**
-   * Immediately call update on component mounted
-   *
-   * @default true
-   */
-  immediate?: boolean;
-}
-
-export default function useElementBounding(
-  target: BasicTarget,
+export const useElementBounding: UseElementBounding = (
+  target: RefObject<Element>,
   options: UseElementBoundingOptions = defaultOptions,
-): {
-    readonly height: number;
-    readonly bottom: number;
-    readonly left: number;
-    readonly right: number;
-    readonly top: number;
-    readonly width: number;
-    readonly x: number;
-    readonly y: number;
-    readonly update: () => void;
-  } {
+): UseElementBoundingReturn => {
   const {
     reset = true,
     windowResize = true,
@@ -65,7 +26,7 @@ export default function useElementBounding(
   const [y, setY] = useState(0);
 
   const update = useEvent(() => {
-    const element = getTargetElement(target);
+    const element = target.current;
 
     if (!element) {
       if (reset) {
@@ -129,4 +90,4 @@ export default function useElementBounding(
     y,
     update,
   } as const;
-}
+};

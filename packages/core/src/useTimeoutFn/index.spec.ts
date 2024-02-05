@@ -1,7 +1,7 @@
 import { act, renderHook } from "@testing-library/react";
 import type { Fn } from "../utils/types";
-import type { UseTimeoutFnOptions } from ".";
-import useTimeoutFn from ".";
+import type { UseTimeoutFnOptions } from "./interface";
+import { useTimeoutFn } from ".";
 
 describe("useTimeoutFn", () => {
   beforeAll(() => {

@@ -1,0 +1,23 @@
+# useToggle
+
+优雅管理 `Boolean` 值。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [on, toggle] = useToggle(true);
+
+  return (
+    <div>
+      <div>{on ? "ON" : "OFF"}</div>
+      <button onClick={toggle}>Toggle</button>
+      <button onClick={() => toggle(true)}>set ON</button>
+      <button onClick={() => toggle(false)}>set OFF</button>
+    </div>
+  );
+};
+```
+
+%%API%%

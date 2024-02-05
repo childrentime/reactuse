@@ -1,0 +1,21 @@
+# useIdle
+
+跟踪页面上的用户是否处于空闲状态。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const isIdle = useIdle(3e3);
+
+  return (
+    <div>
+      <div>User is idle: {isIdle ? "Yes 😴" : "Nope"}</div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

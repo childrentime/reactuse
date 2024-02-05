@@ -1,6 +1,6 @@
 import { MARKUP } from "@reactuses/core";
 
-export default () => {
+function Demo() {
   return (
     <div></div>
   );

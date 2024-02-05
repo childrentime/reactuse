@@ -1,0 +1,19 @@
+# useHover
+
+Detect if mouse is over given element.
+
+
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const ref = useRef<HTMLDivElement>(null);
+  const hovered = useHover(ref);
+  return <div ref={ref}> {hovered ? "true" : "false"}</div>;
+};
+
+```
+
+%%API%%

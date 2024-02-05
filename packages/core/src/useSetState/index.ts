@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
+import type { UseSetState } from "./interface";
 
-export default function useSetState<T extends Record<string, any>>(initialState: T) {
+export const useSetState: UseSetState = <T extends Record<string, any>>(initialState: T) => {
   const [state, _setState] = useState(initialState);
   const setState = useCallback(
     (statePartial: Partial<T> | ((currentState: T) => Partial<T>)) =>
@@ -11,4 +12,4 @@ export default function useSetState<T extends Record<string, any>>(initialState:
     [],
   );
   return [state, setState] as const;
-}
+};

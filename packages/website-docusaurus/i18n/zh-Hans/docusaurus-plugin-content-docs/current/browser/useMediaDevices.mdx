@@ -1,0 +1,19 @@
+# useMediaDevices
+
+轻松跟踪已连接的硬件设备。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [state] = useMediaDevices({
+    requestPermissions: true,
+  });
+
+  return <pre>{JSON.stringify(state, null, 2)}</pre>;
+};
+
+```
+
+%%API%%

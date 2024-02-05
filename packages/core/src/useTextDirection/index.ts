@@ -1,27 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { defaultOptions } from "../utils/defaults";
 import { isBrowser } from "../utils/is";
+import type {
+  UseTextDirection,
+  UseTextDirectionOptions,
+  UseTextDirectionValue,
+} from "./interface";
 
-export type UseTextDirectionValue = "ltr" | "rtl" | "auto";
-export interface UseTextDirectionOptions {
-  /**
-   * CSS Selector for the target element applying to
-   *
-   * @default 'html'
-   */
-  selector?: string;
-  /**
-   * Initial value
-   *
-   * @default 'ltr'
-   */
-  initialValue?: UseTextDirectionValue;
-}
-export default function useTextDirection(
+export const useTextDirection: UseTextDirection = (
   options: UseTextDirectionOptions = defaultOptions,
-) {
+) => {
   const { selector = "html", initialValue = "ltr" } = options;
   const getValue = () => {
+    if (initialValue !== undefined) {
+      return initialValue;
+    }
     if (isBrowser) {
       return (
         (document
@@ -29,11 +22,23 @@ export default function useTextDirection(
           ?.getAttribute("dir") as UseTextDirectionValue) ?? initialValue
       );
     }
-    else {
-      return initialValue;
+    // A default value has not been provided, and you are rendering on the server, warn of a possible hydration mismatch when defaulting to false.
+    if (process.env.NODE_ENV !== "production") {
+      console.warn(
+        "`useTextDirection` When server side rendering, defaultState should be defined to prevent a hydration mismatches.",
+      );
     }
+    return initialValue;
   };
   const [value, setValue] = useState<UseTextDirectionValue>(getValue());
+
+  useEffect(() => {
+    setValue(
+      document
+        ?.querySelector(selector)
+        ?.getAttribute("dir") as UseTextDirectionValue ?? initialValue,
+    );
+  }, [initialValue, selector]);
 
   const set = (value: UseTextDirectionValue) => {
     if (!isBrowser) {
@@ -49,4 +54,4 @@ export default function useTextDirection(
   };
 
   return [value, set] as const;
-}
+};

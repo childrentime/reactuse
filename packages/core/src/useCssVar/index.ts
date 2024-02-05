@@ -1,19 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { BasicTarget } from "../utils/domTarget";
-import { useLatestElement } from "../utils/domTarget";
 import { isBrowser } from "../utils/is";
-
-export interface UseCssVarOptions {
-  /**
-   * Use MutationObserver to monitor variable changes
-   * @default false
-   */
-  observe?: boolean;
-}
-
-const defaultOptions: UseCssVarOptions = {
-  observe: false,
-};
+import { type BasicTarget, getTargetElement } from "../utils/domTarget";
+import { type UseCssVar, type UseCssVarOptions, defaultOptions } from "./interface";
 
 const getInitialState = (defaultValue?: string) => {
   // Prevent a React hydration mismatch when a default value is provided.
@@ -34,30 +22,31 @@ const getInitialState = (defaultValue?: string) => {
   return "";
 };
 
-export default function useCssVar<T extends HTMLElement = HTMLElement>(
+export const useCssVar: UseCssVar = <T extends HTMLElement = HTMLElement>(
   prop: string,
   target: BasicTarget<T>,
   defaultValue?: string,
   options: UseCssVarOptions = defaultOptions,
-) {
+) => {
   const { observe } = options;
   const [variable, setVariable] = useState<string>(
     getInitialState(defaultValue),
   );
-  const element = useLatestElement(target);
   const observerRef = useRef<MutationObserver>();
 
   const set = useCallback(
     (v: string) => {
+      const element = getTargetElement(target);
       if (element?.style) {
         element?.style.setProperty(prop, v);
         setVariable(v);
       }
     },
-    [element, prop],
+    [prop, target],
   );
 
   const updateCssVar = useCallback(() => {
+    const element = getTargetElement(target);
     if (element) {
       const value = window
         .getComputedStyle(element)
@@ -65,9 +54,10 @@ export default function useCssVar<T extends HTMLElement = HTMLElement>(
         ?.trim();
       setVariable(value);
     }
-  }, [element, prop]);
+  }, [target, prop]);
 
   useEffect(() => {
+    const element = getTargetElement(target);
     if (!element) {
       return;
     }
@@ -96,7 +86,7 @@ export default function useCssVar<T extends HTMLElement = HTMLElement>(
         observerRef.current.disconnect();
       }
     };
-  }, [observe, element, updateCssVar, set, defaultValue, prop]);
+  }, [observe, target, updateCssVar, set, defaultValue, prop]);
 
   return [variable, set] as const;
-}
+};

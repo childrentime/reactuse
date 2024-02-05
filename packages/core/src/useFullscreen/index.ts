@@ -1,20 +1,16 @@
+import type { RefObject } from "react";
 import { useState } from "react";
 import screenfull from "screenfull";
-import type { BasicTarget } from "../utils/domTarget";
 import { getTargetElement } from "../utils/domTarget";
-import useUnmount from "../useUnmount";
-import useEvent from "../useEvent";
+import { useUnmount } from "../useUnmount";
+import { useEvent } from "../useEvent";
 import { defaultOptions } from "../utils/defaults";
+import type { UseFullScreenOptions, UseFullscreen } from "./interface";
 
-export interface UseFullScreenOptions {
-  onExit?: () => void;
-  onEnter?: () => void;
-}
-
-export default function useFullscreen(
-  target: BasicTarget,
+export const useFullscreen: UseFullscreen = (
+  target: RefObject<Element>,
   options: UseFullScreenOptions = defaultOptions,
-) {
+) => {
   const { onExit, onEnter } = options;
 
   const [state, setState] = useState(false);
@@ -80,4 +76,4 @@ export default function useFullscreen(
       isEnabled: screenfull.isEnabled,
     },
   ] as const;
-}
+};

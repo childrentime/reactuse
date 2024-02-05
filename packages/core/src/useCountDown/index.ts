@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import useInterval from "../useInterval";
+import { useInterval } from "../useInterval";
+import type { UseCountDown } from "./interface";
 
 const padZero = (time: number): string => {
   return `${time}`.length < 2 ? `0${time}` : `${time}`;
@@ -18,7 +19,7 @@ export const getHMSTime = (timeDiff: number): [string, string, string] => {
   return [padZero(hour), padZero(minute), padZero(second)];
 };
 
-const useCountDown = (
+export const useCountDown: UseCountDown = (
   time: number,
   format: (num: number) => [string, string, string] = getHMSTime,
   callback?: () => void,
@@ -44,5 +45,3 @@ const useCountDown = (
 
   return [hour, minute, secoud] as const;
 };
-
-export default useCountDown;

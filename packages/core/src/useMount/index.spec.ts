@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import useMount from ".";
+import { useMount } from ".";
 
 const mockCallback = jest.fn();
 

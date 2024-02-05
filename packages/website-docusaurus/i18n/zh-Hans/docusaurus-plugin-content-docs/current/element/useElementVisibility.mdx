@@ -1,0 +1,52 @@
+# useElementVisibility
+
+追踪视窗内元素可见性的 React Hook。这是 `useIntersectionObserver` 的一个封装器
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, stop] = useElementVisibility(ref);
+
+  return (
+    <div>
+      <p>Info on the right bottom corner</p>
+      <div
+        ref={ref}
+        style={{
+          borderWidth: 2,
+          borderStyle: "solid",
+          padding: "1rem",
+        }}
+      >
+        Target Element (scroll down)
+      </div>
+      <button
+        onClick={() => {
+          stop();
+        }}
+      >
+        Stop
+      </button>
+      <div
+        style={{
+          borderWidth: 2,
+          borderStyle: "solid",
+          padding: "1rem",
+          position: "fixed",
+          bottom: 0,
+          right: 0,
+          zIndex: 100,
+        }}
+      >
+        Element {visible ? "inside" : "outside"} the viewport
+      </div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

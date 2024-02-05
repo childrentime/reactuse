@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import useCounter from ".";
+import { useCounter } from ".";
 
 const setUp = (init?: number, max?: number, min?: number) =>
   renderHook(() => useCounter(init, max, min));

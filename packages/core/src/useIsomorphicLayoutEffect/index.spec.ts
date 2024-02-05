@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import useIsomorphicLayoutEffect from ".";
+import { useIsomorphicLayoutEffect } from ".";
 
 describe("useIsomorphicLayoutEffect", () => {
   const callback = jest.fn();

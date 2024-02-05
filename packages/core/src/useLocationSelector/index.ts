@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
+import type { UseLocationSelector } from "./interface";
 
 function subscribe(callback: () => void) {
   window.addEventListener("popstate", callback);
@@ -9,17 +10,17 @@ function subscribe(callback: () => void) {
   };
 }
 
-export default function useLocationSelector<R>(
+export const useLocationSelector: UseLocationSelector = <R>(
   selector: (location: Location) => R,
   /**
    * @description server fallback
    * @default undefined
    */
   fallback?: R,
-) {
+) => {
   return useSyncExternalStore<R | undefined>(
     subscribe,
     () => selector(location),
     () => fallback,
   );
-}
+};

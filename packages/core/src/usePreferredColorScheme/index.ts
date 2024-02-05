@@ -1,16 +1,11 @@
-import { isBrowser } from "../utils/is";
-import useMediaQuery from "../useMediaQuery";
+import { useMediaQuery } from "../useMediaQuery";
+import type { ColorScheme, UsePreferredColorScheme } from "./interface";
 
-export type ColorScheme = "dark" | "light" | "no-preference";
-export default function usePreferredColorScheme(
-  defaultState?: ColorScheme,
-): ColorScheme {
+export const usePreferredColorScheme: UsePreferredColorScheme = (
+  defaultState: ColorScheme = "no-preference",
+): ColorScheme => {
   const isLight = useMediaQuery("(prefers-color-scheme: light)", false);
   const isDark = useMediaQuery("(prefers-color-scheme: dark)", false);
 
-  if (!isBrowser && defaultState) {
-    return defaultState;
-  }
-
-  return isDark ? "dark" : isLight ? "light" : "no-preference";
-}
+  return isDark ? "dark" : isLight ? "light" : defaultState;
+};

@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import useFirstMountState from ".";
+import { useFirstMountState } from ".";
 
 describe("useFirstMountState", () => {
   it("should be defined", () => {

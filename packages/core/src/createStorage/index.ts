@@ -2,7 +2,7 @@ import type { Dispatch, SetStateAction } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { isBrowser, isFunction } from "../utils/is";
 import { guessSerializerType } from "../utils/serializer";
-import useEvent from "../useEvent";
+import { useEvent } from "../useEvent";
 import { defaultOnError, defaultOptions } from "../utils/defaults";
 
 export interface Serializer<T> {
@@ -63,7 +63,7 @@ export interface UseStorageOptions<T> {
   /**
    * set to storage when nodata in effect, fallback to defaults
    */
-  csrData?: T | (() => T);
+  effectStorageValue?: T | (() => T);
 }
 const getInitialState = (
   key: string,
@@ -109,7 +109,7 @@ export default function useStorage<
   options: UseStorageOptions<T> = defaultOptions,
 ) {
   let storage: Storage | undefined;
-  const { onError = defaultOnError, csrData } = options;
+  const { onError = defaultOnError, effectStorageValue } = options;
 
   try {
     storage = getStorage();
@@ -128,10 +128,10 @@ export default function useStorage<
   );
 
   useEffect(() => {
-    const data = csrData
-      ? isFunction(csrData)
-        ? csrData()
-        : csrData
+    const data = effectStorageValue
+      ? isFunction(effectStorageValue)
+        ? effectStorageValue()
+        : effectStorageValue
       : defaultValue;
     const getStoredValue = () => {
       try {
@@ -150,7 +150,7 @@ export default function useStorage<
     };
 
     setState(getStoredValue());
-  }, [key, defaultValue, serializer, storage, onError, csrData]);
+  }, [key, defaultValue, serializer, storage, onError, effectStorageValue]);
 
   const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
     (valOrFunc) => {

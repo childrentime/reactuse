@@ -1,11 +1,12 @@
 import { useState } from "react";
-import useEvent from "../useEvent";
+import { useEvent } from "../useEvent";
+import type { UseCounter } from "./interface";
 
-export default function useCounter(
+export const useCounter: UseCounter = (
   initialValue: number | (() => number) = 0,
   max: number | null = null,
   min: number | null = null,
-) {
+) => {
   // avoid exec init code every render
   const initFunc = () => {
     let init
@@ -64,4 +65,4 @@ export default function useCounter(
   };
 
   return [value, set, inc, dec, reset] as const;
-}
+};

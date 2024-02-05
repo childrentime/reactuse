@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { isDev, isFunction } from "../utils/is";
+import type { UseMount } from "./interface";
 
-export default function useMount(fn: () => void) {
+export const useMount: UseMount = (fn: () => void) => {
   if (isDev) {
     if (!isFunction(fn)) {
       console.error(
@@ -14,4 +15,4 @@ export default function useMount(fn: () => void) {
     fn?.();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-}
+};

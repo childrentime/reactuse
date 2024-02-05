@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import useNetwork from ".";
+import { useNetwork } from ".";
 
 describe("useNetwork", () => {
   it("toggle network state", async () => {

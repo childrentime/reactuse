@@ -1,0 +1,45 @@
+# useEvent
+
+这是 [React RFC useEvent](https://github.com/reactjs/rfcs/pull/220) 的基础实现。它让你定义的事件处理器可以读取最新的 props/state，但总是保持稳定的函数引用。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [count, setCount] = useState(0);
+
+  const callbackFn = useCallback(() => {
+    alert(`Current count is ${count}`);
+  }, [count]);
+
+  const memoizedFn = useEvent(() => {
+    alert(`Current count is ${count}`);
+  });
+
+  return (
+    <>
+      <p>count: {count}</p>
+      <button
+        type="button"
+        onClick={() => {
+          setCount(c => c + 1);
+        }}
+      >
+        Add Count
+      </button>
+      <div style={{ marginTop: 16 }}>
+        <button type="button" onClick={callbackFn}>
+          call callbackFn
+        </button>
+        <button type="button" onClick={memoizedFn} style={{ marginLeft: 8 }}>
+          call memoizedFn
+        </button>
+      </div>
+    </>
+  );
+};
+
+```
+
+%%API%%

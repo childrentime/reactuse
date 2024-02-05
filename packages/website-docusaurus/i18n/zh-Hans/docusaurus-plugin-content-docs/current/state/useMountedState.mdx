@@ -1,0 +1,21 @@
+# useMountedState
+
+检查组件的挂载状态
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const isMounted = useMountedState();
+
+  const [, update] = useState(0);
+  useEffect(() => {
+    update(1);
+  }, []);
+  return <div>This component is {isMounted() ? "MOUNTED" : "NOT MOUNTED"}</div>;
+};
+
+```
+
+%%API%%

@@ -1,0 +1,37 @@
+# useFavicon
+
+React side-effect hook sets the favicon of the page
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const logo = 'https://react.dev/favicon.ico';
+  const twitter = 'https://twitter.com/favicon.ico';
+  const [icon, setIcon] = useState(twitter);
+  useFavicon(icon);
+  return (
+    <div>
+      <p>Change Favicon to</p>
+      <button
+        onClick={() => {
+          setIcon(logo);
+        }}
+      >
+        React
+      </button>
+      <button
+        onClick={() => {
+          setIcon(twitter);
+        }}
+      >
+        Twitter
+      </button>
+    </div>
+  );
+};
+
+```
+
+%%API%%
