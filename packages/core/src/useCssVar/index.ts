@@ -32,20 +32,21 @@ export const useCssVar: UseCssVar = <T extends HTMLElement = HTMLElement>(
   const [variable, setVariable] = useState<string>(
     getInitialState(defaultValue),
   );
-  const element = getTargetElement(target);
   const observerRef = useRef<MutationObserver>();
 
   const set = useCallback(
     (v: string) => {
+      const element = getTargetElement(target);
       if (element?.style) {
         element?.style.setProperty(prop, v);
         setVariable(v);
       }
     },
-    [element, prop],
+    [prop, target],
   );
 
   const updateCssVar = useCallback(() => {
+    const element = getTargetElement(target);
     if (element) {
       const value = window
         .getComputedStyle(element)
@@ -53,9 +54,10 @@ export const useCssVar: UseCssVar = <T extends HTMLElement = HTMLElement>(
         ?.trim();
       setVariable(value);
     }
-  }, [element, prop]);
+  }, [target, prop]);
 
   useEffect(() => {
+    const element = getTargetElement(target);
     if (!element) {
       return;
     }
@@ -84,7 +86,7 @@ export const useCssVar: UseCssVar = <T extends HTMLElement = HTMLElement>(
         observerRef.current.disconnect();
       }
     };
-  }, [observe, element, updateCssVar, set, defaultValue, prop]);
+  }, [observe, target, updateCssVar, set, defaultValue, prop]);
 
   return [variable, set] as const;
 };

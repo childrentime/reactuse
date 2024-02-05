@@ -65,9 +65,9 @@ export function useEventListener(
   options: boolean | AddEventListenerOptions = defaultOptions,
 ) {
   const savedHandler = useLatest(handler);
-  const targetElement = getTargetElement(element, defaultWindow);
 
   useDeepCompareEffect(() => {
+    const targetElement = getTargetElement(element, defaultWindow);
     if (!(targetElement && targetElement.addEventListener)) {
       return;
     }
@@ -83,5 +83,5 @@ export function useEventListener(
       }
       off(targetElement, eventName, eventListener);
     };
-  }, [eventName, targetElement, options]);
+  }, [eventName, element, options]);
 }

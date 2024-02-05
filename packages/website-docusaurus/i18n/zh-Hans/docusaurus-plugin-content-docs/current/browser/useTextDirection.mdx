@@ -4,7 +4,7 @@
 
 ## Usage
 
-```tsx live
+```tsx live noInline
 
 function Demo() {
   const [dir, setDir] = useTextDirection({
@@ -28,13 +28,14 @@ function Demo() {
     <div id="_useTextDirectionDemo">
       <p>{text}</p>
       <button onClick={handleOnClick}>
-        <span>{dir.toUpperCase()}</span>
+        <span>{dir?.toUpperCase()}</span>
       </button>
       <span>Click to change the direction</span>
     </div>
   );
 };
 
+render(<Demo/>)
 ```
 
 %%API%%

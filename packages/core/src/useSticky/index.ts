@@ -12,9 +12,9 @@ export const useSticky = (
   scrollElement?: BasicTarget<HTMLElement>,
 ): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
   const [isSticky, setSticky] = useState<boolean>(false);
-  const element = getTargetElement(targetElement);
 
   const { run: scrollHandler } = useThrottleFn(() => {
+    const element = getTargetElement(targetElement);
     if (!element) {
       return;
     }
@@ -28,6 +28,7 @@ export const useSticky = (
   }, 50);
 
   useEffect(() => {
+    const element = getTargetElement(targetElement);
     const scrollParent
       = getTargetElement(scrollElement) || getScrollParent(axis, element);
     if (!element || !scrollParent) {
@@ -39,6 +40,6 @@ export const useSticky = (
     return () => {
       scrollParent.removeEventListener("scroll", scrollHandler);
     };
-  }, [axis, element, scrollElement, scrollHandler]);
+  }, [axis, targetElement, scrollElement, scrollHandler]);
   return [isSticky, setSticky];
 };

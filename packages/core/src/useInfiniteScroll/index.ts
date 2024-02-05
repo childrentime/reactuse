@@ -20,11 +20,11 @@ export const useInfiniteScroll: UseInfiniteScroll = (
       ...options.offset,
     },
   });
-  const element = getTargetElement(target);
 
   const di = state[3][direction];
 
   useUpdateEffect(() => {
+    const element = getTargetElement(target);
     const fn = async () => {
       const previous = {
         height: element?.scrollHeight ?? 0,
@@ -41,5 +41,5 @@ export const useInfiniteScroll: UseInfiniteScroll = (
       }
     };
     fn();
-  }, [di, options.preserveScrollPosition]);
+  }, [di, options.preserveScrollPosition, target]);
 };

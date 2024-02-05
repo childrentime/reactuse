@@ -36,9 +36,9 @@ export const useTextDirection: UseTextDirection = (
     setValue(
       document
         ?.querySelector(selector)
-        ?.getAttribute("dir") as UseTextDirectionValue,
+        ?.getAttribute("dir") as UseTextDirectionValue ?? initialValue,
     );
-  }, [selector]);
+  }, [initialValue, selector]);
 
   const set = (value: UseTextDirectionValue) => {
     if (!isBrowser) {

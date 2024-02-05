@@ -160,30 +160,17 @@ const config: Config = {
           title: "Community",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
-            },
-            {
               label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
+              href: "https://discord.gg/aMhGpqEe",
             },
             {
               label: "Twitter",
-              href: "https://twitter.com/docusaurus",
-            },
-          ],
-        },
-        {
-          title: "More",
-          items: [
-            {
-              label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              href: "https://twitter.com/wulianwen1",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} React Use, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} React Use, Inc. Built with Docusaurus. 备案号: 鄂ICP备2023017842号`,
     },
     prism: {
       theme: prismThemes.github,
