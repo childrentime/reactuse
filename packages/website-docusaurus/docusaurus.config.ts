@@ -55,7 +55,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/childrentime/reactuse/tree/main/packages/website-docusaurus/docs",
+            "https://github.com/childrentime/reactuse/tree/main/packages/website-docusaurus",
         },
         theme: {
           customCss: "./src/css/custom.css",
