@@ -23,4 +23,4 @@ status = 200
 
 [build]
 command = "pnpm run build"
-publish = "dist"
+publish = "build"
