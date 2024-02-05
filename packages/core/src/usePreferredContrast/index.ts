@@ -1,17 +1,12 @@
-import { isBrowser } from "../utils/is";
-import useMediaQuery from "../useMediaQuery";
+import { useMediaQuery } from "../useMediaQuery";
+import type { Contrast, UsePreferredContrast } from "./interface";
 
-export type Contrast = "more" | "less" | "custom" | "no-preference";
-export default function usePreferredContrast(
-  defaultState?: Contrast,
-): Contrast {
+export const usePreferredContrast: UsePreferredContrast = (
+  defaultState: Contrast = "no-preference",
+): Contrast => {
   const isMore = useMediaQuery("(prefexrs-contrast: more)", false);
   const isLess = useMediaQuery("(prefers-contrast: less)", false);
   const isCustom = useMediaQuery("(prefers-contrast: custom)", false);
-
-  if (!isBrowser && defaultState) {
-    return defaultState;
-  }
 
   return isMore
     ? "more"
@@ -19,5 +14,5 @@ export default function usePreferredContrast(
       ? "less"
       : isCustom
         ? "custom"
-        : "no-preference";
-}
+        : defaultState;
+};

@@ -316,8 +316,8 @@ function getPropertySchema(
   const name = sym.getName();
   const declaration = sym.getDeclarations()[0];
 
-  if(!declaration){
-    return null
+  if (!declaration) {
+    return null;
   }
 
   const typeText = declaration.getText();
@@ -456,25 +456,8 @@ function generateSchema(
           ),
         };
       }
-      // Interface declaration forbid extends
-      else if (
-        dType === 'InterfaceDeclaration' &&
-        !!tags.find(({ name }) => name === 'notExtends')
-      ) {
-        const data: PropertyType[] = [];
-        (declaration as InterfaceDeclaration).getProperties().forEach((a) => {
-          const schema = getPropertySchema(
-            a.getSymbol() as Symbol,
-            defaultT,
-            strictComment,
-            nestedTypeList,
-            parsedNestedTypeSet,
-            linkFormatter
-          );
-          schema && data.push(schema);
-        });
-        schema = { tags, data };
-      } else {
+      // Interface declaration
+      else if (dType === 'InterfaceDeclaration') {
         const data: PropertyType[] = [];
         typeChecker.getPropertiesOfType(declaration.getType()).forEach((a) => {
           const schema = getPropertySchema(
@@ -490,6 +473,28 @@ function generateSchema(
         schema = { tags, data };
         if (data.length === 0) {
           schema = { ...schema, type: declaration.getText() };
+        }
+      } else {
+        // TypeAliasDeclaration
+        const data: PropertyType[] = [];
+        const type = typeChecker.getTypeAtLocation(declaration);
+
+        console.log('type',type.isUnion(),declaration.getType().getText())
+        if (type.isUnion()) {
+          schema = { tags, data, type: declaration.getText() };
+        } else {
+          typeChecker.getPropertiesOfType(declaration.getType()).forEach((a) => {
+            const schema = getPropertySchema(
+              a,
+              defaultT,
+              strictComment,
+              nestedTypeList,
+              parsedNestedTypeSet,
+              linkFormatter
+            );
+            schema && data.push(schema);
+          });
+          schema = { tags, data };
         }
       }
 

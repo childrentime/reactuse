@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { BasicTarget } from "../utils/domTarget";
 
 export const defaultOptions: UseCssVarOptions = {
   observe: false,
@@ -23,7 +23,7 @@ export type UseCssVar = <T extends HTMLElement = HTMLElement>(
    * @zh dom元素
    * @en dom element
    */
-  target: RefObject<T>,
+  target: BasicTarget<T>,
   /**
    * @zh 默认值
    * @en default value

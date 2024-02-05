@@ -1,36 +1,14 @@
 import { useEffect, useState } from "react";
 import { off, on } from "../utils/browser";
 import { noop } from "../utils/is";
+import type { UsePermission, UsePermissionGeneralPermissionDescriptor, UsePermissionState } from "./interface";
 
-export type IState = PermissionState | "";
-
-type DescriptorNamePolyfill =
-  | "accelerometer"
-  | "accessibility-events"
-  | "ambient-light-sensor"
-  | "background-sync"
-  | "camera"
-  | "clipboard-read"
-  | "clipboard-write"
-  | "gyroscope"
-  | "magnetometer"
-  | "microphone"
-  | "notifications"
-  | "payment-handler"
-  | "persistent-storage"
-  | "push"
-  | "speaker";
-
-export type GeneralPermissionDescriptor =
-  | PermissionDescriptor
-  | { name: DescriptorNamePolyfill };
-
-export default function usePermission(
+export const usePermission: UsePermission = (
   permissionDesc:
-  | GeneralPermissionDescriptor
-  | GeneralPermissionDescriptor["name"],
-): IState {
-  const [state, setState] = useState<IState>("");
+  | UsePermissionGeneralPermissionDescriptor
+  | UsePermissionGeneralPermissionDescriptor["name"],
+): UsePermissionState => {
+  const [state, setState] = useState<UsePermissionState>("");
 
   useEffect(() => {
     const desc
@@ -63,4 +41,4 @@ export default function usePermission(
   }, [permissionDesc]);
 
   return state;
-}
+};

@@ -1,18 +1,14 @@
+import type { RefObject } from "react";
 import { useCallback, useEffect, useRef } from "react";
 import ResizeObserver from "resize-observer-polyfill";
-import type { BasicTarget } from "../utils/domTarget";
-import { useLatestElement } from "../utils/domTarget";
-import useLatest from "../useLatest";
-import { defaultOptions } from "../utils/defaults";
+import { useLatest } from "../useLatest";
 
-export default function useResizeObserver(
-  target: BasicTarget,
+export const useResizeObserver = (
+  target: RefObject<Element>,
   callback: ResizeObserverCallback,
-  options: ResizeObserverOptions = defaultOptions,
-): () => void {
+): () => void => {
   const savedCallback = useLatest(callback);
   const observerRef = useRef<ResizeObserver>();
-  const element = useLatestElement(target);
 
   const stop = useCallback(() => {
     if (observerRef.current) {
@@ -20,14 +16,15 @@ export default function useResizeObserver(
     }
   }, []);
   useEffect(() => {
+    const element = target.current;
     if (!element) {
       return;
     }
     observerRef.current = new ResizeObserver(savedCallback.current);
-    observerRef.current.observe(element, options);
+    observerRef.current.observe(element);
 
     return stop;
-  }, [options, element]);
+  }, [savedCallback, stop, target]);
 
   return stop;
-}
+};

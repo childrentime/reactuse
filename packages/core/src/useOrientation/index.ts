@@ -1,20 +1,16 @@
 import { useEffect, useState } from "react";
 import { off, on } from "../utils/browser";
 import { isBrowser } from "../utils/is";
+import type { UseOrientation, UseOrientationLockType, UseOrientationState } from "./interface";
 
-export interface OrientationState {
-  angle: number;
-  type: string;
-}
-
-const defaultState: OrientationState = {
+const defaultState: UseOrientationState = {
   angle: 0,
   type: "landscape-primary",
 };
 
-export default function useOrientation(
-  initialState: OrientationState = defaultState,
-) {
+export const useOrientation: UseOrientation = (
+  initialState: UseOrientationState = defaultState,
+) => {
   const [state, setState] = useState(initialState);
 
   useEffect(() => {
@@ -33,7 +29,7 @@ export default function useOrientation(
           setState({
             angle:
               typeof window.orientation === "number" ? window.orientation : 0,
-            type: "",
+            type: void 0,
           });
         }
       }
@@ -48,14 +44,14 @@ export default function useOrientation(
     };
   }, []);
 
-  const lockOrientation = (type: OrientationLockType) => {
+  const lockOrientation = (type: UseOrientationLockType) => {
     if (isBrowser) {
       return;
     }
     if (!(window && "screen" in window && "orientation" in window.screen)) {
       return Promise.reject(new Error("Not supported"));
     }
-
+    // @ts-expect-error deprecated types
     return window.screen.orientation.lock(type);
   };
 
@@ -71,4 +67,4 @@ export default function useOrientation(
   };
 
   return [state, lockOrientation, unlockOrientation] as const;
-}
+};

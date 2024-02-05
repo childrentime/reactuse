@@ -1,6 +1,6 @@
-import type { RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { isBrowser } from "../utils/is";
+import { type BasicTarget, getTargetElement } from "../utils/domTarget";
 import { type UseCssVar, type UseCssVarOptions, defaultOptions } from "./interface";
 
 const getInitialState = (defaultValue?: string) => {
@@ -24,7 +24,7 @@ const getInitialState = (defaultValue?: string) => {
 
 export const useCssVar: UseCssVar = <T extends HTMLElement = HTMLElement>(
   prop: string,
-  target: RefObject<T>,
+  target: BasicTarget<T>,
   defaultValue?: string,
   options: UseCssVarOptions = defaultOptions,
 ) => {
@@ -32,7 +32,7 @@ export const useCssVar: UseCssVar = <T extends HTMLElement = HTMLElement>(
   const [variable, setVariable] = useState<string>(
     getInitialState(defaultValue),
   );
-  const element = target.current;
+  const element = getTargetElement(target);
   const observerRef = useRef<MutationObserver>();
 
   const set = useCallback(

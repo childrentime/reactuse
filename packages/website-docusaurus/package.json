@@ -29,6 +29,7 @@
     "prism-react-renderer": "^2.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-live": "4.1.5",
     "remark-admonitions": "^1.2.1",
     "search-insights": "^2.13.0"
   },

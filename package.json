@@ -21,6 +21,9 @@
     "core:dev": "pnpm --filter core run dev & pnpm build:types",
     "size": "tsx scripts/exportSize.mts"
   },
+  "dependencies": {
+    "bunchee": "^4.4.3"
+  },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
@@ -65,9 +68,9 @@
         "typescript",
         "@types/react"
       ]
+    },
+    "patchedDependencies": {
+      "react-live@4.1.5": "patches/react-live@4.1.5.patch"
     }
-  },
-  "dependencies": {
-    "bunchee": "^4.4.3"
   }
 }
