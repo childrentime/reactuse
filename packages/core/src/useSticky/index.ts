@@ -2,7 +2,7 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import type { BasicTarget } from "../utils/domTarget";
 import { getTargetElement } from "../utils/domTarget";
-import useThrottleFn from "../useThrottleFn";
+import { useThrottleFn } from "../useThrottleFn";
 import { getScrollParent } from "../utils/scroll";
 import type { UseStickyParams } from "./interface";
 

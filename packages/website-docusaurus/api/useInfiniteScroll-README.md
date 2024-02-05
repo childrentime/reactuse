@@ -18,7 +18,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|state|the return state of `useScroll`|readonly [number, number, boolean, [UseScrollArrivedState](#UseScrollArrivedState), [UseScrollDirection](#UseScrollDirection)]  **(Required)**|-|
+|state|the return state of `useScroll`|readonly [number, number, boolean, [UseInfiniteScrollArrivedState](#UseInfiniteScrollArrivedState), [UseInfiniteScrollDirection](#UseInfiniteScrollDirection)]  **(Required)**|-|
 
 ### UseInfiniteScrollOptions
 
@@ -34,7 +34,7 @@
 |onStop|Trigger it when scrolling ends.|(e: Event) => void |`-`|
 |eventListenerOptions|Listener options for scroll event.|boolean \| AddEventListenerOptions |`{capture: false, passive: true}`|
 
-### UseScrollArrivedState
+### UseInfiniteScrollArrivedState
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
@@ -43,7 +43,7 @@
 |top|arrived top|boolean  **(Required)**|`-`|
 |bottom|arrived bottom|boolean  **(Required)**|`-`|
 
-### UseScrollDirection
+### UseInfiniteScrollDirection
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|

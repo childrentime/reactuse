@@ -15,7 +15,7 @@ export type UseAsyncEffect = <T>(
    * @en cleanup function
    * @defaultValue () => {}
    */
-  cleanup: typeof effect,
+  cleanup?: typeof effect,
    /**
    * @zh 依赖列表
    * @en dependency list

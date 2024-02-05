@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import useRafFn from "../useRafFn";
+import { useRafFn } from "../useRafFn";
 import { defaultOptions } from "../utils/defaults";
 import type { UseFpsOptions } from "./interface";
 

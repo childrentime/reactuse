@@ -1,7 +1,7 @@
 import { useCallback, useRef } from "react";
 import type { Fn } from "../utils/types";
 import { isDev, isFunction } from "../utils/is";
-import useIsomorphicLayoutEffect from "../useIsomorphicLayoutEffect";
+import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
 import type { UseEvent } from "./interface";
 
 type PickFunction<T extends Fn> = (

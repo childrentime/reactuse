@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import useUnmount from ".";
+import { useUnmount } from ".";
 
 describe("useUnmount", () => {
   it("should be defined", () => {

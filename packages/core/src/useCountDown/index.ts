@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useInterval from "../useInterval";
+import { useInterval } from "../useInterval";
 import type { UseCountDown } from "./interface";
 
 const padZero = (time: number): string => {

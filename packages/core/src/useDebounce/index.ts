@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { DebounceSettings } from "lodash-es";
-import useDebounceFn from "../useDebounceFn";
+import { useDebounceFn } from "../useDebounceFn";
 import type { UseDebounce } from "./interface";
 
 export const useDebounce: UseDebounce = <T>(

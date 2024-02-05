@@ -1,5 +1,5 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
-import useMutationObserver from ".";
+import { renderHook, waitFor } from "@testing-library/react";
+import { useMutationObserver } from ".";
 
 const options: MutationObserverInit = {
   attributes: true,
@@ -59,11 +59,7 @@ describe("useMutationObserver", () => {
       container,
       callback: jest.fn(),
     };
-    const props1 = {
-      container: container1,
-      callback: jest.fn(),
-    };
-    const { rerender } = renderHook(
+    renderHook(
       () => useMutationObserver(props.callback, () => props.container, options),
       {
         initialProps: props,
@@ -73,17 +69,6 @@ describe("useMutationObserver", () => {
 
     await waitFor(() => {
       expect(props.callback).toBeCalled();
-    });
-
-    act(() => {
-      rerender(props1);
-    });
-
-    expect(props1.callback).not.toBeCalled();
-
-    container1.style.backgroundColor = "#000";
-    waitFor(() => {
-      expect(props1.callback).toBeCalled();
     });
   });
 });

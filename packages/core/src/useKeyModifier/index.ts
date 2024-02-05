@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useMount from "../useMount";
+import { useMount } from "../useMount";
 import { off, on } from "../utils/browser";
 import { defaultOptions } from "../utils/defaults";
 import type { KeyModifier, UseKeyModifier, UseModifierOptions } from "./interface";

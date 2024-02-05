@@ -18,7 +18,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|state|`useScroll` 返回的状态|readonly [number, number, boolean, [UseScrollArrivedState](#UseScrollArrivedState), [UseScrollDirection](#UseScrollDirection)]  **(必填)**|-|
+|state|`useScroll` 返回的状态|readonly [number, number, boolean, [UseInfiniteScrollArrivedState](#UseInfiniteScrollArrivedState), [UseInfiniteScrollDirection](#UseInfiniteScrollDirection)]  **(必填)**|-|
 
 ### UseInfiniteScrollOptions
 
@@ -34,7 +34,7 @@
 |onStop|滚动结束的回调|(e: Event) => void |`-`|
 |eventListenerOptions|滚动事件参数|boolean \| AddEventListenerOptions |`{capture: false, passive: true}`|
 
-### UseScrollArrivedState
+### UseInfiniteScrollArrivedState
 
 |参数名|描述|类型|默认值|
 |---|---|---|---|
@@ -43,7 +43,7 @@
 |top|到达顶部|boolean  **(必填)**|`-`|
 |bottom|到达底部|boolean  **(必填)**|`-`|
 
-### UseScrollDirection
+### UseInfiniteScrollDirection
 
 |参数名|描述|类型|默认值|
 |---|---|---|---|

@@ -1,6 +1,6 @@
 import type { DependencyList } from "react";
 import { useEffect } from "react";
-import useMountedState from "../useMountedState";
+import { useMountedState } from "../useMountedState";
 import { noop } from "../utils/is";
 import type { UseAsyncEffect } from "./interface";
 

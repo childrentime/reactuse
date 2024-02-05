@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { BasicTarget } from "../utils/domTarget";
 
 /**
  * @title UseMutationObserver
@@ -15,7 +15,7 @@ export type UseMutationObserver = (
    * @zh dom元素
    * @en dom对象
    */
-  target: RefObject<Element>,
+  target: BasicTarget,
   /**
    * @zh 传递给 `MutationObserver` 的参数
    * @en options passed to `MutationObserver`

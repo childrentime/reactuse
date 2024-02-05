@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { useEffect } from "react";
-import useDeepCompareEffect from ".";
+import { useDeepCompareEffect } from ".";
 
 let options = { max: 10 };
 const mockEffectNormal = jest.fn();

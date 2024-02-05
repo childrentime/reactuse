@@ -1,7 +1,7 @@
 import type { RefObject } from "react";
 import { defaultWindow } from "../utils/browser";
-import useEventListener from "../useEventListener";
-import useLatest from "../useLatest";
+import { useEventListener } from "../useEventListener";
+import { useLatest } from "../useLatest";
 import type { EventType, UseClickOutside } from "./interface";
 
 const listerOptions = {

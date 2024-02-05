@@ -1,4 +1,4 @@
-import useSetState from ".";
+import { useSetState } from ".";
 
 describe("useSetState", () => {
   it("should be defined", () => {

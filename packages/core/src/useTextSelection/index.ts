@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useEventListener } from "../useEventListener";
-import useUpdate from "../useUpdate";
+import { useUpdate } from "../useUpdate";
 import type { UseTextSelection } from "./interface";
 
 export const useTextSelection: UseTextSelection = (): Selection | null => {

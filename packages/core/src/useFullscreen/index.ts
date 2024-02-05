@@ -2,7 +2,7 @@ import type { RefObject } from "react";
 import { useState } from "react";
 import screenfull from "screenfull";
 import { getTargetElement } from "../utils/domTarget";
-import useUnmount from "../useUnmount";
+import { useUnmount } from "../useUnmount";
 import { useEvent } from "../useEvent";
 import { defaultOptions } from "../utils/defaults";
 import type { UseFullScreenOptions, UseFullscreen } from "./interface";

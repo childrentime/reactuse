@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { createMockMediaMatcher } from "../../.test";
-import useMedia from ".";
+import { useMediaQuery as useMedia } from ".";
 
 describe("useMedia", () => {
   beforeEach(() => {

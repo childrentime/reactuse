@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import { createMockRaf } from "../../.test";
-import useOrientation from ".";
+import { useOrientation } from ".";
 
 describe("useOrientation", () => {
   const mockRaf = createMockRaf();
@@ -62,7 +62,7 @@ describe("useOrientation", () => {
 
     const hook = getHook();
 
-    expect(hook.result.current[0].type).toBe("");
+    expect(hook.result.current[0].type).toBe(void 0);
     expect(hook.result.current[0].angle).toBe(0);
   });
 
@@ -72,7 +72,7 @@ describe("useOrientation", () => {
 
     const hook = getHook();
 
-    expect(hook.result.current[0].type).toBe("");
+    expect(hook.result.current[0].type).toBe(void 0);
     expect(hook.result.current[0].angle).toBe(0);
   });
 });

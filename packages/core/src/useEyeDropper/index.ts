@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import useSupported from "../useSupported";
+import { useSupported } from "../useSupported";
 import type { UseEyeDropper, UseEyeDropperOpenOptions, UseEyeDropperOpenReturnType } from "./interface";
 
 export const useEyeDropper: UseEyeDropper = () => {

@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useCssVar } from "../useCssVar";
 import { useDebounceFn } from "../useDebounceFn";
 import { useEventListener } from "../useEventListener";
-import useUpdate from "../useUpdate";
+import { useUpdate } from "../useUpdate";
 
 const topVarName = "--reactuse-safe-area-top";
 const rightVarName = "--reactuse-safe-area-right";

@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import useUpdateEffect from ".";
+import { useUpdateEffect } from ".";
 
 describe("useUpdateEffect", () => {
   it("test on mounted", async () => {

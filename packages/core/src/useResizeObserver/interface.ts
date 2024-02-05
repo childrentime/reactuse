@@ -13,5 +13,10 @@ export type UseResizeObserver = (
    * @zh 回调
    * @en callback
    */
-  callback: ResizeObserverCallback
+  callback: ResizeObserverCallback,
+/**
+   * @zh `resizeObserver` 参数
+   * @en options passed to `resizeObserver`
+   */
+  options?: ResizeObserverOptions
 ) => () => void;

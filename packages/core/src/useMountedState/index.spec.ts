@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import useMountedState from ".";
+import { useMountedState } from ".";
 
 describe("useMountedState", () => {
   it("should be defined", () => {

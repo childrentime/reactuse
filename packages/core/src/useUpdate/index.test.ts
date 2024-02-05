@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import useUpdate from ".";
+import { useUpdate } from ".";
 
 describe("useUpdate", () => {
   it("should be defined", () => {

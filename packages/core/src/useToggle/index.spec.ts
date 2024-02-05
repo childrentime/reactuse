@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import useToggle from ".";
+import { useToggle } from ".";
 
 const setUp = (initialValue: boolean) =>
   renderHook(() => useToggle(initialValue));

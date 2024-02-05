@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useIsomorphicLayoutEffect from "../useIsomorphicLayoutEffect";
+import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
 
 export const useSupported = (
   callback: () => unknown,

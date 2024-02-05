@@ -4,7 +4,7 @@ import { noop } from "../utils/is";
 import { useDebounceFn } from "../useDebounceFn";
 import { useEvent } from "../useEvent";
 import { useEventListener } from "../useEventListener";
-import useThrottleFn from "../useThrottleFn";
+import { useThrottleFn } from "../useThrottleFn";
 import { defaultOptions } from "../utils/defaults";
 import type { UseScroll, UseScrollOptions } from "./interface";
 

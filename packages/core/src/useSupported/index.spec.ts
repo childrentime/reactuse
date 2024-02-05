@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import useSupported from ".";
+import { useSupported } from ".";
 
 describe("useSupported", () => {
   it("should be defined", () => {

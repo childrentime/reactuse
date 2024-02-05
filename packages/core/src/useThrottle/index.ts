@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { ThrottleSettings } from "lodash-es";
-import useThrottleFn from "../useThrottleFn";
+import { useThrottleFn } from "../useThrottleFn";
 import type { UseThrottle } from "./interface";
 
 export const useThrottle: UseThrottle = <T>(

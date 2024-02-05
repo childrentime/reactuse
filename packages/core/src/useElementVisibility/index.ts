@@ -1,6 +1,6 @@
 import type { RefObject } from "react";
 import { useCallback, useState } from "react";
-import useIntersectionObserver from "../useIntersectionObserver";
+import { useIntersectionObserver } from "../useIntersectionObserver";
 import { defaultOptions } from "../utils/defaults";
 import type { UseElementVisibility } from "./interface";
 

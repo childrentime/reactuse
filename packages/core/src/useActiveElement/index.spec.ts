@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import useActiveElement from ".";
+import { useActiveElement } from ".";
 
 describe("useActiveElement", () => {
   let input: HTMLInputElement;

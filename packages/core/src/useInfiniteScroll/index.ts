@@ -1,7 +1,7 @@
 import type { RefObject } from "react";
 import { useScroll } from "../useScroll";
-import useLatest from "../useLatest";
-import useUpdateEffect from "../useUpdateEffect";
+import { useLatest } from "../useLatest";
+import { useUpdateEffect } from "../useUpdateEffect";
 import { defaultOptions } from "../utils/defaults";
 import { getTargetElement } from "../utils/domTarget";
 import type { UseInfiniteScroll, UseInfiniteScrollOptions } from "./interface";

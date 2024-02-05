@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import useEventListener from ".";
+import { useEventListener } from ".";
 
 interface Props {
   name: string;

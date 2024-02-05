@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import useEventListener from "../useEventListener";
+import { useEventListener } from "../useEventListener";
 import type { UseActiveElement } from "./interface";
 
 export const useActiveElement: UseActiveElement = <T extends Element>(): T | null => {

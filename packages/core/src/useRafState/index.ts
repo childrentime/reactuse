@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 import { useCallback, useRef, useState } from "react";
-import useUnmount from "../useUnmount";
+import { useUnmount } from "../useUnmount";
 
 export const useRafState = <S>(
   initialState: S | (() => S),

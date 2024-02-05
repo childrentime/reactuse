@@ -1,6 +1,6 @@
 import type { RefObject } from "react";
 import { useRef, useState } from "react";
-import useEventListener from "../useEventListener";
+import { useEventListener } from "../useEventListener";
 import type { UseDropZone } from "./interface";
 
 export const useDropZone: UseDropZone = (

@@ -1,10 +1,10 @@
-import type { RefObject } from "react";
+import type { BasicTarget } from "../utils/domTarget";
 import { getTargetElement } from "../utils/domTarget";
 import { useEventListener } from "../useEventListener";
-import useRafState from "../useRafState";
-import type { CursorState, UseMouse } from "./interface";
+import { useRafState } from "../useRafState";
+import type { UseMouse, UseMouseCursorState } from "./interface";
 
-const initState: CursorState = {
+const initState: UseMouseCursorState = {
   screenX: Number.NaN,
   screenY: Number.NaN,
   clientX: Number.NaN,
@@ -19,7 +19,7 @@ const initState: CursorState = {
   elementPosY: Number.NaN,
 };
 
-export const useMouse: UseMouse = (target?: RefObject<Element>): CursorState => {
+export const useMouse: UseMouse = (target?: BasicTarget): UseMouseCursorState => {
   const [state, setState] = useRafState(initState);
 
   useEventListener(

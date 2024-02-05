@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useLatest from "../useLatest";
+import { useLatest } from "../useLatest";
 import { defaultOptions } from "../utils/defaults";
 import type { UseInterval } from "./interface";
 

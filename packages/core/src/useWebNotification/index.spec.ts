@@ -1,4 +1,4 @@
-import useWebNotification from ".";
+import { useWebNotification } from ".";
 
 describe("useWebNotification", () => {
   it("should be defined", () => {

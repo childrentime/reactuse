@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import useAsyncEffect from ".";
+import { useAsyncEffect } from ".";
 
 async function getMockedData() {
   return new Promise((resolve) => {

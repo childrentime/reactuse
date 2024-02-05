@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import Cookies from "js-cookie";
-import useCookie from ".";
+import { useCookie } from ".";
 
 describe("useCookie", () => {
   const setUp = (

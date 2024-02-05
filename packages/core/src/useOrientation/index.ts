@@ -51,7 +51,6 @@ export const useOrientation: UseOrientation = (
     if (!(window && "screen" in window && "orientation" in window.screen)) {
       return Promise.reject(new Error("Not supported"));
     }
-    // @ts-expect-error deprecated types
     return window.screen.orientation.lock(type);
   };
 

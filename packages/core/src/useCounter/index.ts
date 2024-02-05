@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useEvent from "../useEvent";
+import { useEvent } from "../useEvent";
 import type { UseCounter } from "./interface";
 
 export const useCounter: UseCounter = (

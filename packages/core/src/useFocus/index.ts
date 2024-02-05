@@ -1,7 +1,7 @@
 import type { RefObject } from "react";
 import { useState } from "react";
 import { useEventListener } from "../useEventListener";
-import useMount from "../useMount";
+import { useMount } from "../useMount";
 import { getTargetElement } from "../utils/domTarget";
 import type { UseFocus } from "./interface";
 

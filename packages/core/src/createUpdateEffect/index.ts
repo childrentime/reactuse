@@ -1,5 +1,5 @@
 import type { useEffect, useLayoutEffect } from "react";
-import useFirstMountState from "../useFirstMountState";
+import { useFirstMountState } from "../useFirstMountState";
 
 type EffectHookType = typeof useEffect | typeof useLayoutEffect;
 

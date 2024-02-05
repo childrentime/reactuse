@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import useSupported from "../useSupported";
+import { useSupported } from "../useSupported";
 import { off, on } from "../utils/browser";
 import { noop } from "../utils/is";
 import type { UseMediaDeviceOptions, UseMediaDevices } from "./interface";

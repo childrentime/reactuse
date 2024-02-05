@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { noop } from "../utils/is";
 import { useMount } from "../useMount";
-import useUnmount from "../useUnmount";
+import { useUnmount } from "../useUnmount";
 import { defaultOptions } from "../utils/defaults";
 import type { UseScriptTag, UseScriptTagOptions, UseScriptTagStatus } from "./interface";
 
