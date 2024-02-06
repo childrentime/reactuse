@@ -64,17 +64,9 @@ You can submit an [issue](https://github.com/childrentime/reactuse/issues) or pr
 
 ## Contribute
 
-See the [**Contributing Guide**](CONTRIBUTING.md)
+See the [**Contributing Guide**](https://github.com/childrentime/reactuse/blob/main/CONTRIBUTING.md)
 
 <hr/>
-
-## Idea
-
-We want to keep a single hook function as simple as possible.
-
-* For data fetch, we recommend use [swr](https://www.npmjs.com/package/swr)
-
-* For keyboard shortcuts, we recommend use [react-hotkeys-hook](https://www.npmjs.com/package/react-hotkeys-hook)
 
 ## Thanks
 
