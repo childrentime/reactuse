@@ -230,4 +230,10 @@
 
 * feat(useDraggable): add container boundary
 
+# 5.0.4(Feb 22, 2024)
+
+## Core
+
+* fix(useLocalStorage): use `useDeepCompareEffect`
+
 

@@ -1,9 +1,10 @@
 import type { Dispatch, SetStateAction } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { isBrowser, isFunction } from "../utils/is";
 import { guessSerializerType } from "../utils/serializer";
 import { useEvent } from "../useEvent";
 import { defaultOnError, defaultOptions } from "../utils/defaults";
+import { useDeepCompareEffect } from "../useDeepCompareEffect";
 
 export interface Serializer<T> {
   read(raw: string): T;
@@ -119,15 +120,13 @@ export default function useStorage<
   }
 
   const type = guessSerializerType<T | undefined>(defaultValue);
-  const serializer = useMemo(() => {
-    return options.serializer ?? StorageSerializers[type];
-  }, [options.serializer, type]);
+  const serializer = options.serializer ?? StorageSerializers[type];
 
   const [state, setState] = useState<T | null>(
     getInitialState(key, defaultValue, storage, serializer, onError),
   );
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     const data = effectStorageValue
       ? isFunction(effectStorageValue)
         ? effectStorageValue()
@@ -150,7 +149,6 @@ export default function useStorage<
     };
 
     setState(getStoredValue());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, serializer, storage, onError, effectStorageValue]);
 
   const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
