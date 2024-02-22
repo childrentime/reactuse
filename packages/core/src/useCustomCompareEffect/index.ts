@@ -2,8 +2,6 @@ import type { DependencyList, EffectCallback } from "react";
 import { useEffect, useRef } from "react";
 import type { DepsEqualFnType, UseCustomCompareEffect } from "./interface";
 
-const isPrimitive = (val: any) => val !== Object(val);
-
 export const useCustomCompareEffect: UseCustomCompareEffect = <TDeps extends DependencyList>(
   effect: EffectCallback,
   deps: TDeps,
@@ -13,12 +11,6 @@ export const useCustomCompareEffect: UseCustomCompareEffect = <TDeps extends Dep
     if (!(Array.isArray(deps)) || !deps.length) {
       console.warn(
         "`useCustomCompareEffect` should not be used with no dependencies. Use React.useEffect instead.",
-      );
-    }
-
-    if (deps.every(isPrimitive)) {
-      console.warn(
-        "`useCustomCompareEffect` should not be used with dependencies that are all primitive values. Use React.useEffect instead.",
       );
     }
 

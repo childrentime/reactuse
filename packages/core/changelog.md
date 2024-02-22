@@ -224,4 +224,10 @@
 
 * fix(useDraggable): remove max call effect.
 
+# 5.0.3(Feb 22, 2024)
+
+## Core
+
+* feat(useDraggable): add container boundary
+
 

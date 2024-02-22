@@ -3,8 +3,6 @@ import type { DependencyList, EffectCallback } from "react";
 import { useCustomCompareEffect } from "../useCustomCompareEffect";
 import type { UseDeepCompareEffect } from "./interface";
 
-const isPrimitive = (val: any) => val !== Object(val);
-
 export const useDeepCompareEffect: UseDeepCompareEffect = (
   effect: EffectCallback,
   deps: DependencyList,
@@ -13,12 +11,6 @@ export const useDeepCompareEffect: UseDeepCompareEffect = (
     if (!Array.isArray(deps) || !deps.length) {
       console.warn(
         "`useDeepCompareEffect` should not be used with no dependencies. Use React.useEffect instead.",
-      );
-    }
-
-    if (deps.every(isPrimitive)) {
-      console.warn(
-        "`useDeepCompareEffect` should not be used with dependencies that are all primitive values. Use React.useEffect instead.",
       );
     }
   }

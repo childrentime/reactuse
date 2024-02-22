@@ -1,5 +1,6 @@
 import type { RefObject } from "react";
 import type { PointerType, Position } from "../utils/types";
+import type { BasicTarget } from "../utils/domTarget";
 
 /**
  * @title useDraggable
@@ -55,7 +56,14 @@ export interface UseDraggableOptions {
    * @zh 将“pointermove”和“pointerup”事件附加到的dom元素
    * @defaultValue window
    */
-  draggingElement?: RefObject<HTMLElement | SVGElement | Window | Document>;
+  draggingElement?: BasicTarget<HTMLElement | SVGElement>;
+
+  /**
+   * @en Element for calculating bounds (If not set, it will use the event's target).
+   * @zh 设置拖拽容器边界
+   * @defaultValue undefined
+   */
+  containerElement?: RefObject<HTMLElement | SVGAElement>;
 
   /**
    * @en Handle that triggers the drag event

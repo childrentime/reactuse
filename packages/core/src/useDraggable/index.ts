@@ -2,18 +2,23 @@ import type { RefObject } from "react";
 import { useState } from "react";
 import type { PointerType, Position } from "../utils/types";
 import { useEventListener } from "../useEventListener";
+import { useDeepCompareEffect } from "../useDeepCompareEffect";
 import type { UseDraggable, UseDraggableOptions } from "./interface";
 
 export const useDraggable: UseDraggable = (
   target: RefObject<HTMLElement | SVGElement>,
   options: UseDraggableOptions = {},
 ): readonly [number, number, boolean] => {
-  const draggingElement = options.draggingElement;
+  const { draggingElement, containerElement } = options;
   const draggingHandle = options.handle ?? target;
 
   const [position, setPositon] = useState<Position>(
     options.initialValue ?? { x: 0, y: 0 },
   );
+
+  useDeepCompareEffect(() => {
+    setPositon(options.initialValue ?? { x: 0, y: 0 });
+  }, [options.initialValue]);
 
   const [pressedDelta, setPressedDelta] = useState<Position>();
 
@@ -35,16 +40,29 @@ export const useDraggable: UseDraggable = (
 
   const start = (e: PointerEvent) => {
     const element = target.current;
+
     if (!filterEvent(e) || !element) {
       return;
     }
     if (options.exact && e.target !== element) {
       return;
     }
-    const rect = element.getBoundingClientRect();
+
+    const container = containerElement?.current;
+    const containerRect = container?.getBoundingClientRect?.();
+    const targetRect = element.getBoundingClientRect();
+
     const pos = {
-      x: e.pageX - rect.left,
-      y: e.pageY - rect.top,
+      x:
+        e.clientX
+        - (container
+          ? targetRect.left - containerRect!.left + container.scrollLeft
+          : targetRect.left),
+      y:
+        e.clientY
+        - (container
+          ? targetRect.top - containerRect!.top + container.scrollTop
+          : targetRect.top),
     };
     if (options.onStart?.(pos, e) === false) {
       return;
@@ -54,15 +72,26 @@ export const useDraggable: UseDraggable = (
   };
 
   const move = (e: PointerEvent) => {
-    if (!filterEvent(e)) {
+    const element = target.current;
+    if (!filterEvent(e) || !element) {
       return;
     }
     if (!pressedDelta) {
       return;
     }
+    const container = containerElement?.current;
+    const targetRect = element.getBoundingClientRect();
+    let { x, y } = position;
+    x = e.clientX - pressedDelta.x;
+    y = e.clientY - pressedDelta.y;
+    if (container) {
+      x = Math.min(Math.max(0, x), container.scrollWidth - targetRect.width);
+      y = Math.min(Math.max(0, y), container.scrollHeight - targetRect.height);
+    }
+
     setPositon({
-      x: e.pageX - pressedDelta.x,
-      y: e.pageY - pressedDelta.y,
+      x,
+      y,
     });
     options.onMove?.(position, e);
     handleEvent(e);
