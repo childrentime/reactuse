@@ -67,9 +67,6 @@
         "typescript",
         "@types/react"
       ]
-    },
-    "patchedDependencies": {
-      "react-live@4.1.5": "patches/react-live@4.1.5.patch"
     }
   }
 }
