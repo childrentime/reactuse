@@ -8,3 +8,4 @@
 |---|---|---|---|
 |target|dom element|React.RefObject&lt;Element&gt;  **(Required)**|-|
 |callback|callback|ResizeObserverCallback  **(Required)**|-|
+|options|options passed to `resizeObserver`|ResizeObserverOptions \| undefined |-|

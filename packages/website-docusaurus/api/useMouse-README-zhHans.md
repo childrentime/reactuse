@@ -6,7 +6,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|target|dom元素|React.RefObject&lt;Element&gt; \| undefined |-|
+|target|dom元素|[BasicTarget](#BasicTarget) |-|
 
 ### UseMouseCursorState
 
@@ -26,3 +26,22 @@
   elementPosX: number;
   elementPosY: number;
 }`
+
+
+### BasicTarget
+
+```js
+export type BasicTarget<T extends TargetType = Element> = (() => TargetValue<T>) | TargetValue<T> | MutableRefObject<TargetValue<T>>;
+```
+
+### TargetValue
+
+```js
+type TargetValue<T> = T | undefined | null;
+```
+
+### TargetType
+
+```js
+type TargetType = HTMLElement | Element | Window | Document | EventTarget;
+```

@@ -8,3 +8,4 @@
 |---|---|---|---|
 |target|dom元素|React.RefObject&lt;Element&gt;  **(必填)**|-|
 |callback|回调|ResizeObserverCallback  **(必填)**|-|
+|options|`resizeObserver` 参数|ResizeObserverOptions \| undefined |-|
