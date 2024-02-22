@@ -237,3 +237,10 @@
 * fix(useLocalStorage): use `useDeepCompareEffect`
 
 
+# 5.0.5(Feb 22, 2024)
+
+## Core
+
+* feat(useDraggable): improve boundary for scroll container
+
+

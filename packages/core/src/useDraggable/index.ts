@@ -5,6 +5,28 @@ import { useEventListener } from "../useEventListener";
 import { useDeepCompareEffect } from "../useDeepCompareEffect";
 import type { UseDraggable, UseDraggableOptions } from "./interface";
 
+const isScrollX = (node: Element | null) => {
+  if (!node) {
+    return false;
+  }
+
+  return (
+    getComputedStyle(node).overflowX === "auto"
+    || getComputedStyle(node).overflowX === "scroll"
+  );
+};
+
+const isScrollY = (node: Element | null) => {
+  if (!node) {
+    return false;
+  }
+
+  return (
+    getComputedStyle(node).overflowY === "auto"
+    || getComputedStyle(node).overflowY === "scroll"
+  );
+};
+
 export const useDraggable: UseDraggable = (
   target: RefObject<HTMLElement | SVGElement>,
   options: UseDraggableOptions = {},
@@ -84,9 +106,16 @@ export const useDraggable: UseDraggable = (
     let { x, y } = position;
     x = e.clientX - pressedDelta.x;
     y = e.clientY - pressedDelta.y;
+
     if (container) {
-      x = Math.min(Math.max(0, x), container.scrollWidth - targetRect.width);
-      y = Math.min(Math.max(0, y), container.scrollHeight - targetRect.height);
+      const containerWidth = isScrollX(container)
+        ? container.scrollWidth
+        : container.clientWidth;
+      const containerHeight = isScrollY(container)
+        ? container.scrollHeight
+        : container.clientHeight;
+      x = Math.min(Math.max(0, x), containerWidth - targetRect.width);
+      y = Math.min(Math.max(0, y), containerHeight - targetRect.height);
     }
 
     setPositon({

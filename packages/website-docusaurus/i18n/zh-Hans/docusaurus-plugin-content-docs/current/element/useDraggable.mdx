@@ -55,11 +55,7 @@ function Demo() {
   const el = useRef<HTMLDivElement>(null);
   const scope = useRef<HTMLDivElement>(null);
 
-  const [initialValue, setInitialValue] = useState({ x: 200 / 2.2, y: 120 });
-
-  useEffect(() => {
-    setInitialValue({ x: window.innerWidth / 2.2, y: 120 });
-  }, []);
+  const initialValue = { x: 200 / 2.2, y: 120 };
 
   const [x, y, isDragging] = useDraggable(el, {
     initialValue,
@@ -70,7 +66,12 @@ function Demo() {
   return (
     <div
       ref={scope}
-      style={{ width: 500, height: 500, border: "1px solid blue",position: 'relative' }}
+      style={{
+        width: 500,
+        height: 500,
+        border: "1px solid blue",
+        position: "relative",
+      }}
     >
       <p style={{ textAlign: "center" }}>Check the floating boxes</p>
       <div
@@ -84,11 +85,11 @@ function Demo() {
           border: "solid 1px",
           left: x,
           top: y,
-          whiteSpace: 'nowrap'
+          whiteSpace: "nowrap",
         }}
       >
         {isDragging ? "Dragging!" : "👋 Drag me!"}
-        <div style={{ whiteSpace: 'nowrap'}}>
+        <div style={{ whiteSpace: "nowrap" }}>
           I am at {Math.round(x)}, {Math.round(y)}
         </div>
       </div>
