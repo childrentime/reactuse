@@ -223,12 +223,15 @@ importers:
       '@docusaurus/preset-classic':
         specifier: 3.1.1
         version: 3.1.1(@algolia/client-search@4.22.1)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.13.0)(typescript@5.2.2)
+      '@docusaurus/theme-common':
+        specifier: ^3.1.1
+        version: 3.1.1(@docusaurus/types@3.1.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       '@docusaurus/theme-live-codeblock':
         specifier: ^3.1.1
         version: 3.1.1(@docusaurus/types@3.1.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       '@easyops-cn/docusaurus-search-local':
         specifier: ^0.40.1
-        version: 0.40.1(@docusaurus/types@3.1.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
+        version: 0.40.1(@docusaurus/theme-common@3.1.1)(@docusaurus/types@3.1.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       '@mdx-js/react':
         specifier: ^3.0.0
         version: 3.0.0(react@18.2.0)
@@ -5115,7 +5118,7 @@ packages:
       immediate: 3.3.0
     dev: false
 
-  /@easyops-cn/docusaurus-search-local@0.40.1(@docusaurus/types@3.1.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2):
+  /@easyops-cn/docusaurus-search-local@0.40.1(@docusaurus/theme-common@3.1.1)(@docusaurus/types@3.1.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2):
     resolution: {integrity: sha512-4HMFZMpKKdd5qq1nFB8cvrAkgzZ1kNxphVciI64YHtmDYGIthVGZVG6+Ci7AAhzCR+ixLJkYwtVekvuMLjr2ZQ==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -5129,6 +5132,7 @@ packages:
         optional: true
     dependencies:
       '@docusaurus/plugin-content-docs': 3.1.1(debug@4.3.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
+      '@docusaurus/theme-common': 3.1.1(@docusaurus/types@3.1.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       '@docusaurus/theme-translations': 3.1.1
       '@docusaurus/utils': 3.1.1(@docusaurus/types@3.1.1)
       '@docusaurus/utils-common': 3.1.1(@docusaurus/types@3.1.1)
