@@ -218,3 +218,10 @@
 * fix(useLocalStorage): remove `defaultValue` in deps
 
 
+# 5.0.2(Feb 22, 2024)
+
+## Core
+
+* fix(useDraggable): remove max call effect.
+
+

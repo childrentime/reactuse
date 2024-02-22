@@ -1,5 +1,5 @@
 import type { RefObject } from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { PointerType, Position } from "../utils/types";
 import { useEventListener } from "../useEventListener";
 import type { UseDraggable, UseDraggableOptions } from "./interface";
@@ -14,10 +14,6 @@ export const useDraggable: UseDraggable = (
   const [position, setPositon] = useState<Position>(
     options.initialValue ?? { x: 0, y: 0 },
   );
-
-  useEffect(() => {
-    setPositon(options.initialValue ?? { x: 0, y: 0 });
-  }, [options.initialValue]);
 
   const [pressedDelta, setPressedDelta] = useState<Position>();
 
