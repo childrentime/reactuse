@@ -118,9 +118,8 @@ describe(useLocalStorage, () => {
   });
 
   it("safely returns objects from updates", () => {
-    const defaultsValue = { ok: true };
     const { result, rerender } = renderHook(() =>
-      useLocalStorage<{ ok: any }>("foo", defaultsValue),
+      useLocalStorage<{ ok: any }>("foo", { ok: true }),
     );
 
     const [, setFoo] = result.current;

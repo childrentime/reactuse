@@ -150,7 +150,8 @@ export default function useStorage<
     };
 
     setState(getStoredValue());
-  }, [key, defaultValue, serializer, storage, onError, effectStorageValue]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key, serializer, storage, onError, effectStorageValue]);
 
   const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
     (valOrFunc) => {

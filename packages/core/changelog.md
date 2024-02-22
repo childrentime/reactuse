@@ -211,3 +211,10 @@
 * perf: reduce useWindowSize re-render
 
 
+# 5.0.1(Feb 22, 2024)
+
+## Core
+
+* fix(useLocalStorage): remove `defaultValue` in deps
+
+
