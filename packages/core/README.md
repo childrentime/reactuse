@@ -58,7 +58,7 @@ Refer to [documentations](https://reactuse.com/) for more details.
 
 ## Feedback
 
-You can submit an [issue](https://github.com/childrentime/reactuse/issues) or provide feedback on [Discord](https://discord.gg/WzDtCCFF).
+You can submit an [issue](https://github.com/childrentime/reactuse/issues) or provide feedback on [Discord](https://discord.gg/HMsq6cFkKp).
 
 <hr/>
 
