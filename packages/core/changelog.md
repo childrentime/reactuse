@@ -244,3 +244,10 @@
 * feat(useDraggable): improve boundary for scroll container
 
 
+# 5.0.6(Feb 28, 2024)
+
+## Core
+
+* feat(useDraggable): support mannual set position
+
+

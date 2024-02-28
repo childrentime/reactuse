@@ -30,7 +30,7 @@ const isScrollY = (node: Element | null) => {
 export const useDraggable: UseDraggable = (
   target: RefObject<HTMLElement | SVGElement>,
   options: UseDraggableOptions = {},
-): readonly [number, number, boolean] => {
+) => {
   const { draggingElement, containerElement } = options;
   const draggingHandle = options.handle ?? target;
 
@@ -142,5 +142,5 @@ export const useDraggable: UseDraggable = (
   useEventListener("pointermove", move, draggingElement, true);
   useEventListener("pointerup", end, draggingElement, true);
 
-  return [position.x, position.y, !!pressedDelta] as const;
+  return [position.x, position.y, !!pressedDelta, setPositon] as const;
 };

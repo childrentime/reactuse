@@ -1,10 +1,11 @@
 ### useDraggable
 
 #### Returns
-`readonly [number, number, boolean]`: A tuple with the following elements:
+`readonly [number, number, boolean, React.Dispatch<React.SetStateAction<Position>>]`: A tuple with the following elements:
 - x
 - y
 - Whether the element is being dragged
+set the element position
 
 #### Arguments
 |Argument|Description|Type|DefaultValue|

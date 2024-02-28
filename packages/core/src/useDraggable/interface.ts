@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { Dispatch, RefObject, SetStateAction } from "react";
 import type { PointerType, Position } from "../utils/types";
 import type { BasicTarget } from "../utils/domTarget";
 
@@ -8,10 +8,12 @@ import type { BasicTarget } from "../utils/domTarget";
  * - x
  * - y
  * - 元素是否在拖动中
+ * - 设置元素的位置
  * @returns_en A tuple with the following elements:
  * - x
  * - y
  * - Whether the element is being dragged
+ * set the element position
  */
 export type UseDraggable = (
   /**
@@ -24,7 +26,7 @@ export type UseDraggable = (
    * @en optional params
    */
   options?: UseDraggableOptions
-) => readonly [number, number, boolean];
+) => readonly [number, number, boolean, Dispatch<SetStateAction<Position>>];
 
 /**
  * @title  UseDraggableOptions

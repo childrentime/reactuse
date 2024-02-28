@@ -1,10 +1,11 @@
 ### useDraggable
 
 #### Returns
-`readonly [number, number, boolean]`: 包含以下元素的元组：
+`readonly [number, number, boolean, React.Dispatch<React.SetStateAction<Position>>]`: 包含以下元素的元组：
 - x
 - y
 - 元素是否在拖动中
+- 设置元素的位置
 
 #### Arguments
 |参数名|描述|类型|默认值|

@@ -57,7 +57,7 @@ function Demo() {
 
   const initialValue = { x: 200 / 2.2, y: 120 };
 
-  const [x, y, isDragging] = useDraggable(el, {
+  const [x, y, isDragging, setPosition] = useDraggable(el, {
     initialValue,
     preventDefault: true,
     containerElement: scope,
@@ -73,7 +73,17 @@ function Demo() {
         position: "relative",
       }}
     >
-      <p style={{ textAlign: "center" }}>Check the floating boxes</p>
+      <button
+        style={{ textAlign: "center" }}
+        onClick={() => {
+          setPosition({
+            x: 250,
+            y: 250,
+          });
+        }}
+      >
+        Set Position
+      </button>
       <div
         ref={el}
         style={{
