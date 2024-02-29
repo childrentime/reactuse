@@ -66,6 +66,10 @@ You can submit an [issue](https://github.com/childrentime/reactuse/issues) or pr
 
 See the [**Contributing Guide**](https://github.com/childrentime/reactuse/blob/main/CONTRIBUTING.md)
 
+## ChangeLog
+
+See the [**ChangeLog**](https://github.com/childrentime/reactuse/blob/main/packages/core/changelog.md)
+
 <hr/>
 
 ## Thanks
