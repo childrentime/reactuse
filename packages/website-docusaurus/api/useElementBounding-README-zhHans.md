@@ -6,7 +6,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|target|目标元素|React.RefObject&lt;Element&gt;  **(必填)**|-|
+|target|目标元素|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(必填)**|-|
 |options|可选参数|[UseElementBoundingOptions](#UseElementBoundingOptions) \| undefined |-|
 
 ### UseElementBoundingOptions
@@ -31,3 +31,21 @@
 |x|元素的 X 位置|number  **(必填)**|`-`|
 |y|元素的 Y 位置|number  **(必填)**|`-`|
 |update|手动更新|() => void  **(必填)**|`-`|
+
+### BasicTarget
+
+```js
+export type BasicTarget<T extends TargetType = Element> = (() => TargetValue<T>) | TargetValue<T> | MutableRefObject<TargetValue<T>>;
+```
+
+### TargetValue
+
+```js
+type TargetValue<T> = T | undefined | null;
+```
+
+### TargetType
+
+```js
+type TargetType = HTMLElement | Element | Window | Document | EventTarget;
+```

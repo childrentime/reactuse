@@ -11,7 +11,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|target|dom元素|React.RefObject&lt;Element&gt; \| Window \| Document  **(必填)**|-|
+|target|dom元素|[BasicTarget](#BasicTarget)&lt;Element&gt; \| Document \| Window  **(必填)**|-|
 |options|可选参数|[UseScrollOptions](#UseScrollOptions) \| undefined |-|
 
 ### UseScrollOptions
@@ -42,6 +42,24 @@
 |right|向右滚动|boolean  **(必填)**|`-`|
 |top|向上滚动|boolean  **(必填)**|`-`|
 |bottom|向下滚动|boolean  **(必填)**|`-`|
+
+### BasicTarget
+
+```js
+export type BasicTarget<T extends TargetType = Element> = (() => TargetValue<T>) | TargetValue<T> | MutableRefObject<TargetValue<T>>;
+```
+
+### TargetValue
+
+```js
+type TargetValue<T> = T | undefined | null;
+```
+
+### TargetType
+
+```js
+type TargetType = HTMLElement | Element | Window | Document | EventTarget;
+```
 
 ### UseScrollOffset
 

@@ -10,7 +10,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|target|dom对象|React.RefObject&lt;HTMLElement \| SVGElement&gt;  **(必填)**|-|
+|target|dom对象|[BasicTarget](#BasicTarget)&lt;HTMLElement \| SVGElement&gt;  **(必填)**|-|
 |options|可选参数|[UseDraggableOptions](#UseDraggableOptions) \| undefined |-|
 
 ### UseDraggableOptions
@@ -21,7 +21,7 @@
 |preventDefault|阻止默认事件|boolean |`false`|
 |stopPropagation|阻止事件冒泡|boolean |`false`|
 |draggingElement|将“pointermove”和“pointerup”事件附加到的dom元素|[BasicTarget](#BasicTarget)&lt;HTMLElement \| SVGElement&gt; |`window`|
-|containerElement|设置拖拽容器边界|RefObject&lt;HTMLElement \| SVGAElement&gt; |`undefined`|
+|containerElement|设置拖拽容器边界|[BasicTarget](#BasicTarget)&lt;HTMLElement \| SVGAElement&gt; |`undefined`|
 |handle|触发拖动事件的dom元素|RefObject&lt;HTMLElement \| SVGElement&gt; |`target`|
 |pointerTypes|监听的事件类型|[PointerType](#PointerType)[] |`['mouse', 'touch', 'pen']`|
 |initialValue|初始的元素位置|[Position](#Position) |`{ x: 0, y: 0 }`|

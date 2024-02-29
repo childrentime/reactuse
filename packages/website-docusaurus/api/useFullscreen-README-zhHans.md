@@ -12,7 +12,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|target|dom元素|React.RefObject&lt;Element&gt;  **(必填)**|-|
+|target|dom元素|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(必填)**|-|
 |options|可选参数|[UseFullScreenOptions](#UseFullScreenOptions) \| undefined |-|
 
 ### UseFullScreenOptions
@@ -21,3 +21,21 @@
 |---|---|---|---|
 |onExit|退出时候的回调|() => void |`-`|
 |onEnter|进入时候的回调|() => void |`-`|
+
+### BasicTarget
+
+```js
+export type BasicTarget<T extends TargetType = Element> = (() => TargetValue<T>) | TargetValue<T> | MutableRefObject<TargetValue<T>>;
+```
+
+### TargetValue
+
+```js
+type TargetValue<T> = T | undefined | null;
+```
+
+### TargetType
+
+```js
+type TargetType = HTMLElement | Element | Window | Document | EventTarget;
+```

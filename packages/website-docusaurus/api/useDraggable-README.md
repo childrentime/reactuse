@@ -10,7 +10,7 @@ set the element position
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom element|React.RefObject&lt;HTMLElement \| SVGElement&gt;  **(Required)**|-|
+|target|dom element|[BasicTarget](#BasicTarget)&lt;HTMLElement \| SVGElement&gt;  **(Required)**|-|
 |options|optional params|[UseDraggableOptions](#UseDraggableOptions) \| undefined |-|
 
 ### UseDraggableOptions
@@ -21,7 +21,7 @@ set the element position
 |preventDefault|Prevent events defaults|boolean |`false`|
 |stopPropagation|Prevent events propagation|boolean |`false`|
 |draggingElement|Element to attach `pointermove` and `pointerup` events to.|[BasicTarget](#BasicTarget)&lt;HTMLElement \| SVGElement&gt; |`window`|
-|containerElement|Element for calculating bounds (If not set, it will use the event's target).|RefObject&lt;HTMLElement \| SVGAElement&gt; |`undefined`|
+|containerElement|Element for calculating bounds (If not set, it will use the event's target).|[BasicTarget](#BasicTarget)&lt;HTMLElement \| SVGAElement&gt; |`undefined`|
 |handle|Handle that triggers the drag event|RefObject&lt;HTMLElement \| SVGElement&gt; |`target`|
 |pointerTypes|Pointer types that listen to.|[PointerType](#PointerType)[] |`['mouse', 'touch', 'pen']`|
 |initialValue|Initial position of the element.|[Position](#Position) |`{ x: 0, y: 0 }`|

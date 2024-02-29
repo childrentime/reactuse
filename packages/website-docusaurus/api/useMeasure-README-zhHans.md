@@ -6,7 +6,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|target|dom对象|React.RefObject&lt;Element&gt;  **(必填)**|-|
+|target|dom对象|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(必填)**|-|
 |options|可选参数|ResizeObserverOptions \| undefined |-|
 
 ### UseMeasureRect
@@ -21,3 +21,21 @@
 |width|[MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/width)|number  **(必填)**|`-`|
 |x|[MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/x)|number  **(必填)**|`-`|
 |y|[MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/y)|number  **(必填)**|`-`|
+
+### BasicTarget
+
+```js
+export type BasicTarget<T extends TargetType = Element> = (() => TargetValue<T>) | TargetValue<T> | MutableRefObject<TargetValue<T>>;
+```
+
+### TargetValue
+
+```js
+type TargetValue<T> = T | undefined | null;
+```
+
+### TargetType
+
+```js
+type TargetType = HTMLElement | Element | Window | Document | EventTarget;
+```
