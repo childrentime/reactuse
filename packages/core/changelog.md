@@ -210,6 +210,14 @@
 
 * perf: reduce useWindowSize re-render
 
+# 5.0.0(Feb 05, 2024)
+
+* new website
+
+## Breaking Change
+
+* Element target support dropped
+* For a complex object passed in, adopt deep comparison when used in an effect.
 
 # 5.0.1(Feb 22, 2024)
 
@@ -249,5 +257,3 @@
 ## Core
 
 * feat(useDraggable): support mannual set position
-
-
