@@ -253,12 +253,21 @@ importers:
       react-live:
         specifier: 4.1.5
         version: 4.1.5(react-dom@18.2.0)(react@18.2.0)
+      remark:
+        specifier: ^15.0.1
+        version: 15.0.1
       remark-admonitions:
         specifier: ^1.2.1
         version: 1.2.1
       search-insights:
         specifier: ^2.13.0
         version: 2.13.0
+      tsx:
+        specifier: ^4.7.0
+        version: 4.7.0
+      unist-util-visit:
+        specifier: ^5.0.0
+        version: 5.0.0
     devDependencies:
       '@docusaurus/module-type-aliases':
         specifier: 3.1.1
@@ -7371,7 +7380,7 @@ packages:
   /@types/hast@3.0.4:
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
     dependencies:
-      '@types/unist': 2.0.6
+      '@types/unist': 3.0.2
 
   /@types/history@4.7.11:
     resolution: {integrity: sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==}
@@ -16527,6 +16536,17 @@ packages:
       '@types/mdast': 4.0.3
       mdast-util-to-markdown: 2.1.0
       unified: 11.0.4
+    dev: false
+
+  /remark@15.0.1:
+    resolution: {integrity: sha512-Eht5w30ruCXgFmxVUSlNWQ9iiimq07URKeFS3hNc8cUWy1llX4KDWfyEDZRycMc+znsN9Ux5/tJ/BFdgdOwA3A==}
+    dependencies:
+      '@types/mdast': 4.0.3
+      remark-parse: 11.0.0
+      remark-stringify: 11.0.0
+      unified: 11.0.4
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /renderkid@3.0.0:
