@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { BasicTarget } from "../utils/domTarget";
 
 /**
  * @title useMousePressed
@@ -14,7 +14,7 @@ export type UseMousePressed = (
    * @zh dom对象
    * @en dom element
    */
-  target?: RefObject<Element>,
+  target?: BasicTarget<Element>,
   /**
    * @zh 可选参数
    * @en optional params

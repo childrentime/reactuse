@@ -1,4 +1,3 @@
-import type { RefObject } from "react";
 import { useState } from "react";
 import { useEventListener } from "../useEventListener";
 import { useMount } from "../useMount";
@@ -6,7 +5,7 @@ import { getTargetElement } from "../utils/domTarget";
 import type { UseFocus } from "./interface";
 
 export const useFocus: UseFocus = (
-  target: RefObject<HTMLElement | SVGElement>,
+  target,
   initialValue = false,
 ) => {
   const [focus, innerSetFocus] = useState(initialValue);

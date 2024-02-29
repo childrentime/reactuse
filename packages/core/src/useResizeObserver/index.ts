@@ -1,11 +1,12 @@
-import type { RefObject } from "react";
 import { useCallback, useRef } from "react";
 import { useLatest } from "../useLatest";
 import { defaultOptions } from "../utils/defaults";
 import { useDeepCompareEffect } from "../useDeepCompareEffect";
+import { getTargetElement } from "../utils/domTarget";
+import type { UseResizeObserver } from "./interface";
 
-export const useResizeObserver = (
-  target: RefObject<Element>,
+export const useResizeObserver: UseResizeObserver = (
+  target,
   callback: ResizeObserverCallback,
   options: ResizeObserverOptions = defaultOptions,
 ): () => void => {
@@ -18,7 +19,7 @@ export const useResizeObserver = (
     }
   }, []);
   useDeepCompareEffect(() => {
-    const element = target.current;
+    const element = getTargetElement(target);
     if (!element) {
       return;
     }

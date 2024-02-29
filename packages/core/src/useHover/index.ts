@@ -1,9 +1,10 @@
-import type { RefObject } from "react";
 import { useCallback, useState } from "react";
 import { useEventListener } from "../useEventListener";
+import type { BasicTarget } from "../utils/domTarget";
+import type { UseHover } from "./interface";
 
-export const useHover = <T extends Element = HTMLDivElement>(
-  target: RefObject<T>,
+export const useHover: UseHover = <T extends Element = HTMLDivElement>(
+  target: BasicTarget<T>,
 ) => {
   const [hovered, setHovered] = useState(false);
 

@@ -1,20 +1,20 @@
-import type { RefObject } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { useEventListener } from "../useEventListener";
 import { defaultOptions } from "../utils/defaults";
-import type { UseMousePressedOptions, UseMousePressedSourceType } from "./interface";
+import { getTargetElement } from "../utils/domTarget";
+import type { UseMousePressed, UseMousePressedOptions, UseMousePressedSourceType } from "./interface";
 
 const listenerOptions = { passive: true };
 
-export const useMousePressed = (
-  target?: RefObject<Element>,
+export const useMousePressed: UseMousePressed = (
+  target?,
   options: UseMousePressedOptions = defaultOptions,
 ): readonly [boolean, UseMousePressedSourceType] => {
   const { touch = true, drag = true, initialValue = false } = options;
 
   const [pressed, setPressed] = useState(initialValue);
   const [sourceType, setSourceType] = useState<UseMousePressedSourceType>(null);
-  const element = target?.current;
+  const element = getTargetElement(target);
 
   const onPressed = useCallback(
     (srcType: UseMousePressedSourceType) => () => {

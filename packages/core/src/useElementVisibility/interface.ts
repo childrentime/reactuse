@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { BasicTarget } from "../utils/domTarget";
 
 /**
  * @title useElementVisibility
@@ -14,7 +14,7 @@ export type UseElementVisibility = (
    * @zh dom对象
    * @en dom element
    */
-  target: RefObject<HTMLElement | SVGElement>,
+  target: BasicTarget<HTMLElement | SVGElement>,
 /**
    * @zh 传递给 `intersectionObserver` 的选项
    * @en options passed to `intersectionObserver`

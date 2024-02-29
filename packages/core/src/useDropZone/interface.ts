@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { BasicTarget } from "../utils/domTarget";
 
 /**
  * @title useDropZone
@@ -10,7 +10,7 @@ export type UseDropZone = (
    * @zh 目标元素
    * @en target element
    */
-  target: RefObject<EventTarget>,
+  target: BasicTarget<EventTarget>,
 /**
    * @zh 拖拽释放时候的回调
    * @en drop callback
