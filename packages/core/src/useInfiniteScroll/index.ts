@@ -1,4 +1,3 @@
-import type { RefObject } from "react";
 import { useScroll } from "../useScroll";
 import { useLatest } from "../useLatest";
 import { useUpdateEffect } from "../useUpdateEffect";
@@ -7,7 +6,7 @@ import { getTargetElement } from "../utils/domTarget";
 import type { UseInfiniteScroll, UseInfiniteScrollOptions } from "./interface";
 
 export const useInfiniteScroll: UseInfiniteScroll = (
-  target: RefObject<Element>,
+  target,
   onLoadMore: (state: ReturnType<typeof useScroll>) => void | Promise<void>,
   options: UseInfiniteScrollOptions = defaultOptions,
 ) => {

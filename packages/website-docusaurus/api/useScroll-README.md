@@ -11,7 +11,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom elment|React.RefObject&lt;Element&gt; \| Window \| Document  **(Required)**|-|
+|target|dom elment|[BasicTarget](#BasicTarget)&lt;Element&gt; \| Document \| Window  **(Required)**|-|
 |options|optional params|[UseScrollOptions](#UseScrollOptions) \| undefined |-|
 
 ### UseScrollOptions
@@ -42,6 +42,24 @@
 |right|scroll right|boolean  **(Required)**|`-`|
 |top|scroll top|boolean  **(Required)**|`-`|
 |bottom|scroll bottom|boolean  **(Required)**|`-`|
+
+### BasicTarget
+
+```js
+export type BasicTarget<T extends TargetType = Element> = (() => TargetValue<T>) | TargetValue<T> | MutableRefObject<TargetValue<T>>;
+```
+
+### TargetValue
+
+```js
+type TargetValue<T> = T | undefined | null;
+```
+
+### TargetType
+
+```js
+type TargetType = HTMLElement | Element | Window | Document | EventTarget;
+```
 
 ### UseScrollOffset
 

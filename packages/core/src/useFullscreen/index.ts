@@ -1,4 +1,3 @@
-import type { RefObject } from "react";
 import { useState } from "react";
 import screenfull from "screenfull";
 import { getTargetElement } from "../utils/domTarget";
@@ -8,7 +7,7 @@ import { defaultOptions } from "../utils/defaults";
 import type { UseFullScreenOptions, UseFullscreen } from "./interface";
 
 export const useFullscreen: UseFullscreen = (
-  target: RefObject<Element>,
+  target,
   options: UseFullScreenOptions = defaultOptions,
 ) => {
   const { onExit, onEnter } = options;

@@ -134,6 +134,12 @@ const config: Config = {
           label: "Tutorial",
         },
         {
+          type: "docSidebar",
+          sidebarId: "changeLogSidebar",
+          position: "left",
+          label: "ChangeLog",
+        },
+        {
           type: "localeDropdown",
           position: "right",
         },

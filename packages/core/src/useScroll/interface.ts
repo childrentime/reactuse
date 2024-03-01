@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { BasicTarget } from "../utils/domTarget";
 
 /**
  * @title useScroll
@@ -20,7 +20,7 @@ export type UseScroll = (
    * @zh dom元素
    * @en dom elment
    */
-  target: RefObject<Element> | Window | Document,
+  target: BasicTarget<Element> | Window | Document,
   /**
    * @zh 可选参数
    * @en optional params

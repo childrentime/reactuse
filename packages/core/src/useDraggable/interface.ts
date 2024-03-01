@@ -20,7 +20,7 @@ export type UseDraggable = (
    * @zh dom对象
    * @en dom element
    */
-  target: RefObject<HTMLElement | SVGElement>,
+  target: BasicTarget<HTMLElement | SVGElement>,
   /**
    * @zh 可选参数
    * @en optional params
@@ -65,7 +65,7 @@ export interface UseDraggableOptions {
    * @zh 设置拖拽容器边界
    * @defaultValue undefined
    */
-  containerElement?: RefObject<HTMLElement | SVGAElement>;
+  containerElement?: BasicTarget<HTMLElement | SVGAElement>;
 
   /**
    * @en Handle that triggers the drag event

@@ -1,4 +1,3 @@
-import type { RefObject } from "react";
 import { useState } from "react";
 import { useResizeObserver } from "../useResizeObserver";
 import { defaultOptions } from "../utils/defaults";
@@ -16,7 +15,7 @@ const defaultState: UseMeasureRect = {
 };
 
 export const useMeasure: UseMeasure = (
-  target: RefObject<Element>,
+  target,
   options: ResizeObserverOptions = defaultOptions,
 ) => {
   const [rect, setRect] = useState<UseMeasureRect>(defaultState);

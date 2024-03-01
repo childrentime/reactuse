@@ -1,4 +1,3 @@
-import type { RefObject } from "react";
 import { useState } from "react";
 import { noop } from "../utils/is";
 import { useDebounceFn } from "../useDebounceFn";
@@ -22,7 +21,7 @@ const defaultListerOptions = {
 };
 
 export const useScroll: UseScroll = (
-  target: RefObject<Element> | Window | Document,
+  target,
   options: UseScrollOptions = defaultOptions,
 ): readonly [
   number,

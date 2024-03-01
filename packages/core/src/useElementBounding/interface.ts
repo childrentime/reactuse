@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { BasicTarget } from "../utils/domTarget";
 
 /**
  * @title useElementBounding
@@ -9,7 +9,7 @@ export type UseElementBounding = (
    * @zh 目标元素
    * @en target element
    */
-  target: RefObject<Element>,
+  target: BasicTarget<Element>,
   /**
    * @zh 可选参数
    * @en optional params

@@ -6,7 +6,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom element|React.RefObject&lt;Element&gt;  **(Required)**|-|
+|target|dom element|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(Required)**|-|
 |options|optional params|ResizeObserverOptions \| undefined |-|
 
 ### UseMeasureRect
@@ -21,3 +21,21 @@
 |width|[MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/width)|number  **(Required)**|`-`|
 |x|[MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/x)|number  **(Required)**|`-`|
 |y|[MDN Reference](https://developer.mozilla.org/docs/Web/API/DOMRectReadOnly/y)|number  **(Required)**|`-`|
+
+### BasicTarget
+
+```js
+export type BasicTarget<T extends TargetType = Element> = (() => TargetValue<T>) | TargetValue<T> | MutableRefObject<TargetValue<T>>;
+```
+
+### TargetValue
+
+```js
+type TargetValue<T> = T | undefined | null;
+```
+
+### TargetType
+
+```js
+type TargetType = HTMLElement | Element | Window | Document | EventTarget;
+```

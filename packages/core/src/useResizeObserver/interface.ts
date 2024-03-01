@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { BasicTarget } from "../utils/domTarget";
 
 /**
  * @title useResizeObserver
@@ -8,7 +8,7 @@ export type UseResizeObserver = (
    * @zh dom元素
    * @en dom element
    */
-  target: RefObject<Element>,
+  target: BasicTarget<Element>,
   /**
    * @zh 回调
    * @en callback

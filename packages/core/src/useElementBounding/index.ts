@@ -1,12 +1,12 @@
-import type { RefObject } from "react";
 import { useEffect, useState } from "react";
 import { useResizeObserver } from "../useResizeObserver";
 import { useEvent } from "../useEvent";
 import { defaultOptions } from "../utils/defaults";
+import { getTargetElement } from "../utils/domTarget";
 import type { UseElementBounding, UseElementBoundingOptions, UseElementBoundingReturn } from "./interface";
 
 export const useElementBounding: UseElementBounding = (
-  target: RefObject<Element>,
+  target,
   options: UseElementBoundingOptions = defaultOptions,
 ): UseElementBoundingReturn => {
   const {
@@ -26,7 +26,7 @@ export const useElementBounding: UseElementBounding = (
   const [y, setY] = useState(0);
 
   const update = useEvent(() => {
-    const element = target.current;
+    const element = getTargetElement(target);
 
     if (!element) {
       if (reset) {

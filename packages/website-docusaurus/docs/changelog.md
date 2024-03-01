@@ -259,10 +259,3 @@
 ### Core
 
 * feat(useDraggable): support mannual set position
-
-## 5.0.7(March 01, 2024)
-
-### Core
-
-* restore target element
-* feat(useClickOutSide): support enable prop

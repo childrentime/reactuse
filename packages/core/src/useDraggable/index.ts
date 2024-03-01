@@ -1,8 +1,8 @@
-import type { RefObject } from "react";
 import { useState } from "react";
 import type { PointerType, Position } from "../utils/types";
 import { useEventListener } from "../useEventListener";
 import { useDeepCompareEffect } from "../useDeepCompareEffect";
+import { getTargetElement } from "../utils/domTarget";
 import type { UseDraggable, UseDraggableOptions } from "./interface";
 
 const isScrollX = (node: Element | null) => {
@@ -28,7 +28,7 @@ const isScrollY = (node: Element | null) => {
 };
 
 export const useDraggable: UseDraggable = (
-  target: RefObject<HTMLElement | SVGElement>,
+  target,
   options: UseDraggableOptions = {},
 ) => {
   const { draggingElement, containerElement } = options;
@@ -61,7 +61,7 @@ export const useDraggable: UseDraggable = (
   };
 
   const start = (e: PointerEvent) => {
-    const element = target.current;
+    const element = getTargetElement(target);
 
     if (!filterEvent(e) || !element) {
       return;
@@ -70,20 +70,20 @@ export const useDraggable: UseDraggable = (
       return;
     }
 
-    const container = containerElement?.current;
+    const container = getTargetElement(containerElement);
     const containerRect = container?.getBoundingClientRect?.();
     const targetRect = element.getBoundingClientRect();
 
     const pos = {
       x:
         e.clientX
-        - (container
-          ? targetRect.left - containerRect!.left + container.scrollLeft
+        - (container && containerRect
+          ? targetRect.left - containerRect?.left + container.scrollLeft
           : targetRect.left),
       y:
         e.clientY
-        - (container
-          ? targetRect.top - containerRect!.top + container.scrollTop
+        - (container && containerRect
+          ? targetRect.top - containerRect.top + container.scrollTop
           : targetRect.top),
     };
     if (options.onStart?.(pos, e) === false) {
@@ -94,14 +94,14 @@ export const useDraggable: UseDraggable = (
   };
 
   const move = (e: PointerEvent) => {
-    const element = target.current;
+    const element = getTargetElement(target);
     if (!filterEvent(e) || !element) {
       return;
     }
     if (!pressedDelta) {
       return;
     }
-    const container = containerElement?.current;
+    const container = getTargetElement(containerElement);
     const targetRect = element.getBoundingClientRect();
     let { x, y } = position;
     x = e.clientX - pressedDelta.x;

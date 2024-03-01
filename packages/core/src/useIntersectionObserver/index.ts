@@ -1,11 +1,12 @@
-import type { RefObject } from "react";
 import { useCallback, useRef } from "react";
 import { useLatest } from "../useLatest";
 import { defaultOptions } from "../utils/defaults";
 import { useDeepCompareEffect } from "../useDeepCompareEffect";
+import { getTargetElement } from "../utils/domTarget";
+import type { UseIntersectionObserver } from "./interface";
 
-export const useIntersectionObserver = (
-  target: RefObject<Element>,
+export const useIntersectionObserver: UseIntersectionObserver = (
+  target,
   callback: IntersectionObserverCallback,
   options: IntersectionObserverInit = defaultOptions,
 ): () => void => {
@@ -19,7 +20,7 @@ export const useIntersectionObserver = (
   }, []);
 
   useDeepCompareEffect(() => {
-    const element = target.current;
+    const element = getTargetElement(target);
     if (!element) {
       return;
     }

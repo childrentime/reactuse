@@ -1,5 +1,5 @@
-import type { RefObject } from "react";
 import type { UseScrollOptions } from "../useScroll/interface";
+import type { BasicTarget } from "../utils/domTarget";
 
 /**
  * @title useInfiniteScroll
@@ -9,7 +9,7 @@ export type UseInfiniteScroll = (
    * @zh dom元素
    * @en dom element
    */
-  target: RefObject<Element>,
+  target: BasicTarget<Element>,
   /**
    * @zh 加载更多函数
    * @en load more function

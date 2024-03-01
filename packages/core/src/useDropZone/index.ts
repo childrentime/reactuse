@@ -1,11 +1,10 @@
-import type { RefObject } from "react";
 import { useRef, useState } from "react";
 import { useEventListener } from "../useEventListener";
 import type { UseDropZone } from "./interface";
 
 export const useDropZone: UseDropZone = (
-  target: RefObject<EventTarget>,
-  onDrop?: (files: File[] | null) => void,
+  target,
+  onDrop,
 ): boolean => {
   const [over, setOver] = useState(false);
   const counter = useRef(0);

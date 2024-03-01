@@ -6,7 +6,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|target element|React.RefObject&lt;Element&gt;  **(Required)**|-|
+|target|target element|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(Required)**|-|
 |options|optional params|[UseElementBoundingOptions](#UseElementBoundingOptions) \| undefined |-|
 
 ### UseElementBoundingOptions
@@ -31,3 +31,21 @@
 |x|X position of the element|number  **(Required)**|`-`|
 |y|Y position of the element|number  **(Required)**|`-`|
 |update|Manual update|() => void  **(Required)**|`-`|
+
+### BasicTarget
+
+```js
+export type BasicTarget<T extends TargetType = Element> = (() => TargetValue<T>) | TargetValue<T> | MutableRefObject<TargetValue<T>>;
+```
+
+### TargetValue
+
+```js
+type TargetValue<T> = T | undefined | null;
+```
+
+### TargetType
+
+```js
+type TargetType = HTMLElement | Element | Window | Document | EventTarget;
+```

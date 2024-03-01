@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { BasicTarget } from "../utils/domTarget";
 
 /**
  * @title useFocus
@@ -14,7 +14,7 @@ export type UseFocus = (
    * @zh dom对象
    * @en dom element
    */
-  target: RefObject<HTMLElement | SVGElement>,
+  target: BasicTarget<HTMLElement | SVGElement>,
   /**
    * @zh 默认值
    * @en defaultValue

@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { BasicTarget } from "../utils/domTarget";
 
 /**
  * @title useElementSize
@@ -15,7 +15,7 @@ export type UseElementSize = (
    * @zh dom对象
    * @en dom element
    */
-  target: RefObject<Element>,
+  target: BasicTarget<Element>,
   /**
    * @zh `resizeObserver` 参数
    * @en options passed to `resizeObserver`
