@@ -6,7 +6,7 @@
     "node": ">=18.0"
   },
   "scripts": {
-    "postinstall": "pnpm -w run /^build.*/",
+    "postinstall": "tsx scripts/index.ts && pnpm -w run /^build.*/",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "dev": "docusaurus start",
