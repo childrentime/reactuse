@@ -76,7 +76,6 @@ export const useScroll: UseScroll = (
   }, throttle + idle);
 
   const onScrollHandler = useEvent((e: Event) => {
-    console.log("??? scroll");
     const eventTarget = (
       e.target === document ? (e.target as Document).documentElement : e.target
     ) as HTMLElement;
@@ -121,8 +120,6 @@ export const useScroll: UseScroll = (
     target,
     eventListenerOptions,
   );
-
-  console.log("123", target);
 
   return [x, y, isScrolling, arrivedState, directions] as const;
 };
