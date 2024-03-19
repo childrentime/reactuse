@@ -266,3 +266,22 @@
 
 * restore target element
 * feat(useClickOutSide): support enable prop
+
+## 5.0.8(March 12, 2024)
+
+### Core
+
+* fix(useWindowScroll): ssr error
+
+## 5.0.9(March 17, 2024)
+
+### Core
+
+* add usePlatform
+* add useMobileLandscape
+
+## 5.0.10(March 17, 2024)
+
+### Core
+
+* add deps in usePlatform useCallback

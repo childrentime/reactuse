@@ -320,5 +320,40 @@
   },
   "Built with Typescript, providing a nice component type system": {
     "message": "使用 Typescript 构建，提供良好的组件类型系统"
+  },
+  "theme.SearchBar.noResultsText": {
+    "message": "没有找到任何文档"
+  },
+  "theme.SearchBar.seeAllOutsideContext": {
+    "message": "See results outside {context}"
+  },
+  "theme.SearchBar.searchInContext": {
+    "message": "See all results in {context}"
+  },
+  "theme.SearchBar.seeAll": {
+    "message": "查看全部结果"
+  },
+  "theme.SearchBar.label": {
+    "message": "搜索",
+    "description": "The ARIA label and placeholder for search button"
+  },
+  "theme.SearchPage.existingResultsTitle": {
+    "message": "“{query}” 的搜索结果",
+    "description": "The search page title for non-empty query"
+  },
+  "theme.SearchPage.emptyResultsTitle": {
+    "message": "搜索文档",
+    "description": "The search page title for empty query"
+  },
+  "theme.SearchPage.searchContext.everywhere": {
+    "message": "everywhere"
+  },
+  "theme.SearchPage.documentsFound.plurals": {
+    "message": "共找到 {count} 篇文档",
+    "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.SearchPage.noResultsText": {
+    "message": "没有找到任何文档",
+    "description": "The paragraph for empty search result"
   }
 }
