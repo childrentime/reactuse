@@ -90,6 +90,8 @@ import { useWindowsFocus } from "./useWindowFocus";
 import { useWindowScroll } from "./useWindowScroll";
 import { useWindowSize } from "./useWindowSize";
 import { useClipboard } from "./useClipboard";
+import { usePlatform } from "./usePlatform";
+import { useMobileLandscape } from "./useMobileLandscape";
 
 export {
   usePrevious,
@@ -184,6 +186,8 @@ export {
   useCssVar,
   useWebNotification,
   useLocationSelector,
+  usePlatform,
+  useMobileLandscape
 };
 
 export * from "./useActiveElement/interface";
@@ -273,3 +277,5 @@ export * from "./useWebNotification/interface";
 export * from "./useWindowFocus/interface";
 export * from "./useWindowScroll/interface";
 export * from "./useWindowSize/interface";
+export * from "./usePlatform/interface";
+export * from "./useMobileLandscape/interface";
