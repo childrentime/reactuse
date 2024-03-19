@@ -266,3 +266,9 @@
 
 * restore target element
 * feat(useClickOutSide): support enable prop
+
+## 5.0.8(March 12, 2024)
+
+### Core
+
+* fix(useWindowScroll): ssr error
