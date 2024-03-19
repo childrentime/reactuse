@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useOrientation } from "../useOrientation";
 
 export const useMobileLandscape = () => {
@@ -12,4 +12,4 @@ export const useMobileLandscape = () => {
   }, [orientation.type]);
 
   return isMobileLandscape;
-}
+};

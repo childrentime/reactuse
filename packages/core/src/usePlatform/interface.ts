@@ -16,30 +16,30 @@ export interface UsePlatformProps {
  * @returns 和平台相关的对象
  * @returns_en object that related to platform
  */
-export type UsePlatform = (props?: UsePlatformProps) => UsePlatformReturn
+export type UsePlatform = (props?: UsePlatformProps) => UsePlatformReturn;
 
 /**
  * @title UsePlatformReturn
  */
 export interface UsePlatformReturn {
-    /**
+  /**
    * @zh 平台
    * @en platform
    */
-    platform: Platform;
-    /**
+  platform: Platform;
+  /**
      * @zh 是否在小程序中
      * @en Whether in mini program
      */
-    isInMiniProgram: () => boolean;
-    /**
+  isInMiniProgram: () => boolean;
+  /**
      * @zh 是否在微信中
      * @en whether in wechat
      */
-    isInWechat: () => boolean;
-    /**
+  isInWechat: () => boolean;
+  /**
      * @zh 是否是 iPhoneX
      * @en whether is iPhoneX
      */
-    isiPhoneX: () => boolean;
+  isiPhoneX: () => boolean;
 }

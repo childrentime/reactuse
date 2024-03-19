@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
-import { Platform, UsePlatform } from "./interface";
+import type { Platform, UsePlatform } from "./interface";
 
 const getPlatform = (userAgent: string): Platform => {
   if (/iPad|iPhone|iPod|ios/i.test(userAgent)) {
     return "ios";
-  } else if (/android/i.test(userAgent)) {
+  }
+  else if (/android/i.test(userAgent)) {
     return "android";
-  } else {
+  }
+  else {
     return "unknown";
   }
 };
@@ -31,11 +33,11 @@ export const usePlatform: UsePlatform = ({ userAgent } = { userAgent: "" }) => {
 
   const isInWechat = useCallback(() => {
     return /micromessenger/i.test(ua);
-  }, []);
+  }, [ua]);
 
   const isiPhoneX = useCallback(() => {
     return /iPhoneX/i.test(ua);
-  }, []);
+  }, [ua]);
 
   return {
     platform,

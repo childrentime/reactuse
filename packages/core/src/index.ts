@@ -187,7 +187,7 @@ export {
   useWebNotification,
   useLocationSelector,
   usePlatform,
-  useMobileLandscape
+  useMobileLandscape,
 };
 
 export * from "./useActiveElement/interface";
