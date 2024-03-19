@@ -272,3 +272,10 @@
 ### Core
 
 * fix(useWindowScroll): ssr error
+
+## 5.0.9(March 17, 2024)
+
+### Core
+
+* add usePlatform
+* add useMobileLandscape
