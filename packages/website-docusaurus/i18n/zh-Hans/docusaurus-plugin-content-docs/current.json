@@ -27,12 +27,12 @@
     "message": "React Dom Element Hook",
     "description": "The generated-index page description for category Element in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Broswer": {
-    "message": "Broswer",
-    "description": "The label for category Broswer in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Browser": {
+    "message": "Browser",
+    "description": "The label for category Browser in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Broswer.link.generated-index.description": {
+  "sidebar.tutorialSidebar.category.Browser.link.generated-index.description": {
     "message": "React BOM Hook",
-    "description": "The generated-index page description for category Broswer in sidebar tutorialSidebar"
+    "description": "The generated-index page description for category Browser in sidebar tutorialSidebar"
   }
 }
