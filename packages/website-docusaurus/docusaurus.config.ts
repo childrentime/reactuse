@@ -123,11 +123,12 @@ const config: Config = {
     ],
     image: "img/og.png",
     navbar: {
-      title: "React Use",
-      logo: {
-        alt: "My Site Logo",
-        src: "img/logo.svg",
-      },
+      title: "React",
+      // logo: {
+      //   alt: "My Site Logo",
+      //   srcDark: "img/logo.svg",
+      //   src: "img/reactuse.png",
+      // },
       items: [
         {
           type: "localeDropdown",
