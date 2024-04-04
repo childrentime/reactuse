@@ -130,18 +130,6 @@ const config: Config = {
       },
       items: [
         {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          position: "left",
-          label: "Tutorial",
-        },
-        {
-          type: "docSidebar",
-          sidebarId: "changeLogSidebar",
-          position: "left",
-          label: "ChangeLog",
-        },
-        {
           type: "localeDropdown",
           position: "right",
         },
@@ -159,8 +147,8 @@ const config: Config = {
           title: "Docs",
           items: [
             {
-              label: "Tutorial",
-              to: "/docs/intro",
+              label: "Get Started",
+              to: "/",
             },
           ],
         },
