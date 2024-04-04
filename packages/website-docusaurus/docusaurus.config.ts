@@ -52,11 +52,13 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
+          routeBasePath: "/",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
             "https://github.com/childrentime/reactuse/tree/main/packages/website-docusaurus",
         },
+        blog: false,
         theme: {
           customCss: "./src/css/custom.css",
         },
@@ -121,24 +123,13 @@ const config: Config = {
     ],
     image: "img/og.png",
     navbar: {
-      title: "React Use",
-      logo: {
-        alt: "My Site Logo",
-        src: "img/logo.svg",
-      },
+      title: "React",
+      // logo: {
+      //   alt: "My Site Logo",
+      //   srcDark: "img/logo.svg",
+      //   src: "img/reactuse.png",
+      // },
       items: [
-        {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          position: "left",
-          label: "Tutorial",
-        },
-        {
-          type: "docSidebar",
-          sidebarId: "changeLogSidebar",
-          position: "left",
-          label: "ChangeLog",
-        },
         {
           type: "localeDropdown",
           position: "right",
@@ -157,8 +148,8 @@ const config: Config = {
           title: "Docs",
           items: [
             {
-              label: "Tutorial",
-              to: "/docs/intro",
+              label: "Get Started",
+              to: "/",
             },
           ],
         },
