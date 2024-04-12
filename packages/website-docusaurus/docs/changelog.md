@@ -285,3 +285,10 @@
 ### Core
 
 * add deps in usePlatform useCallback
+
+## 5.0.11(April 12, 2024)
+
+### Core
+
+* Fixed the issue where useOnceEffect does not execute the cleanup function
+
