@@ -15,7 +15,7 @@
     "newHook": "ts-node scripts/newHook.ts",
     "lint": "eslint ./packages/core && eslint ./packages/ts-document",
     "lint:fix": "eslint ./packages/core --fix && eslint ./packages/ts-document --fix",
-    "docs:dev": "pnpm --filter website run dev",
+    "docs:dev": "pnpm --filter website-docusaurus run dev",
     "build": "pnpm --filter @reactuses/core run build",
     "core:dev": "pnpm --filter core run dev & pnpm build:types",
     "size": "tsx scripts/exportSize.mts"
