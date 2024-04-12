@@ -36,7 +36,6 @@
     "remark": "^15.0.1",
     "remark-admonitions": "^1.2.1",
     "search-insights": "^2.13.0",
-    "tsx": "^4.7.0",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
