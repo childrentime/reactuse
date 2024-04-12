@@ -10,11 +10,11 @@ const createOnceEffect: (hook: EffectHookType) => EffectHookType
       const shouldStart = !record.has(effect);
       if (shouldStart) {
         record.add(effect);
-        effect();
+        return effect();
       }
     };
     hook(() => {
-      onceWrapper();
+      return onceWrapper();
     }, deps);
   };
 
