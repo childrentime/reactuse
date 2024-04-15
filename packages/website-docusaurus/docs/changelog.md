@@ -1,4 +1,4 @@
-# Change Log
+# ChangeLog
 
 ## 1.0.0 (September 18 ,2022)
 
@@ -291,4 +291,3 @@
 ### Core
 
 * Fixed the issue where useOnceEffect does not execute the cleanup function
-
