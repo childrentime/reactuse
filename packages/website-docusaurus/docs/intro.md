@@ -1,8 +1,9 @@
 ---
 sidebar_position: 1
+slug: /
 ---
 
-# GetStarted
+# Get Started
 
 Reactuse is a comprehensive collection of custom React Hooks designed to supercharge your functional components! you can easily unlock the full potential of React Hooks and leverage their power to create reusable and efficient code.
 

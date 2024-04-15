@@ -34,5 +34,13 @@
   "sidebar.tutorialSidebar.category.Browser.link.generated-index.description": {
     "message": "React BOM Hook",
     "description": "The generated-index page description for category Browser in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.State": {
+    "message": "State",
+    "description": "The label for category State in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.State.link.generated-index.description": {
+    "message": "React State Hook",
+    "description": "The generated-index page description for category State in sidebar tutorialSidebar"
   }
 }

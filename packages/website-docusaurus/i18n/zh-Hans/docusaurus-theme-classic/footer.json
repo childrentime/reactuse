@@ -34,5 +34,9 @@
   "copyright": {
     "message": "Copyright © 2024 React Use, Inc. Built with Docusaurus. <a target='_blank' href='https://beian.miit.gov.cn/'>备案号: 鄂ICP备2023017842号</a>",
     "description": "The footer copyright"
+  },
+  "link.item.label.Get Started": {
+    "message": "起步",
+    "description": "The label of footer link with label=Get Started linking to /"
   }
 }
