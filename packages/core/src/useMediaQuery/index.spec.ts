@@ -18,24 +18,4 @@ describe("useMedia", () => {
     const { result } = renderHook(() => useMedia("(min-width: 1200px)"));
     expect(result.current).toBe(false);
   });
-  // it("should return default state before hydration", () => {
-  //   const { result } = renderHook(() => useMedia("(min-width: 500px)", false), {
-  //     hydrate: true,
-  //   });
-  //   expect(result.current).toBe(false);
-  // });
-  // it("should return media query result after hydration", async () => {
-  //   const { result } = renderHook(() => useMedia("(min-width: 500px)", false), {
-  //     hydrate: true,
-  //   });
-  //   expect(result.current).toBe(true);
-  // });
-  // it("should return media query result after hydration", async () => {
-  //   const { result, hydrate } = renderHookSSR(() =>
-  //     useMedia("(min-width: 1200px)", true)
-  //   );
-  //   expect(result.current).toBe(true);
-  //   hydrate();
-  //   expect(result.current).toBe(false);
-  // });
 });

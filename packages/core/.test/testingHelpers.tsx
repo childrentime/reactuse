@@ -18,3 +18,10 @@ export function request(req) {
     }, 1000),
   );
 }
+
+export function createTestComponent(hook: (...args: any[]) => any) {
+  return function TestComponent() {
+    const result = hook();
+    return <>{JSON.stringify(result)}</>;
+  };
+}
