@@ -3,11 +3,11 @@
  */
 
 import { act } from "@testing-library/react";
-import { usePreferredDark } from ".";
-import { createMockMediaMatcher } from "../../.test";
-import { createTestComponent } from "../../.test/testingHelpers";
 import ReactDOMServer from "react-dom/server";
 import ReactDOMClient from "react-dom/client";
+import { createMockMediaMatcher } from "../../.test";
+import { createTestComponent } from "../../.test/testingHelpers";
+import { usePreferredDark } from ".";
 
 describe(usePreferredDark, () => {
   let originalError: (message?: any, ...optionalParams: any[]) => void;
@@ -47,7 +47,8 @@ describe(usePreferredDark, () => {
         root.unmount();
       });
       expect(element.innerHTML).toEqual("");
-    } finally {
+    }
+    finally {
       document.body.removeChild(element);
     }
   });
@@ -75,7 +76,8 @@ describe(usePreferredDark, () => {
           "true",
         ]
       `);
-    } finally {
+    }
+    finally {
       document.body.removeChild(element);
     }
   });
