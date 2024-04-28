@@ -10,7 +10,7 @@ export const useInterval: UseInterval = (
   options: {
     immediate?: boolean;
     controls?: boolean;
-  } = defaultOptions
+  } = defaultOptions,
 ) => {
   const { immediate, controls } = options;
   const savedCallback = useLatest(callback);
@@ -19,7 +19,7 @@ export const useInterval: UseInterval = (
 
   const clean = () => {
     timer.current && clearInterval(timer.current);
-  }
+  };
 
   const resume = useEvent(() => {
     isActive.current = true;
@@ -35,14 +35,14 @@ export const useInterval: UseInterval = (
     if (immediate) {
       savedCallback.current();
     }
-    if(controls){
+    if (controls) {
       return;
     }
     if (delay !== null) {
       resume();
       return () => {
         clean();
-      }
+      };
     }
 
     return undefined;
@@ -52,6 +52,6 @@ export const useInterval: UseInterval = (
   return {
     isActive,
     pause,
-    resume
-  }
+    resume,
+  };
 };

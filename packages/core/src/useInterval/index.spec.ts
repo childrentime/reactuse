@@ -111,7 +111,7 @@ describe("useInterval", () => {
     expect(callback).toHaveBeenCalledTimes(2);
   });
 
-  it('should work with mannuall controls', () => {
+  it("should work with mannuall controls", () => {
     const callback = jest.fn();
     const { result } = renderHook(() => useInterval(callback, 69, { controls: true }));
     expect(callback).not.toBeCalled();

@@ -1,4 +1,4 @@
-import { RefObject } from "react";
+import type { RefObject } from "react";
 
 /**
  * @title useInterval
@@ -30,11 +30,11 @@ export interface UseIntervalOptions {
    * @en Whether to execute immediately.
    */
   immediate?: boolean;
-   /**
+  /**
    * @zh 是否控制执行。
    * @en Whether to control execution.
    */
-   controls?: boolean;
+  controls?: boolean;
 }
 
 /**
@@ -45,7 +45,7 @@ export interface Pausable {
    * @en A ref indicate whether a pausable instance is active
    * @zh 一个 ref，指示一个 pausable 实例是否处于激活状态
    */
-  isActive: RefObject<boolean>
+  isActive: RefObject<boolean>;
 
   /**
    * @en Temporary pause the effect from executing
