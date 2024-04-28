@@ -47,9 +47,7 @@ describe("useInterval", () => {
 
   it("should init hook with default delay", () => {
     const callback = jest.fn();
-    const { result } = renderHook(() => useInterval(callback));
-
-    expect(result.current).toBeUndefined();
+    renderHook(() => useInterval(callback));
     expect(setInterval).toHaveBeenCalledTimes(1);
     // if not delay provided, it's assumed as 0
     expect(setInterval).toHaveBeenCalledWith(expect.any(Function), 0);
@@ -57,9 +55,8 @@ describe("useInterval", () => {
 
   it("should init hook with custom delay", () => {
     const callback = jest.fn();
-    const { result } = renderHook(() => useInterval(callback, 5000));
+    renderHook(() => useInterval(callback, 5000));
 
-    expect(result.current).toBeUndefined();
     expect(setInterval).toHaveBeenCalledTimes(1);
     expect(setInterval).toHaveBeenCalledWith(expect.any(Function), 5000);
   });
@@ -112,5 +109,19 @@ describe("useInterval", () => {
     // fast-forward remaining time for new delay
     jest.advanceTimersByTime(300);
     expect(callback).toHaveBeenCalledTimes(2);
+  });
+
+  it('should work with mannuall controls', () => {
+    const callback = jest.fn();
+    const { result } = renderHook(() => useInterval(callback, 69, { controls: true }));
+    expect(callback).not.toBeCalled();
+    jest.advanceTimersByTime(70);
+    expect(callback).toHaveBeenCalledTimes(0);
+    result.current.resume();
+    jest.advanceTimersByTime(70);
+    expect(callback).toHaveBeenCalledTimes(1);
+    result.current.pause();
+    jest.advanceTimersByTime(70);
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 });

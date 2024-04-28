@@ -2,16 +2,12 @@ import type {
   FunctionDeclaration,
   InterfaceDeclaration,
   SourceFile,
+  Symbol,
   Type,
   TypeAliasDeclaration,
   TypeChecker,
 } from "ts-morph";
-import {
-  Node,
-  Project,
-  SyntaxKind,
-  ts,
-} from "ts-morph";
+import { Node, Project, SyntaxKind, ts } from "ts-morph";
 import type {
   DefaultTypeMapT,
   FunctionSchema,
@@ -106,7 +102,7 @@ function getDeclarationTags(declaration: DeclarationCanBeParsed, lang = "en") {
 }
 
 // Get key-value pairs from jsDoc of Symbol
-function getSymbolTags(sym: symbol, strictComment = false): TagType[] {
+function getSymbolTags(sym: Symbol, strictComment = false): TagType[] {
   const jsDocTags = sym.compilerSymbol.getJsDocTags();
   const tags: TagType[] = jsDocTags.map(tag => ({
     name: tag.name,
@@ -179,11 +175,11 @@ function isAliasDeclaration(type: Type) {
   return false;
 }
 
-function getDeclarationBySymbol(symbol?: symbol) {
+function getDeclarationBySymbol(symbol?: Symbol) {
   return symbol?.getDeclarations()?.[0];
 }
 
-function getDeclarationTextBySymbol(symbol?: symbol) {
+function getDeclarationTextBySymbol(symbol?: Symbol) {
   const declaration = getDeclarationBySymbol(symbol);
   // Four spaces -> two spaces and add a new line at the end
   return `${(declaration?.print() || "").replace(/ {4}/g, " ".repeat(2))}\n`;
@@ -310,7 +306,7 @@ function getDisplayTypeWithLink(
 
 // Get Json schema of interface's property
 function getPropertySchema(
-  sym: symbol,
+  sym: Symbol,
   defaultT: DefaultTypeMapT,
   strictComment = false,
   nestedTypeList: SchemaList,
@@ -373,7 +369,7 @@ function getFunctionSchema(
       // Deeply analyze nested types
       dumpNestedTypes(para, nestedTypeList, parsedNestedTypeSet);
 
-      const tags = getSymbolTags(para.getSymbol() as symbol, strictComment);
+      const tags = getSymbolTags(para.getSymbol()!, strictComment);
       const typeWithLink = getDisplayTypeWithLink(
         para
           .getType()
@@ -445,10 +441,7 @@ function generateSchema(
             : null;
 
       // Function declaration
-      if (
-        typeNode
-        && ["FunctionDeclaration", "FunctionType"].includes(typeNode.getKindName())
-      ) {
+      if (typeNode && ["FunctionDeclaration", "FunctionType"].includes(typeNode.getKindName())) {
         schema = {
           tags,
           ...getFunctionSchema(

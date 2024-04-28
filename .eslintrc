@@ -11,7 +11,7 @@
   ],
   "rules": {
     "@typescript-eslint/no-explicit-any": 0,
-    "@typescript-eslint/ban-types": "warn",
+    "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/member-delimiter-style": [
       "error",
       { "multiline": { "delimiter": "semi", "requireLast": true } }
@@ -25,7 +25,7 @@
     "curly": "off",
     "import/export": "warn",
     "unused-imports/no-unused-vars": "off",
-    "react/no-unknown-property": "off"
+    "react/no-unknown-property": "off",
   },
   "ignorePatterns":[
     "scripts/templates/**",

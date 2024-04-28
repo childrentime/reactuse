@@ -291,3 +291,9 @@
 ### Core
 
 * Fixed the issue where useOnceEffect does not execute the cleanup function
+
+## 5.0.12(April 28, 2024)
+
+### Core
+
+* support `Pauseble` with useInterval

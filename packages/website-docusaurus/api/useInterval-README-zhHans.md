@@ -1,7 +1,7 @@
 ### useInterval
 
 #### Returns
-`void`
+`Pausable`
 
 #### Arguments
 |参数名|描述|类型|默认值|
@@ -15,3 +15,4 @@
 |参数名|描述|类型|默认值|
 |---|---|---|---|
 |immediate|是否立即执行。|boolean |`-`|
+|controls|是否手动控制。|boolean |`-`|
