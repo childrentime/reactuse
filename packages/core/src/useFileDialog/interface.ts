@@ -13,7 +13,7 @@ export type UseFileDialog = (
   options?: UseFileDialogOptions
 ) => readonly [
   FileList | null,
-  (localOptions?: Partial<UseFileDialogOptions>) => void,
+  (localOptions?: Partial<UseFileDialogOptions>) => Promise<FileList | null | undefined>,
   () => void,
 ];
 

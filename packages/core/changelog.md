@@ -297,3 +297,10 @@
 ### Core
 
 * support `Pauseble` with useInterval
+
+## 5.0.13(April 29, 2024)
+
+### Core
+
+* useFileDialog: add files return in `open`
+* docs: fix search

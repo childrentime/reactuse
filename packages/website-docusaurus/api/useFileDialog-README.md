@@ -1,7 +1,7 @@
 ### useFileDialog
 
 #### Returns
-`readonly [FileList | null, (localOptions?: Partial<UseFileDialogOptions> | undefined) => void, () => void]`: A tuple with the following elements:
+`readonly [FileList | null, (localOptions?: Partial<UseFileDialogOptions> | undefined) => Promise<FileList | null | undefined>, () => void]`: A tuple with the following elements:
 - file array.
 - A function to open file dialog.
 - A function to reset files
