@@ -304,3 +304,9 @@
 
 * useFileDialog: add files return in `open`
 * docs: fix search
+
+## 5.0.14(May 17, 2024)
+
+### Core
+
+* fix(useLocalStorage): remove extra render caused by diff default value
