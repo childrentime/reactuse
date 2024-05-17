@@ -84,6 +84,7 @@ const getInitialState = (
       if (raw !== undefined && raw !== null) {
         return serializer?.read(raw);
       }
+      return null;
     }
     catch (error) {
       onError?.(error);
@@ -127,11 +128,12 @@ export default function useStorage<
   );
 
   useDeepCompareEffect(() => {
-    const data = effectStorageValue
+    const data = (effectStorageValue
       ? isFunction(effectStorageValue)
         ? effectStorageValue()
         : effectStorageValue
-      : defaultValue;
+      : defaultValue) ?? null;
+
     const getStoredValue = () => {
       try {
         const raw = storage?.getItem(key);

@@ -291,3 +291,22 @@
 ### Core
 
 * Fixed the issue where useOnceEffect does not execute the cleanup function
+
+## 5.0.12(April 28, 2024)
+
+### Core
+
+* support `Pauseble` with useInterval
+
+## 5.0.13(April 29, 2024)
+
+### Core
+
+* useFileDialog: add files return in `open`
+* docs: fix search
+
+## 5.0.14(May 17, 2024)
+
+### Core
+
+* fix(useLocalStorage): remove extra render caused by diff default value
