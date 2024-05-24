@@ -2,6 +2,12 @@
 
 有助于在 CookieStore 中存储、更新和删除值的 hook
 
+:::note
+当你在多个组件中使用相同键的 useCookie hook 并使用 setCookieValue 时，它不会触发其他使用此 hook 的组件进行更新。
+
+如果你想要一个广播效果，可以参考以下链接：https://github.com/childrentime/reactuse/issues/91
+:::
+
 
 ## Usage
 

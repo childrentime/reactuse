@@ -2,6 +2,13 @@
 
 React hook that facilitates the storage, updating and deletion of values within the CookieStore
 
+:::note
+When you use setCookieValue with useCookie hook that shares the same key across multiple components, 
+it does not trigger an update in the other components using this hook.
+
+ If you want a broadcast effect, you can refer to the following https://github.com/childrentime/reactuse/issues/91
+:::
+
 ## Usage
 
 ```tsx live
