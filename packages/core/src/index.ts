@@ -92,6 +92,9 @@ import { useWindowSize } from "./useWindowSize";
 import { useClipboard } from "./useClipboard";
 import { usePlatform } from "./usePlatform";
 import { useMobileLandscape } from "./useMobileLandscape";
+import { useControlled } from "./useControlled";
+import { useDisclosure } from "./useDisclosure";
+import { useEventSource } from "./useEventSource";
 
 export {
   usePrevious,
@@ -188,6 +191,9 @@ export {
   useLocationSelector,
   usePlatform,
   useMobileLandscape,
+  useControlled,
+  useDisclosure,
+  useEventSource,
 };
 
 export * from "./useActiveElement/interface";
@@ -279,3 +285,6 @@ export * from "./useWindowScroll/interface";
 export * from "./useWindowSize/interface";
 export * from "./usePlatform/interface";
 export * from "./useMobileLandscape/interface";
+export * from "./useControlled/interface";
+export * from "./useDisclosure/interface";
+export * from "./useEventSource/interface";

@@ -1,0 +1,21 @@
+# useDisclosure
+
+`useDisclosure` is a hook that provides all the tools you need to create a disclosure widget. Disclosure widgets are used to show or hide content. This hook provides the state and functions to control the visibility of the content.
+
+## Usage
+
+```tsx live
+function Demo() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  return (
+    <>
+      <button onClick={onOpen}>Open</button>
+      <button onClick={onClose}>Close</button>
+      <p>{isOpen ? "Open" : "Close"}</p>
+    </>
+  );
+}
+```
+
+%%API%%

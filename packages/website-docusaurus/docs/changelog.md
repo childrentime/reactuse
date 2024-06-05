@@ -310,3 +310,11 @@
 ### Core
 
 * fix(useLocalStorage): remove extra render caused by diff default value
+
+## 5.0.15(June 05, 2024)
+
+### Core
+
+* feat: add useDisclosure
+* feat: add useEventSource
+* feat: add useControlled

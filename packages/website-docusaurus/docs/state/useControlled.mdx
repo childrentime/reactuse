@@ -1,0 +1,35 @@
+# useControlled
+
+`useControlled` is a custom hook that helps you manage controlled components. It is a wrapper around `useState` that allows you to control the value of a component from the outside.
+
+:::note
+The `useControlled` component does not support switching between controlled and uncontrolled modes, nor does it support passing a function for state updates. You can refer to this discussion for more information: https://github.com/adobe/react-spectrum/issues/2320.
+:::
+
+## Usage
+
+```tsx live
+function Demo() {
+  const [state, setState] = useState<string>("");
+  const [value, setValue] = useControlled(state, "");
+  const [value1, setValue1] = useControlled(undefined, "unControlled value");
+
+  const handleChange = (event) => {
+    setState(event.target.value);
+  };
+
+  const handleChange1 = (event) => {
+    setValue1(event.target.value);
+  };
+
+  return (
+    <>
+      <input value={value} onChange={handleChange} />
+      <p>Controlled Value: {value}</p>
+      <input value={value1} onChange={handleChange1} />
+    </>
+  );
+}
+```
+
+%%API%%
