@@ -1,13 +1,13 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { EventSourceStatus, UseEventSource, UseEventSourceOptions } from "./interface";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useEvent } from "../useEvent";
 import { defaultOptions } from "../utils/defaults";
 import { useUnmount } from "../useUnmount";
+import type { EventSourceStatus, UseEventSource, UseEventSourceOptions } from "./interface";
 
 export const useEventSource: UseEventSource = <Events extends string[]>(
   url: string | URL,
   events: Events = [] as unknown as Events,
-  options: UseEventSourceOptions = defaultOptions
+  options: UseEventSourceOptions = defaultOptions,
 ) => {
   const [data, setData] = useState<string | null>(null);
   const [error, setError] = useState<Event | null>(null);
@@ -17,21 +17,21 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
   const retries = useRef(0);
   const explicitlyClosed = useRef(false);
   const eventSourceRef = useRef<EventSource | null>(null);
-  const eventListenerRef = useRef<Map<string,((event: MessageEvent<any>) => void)>>();
-  if(!eventListenerRef.current) {
+  const eventListenerRef = useRef<Map<string, ((event: MessageEvent<any>) => void)>>();
+  if (!eventListenerRef.current) {
     eventListenerRef.current = new Map();
   }
 
-  const clean = useCallback(() => {
+  const clean = useEvent(() => {
     const listeners = eventListenerRef.current;
 
     events.forEach((name) => {
       const handler = listeners?.get(name);
-      if(handler) {
+      if (handler) {
         eventSourceRef.current?.removeEventListener(name, handler);
       }
     });
-  }, []);
+  });
 
   const close = useCallback(() => {
     setStatus("DISCONNECTED");
@@ -39,7 +39,7 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
     eventSourceRef.current?.close();
     eventSourceRef.current = null;
     explicitlyClosed.current = true;
-  }, []);
+  }, [clean]);
 
   const open = useEvent(() => {
     close();
@@ -79,12 +79,13 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
         retries.current += 1;
 
         if (
-          (typeof maxRetries === "number" &&
-            (maxRetries < 0 || retries.current < maxRetries)) ||
-          (typeof maxRetries === "function" && maxRetries())
+          (typeof maxRetries === "number"
+            && (maxRetries < 0 || retries.current < maxRetries))
+          || (typeof maxRetries === "function" && maxRetries())
         ) {
           setTimeout(open, delay);
-        } else {
+        }
+        else {
           onFailed?.();
         }
       }
@@ -112,7 +113,7 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
 
   useUnmount(() => {
     close();
-  })
+  });
 
   return {
     eventSourceRef,

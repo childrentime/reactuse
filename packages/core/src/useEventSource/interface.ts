@@ -13,13 +13,13 @@ export interface UseEventSourceOptions extends EventSourceInit {
    * @en Automatically reconnect when the connection is disconnected
    * @zh 连接断开时自动重连
    */
-  autoReconnect?: UseEventSourceAutoReconnectOptions
+  autoReconnect?: UseEventSourceAutoReconnectOptions;
 }
 
 /**
  * @title UseEventSourceAutoReconnectOptions
  */
-export interface UseEventSourceAutoReconnectOptions  {
+export interface UseEventSourceAutoReconnectOptions {
   /**
    * @en The number of retries, if it is a function, it will be called to determine whether to retry
    * @zh 重试次数，如果是函数，会调用来判断是否重试
@@ -35,7 +35,7 @@ export interface UseEventSourceAutoReconnectOptions  {
    * @zh 重连失败时的回调
    */
   onFailed?: () => void;
-};
+}
 
 export type UseEventSource = <Events extends string[]>(
   /**

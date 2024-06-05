@@ -96,7 +96,6 @@ import { useControlled } from "./useControlled";
 import { useDisclosure } from "./useDisclosure";
 import { useEventSource } from "./useEventSource";
 
-
 export {
   usePrevious,
   useLatest,
@@ -194,7 +193,7 @@ export {
   useMobileLandscape,
   useControlled,
   useDisclosure,
-  useEventSource
+  useEventSource,
 };
 
 export * from "./useActiveElement/interface";

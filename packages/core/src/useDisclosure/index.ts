@@ -1,8 +1,7 @@
 import { useCallback } from "react";
 import { useControlled } from "../useControlled";
 import { useLatest } from "../useLatest";
-import { UseDisclosureProps } from "./interface";
-
+import type { UseDisclosureProps } from "./interface";
 
 export const useDisclosure = (props: UseDisclosureProps = {}) => {
   const {
@@ -18,7 +17,7 @@ export const useDisclosure = (props: UseDisclosureProps = {}) => {
   const [isOpen, setIsOpen] = useControlled(
     isOpenProp,
     defaultOpen || false,
-    onChange
+    onChange,
   );
 
   const isControlled = isOpenProp !== undefined;
@@ -28,14 +27,14 @@ export const useDisclosure = (props: UseDisclosureProps = {}) => {
       setIsOpen(false);
     }
     onClosePropRef.current?.();
-  }, [isControlled]);
+  }, [isControlled, onClosePropRef, setIsOpen]);
 
   const onOpen = useCallback(() => {
     if (!isControlled) {
       setIsOpen(true);
     }
     onOpenPropRef.current?.();
-  }, [isControlled]);
+  }, [isControlled, onOpenPropRef, setIsOpen]);
 
   const onOpenChange = useCallback(() => {
     const action = isOpen ? onClose : onOpen;
@@ -50,4 +49,4 @@ export const useDisclosure = (props: UseDisclosureProps = {}) => {
     onOpenChange,
     isControlled,
   };
-}
+};

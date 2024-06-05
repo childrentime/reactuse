@@ -21,7 +21,7 @@ export interface UseDisclosureProps {
    * @en Callback when disclosure is opened
    * @zh 打开时的回调
    */
-  onOpen?: ()=> void;
+  onOpen?: () => void;
   /**
    * @en Callback when disclosure is changed
    * @zh 状态改变时的回调
