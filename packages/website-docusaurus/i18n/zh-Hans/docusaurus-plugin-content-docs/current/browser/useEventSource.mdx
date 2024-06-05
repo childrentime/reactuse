@@ -1,0 +1,27 @@
+# useEventSource
+
+`useEventSource` 是一个 hook，允许您订阅 EventSource 并实时接收更新。
+
+```tsx live
+function Demo() {
+  const { status, data, error, close, open } = useEventSource(
+    "https://sse.dev/test",
+    [],
+    {
+      immediate: false,
+    }
+  );
+
+  return (
+    <div>
+      <div>Status: {status}</div>
+      <div>Data: {JSON.stringify(data)}</div>
+      <div>Error: {error}</div>
+      <button onClick={open}>open</button>
+      <button onClick={close}>Close</button>
+    </div>
+  );
+}
+```
+
+%%API%%
