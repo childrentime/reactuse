@@ -167,7 +167,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} React Use, Inc. Built with Docusaurus. <a target="_blank" href="https://beian.miit.gov.cn/">备案号: 鄂ICP备2023017842号</a>`,
+      copyright: `Copyright © ${new Date().getFullYear()} React Use, Inc. Built with Docusaurus. <a target="_blank" href="https://beian.miit.gov.cn/">备案号鄂ICP备2023017842号</a>`,
     },
     prism: {
       theme: prismThemes.github,
