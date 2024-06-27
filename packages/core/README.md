@@ -56,7 +56,7 @@ Refer to [documentations](https://reactuse.com/) for more details.
 
 <hr/>
 
-## Sponsors
+## Sponsor Me
 
 If my work has helped you, consider buying me a cup of coffee. Thank you very much🥰!.
 
