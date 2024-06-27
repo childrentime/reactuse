@@ -56,6 +56,17 @@ Refer to [documentations](https://reactuse.com/) for more details.
 
 <hr/>
 
+## Sponsors
+
+If my work has helped you, consider buying me a cup of coffee. Thank you very much🥰!.
+
+[Buy me a coffee](https://www.buymeacoffee.com/lianwenwu)
+
+### For Chinese User
+
+![Wechat Pay](./pay/wechat.jpg)
+![Ali Pay](./pay/ali.jpg)
+
 ## Feedback
 
 You can submit an [issue](https://github.com/childrentime/reactuse/issues) or provide feedback on [Discord](https://discord.gg/HMsq6cFkKp).
