@@ -7,6 +7,6 @@ If my work has helped you, consider buying me a cup of coffee. Thank you very mu
 ### For Chinese User
 
 <p float="left">
-  <img src="https://raw.githubusercontent.com/childrentime/reactuse/main/pay/wechat.jpg" alt="Wechat Pay" width="200" />
-  <img src="https://raw.githubusercontent.com/childrentime/reactuse/main/pay/ali.jpg" alt="Ali Pay" width="200" />
+  <img src="https://d21002cb.images-f3o.pages.dev/images/wechat.jpg" alt="Wechat Pay" width="200" />
+  <img src="https://d21002cb.images-f3o.pages.dev/images/ali.jpg" alt="Ali Pay" width="200" />
 </p>

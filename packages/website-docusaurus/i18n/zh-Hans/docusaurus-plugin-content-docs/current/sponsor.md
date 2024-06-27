@@ -9,6 +9,6 @@
 ### 微信和支付宝
 
 <p float="left">
-  <img src="https://raw.githubusercontent.com/childrentime/reactuse/main/pay/wechat.jpg" alt="Wechat Pay" width="200" />
-  <img src="https://raw.githubusercontent.com/childrentime/reactuse/main/pay/ali.jpg" alt="Ali Pay" width="200" />
+  <img src="https://d21002cb.images-f3o.pages.dev/images/wechat.jpg" alt="Wechat Pay" width="200" />
+  <img src="https://d21002cb.images-f3o.pages.dev/images/ali.jpg" alt="Ali Pay" width="200" />
 </p>
