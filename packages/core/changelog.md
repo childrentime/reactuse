@@ -318,3 +318,9 @@
 * feat: add useDisclosure
 * feat: add useEventSource
 * feat: add useControlled
+
+## 5.0.16(July 15, 2024)
+
+### Core
+
+* feat: add useMergedRefs
