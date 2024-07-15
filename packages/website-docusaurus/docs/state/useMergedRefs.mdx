@@ -1,0 +1,57 @@
+# useMergedRefs
+
+`useMergedRefs` is a hook that merges multiple refs into a single ref. Use this hook when you need to use more than one ref on a single dom node.
+
+## Usage
+
+```tsx live noInline
+function Demo() {
+  const hoverRef = useRef(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const isHovered = useHover(hoverRef);
+  const [isFocused, toggleFocus] = useToggle(false);
+
+  const mergedRef = useMergedRefs(hoverRef, buttonRef);
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === 'f' || event.key === 'F') {
+        buttonRef.current?.focus();
+      }
+    };
+
+    window.addEventListener('keypress', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keypress', handleKeyPress);
+    };
+  }, []);
+
+  const handleFocus = () => toggleFocus(true);
+  const handleBlur = () => toggleFocus(false);
+
+  return (
+    <div>
+      <button
+        ref={mergedRef}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        style={{
+          padding: '10px 20px',
+          backgroundColor: isHovered ? 'lightblue' : isFocused ? 'lightyellow' : 'white',
+          border: '1px solid black',
+          cursor: 'pointer',
+          outline: isFocused ? '2px solid blue' : 'none',
+        }}
+      >
+        {isHovered ? 'Hovered!' : isFocused ? 'Focused!' : 'Hover or Focus me'}
+      </button>
+      <p>Press 'F' key to focus the button</p>
+    </div>
+  );
+};
+
+render(<Demo/>)
+```
+
+%%API%%

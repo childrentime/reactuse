@@ -95,6 +95,7 @@ import { useMobileLandscape } from "./useMobileLandscape";
 import { useControlled } from "./useControlled";
 import { useDisclosure } from "./useDisclosure";
 import { useEventSource } from "./useEventSource";
+import { assignRef, mergeRefs, useMergedRefs } from "./useMergedRef";
 
 export {
   usePrevious,
@@ -194,6 +195,9 @@ export {
   useControlled,
   useDisclosure,
   useEventSource,
+  useMergedRefs,
+  mergeRefs,
+  assignRef,
 };
 
 export * from "./useActiveElement/interface";
@@ -288,3 +292,4 @@ export * from "./useMobileLandscape/interface";
 export * from "./useControlled/interface";
 export * from "./useDisclosure/interface";
 export * from "./useEventSource/interface";
+export * from "./useMergedRef/interface";
