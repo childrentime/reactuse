@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useHover
@@ -9,4 +9,4 @@ export type UseHover = <T extends Element = HTMLDivElement>(
    * @en dom element
    */
   target: BasicTarget<T>
-) => boolean;
+) => boolean

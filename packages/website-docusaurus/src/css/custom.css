@@ -32,8 +32,7 @@
 .navbar__title {
   font-size: 1.5em;
 }
-.navbar__title::after
-{
-  content: "Use";
+.navbar__title::after {
+  content: 'Use';
   color: #61dafb;
 }

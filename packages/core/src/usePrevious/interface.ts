@@ -9,4 +9,4 @@ export type UsePrevious = <T>(
    * @en state value
    */
   state: T
-) => T | undefined;
+) => T | undefined

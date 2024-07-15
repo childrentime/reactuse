@@ -13,4 +13,4 @@ export type UseToggle = (
    * @en initialValue
    */
   initialValue: boolean
-) => [boolean, (nextValue?: any) => void];
+) => [boolean, (nextValue?: any) => void]

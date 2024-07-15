@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react'
 
 /**
  * @title A
@@ -17,13 +17,13 @@ export interface AProps {
    * @en this is action
    * @version 2.15.0
    */
-  action?: ReactNode;
+  action?: ReactNode
   /**
    * @zh 是否可以关闭
    * @en Whether Alert can be closed
    * @defaultValue {}
    */
-  closable?: InnerProps;
+  closable?: InnerProps
 }
 
 export interface InnerProps {
@@ -31,10 +31,10 @@ export interface InnerProps {
    * @zh 位置
    * @en position
    */
-  position?: string;
+  position?: string
   /**
    * @zh 尺寸
    * @en Size
    */
-  size?: string;
+  size?: string
 }

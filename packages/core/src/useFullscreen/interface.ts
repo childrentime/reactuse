@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useFullScreen
@@ -39,24 +39,24 @@ export type UseFullscreen = (
      * @zh 进入全屏
      * @en enter fullscreen
      */
-    readonly enterFullscreen: () => void;
+    readonly enterFullscreen: () => void
     /**
      * @zh 退出全屏
      * @en exit fullscreen
      */
-    readonly exitFullscreen: () => void;
+    readonly exitFullscreen: () => void
     /**
      * @zh 切换全屏
      * @en toggle fullscreen
      */
-    readonly toggleFullscreen: () => void;
+    readonly toggleFullscreen: () => void
     /**
      * @zh 浏览器是否支持
      * @en whether the browser support fullscreen
      */
-    readonly isEnabled: boolean;
+    readonly isEnabled: boolean
   },
-];
+]
 
 /**
  * @title UseFullScreenOptions
@@ -66,10 +66,10 @@ export interface UseFullScreenOptions {
    * @zh 退出时候的回调
    * @en exit callback
    */
-  onExit?: () => void;
+  onExit?: () => void
   /**
    * @zh 进入时候的回调
    * @en enter callback
    */
-  onEnter?: () => void;
+  onEnter?: () => void
 }

@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useFocus
@@ -21,4 +21,4 @@ export type UseFocus = (
    * @defaultValue false
    */
   initialValue?: boolean
-) => readonly [boolean, (value: boolean) => void];
+) => readonly [boolean, (value: boolean) => void]

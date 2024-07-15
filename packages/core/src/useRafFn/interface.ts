@@ -20,4 +20,4 @@ export type UseRafFn = (
    * @en immediatly start
    */
   initiallyActive?: boolean
-) => readonly [() => void, () => void, () => boolean];
+) => readonly [() => void, () => void, () => boolean]

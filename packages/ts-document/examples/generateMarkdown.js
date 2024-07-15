@@ -1,8 +1,8 @@
-const path = require("node:path");
-const { generateMarkdown } = require("../lib");
+const path = require('node:path')
+const { generateMarkdown } = require('../lib')
 
-const md = generateMarkdown(path.resolve(__dirname, "readme.tsx"), {
-  sourceFilesPaths: ["**/*.ts", "**/*.tsx"],
-});
+const md = generateMarkdown(path.resolve(__dirname, 'readme.tsx'), {
+  sourceFilesPaths: ['**/*.ts', '**/*.tsx'],
+})
 
-console.log(JSON.stringify(md, null, 2));
+console.log(JSON.stringify(md, null, 2))

@@ -8,9 +8,9 @@ export type UsePreferredContrast = (
    * @defaultValue no-preference
    */
   defaultState?: Contrast
-) => Contrast;
+) => Contrast
 
 /**
  * @title Contrast
  */
-export type Contrast = "more" | "less" | "custom" | "no-preference";
+export type Contrast = 'more' | 'less' | 'custom' | 'no-preference'

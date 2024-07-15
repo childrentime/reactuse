@@ -10,7 +10,7 @@
 export type UseEyeDropper = () => readonly [
   boolean,
   (options?: UseEyeDropperOpenOptions) => Promise<UseEyeDropperOpenReturnType>,
-];
+]
 
 /**
  * @title UseEyeDropperOpenOptions
@@ -20,7 +20,7 @@ export interface UseEyeDropperOpenOptions {
    * @zh 终止信号
    * @en abort signal
    */
-  signal?: AbortSignal;
+  signal?: AbortSignal
 }
 
 /**
@@ -31,5 +31,5 @@ export interface UseEyeDropperOpenReturnType {
    * @zh rgb 颜色值
    * @en rgb color value
    */
-  sRGBHex: string;
+  sRGBHex: string
 }

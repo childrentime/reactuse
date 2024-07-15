@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title UseMutationObserver
@@ -21,4 +21,4 @@ export type UseMutationObserver = (
    * @en options passed to `MutationObserver`
    */
   options?: MutationObserverInit
-) => () => void;
+) => () => void

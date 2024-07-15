@@ -1,4 +1,4 @@
-import type { Fn } from "../utils/types";
+import type { Fn } from '../utils/types'
 
 /**
  * @title useEvent
@@ -9,4 +9,4 @@ export type UseEvent = <T extends Fn>(
    * @en function
    */
   fn: T
-) => T;
+) => T

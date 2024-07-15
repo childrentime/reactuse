@@ -16,7 +16,7 @@ type Plus = (
    * @defaultValue 1
    */
   b: number
-) => number;
+) => number
 
 /**
  * @title Add
@@ -37,17 +37,17 @@ function Add(
    */
   b = 5,
 ) {
-  return a + b;
+  return a + b
 }
 
 interface ButtonType {
-  size?: "mini" | "large" | "default";
-  color?: string;
+  size?: 'mini' | 'large' | 'default'
+  color?: string
 }
 
 /**
  * @title function with nest type
  */
 function withNestType(buttonProps: Partial<ButtonType>) {
-  return null;
+  return null
 }

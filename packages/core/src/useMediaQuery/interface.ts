@@ -14,4 +14,4 @@ export type UseMediaQuery = (
    * @en default value
    */
   defaultState?: boolean
-) => boolean;
+) => boolean

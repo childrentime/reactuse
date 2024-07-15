@@ -9,4 +9,4 @@ export type UseDocumentVisibility = (
    * @en default value
    */
   defaultValue?: DocumentVisibilityState
-) => DocumentVisibilityState;
+) => DocumentVisibilityState

@@ -1,9 +1,9 @@
-import type { DependencyList, EffectCallback } from "react";
+import type { DependencyList, EffectCallback } from 'react'
 
 export type DepsEqualFnType<TDeps extends DependencyList> = (
   prevDeps: TDeps,
   nextDeps: TDeps
-) => boolean;
+) => boolean
 
 /**
  * @title useCustomCompareEffect
@@ -24,4 +24,4 @@ export type UseCustomCompareEffect = <TDeps extends DependencyList>(
    * @en deps compare function
    */
   depsEqual: DepsEqualFnType<TDeps>
-) => void;
+) => void

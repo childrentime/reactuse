@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useElementSize
@@ -21,4 +21,4 @@ export type UseElementSize = (
    * @en options passed to `resizeObserver`
    */
   options?: ResizeObserverOptions
-) => readonly [number, number];
+) => readonly [number, number]

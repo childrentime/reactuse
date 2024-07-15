@@ -9,4 +9,4 @@ export type UsePreferredDark = (
    * @en defaule value
    */
   defaultState?: boolean
-) => boolean;
+) => boolean

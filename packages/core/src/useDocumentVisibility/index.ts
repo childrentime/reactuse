@@ -1,44 +1,42 @@
-import { useEffect, useState } from "react";
-import { useEventListener } from "../useEventListener";
-import { isBrowser } from "../utils/is";
+import { useEffect, useState } from 'react'
+import { useEventListener } from '../useEventListener'
+import { isBrowser } from '../utils/is'
 
-const getInitialState = (defaultValue?: DocumentVisibilityState) => {
+function getInitialState(defaultValue?: DocumentVisibilityState) {
   // Prevent a React hydration mismatch when a default value is provided.
   if (defaultValue !== undefined) {
-    return defaultValue;
+    return defaultValue
   }
 
   if (isBrowser) {
-    return document.visibilityState;
+    return document.visibilityState
   }
 
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== 'production') {
     console.warn(
-      "`useDocumentVisibility` When server side rendering, defaultValue should be defined to prevent a hydration mismatches.",
-    );
+      '`useDocumentVisibility` When server side rendering, defaultValue should be defined to prevent a hydration mismatches.',
+    )
   }
 
-  return "visible";
-};
+  return 'visible'
+}
 
-export const useDocumentVisibility = (
-  defaultValue?: DocumentVisibilityState,
-): DocumentVisibilityState => {
+export function useDocumentVisibility(defaultValue?: DocumentVisibilityState): DocumentVisibilityState {
   const [visible, setVisible] = useState<DocumentVisibilityState>(
     getInitialState(defaultValue),
-  );
+  )
 
   useEventListener(
-    "visibilitychange",
+    'visibilitychange',
     () => {
-      setVisible(document.visibilityState);
+      setVisible(document.visibilityState)
     },
     () => document,
-  );
+  )
 
   useEffect(() => {
-    setVisible(document.visibilityState);
-  }, []);
+    setVisible(document.visibilityState)
+  }, [])
 
-  return visible;
-};
+  return visible
+}

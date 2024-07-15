@@ -1,57 +1,57 @@
-import { useEffect, useState } from "react";
-import { defaultOptions } from "../utils/defaults";
-import { isBrowser } from "../utils/is";
+import { useEffect, useState } from 'react'
+import { defaultOptions } from '../utils/defaults'
+import { isBrowser } from '../utils/is'
 import type {
   UseTextDirection,
   UseTextDirectionOptions,
   UseTextDirectionValue,
-} from "./interface";
+} from './interface'
 
 export const useTextDirection: UseTextDirection = (
   options: UseTextDirectionOptions = defaultOptions,
 ) => {
-  const { selector = "html", initialValue = "ltr" } = options;
+  const { selector = 'html', initialValue = 'ltr' } = options
   const getValue = () => {
     if (initialValue !== undefined) {
-      return initialValue;
+      return initialValue
     }
     if (isBrowser) {
       return (
         (document
           ?.querySelector(selector)
-          ?.getAttribute("dir") as UseTextDirectionValue) ?? initialValue
-      );
+          ?.getAttribute('dir') as UseTextDirectionValue) ?? initialValue
+      )
     }
     // A default value has not been provided, and you are rendering on the server, warn of a possible hydration mismatch when defaulting to false.
-    if (process.env.NODE_ENV !== "production") {
+    if (process.env.NODE_ENV !== 'production') {
       console.warn(
-        "`useTextDirection` When server side rendering, defaultState should be defined to prevent a hydration mismatches.",
-      );
+        '`useTextDirection` When server side rendering, defaultState should be defined to prevent a hydration mismatches.',
+      )
     }
-    return initialValue;
-  };
-  const [value, setValue] = useState<UseTextDirectionValue>(getValue());
+    return initialValue
+  }
+  const [value, setValue] = useState<UseTextDirectionValue>(getValue())
 
   useEffect(() => {
     setValue(
       document
         ?.querySelector(selector)
-        ?.getAttribute("dir") as UseTextDirectionValue ?? initialValue,
-    );
-  }, [initialValue, selector]);
+        ?.getAttribute('dir') as UseTextDirectionValue ?? initialValue,
+    )
+  }, [initialValue, selector])
 
   const set = (value: UseTextDirectionValue) => {
     if (!isBrowser) {
-      return;
+      return
     }
     if (value !== null) {
-      document.querySelector(selector)?.setAttribute("dir", value);
+      document.querySelector(selector)?.setAttribute('dir', value)
     }
     else {
-      document.querySelector(selector)?.removeAttribute("dir");
+      document.querySelector(selector)?.removeAttribute('dir')
     }
-    setValue(value);
-  };
+    setValue(value)
+  }
 
-  return [value, set] as const;
-};
+  return [value, set] as const
+}

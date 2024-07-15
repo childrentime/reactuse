@@ -1,59 +1,59 @@
-import { useEffect, useState } from "react";
-import { isBrowser } from "../utils/is";
-import type { UseMediaQuery } from "./interface";
+import { useEffect, useState } from 'react'
+import { isBrowser } from '../utils/is'
+import type { UseMediaQuery } from './interface'
 
-const getInitialState = (query: string, defaultState?: boolean) => {
+function getInitialState(query: string, defaultState?: boolean) {
   // Prevent a React hydration mismatch when a default value is provided by not defaulting to window.matchMedia(query).matches.
   if (defaultState !== undefined) {
-    return defaultState;
+    return defaultState
   }
 
   if (isBrowser) {
-    return window.matchMedia(query).matches;
+    return window.matchMedia(query).matches
   }
 
   // A default value has not been provided, and you are rendering on the server, warn of a possible hydration mismatch when defaulting to false.
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== 'production') {
     console.warn(
-      "`useMediaQuery` When server side rendering, defaultState should be defined to prevent a hydration mismatches.",
-    );
+      '`useMediaQuery` When server side rendering, defaultState should be defined to prevent a hydration mismatches.',
+    )
   }
 
-  return false;
-};
+  return false
+}
 
 export const useMediaQuery: UseMediaQuery = (query: string, defaultState?: boolean) => {
-  const [state, setState] = useState(getInitialState(query, defaultState));
+  const [state, setState] = useState(getInitialState(query, defaultState))
 
   useEffect(() => {
-    let mounted = true;
-    const mql = window.matchMedia(query);
+    let mounted = true
+    const mql = window.matchMedia(query)
     const onChange = () => {
       if (!mounted) {
-        return;
+        return
       }
-      setState(!!mql.matches);
-    };
+      setState(!!mql.matches)
+    }
 
-    if ("addEventListener" in mql) {
-      mql.addEventListener("change", onChange);
+    if ('addEventListener' in mql) {
+      mql.addEventListener('change', onChange)
     }
     else {
-      (mql as any).addListener?.(onChange);
+      (mql as any).addListener?.(onChange)
     }
 
-    setState(mql.matches);
+    setState(mql.matches)
 
     return () => {
-      mounted = false;
-      if ("removeEventListener" in mql) {
-        mql.removeEventListener("change", onChange);
+      mounted = false
+      if ('removeEventListener' in mql) {
+        mql.removeEventListener('change', onChange)
       }
       else {
-        (mql as any).removeListener?.(onChange);
+        (mql as any).removeListener?.(onChange)
       }
-    };
-  }, [query]);
+    }
+  }, [query])
 
-  return state;
-};
+  return state
+}

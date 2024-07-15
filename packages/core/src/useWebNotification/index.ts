@@ -1,14 +1,14 @@
-import { useCallback, useEffect, useRef } from "react";
-import { useSupported } from "../useSupported";
-import { useUnmount } from "../useUnmount";
-import { defaultOptions } from "../utils/defaults";
-import type { UseWebNotification } from "./interface";
+import { useCallback, useEffect, useRef } from 'react'
+import { useSupported } from '../useSupported'
+import { useUnmount } from '../useUnmount'
+import { defaultOptions } from '../utils/defaults'
+import type { UseWebNotification } from './interface'
 
 export const useWebNotification: UseWebNotification = (requestPermissions = false) => {
-  const isSupported = useSupported(() => !!window && "Notification" in window);
-  const permissionGranted = useRef(false);
+  const isSupported = useSupported(() => !!window && 'Notification' in window)
+  const permissionGranted = useRef(false)
 
-  const notificationRef = useRef<Notification | null>(null);
+  const notificationRef = useRef<Notification | null>(null)
 
   const show = (
     title: string,
@@ -17,48 +17,48 @@ export const useWebNotification: UseWebNotification = (requestPermissions = fals
     // If either the browser does not support notifications or the user has
     // not granted permission, do nothing:
     if (!isSupported && !permissionGranted.current) {
-      return;
+      return
     }
 
-    notificationRef.current = new Notification(title || "", options);
-    return notificationRef.current;
-  };
+    notificationRef.current = new Notification(title || '', options)
+    return notificationRef.current
+  }
 
   const close = useCallback((): void => {
     if (notificationRef.current) {
-      notificationRef.current.close();
+      notificationRef.current.close()
     }
 
-    notificationRef.current = null;
-  }, []);
+    notificationRef.current = null
+  }, [])
 
   useEffect(() => {
     permissionGranted.current
       = isSupported
-      && "permission" in Notification
-      && Notification.permission === "granted";
-  }, [isSupported]);
+      && 'permission' in Notification
+      && Notification.permission === 'granted'
+  }, [isSupported])
 
   const ensurePermissions = useCallback(async () => {
     if (!isSupported)
-      return;
+      return
 
-    if (!permissionGranted.current && Notification.permission !== "denied") {
-      const result = await Notification.requestPermission();
-      if (result === "granted")
-        permissionGranted.current = true;
+    if (!permissionGranted.current && Notification.permission !== 'denied') {
+      const result = await Notification.requestPermission()
+      if (result === 'granted')
+        permissionGranted.current = true
     }
 
-    return permissionGranted.current;
-  }, [isSupported]);
+    return permissionGranted.current
+  }, [isSupported])
 
   useEffect(() => {
     if (requestPermissions) {
-      ensurePermissions();
+      ensurePermissions()
     }
-  }, [requestPermissions, ensurePermissions]);
+  }, [requestPermissions, ensurePermissions])
 
-  useUnmount(close);
+  useUnmount(close)
 
   return {
     isSupported,
@@ -66,5 +66,5 @@ export const useWebNotification: UseWebNotification = (requestPermissions = fals
     close,
     ensurePermissions,
     permissionGranted,
-  } as const;
-};
+  } as const
+}

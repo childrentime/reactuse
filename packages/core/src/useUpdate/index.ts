@@ -1,9 +1,9 @@
-import { useReducer } from "react";
+import { useReducer } from 'react'
 
-const updateReducer = (num: number): number => (num + 1) % 1_000_000;
+const updateReducer = (num: number): number => (num + 1) % 1_000_000
 
-export const useUpdate = (): () => void => {
-  const [, update] = useReducer(updateReducer, 0);
+export function useUpdate(): () => void {
+  const [, update] = useReducer(updateReducer, 0)
 
-  return update;
-};
+  return update
+}

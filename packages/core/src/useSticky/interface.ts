@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useSticky
@@ -25,7 +25,7 @@ export type UseSticky = (
    * @en scroll container
    */
   scrollElement?: BasicTarget<HTMLElement>
-) => [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+) => [boolean, React.Dispatch<React.SetStateAction<boolean>>]
 
 /**
  * @title UseStickyParams
@@ -36,11 +36,11 @@ export interface UseStickyParams {
    * @zh 滚动方向
    * @defaultValue y
    */
-  axis?: "x" | "y";
+  axis?: 'x' | 'y'
   /**
    * @en cover height or width
    * @zh 沉浸式高度/宽度
    * @defaultValue 0
    */
-  nav: number;
+  nav: number
 }

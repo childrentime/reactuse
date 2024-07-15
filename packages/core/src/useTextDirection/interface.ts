@@ -13,7 +13,7 @@ export type UseTextDirection = (
    * @en optional params
    */
   options?: UseTextDirectionOptions
-) => readonly [UseTextDirectionValue, (value: UseTextDirectionValue) => void];
+) => readonly [UseTextDirectionValue, (value: UseTextDirectionValue) => void]
 
 /**
  * @title UseTextDirectionOptions
@@ -24,16 +24,16 @@ export interface UseTextDirectionOptions {
    * @zh 适用于目标元素的 CSS 选择器
    * @defaultValue 'html'
    */
-  selector?: string;
+  selector?: string
   /**
    * @en Initial value
    * @zh 初始值
    * @defaultValue 'ltr'
    */
-  initialValue?: UseTextDirectionValue;
+  initialValue?: UseTextDirectionValue
 }
 
 /**
  * @title UseTextDirectionValue
  */
-export type UseTextDirectionValue = "ltr" | "rtl" | "auto";
+export type UseTextDirectionValue = 'ltr' | 'rtl' | 'auto'

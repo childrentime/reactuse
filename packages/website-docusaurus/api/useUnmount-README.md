@@ -1,9 +1,11 @@
 ### useUnmount
 
 #### Returns
+
 `void`
 
 #### Arguments
-|Argument|Description|Type|DefaultValue|
-|---|---|---|---|
-|fn|clear function|() => void  **(Required)**|-|
+
+| Argument | Description    | Type                      | DefaultValue |
+| -------- | -------------- | ------------------------- | ------------ |
+| fn       | clear function | () => void **(Required)** | -            |

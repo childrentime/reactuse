@@ -1,4 +1,4 @@
-import type { DebouncedFunc, ThrottleSettings } from "lodash";
+import type { DebouncedFunc, ThrottleSettings } from 'lodash'
 
 /**
  * @title useThrottleFn
@@ -28,7 +28,7 @@ export type UseThrottleFn = <T extends (...args: any) => any>(
    */
   options?: ThrottleSettings
 ) => {
-  run: DebouncedFunc<(...args_0: Parameters<T>) => ReturnType<T>>;
-  cancel: () => void;
-  flush;
-};
+  run: DebouncedFunc<(...args_0: Parameters<T>) => ReturnType<T>>
+  cancel: () => void
+  flush
+}

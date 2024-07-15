@@ -18,16 +18,16 @@ export type UseEventListener = (
    * @defaultValue `window`
    */
   element?:
-  | HTMLElement
-  | Element
-  | Window
-  | Document
-  | EventTarget
-  | null
-  | undefined,
+    | HTMLElement
+    | Element
+    | Window
+    | Document
+    | EventTarget
+    | null
+    | undefined,
   /**
    * @zh 监听选项
    * @en listener options
    */
   options?: boolean | AddEventListenerOptions | undefined
-) => void;
+) => void

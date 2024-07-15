@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useResizeObserver
@@ -15,8 +15,8 @@ export type UseResizeObserver = (
    */
   callback: ResizeObserverCallback,
 /**
-   * @zh `resizeObserver` 参数
-   * @en options passed to `resizeObserver`
-   */
+ * @zh `resizeObserver` 参数
+ * @en options passed to `resizeObserver`
+ */
   options?: ResizeObserverOptions
-) => () => void;
+) => () => void

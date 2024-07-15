@@ -10,18 +10,18 @@ export interface BlinkProps {
    * @zh 数字
    * @en numbers
    */
-  numbers: number[];
+  numbers: number[]
   /**
    * @zh 是否设置 flex 布局属性
    * @en Whether to set flex layout properties
    */
-  flex: boolean;
+  flex: boolean
   /**
    * @zh 排序属性
    * @en sorter
    */
-  sorter: SorterProps;
-  _privatePropThatShouldBeIgnored: ShouldBeIgnoredProps;
+  sorter: SorterProps
+  _privatePropThatShouldBeIgnored: ShouldBeIgnoredProps
 }
 
 /**
@@ -36,13 +36,13 @@ export interface ClinkProps {
    * @zh 排序属性
    * @en sorter
    */
-  sorter: SorterProps;
+  sorter: SorterProps
 }
 
 interface SorterProps {
-  counter: number;
+  counter: number
 }
 
 export interface ShouldBeIgnoredProps {
-  fail: boolean;
+  fail: boolean
 }

@@ -1,16 +1,16 @@
-export function toSingleLine(str = "", escapeChars = true): string {
+export function toSingleLine(str = '', escapeChars = true): string {
   if (!str) {
-    return "";
+    return ''
   }
   let newStr = str.trim()
-    .replace(/[\r\n\t]+/g, "")
-    .replace(/[\x20]{2,}/g, "");
+    .replace(/[\r\n\t]+/g, '')
+    .replace(/\x20{2,}/g, '')
   if (escapeChars) {
     newStr = escape(
-      newStr.replace(/\|/g, "\\|"),
-    );
+      newStr.replace(/\|/g, '\\|'),
+    )
   }
-  return newStr;
+  return newStr
 }
 
 /**
@@ -20,8 +20,8 @@ export function toSingleLine(str = "", escapeChars = true): string {
  * `() => void` => don't need to be escaped
  */
 export function escape(str: string): string {
-  if (!str || !/<[a-zA-Z]+[^>]*>/.test(str)) {
-    return str;
+  if (!str || !/<[a-z][^>]*>/i.test(str)) {
+    return str
   }
-  return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return str.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }

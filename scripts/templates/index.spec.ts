@@ -1,7 +1,7 @@
-import MARKUP from ".";
+import MARKUP from '.'
 
-describe("MARKUP", () => {
-  it("should be defined", () => {
-    expect(MARKUP).toBeDefined();
-  });
-});
+describe('mARKUP', () => {
+  it('should be defined', () => {
+    expect(MARKUP).toBeDefined()
+  })
+})

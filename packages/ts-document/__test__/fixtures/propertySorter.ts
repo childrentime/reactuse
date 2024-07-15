@@ -8,32 +8,32 @@ interface ButtonType {
    * @zh 自定义文本渲染
    * @en Custom text render
    */
-  renderText?: () => string;
+  renderText?: () => string
   /**
    * @zh 尺寸
    * @en Size
    * @defaultValue default
    */
-  size?: "mini" | "large" | "default";
+  size?: 'mini' | 'large' | 'default'
   /**
    * @zh TabIndex
    * @en TabIndex
    */
-  tabIndex?: number;
+  tabIndex?: number
   /**
    * @zh 只读
    * @en Readonly
    */
-  readonly?: boolean;
+  readonly?: boolean
   /**
    * @zh 颜色
    * @en Color
    * @version 1.2.0
    */
-  color?: string;
+  color?: string
   /**
    * @zh 禁用
    * @en Disabled
    */
-  disabled?: boolean;
+  disabled?: boolean
 }

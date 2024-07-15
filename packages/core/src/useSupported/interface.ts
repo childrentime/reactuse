@@ -15,4 +15,4 @@ export type UseSupported = (
    * @defaultValue false
    */
   sync?: boolean
-) => boolean;
+) => boolean

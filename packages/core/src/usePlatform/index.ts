@@ -1,48 +1,48 @@
-import { useCallback, useEffect, useState } from "react";
-import type { Platform, UsePlatform } from "./interface";
+import { useCallback, useEffect, useState } from 'react'
+import type { Platform, UsePlatform } from './interface'
 
-const getPlatform = (userAgent: string): Platform => {
+function getPlatform(userAgent: string): Platform {
   if (/iPad|iPhone|iPod|ios/i.test(userAgent)) {
-    return "ios";
+    return 'ios'
   }
   else if (/android/i.test(userAgent)) {
-    return "android";
+    return 'android'
   }
   else {
-    return "unknown";
+    return 'unknown'
   }
-};
+}
 
-export const usePlatform: UsePlatform = ({ userAgent } = { userAgent: "" }) => {
-  const [ua, setUa] = useState<string>(userAgent || "");
+export const usePlatform: UsePlatform = ({ userAgent } = { userAgent: '' }) => {
+  const [ua, setUa] = useState<string>(userAgent || '')
   const [platform, setPlatform] = useState<Platform>(() => {
     if (userAgent) {
-      return getPlatform(userAgent);
+      return getPlatform(userAgent)
     }
-    return "unknown";
-  });
+    return 'unknown'
+  })
 
   useEffect(() => {
-    setPlatform(getPlatform(navigator.userAgent));
-    setUa(navigator.userAgent);
-  }, []);
+    setPlatform(getPlatform(navigator.userAgent))
+    setUa(navigator.userAgent)
+  }, [])
 
   const isInMiniProgram = useCallback(() => {
-    return /miniprogram/i.test(ua);
-  }, [ua]);
+    return /miniprogram/i.test(ua)
+  }, [ua])
 
   const isInWechat = useCallback(() => {
-    return /micromessenger/i.test(ua);
-  }, [ua]);
+    return /micromessenger/i.test(ua)
+  }, [ua])
 
   const isiPhoneX = useCallback(() => {
-    return /iPhoneX/i.test(ua);
-  }, [ua]);
+    return /iPhoneX/i.test(ua)
+  }, [ua])
 
   return {
     platform,
     isInMiniProgram,
     isInWechat,
     isiPhoneX,
-  };
-};
+  }
+}

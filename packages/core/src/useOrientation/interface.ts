@@ -19,7 +19,7 @@ export type UseOrientation = (
   UseOrientationState,
   (type: UseOrientationLockType) => any,
   () => void,
-];
+]
 
 /**
  * @title UseOrientationState
@@ -29,32 +29,32 @@ export interface UseOrientationState {
    * @zh 角度
    * @en document angle
    */
-  angle: number;
+  angle: number
   /**
    * @zh 方向类型
    * @en orientation type
    */
-  type: UseOrientationType | undefined;
+  type: UseOrientationType | undefined
 }
 
 /**
  * @title UseOrientationType
  */
 export type UseOrientationType =
-  | "portrait-primary"
-  | "portrait-secondary"
-  | "landscape-primary"
-  | "landscape-secondary";
+  | 'portrait-primary'
+  | 'portrait-secondary'
+  | 'landscape-primary'
+  | 'landscape-secondary'
 
 /**
  * @title UseOrientationLockType
  */
 export type UseOrientationLockType =
-  | "any"
-  | "natural"
-  | "landscape"
-  | "portrait"
-  | "portrait-primary"
-  | "portrait-secondary"
-  | "landscape-primary"
-  | "landscape-secondary";
+  | 'any'
+  | 'natural'
+  | 'landscape'
+  | 'portrait'
+  | 'portrait-primary'
+  | 'portrait-secondary'
+  | 'landscape-primary'
+  | 'landscape-secondary'

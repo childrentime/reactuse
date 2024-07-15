@@ -1,12 +1,14 @@
 ### usePreferredContrast
 
 #### Returns
+
 `Contrast`
 
 #### Arguments
-|Argument|Description|Type|DefaultValue|
-|---|---|---|---|
-|defaultState|default value|[Contrast](#Contrast) \| undefined |`no-preference`|
+
+| Argument     | Description   | Type                               | DefaultValue    |
+| ------------ | ------------- | ---------------------------------- | --------------- |
+| defaultState | default value | [Contrast](#Contrast) \| undefined | `no-preference` |
 
 ### Contrast
 

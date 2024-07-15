@@ -30,19 +30,19 @@ Collection of essential React Hooks Utilities.
 ## QuickStart
 
 ```tsx harmony
-import { useToggle } from "@reactuses/core";
+import { useToggle } from '@reactuses/core'
 
 function Demo() {
-  const [on, toggle] = useToggle(true);
+  const [on, toggle] = useToggle(true)
 
   return (
     <div>
-      <div>{on ? "ON" : "OFF"}</div>
+      <div>{on ? 'ON' : 'OFF'}</div>
       <button onClick={toggle}>Toggle</button>
       <button onClick={() => toggle(true)}>set ON</button>
       <button onClick={() => toggle(false)}>set OFF</button>
     </div>
-  );
+  )
 }
 ```
 
@@ -52,7 +52,7 @@ Refer to [documentations](https://reactuse.com/) for more details.
 
 ## Documentation & Live Examples
 
-* [Documentation](https://reactuse.com/)
+- [Documentation](https://reactuse.com/)
 
 <hr/>
 
@@ -89,8 +89,8 @@ See the [**ChangeLog**](https://github.com/childrentime/reactuse/blob/main/packa
 
 This project is heavily inspired by the following awesome projects.
 
-* [streamich/react-use](https://github.com/streamich/react-use)
-* [ahooks](https://github.com/alibaba/hooks)
-* [vueuse](https://github.com/vueuse/vueuse)
+- [streamich/react-use](https://github.com/streamich/react-use)
+- [ahooks](https://github.com/alibaba/hooks)
+- [vueuse](https://github.com/vueuse/vueuse)
 
 <hr/>

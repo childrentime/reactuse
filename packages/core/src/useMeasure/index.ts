@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useResizeObserver } from "../useResizeObserver";
-import { defaultOptions } from "../utils/defaults";
-import type { UseMeasure, UseMeasureRect } from "./interface";
+import { useState } from 'react'
+import { useResizeObserver } from '../useResizeObserver'
+import { defaultOptions } from '../utils/defaults'
+import type { UseMeasure, UseMeasureRect } from './interface'
 
 const defaultState: UseMeasureRect = {
   x: 0,
@@ -12,25 +12,25 @@ const defaultState: UseMeasureRect = {
   left: 0,
   bottom: 0,
   right: 0,
-};
+}
 
 export const useMeasure: UseMeasure = (
   target,
   options: ResizeObserverOptions = defaultOptions,
 ) => {
-  const [rect, setRect] = useState<UseMeasureRect>(defaultState);
+  const [rect, setRect] = useState<UseMeasureRect>(defaultState)
 
   const stop = useResizeObserver(
     target,
-    (entries) => {
+    entries => {
       if (entries[0]) {
         const { x, y, width, height, top, left, bottom, right }
-          = entries[0].contentRect;
-        setRect({ x, y, width, height, top, left, bottom, right });
+          = entries[0].contentRect
+        setRect({ x, y, width, height, top, left, bottom, right })
       }
     },
     options,
-  );
+  )
 
-  return [rect, stop] as const;
-};
+  return [rect, stop] as const
+}

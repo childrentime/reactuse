@@ -22,4 +22,4 @@ export type UseIdle = (
    * @defaultValue ["mousemove","mousedown","resize","keydown","touchstart","wheel"]
    */
   events?: (keyof WindowEventMap)[]
-) => boolean;
+) => boolean

@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useIntersectionObserver
@@ -21,4 +21,4 @@ export type UseIntersectionObserver = (
    * @en options passed to `IntersectionObserver`
    */
   options?: IntersectionObserverInit
-) => () => void;
+) => () => void

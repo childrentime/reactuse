@@ -16,7 +16,7 @@ type Plus = (
    * @defaultValue 1
    */
   b: number
-) => number;
+) => number
 
 /**
  * @title Add
@@ -37,7 +37,7 @@ function Add(
    */
   b = 5,
 ) {
-  return a + b;
+  return a + b
 }
 
 /**
@@ -51,11 +51,11 @@ interface ButtonType {
    * @en Size
    * @defaultValue default
    */
-  size?: "mini" | "large" | "default";
+  size?: 'mini' | 'large' | 'default'
   /**
    * @zh 颜色
    * @en Color
    * @version 1.2.0
    */
-  color?: string;
+  color?: string
 }

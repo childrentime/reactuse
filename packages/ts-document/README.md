@@ -16,11 +16,11 @@ npm i ts-document -D
 ```
 
 ```js
-const { generate, generateMarkdown } = require("ts-document");
+const { generate, generateMarkdown } = require('ts-document')
 
-generate("interface.ts", config);
+generate('interface.ts', config)
 
-generateMarkdown("interface.ts", config);
+generateMarkdown('interface.ts', config)
 ```
 
 ### interface.ts
@@ -28,7 +28,7 @@ generateMarkdown("interface.ts", config);
 ts-document will only extract interface and type with jsDoc tag `title`。
 
 ```ts
-import { ReactNode } from "react";
+import { ReactNode } from 'react'
 
 /**
  * @title Alert
@@ -47,13 +47,13 @@ export interface AlertProps {
    * @en this is action
    * @version 2.15.0
    */
-  action?: ReactNode;
+  action?: ReactNode
   /**
    * @zh 是否可以关闭
    * @en Whether Alert can be closed
    * @defaultValue false
    */
-  closable?: InnerProps;
+  closable?: InnerProps
 }
 
 interface InnerProps {
@@ -61,21 +61,21 @@ interface InnerProps {
    * @zh 位置
    * @en position
    */
-  position?: string;
+  position?: string
   /**
    * @zh 尺寸
    * @en Size
    */
-  size?: string;
+  size?: string
 }
 ```
 
 ## Generate jsDoc schema
 
 ```js
-const { generate } = require("ts-document");
+const { generate } = require('ts-document')
 
-generate("interface.ts");
+generate('interface.ts')
 ```
 
 output
@@ -144,9 +144,9 @@ output
 ## Generate markdown document
 
 ```js
-const { generateMarkdown } = require("ts-document");
+const { generateMarkdown } = require('ts-document')
 
-generateMarkdown("interface.ts");
+generateMarkdown('interface.ts')
 ```
 
 output
@@ -219,7 +219,7 @@ nested types may not be exported due to other reasons (such as the nested type h
 
 Whether to escape characters for extracted type text. E.g. `|` will be escaped to `\|`, `<Promise>` will be escaped to `&lt;Promise&gt;`.
 
-## Who's using? 
+## Who's using?
 
 [Arco Design](https://github.com/arco-design/arco-design) - A comprehensive React UI components library based on Arco Design.
 

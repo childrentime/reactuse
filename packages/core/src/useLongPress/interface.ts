@@ -25,12 +25,12 @@ export type UseLongPress = (
    */
   options?: UseLongPressOptions
 ) => {
-  readonly onMouseDown: (e: any) => void;
-  readonly onTouchStart: (e: any) => void;
-  readonly onMouseUp: () => void;
-  readonly onMouseLeave: () => void;
-  readonly onTouchEnd: () => void;
-};
+  readonly onMouseDown: (e: any) => void
+  readonly onTouchStart: (e: any) => void
+  readonly onMouseUp: () => void
+  readonly onMouseLeave: () => void
+  readonly onTouchEnd: () => void
+}
 
 /**
  * @title UseLongPressOptions
@@ -41,11 +41,11 @@ export interface UseLongPressOptions {
    * @en whether prevent default event
    * @defaultValue true
    */
-  isPreventDefault?: boolean;
+  isPreventDefault?: boolean
   /**
    * @zh 延迟
    * @en delay time
    * @defaultValue 300
    */
-  delay?: number;
+  delay?: number
 }

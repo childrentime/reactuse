@@ -16,7 +16,7 @@ export type UseGeolocation = (
    */
   options?: Partial<PositionOptions>
 ) => {
-  readonly coordinates: GeolocationCoordinates;
-  readonly locatedAt: number | null;
-  readonly error: GeolocationPositionError | null;
-};
+  readonly coordinates: GeolocationCoordinates
+  readonly locatedAt: number | null
+  readonly error: GeolocationPositionError | null
+}

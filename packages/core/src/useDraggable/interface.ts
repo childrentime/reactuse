@@ -1,6 +1,6 @@
-import type { Dispatch, RefObject, SetStateAction } from "react";
-import type { PointerType, Position } from "../utils/types";
-import type { BasicTarget } from "../utils/domTarget";
+import type { Dispatch, RefObject, SetStateAction } from 'react'
+import type { PointerType, Position } from '../utils/types'
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useDraggable
@@ -26,7 +26,7 @@ export type UseDraggable = (
    * @en optional params
    */
   options?: UseDraggableOptions
-) => readonly [number, number, boolean, Dispatch<SetStateAction<Position>>];
+) => readonly [number, number, boolean, Dispatch<SetStateAction<Position>>]
 
 /**
  * @title  UseDraggableOptions
@@ -37,72 +37,72 @@ export interface UseDraggableOptions {
    * @zh 仅当直接单击元素时才开始拖动
    * @defaultValue false
    */
-  exact?: boolean;
+  exact?: boolean
 
   /**
    * @en Prevent events defaults
    * @zh 阻止默认事件
    * @defaultValue false
    */
-  preventDefault?: boolean;
+  preventDefault?: boolean
 
   /**
    * @en Prevent events propagation
    * @zh 阻止事件冒泡
    * @defaultValue false
    */
-  stopPropagation?: boolean;
+  stopPropagation?: boolean
 
   /**
    * @en Element to attach `pointermove` and `pointerup` events to.
    * @zh 将“pointermove”和“pointerup”事件附加到的dom元素
    * @defaultValue window
    */
-  draggingElement?: BasicTarget<HTMLElement | SVGElement>;
+  draggingElement?: BasicTarget<HTMLElement | SVGElement>
 
   /**
    * @en Element for calculating bounds (If not set, it will use the event's target).
    * @zh 设置拖拽容器边界
    * @defaultValue undefined
    */
-  containerElement?: BasicTarget<HTMLElement | SVGAElement>;
+  containerElement?: BasicTarget<HTMLElement | SVGAElement>
 
   /**
    * @en Handle that triggers the drag event
    * @zh 触发拖动事件的dom元素
    * @defaultValue target
    */
-  handle?: RefObject<HTMLElement | SVGElement>;
+  handle?: RefObject<HTMLElement | SVGElement>
 
   /**
    * @en Pointer types that listen to.
    * @zh 监听的事件类型
    * @defaultValue ['mouse', 'touch', 'pen']
    */
-  pointerTypes?: PointerType[];
+  pointerTypes?: PointerType[]
 
   /**
    * @en Initial position of the element.
    * @zh 初始的元素位置
    * @defaultValue { x: 0, y: 0 }
    */
-  initialValue?: Position;
+  initialValue?: Position
 
   /**
    * @en Callback when the dragging starts. Return `false` to prevent dragging.
    * @zh 拖动开始时的回调。 返回“false”以防止拖动
    */
-  onStart?: (position: Position, event: PointerEvent) => void | false;
+  onStart?: (position: Position, event: PointerEvent) => void | false
 
   /**
    * @en Callback during dragging.
    * @zh 拖动时候的回调
    */
-  onMove?: (position: Position, event: PointerEvent) => void;
+  onMove?: (position: Position, event: PointerEvent) => void
 
   /**
    * @en Callback when dragging end.
    * @zh 拖动结束的回调
    */
-  onEnd?: (position: Position, event: PointerEvent) => void;
+  onEnd?: (position: Position, event: PointerEvent) => void
 }

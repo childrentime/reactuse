@@ -10,9 +10,9 @@ export type UsePreferredColorScheme = (
    * @defaultValue no-preference
    */
   defaultState?: ColorScheme
-) => ColorScheme;
+) => ColorScheme
 
 /**
  * @title ColorScheme
  */
-export type ColorScheme = "dark" | "light" | "no-preference";
+export type ColorScheme = 'dark' | 'light' | 'no-preference'

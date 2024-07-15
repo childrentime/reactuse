@@ -1,16 +1,13 @@
-import { useEffect, useState } from "react";
-import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
+import { useEffect, useState } from 'react'
+import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect'
 
-export const useSupported = (
-  callback: () => unknown,
-  sync = false,
-): boolean => {
-  const [supported, setSupported] = useState(false);
+export function useSupported(callback: () => unknown, sync = false): boolean {
+  const [supported, setSupported] = useState(false)
 
-  const effect = sync ? useIsomorphicLayoutEffect : useEffect;
+  const effect = sync ? useIsomorphicLayoutEffect : useEffect
   effect(() => {
-    setSupported(Boolean(callback()));
-  }, []);
+    setSupported(Boolean(callback()))
+  }, [])
 
-  return supported;
-};
+  return supported
+}

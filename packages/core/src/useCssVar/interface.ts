@@ -1,8 +1,8 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 export const defaultOptions: UseCssVarOptions = {
   observe: false,
-};
+}
 
 /**
  * @title useCssVar
@@ -34,7 +34,7 @@ export type UseCssVar = <T extends HTMLElement = HTMLElement>(
    * @en options
    */
   options?: UseCssVarOptions
-) => readonly [string, (v: string) => void];
+) => readonly [string, (v: string) => void]
 
 /**
  * @title UseCssVarOptions
@@ -45,5 +45,5 @@ export interface UseCssVarOptions {
    * @zh 使用 MutationObserver 来监听变量变更
    * @defaultValue false
    */
-  observe?: boolean;
+  observe?: boolean
 }

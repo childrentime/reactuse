@@ -1,67 +1,67 @@
-import { throttle } from "lodash-es";
-import { useEffect, useState } from "react";
-import { off, on } from "../utils/browser";
-import type { UseIdle } from "./interface";
+import { throttle } from 'lodash-es'
+import { useEffect, useState } from 'react'
+import { off, on } from '../utils/browser'
+import type { UseIdle } from './interface'
 
 const defaultEvents: (keyof WindowEventMap)[] = [
-  "mousemove",
-  "mousedown",
-  "resize",
-  "keydown",
-  "touchstart",
-  "wheel",
-];
-const oneMinute = 60e3;
+  'mousemove',
+  'mousedown',
+  'resize',
+  'keydown',
+  'touchstart',
+  'wheel',
+]
+const oneMinute = 60e3
 
 export const useIdle: UseIdle = (
   ms: number = oneMinute,
   initialState = false,
   events: (keyof WindowEventMap)[] = defaultEvents,
 ): boolean => {
-  const [state, setState] = useState<boolean>(initialState);
+  const [state, setState] = useState<boolean>(initialState)
 
   useEffect(() => {
-    let mounted = true;
-    let timeout: any;
-    let localState: boolean = state;
+    let mounted = true
+    let timeout: any
+    let localState: boolean = state
     const set = (newState: boolean) => {
       if (mounted) {
-        localState = newState;
-        setState(newState);
+        localState = newState
+        setState(newState)
       }
-    };
+    }
 
     const onEvent = throttle(() => {
       if (localState) {
-        set(false);
+        set(false)
       }
 
-      clearTimeout(timeout);
-      timeout = setTimeout(() => set(true), ms);
-    }, 50);
+      clearTimeout(timeout)
+      timeout = setTimeout(() => set(true), ms)
+    }, 50)
     const onVisibility = () => {
       if (!document.hidden) {
-        onEvent();
+        onEvent()
       }
-    };
+    }
 
     for (let i = 0; i < events.length; i++) {
-      on(window, events[i], onEvent);
+      on(window, events[i], onEvent)
     }
-    on(document, "visibilitychange", onVisibility);
+    on(document, 'visibilitychange', onVisibility)
 
-    timeout = setTimeout(() => set(true), ms);
+    timeout = setTimeout(() => set(true), ms)
 
     return () => {
-      mounted = false;
+      mounted = false
 
       for (let i = 0; i < events.length; i++) {
-        off(window, events[i], onEvent);
+        off(window, events[i], onEvent)
       }
-      off(document, "visibilitychange", onVisibility);
-    };
+      off(document, 'visibilitychange', onVisibility)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ms, events]);
+  }, [ms, events])
 
-  return state;
-};
+  return state
+}

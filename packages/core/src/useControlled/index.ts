@@ -1,6 +1,6 @@
-import { useCallback, useState } from "react";
-import { useLatest } from "../useLatest";
-import type { UseControlled } from "./interface";
+import { useCallback, useState } from 'react'
+import { useLatest } from '../useLatest'
+import type { UseControlled } from './interface'
 
 export const useControlled: UseControlled = <T>(
   value: T | undefined,
@@ -9,19 +9,19 @@ export const useControlled: UseControlled = <T>(
 ): [T, (value: T) => void] => {
   const [stateValue, setStateValue] = useState(
     value !== undefined ? value : defaultValue,
-  );
-  const isControlled = value !== undefined;
-  const onChangeRef = useLatest(onChange);
+  )
+  const isControlled = value !== undefined
+  const onChangeRef = useLatest(onChange)
 
   const setValue = useCallback(
     (newValue: T) => {
       if (!isControlled) {
-        setStateValue(newValue);
+        setStateValue(newValue)
       }
-      onChangeRef.current?.(newValue);
+      onChangeRef.current?.(newValue)
     },
     [isControlled, onChangeRef],
-  );
+  )
 
-  return [isControlled ? value : stateValue, setValue];
-};
+  return [isControlled ? value : stateValue, setValue]
+}

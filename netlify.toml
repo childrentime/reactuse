@@ -1,3 +1,7 @@
+[build]
+command = "pnpm run build"
+publish = "build"
+
 [build.environment]
 NPM_FLAGS = "--version"
 NODE_OPTIONS = "--max_old_space_size=4096"
@@ -13,7 +17,3 @@ force = true
 from = "/*"
 to = "/index.html"
 status = 200
-
-[build]
-command = "pnpm run build"
-publish = "build"

@@ -1,24 +1,25 @@
-import { renderHook } from "@testing-library/react";
-import { usePrevious } from ".";
+import { renderHook } from '@testing-library/react'
+import { usePrevious } from '.'
 
-const setUp = () =>
-  renderHook(({ state }) => usePrevious(state), { initialProps: { state: 0 } });
+function setUp() {
+  return renderHook(({ state }) => usePrevious(state), { initialProps: { state: 0 } })
+}
 
-it("should return undefined on initial render", () => {
-  const { result } = setUp();
+it('should return undefined on initial render', () => {
+  const { result } = setUp()
 
-  expect(result.current).toBeUndefined();
-});
+  expect(result.current).toBeUndefined()
+})
 
-it("should always return previous state after each update", () => {
-  const { result, rerender } = setUp();
+it('should always return previous state after each update', () => {
+  const { result, rerender } = setUp()
 
-  rerender({ state: 2 });
-  expect(result.current).toBe(0);
+  rerender({ state: 2 })
+  expect(result.current).toBe(0)
 
-  rerender({ state: 4 });
-  expect(result.current).toBe(2);
+  rerender({ state: 4 })
+  expect(result.current).toBe(2)
 
-  rerender({ state: 6 });
-  expect(result.current).toBe(4);
-});
+  rerender({ state: 6 })
+  expect(result.current).toBe(4)
+})

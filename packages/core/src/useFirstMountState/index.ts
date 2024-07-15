@@ -1,14 +1,14 @@
-import { useRef } from "react";
-import type { UseFirstMountState } from "./interface";
+import { useRef } from 'react'
+import type { UseFirstMountState } from './interface'
 
 export const useFirstMountState: UseFirstMountState = (): boolean => {
-  const isFirst = useRef(true);
+  const isFirst = useRef(true)
 
   if (isFirst.current) {
-    isFirst.current = false;
+    isFirst.current = false
 
-    return true;
+    return true
   }
 
-  return isFirst.current;
-};
+  return isFirst.current
+}

@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useDropZone
@@ -12,8 +12,8 @@ export type UseDropZone = (
    */
   target: BasicTarget<EventTarget>,
 /**
-   * @zh 拖拽释放时候的回调
-   * @en drop callback
-   */
+ * @zh 拖拽释放时候的回调
+ * @en drop callback
+ */
   onDrop?: ((files: File[] | null) => void) | undefined
-) => boolean;
+) => boolean

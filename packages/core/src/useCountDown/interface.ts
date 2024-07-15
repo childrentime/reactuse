@@ -5,9 +5,9 @@
  * - minute.
  * - second.
  * @returns 包含以下元素的元组：
-  * - 小时。
-  * - 分钟。
-  * - 秒数。
+ * - 小时。
+ * - 分钟。
+ * - 秒数。
  */
 export type UseCountDown = (
   /**
@@ -26,4 +26,4 @@ export type UseCountDown = (
    * @en callback function for end of countdown
    */
   callback?: () => void
-) => readonly [string, string, string];
+) => readonly [string, string, string]

@@ -7,42 +7,42 @@ export interface UseDarkOptions {
    * @zh 适用于目标元素的 CSS 选择器
    * @defaultValue 'html'
    */
-  selector?: string;
+  selector?: string
 
   /**
    * @en HTML attribute applying the target element
    * @zh 应用到目标元素的 html 属性
    * @defaultValue 'class'
    */
-  attribute?: string;
+  attribute?: string
   /**
    * @en default value
    * @zh 默认值
    * @defaultValue false
    */
-  defaultValue?: boolean;
+  defaultValue?: boolean
   /**
    * @en Key to persist the data into localStorage/sessionStorage.
    * @zh 将数据持久保存到 localStorage/sessionStorage 的键值
    * @defaultValue 'reactuses-color-scheme'
    */
-  storageKey?: string;
+  storageKey?: string
   /**
    * @en Storage object, can be localStorage or sessionStorage
    * @zh 存储对象，可以是localStorage或sessionStorage
    * @defaultValue `localStorage`
    */
-  storage?: () => Storage;
+  storage?: () => Storage
   /**
    * @en name dark apply to element
    * @zh  应用到目标元素上黑色类名称
    */
-  classNameDark: string;
+  classNameDark: string
   /**
    * @en name light apply to element
    * @zh 应用到目标元素上的亮色类名称
    */
-  classNameLight: string;
+  classNameLight: string
 }
 
 /**
@@ -62,4 +62,4 @@ export type UseDarkMode = (
   boolean | null,
   () => void,
   React.Dispatch<React.SetStateAction<boolean | null>>,
-];
+]

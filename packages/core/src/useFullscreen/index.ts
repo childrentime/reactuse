@@ -1,70 +1,70 @@
-import { useState } from "react";
-import screenfull from "screenfull";
-import { getTargetElement } from "../utils/domTarget";
-import { useUnmount } from "../useUnmount";
-import { useEvent } from "../useEvent";
-import { defaultOptions } from "../utils/defaults";
-import type { UseFullScreenOptions, UseFullscreen } from "./interface";
+import { useState } from 'react'
+import screenfull from 'screenfull'
+import { getTargetElement } from '../utils/domTarget'
+import { useUnmount } from '../useUnmount'
+import { useEvent } from '../useEvent'
+import { defaultOptions } from '../utils/defaults'
+import type { UseFullScreenOptions, UseFullscreen } from './interface'
 
 export const useFullscreen: UseFullscreen = (
   target,
   options: UseFullScreenOptions = defaultOptions,
 ) => {
-  const { onExit, onEnter } = options;
+  const { onExit, onEnter } = options
 
-  const [state, setState] = useState(false);
+  const [state, setState] = useState(false)
 
   const onChange = () => {
     if (screenfull.isEnabled) {
-      const { isFullscreen } = screenfull;
+      const { isFullscreen } = screenfull
       if (isFullscreen) {
-        onEnter?.();
+        onEnter?.()
       }
       else {
-        screenfull.off("change", onChange);
-        onExit?.();
+        screenfull.off('change', onChange)
+        onExit?.()
       }
-      setState(isFullscreen);
+      setState(isFullscreen)
     }
-  };
+  }
 
   const enterFullscreen = () => {
-    const el = getTargetElement(target);
+    const el = getTargetElement(target)
     if (!el) {
-      return;
+      return
     }
 
     if (screenfull.isEnabled) {
       try {
-        screenfull.request(el);
-        screenfull.on("change", onChange);
+        screenfull.request(el)
+        screenfull.on('change', onChange)
       }
       catch (error) {
-        console.error(error);
+        console.error(error)
       }
     }
-  };
+  }
 
   const exitFullscreen = () => {
     if (screenfull.isEnabled) {
-      screenfull.exit();
+      screenfull.exit()
     }
-  };
+  }
 
   const toggleFullscreen = () => {
     if (state) {
-      exitFullscreen();
+      exitFullscreen()
     }
     else {
-      enterFullscreen();
+      enterFullscreen()
     }
-  };
+  }
 
   useUnmount(() => {
     if (screenfull.isEnabled) {
-      screenfull.off("change", onChange);
+      screenfull.off('change', onChange)
     }
-  });
+  })
 
   return [
     state,
@@ -74,5 +74,5 @@ export const useFullscreen: UseFullscreen = (
       toggleFullscreen: useEvent(toggleFullscreen),
       isEnabled: screenfull.isEnabled,
     },
-  ] as const;
-};
+  ] as const
+}

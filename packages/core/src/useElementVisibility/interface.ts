@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useElementVisibility
@@ -11,13 +11,13 @@ import type { BasicTarget } from "../utils/domTarget";
  */
 export type UseElementVisibility = (
 /**
-   * @zh dom对象
-   * @en dom element
-   */
+ * @zh dom对象
+ * @en dom element
+ */
   target: BasicTarget<HTMLElement | SVGElement>,
 /**
-   * @zh 传递给 `intersectionObserver` 的选项
-   * @en options passed to `intersectionObserver`
-   */
+ * @zh 传递给 `intersectionObserver` 的选项
+ * @en options passed to `intersectionObserver`
+ */
   options?: IntersectionObserverInit
-) => readonly [boolean, () => void];
+) => readonly [boolean, () => void]

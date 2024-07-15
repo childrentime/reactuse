@@ -1,13 +1,13 @@
-import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
-import type { UseLocationSelector } from "./interface";
+import { useSyncExternalStore } from 'use-sync-external-store/shim/index.js'
+import type { UseLocationSelector } from './interface'
 
 function subscribe(callback: () => void) {
-  window.addEventListener("popstate", callback);
-  window.addEventListener("hashchange", callback);
+  window.addEventListener('popstate', callback)
+  window.addEventListener('hashchange', callback)
   return () => {
-    window.removeEventListener("popstate", callback);
-    window.removeEventListener("hashchange", callback);
-  };
+    window.removeEventListener('popstate', callback)
+    window.removeEventListener('hashchange', callback)
+  }
 }
 
 export const useLocationSelector: UseLocationSelector = <R>(
@@ -22,5 +22,5 @@ export const useLocationSelector: UseLocationSelector = <R>(
     subscribe,
     () => selector(location),
     () => fallback,
-  );
-};
+  )
+}

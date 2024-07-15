@@ -16,14 +16,14 @@ export type UseMediaDevices = (
 ) => readonly [
   {
     devices: {
-      deviceId: string;
-      groupId: string;
-      kind: MediaDeviceKind;
-      label: string;
-    }[];
+      deviceId: string
+      groupId: string
+      kind: MediaDeviceKind
+      label: string
+    }[]
   },
   () => Promise<boolean>,
-];
+]
 
 /**
  * @title UseMediaDeviceOptions
@@ -35,11 +35,11 @@ export interface UseMediaDeviceOptions {
    * @zh 自动请求权限
    * @defaultValue false
    */
-  requestPermissions?: boolean;
+  requestPermissions?: boolean
   /**
    * @en Request for types of media permissions
    * @zh 请求媒体权限类型
    * @defaultValue { audio: true, video: true }
    */
-  constraints?: MediaStreamConstraints;
+  constraints?: MediaStreamConstraints
 }

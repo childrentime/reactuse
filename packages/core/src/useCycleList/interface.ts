@@ -20,4 +20,4 @@ export type UseCycleList = <T>(
    * @en array index
    */
   i?: number
-) => readonly [T, (i?: number) => void, (i?: number) => void];
+) => readonly [T, (i?: number) => void, (i?: number) => void]

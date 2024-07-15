@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from 'react'
 
 /**
  * @title useRafState
@@ -15,4 +15,4 @@ export type UseRafState = <S>(
    * @en state value
    */
   initialState: S | (() => S)
-) => readonly [S, Dispatch<SetStateAction<S>>];
+) => readonly [S, Dispatch<SetStateAction<S>>]

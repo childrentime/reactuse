@@ -1,4 +1,4 @@
-export const getRelativePosition = ({
+export function getRelativePosition({
   axis,
   target,
   parent,
@@ -6,89 +6,89 @@ export const getRelativePosition = ({
   offset,
   isList,
 }: {
-  axis: "x" | "y";
-  target: Element | null | undefined;
-  parent: Element | null | undefined;
-  alignment: "start" | "end" | "center";
-  offset: number;
-  isList: boolean;
-}): number => {
-  if (!target || (!parent && typeof document === "undefined")) {
-    return 0;
+  axis: 'x' | 'y'
+  target: Element | null | undefined
+  parent: Element | null | undefined
+  alignment: 'start' | 'end' | 'center'
+  offset: number
+  isList: boolean
+}): number {
+  if (!target || (!parent && typeof document === 'undefined')) {
+    return 0
   }
-  const isCustomParent = !!parent;
-  const parentElement = parent || document.body;
-  const parentPosition = parentElement.getBoundingClientRect();
-  const targetPosition = target.getBoundingClientRect();
+  const isCustomParent = !!parent
+  const parentElement = parent || document.body
+  const parentPosition = parentElement.getBoundingClientRect()
+  const targetPosition = target.getBoundingClientRect()
 
-  const getDiff = (property: "top" | "left"): number =>
-    targetPosition[property] - parentPosition[property];
+  const getDiff = (property: 'top' | 'left'): number =>
+    targetPosition[property] - parentPosition[property]
 
-  if (axis === "y") {
-    const diff = getDiff("top");
+  if (axis === 'y') {
+    const diff = getDiff('top')
 
     if (diff === 0) {
-      return 0;
+      return 0
     }
 
-    if (alignment === "start") {
-      const distance = diff - offset;
+    if (alignment === 'start') {
+      const distance = diff - offset
       const shouldScroll
-        = distance <= targetPosition.height * (isList ? 0 : 1) || !isList;
+        = distance <= targetPosition.height * (isList ? 0 : 1) || !isList
 
-      return shouldScroll ? distance : 0;
+      return shouldScroll ? distance : 0
     }
 
     const parentHeight = isCustomParent
       ? parentPosition.height
-      : window.innerHeight;
+      : window.innerHeight
 
-    if (alignment === "end") {
-      const distance = diff + offset - parentHeight + targetPosition.height;
+    if (alignment === 'end') {
+      const distance = diff + offset - parentHeight + targetPosition.height
       const shouldScroll
-        = distance >= -targetPosition.height * (isList ? 0 : 1) || !isList;
+        = distance >= -targetPosition.height * (isList ? 0 : 1) || !isList
 
-      return shouldScroll ? distance : 0;
+      return shouldScroll ? distance : 0
     }
 
-    if (alignment === "center") {
-      return diff - parentHeight / 2 + targetPosition.height / 2;
+    if (alignment === 'center') {
+      return diff - parentHeight / 2 + targetPosition.height / 2
     }
 
-    return 0;
+    return 0
   }
 
-  if (axis === "x") {
-    const diff = getDiff("left");
+  if (axis === 'x') {
+    const diff = getDiff('left')
 
     if (diff === 0) {
-      return 0;
+      return 0
     }
 
-    if (alignment === "start") {
-      const distance = diff - offset;
-      const shouldScroll = distance <= targetPosition.width || !isList;
+    if (alignment === 'start') {
+      const distance = diff - offset
+      const shouldScroll = distance <= targetPosition.width || !isList
 
-      return shouldScroll ? distance : 0;
+      return shouldScroll ? distance : 0
     }
 
     const parentWidth = isCustomParent
       ? parentPosition.width
-      : window.innerWidth;
+      : window.innerWidth
 
-    if (alignment === "end") {
-      const distance = diff + offset - parentWidth + targetPosition.width;
-      const shouldScroll = distance >= -targetPosition.width || !isList;
+    if (alignment === 'end') {
+      const distance = diff + offset - parentWidth + targetPosition.width
+      const shouldScroll = distance >= -targetPosition.width || !isList
 
-      return shouldScroll ? distance : 0;
+      return shouldScroll ? distance : 0
     }
 
-    if (alignment === "center") {
-      return diff - parentWidth / 2 + targetPosition.width / 2;
+    if (alignment === 'center') {
+      return diff - parentWidth / 2 + targetPosition.width / 2
     }
 
-    return 0;
+    return 0
   }
 
-  return 0;
-};
+  return 0
+}

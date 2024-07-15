@@ -1,27 +1,24 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "module": "esnext",
+    "jsx": "react-jsx",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "baseUrl": ".",
+    "rootDir": ".",
+    "module": "esnext",
     "moduleResolution": "node",
-    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "strict": true,
-    "strictNullChecks": true,
     "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "declaration": true,
     "declarationDir": "./types",
-    "resolveJsonModule": true,
-    "rootDir": ".",
-    "baseUrl": ".",
-    "jsx": "react-jsx",
-    "skipLibCheck": true,
+    "esModuleInterop": true,
     "skipDefaultLibCheck": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "skipLibCheck": true
   },
-  "include": [
-    "packages/core/src"
-  ],
   "exclude": [
     "node_modules",
     "**/*.md",

@@ -3,4 +3,4 @@
  * @returns 鼠标是否离开页面
  * @returns_en whether the mouse leave page
  */
-export type UsePageLeave = () => boolean;
+export type UsePageLeave = () => boolean

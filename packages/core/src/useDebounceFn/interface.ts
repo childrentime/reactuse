@@ -1,4 +1,4 @@
-import type { DebounceSettings, DebouncedFunc } from "lodash";
+import type { DebounceSettings, DebouncedFunc } from 'lodash'
 
 /**
  * @title useDebounceFn
@@ -28,7 +28,7 @@ export type UseDebounceFn = <T extends (...args: any) => any>(
    */
   options?: DebounceSettings
 ) => {
-  run: DebouncedFunc<(...args_0: Parameters<T>) => ReturnType<T>>;
-  cancel: () => void;
-  flush;
-};
+  run: DebouncedFunc<(...args_0: Parameters<T>) => ReturnType<T>>
+  cancel: () => void
+  flush
+}

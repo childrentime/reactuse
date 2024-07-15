@@ -7,4 +7,4 @@ export type UseUnmount = (
    * @en clear function
    */
   fn: () => void
-) => void;
+) => void

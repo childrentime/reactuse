@@ -12,4 +12,4 @@ export type UseLocationSelector = <R>(
    * @en default value
    */
   fallback?: R | undefined
-) => R | undefined;
+) => R | undefined

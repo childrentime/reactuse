@@ -1,134 +1,134 @@
-import { act, renderHook } from "@testing-library/react";
-import { useTimeout } from ".";
+import { act, renderHook } from '@testing-library/react'
+import { useTimeout } from '.'
 
 beforeAll(() => {
-  jest.useFakeTimers();
-});
+  jest.useFakeTimers()
+})
 
 afterEach(() => {
-  jest.clearAllTimers();
-});
+  jest.clearAllTimers()
+})
 
 afterAll(() => {
-  jest.useRealTimers();
-});
+  jest.useRealTimers()
+})
 
-it("should be defined", () => {
-  expect(useTimeout).toBeDefined();
-});
+it('should be defined', () => {
+  expect(useTimeout).toBeDefined()
+})
 
-it("should return type", () => {
-  const hook = renderHook(() => useTimeout(5));
+it('should return type', () => {
+  const hook = renderHook(() => useTimeout(5))
 
-  expect(hook.result.current.length).toBe(3);
-  expect(typeof hook.result.current[0]).toBe("boolean");
-  expect(typeof hook.result.current[1]).toBe("function");
-  expect(typeof hook.result.current[2]).toBe("function");
-});
+  expect(hook.result.current.length).toBe(3)
+  expect(typeof hook.result.current[0]).toBe('boolean')
+  expect(typeof hook.result.current[1]).toBe('function')
+  expect(typeof hook.result.current[2]).toBe('function')
+})
 
 function getHook(ms = 5, options = { immediate: false }) {
-  const spy = jest.fn();
+  const spy = jest.fn()
   return [
     spy,
     renderHook(
       ({ delay = 5, opts = { immediate: false } }) => {
-        spy();
-        return useTimeout(delay, opts);
+        spy()
+        return useTimeout(delay, opts)
       },
       { initialProps: { delay: ms, opts: options } },
     ),
-  ] as const;
+  ] as const
 }
 
-it("should re-render component after given amount of time", () => {
-  const [spy] = getHook(5, { immediate: true });
-  expect(spy).toHaveBeenCalledTimes(2);
+it('should re-render component after given amount of time', () => {
+  const [spy] = getHook(5, { immediate: true })
+  expect(spy).toHaveBeenCalledTimes(2)
   act(() => {
-    jest.advanceTimersByTime(5);
-  });
-  expect(spy).toHaveBeenCalledTimes(3);
-});
+    jest.advanceTimersByTime(5)
+  })
+  expect(spy).toHaveBeenCalledTimes(3)
+})
 
-it("should cancel timeout on unmount", () => {
-  const [spy, hook] = getHook();
+it('should cancel timeout on unmount', () => {
+  const [spy, hook] = getHook()
 
-  expect(spy).toHaveBeenCalledTimes(1);
-  hook.unmount();
+  expect(spy).toHaveBeenCalledTimes(1)
+  hook.unmount()
   act(() => {
-    hook.result.current[1]();
-    jest.advanceTimersByTime(5);
-  });
-  expect(spy).toHaveBeenCalledTimes(1);
-  expect(hook.result.current[0]).toEqual(false);
-});
+    hook.result.current[1]()
+    jest.advanceTimersByTime(5)
+  })
+  expect(spy).toHaveBeenCalledTimes(1)
+  expect(hook.result.current[0]).toEqual(false)
+})
 
-it("first function should return actual state of timeout", () => {
-  let [, hook] = getHook(5, { immediate: true });
-  const [isPending] = hook.result.current;
+it('first function should return actual state of timeout', () => {
+  let [, hook] = getHook(5, { immediate: true })
+  const [isPending] = hook.result.current
 
-  expect(isPending).toBe(true);
+  expect(isPending).toBe(true)
 
-  hook.unmount();
+  hook.unmount()
 
   expect(hook.result.current[0]).toBe(true);
 
-  [, hook] = getHook();
+  [, hook] = getHook()
   act(() => {
-    jest.advanceTimersByTime(5);
-  });
-  expect(hook.result.current[0]).toBe(false);
-});
+    jest.advanceTimersByTime(5)
+  })
+  expect(hook.result.current[0]).toBe(false)
+})
 
-it("second function should cancel timeout", () => {
-  const [spy, hook] = getHook(5, { immediate: true });
-  const [isPending, , cancel] = hook.result.current;
+it('second function should cancel timeout', () => {
+  const [spy, hook] = getHook(5, { immediate: true })
+  const [isPending, , cancel] = hook.result.current
 
-  expect(spy).toHaveBeenCalledTimes(2);
-  expect(isPending).toBe(true);
-
-  act(() => {
-    cancel();
-    jest.advanceTimersByTime(5);
-  });
-
-  expect(spy).toHaveBeenCalledTimes(3);
-  expect(hook.result.current[0]).toBe(false);
-});
-
-it("first function should start timeout", () => {
-  const [spy, hook] = getHook();
-  const [isPending, start, cancel] = hook.result.current;
-
-  expect(isPending).toBe(false);
+  expect(spy).toHaveBeenCalledTimes(2)
+  expect(isPending).toBe(true)
 
   act(() => {
-    cancel();
-    jest.advanceTimersByTime(5);
-  });
+    cancel()
+    jest.advanceTimersByTime(5)
+  })
 
-  expect(hook.result.current[0]).toBe(false);
+  expect(spy).toHaveBeenCalledTimes(3)
+  expect(hook.result.current[0]).toBe(false)
+})
+
+it('first function should start timeout', () => {
+  const [spy, hook] = getHook()
+  const [isPending, start, cancel] = hook.result.current
+
+  expect(isPending).toBe(false)
 
   act(() => {
-    start();
-  });
-  expect(hook.result.current[0]).toBe(true);
+    cancel()
+    jest.advanceTimersByTime(5)
+  })
+
+  expect(hook.result.current[0]).toBe(false)
 
   act(() => {
-    jest.advanceTimersByTime(5);
-  });
-  expect(spy).toHaveBeenCalledTimes(3);
-  expect(hook.result.current[0]).toBe(false);
-});
+    start()
+  })
+  expect(hook.result.current[0]).toBe(true)
 
-it("should reset timeout on delay change", () => {
-  const [spy, hook] = getHook(15);
-
-  expect(spy).toHaveBeenCalledTimes(1);
-  hook.rerender({ delay: 5, opts: { immediate: true } });
-  expect(spy).toHaveBeenCalledTimes(3);
   act(() => {
-    jest.advanceTimersByTime(5);
-  });
+    jest.advanceTimersByTime(5)
+  })
+  expect(spy).toHaveBeenCalledTimes(3)
+  expect(hook.result.current[0]).toBe(false)
+})
 
-  expect(spy).toHaveBeenCalledTimes(4);
-});
+it('should reset timeout on delay change', () => {
+  const [spy, hook] = getHook(15)
+
+  expect(spy).toHaveBeenCalledTimes(1)
+  hook.rerender({ delay: 5, opts: { immediate: true } })
+  expect(spy).toHaveBeenCalledTimes(3)
+  act(() => {
+    jest.advanceTimersByTime(5)
+  })
+
+  expect(spy).toHaveBeenCalledTimes(4)
+})

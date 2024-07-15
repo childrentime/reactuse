@@ -1,4 +1,4 @@
-import type { DependencyList, EffectCallback } from "react";
+import type { DependencyList, EffectCallback } from 'react'
 
 /**
  * @title useDeepCompareEffect
@@ -14,4 +14,4 @@ export type UseDeepCompareEffect = (
    * @en dep list
    */
   deps: DependencyList
-) => void;
+) => void

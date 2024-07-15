@@ -1,4 +1,4 @@
 /**
  * @title useFirstMountState
  */
-export type UseFirstMountState = () => boolean;
+export type UseFirstMountState = () => boolean

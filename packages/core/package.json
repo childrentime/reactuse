@@ -37,10 +37,10 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist",
-    "package.json",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "dist",
+    "package.json"
   ],
   "scripts": {
     "lint": "eslint \"{hooks,tests}/**/*.{ts,tsx}\"",

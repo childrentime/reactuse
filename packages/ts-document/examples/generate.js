@@ -1,9 +1,9 @@
-const path = require("node:path");
-const { generateMarkdown } = require("../lib");
+const path = require('node:path')
+const { generateMarkdown } = require('../lib')
 
-const schema = generateMarkdown(path.resolve(__dirname, "a.tsx"), {
-  sourceFilesPaths: ["**/*.ts", "**/*.tsx"],
+const schema = generateMarkdown(path.resolve(__dirname, 'a.tsx'), {
+  sourceFilesPaths: ['**/*.ts', '**/*.tsx'],
   strictOrder: true,
-});
+})
 
-console.log(schema);
+console.log(schema)

@@ -1,21 +1,21 @@
 export function guessSerializerType<T>(rawInit: T) {
   return rawInit == null || rawInit === undefined
-    ? "any"
+    ? 'any'
     : rawInit instanceof Set
-      ? "set"
+      ? 'set'
       : rawInit instanceof Map
-        ? "map"
+        ? 'map'
         : rawInit instanceof Date
-          ? "date"
-          : typeof rawInit === "boolean"
-            ? "boolean"
-            : typeof rawInit === "string"
-              ? "string"
-              : typeof rawInit === "object"
-                ? "object"
+          ? 'date'
+          : typeof rawInit === 'boolean'
+            ? 'boolean'
+            : typeof rawInit === 'string'
+              ? 'string'
+              : typeof rawInit === 'object'
+                ? 'object'
                 : Array.isArray(rawInit)
-                  ? "object"
+                  ? 'object'
                   : !Number.isNaN(rawInit)
-                      ? "number"
-                      : "any";
+                      ? 'number'
+                      : 'any'
 }

@@ -7,4 +7,4 @@ export type UseMount = (
    * @en effect function
    */
   effect: () => void
-) => void;
+) => void

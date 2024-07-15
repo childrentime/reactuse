@@ -16,18 +16,18 @@ npm i @reactuses/core
 ## 用例
 
 ```tsx
-import { useToggle } from "@reactuses/core";
+import { useToggle } from '@reactuses/core'
 
-const Demo = () => {
-  const [on, toggle] = useToggle(true);
+function Demo() {
+  const [on, toggle] = useToggle(true)
 
   return (
     <div>
-      <div>{on ? "ON" : "OFF"}</div>
+      <div>{on ? 'ON' : 'OFF'}</div>
       <button onClick={toggle}>Toggle</button>
       <button onClick={() => toggle(true)}>set ON</button>
       <button onClick={() => toggle(false)}>set OFF</button>
     </div>
-  );
-};
+  )
+}
 ```

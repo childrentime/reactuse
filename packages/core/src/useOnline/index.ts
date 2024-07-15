@@ -1,7 +1,7 @@
-import { useNetwork } from "../useNetwork";
-import type { UseOnline } from "./interface";
+import { useNetwork } from '../useNetwork'
+import type { UseOnline } from './interface'
 
 export const useOnline: UseOnline = (): boolean | undefined => {
-  const { online } = useNetwork();
-  return online;
-};
+  const { online } = useNetwork()
+  return online
+}

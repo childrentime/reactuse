@@ -1,5 +1,5 @@
-import type { UseScrollOptions } from "../useScroll/interface";
-import type { BasicTarget } from "../utils/domTarget";
+import type { UseScrollOptions } from '../useScroll/interface'
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useInfiniteScroll
@@ -20,7 +20,7 @@ export type UseInfiniteScroll = (
    * @en optional params
    */
   options?: UseInfiniteScrollOptions
-) => void;
+) => void
 
 /**
  * @title UseInfiniteScrollLoadMore
@@ -37,7 +37,7 @@ export type UseInfiniteScrollLoadMore = (
     UseInfiniteScrollArrivedState,
     UseInfiniteScrollDirection,
   ]
-) => void | Promise<void>;
+) => void | Promise<void>
 /**
  * @title UseInfiniteScrollOptions
  */
@@ -47,21 +47,21 @@ export interface UseInfiniteScrollOptions extends UseScrollOptions {
    * @zh 元素底部与视口底部之间的最小距离
    * @defaultValue 0
    */
-  distance?: number;
+  distance?: number
 
   /**
    * @en The direction in which to listen the scroll.
    * @zh 滚动方向
    * @defaultValue 'bottom'
    */
-  direction?: "top" | "bottom" | "left" | "right";
+  direction?: 'top' | 'bottom' | 'left' | 'right'
 
   /**
    * @en Whether to preserve the current scroll position when loading more items.
    * @zh 加载更多项目时是否保留当前滚动位置
    * @defaultValueValue false
    */
-  preserveScrollPosition?: boolean;
+  preserveScrollPosition?: boolean
 }
 
 /**
@@ -72,22 +72,22 @@ export interface UseInfiniteScrollArrivedState {
    * @en arrived left
    * @zh 到达左边
    */
-  left: boolean;
+  left: boolean
   /**
    * @en arrived right
    * @zh 到达右边
    */
-  right: boolean;
+  right: boolean
   /**
    * @en arrived top
    * @zh 到达顶部
    */
-  top: boolean;
+  top: boolean
   /**
    * @en arrived bottom
    * @zh 到达底部
    */
-  bottom: boolean;
+  bottom: boolean
 }
 
 /**
@@ -98,20 +98,20 @@ export interface UseInfiniteScrollDirection {
    * @en scroll left
    * @zh 向左滚动
    */
-  left: boolean;
+  left: boolean
   /**
    * @en scroll right
    * @zh 向右滚动
    */
-  right: boolean;
+  right: boolean
   /**
    * @en scroll top
    * @zh 向上滚动
    */
-  top: boolean;
+  top: boolean
   /**
    * @en scroll bottom
    * @zh 向下滚动
    */
-  bottom: boolean;
+  bottom: boolean
 }

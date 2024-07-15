@@ -1,7 +1,7 @@
-import { useCssVar } from ".";
+import { useCssVar } from '.'
 
-describe("useCssVar", () => {
-  it("should be defined", () => {
-    expect(useCssVar).toBeDefined();
-  });
-});
+describe('useCssVar', () => {
+  it('should be defined', () => {
+    expect(useCssVar).toBeDefined()
+  })
+})

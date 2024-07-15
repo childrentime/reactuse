@@ -1,7 +1,7 @@
-import { useScreenSafeArea } from ".";
+import { useScreenSafeArea } from '.'
 
-describe("useScreenSafeArea", () => {
-  it("should be defined", () => {
-    expect(useScreenSafeArea).toBeDefined();
-  });
-});
+describe('useScreenSafeArea', () => {
+  it('should be defined', () => {
+    expect(useScreenSafeArea).toBeDefined()
+  })
+})

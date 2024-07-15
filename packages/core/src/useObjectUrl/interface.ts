@@ -9,4 +9,4 @@ export type UseObjectUrl = (
    * @en file or media source
    */
   object: Blob | MediaSource
-) => string | undefined;
+) => string | undefined

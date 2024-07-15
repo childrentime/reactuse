@@ -9,4 +9,4 @@ export type UseReducedMotion = (
    * @en default value
    */
   defaultState?: boolean
-) => boolean;
+) => boolean

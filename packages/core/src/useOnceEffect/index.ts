@@ -1,4 +1,4 @@
-import { useEffect } from "react";
-import createOnceEffect from "../createOnceEffect";
+import { useEffect } from 'react'
+import createOnceEffect from '../createOnceEffect'
 
-export const useOnceEffect = createOnceEffect(useEffect);
+export const useOnceEffect = createOnceEffect(useEffect)

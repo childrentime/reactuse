@@ -7,7 +7,7 @@ export type UseWebNotification = (
    * @en auto request permission
    */
   requestPermissions?: boolean
-) => UseWebNotificationReturn;
+) => UseWebNotificationReturn
 
 /**
  * @title UseWebNotificationReturn
@@ -17,27 +17,27 @@ export interface UseWebNotificationReturn {
    * @zh 浏览器是否支持
    * @en whether browser support
    */
-  readonly isSupported: boolean;
+  readonly isSupported: boolean
   /**
    * @zh 展示函数
    * @en show function
    */
-  readonly show: UseWebNotificationShow;
+  readonly show: UseWebNotificationShow
   /**
    * @zh 关闭函数
    * @en close function
    */
-  readonly close: () => void;
+  readonly close: () => void
   /**
    * @zh 请求权限函数
    * @en request permissions function
    */
-  readonly ensurePermissions: () => Promise<boolean | undefined>;
+  readonly ensurePermissions: () => Promise<boolean | undefined>
   /**
    * @zh 权限状态
    * @en permission status
    */
-  readonly permissionGranted: React.MutableRefObject<boolean>;
+  readonly permissionGranted: React.MutableRefObject<boolean>
 }
 
 /**
@@ -54,4 +54,4 @@ export type UseWebNotificationShow = (
    * @en options passed to `NotificationOptions`
    */
   options?: NotificationOptions
-) => Notification | undefined;
+) => Notification | undefined

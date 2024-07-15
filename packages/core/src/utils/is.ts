@@ -1,32 +1,36 @@
-import React from "react";
-import type { Fn } from "./types";
+import React from 'react'
+import type { Fn } from './types'
 
-const toString = Object.prototype.toString;
+const toString = Object.prototype.toString
 
-export const isFunction = <T extends Fn>(val: any): val is T =>
-  typeof val === "function";
-export const isDef = <T = any>(val?: T): val is T => typeof val !== "undefined";
-export const isUndef = (value: unknown): value is undefined =>
-  typeof value === "undefined";
-export const isBoolean = (val: any): val is boolean => typeof val === "boolean";
+export function isFunction<T extends Fn>(val: any): val is T {
+  return typeof val === 'function'
+}
+export const isDef = <T = any>(val?: T): val is T => typeof val !== 'undefined'
+export function isUndef(value: unknown): value is undefined {
+  return typeof value === 'undefined'
+}
+export const isBoolean = (val: any): val is boolean => typeof val === 'boolean'
 
-export const isNumber = (val: any): val is number => typeof val === "number";
-export const isString = (val: unknown): val is string =>
-  typeof val === "string";
-export const isObject = (val: any): val is object =>
-  toString.call(val) === "[object Object]";
+export const isNumber = (val: any): val is number => typeof val === 'number'
+export function isString(val: unknown): val is string {
+  return typeof val === 'string'
+}
+export function isObject(val: any): val is object {
+  return toString.call(val) === '[object Object]'
+}
 
 export const isDev
-  = process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test";
+  = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
 
-export const isBrowser = typeof window !== "undefined";
-export const isNavigator = typeof navigator !== "undefined";
+export const isBrowser = typeof window !== 'undefined'
+export const isNavigator = typeof navigator !== 'undefined'
 
-export const noop = () => {};
+export function noop() {}
 
 export const isIOS
 /* #__PURE__ */ = isBrowser
-  && window?.navigator?.userAgent
-  && /iP(ad|hone|od)/.test(window.navigator.userAgent);
+&& window?.navigator?.userAgent
+&& /iP(?:ad|hone|od)/.test(window.navigator.userAgent)
 
-export const isReactLegacy = !React.useId;
+export const isReactLegacy = !React.useId

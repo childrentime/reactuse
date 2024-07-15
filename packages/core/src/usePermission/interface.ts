@@ -9,38 +9,38 @@ export type UsePermission = (
    * @en permission desc
    */
   permissionDesc:
-  | UsePermissionGeneralPermissionDescriptor
-  | UsePermissionGeneralPermissionDescriptor["name"]
-) => UsePermissionState;
+    | UsePermissionGeneralPermissionDescriptor
+    | UsePermissionGeneralPermissionDescriptor['name']
+) => UsePermissionState
 
 /**
  * @title UsePermissionState
  */
-export type UsePermissionState = PermissionState | "";
+export type UsePermissionState = PermissionState | ''
 
 /**
  * @title UsePermissionGeneralPermissionDescriptor
  */
 export type UsePermissionGeneralPermissionDescriptor =
   | PermissionDescriptor
-  | { name: UsePermissionDescriptorNamePolyfill };
+  | { name: UsePermissionDescriptorNamePolyfill }
 
 /**
  * @title UsePermissionDescriptorNamePolyfill
  */
 export type UsePermissionDescriptorNamePolyfill =
-  | "accelerometer"
-  | "accessibility-events"
-  | "ambient-light-sensor"
-  | "background-sync"
-  | "camera"
-  | "clipboard-read"
-  | "clipboard-write"
-  | "gyroscope"
-  | "magnetometer"
-  | "microphone"
-  | "notifications"
-  | "payment-handler"
-  | "persistent-storage"
-  | "push"
-  | "speaker";
+  | 'accelerometer'
+  | 'accessibility-events'
+  | 'ambient-light-sensor'
+  | 'background-sync'
+  | 'camera'
+  | 'clipboard-read'
+  | 'clipboard-write'
+  | 'gyroscope'
+  | 'magnetometer'
+  | 'microphone'
+  | 'notifications'
+  | 'payment-handler'
+  | 'persistent-storage'
+  | 'push'
+  | 'speaker'

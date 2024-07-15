@@ -1,7 +1,7 @@
-import { useHover } from ".";
+import { useHover } from '.'
 
-describe("useHover", () => {
-  it("should be defined", () => {
-    expect(useHover).toBeDefined();
-  });
-});
+describe('useHover', () => {
+  it('should be defined', () => {
+    expect(useHover).toBeDefined()
+  })
+})

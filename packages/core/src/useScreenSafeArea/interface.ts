@@ -1,4 +1,4 @@
-import type { DebouncedFunc } from "lodash-es";
+import type { DebouncedFunc } from 'lodash-es'
 
 /**
  * @title useScreenSafeArea
@@ -15,4 +15,4 @@ import type { DebouncedFunc } from "lodash-es";
  * - left safe distance
  * - munual update function
  */
-export type UseScreenSafeArea = () => readonly [string, string, string, string, DebouncedFunc<() => void>];
+export type UseScreenSafeArea = () => readonly [string, string, string, string, DebouncedFunc<() => void>]

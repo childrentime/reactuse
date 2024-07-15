@@ -1,4 +1,4 @@
-import type { BProps } from "./b";
+import type { BProps } from './b'
 
 /**
  * @title A
@@ -8,12 +8,12 @@ export interface AProps extends BProps {
    * @zh 是否禁用
    * @en Whether to disable
    */
-  disabled?: boolean;
+  disabled?: boolean
   /**
    * @zh 动画
    * @en animation
    */
-  animation?: boolean | string;
+  animation?: boolean | string
 }
 
 export interface CProps {
@@ -21,10 +21,10 @@ export interface CProps {
    * @zh BB
    * @en bb
    */
-  bb?: boolean;
+  bb?: boolean
 }
 
 export interface Option {
-  a: string;
-  b: string;
+  a: string
+  b: string
 }

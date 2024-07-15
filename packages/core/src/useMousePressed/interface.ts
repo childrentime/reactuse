@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useMousePressed
@@ -20,7 +20,7 @@ export type UseMousePressed = (
    * @en optional params
    */
   options?: UseMousePressedOptions
-) => readonly [boolean, UseMousePressedSourceType];
+) => readonly [boolean, UseMousePressedSourceType]
 
 /**
  * @title UseMousePressedOptions
@@ -31,24 +31,24 @@ export interface UseMousePressedOptions {
    * @zh 监听 `touchstart` 事件
    * @defaultValue true
    */
-  touch?: boolean;
+  touch?: boolean
 
   /**
    * @en Listen to `dragstart` `drop` and `dragend` events
    * @zh 监听 `dragStart` 事件
    * @defaultValue true
    */
-  drag?: boolean;
+  drag?: boolean
 
   /**
    * @en Initial values
    * @zh 初始值
    * @defaultValue false
    */
-  initialValue?: boolean | (() => boolean);
+  initialValue?: boolean | (() => boolean)
 }
 
 /**
  * @title UseMousePressedSourceType
  */
-export type UseMousePressedSourceType = "mouse" | "touch" | null;
+export type UseMousePressedSourceType = 'mouse' | 'touch' | null

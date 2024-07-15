@@ -32,7 +32,7 @@ export type UseScriptTag = (
   UseScriptTagStatus,
   (waitForScriptLoad?: boolean) => Promise<HTMLScriptElement | boolean>,
   () => void,
-];
+]
 
 /**
  * @title UseScriptTagOptions
@@ -43,69 +43,69 @@ export interface UseScriptTagOptions {
    * @zh 立即加载资源
    * @defaultValue true
    */
-  immediate?: boolean;
+  immediate?: boolean
 
   /**
    * @en Add `async` attribute to the script tag
    * @zh 在 `script` 标签上加上 `async`
    * @defaultValue true
    */
-  async?: boolean;
+  async?: boolean
 
   /**
    * @en Script type
    * @zh 脚本类型
    * @defaultValue 'text/javascript'
    */
-  type?: string;
+  type?: string
 
   /**
    * @en Manual controls the timing of loading and unloading
    * @zh 手动控制加载和卸载时机
    * @defaultValue false
    */
-  manual?: boolean;
+  manual?: boolean
 
   /**
    * @zh 跨域属性
    * @en cross origin
    */
-  crossOrigin?: "anonymous" | "use-credentials";
+  crossOrigin?: 'anonymous' | 'use-credentials'
 
   /**
    * @en referrer policy
    * @zh 来源属性
    */
   referrerPolicy?:
-  | "no-referrer"
-  | "no-referrer-when-downgrade"
-  | "origin"
-  | "origin-when-cross-origin"
-  | "same-origin"
-  | "strict-origin"
-  | "strict-origin-when-cross-origin"
-  | "unsafe-url";
+    | 'no-referrer'
+    | 'no-referrer-when-downgrade'
+    | 'origin'
+    | 'origin-when-cross-origin'
+    | 'same-origin'
+    | 'strict-origin'
+    | 'strict-origin-when-cross-origin'
+    | 'unsafe-url'
 
   /**
    * @en Add `noModule` attribute to the script tag
    * @zh 在 `script` 标签上加上 `noModule`
    */
-  noModule?: boolean;
+  noModule?: boolean
 
   /**
    * @en Add `defer` attribute to the script tag
    * @zh 在 `script` 标签上加上 `defer`
    */
-  defer?: boolean;
+  defer?: boolean
 
   /**
    * @en Add custom attribute to the script tag
    * @zh 在 script 标签上添加自定义属性
    */
-  attrs?: Record<string, string>;
+  attrs?: Record<string, string>
 }
 
 /**
  * @title UseScriptTagStatus
  */
-export type UseScriptTagStatus = "idle" | "loading" | "ready" | "error";
+export type UseScriptTagStatus = 'idle' | 'loading' | 'ready' | 'error'

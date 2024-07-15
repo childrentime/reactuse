@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useClickOutside
@@ -19,6 +19,6 @@ export type UseClickOutside = (
    * @en whether the listener fucntion is enabled
    */
   enabled?: boolean
-) => void;
+) => void
 
-export type EventType = MouseEvent | TouchEvent;
+export type EventType = MouseEvent | TouchEvent

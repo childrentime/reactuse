@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useScroll
@@ -32,7 +32,7 @@ export type UseScroll = (
   boolean,
   UseScrollArrivedState,
   UseScrollDirection,
-];
+]
 
 /**
  * @title UseScrollOptions
@@ -43,7 +43,7 @@ export interface UseScrollOptions {
    * @zh 滚动事件的节流时间，默认关闭。
    * @defaultValue 0
    */
-  throttle?: number;
+  throttle?: number
 
   /**
    * @en The check time when scrolling ends.
@@ -52,39 +52,39 @@ export interface UseScrollOptions {
    * 当配置 `throttle` 时，此配置将设置为 (throttle +idle)。
    * @default 200
    */
-  idle?: number;
+  idle?: number
 
   /**
    * @en Offset arrived states by x pixels
    * @zh 将到达状态偏移 x 像素
    */
-  offset?: UseScrollOffset;
+  offset?: UseScrollOffset
 
   /**
    * @en Trigger it when scrolling.
    * @zh 滚动的回调
    */
-  onScroll?: (e: Event) => void;
+  onScroll?: (e: Event) => void
 
   /**
    * @en Trigger it when scrolling ends.
    * @zh 滚动结束的回调
    */
-  onStop?: (e: Event) => void;
+  onStop?: (e: Event) => void
 
   /**
    * @en Listener options for scroll event.
    * @zh 滚动事件参数
    * @defaultValue {capture: false, passive: true}
    */
-  eventListenerOptions?: boolean | AddEventListenerOptions;
+  eventListenerOptions?: boolean | AddEventListenerOptions
 }
 
 export interface UseScrollOffset {
-  left?: number;
-  right?: number;
-  top?: number;
-  bottom?: number;
+  left?: number
+  right?: number
+  top?: number
+  bottom?: number
 }
 
 /**
@@ -95,22 +95,22 @@ export interface UseScrollArrivedState {
    * @en arrived left
    * @zh 到达左边
    */
-  left: boolean;
+  left: boolean
   /**
    * @en arrived right
    * @zh 到达右边
    */
-  right: boolean;
+  right: boolean
   /**
    * @en arrived top
    * @zh 到达顶部
    */
-  top: boolean;
+  top: boolean
   /**
    * @en arrived bottom
    * @zh 到达底部
    */
-  bottom: boolean;
+  bottom: boolean
 }
 
 /**
@@ -121,20 +121,20 @@ export interface UseScrollDirection {
    * @en scroll left
    * @zh 向左滚动
    */
-  left: boolean;
+  left: boolean
   /**
    * @en scroll right
    * @zh 向右滚动
    */
-  right: boolean;
+  right: boolean
   /**
    * @en scroll top
    * @zh 向上滚动
    */
-  top: boolean;
+  top: boolean
   /**
    * @en scroll bottom
    * @zh 向下滚动
    */
-  bottom: boolean;
+  bottom: boolean
 }

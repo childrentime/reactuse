@@ -18,4 +18,4 @@ export type UseFavicon = (
    * @defaultValue icon
    */
   rel?: string
-) => void;
+) => void

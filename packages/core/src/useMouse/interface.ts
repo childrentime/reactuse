@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useMouse
@@ -11,22 +11,22 @@ export type UseMouse = (
    * @en dom element
    */
   target?: BasicTarget
-) => UseMouseCursorState;
+) => UseMouseCursorState
 
 /**
  * @title UseMouseCursorState
  */
 export interface UseMouseCursorState {
-  screenX: number;
-  screenY: number;
-  clientX: number;
-  clientY: number;
-  pageX: number;
-  pageY: number;
-  elementX: number;
-  elementY: number;
-  elementH: number;
-  elementW: number;
-  elementPosX: number;
-  elementPosY: number;
+  screenX: number
+  screenY: number
+  clientX: number
+  clientY: number
+  pageX: number
+  pageY: number
+  elementX: number
+  elementY: number
+  elementH: number
+  elementW: number
+  elementPosX: number
+  elementPosY: number
 }

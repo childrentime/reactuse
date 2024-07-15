@@ -1,4 +1,4 @@
-import type { Stoppable } from "../utils/types";
+import type { Stoppable } from '../utils/types'
 
 /**
  * @title useTimeoutFn
@@ -27,7 +27,7 @@ export type UseTimeoutFn = (
    * @en optional param
    */
   options?: UseTimeoutFnOptions
-) => Stoppable;
+) => Stoppable
 
 /**
  * @title UseTimeoutFnOptions
@@ -38,5 +38,5 @@ export interface UseTimeoutFnOptions {
    * @zh 立即设置定时器
    * @defaultValue false
    */
-  immediate?: boolean;
+  immediate?: boolean
 }

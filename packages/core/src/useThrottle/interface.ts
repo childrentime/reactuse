@@ -1,4 +1,4 @@
-import type { ThrottleSettings } from "lodash-es";
+import type { ThrottleSettings } from 'lodash-es'
 
 /**
  * @title useThrottle
@@ -19,4 +19,4 @@ export type UseThrottle = <T>(
    * @en options passed to `lodash.throttle`
    */
   options?: ThrottleSettings
-) => T;
+) => T

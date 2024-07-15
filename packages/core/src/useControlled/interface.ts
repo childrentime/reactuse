@@ -23,4 +23,4 @@ export type UseControlled = <T>(
    * @zh 值改变时的回调
    */
   onChange?: ((v: T, ...args: any[]) => void) | undefined
-) => [T, (value: T) => void];
+) => [T, (value: T) => void]

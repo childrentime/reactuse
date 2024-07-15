@@ -21,5 +21,10 @@
   },
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
-  }
+  },
+  "eslint.useFlatConfig": true,
+  // "eslint.experimental.useFlatConfig": true,
+  // "eslint.options": {
+  //   "overrideConfigFile": "eslint.config.js"
+  // },
 }

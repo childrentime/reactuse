@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useMeasure
@@ -16,9 +16,9 @@ export type UseMeasure = (
    * @en optional params
    */
   options?: ResizeObserverOptions
-) => readonly [UseMeasureRect, () => void];
+) => readonly [UseMeasureRect, () => void]
 
 /**
  * @title UseMeasureRect
  */
-export type UseMeasureRect = Omit<DOMRectReadOnly, "toJSON">;
+export type UseMeasureRect = Omit<DOMRectReadOnly, 'toJSON'>

@@ -2,7 +2,7 @@
 
 Thanks for being willing to contribute 🙌 If you contribute to this project, you agree to release your work under the license of this project.
 
-**Working on your first Pull Request?** You can learn how from this [First Contributions](https://github.com/firstcontributions/first-contributions)  guide.
+**Working on your first Pull Request?** You can learn how from this [First Contributions](https://github.com/firstcontributions/first-contributions) guide.
 
 ## Project setup
 
@@ -33,10 +33,10 @@ This library is a collection of React hooks so a proposal for a new hook will ne
 
 packages is divided into two parts.
 
-``` md
+```md
 packages
-  core/           - the core hook package
-  website-docusaurus/        - the document package
+core/ - the core hook package
+website-docusaurus/ - the document package
 ```
 
 ### Creating a new hook

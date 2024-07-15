@@ -1,32 +1,32 @@
-import { renderHook } from "@testing-library/react";
-import { useMount } from ".";
+import { renderHook } from '@testing-library/react'
+import { useMount } from '.'
 
-const mockCallback = jest.fn();
+const mockCallback = jest.fn()
 
 afterEach(() => {
-  jest.resetAllMocks();
-});
+  jest.resetAllMocks()
+})
 
-it("should call provided callback on mount", () => {
-  renderHook(() => useMount(mockCallback));
+it('should call provided callback on mount', () => {
+  renderHook(() => useMount(mockCallback))
 
-  expect(mockCallback).toHaveBeenCalledTimes(1);
-});
+  expect(mockCallback).toHaveBeenCalledTimes(1)
+})
 
-it("should not call provided callback on unmount", () => {
-  const { unmount } = renderHook(() => useMount(mockCallback));
-  expect(mockCallback).toHaveBeenCalledTimes(1);
+it('should not call provided callback on unmount', () => {
+  const { unmount } = renderHook(() => useMount(mockCallback))
+  expect(mockCallback).toHaveBeenCalledTimes(1)
 
-  unmount();
+  unmount()
 
-  expect(mockCallback).toHaveBeenCalledTimes(1);
-});
+  expect(mockCallback).toHaveBeenCalledTimes(1)
+})
 
-it("should not call provided callback on rerender", () => {
-  const { rerender } = renderHook(() => useMount(mockCallback));
-  expect(mockCallback).toHaveBeenCalledTimes(1);
+it('should not call provided callback on rerender', () => {
+  const { rerender } = renderHook(() => useMount(mockCallback))
+  expect(mockCallback).toHaveBeenCalledTimes(1)
 
-  rerender();
+  rerender()
 
-  expect(mockCallback).toHaveBeenCalledTimes(1);
-});
+  expect(mockCallback).toHaveBeenCalledTimes(1)
+})

@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
-import { useEventListener } from "../useEventListener";
-import { useUpdate } from "../useUpdate";
-import type { UseTextSelection } from "./interface";
+import { useEffect, useState } from 'react'
+import { useEventListener } from '../useEventListener'
+import { useUpdate } from '../useUpdate'
+import type { UseTextSelection } from './interface'
 
 export const useTextSelection: UseTextSelection = (): Selection | null => {
-  const [selection, setSelection] = useState<Selection | null>(null);
-  const forceUpdate = useUpdate();
+  const [selection, setSelection] = useState<Selection | null>(null)
+  const forceUpdate = useUpdate()
 
   const handleSelectionChange = () => {
-    setSelection(document.getSelection());
+    setSelection(document.getSelection())
     // this is because `document.getSelection` will always return the same object
-    forceUpdate();
-  };
+    forceUpdate()
+  }
 
-  useEventListener("selectionchange", handleSelectionChange, () => document);
+  useEventListener('selectionchange', handleSelectionChange, () => document)
 
   useEffect(() => {
-    setSelection(document.getSelection());
-  }, []);
+    setSelection(document.getSelection())
+  }, [])
 
-  return selection;
-};
+  return selection
+}

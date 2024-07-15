@@ -1,4 +1,4 @@
-import type { MutableRefObject } from "react";
+import type { MutableRefObject } from 'react'
 
 /**
  * @title useLatest
@@ -11,4 +11,4 @@ export type UseLatest = <T>(
    * @en tracked value
    */
   value: T
-) => MutableRefObject<T>;
+) => MutableRefObject<T>

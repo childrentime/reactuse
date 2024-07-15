@@ -1,119 +1,119 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useEvent } from "../useEvent";
-import { defaultOptions } from "../utils/defaults";
-import { useUnmount } from "../useUnmount";
-import type { EventSourceStatus, UseEventSource, UseEventSourceOptions } from "./interface";
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEvent } from '../useEvent'
+import { defaultOptions } from '../utils/defaults'
+import { useUnmount } from '../useUnmount'
+import type { EventSourceStatus, UseEventSource, UseEventSourceOptions } from './interface'
 
 export const useEventSource: UseEventSource = <Events extends string[]>(
   url: string | URL,
   events: Events = [] as unknown as Events,
   options: UseEventSourceOptions = defaultOptions,
 ) => {
-  const [data, setData] = useState<string | null>(null);
-  const [error, setError] = useState<Event | null>(null);
-  const [status, setStatus] = useState<EventSourceStatus>("DISCONNECTED");
-  const [event, setEvent] = useState<string | null>(null);
-  const [lastEventId, setLastEventId] = useState<string | null>(null);
-  const retries = useRef(0);
-  const explicitlyClosed = useRef(false);
-  const eventSourceRef = useRef<EventSource | null>(null);
-  const eventListenerRef = useRef<Map<string, ((event: MessageEvent<any>) => void)>>();
+  const [data, setData] = useState<string | null>(null)
+  const [error, setError] = useState<Event | null>(null)
+  const [status, setStatus] = useState<EventSourceStatus>('DISCONNECTED')
+  const [event, setEvent] = useState<string | null>(null)
+  const [lastEventId, setLastEventId] = useState<string | null>(null)
+  const retries = useRef(0)
+  const explicitlyClosed = useRef(false)
+  const eventSourceRef = useRef<EventSource | null>(null)
+  const eventListenerRef = useRef<Map<string, ((event: MessageEvent<any>) => void)>>()
   if (!eventListenerRef.current) {
-    eventListenerRef.current = new Map();
+    eventListenerRef.current = new Map()
   }
 
   const clean = useEvent(() => {
-    const listeners = eventListenerRef.current;
+    const listeners = eventListenerRef.current
 
-    events.forEach((name) => {
-      const handler = listeners?.get(name);
+    events.forEach(name => {
+      const handler = listeners?.get(name)
       if (handler) {
-        eventSourceRef.current?.removeEventListener(name, handler);
+        eventSourceRef.current?.removeEventListener(name, handler)
       }
-    });
-  });
+    })
+  })
 
   const close = useCallback(() => {
-    setStatus("DISCONNECTED");
-    clean();
-    eventSourceRef.current?.close();
-    eventSourceRef.current = null;
-    explicitlyClosed.current = true;
-  }, [clean]);
+    setStatus('DISCONNECTED')
+    clean()
+    eventSourceRef.current?.close()
+    eventSourceRef.current = null
+    explicitlyClosed.current = true
+  }, [clean])
 
   const open = useEvent(() => {
-    close();
-    explicitlyClosed.current = false;
-    retries.current = 0;
+    close()
+    explicitlyClosed.current = false
+    retries.current = 0
 
     if (!eventSourceRef.current) {
       eventSourceRef.current = new EventSource(url, {
         withCredentials: options.withCredentials,
-      });
+      })
     }
 
-    const es = eventSourceRef.current;
+    const es = eventSourceRef.current
 
     es.onopen = () => {
-      setStatus("CONNECTED");
-      setError(null);
-    };
+      setStatus('CONNECTED')
+      setError(null)
+    }
 
-    es.onmessage = (ev) => {
-      setData(ev.data);
-      setLastEventId(ev.lastEventId);
-      setStatus("CONNECTED");
-    };
+    es.onmessage = ev => {
+      setData(ev.data)
+      setLastEventId(ev.lastEventId)
+      setStatus('CONNECTED')
+    }
 
-    es.onerror = (err) => {
-      setError(err);
-      setStatus("DISCONNECTED");
+    es.onerror = err => {
+      setError(err)
+      setStatus('DISCONNECTED')
 
       if (options.autoReconnect && !explicitlyClosed.current) {
         const {
           retries: maxRetries = -1,
           delay = 1000,
           onFailed,
-        } = options.autoReconnect;
+        } = options.autoReconnect
 
-        retries.current += 1;
+        retries.current += 1
 
         if (
-          (typeof maxRetries === "number"
-            && (maxRetries < 0 || retries.current < maxRetries))
-          || (typeof maxRetries === "function" && maxRetries())
+          (typeof maxRetries === 'number'
+          && (maxRetries < 0 || retries.current < maxRetries))
+          || (typeof maxRetries === 'function' && maxRetries())
         ) {
-          setTimeout(open, delay);
+          setTimeout(open, delay)
         }
         else {
-          onFailed?.();
+          onFailed?.()
         }
       }
-    };
+    }
 
-    const listeners = eventListenerRef.current;
+    const listeners = eventListenerRef.current
 
-    events.forEach((name) => {
+    events.forEach(name => {
       const handler = (event: MessageEvent<any>) => {
-        setEvent(name);
-        setData(event.data ?? null);
-      };
-      es.addEventListener(name, handler);
-      listeners?.set(name, handler);
-    });
-  });
+        setEvent(name)
+        setData(event.data ?? null)
+      }
+      es.addEventListener(name, handler)
+      listeners?.set(name, handler)
+    })
+  })
 
   useEffect(() => {
     if (options.immediate !== false) {
-      open();
+      open()
     }
 
-    return close;
-  }, [open, close, options.immediate]);
+    return close
+  }, [open, close, options.immediate])
 
   useUnmount(() => {
-    close();
-  });
+    close()
+  })
 
   return {
     eventSourceRef,
@@ -124,5 +124,5 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
     event,
     close,
     open,
-  };
-};
+  }
+}

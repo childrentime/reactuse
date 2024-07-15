@@ -1,22 +1,20 @@
-import { useEffect, useState } from "react";
-import { useEventListener } from "../useEventListener";
+import { useEffect, useState } from 'react'
+import { useEventListener } from '../useEventListener'
 
-export const useWindowsFocus = (
-  defauleValue = false,
-): boolean => {
-  const [focused, setFocused] = useState(defauleValue);
+export function useWindowsFocus(defauleValue = false): boolean {
+  const [focused, setFocused] = useState(defauleValue)
 
   useEffect(() => {
-    setFocused(window.document.hasFocus());
-  }, []);
+    setFocused(window.document.hasFocus())
+  }, [])
 
-  useEventListener("blur", () => {
-    setFocused(false);
-  });
+  useEventListener('blur', () => {
+    setFocused(false)
+  })
 
-  useEventListener("focus", () => {
-    setFocused(true);
-  });
+  useEventListener('focus', () => {
+    setFocused(true)
+  })
 
-  return focused;
-};
+  return focused
+}

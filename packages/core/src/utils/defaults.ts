@@ -1,5 +1,5 @@
-export const defaultOptions = {};
+export const defaultOptions = {}
 
-export const defaultOnError = (e: any) => {
-  console.error(e);
-};
+export function defaultOnError(e: any) {
+  console.error(e)
+}

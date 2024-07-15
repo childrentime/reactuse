@@ -9,4 +9,4 @@ export type UseWindowsFocus = (
    * @en defauleValue
    */
   defauleValue?: boolean
-) => boolean;
+) => boolean

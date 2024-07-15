@@ -1,22 +1,22 @@
-import type { Dispatch, SetStateAction } from "react";
-import { useState } from "react";
-import { isBrowser, isFunction } from "../utils/is";
-import { guessSerializerType } from "../utils/serializer";
-import { useEvent } from "../useEvent";
-import { defaultOnError, defaultOptions } from "../utils/defaults";
-import { useDeepCompareEffect } from "../useDeepCompareEffect";
+import type { Dispatch, SetStateAction } from 'react'
+import { useState } from 'react'
+import { isBrowser, isFunction } from '../utils/is'
+import { guessSerializerType } from '../utils/serializer'
+import { useEvent } from '../useEvent'
+import { defaultOnError, defaultOptions } from '../utils/defaults'
+import { useDeepCompareEffect } from '../useDeepCompareEffect'
 
 export interface Serializer<T> {
-  read(raw: string): T;
-  write(value: T): string;
+  read: (raw: string) => T
+  write: (value: T) => string
 }
 
 export const StorageSerializers: Record<
-  "boolean" | "object" | "number" | "any" | "string" | "map" | "set" | "date",
+  'boolean' | 'object' | 'number' | 'any' | 'string' | 'map' | 'set' | 'date',
   Serializer<any>
 > = {
   boolean: {
-    read: (v: any) => v === "true",
+    read: (v: any) => v === 'true',
     write: (v: any) => String(v),
   },
   object: {
@@ -48,58 +48,52 @@ export const StorageSerializers: Record<
     read: (v: any) => new Date(v),
     write: (v: any) => v.toISOString(),
   },
-};
+}
 
 export interface UseStorageOptions<T> {
   /**
    * Custom data serialization
    */
-  serializer?: Serializer<T>;
+  serializer?: Serializer<T>
   /**
    * On error callback
    *
    * Default log error to `console.error`
    */
-  onError?: (error: unknown) => void;
+  onError?: (error: unknown) => void
   /**
    * set to storage when nodata in effect, fallback to defaults
    */
-  effectStorageValue?: T | (() => T);
+  effectStorageValue?: T | (() => T)
 }
-const getInitialState = (
-  key: string,
-  defaultValue?: any,
-  storage?: Storage,
-  serializer?: Serializer<any>,
-  onError?: (error: unknown) => void,
-) => {
+function getInitialState(key: string, defaultValue?: any, storage?: Storage, serializer?: Serializer<any>, onError?: (error: unknown) => void) {
   // Prevent a React hydration mismatch when a default value is provided.
   if (defaultValue !== undefined) {
-    return defaultValue;
+    return defaultValue
   }
 
   if (isBrowser) {
     try {
-      const raw = storage?.getItem(key);
+      const raw = storage?.getItem(key)
       if (raw !== undefined && raw !== null) {
-        return serializer?.read(raw);
+        return serializer?.read(raw)
       }
-      return null;
+      return null
     }
     catch (error) {
-      onError?.(error);
+      onError?.(error)
     }
   }
 
   // A default value has not been provided, and you are rendering on the server, warn of a possible hydration mismatch when defaulting to false.
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== 'production') {
     console.warn(
-      "`createStorage` When server side rendering, defaultValue should be defined to prevent a hydration mismatches.",
-    );
+      '`createStorage` When server side rendering, defaultValue should be defined to prevent a hydration mismatches.',
+    )
   }
 
-  return null;
-};
+  return null
+}
 
 export default function useStorage<
   T extends string | number | boolean | object | null,
@@ -110,67 +104,67 @@ export default function useStorage<
     isBrowser ? sessionStorage : undefined,
   options: UseStorageOptions<T> = defaultOptions,
 ) {
-  let storage: Storage | undefined;
-  const { onError = defaultOnError, effectStorageValue } = options;
+  let storage: Storage | undefined
+  const { onError = defaultOnError, effectStorageValue } = options
 
   try {
-    storage = getStorage();
+    storage = getStorage()
   }
   catch (err) {
-    onError(err);
+    onError(err)
   }
 
-  const type = guessSerializerType<T | undefined>(defaultValue);
-  const serializer = options.serializer ?? StorageSerializers[type];
+  const type = guessSerializerType<T | undefined>(defaultValue)
+  const serializer = options.serializer ?? StorageSerializers[type]
 
   const [state, setState] = useState<T | null>(
     getInitialState(key, defaultValue, storage, serializer, onError),
-  );
+  )
 
   useDeepCompareEffect(() => {
     const data = (effectStorageValue
       ? isFunction(effectStorageValue)
         ? effectStorageValue()
         : effectStorageValue
-      : defaultValue) ?? null;
+      : defaultValue) ?? null
 
     const getStoredValue = () => {
       try {
-        const raw = storage?.getItem(key);
+        const raw = storage?.getItem(key)
         if (raw !== undefined && raw !== null) {
-          return serializer.read(raw);
+          return serializer.read(raw)
         }
         else {
-          storage?.setItem(key, serializer.write(data));
-          return data;
+          storage?.setItem(key, serializer.write(data))
+          return data
         }
       }
       catch (e) {
-        onError(e);
+        onError(e)
       }
-    };
+    }
 
-    setState(getStoredValue());
-  }, [key, serializer, storage, onError, effectStorageValue]);
+    setState(getStoredValue())
+  }, [key, serializer, storage, onError, effectStorageValue])
 
   const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
-    (valOrFunc) => {
-      const currentState = isFunction(valOrFunc) ? valOrFunc(state) : valOrFunc;
-      setState(currentState);
+    valOrFunc => {
+      const currentState = isFunction(valOrFunc) ? valOrFunc(state) : valOrFunc
+      setState(currentState)
 
       if (currentState === null) {
-        storage?.removeItem(key);
+        storage?.removeItem(key)
       }
       else {
         try {
-          storage?.setItem(key, serializer.write(currentState));
+          storage?.setItem(key, serializer.write(currentState))
         }
         catch (e) {
-          onError(e);
+          onError(e)
         }
       }
     },
-  );
+  )
 
-  return [state, updateState] as const;
+  return [state, updateState] as const
 }

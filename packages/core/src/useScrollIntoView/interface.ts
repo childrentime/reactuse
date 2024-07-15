@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useScrollIntoView
@@ -25,9 +25,9 @@ export type UseScrollIntoView = (
    */
   scrollElement?: BasicTarget<HTMLElement>
 ) => {
-  scrollIntoView: (animation?: UseScrollIntoViewAnimation) => void;
-  cancel: () => void;
-};
+  scrollIntoView: (animation?: UseScrollIntoViewAnimation) => void
+  cancel: () => void
+}
 
 /**
  * @title UseScrollIntoViewAnimation
@@ -37,7 +37,7 @@ export interface UseScrollIntoViewAnimation {
    * @en target element alignment relatively to parent based on current axis
    * @zh 基于当前轴的目标元素相对于父元素的对齐方式
    */
-  alignment?: "start" | "end" | "center";
+  alignment?: 'start' | 'end' | 'center'
 }
 
 /**
@@ -48,46 +48,46 @@ export interface UseScrollIntoViewParams {
    * @en callback fired after scroll
    * @zh 滚动完成回调
    */
-  onScrollFinish?: () => void;
+  onScrollFinish?: () => void
 
   /**
    * @en duration of scroll in milliseconds
    * @zh 滚动时间
    * @defaultValue 1250
    */
-  duration?: number;
+  duration?: number
 
   /**
    * @en axis of scroll
    * @zh 滚动方向
    * @defaultValue y
    */
-  axis?: "x" | "y";
+  axis?: 'x' | 'y'
 
   /**
    * @en custom mathematical easing function
    * @zh 自定义缓和数学函数
    * @defaultValue (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
    */
-  easing?: (t: number) => number;
+  easing?: (t: number) => number
 
   /**
    * @en additional distance between nearest edge and element
    * @zh 最近的边缘和元素之间的附加距离
    * @defaultValue 0
    */
-  offset?: number;
+  offset?: number
 
   /**
    * @en indicator if animation may be interrupted by user scrolling
    * @zh 指示动画是否可能因用户滚动而中断
    * @defaultValue true
    */
-  cancelable?: boolean;
+  cancelable?: boolean
 
   /**
    * @en prevents content jumping in scrolling lists with multiple targets
    * @zh 防止内容在具有多个目标的滚动列表中跳跃
-  */
-  isList?: boolean;
+   */
+  isList?: boolean
 }

@@ -3,7 +3,7 @@
  * @returns 每秒帧数
  * @returns_en frames per second
  */
-export type UseFps = (options?: UseFpsOptions) => number;
+export type UseFps = (options?: UseFpsOptions) => number
 
 /**
  * @title UseFpsOptions
@@ -14,5 +14,5 @@ export interface UseFpsOptions {
    * @zh 每过 x 帧计算一次
    * @defaultValue 10
    */
-  every?: number;
+  every?: number
 }

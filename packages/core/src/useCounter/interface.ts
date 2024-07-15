@@ -36,4 +36,4 @@ export type UseCounter = (
   (delta?: number) => void,
   (delta?: number) => void,
   () => void,
-];
+]

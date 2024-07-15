@@ -1,4 +1,4 @@
-import type Cookies from "js-cookie";
+import type Cookies from 'js-cookie'
 
 /**
  * @title useCookie
@@ -33,9 +33,9 @@ export type UseCookie = (
     newValue: UseCookieState | ((prevState: UseCookieState) => UseCookieState)
   ) => void,
   () => void,
-];
+]
 
 /**
  * @title useCookieState
  */
-export type UseCookieState = string | undefined;
+export type UseCookieState = string | undefined

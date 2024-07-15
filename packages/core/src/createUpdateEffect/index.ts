@@ -1,17 +1,17 @@
-import type { useEffect, useLayoutEffect } from "react";
-import { useFirstMountState } from "../useFirstMountState";
+import type { useEffect, useLayoutEffect } from 'react'
+import { useFirstMountState } from '../useFirstMountState'
 
-type EffectHookType = typeof useEffect | typeof useLayoutEffect;
+type EffectHookType = typeof useEffect | typeof useLayoutEffect
 
 const createUpdateEffect: (hook: EffectHookType) => EffectHookType
   = hook => (effect, deps) => {
-    const isFirstMount = useFirstMountState();
+    const isFirstMount = useFirstMountState()
 
     hook(() => {
       if (!isFirstMount) {
-        return effect();
+        return effect()
       }
-    }, deps);
-  };
+    }, deps)
+  }
 
-export default createUpdateEffect;
+export default createUpdateEffect

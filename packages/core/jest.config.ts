@@ -1,16 +1,16 @@
-import type { Config } from "jest";
-import { baseJestConfig } from "./jest.config.base";
+import type { Config } from 'jest'
+import { baseJestConfig } from './jest.config.base'
 
 const config: Config = {
   ...baseJestConfig,
-  testEnvironment: "jsdom", // browser-like
+  testEnvironment: 'jsdom', // browser-like
   moduleNameMapper: {
-    "^lodash-es$": "lodash",
+    '^lodash-es$': 'lodash',
   },
   transformIgnorePatterns: [
-    "node_modules/(?!(lodash-es)/)",
+    'node_modules/(?!(lodash-es)/)',
   ],
 
-};
+}
 
-export default config;
+export default config

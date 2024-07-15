@@ -1,9 +1,11 @@
 ### useEvent
 
 #### Returns
+
 `T`
 
 #### Arguments
-|Argument|Description|Type|DefaultValue|
-|---|---|---|---|
-|fn|function|T  **(Required)**|-|
+
+| Argument | Description | Type             | DefaultValue |
+| -------- | ----------- | ---------------- | ------------ |
+| fn       | function    | T **(Required)** | -            |

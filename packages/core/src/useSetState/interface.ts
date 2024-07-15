@@ -16,4 +16,4 @@ export type UseSetState = <T extends Record<string, any>>(
 ) => readonly [
   T,
   (statePartial: Partial<T> | ((currentState: T) => Partial<T>)) => void,
-];
+]

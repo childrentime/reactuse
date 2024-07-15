@@ -1,34 +1,34 @@
-import { useState } from "react";
-import { useEventListener } from "../useEventListener";
-import { useMount } from "../useMount";
-import { getTargetElement } from "../utils/domTarget";
-import type { UseFocus } from "./interface";
+import { useState } from 'react'
+import { useEventListener } from '../useEventListener'
+import { useMount } from '../useMount'
+import { getTargetElement } from '../utils/domTarget'
+import type { UseFocus } from './interface'
 
 export const useFocus: UseFocus = (
   target,
   initialValue = false,
 ) => {
-  const [focus, innerSetFocus] = useState(initialValue);
+  const [focus, innerSetFocus] = useState(initialValue)
 
-  useEventListener("focus", () => innerSetFocus(true), target);
-  useEventListener("blur", () => innerSetFocus(false), target);
+  useEventListener('focus', () => innerSetFocus(true), target)
+  useEventListener('blur', () => innerSetFocus(false), target)
 
   const setFocus = (value: boolean) => {
-    const element = getTargetElement(target);
+    const element = getTargetElement(target)
     if (!element) {
-      return;
+      return
     }
     if (!value) {
-      element.blur();
+      element.blur()
     }
     else if (value) {
-      element.focus();
+      element.focus()
     }
-  };
+  }
 
   useMount(() => {
-    setFocus(focus);
-  });
+    setFocus(focus)
+  })
 
-  return [focus, setFocus] as const;
-};
+  return [focus, setFocus] as const
+}

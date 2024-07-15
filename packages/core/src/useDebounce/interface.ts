@@ -1,4 +1,4 @@
-import type { DebounceSettings } from "lodash-es";
+import type { DebounceSettings } from 'lodash-es'
 
 /**
  * @title useDebounce
@@ -19,4 +19,4 @@ export type UseDebounce = <T>(
    * @en options passed to `lodash.debounce`
    */
   options?: DebounceSettings
-) => T;
+) => T

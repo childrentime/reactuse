@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useScrollLock
@@ -21,4 +21,4 @@ export type UseScrollLock = (
    * @defaultValue false
    */
   initialState?: boolean
-) => readonly [boolean, (flag: boolean) => void];
+) => readonly [boolean, (flag: boolean) => void]

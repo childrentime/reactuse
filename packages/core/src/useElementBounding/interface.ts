@@ -1,4 +1,4 @@
-import type { BasicTarget } from "../utils/domTarget";
+import type { BasicTarget } from '../utils/domTarget'
 
 /**
  * @title useElementBounding
@@ -15,7 +15,7 @@ export type UseElementBounding = (
    * @en optional params
    */
   options?: UseElementBoundingOptions
-) => UseElementBoundingReturn;
+) => UseElementBoundingReturn
 
 /**
  * @title UseElementBoundingOptions
@@ -26,27 +26,27 @@ export interface UseElementBoundingOptions {
    * @zh 将数值重置为0
    * @defaultValue true
    */
-  reset?: boolean;
+  reset?: boolean
 
   /**
    * @en Listen to window resize event
    * @zh 是否监听 resize 事件
    * @defaultValue true
    */
-  windowResize?: boolean;
+  windowResize?: boolean
   /**
    * @en Listen to window scroll event
    * @zh 是否监听 scroll 事件
    * @defaultValue true
    */
-  windowScroll?: boolean;
+  windowScroll?: boolean
 
   /**
    * @en Immediately call update on component mounted
    * @zh 立即更新
    * @default true
    */
-  immediate?: boolean;
+  immediate?: boolean
 }
 
 /**
@@ -57,53 +57,53 @@ export interface UseElementBoundingReturn {
    * @en Height of the element
    * @zh 元素的高度
    */
-  readonly height: number;
+  readonly height: number
 
   /**
    * @en Bottom position of the element
    * @zh 元素的底部位置
    */
-  readonly bottom: number;
+  readonly bottom: number
 
   /**
    * @en Left position of the element
    * @zh 元素的左侧位置
    */
-  readonly left: number;
+  readonly left: number
 
   /**
    * @en Right position of the element
    * @zh 元素的右侧位置
    */
-  readonly right: number;
+  readonly right: number
 
   /**
    * @en Top position of the element
    * @zh 元素的顶部位置
    */
-  readonly top: number;
+  readonly top: number
 
   /**
    * @en Width of the element
    * @zh 元素的宽度
    */
-  readonly width: number;
+  readonly width: number
 
   /**
    * @en X position of the element
    * @zh 元素的 X 位置
    */
-  readonly x: number;
+  readonly x: number
 
   /**
    * @en Y position of the element
    * @zh 元素的 Y 位置
    */
-  readonly y: number;
+  readonly y: number
 
   /**
    * @en Manual update
    * @zh 手动更新
    */
-  readonly update: () => void;
+  readonly update: () => void
 }

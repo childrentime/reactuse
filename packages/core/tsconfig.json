@@ -1,24 +1,24 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true,
     "target": "ES2016",
+    "jsx": "react-jsx",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "rootDir": ".",
     "module": "CommonJS",
     "moduleResolution": "node",
-    "declaration": true,
-    "pretty": true,
-    "rootDir": ".",
-    "sourceMap": false,
+    "resolveJsonModule": true,
     "strict": true,
-    "esModuleInterop": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noImplicitAny": false,
-    "noFallthroughCasesInSwitch": true,
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "declaration": true,
+    "sourceMap": false,
+    "allowSyntheticDefaultImports": true,
+    "pretty": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true
+    "skipLibCheck": true
   }
 }

@@ -1,27 +1,27 @@
-import { useCallback, useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import { isBrowser, isFunction, isString } from "../utils/is";
-import { defaultOptions } from "../utils/defaults";
-import type { UseCookie, UseCookieState } from "./interface";
+import { useCallback, useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
+import { isBrowser, isFunction, isString } from '../utils/is'
+import { defaultOptions } from '../utils/defaults'
+import type { UseCookie, UseCookieState } from './interface'
 
-const getInitialState = (key: string, defaultValue?: string) => {
+function getInitialState(key: string, defaultValue?: string) {
   // Prevent a React hydration mismatch when a default value is provided.
   if (defaultValue !== undefined) {
-    return defaultValue;
+    return defaultValue
   }
 
   if (isBrowser) {
-    return Cookies.get(key);
+    return Cookies.get(key)
   }
 
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== 'production') {
     console.warn(
-      "`useCookie` When server side rendering, defaultValue should be defined to prevent a hydration mismatches.",
-    );
+      '`useCookie` When server side rendering, defaultValue should be defined to prevent a hydration mismatches.',
+    )
   }
 
-  return "";
-};
+  return ''
+}
 
 export const useCookie: UseCookie = (
   key: string,
@@ -30,55 +30,55 @@ export const useCookie: UseCookie = (
 ) => {
   const [cookieValue, setCookieValue] = useState<UseCookieState>(
     getInitialState(key, defaultValue),
-  );
+  )
 
   useEffect(() => {
     const getStoredValue = () => {
-      const raw = Cookies.get(key);
+      const raw = Cookies.get(key)
       if (raw !== undefined && raw !== null) {
-        return raw;
+        return raw
       }
       else {
         if (defaultValue === undefined) {
-          Cookies.remove(key);
+          Cookies.remove(key)
         }
         else {
-          Cookies.set(key, defaultValue, options);
+          Cookies.set(key, defaultValue, options)
         }
-        return defaultValue;
+        return defaultValue
       }
-    };
+    }
 
-    setCookieValue(getStoredValue());
+    setCookieValue(getStoredValue())
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultValue, key, JSON.stringify(options)]);
+  }, [defaultValue, key, JSON.stringify(options)])
 
   const updateCookie = useCallback(
     (
       newValue: UseCookieState | ((prevState: UseCookieState) => UseCookieState),
     ) => {
-      const value = isFunction(newValue) ? newValue(cookieValue) : newValue;
+      const value = isFunction(newValue) ? newValue(cookieValue) : newValue
 
       if (value === undefined) {
-        Cookies.remove(key);
+        Cookies.remove(key)
       }
       else {
-        Cookies.set(key, value, options);
+        Cookies.set(key, value, options)
       }
 
-      setCookieValue(value);
+      setCookieValue(value)
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [key, cookieValue, JSON.stringify(options)],
-  );
+  )
 
   const refreshCookie = useCallback(() => {
-    const cookieValue = Cookies.get(key);
+    const cookieValue = Cookies.get(key)
 
     if (isString(cookieValue)) {
-      setCookieValue(cookieValue);
+      setCookieValue(cookieValue)
     }
-  }, [key]);
+  }, [key])
 
-  return [cookieValue, updateCookie, refreshCookie] as const;
-};
+  return [cookieValue, updateCookie, refreshCookie] as const
+}
