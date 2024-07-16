@@ -1,7 +1,6 @@
 ### useFirstMountState
 
 #### Returns
-
 `boolean`
 
 #### Arguments
