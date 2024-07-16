@@ -1,0 +1,25 @@
+# use
+
+`use` 是一个用于解析 React v18 及以下版本的 promise 状态的 polyfill hook。请注意，它只实现了消费 promise 的能力。
+
+## Usage
+
+```tsx live noInline
+const promise = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve("resolved");
+  }, 5000);
+});
+
+function Demo() {
+  const data = use(promise);
+
+  return <p>{data}</p>;
+}
+
+render(
+  <Suspense fallback="loading...">
+    <Demo />
+  </Suspense>
+);
+```
