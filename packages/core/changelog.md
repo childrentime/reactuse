@@ -324,3 +324,9 @@
 ### Core
 
 - feat: add useMergedRefs
+
+## 5.0.17(July 16, 2024)
+
+### Core
+
+- feat: add use polyfill
