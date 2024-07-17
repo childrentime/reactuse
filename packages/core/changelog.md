@@ -330,3 +330,9 @@
 ### Core
 
 - feat: add use polyfill
+
+## 5.0.18(July 17, 2024)
+
+### Core
+
+- fix: add useGeolocation navigator support check
