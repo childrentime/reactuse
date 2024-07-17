@@ -1,10 +1,11 @@
 ### useGeoLocation
 
 #### Returns
-`{ readonly coordinates: GeolocationCoordinates; readonly locatedAt: number | null; readonly error: GeolocationPositionError | null; }`: 包含以下元素的元组：
+`{ readonly coordinates: GeolocationCoordinates; readonly locatedAt: number | null; readonly error: GeolocationPositionError | null; readonly isSupported: boolean; }`: 包含以下元素的对象：
 - 坐标。
 - 获取坐标的时间戳。
 - 错误。
+- 浏览器是否支持 `geolocation`。
 
 #### Arguments
 |参数名|描述|类型|默认值|
