@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
+import { useSupported } from '../useSupported'
 import { defaultOptions } from '../utils/defaults'
 import type { UseGeolocation } from './interface'
 
-const initCoord = {
+export const initCoord = {
   accuracy: 0,
   latitude: Number.POSITIVE_INFINITY,
   longitude: Number.POSITIVE_INFINITY,
@@ -18,6 +19,7 @@ export const useGeolocation: UseGeolocation = (options: Partial<PositionOptions>
     maximumAge = 30000,
     timeout = 27000,
   } = options
+  const isSupported = useSupported(() => navigator && 'geolocation' in navigator)
   const [coordinates, setCoordinates]
     = useState<GeolocationPosition['coords']>(initCoord)
   const [locatedAt, setLocatedAt] = useState<number | null>(null)
@@ -36,6 +38,9 @@ export const useGeolocation: UseGeolocation = (options: Partial<PositionOptions>
   }, [])
 
   useEffect(() => {
+    if (!isSupported) {
+      return
+    }
     navigator.geolocation.getCurrentPosition(updatePosition, updateError)
     const watchId = navigator.geolocation.watchPosition(
       updatePosition,
@@ -52,11 +57,12 @@ export const useGeolocation: UseGeolocation = (options: Partial<PositionOptions>
         navigator.geolocation.clearWatch(watchId)
       }
     }
-  }, [enableHighAccuracy, maximumAge, timeout, updateError, updatePosition])
+  }, [enableHighAccuracy, isSupported, maximumAge, timeout, updateError, updatePosition])
 
   return {
     coordinates,
     locatedAt,
     error,
+    isSupported,
   } as const
 }
