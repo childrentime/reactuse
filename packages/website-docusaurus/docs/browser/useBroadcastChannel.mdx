@@ -1,0 +1,52 @@
+# useBroadcastChannel
+
+`useBroadcastChannel` is a hook that allows you to use the `BroadcastChannel API` in your components.
+
+## Usage
+
+```tsx live
+function Demo() {
+  const { isSupported, data, post, error,timeStamp } = useBroadcastChannel({
+    name: "reactuse-demo-channel",
+  });
+
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (isSupported) {
+      alert(data);
+    }
+  }, [data]);
+
+  return (
+    <div>
+      <p>Supported: {JSON.stringify(isSupported)}</p>
+      <p>Please open this page in at least two tabs</p>
+      <p>
+        <b>Channel:</b> reactuse-demo-channel
+      </p>
+      <p>
+        <b>Message:</b> {data}<br/>
+        <b>TimeStamp:</b> {timeStamp}
+      </p>
+      <input
+        value={message}
+        onChange={(event) => {
+          setMessage(event.currentTarget.value);
+        }}
+      />
+      <button
+        onClick={() => post(message)}
+        style={{
+          cursor: isSupported ? "pointer" : "not-allowed",
+        }}
+      >
+        Send
+      </button>
+      {error && <p>Error: {error.message}</p>}
+    </div>
+  );
+}
+```
+
+%%API%%

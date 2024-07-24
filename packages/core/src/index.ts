@@ -98,6 +98,7 @@ import { useEventSource } from './useEventSource'
 import { assignRef, mergeRefs, useMergedRefs } from './useMergedRefs'
 import { use } from './use'
 import { usePreferredLanguages } from './usePreferredLanguages'
+import { useBroadcastChannel } from './useBroadcastChannel'
 
 export {
   usePrevious,
@@ -202,6 +203,7 @@ export {
   assignRef,
   use,
   usePreferredLanguages,
+  useBroadcastChannel,
 }
 
 export * from './useActiveElement/interface'
@@ -299,3 +301,4 @@ export * from './useEventSource/interface'
 export * from './useMergedRefs/interface'
 export * from './use/interface'
 export * from './usePreferredLanguages/interface'
+export * from './useBroadcastChannel/interface'
