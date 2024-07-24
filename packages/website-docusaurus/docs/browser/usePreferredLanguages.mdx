@@ -1,0 +1,14 @@
+# usePreferredLanguages
+
+`usePreferredLanguages` is a hook that returns the user's preferred languages as an array of strings. It uses the `navigator.languages`.
+
+## Usage
+
+```tsx live
+function Demo() {
+  const preferredLanguages = usePreferredLanguages();
+  return <div>PreferredLanguages: {JSON.stringify(preferredLanguages)}</div>;
+}
+```
+
+%%API%%

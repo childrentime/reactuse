@@ -1,0 +1,14 @@
+# usePreferredLanguages
+
+`usePreferredLanguages` 是一个返回用户首选语言的字符串数组的 hook。它使用 `navigator.languages`。
+
+## Usage
+
+```tsx live
+function Demo() {
+  const preferredLanguages = usePreferredLanguages();
+  return <div>PreferredLanguages: {JSON.stringify(preferredLanguages)}</div>;
+}
+```
+
+%%API%%

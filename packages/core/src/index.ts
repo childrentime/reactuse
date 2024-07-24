@@ -97,6 +97,7 @@ import { useDisclosure } from './useDisclosure'
 import { useEventSource } from './useEventSource'
 import { assignRef, mergeRefs, useMergedRefs } from './useMergedRefs'
 import { use } from './use'
+import { usePreferredLanguages } from './usePreferredLanguages'
 
 export {
   usePrevious,
@@ -200,6 +201,7 @@ export {
   mergeRefs,
   assignRef,
   use,
+  usePreferredLanguages,
 }
 
 export * from './useActiveElement/interface'
@@ -296,3 +298,4 @@ export * from './useDisclosure/interface'
 export * from './useEventSource/interface'
 export * from './useMergedRefs/interface'
 export * from './use/interface'
+export * from './usePreferredLanguages/interface'
