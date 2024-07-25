@@ -99,6 +99,7 @@ import { assignRef, mergeRefs, useMergedRefs } from './useMergedRefs'
 import { use } from './use'
 import { usePreferredLanguages } from './usePreferredLanguages'
 import { useBroadcastChannel } from './useBroadcastChannel'
+import { useDevicePixelRatio } from './useDevicePixelRatio'
 
 export {
   usePrevious,
@@ -204,6 +205,7 @@ export {
   use,
   usePreferredLanguages,
   useBroadcastChannel,
+  useDevicePixelRatio,
 }
 
 export * from './useActiveElement/interface'
@@ -302,3 +304,4 @@ export * from './useMergedRefs/interface'
 export * from './use/interface'
 export * from './usePreferredLanguages/interface'
 export * from './useBroadcastChannel/interface'
+export * from './useDevicePixelRatio/interface'
