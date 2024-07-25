@@ -97,6 +97,10 @@ import { useDisclosure } from './useDisclosure'
 import { useEventSource } from './useEventSource'
 import { assignRef, mergeRefs, useMergedRefs } from './useMergedRefs'
 import { use } from './use'
+import { usePreferredLanguages } from './usePreferredLanguages'
+import { useBroadcastChannel } from './useBroadcastChannel'
+import { useDevicePixelRatio } from './useDevicePixelRatio'
+import { useElementByPoint } from './useElementByPoint'
 
 export {
   usePrevious,
@@ -200,6 +204,10 @@ export {
   mergeRefs,
   assignRef,
   use,
+  usePreferredLanguages,
+  useBroadcastChannel,
+  useDevicePixelRatio,
+  useElementByPoint,
 }
 
 export * from './useActiveElement/interface'
@@ -296,3 +304,7 @@ export * from './useDisclosure/interface'
 export * from './useEventSource/interface'
 export * from './useMergedRefs/interface'
 export * from './use/interface'
+export * from './usePreferredLanguages/interface'
+export * from './useBroadcastChannel/interface'
+export * from './useDevicePixelRatio/interface'
+export * from './useElementByPoint/interface'

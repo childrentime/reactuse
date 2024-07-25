@@ -336,3 +336,14 @@
 ### Core
 
 - fix: add useGeolocation navigator support check
+
+## 5.0.19(July 25, 2024)
+
+### Core
+
+- feat: add usePreferredLanguages
+- feat: add useBroadcastChannel
+- feat: add useDevicePixelRatio
+- feat: add useElementByPoint
+- feat: add useQRCode
+- fix next.js import error: `SyntaxError: Named export 'a' not found. The requested module './index-client-Qon46B4S.js' is a CommonJS module, which may not support all module.exports as named exports.`. which caused by `use client` with bunchee;

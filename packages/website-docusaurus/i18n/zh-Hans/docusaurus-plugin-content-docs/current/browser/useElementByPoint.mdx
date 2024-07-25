@@ -1,0 +1,68 @@
+# useElementByPoint
+
+`useElementByPoint` 是一个用于获取指定坐标下的元素的 Hook。
+
+## Usage
+
+```tsx live noInline
+function Demo() {
+  const { clientX: x, clientY: y } = useMouse();
+  const { element, pause, resume } = useElementByPoint({ x, y });
+  const bounding = useElementBounding(element);
+
+  useEventListener("scroll", bounding.update, null, { capture: true });
+  const boxStyles = (() => {
+    if (element) {
+      return {
+        display: "block",
+        width: `${bounding.width}px`,
+        height: `${bounding.height}px`,
+        left: `${bounding.left}px`,
+        top: `${bounding.top}px`,
+        backgroundColor: "#3eaf7c44",
+        transition: "all 0.05s linear",
+        position: "fixed",
+        pointerEvents: "none",
+        zIndex: 9999,
+        border: "1px solid var(--vp-c-brand)",
+      };
+    }
+    return {
+      display: "none",
+    };
+  })();
+  const pointStyles = (() => ({
+    transform: `translate(calc(${x}px - 50%), calc(${y}px - 50%))`,
+    position: "fixed",
+    top: 0,
+    left: 0,
+    pointerEvents: "none",
+    width: "8px",
+    height: "8px",
+    borderRadius: "50%",
+    backgroundColor: "#4ade80",
+    boxShadow: "0 0 2px rgba(0,0,0,0.3)",
+    zIndex: 999,
+  }))();
+
+  return (
+    <>
+      <div style={boxStyles} />
+      <div style={pointStyles} />
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <span style={{ marginRight: "16px" }}>X: {x}</span>
+      </div>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <span style={{ marginRight: "16px" }}>Y: {y}</span>
+      </div>
+      <div>
+        <button onClick={pause}>Pause</button>
+        <button onClick={resume}>Resume</button>
+      </div>
+    </>
+  );
+}
+render(<Demo />);
+```
+
+%%API%%
