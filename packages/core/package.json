@@ -31,6 +31,16 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
+    },
+    "./useQRCode": {
+      "import": {
+        "types": "./dist/useQRCode.d.mts",
+        "default": "./dist/useQRCode.mjs"
+      },
+      "require": {
+        "types": "./dist/useQRCode.d.cts",
+        "default": "./dist/useQRCode.cjs"
+      }
     }
   },
   "main": "./dist/index.cjs",
@@ -55,7 +65,13 @@
     "test:coverage": "jest --coverage"
   },
   "peerDependencies": {
+    "qrcode": "^1.5",
     "react": "^16.8.0  || ^17.0.0 || ^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "qrcode": {
+      "optional": true
+    }
   },
   "dependencies": {
     "js-cookie": "^3.0.5",
@@ -71,6 +87,7 @@
     "@types/js-cookie": "^3.0.3",
     "@types/lodash": "^4.14.184",
     "@types/lodash-es": "^4.17.7",
+    "@types/qrcode": "^1.5.5",
     "@types/use-sync-external-store": "^0.0.6",
     "babel-jest": "^29.0.2",
     "consola": "^2.15.3",
@@ -80,6 +97,7 @@
     "jest-environment-jsdom": "^29.0.2",
     "jest-environment-node": "^29.7.0",
     "lodash": "^4.17.21",
+    "qrcode": "^1.5.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.3.3"

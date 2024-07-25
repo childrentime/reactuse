@@ -1,0 +1,36 @@
+# useQRCode
+
+The `useQRCode` hook is a hook that generates a QR code for a given string. It is useful for generating QR codes for things like URLs, email addresses, and more.
+
+## Install
+
+```shell
+npm i qrcode@^1
+```
+
+## Usage
+
+```tsx live 
+// import { useQRCode } from "@reactuses/core/useQRCode";
+
+function Demo() {
+  const [text, setText] = useState("https://reactuse.com/");
+  const { qrCode, error } = useQRCode(text);
+
+  return (
+    <div>
+      <input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Enter text to generate QR code"
+      />
+      <br />
+      <br />
+      {error && <div style={{ color: "red" }}>{error}</div>}
+      {qrCode && <img src={qrCode} alt="QR Code" />}
+    </div>
+  );
+}
+```
+
+%%API%%

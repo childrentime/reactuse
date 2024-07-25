@@ -1,10 +1,11 @@
-import React from 'react'
-import * as ReactUse from '@reactuses/core'
-
+import React from "react";
+import * as ReactUse from "@reactuses/core";
+import { useQRCode } from "@reactuses/core/useQRCode";
 // Add react-live imports you need here
 const ReactLiveScope = {
   React,
   ...React,
   ...ReactUse,
-}
-export default ReactLiveScope
+  useQRCode,
+};
+export default ReactLiveScope;
