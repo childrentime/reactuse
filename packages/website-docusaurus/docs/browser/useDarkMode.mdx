@@ -1,11 +1,81 @@
+import Details from "@theme/Details";
+
 # useDarkMode
 
 dark mode with auto data persistence.
 
+## Tips
+
+<Details summary="click to open">
+For server-side rendered applications, since it's not possible to obtain the user's color preference on the server side, there might be a flicker during the first render. To avoid this issue, you can refer to the following steps.
+
+1. add a script before your content.
+
+```tsx
+<script
+  dangerouslySetInnerHTML={{
+    // 增加一个自执行的函数
+    __html: `
+          (function () {
+            function setDark(dark) {
+              dark &&  document.documentElement.classList.add('dark');
+            }
+            let store;
+            try {
+              store = JSON.parse(localStorage.getItem('reactuses-color-scheme'));
+            } catch (err) { }
+            let dark;
+            if(store === null){
+              const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+              dark = darkQuery.matches;
+            }else {
+              dark = store;
+            }
+            setDark(dark)
+          })();
+      `,
+  }}
+></script>
+```
+
+2. To conveniently manage theme colors in a unified way, we recommend using context to store them.
+
+```tsx
+import { useDarkMode } from "@reactuses/core";
+import React, { createContext, useContext } from "react";
+
+type ThemeContext = { theme: boolean; toggleTheme: () => void };
+
+const ThemeContext = createContext<ThemeContext | undefined>(undefined);
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [dark, setDark] = useDarkMode({
+    classNameDark: "dark",
+    classNameLight: "light",
+    defaultValue: false,
+  });
+
+  return (
+    <ThemeContext.Provider value={{ theme: !!dark, toggleTheme: setDark }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
+}
+```
+
+</Details>
+
 ## Usage
 
 ```tsx live
-
 function Demo() {
   const [theme, toggleDark] = useDarkMode({
     classNameDark: "dark",
@@ -22,8 +92,7 @@ function Demo() {
       </div>
     </div>
   );
-};
-
+}
 ```
 
 %%API%%

@@ -31,6 +31,7 @@ export default ririd(
       'unused-imports/no-unused-vars': 'off',
       'react/no-unknown-property': 'off',
       'ts/no-unused-expressions': 'off',
+      'react/prefer-destructuring-assignment': 'off',
     },
   },
 )

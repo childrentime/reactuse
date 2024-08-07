@@ -1,6 +1,77 @@
+import Details from "@theme/Details";
+
 # useDarkMode
 
 具有自动数据持久性的深色模式。
+
+## Tips
+
+<Details summary="点击展开">
+对于服务端渲染的应用程序而言，由于无法在服务端获取到用户的颜色偏好。所以第一次渲染的时候可能会出现闪烁。想要避免此问题，你可以参考一下步骤。
+
+1. 在你的内容渲染前增加一个脚本。
+
+```tsx
+<script
+  dangerouslySetInnerHTML={{
+    // 增加一个自执行的函数
+    __html: `
+          (function () {
+            function setDark(dark) {
+              dark &&  document.documentElement.classList.add('dark');
+            }
+            let store;
+            try {
+              store = JSON.parse(localStorage.getItem('reactuses-color-scheme'));
+            } catch (err) { }
+            let dark;
+            if(store === null){
+              const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+              dark = darkQuery.matches;
+            }else {
+              dark = store;
+            }
+            setDark(dark)
+          })();
+      `,
+  }}
+></script>
+```
+
+2. 为了方便统一管理主题颜色，我们推荐使用 `context` 来存储它们。
+
+```tsx
+import { useDarkMode } from "@reactuses/core";
+import React, { createContext, useContext } from "react";
+
+type ThemeContext = { theme: boolean; toggleTheme: () => void };
+
+const ThemeContext = createContext<ThemeContext | undefined>(undefined);
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [dark, setDark] = useDarkMode({
+    classNameDark: "dark",
+    classNameLight: "light",
+    defaultValue: false,
+  });
+
+  return (
+    <ThemeContext.Provider value={{ theme: !!dark, toggleTheme: setDark }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
+}
+```
+
+</Details>
 
 ## Usage
 
