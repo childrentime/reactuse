@@ -27,7 +27,11 @@ function Demo() {
       <br />
       <div>
         Current Active Element:
-        <span style={{ color: "var(--c-primary)" }}>{key}</span>
+        <span> {activeElement?.tagName}</span>
+      </div>
+       <div>
+        Current Active Element data-key:
+        <span>{key}</span>
       </div>
     </div>
   );
