@@ -2,10 +2,12 @@ import { act, renderHook } from '@testing-library/react'
 import { useActiveElement } from '.'
 
 describe('useActiveElement', () => {
-  let input: HTMLInputElement
+  let input: HTMLInputElement;
+  let body: HTMLElement;
   beforeEach(() => {
     input = document.createElement('input')
     document.body.appendChild(input)
+    body = document.body
   })
 
   afterEach(() => {
@@ -14,7 +16,7 @@ describe('useActiveElement', () => {
 
   it('test focus/blur element', () => {
     const { result } = renderHook(() => useActiveElement())
-    expect(result.current).toBe(null)
+    expect(result.current).toBe(body)
 
     act(() => {
       input.focus()
