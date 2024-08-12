@@ -347,3 +347,7 @@
 - feat: add useElementByPoint
 - feat: add useQRCode
 - fix next.js import error: `SyntaxError: Named export 'a' not found. The requested module './index-client-Qon46B4S.js' is a CommonJS module, which may not support all module.exports as named exports.`. which caused by `use client` with bunchee;
+
+## 5.0.20(Aug 12, 2024)
+
+- fix(useActiveElement): add init state
