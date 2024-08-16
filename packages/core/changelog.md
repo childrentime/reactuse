@@ -351,3 +351,7 @@
 ## 5.0.20(Aug 12, 2024)
 
 - fix(useActiveElement): add init state
+
+## 5.0.21(Aug 16, 2024)
+
+- feat(useLocalStorage): deprecated `effectStorageValue`, rename to `mountStorageValue`. add `listenToStorageChanges` option, default to `true`

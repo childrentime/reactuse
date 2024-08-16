@@ -18,7 +18,9 @@
 |---|---|---|---|
 |serializer|Custom data serialization|[UseSessionStorageSerializer](#UseSessionStorageSerializer)&lt;T&gt; |`-`|
 |onError|On error callback|(error: unknown) => void |``console.error``|
-|effectStorageValue|set to storage when storage doesn't has data in effect, fallback to `defaultValue`|T \| (() => T) |`-`|
+|effectStorageValue|set to storage when nodata in first mount, deprecated|T \| (() => T) |`-`|
+|mountStorageValue|set to storage when nodata in first mount|T \| (() => T) |`-`|
+|listenToStorageChanges|listen to storage changes|boolean |``true``|
 
 ### UseSessionStorageSerializer
 
