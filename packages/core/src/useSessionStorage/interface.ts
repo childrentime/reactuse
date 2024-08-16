@@ -45,10 +45,22 @@ export interface UseSessionStorageOptions<T> {
    */
   onError?: (error: unknown) => void
   /**
-   * @en set to storage when storage doesn't has data in effect, fallback to `defaultValue`
-   * @zh 当副作用执行的时候没有在 storage 中获取到数据时设置，默认会设置 `defaultValue`
+   * @en set to storage when nodata in first mount, deprecated
+   * @zh 首次挂载时没有数据时设置到 storage, 已弃用
+   * @deprecated
    */
   effectStorageValue?: T | (() => T)
+  /**
+   * @en set to storage when nodata in first mount
+   * @zh 首次挂载时没有数据时设置到 storage
+   */
+  mountStorageValue?: T | (() => T)
+  /**
+   * @en listen to storage changes
+   * @zh 监听 storage 变化
+   * @defaultValue `true`
+   */
+  listenToStorageChanges?: boolean
 }
 
 /**

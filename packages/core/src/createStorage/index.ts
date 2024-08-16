@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { isBrowser, isFunction } from '../utils/is'
 import { guessSerializerType } from '../utils/serializer'
 import { useEvent } from '../useEvent'
@@ -52,21 +52,41 @@ export const StorageSerializers: Record<
 
 export interface UseStorageOptions<T> {
   /**
-   * Custom data serialization
+   * @en Custom data serialization
+   * @zh 自定义数据序列化
    */
   serializer?: Serializer<T>
   /**
-   * On error callback
-   *
-   * Default log error to `console.error`
+   * @en On error callback
+   * @zh 错误回调
+   * @defaultValue `console.error`
    */
   onError?: (error: unknown) => void
   /**
-   * set to storage when nodata in effect, fallback to defaults
+   * @en set to storage when nodata in first mount
+   * @zh 首次挂载时没有数据时设置到 storage
+   * @deprecated
    */
   effectStorageValue?: T | (() => T)
+  /**
+   * @en set to storage when nodata in first mount
+   * @zh 首次挂载时没有数据时设置到 storage
+   */
+  mountStorageValue?: T | (() => T)
+  /**
+   * @en listen to storage changes
+   * @zh 监听 storage 变化
+   * @defaultValue `true`
+   */
+  listenToStorageChanges?: boolean
 }
-function getInitialState(key: string, defaultValue?: any, storage?: Storage, serializer?: Serializer<any>, onError?: (error: unknown) => void) {
+function getInitialState(
+  key: string,
+  defaultValue?: any,
+  storage?: Storage,
+  serializer?: Serializer<any>,
+  onError?: (error: unknown) => void,
+) {
   // Prevent a React hydration mismatch when a default value is provided.
   if (defaultValue !== undefined) {
     return defaultValue
@@ -105,7 +125,13 @@ export default function useStorage<
   options: UseStorageOptions<T> = defaultOptions,
 ) {
   let storage: Storage | undefined
-  const { onError = defaultOnError, effectStorageValue } = options
+  const {
+    onError = defaultOnError,
+    effectStorageValue,
+    mountStorageValue,
+    listenToStorageChanges = true,
+  } = options
+  const storageValue = mountStorageValue ?? effectStorageValue
 
   try {
     storage = getStorage()
@@ -122,11 +148,12 @@ export default function useStorage<
   )
 
   useDeepCompareEffect(() => {
-    const data = (effectStorageValue
-      ? isFunction(effectStorageValue)
-        ? effectStorageValue()
-        : effectStorageValue
-      : defaultValue) ?? null
+    const data
+      = (storageValue
+        ? isFunction(storageValue)
+          ? storageValue()
+          : storageValue
+        : defaultValue) ?? null
 
     const getStoredValue = () => {
       try {
@@ -145,7 +172,7 @@ export default function useStorage<
     }
 
     setState(getStoredValue())
-  }, [key, serializer, storage, onError, effectStorageValue])
+  }, [key, serializer, storage, onError, storageValue])
 
   const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
     valOrFunc => {
@@ -165,6 +192,29 @@ export default function useStorage<
       }
     },
   )
+
+  const listener = useEvent(() => {
+    try {
+      const raw = storage?.getItem(key)
+      if (raw !== undefined && raw !== null) {
+        updateState(serializer.read(raw))
+      }
+      else {
+        updateState(null)
+      }
+    }
+    catch (e) {
+      onError(e)
+    }
+  })
+
+  useEffect(() => {
+    if (listenToStorageChanges) {
+      window.addEventListener('storage', listener)
+      return () => window.removeEventListener('storage', listener)
+    }
+    return () => {}
+  }, [listenToStorageChanges, listener])
 
   return [state, updateState] as const
 }

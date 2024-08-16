@@ -18,7 +18,9 @@
 |---|---|---|---|
 |serializer|自定义数据序列化|[UseSessionStorageSerializer](#UseSessionStorageSerializer)&lt;T&gt; |`-`|
 |onError|错误回调|(error: unknown) => void |``console.error``|
-|effectStorageValue|当副作用执行的时候没有在 storage 中获取到数据时设置，默认会设置 `defaultValue`|T \| (() => T) |`-`|
+|effectStorageValue|首次挂载时没有数据时设置到 storage, 已弃用|T \| (() => T) |`-`|
+|mountStorageValue|首次挂载时没有数据时设置到 storage|T \| (() => T) |`-`|
+|listenToStorageChanges|监听 storage 变化|boolean |``true``|
 
 ### UseSessionStorageSerializer
 

@@ -23,7 +23,7 @@ export const useDarkMode: UseDarkMode = (options: UseDarkOptions) => {
     defaultValue,
     storage,
     {
-      effectStorageValue: value,
+      mountStorageValue: value,
     },
   )
 
