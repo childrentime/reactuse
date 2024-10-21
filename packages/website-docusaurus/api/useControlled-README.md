@@ -1,4 +1,4 @@
-### useControlledState
+### useControlled
 
 #### Returns
 `[T, (value: T) => void]`: A tuple with the following elements:
