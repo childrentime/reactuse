@@ -5,12 +5,12 @@ import type { INetworkInformation, IUseNetworkState, UseNetwork } from './interf
 
 const nav:
 | (Navigator &
-Partial<
-  Record<
+  Partial<
+    Record<
           'connection' | 'mozConnection' | 'webkitConnection',
-    INetworkInformation
-  >
->)
+      INetworkInformation
+    >
+  >)
 | undefined = isNavigator ? (navigator as any) : undefined
 
 const conn: INetworkInformation | undefined

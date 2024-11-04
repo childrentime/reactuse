@@ -13,7 +13,8 @@ export type UseQRCode = (
    * @zh 传递给 `QRCode.toDataURL` 的选项
    * @en Options passed to `QRCode.toDataURL`
    */
-  options?: QRCodeToDataURLOptions) => UseQRCodeReturn
+  options?: QRCodeToDataURLOptions
+) => UseQRCodeReturn
 
 /**
  * @title UseQRCodeReturn

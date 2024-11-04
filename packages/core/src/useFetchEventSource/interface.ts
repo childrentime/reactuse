@@ -1,4 +1,4 @@
-import { FetchEventSourceInit } from "@microsoft/fetch-event-source"
+import type { FetchEventSourceInit } from '@microsoft/fetch-event-source'
 
 /**
  * @title UseFetchEventSourceStatus
