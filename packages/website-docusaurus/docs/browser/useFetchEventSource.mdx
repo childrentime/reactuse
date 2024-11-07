@@ -19,7 +19,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3001;
 
-// 存储所有活跃的 SSE 连接
+// Store all active SSE connections
 const clients = new Map();
 let messageCount = 0;
 
@@ -34,9 +34,9 @@ app.use(cors({
 
 app.options('*', cors());
 
-// POST /events 使用原始请求处理
+// POST /events using raw request handling
 app.post('/events', async (req, res) => {
-  // 1. 立即设置必要的头部
+  // 1. Immediately set necessary headers
   res.setHeader('Content-Type', 'text/event-stream');
   res.setHeader('Cache-Control', 'no-cache');
   res.setHeader('Connection', 'keep-alive');
@@ -44,13 +44,13 @@ app.post('/events', async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   
-  // 2. 读取和解析请求体
+  // 2. Read and parse request body
   let body = '';
   for await (const chunk of req) {
     body += chunk;
   }
   
-  // 3. 解析配置
+  // 3. Parse configuration
   let config;
   try {
     config = body ? JSON.parse(body) : {};
@@ -61,15 +61,15 @@ app.post('/events', async (req, res) => {
   const channel = config.channel || 'default';
   const interval = parseInt(config.interval) || 3000;
   
-  // 4. 禁用请求超时
+  // 4. Disable request timeout
   req.socket.setTimeout(0);
   req.socket.setNoDelay(true);
   req.socket.setKeepAlive(true);
   
-  // 5. 开始发送数据
+  // 5. Start sending data
   console.log(`New client connected to channel: ${channel}`);
   
-  // 6. 将连接添加到对应频道的客户端集合
+  // 6. Add connection to the client collection of corresponding channel
   if (!clients.has(channel)) {
     clients.set(channel, new Set());
   }
@@ -79,7 +79,7 @@ app.post('/events', async (req, res) => {
     .reduce((sum, set) => sum + set.size, 0);
   console.log(`Client connected to channel ${channel}. Total clients: ${totalClients}`);
   
-  // 7. 发送连接成功消息
+  // 7. Send connection success message
   const sendEvent = (data, eventType = null) => {
     if (eventType) {
       res.write(`event: ${eventType}\n`);
@@ -88,7 +88,7 @@ app.post('/events', async (req, res) => {
     res.write(`data: ${JSON.stringify(data)}\n\n`);
   };
   
-  // 8. 发送初始消息
+  // 8. Send initial message
   try {
     sendEvent({ 
       message: 'Connected to SSE stream',
@@ -96,7 +96,7 @@ app.post('/events', async (req, res) => {
       time: new Date().toISOString() 
     }, 'connected');
     
-    // 9. 设置定期消息发送
+    // 9. Set up periodic message sending
     let messageCounter = 0;
     const intervalId = setInterval(() => {
       messageCounter++;
@@ -116,7 +116,7 @@ app.post('/events', async (req, res) => {
       }
     }, interval);
     
-    // 10. 设置心跳
+    // 10. Set up heartbeat
     const heartbeatId = setInterval(() => {
       try {
         res.write(':\n\n');
@@ -126,7 +126,7 @@ app.post('/events', async (req, res) => {
       }
     }, 15000);
     
-    // 11. 清理函数
+    // 11. Cleanup function
     const cleanup = () => {
       clearInterval(intervalId);
       clearInterval(heartbeatId);
@@ -150,7 +150,7 @@ app.post('/events', async (req, res) => {
       }
     };
     
-    // 12. 设置连接关闭处理
+    // 12. Set up connection close handling
     req.on('close', cleanup);
     req.on('end', cleanup);
     res.on('close', cleanup);
@@ -162,9 +162,9 @@ app.post('/events', async (req, res) => {
   }
 });
 
-// GET SSE 端点处理函数
+// GET SSE endpoint handler
 function handleGETConnection(req, res, channel = 'default', interval = 3000) {
-  // 设置 SSE 头部
+  // Set SSE headers
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
     'Cache-Control': 'no-cache',
@@ -176,7 +176,7 @@ function handleGETConnection(req, res, channel = 'default', interval = 3000) {
 
   console.log(`New client connected to channel: ${channel}`);
 
-  // 发送连接成功消息
+  // Send connection success message
   const sendEvent = (data, eventType = null) => {
     if (eventType) {
       res.write(`event: ${eventType}\n`);
@@ -185,14 +185,14 @@ function handleGETConnection(req, res, channel = 'default', interval = 3000) {
     res.write(`data: ${JSON.stringify(data)}\n\n`);
   };
 
-  // 发送初始连接消息
+  // Send initial connection message
   sendEvent({ 
     message: 'Connected to SSE stream',
     channel: channel,
     time: new Date().toISOString() 
   }, 'connected');
 
-  // 将连接添加到对应频道的客户端集合
+  // Add connection to the client collection of corresponding channel
   if (!clients.has(channel)) {
     clients.set(channel, new Set());
   }
@@ -202,7 +202,7 @@ function handleGETConnection(req, res, channel = 'default', interval = 3000) {
     .reduce((sum, set) => sum + set.size, 0);
   console.log(`Client connected to channel ${channel}. Total clients: ${totalClients}`);
 
-  // 定期发送消息
+  // Send periodic messages
   let messageCounter = 0;
   const intervalId = setInterval(() => {
     messageCounter++;
@@ -216,12 +216,12 @@ function handleGETConnection(req, res, channel = 'default', interval = 3000) {
     });
   }, interval);
 
-  // 心跳检测
+  // Heartbeat check
   const heartbeatId = setInterval(() => {
     res.write(':\n\n');
   }, 15000);
 
-  // 清理函数
+  // Cleanup function
   const cleanup = () => {
     clearInterval(intervalId);
     clearInterval(heartbeatId);
@@ -242,20 +242,20 @@ function handleGETConnection(req, res, channel = 'default', interval = 3000) {
     }
   };
 
-  // 监听连接关闭
+  // Monitor connection closure
   req.on('close', cleanup);
   res.on('close', cleanup);
   res.on('error', cleanup);
 }
 
-// GET SSE 端点
+// GET SSE endpoint
 app.get('/events', (req, res) => {
   const channel = req.query.channel || 'default';
   const interval = parseInt(req.query.interval) || 3000;
   handleGETConnection(req, res, channel, interval);
 });
 
-// 广播消息端点
+// Broadcast message endpoint
 app.post('/broadcast', bodyParser.json(), (req, res) => {
   const { message, channel, eventType = 'broadcast' } = req.body;
   
@@ -296,7 +296,7 @@ app.post('/broadcast', bodyParser.json(), (req, res) => {
   });
 });
 
-// 状态端点
+// Status endpoint
 app.get('/status', (req, res) => {
   const channelStats = {};
   clients.forEach((clientSet, channel) => {
@@ -312,7 +312,7 @@ app.get('/status', (req, res) => {
   });
 });
 
-// 错误处理中间件
+// Error handling middleware
 app.use((err, req, res, next) => {
   console.error('Server error:', err);
   res.status(500).json({
@@ -321,7 +321,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// 启动服务器
+// Start server
 app.listen(PORT, () => {
   console.log(`SSE Server running at http://localhost:${PORT}`);
   console.log('Available endpoints:');
