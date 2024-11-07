@@ -1,4 +1,4 @@
-### useControlled
+### useControlledState
 
 #### Returns
 `[T, (value: T) => void]`: 包含以下元素的元组：

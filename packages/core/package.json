@@ -1,6 +1,6 @@
 {
   "name": "@reactuses/core",
-  "version": "5.0.22",
+  "version": "5.0.23",
   "license": "Unlicense",
   "homepage": "https://www.reactuse.com/",
   "repository": {
@@ -74,6 +74,7 @@
     }
   },
   "dependencies": {
+    "@microsoft/fetch-event-source": "^2.0.1",
     "js-cookie": "^3.0.5",
     "lodash-es": "^4.17.21",
     "screenfull": "^5.0.0",

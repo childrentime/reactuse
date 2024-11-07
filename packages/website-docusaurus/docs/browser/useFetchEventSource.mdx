@@ -1,0 +1,481 @@
+# useFetchEventSource
+
+`useFetchEventSource` is a hook that allows you to subscribe to an EventSource using HTTP methods like POST and receive updates in real-time.
+
+:::note
+This example don't work in the live editor because it requires a server to send events. You can try it in your local environment.
+:::
+
+Example Server Code:
+
+<details>
+<summary>SSE Server Implementation</summary>
+
+```javascript
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3001;
+
+// Store all active SSE connections
+const clients = new Map();
+let messageCount = 0;
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Cache-Control', 'Connection', 'Accept', 'Authorization'],
+  exposedHeaders: ['Content-Type'],
+  credentials: true,
+  maxAge: 86400
+}));
+
+app.options('*', cors());
+
+// POST /events using raw request handling
+app.post('/events', async (req, res) => {
+  // 1. Immediately set necessary headers
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  res.setHeader('X-Accel-Buffering', 'no');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  
+  // 2. Read and parse request body
+  let body = '';
+  for await (const chunk of req) {
+    body += chunk;
+  }
+  
+  // 3. Parse configuration
+  let config;
+  try {
+    config = body ? JSON.parse(body) : {};
+  } catch (e) {
+    config = {};
+  }
+  
+  const channel = config.channel || 'default';
+  const interval = parseInt(config.interval) || 3000;
+  
+  // 4. Disable request timeout
+  req.socket.setTimeout(0);
+  req.socket.setNoDelay(true);
+  req.socket.setKeepAlive(true);
+  
+  // 5. Start sending data
+  console.log(`New client connected to channel: ${channel}`);
+  
+  // 6. Add connection to the client collection of corresponding channel
+  if (!clients.has(channel)) {
+    clients.set(channel, new Set());
+  }
+  clients.get(channel).add(res);
+  
+  const totalClients = Array.from(clients.values())
+    .reduce((sum, set) => sum + set.size, 0);
+  console.log(`Client connected to channel ${channel}. Total clients: ${totalClients}`);
+  
+  // 7. Send connection success message
+  const sendEvent = (data, eventType = null) => {
+    if (eventType) {
+      res.write(`event: ${eventType}\n`);
+    }
+    res.write(`id: ${Date.now()}\n`);
+    res.write(`data: ${JSON.stringify(data)}\n\n`);
+  };
+  
+  // 8. Send initial message
+  try {
+    sendEvent({ 
+      message: 'Connected to SSE stream',
+      channel: channel,
+      time: new Date().toISOString() 
+    }, 'connected');
+    
+    // 9. Set up periodic message sending
+    let messageCounter = 0;
+    const intervalId = setInterval(() => {
+      messageCounter++;
+      messageCount++;
+      
+      try {
+        sendEvent({
+          id: messageCount,
+          count: messageCounter,
+          channel: channel,
+          time: new Date().toISOString(),
+          message: `Channel ${channel} message ${messageCounter}`
+        });
+      } catch (error) {
+        console.error(`Error sending message to channel ${channel}:`, error);
+        cleanup();
+      }
+    }, interval);
+    
+    // 10. Set up heartbeat
+    const heartbeatId = setInterval(() => {
+      try {
+        res.write(':\n\n');
+      } catch (error) {
+        console.error(`Heartbeat error on channel ${channel}:`, error);
+        cleanup();
+      }
+    }, 15000);
+    
+    // 11. Cleanup function
+    const cleanup = () => {
+      clearInterval(intervalId);
+      clearInterval(heartbeatId);
+      
+      const channelClients = clients.get(channel);
+      if (channelClients) {
+        channelClients.delete(res);
+        if (channelClients.size === 0) {
+          clients.delete(channel);
+        }
+      }
+      
+      const remainingClients = Array.from(clients.values())
+        .reduce((sum, set) => sum + set.size, 0);
+      console.log(`Client disconnected from channel ${channel}. Total clients: ${remainingClients}`);
+      
+      try {
+        res.end();
+      } catch (error) {
+        console.error('Error ending response:', error);
+      }
+    };
+    
+    // 12. Set up connection close handling
+    req.on('close', cleanup);
+    req.on('end', cleanup);
+    res.on('close', cleanup);
+    res.on('error', cleanup);
+    
+  } catch (error) {
+    console.error(`Error in SSE connection for channel ${channel}:`, error);
+    res.end();
+  }
+});
+
+// GET SSE endpoint handler
+function handleGETConnection(req, res, channel = 'default', interval = 3000) {
+  // Set SSE headers
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive',
+    'X-Accel-Buffering': 'no',
+    'Access-Control-Allow-Origin': 'http://localhost:3000',
+    'Access-Control-Allow-Credentials': 'true'
+  });
+
+  console.log(`New client connected to channel: ${channel}`);
+
+  // Send connection success message
+  const sendEvent = (data, eventType = null) => {
+    if (eventType) {
+      res.write(`event: ${eventType}\n`);
+    }
+    res.write(`id: ${Date.now()}\n`);
+    res.write(`data: ${JSON.stringify(data)}\n\n`);
+  };
+
+  // Send initial connection message
+  sendEvent({ 
+    message: 'Connected to SSE stream',
+    channel: channel,
+    time: new Date().toISOString() 
+  }, 'connected');
+
+  // Add connection to the client collection of corresponding channel
+  if (!clients.has(channel)) {
+    clients.set(channel, new Set());
+  }
+  clients.get(channel).add(res);
+  
+  const totalClients = Array.from(clients.values())
+    .reduce((sum, set) => sum + set.size, 0);
+  console.log(`Client connected to channel ${channel}. Total clients: ${totalClients}`);
+
+  // Send periodic messages
+  let messageCounter = 0;
+  const intervalId = setInterval(() => {
+    messageCounter++;
+    messageCount++;
+    sendEvent({
+      id: messageCount,
+      count: messageCounter,
+      channel: channel,
+      time: new Date().toISOString(),
+      message: `Channel ${channel} message ${messageCounter}`
+    });
+  }, interval);
+
+  // Heartbeat check
+  const heartbeatId = setInterval(() => {
+    res.write(':\n\n');
+  }, 15000);
+
+  // Cleanup function
+  const cleanup = () => {
+    clearInterval(intervalId);
+    clearInterval(heartbeatId);
+    const channelClients = clients.get(channel);
+    if (channelClients) {
+      channelClients.delete(res);
+      if (channelClients.size === 0) {
+        clients.delete(channel);
+      }
+    }
+    const remainingClients = Array.from(clients.values())
+      .reduce((sum, set) => sum + set.size, 0);
+    console.log(`Client disconnected from channel ${channel}. Total clients: ${remainingClients}`);
+    try {
+      res.end();
+    } catch (error) {
+      console.error('Error ending response:', error);
+    }
+  };
+
+  // Monitor connection closure
+  req.on('close', cleanup);
+  res.on('close', cleanup);
+  res.on('error', cleanup);
+}
+
+// GET SSE endpoint
+app.get('/events', (req, res) => {
+  const channel = req.query.channel || 'default';
+  const interval = parseInt(req.query.interval) || 3000;
+  handleGETConnection(req, res, channel, interval);
+});
+
+// Broadcast message endpoint
+app.post('/broadcast', bodyParser.json(), (req, res) => {
+  const { message, channel, eventType = 'broadcast' } = req.body;
+  
+  let targetClients = new Set();
+  if (channel) {
+    targetClients = clients.get(channel) || new Set();
+    console.log(`Broadcasting message to channel ${channel} (${targetClients.size} clients):`, message);
+  } else {
+    targetClients = new Set(
+      Array.from(clients.values())
+        .flatMap(channelClients => Array.from(channelClients))
+    );
+    console.log(`Broadcasting message to all channels (${targetClients.size} clients):`, message);
+  }
+  
+  let successCount = 0;
+  for (const client of targetClients) {
+    try {
+      client.write(`event: ${eventType}\n`);
+      client.write(`id: ${Date.now()}\n`);
+      client.write(`data: ${JSON.stringify({ 
+        message,
+        channel: channel || 'all',
+        time: new Date().toISOString()
+      })}\n\n`);
+      successCount++;
+    } catch (error) {
+      console.error('Error broadcasting to client:', error);
+    }
+  }
+
+  res.json({ 
+    success: true, 
+    clientCount: targetClients.size,
+    successfulBroadcasts: successCount,
+    channel: channel || 'all',
+    message: 'Broadcast sent successfully' 
+  });
+});
+
+// Status endpoint
+app.get('/status', (req, res) => {
+  const channelStats = {};
+  clients.forEach((clientSet, channel) => {
+    channelStats[channel] = clientSet.size;
+  });
+
+  res.json({
+    activeConnections: Array.from(clients.values())
+      .reduce((sum, set) => sum + set.size, 0),
+    channelStats,
+    messageCount,
+    uptime: process.uptime()
+  });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Server error:', err);
+  res.status(500).json({
+    error: 'Internal Server Error',
+    message: err.message
+  });
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`SSE Server running at http://localhost:${PORT}`);
+  console.log('Available endpoints:');
+  console.log(`- GET  /events?channel={channel}&interval={interval} - SSE stream`);
+  console.log(`- POST /events - SSE stream with body params`);
+  console.log(`- POST /broadcast - Broadcast message to all clients or specific channel`);
+  console.log(`- GET  /status - Server status`);
+});
+```
+
+</details>
+
+## Examples
+
+### Basic Usage
+
+```tsx live
+function Demo() {
+  const { data, status } = useFetchEventSource("http://localhost:3001/events");
+
+  return (
+    <div>
+      <div>Status: {status}</div>
+      <div>Data: {JSON.stringify(data)}</div>
+    </div>
+  );
+}
+```
+
+### With POST Request
+
+```tsx live
+function Demo() {
+  const { status, data, error, close, open } = useFetchEventSource(
+    "http://localhost:3001/events",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "text/event-stream",
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive",
+      },
+      immediate: false, // Don't connect immediately
+      body: JSON.stringify({
+        channel: "custom-channel",
+        interval: 2000
+      }),
+    }
+  );
+
+  return (
+    <div>
+      <div>Status: {status}</div>
+      <div>Data: {JSON.stringify(data)}</div>
+      <div>Error: {error?.message}</div>
+      <button onClick={open}>Open</button>
+      <button onClick={close}>Close</button>
+    </div>
+  );
+}
+```
+
+### With Event Handlers
+
+```tsx live
+function Demo() {
+  const { data, status } = useFetchEventSource("http://localhost:3001/events", {
+    onOpen: () => {
+      console.log("Connection established");
+    },
+    onMessage: (event) => {
+      console.log("New message:", event.data);
+    },
+    onError: (error) => {
+      console.error("Connection error:", error);
+      return 5000; // Retry after 5 seconds
+    },
+    onClose: () => {
+      console.log("Connection closed");
+    }
+  });
+
+  return (
+    <div>
+      <div>Status: {status}</div>
+      <div>Latest message: {JSON.stringify(data)}</div>
+    </div>
+  );
+}
+```
+
+### With Auto Reconnect
+
+```tsx live
+function Demo() {
+  const { status, data } = useFetchEventSource("http://localhost:3001/events", {
+    autoReconnect: {
+      retries: 3,     // Maximum retry attempts
+      delay: 1000,    // Delay between retries (ms)
+      onFailed: () => {
+        console.log("Failed to reconnect after 3 attempts");
+      }
+    }
+  });
+
+  return (
+    <div>
+      <div>Connection status: {status}</div>
+      <div>Data: {JSON.stringify(data)}</div>
+    </div>
+  );
+}
+```
+
+### Multi Channel Example
+
+```tsx live
+function Demo() {
+  const [channel, setChannel] = useState('default');
+  
+  const { data, close, open } = useFetchEventSource(
+    "http://localhost:3001/events",
+    {
+      method: "POST",
+      immediate: false,
+      body: JSON.stringify({ channel }),
+      onMessage: (event) => {
+        console.log(`Message from ${channel}:`, event);
+      }
+    }
+  );
+
+  const switchChannel = (newChannel) => {
+    close();
+    setChannel(newChannel);
+    open();
+  };
+
+  return (
+    <div>
+      <select 
+        value={channel} 
+        onChange={(e) => switchChannel(e.target.value)}
+      >
+        <option value="default">Default Channel</option>
+        <option value="news">News Channel</option>
+        <option value="alerts">Alerts Channel</option>
+      </select>
+      <div>Current Channel: {channel}</div>
+      <div>Latest Message: {data?.message}</div>
+    </div>
+  );
+}
+```
+
+%%API%%

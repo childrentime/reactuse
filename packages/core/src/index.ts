@@ -101,6 +101,7 @@ import { usePreferredLanguages } from './usePreferredLanguages'
 import { useBroadcastChannel } from './useBroadcastChannel'
 import { useDevicePixelRatio } from './useDevicePixelRatio'
 import { useElementByPoint } from './useElementByPoint'
+import { useFetchEventSource } from './useFetchEventSource'
 
 export {
   usePrevious,
@@ -208,6 +209,7 @@ export {
   useBroadcastChannel,
   useDevicePixelRatio,
   useElementByPoint,
+  useFetchEventSource,
 }
 
 export * from './useActiveElement/interface'
@@ -308,3 +310,4 @@ export * from './usePreferredLanguages/interface'
 export * from './useBroadcastChannel/interface'
 export * from './useDevicePixelRatio/interface'
 export * from './useElementByPoint/interface'
+export * from './useFetchEventSource/interface'

@@ -70,8 +70,12 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-
   themeConfig: {
+    colorMode: {
+      respectPrefersColorScheme: true,
+      disableSwitch: false,
+      defaultMode: 'dark'
+    },
     metadata: [
       {
         name: 'google-site-verification',

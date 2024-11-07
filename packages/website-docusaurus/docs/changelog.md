@@ -355,3 +355,7 @@
 ## 5.0.21(Aug 16, 2024)
 
 - feat(useLocalStorage): deprecated `effectStorageValue`, rename to `mountStorageValue`. add `listenToStorageChanges` option, default to `true`
+
+## 5.0.23(Nov 11, 2024)
+
+- feat: add useFetchEventSource

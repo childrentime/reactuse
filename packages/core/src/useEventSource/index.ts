@@ -80,7 +80,7 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
 
         if (
           (typeof maxRetries === 'number'
-          && (maxRetries < 0 || retries.current < maxRetries))
+            && (maxRetries < 0 || retries.current < maxRetries))
           || (typeof maxRetries === 'function' && maxRetries())
         ) {
           setTimeout(open, delay)
