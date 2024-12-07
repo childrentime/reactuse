@@ -43,13 +43,13 @@ app.post('/events', async (req, res) => {
   res.setHeader('X-Accel-Buffering', 'no');
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
-  
+
   // 2. Read and parse request body
   let body = '';
   for await (const chunk of req) {
     body += chunk;
   }
-  
+
   // 3. Parse configuration
   let config;
   try {
@@ -57,28 +57,28 @@ app.post('/events', async (req, res) => {
   } catch (e) {
     config = {};
   }
-  
+
   const channel = config.channel || 'default';
   const interval = parseInt(config.interval) || 3000;
-  
+
   // 4. Disable request timeout
   req.socket.setTimeout(0);
   req.socket.setNoDelay(true);
   req.socket.setKeepAlive(true);
-  
+
   // 5. Start sending data
   console.log(`New client connected to channel: ${channel}`);
-  
+
   // 6. Add connection to the client collection of corresponding channel
   if (!clients.has(channel)) {
     clients.set(channel, new Set());
   }
   clients.get(channel).add(res);
-  
+
   const totalClients = Array.from(clients.values())
     .reduce((sum, set) => sum + set.size, 0);
   console.log(`Client connected to channel ${channel}. Total clients: ${totalClients}`);
-  
+
   // 7. Send connection success message
   const sendEvent = (data, eventType = null) => {
     if (eventType) {
@@ -87,21 +87,21 @@ app.post('/events', async (req, res) => {
     res.write(`id: ${Date.now()}\n`);
     res.write(`data: ${JSON.stringify(data)}\n\n`);
   };
-  
+
   // 8. Send initial message
   try {
-    sendEvent({ 
+    sendEvent({
       message: 'Connected to SSE stream',
       channel: channel,
-      time: new Date().toISOString() 
+      time: new Date().toISOString()
     }, 'connected');
-    
+
     // 9. Set up periodic message sending
     let messageCounter = 0;
     const intervalId = setInterval(() => {
       messageCounter++;
       messageCount++;
-      
+
       try {
         sendEvent({
           id: messageCount,
@@ -115,7 +115,7 @@ app.post('/events', async (req, res) => {
         cleanup();
       }
     }, interval);
-    
+
     // 10. Set up heartbeat
     const heartbeatId = setInterval(() => {
       try {
@@ -125,12 +125,12 @@ app.post('/events', async (req, res) => {
         cleanup();
       }
     }, 15000);
-    
+
     // 11. Cleanup function
     const cleanup = () => {
       clearInterval(intervalId);
       clearInterval(heartbeatId);
-      
+
       const channelClients = clients.get(channel);
       if (channelClients) {
         channelClients.delete(res);
@@ -138,24 +138,24 @@ app.post('/events', async (req, res) => {
           clients.delete(channel);
         }
       }
-      
+
       const remainingClients = Array.from(clients.values())
         .reduce((sum, set) => sum + set.size, 0);
       console.log(`Client disconnected from channel ${channel}. Total clients: ${remainingClients}`);
-      
+
       try {
         res.end();
       } catch (error) {
         console.error('Error ending response:', error);
       }
     };
-    
+
     // 12. Set up connection close handling
     req.on('close', cleanup);
     req.on('end', cleanup);
     res.on('close', cleanup);
     res.on('error', cleanup);
-    
+
   } catch (error) {
     console.error(`Error in SSE connection for channel ${channel}:`, error);
     res.end();
@@ -186,10 +186,10 @@ function handleGETConnection(req, res, channel = 'default', interval = 3000) {
   };
 
   // Send initial connection message
-  sendEvent({ 
+  sendEvent({
     message: 'Connected to SSE stream',
     channel: channel,
-    time: new Date().toISOString() 
+    time: new Date().toISOString()
   }, 'connected');
 
   // Add connection to the client collection of corresponding channel
@@ -197,7 +197,7 @@ function handleGETConnection(req, res, channel = 'default', interval = 3000) {
     clients.set(channel, new Set());
   }
   clients.get(channel).add(res);
-  
+
   const totalClients = Array.from(clients.values())
     .reduce((sum, set) => sum + set.size, 0);
   console.log(`Client connected to channel ${channel}. Total clients: ${totalClients}`);
@@ -258,7 +258,7 @@ app.get('/events', (req, res) => {
 // Broadcast message endpoint
 app.post('/broadcast', bodyParser.json(), (req, res) => {
   const { message, channel, eventType = 'broadcast' } = req.body;
-  
+
   let targetClients = new Set();
   if (channel) {
     targetClients = clients.get(channel) || new Set();
@@ -270,13 +270,13 @@ app.post('/broadcast', bodyParser.json(), (req, res) => {
     );
     console.log(`Broadcasting message to all channels (${targetClients.size} clients):`, message);
   }
-  
+
   let successCount = 0;
   for (const client of targetClients) {
     try {
       client.write(`event: ${eventType}\n`);
       client.write(`id: ${Date.now()}\n`);
-      client.write(`data: ${JSON.stringify({ 
+      client.write(`data: ${JSON.stringify({
         message,
         channel: channel || 'all',
         time: new Date().toISOString()
@@ -287,12 +287,12 @@ app.post('/broadcast', bodyParser.json(), (req, res) => {
     }
   }
 
-  res.json({ 
-    success: true, 
+  res.json({
+    success: true,
     clientCount: targetClients.size,
     successfulBroadcasts: successCount,
     channel: channel || 'all',
-    message: 'Broadcast sent successfully' 
+    message: 'Broadcast sent successfully'
   });
 });
 
@@ -349,6 +349,7 @@ function Demo() {
     </div>
   );
 }
+
 ```
 
 ### With POST Request
@@ -383,6 +384,7 @@ function Demo() {
     </div>
   );
 }
+
 ```
 
 ### With Event Handlers
@@ -412,6 +414,7 @@ function Demo() {
     </div>
   );
 }
+
 ```
 
 ### With Auto Reconnect
@@ -435,6 +438,7 @@ function Demo() {
     </div>
   );
 }
+
 ```
 
 ### Multi Channel Example
@@ -442,7 +446,7 @@ function Demo() {
 ```tsx live
 function Demo() {
   const [channel, setChannel] = useState('default');
-  
+
   const { data, close, open } = useFetchEventSource(
     "http://localhost:3001/events",
     {
@@ -463,8 +467,8 @@ function Demo() {
 
   return (
     <div>
-      <select 
-        value={channel} 
+      <select
+        value={channel}
         onChange={(e) => switchChannel(e.target.value)}
       >
         <option value="default">Default Channel</option>
@@ -476,6 +480,7 @@ function Demo() {
     </div>
   );
 }
+
 ```
 
 %%API%%
