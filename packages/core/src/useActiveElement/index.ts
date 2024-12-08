@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { useEventListener } from '../useEventListener'
 import { useMount } from '../useMount'
+import { defaultWindow } from '../utils/browser'
 import type { UseActiveElement } from './interface'
 
 export const useActiveElement: UseActiveElement = <T extends Element>(): T | null => {
@@ -9,8 +10,8 @@ export const useActiveElement: UseActiveElement = <T extends Element>(): T | nul
   const listener = useCallback(() => {
     setActive(window?.document.activeElement as T)
   }, [])
-  useEventListener('blur', listener, () => window, true)
-  useEventListener('focus', listener, () => window, true)
+  useEventListener('blur', listener, defaultWindow, true)
+  useEventListener('focus', listener, defaultWindow, true)
 
   useMount(() => {
     setActive(window?.document.activeElement as T)

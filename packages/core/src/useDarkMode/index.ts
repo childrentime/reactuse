@@ -3,6 +3,10 @@ import { isBrowser } from '../utils/is'
 import useStorage from '../createStorage'
 import type { UseDarkMode, UseDarkOptions } from './interface'
 
+function value() {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
 export const useDarkMode: UseDarkMode = (options: UseDarkOptions) => {
   const {
     selector = 'html',
@@ -13,10 +17,6 @@ export const useDarkMode: UseDarkMode = (options: UseDarkOptions) => {
     storage = () => (isBrowser ? localStorage : undefined),
     defaultValue = false,
   } = options
-
-  const value = (): boolean => {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-  }
 
   const [dark, setDark] = useStorage<boolean>(
     storageKey,

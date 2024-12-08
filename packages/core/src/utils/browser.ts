@@ -24,3 +24,4 @@ export function off<T extends Window | Document | HTMLElement | EventTarget>(
 }
 
 export const defaultWindow = /* #__PURE__ */ isBrowser ? window : undefined
+export const defaultDocument = /* #__PURE__ */ isBrowser ? document : undefined
