@@ -32,7 +32,6 @@ export const useCustomCompareEffect: UseCustomCompareEffect = <TDeps extends Dep
 
   useIsomorphicLayoutEffect(() => {
     if (!depsEqual(deps, ref.current as TDeps)) {
-      console.log('deps', deps, ref.current)
       ref.current = deps
       forceUpdate()
     }
