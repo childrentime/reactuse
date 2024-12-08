@@ -2,6 +2,7 @@ import type { BasicTarget } from '../utils/domTarget'
 import { getTargetElement } from '../utils/domTarget'
 import { useEventListener } from '../useEventListener'
 import { useRafState } from '../useRafState'
+import { defaultDocument } from '../utils/browser'
 import type { UseMouse, UseMouseCursorState } from './interface'
 
 const initState: UseMouseCursorState = {
@@ -53,7 +54,7 @@ export const useMouse: UseMouse = (target?: BasicTarget): UseMouseCursorState =>
       }
       setState(newState)
     },
-    () => document,
+    defaultDocument,
   )
 
   return state

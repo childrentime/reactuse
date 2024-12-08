@@ -1,5 +1,7 @@
 import type { DependencyList, EffectCallback } from 'react'
 import { useEffect, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect'
+import { useUpdate } from '../useUpdate'
 import type { DepsEqualFnType, UseCustomCompareEffect } from './interface'
 
 export const useCustomCompareEffect: UseCustomCompareEffect = <TDeps extends DependencyList>(
@@ -22,10 +24,18 @@ export const useCustomCompareEffect: UseCustomCompareEffect = <TDeps extends Dep
   }
 
   const ref = useRef<TDeps | undefined>(undefined)
+  const forceUpdate = useUpdate()
 
-  if (!ref.current || !depsEqual(deps, ref.current)) {
+  if (!ref.current) {
     ref.current = deps
   }
+
+  useIsomorphicLayoutEffect(() => {
+    if (!depsEqual(deps, ref.current as TDeps)) {
+      ref.current = deps
+      forceUpdate()
+    }
+  })
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(effect, ref.current)
