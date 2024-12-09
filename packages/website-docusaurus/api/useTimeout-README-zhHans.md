@@ -16,4 +16,4 @@
 
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|immediate|立即设置定时器|boolean |`false`|
+|immediate|立即设置定时器|boolean |`true`|

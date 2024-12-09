@@ -36,7 +36,7 @@ export interface UseTimeoutFnOptions {
   /**
    * @en Start the timer immediate after calling this function
    * @zh 立即设置定时器
-   * @defaultValue false
+   * @defaultValue true
    */
   immediate?: boolean
 }
