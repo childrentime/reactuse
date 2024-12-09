@@ -17,4 +17,4 @@
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
-|immediate|Start the timer immediate after calling this function|boolean |`false`|
+|immediate|Start the timer immediate after calling this function|boolean |`true`|
