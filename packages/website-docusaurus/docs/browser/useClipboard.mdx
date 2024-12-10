@@ -6,7 +6,6 @@ Copy text to a user's clipboard
 ## Usage
 
 ```tsx live
-
 function Demo() {
   const [value, setValue] = useState("");
   const [text, copy] = useClipboard();
@@ -30,7 +29,7 @@ function Demo() {
       <button onClick={() => copy(value)}>Copy</button>
     </div>
   );
-}
+};
 
 ```
 

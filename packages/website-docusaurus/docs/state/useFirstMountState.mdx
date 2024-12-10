@@ -6,7 +6,6 @@ React state hook that returns true if component is just mounted
 ## Usage
 
 ```tsx live
-
 function Demo() {
   const isFirstMount = useFirstMountState();
   const [render, reRender] = useState(0);
@@ -18,7 +17,7 @@ function Demo() {
       <button onClick={() => reRender(1)}>{render}</button>
     </div>
   );
-}
+};
 
 ```
 

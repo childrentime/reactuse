@@ -6,7 +6,6 @@ React state hook that only updates state in the callback of [requestAnimationFra
 ## Usage
 
 ```tsx live
-
 function Demo() {
   const [state, setState] = useRafState({ x: 0, y: 0 });
 
@@ -31,7 +30,7 @@ function Demo() {
   });
 
   return <pre>{JSON.stringify(state, null, 2)}</pre>;
-}
+};
 
 ```
 

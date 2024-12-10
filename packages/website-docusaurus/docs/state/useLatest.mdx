@@ -8,7 +8,6 @@ This is mostly useful to get access to the latest value of some props or state i
 ## Usage
 
 ```tsx live
-
 function Demo() {
   const [count, setCount] = useState(0);
   const latestCount = useLatest(count);
@@ -25,7 +24,7 @@ function Demo() {
       <button onClick={handleAlertClick}>Show alert</button>
     </div>
   );
-}
+};
 
 ```
 

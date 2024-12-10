@@ -6,14 +6,13 @@ React lifecycle hook that calls a function when the component will unmount
 ## Usage
 
 ```tsx live
-
 function Demo() {
   const [value] = useState("mounted");
   useUnmount(() => {
     alert("UnMounted");
   });
   return <div>{value}</div>;
-}
+};
 
 ```
 

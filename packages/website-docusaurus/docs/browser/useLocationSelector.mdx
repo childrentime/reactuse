@@ -7,7 +7,6 @@ For more information, [see](https://thisweekinreact.com/articles/useSyncExternal
 ## Usage
 
 ```tsx live noInline
-
 function CurrentPathname() {
   const pathname = useLocationSelector(location => location.pathname);
   const ref = useRef(0);
@@ -36,7 +35,7 @@ function CurrentHash() {
       <div>hashRender: {ref.current}</div>
     </div>
   );
-}
+};
 
 function Links() {
   return (
@@ -46,7 +45,7 @@ function Links() {
       <a href="#link3">#link3</a>
     </div>
   );
-}
+};
 
 function Demo() {
   return (
@@ -56,9 +55,9 @@ function Demo() {
       <Links />
     </div>
   );
-}
+};
 
-render(<Demo/>)
+render(<Demo/>);
 
 ```
 

@@ -6,7 +6,6 @@ React Sensor Hook that tracks [document.visibilityState](https://developer.mozil
 ## Usage
 
 ```tsx live
-
 function Demo() {
   const visibility = useDocumentVisibility("hidden");
   const [message, setMessage] = useState(
@@ -27,7 +26,7 @@ function Demo() {
   }, [visibility]);
 
   return <div>{message}</div>;
-}
+};
 
 ```
 

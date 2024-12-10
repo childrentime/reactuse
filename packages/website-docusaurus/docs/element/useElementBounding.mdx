@@ -6,7 +6,6 @@ React Element Hook that tracks bounding box of an HTML element
 ## Usage
 
 ```tsx live
-
 function Demo() {
   const ref = useRef<HTMLTextAreaElement>(null);
   const rect = useElementBounding(ref);
@@ -16,7 +15,7 @@ function Demo() {
       <textarea ref={ref} readOnly value={JSON.stringify(rect, null, 2)} />
     </div>
   );
-}
+};
 
 ```
 
