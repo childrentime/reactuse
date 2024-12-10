@@ -6,7 +6,6 @@ React side-effect hook that manages a single `localStorage` key
 ## Usage
 
 ```tsx live
-
 function Demo() {
   // bind string
   const [value, setValue] = useLocalStorage("my-key", "key");
@@ -20,7 +19,7 @@ function Demo() {
       <button onClick={() => setValue(null)}>Remove</button>
     </div>
   );
-}
+};
 
 ```
 

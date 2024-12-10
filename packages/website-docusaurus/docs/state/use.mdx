@@ -1,6 +1,7 @@
 # use
 
 `use` is a polyfill hook to resolve promises state for React v18 and below. Note that it only implements the ability to consume promises.
+For React v19 and above, you can use the built-in `use` hook: https://react.dev/reference/react/use
 
 ## Usage
 
@@ -15,13 +16,14 @@ function Demo() {
   const data = use(promise);
 
   return <p>{data}</p>;
-}
+};
 
 render(
   <Suspense fallback="loading...">
     <Demo />
   </Suspense>
 );
+
 ```
 
 %%API%%

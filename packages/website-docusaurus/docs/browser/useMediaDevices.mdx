@@ -6,14 +6,13 @@ React sensor hook that tracks connected hardware devices
 ## Usage
 
 ```tsx live
-
 function Demo() {
   const [state] = useMediaDevices({
     requestPermissions: true,
   });
 
   return <pre>{JSON.stringify(state, null, 2)}</pre>;
-}
+};
 
 ```
 

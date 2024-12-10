@@ -7,7 +7,6 @@ Returns a function that will return `true` if component mounted and `false` othe
 ## Usage
 
 ```tsx live
-
 function Demo() {
   const isMounted = useMountedState();
 
@@ -16,7 +15,7 @@ function Demo() {
     update(1);
   }, []);
   return <div>This component is {isMounted() ? "MOUNTED" : "NOT MOUNTED"}</div>;
-}
+};
 
 ```
 

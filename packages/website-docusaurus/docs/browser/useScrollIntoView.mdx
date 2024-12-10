@@ -6,7 +6,6 @@ React sensor hook works like `element.scrollIntoView()
 ## Usage
 
 ```tsx live
-
 function Demo() {
   const targetRef = useRef<HTMLParagraphElement>(null);
   const { scrollIntoView } = useScrollIntoView(targetRef, {
@@ -22,7 +21,7 @@ function Demo() {
       <p ref={targetRef}>Hello there</p>
     </div>
   );
-}
+};
 
 ```
 
