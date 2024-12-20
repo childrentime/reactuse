@@ -1,7 +1,7 @@
-// 初始化错误数组
+// Initialize error array
 window.testErrors = []
 
-// 添加全局错误监听器
+// Add global error listener
 window.addEventListener('error', (event: MyErrorEvent) => {
   window.testErrors.push({
     message: event.message,
@@ -12,9 +12,9 @@ window.addEventListener('error', (event: MyErrorEvent) => {
   })
 })
 
-// Jest 配置
+// Jest configuration
 beforeEach(() => {
-  // 每次测试前清空错误数组
+  // Clear error array before each test
   window.testErrors = []
 })
 
