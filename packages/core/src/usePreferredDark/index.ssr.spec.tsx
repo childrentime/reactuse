@@ -65,19 +65,38 @@ describe(usePreferredDark, () => {
         '(prefers-color-scheme: dark)': true,
       }) as any
 
-      await act(() => {
-        return ReactDOMClient.hydrateRoot(element, <TestComponent />)
-      })
+      try {
+        await act(async () => {
+          return ReactDOMClient.hydrateRoot(element, <TestComponent />)
+        })
+      }
+      catch (error) {
+
+      }
       expect((console.error as jest.Mock).mock.calls[0].slice(0, 3))
         .toMatchInlineSnapshot(`
         [
-          "Warning: Text content did not match. Server: "%s" Client: "%s"%s",
-          "false",
-          "true",
+          [Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+        - A server/client branch \`if (typeof window !== 'undefined')\`.
+        - Variable input such as \`Date.now()\` or \`Math.random()\` which changes each time it's called.
+        - Date formatting in a user's locale which doesn't match the server.
+        - External changing data without sending a snapshot of it along with the HTML.
+        - Invalid HTML tag nesting.
+
+        It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+        https://react.dev/link/hydration-mismatch
+
+          <TestComponent>
+        +   true
+        -   false
+        ],
         ]
       `)
     }
     finally {
+      expect(window.testErrors).toHaveErrorMatching('Hydration failed because the server rendered HTML didn\'t match the client')
       document.body.removeChild(element)
     }
   })
