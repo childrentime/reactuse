@@ -359,3 +359,39 @@
 ## 5.0.23(Nov 11, 2024)
 
 - feat: add useFetchEventSource
+
+## 6.0.0(Dec 20, 2024)
+
+### Breaking Changes
+
+Modified the runtime behavior of the following hooks to ensure concurrent mode safety:
+
+- useActiveElement
+- useCustomCompareEffect
+- useDarkMode
+- useLatest
+- usePrevious
+- useMouse
+
+Warning: These changes will affect your applications. Using unstable references as prop parameters in these hooks may trigger infinite React re-renders, since these props are now included in the hooks' dependency arrays.
+
+All DOM parameter passing now requires a stable reference. When using SSR mode, you might commonly pass functions like () => window. Make sure to extract these functions to the outer scope to maintain a stable reference, for example:
+
+If you're passing DOM parameters using refs, you don't need to worry about this issue since refs always maintain stable references.
+
+```js
+// Don't do this:
+function Component() {
+  useHook(() => window)
+}
+
+// Do this instead:
+const getWindow = () => window
+function Component() {
+  useHook(getWindow)
+}
+```
+
+### Chore
+
+List React19 as Dependency.
