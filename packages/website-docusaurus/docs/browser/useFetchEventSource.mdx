@@ -340,7 +340,9 @@ app.listen(PORT, () => {
 
 ```tsx live
 function Demo() {
-  const { data, status } = useFetchEventSource("http://localhost:3001/events");
+  const { data, status } = useFetchEventSource("https://broad-scene-1112.ploomberapp.io/stream", {
+    openWhenHidden: false
+  });
 
   return (
     <div>

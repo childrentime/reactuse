@@ -88,7 +88,6 @@ export const useFetchEventSource: UseFetchEventSource = (
 
       await fetchEventSource(url.toString(), {
         ...finalOptions,
-        openWhenHidden: false,
         async onopen(response) {
           if (response.ok) {
             setStatus('CONNECTED')
