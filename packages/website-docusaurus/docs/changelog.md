@@ -396,7 +396,7 @@ function Component() {
 
 List React19 as Dependency.
 
-## 6.0.1(May 06, 2025)
+## 6.0.2(May 06, 2025)
 
 ### Core
 
