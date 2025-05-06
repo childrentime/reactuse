@@ -395,3 +395,9 @@ function Component() {
 ### Chore
 
 List React19 as Dependency.
+
+## 6.0.1(May 06, 2025)
+
+### Core
+
+- fix(react native): Property 'document' doesn't exist.
