@@ -401,3 +401,9 @@ List React19 as Dependency.
 ### Core
 
 - fix(react native): Property 'document' doesn't exist.
+
+## 6.0.3(May 23, 2025)
+
+### Core
+
+- fix(useEventSource): improve EventSource connection handling
