@@ -33,17 +33,21 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
     })
   })
 
-  const close = useCallback(() => {
+  const close = useCallback((explicit: boolean = false) => {
     setStatus('DISCONNECTED')
     clean()
     eventSourceRef.current?.close()
     eventSourceRef.current = null
-    explicitlyClosed.current = true
+    explicitlyClosed.current = explicit
   }, [clean])
+
+  const explicitlyClose = useCallback(() => {
+    close(true)
+  }, [close])
 
   const open = useEvent(() => {
     close()
-    explicitlyClosed.current = false
+    setStatus('CONNECTING')
     retries.current = 0
 
     if (!eventSourceRef.current) {
@@ -122,7 +126,7 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
     status,
     lastEventId,
     event,
-    close,
+    close: explicitlyClose,
     open,
   }
 }
