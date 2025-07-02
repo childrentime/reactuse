@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useEventListener } from '../useEventListener'
 import type { UseClipboard } from './interface'
 
@@ -22,6 +22,10 @@ export const useClipboard: UseClipboard = (): readonly [
 
     await window.navigator.clipboard.writeText(txt)
   }, [])
+
+  useEffect(() => {
+    updateText()
+  }, [updateText])
 
   return [text, copy] as const
 }

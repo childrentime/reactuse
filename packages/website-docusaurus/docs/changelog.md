@@ -407,3 +407,9 @@ List React19 as Dependency.
 ### Core
 
 - fix(useEventSource): improve EventSource connection handling
+
+## 6.0.4(Jul 02, 2025)
+
+### Core
+
+- fix(useClipboard): immediately access clipboard
