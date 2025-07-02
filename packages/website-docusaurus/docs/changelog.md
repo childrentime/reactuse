@@ -413,3 +413,9 @@ List React19 as Dependency.
 ### Core
 
 - fix(useClipboard): immediately access clipboard
+
+## 6.0.5(Jul 03, 2025)
+
+### Core
+
+- fix(useClipboard): add document focus check
