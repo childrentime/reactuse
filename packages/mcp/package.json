@@ -1,0 +1,36 @@
+{
+  "name": "@reactuses/mcp",
+  "version": "1.0.2",
+  "description": "MCP server for ReactUse library documentation",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "bin": "dist/index.js",
+  "scripts": {
+    "build": "tsup",
+    "dev": "NODE_ENV=development tsup --watch",
+    "start": "node dist/index.js",
+    "release:prepare": "bump",
+    "publish:ci": "esno scripts/publish.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.15.0",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "zod": "^3.25.74"
+  },
+  "devDependencies": {
+    "@jsdevtools/version-bump-prompt": "^6.1.0",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.0.0"
+  }
+}
