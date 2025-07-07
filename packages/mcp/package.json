@@ -15,7 +15,9 @@
   "scripts": {
     "build": "tsup",
     "dev": "NODE_ENV=development tsup --watch",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "release:prepare": "bump",
+    "publish:ci": "esno scripts/publish.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.15.0",
