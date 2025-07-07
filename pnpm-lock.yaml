@@ -208,6 +208,9 @@ importers:
         specifier: ^1.0.0-rc.12
         version: 1.0.0
     devDependencies:
+      '@jsdevtools/version-bump-prompt':
+        specifier: ^6.1.0
+        version: 6.1.0
       '@types/node':
         specifier: ^20.0.0
         version: 20.12.3

@@ -1,6 +1,6 @@
 {
   "name": "@reactuses/mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for ReactUse library documentation",
   "exports": {
     ".": {
@@ -12,6 +12,7 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "bin": "dist/index.js",
   "scripts": {
     "build": "tsup",
     "dev": "NODE_ENV=development tsup --watch",
@@ -25,6 +26,7 @@
     "cheerio": "^1.0.0-rc.12"
   },
   "devDependencies": {
+    "@jsdevtools/version-bump-prompt": "^6.1.0",
     "@types/node": "^20.0.0",
     "ts-node": "^10.9.0",
     "tsup": "^8.5.0",
