@@ -12,18 +12,14 @@ export class HooksDataManager {
   }
 
   private initializeHooksList() {
-    // 从您提供的信息，我们可以预定义这些分类和 hooks
-    // 实际项目中，您可能需要从 GitHub API 或其他方式动态获取
     this.allHooks = __ALL_HOOKS__
   }
 
   async fetchHookDoc(hookName: string): Promise<HookInfo | null> {
-    // 检查缓存
     if (this.hooksCache.has(hookName)) {
       return this.hooksCache.get(hookName)!
     }
 
-    // 查找 hook 元数据
     const hookMeta = this.allHooks.find(h => h.name === hookName)
     if (!hookMeta) {
       return null
@@ -36,7 +32,6 @@ export class HooksDataManager {
 
       const hookInfo = this.parseHookPage($, hookMeta, url)
 
-      // 缓存结果
       this.hooksCache.set(hookName, hookInfo)
 
       return hookInfo
@@ -55,13 +50,11 @@ export class HooksDataManager {
       url,
     }
 
-    // 提取描述 - 通常在第一个 h1 标签后的 p 标签
     const firstParagraph = $('h1').first().next('p')
     if (firstParagraph.length) {
       hookInfo.description = firstParagraph.text().trim()
     }
 
-    // 提取使用示例 - 查找 Usage 部分的代码
     const usageSection = $('h2, h3').filter((_, el) => $(el).text().includes('Usage'))
     if (usageSection.length) {
       const codeBlock = usageSection.nextAll('pre').first()
@@ -70,13 +63,11 @@ export class HooksDataManager {
       }
     }
 
-    // 提取 Live Editor 中的示例代码
     const liveEditorCode = $('pre code').first()
     if (liveEditorCode.length) {
       hookInfo.example = liveEditorCode.text().trim()
     }
 
-    // 提取 API 信息
     const apiSection = $('h2, h3').filter((_, el) => $(el).text().includes('API'))
     if (apiSection.length) {
       hookInfo.api = this.parseApiSection($, apiSection)
@@ -88,7 +79,6 @@ export class HooksDataManager {
   private parseApiSection($: cheerio.CheerioAPI, apiSection: cheerio.Cheerio<any>) {
     const api: any = {}
 
-    // 查找 Returns 部分
     const returnsHeader = apiSection.nextAll('h3, h4').filter((_, el) => $(el).text().includes('Returns'))
     if (returnsHeader.length) {
       const returnsContent = returnsHeader.next()
@@ -97,7 +87,6 @@ export class HooksDataManager {
       }
     }
 
-    // 查找 Arguments 表格
     const argumentsHeader = apiSection.nextAll('h3, h4').filter((_, el) => $(el).text().includes('Arguments'))
     if (argumentsHeader.length) {
       const table = argumentsHeader.nextAll('table').first()
@@ -133,22 +122,18 @@ export class HooksDataManager {
     return args
   }
 
-  // 获取所有 hooks
   getAllHooks(): HookMetadata[] {
     return this.allHooks
   }
 
-  // 按分类获取 hooks
   getHooksByCategory(category: string): HookMetadata[] {
     return this.allHooks.filter(hook => hook.category === category)
   }
 
-  // 获取所有分类
   getAllCategories(): string[] {
     return [...new Set(this.allHooks.map(hook => hook.category))]
   }
 
-  // 搜索 hooks
   searchHooks(query: string): HookMetadata[] {
     const searchTerm = query.toLowerCase()
     return this.allHooks.filter(hook =>
