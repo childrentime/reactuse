@@ -27,6 +27,20 @@ Collection of essential React Hooks Utilities.
 
 <hr>
 
+## MCP Support
+
+If you want to use the MCP (Meta Command Protocol) integration with reactuse, you can easily set it up with the following configuration. This allows you to run the `@reactuses/mcp` utility via `npx` for enhanced command-line support and automation.
+
+Add the following to your configuration:
+
+```json
+"@reactuses/mcp": {
+  "command": "npx",
+  "args": ["-y", "@reactuses/mcp@latest"],
+  "type": "stdio"
+}
+```
+
 ## QuickStart
 
 ```tsx harmony
