@@ -207,6 +207,9 @@ importers:
       cheerio:
         specifier: ^1.0.0-rc.12
         version: 1.0.0
+      zod:
+        specifier: ^3.25.74
+        version: 3.25.74
     devDependencies:
       '@jsdevtools/version-bump-prompt':
         specifier: ^6.1.0
@@ -223,9 +226,6 @@ importers:
       typescript:
         specifier: ^5.0.0
         version: 5.6.3
-      zod:
-        specifier: ^3.25.74
-        version: 3.25.74
 
   packages/ts-document:
     dependencies:
@@ -19684,6 +19684,7 @@ packages:
 
   /zod@3.25.74:
     resolution: {integrity: sha512-J8poo92VuhKjNknViHRAIuuN6li/EwFbAC8OedzI8uxpEPGiXHGQu9wemIAioIpqgfB4SySaJhdk0mH5Y4ICBg==}
+    dev: false
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
