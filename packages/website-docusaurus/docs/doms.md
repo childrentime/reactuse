@@ -1,3 +1,10 @@
+---
+title: doms
+sidebar_label: doms
+description: >-
+  DOM-related hooks in @reactuses/core accept a `target` parameter to specify the DOM element to interact with. This guide explains how to properly use these
+  hook
+---
 # DOM Hooks
 
 DOM-related hooks in @reactuses/core accept a `target` parameter to specify the DOM element to interact with. This guide explains how to properly use these hooks.

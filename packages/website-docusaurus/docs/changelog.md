@@ -1,3 +1,10 @@
+---
+title: changelog
+sidebar_label: changelog
+description: >-
+  - Initial public release - add useActiveElement - add useDraggable - add useElemenBounding hook - add useElementVisibility hook - add useWindowsFocus hook -
+  add
+---
 # ChangeLog
 
 ## 1.0.0 (September 18 ,2022)
