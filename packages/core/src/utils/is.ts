@@ -30,7 +30,7 @@ export function noop() {}
 
 export const isIOS
 /* #__PURE__ */ = isBrowser
-&& window?.navigator?.userAgent
-&& /iP(?:ad|hone|od)/.test(window.navigator.userAgent)
+  && window?.navigator?.userAgent
+  && /iP(?:ad|hone|od)/.test(window.navigator.userAgent)
 
 export const isReactLegacy = !React.useId

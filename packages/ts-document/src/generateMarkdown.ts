@@ -97,9 +97,9 @@ function generateMarkdown(
       let table
         = dataForTable && dataForTable.length
           ? getMarkdownTable(
-            dataForTable,
-            (schema as FunctionSchema).params ? 'parameter' : 'interface',
-          )
+              dataForTable,
+              (schema as FunctionSchema).params ? 'parameter' : 'interface',
+            )
           : ''
 
       // Function type

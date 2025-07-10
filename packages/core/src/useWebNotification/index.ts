@@ -35,8 +35,8 @@ export const useWebNotification: UseWebNotification = (requestPermissions = fals
   useEffect(() => {
     permissionGranted.current
       = isSupported
-      && 'permission' in Notification
-      && Notification.permission === 'granted'
+        && 'permission' in Notification
+        && Notification.permission === 'granted'
   }, [isSupported])
 
   const ensurePermissions = useCallback(async () => {
