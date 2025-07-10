@@ -66,15 +66,8 @@ Refer to [documentations](https://reactuse.com/) for more details.
 
 ## Who's Using This
 
-<div align="center">
-  <a href="https://www.pinduoduo.com/" target="_blank">
-    <img src="https://img.shields.io/badge/PDD-E_Commerce-orange?style=for-the-badge" alt="PDD">
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://www.ctrip.com/" target="_blank">
-    <img src="https://img.shields.io/badge/Ctrip-Travel-blue?style=for-the-badge" alt="Ctrip">
-  </a>
-</div>
+[![PDD](https://img.shields.io/badge/PDD-E_Commerce-orange?style=for-the-badge)](https://www.pinduoduo.com/)
+[![Ctrip](https://img.shields.io/badge/Ctrip-Travel-blue?style=for-the-badge)](https://www.ctrip.com/)
 
 <hr>
 
