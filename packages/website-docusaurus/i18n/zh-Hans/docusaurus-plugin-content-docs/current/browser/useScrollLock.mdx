@@ -32,7 +32,7 @@ function Demo() {
           margin: "auto",
           borderRadius: "0.25rem",
           overflow: "scroll",
-          border: "1px solid #e5e5e5",
+          border: "1px solid var(--ifm-color-emphasis-200)",
         }}
       >
         <div style={{ width: 500, height: 400, position: "relative" }}>
@@ -100,9 +100,9 @@ function Demo() {
           }}
           style={{
             padding: "8px 16px",
-            border: "1px solid #333",
-            backgroundColor: "white",
-            color: "#333",
+            border: "1px solid var(--ifm-color-emphasis-300)",
+            backgroundColor: "var(--ifm-background-color)",
+            color: "var(--ifm-color-content)",
             borderRadius: "4px",
             cursor: "pointer",
           }}
@@ -164,36 +164,36 @@ function DialogDemo() {
               padding: "24px",
               maxHeight: "70vh",
               overflow: "auto",
-              backgroundColor: "white",
+              backgroundColor: "var(--ifm-background-color)",
               borderRadius: "8px",
             }}
           >
-            <h3 style={{ margin: "0 0 16px 0", color: "#333" }}>
+            <h3 style={{ margin: "0 0 16px 0", color: "var(--ifm-color-content)" }}>
               可滚动内容的对话框
             </h3>
-            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+            <p style={{ lineHeight: "1.6", color: "var(--ifm-color-content-secondary)", margin: "16px 0" }}>
               这个对话框演示了 useScrollLock 的使用。背景滚动被锁定，
               但你仍然可以在对话框内容中正常滚动。
             </p>
-            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+            <p style={{ lineHeight: "1.6", color: "var(--ifm-color-content-secondary)", margin: "16px 0" }}>
               Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
               faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
               pretium tellus duis convallis. Tempus leo eu aenean sed diam urna
               tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
               Iaculis massa nisl malesuada lacinia integer nunc posuere.
             </p>
-            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+            <p style={{ lineHeight: "1.6", color: "var(--ifm-color-content-secondary)", margin: "16px 0" }}>
               Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora
               torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor 
               sit amet consectetur adipiscing elit. Quisque faucibus ex sapien 
               vitae pellentesque sem placerat.
             </p>
-            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+            <p style={{ lineHeight: "1.6", color: "var(--ifm-color-content-secondary)", margin: "16px 0" }}>
               In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean 
               sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus 
               bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere.
             </p>
-            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+            <p style={{ lineHeight: "1.6", color: "var(--ifm-color-content-secondary)", margin: "16px 0" }}>
               Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora
               torquent per conubia nostra inceptos himenaeos. Sed cursus turpis 
               a purus aliquam condimentum. Nam bibendum cursus dolor.
@@ -208,9 +208,9 @@ function DialogDemo() {
                 onClick={close}
                 style={{
                   padding: "8px 16px",
-                  border: "1px solid #333",
-                  backgroundColor: "white",
-                  color: "#333",
+                  border: "1px solid var(--ifm-color-emphasis-300)",
+                  backgroundColor: "var(--ifm-background-color)",
+                  color: "var(--ifm-color-content)",
                   borderRadius: "4px",
                   cursor: "pointer",
                 }}
@@ -231,9 +231,9 @@ function DialogDemo() {
           <button
             style={{
               padding: "12px 24px",
-              border: "1px solid #333",
-              backgroundColor: "#333",
-              color: "white",
+              border: "1px solid var(--ifm-color-primary)",
+              backgroundColor: "var(--ifm-color-primary)",
+              color: "var(--ifm-color-white)",
               borderRadius: "4px",
               cursor: "pointer",
               fontSize: "16px",
@@ -245,7 +245,7 @@ function DialogDemo() {
       />
       <p style={{ 
         marginTop: "16px", 
-        color: "#666", 
+        color: "var(--ifm-color-content-secondary)", 
         fontSize: "14px",
         maxWidth: "400px",
         margin: "16px auto 0"
