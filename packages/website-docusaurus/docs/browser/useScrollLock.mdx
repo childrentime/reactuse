@@ -1,11 +1,11 @@
 ---
 title: useScrollLock – Browser Hook Usage & Examples
 sidebar_label: useScrollLock
-description: Lock scrolling of the element. Learn usage patterns, best practices, and code examples for React developers.
+description: Lock scrolling of the element while preserving scrolling within nested scrollable containers. Learn usage patterns, best practices, and code examples for React developers.
 ---
 # useScrollLock
 
-Lock scrolling of the element
+Lock scrolling of the element while preserving scrolling within nested scrollable containers.
 
 
 ## Usage
@@ -32,6 +32,7 @@ function Demo() {
           margin: "auto",
           borderRadius: "0.25rem",
           overflow: "scroll",
+          border: "1px solid #e5e5e5",
         }}
       >
         <div style={{ width: 500, height: 400, position: "relative" }}>
@@ -97,6 +98,14 @@ function Demo() {
           onClick={() => {
             setLocked(!locked);
           }}
+          style={{
+            padding: "8px 16px",
+            border: "1px solid #333",
+            backgroundColor: "white",
+            color: "#333",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
         >
           {locked ? "Unlock" : "Lock"}
         </button>
@@ -104,6 +113,149 @@ function Demo() {
     </div>
   );
 };
+
+```
+
+## Dialog Example
+
+```tsx live
+function DialogDemo() {
+  const { cloneElement, ReactElement, useRef, useState } = React;
+  
+  const Dialog = ({ trigger }: { trigger: ReactElement }) => {
+    const dialogRef = useRef<HTMLDialogElement>(null);
+    const boxRef = useRef(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const [, setLock] = useScrollLock(document.body);
+
+    const open = () => {
+      setIsOpen(true);
+      dialogRef.current?.showModal();
+      setLock(true);
+    };
+
+    const close = () => {
+      setIsOpen(false);
+      dialogRef.current?.close();
+      setLock(false);
+    };
+
+    useEventListener("close", () => setIsOpen(false), dialogRef);
+    useClickOutside(boxRef, close);
+
+    return (
+      <>
+        {cloneElement(trigger, { onClick: open })}
+
+        <dialog 
+          ref={dialogRef}
+          style={{
+            padding: 0,
+            border: "none",
+            borderRadius: "8px",
+            boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
+            maxWidth: "500px",
+            width: "90vw",
+          }}
+        >
+          <div 
+            ref={boxRef}
+            style={{
+              padding: "24px",
+              maxHeight: "70vh",
+              overflow: "auto",
+              backgroundColor: "white",
+              borderRadius: "8px",
+            }}
+          >
+            <h3 style={{ margin: "0 0 16px 0", color: "#333" }}>
+              Dialog with Scrollable Content
+            </h3>
+            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+              This dialog demonstrates how useScrollLock works. 
+              The background scrolling is locked, but you can still scroll within this dialog content.
+            </p>
+            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+              faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+              pretium tellus duis convallis. Tempus leo eu aenean sed diam urna
+              tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+              Iaculis massa nisl malesuada lacinia integer nunc posuere.
+            </p>
+            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+              Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora
+              torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor 
+              sit amet consectetur adipiscing elit. Quisque faucibus ex sapien 
+              vitae pellentesque sem placerat.
+            </p>
+            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+              In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean 
+              sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus 
+              bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere.
+            </p>
+            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+              Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora
+              torquent per conubia nostra inceptos himenaeos. Sed cursus turpis 
+              a purus aliquam condimentum. Nam bibendum cursus dolor.
+            </p>
+            <div style={{ 
+              display: "flex", 
+              justifyContent: "flex-end", 
+              marginTop: "24px",
+              gap: "12px"
+            }}>
+              <button
+                onClick={close}
+                style={{
+                  padding: "8px 16px",
+                  border: "1px solid #333",
+                  backgroundColor: "white",
+                  color: "#333",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </dialog>
+      </>
+    );
+  };
+
+  return (
+    <div style={{ padding: "20px", textAlign: "center" }}>
+      <Dialog 
+        trigger={
+          <button
+            style={{
+              padding: "12px 24px",
+              border: "1px solid #333",
+              backgroundColor: "#333",
+              color: "white",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            Open Dialog
+          </button>
+        } 
+      />
+      <p style={{ 
+        marginTop: "16px", 
+        color: "#666", 
+        fontSize: "14px",
+        maxWidth: "400px",
+        margin: "16px auto 0"
+      }}>
+        Open the dialog and try scrolling. You'll be able to scroll 
+        within the dialog content while background scrolling remains locked.
+      </p>
+    </div>
+  );
+}
 
 ```
 

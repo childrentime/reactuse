@@ -1,16 +1,16 @@
 ---
 title: useScrollLock 用法与示例
 sidebar_label: useScrollLock
-description: 锁定滚动元素。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 锁定元素的滚动行为，同时保留嵌套可滚动容器内的滚动功能。学习用法模式、最佳实践以及代码示例。
 ---
 # useScrollLock
 
-锁定滚动元素
+锁定元素的滚动行为，同时保留嵌套可滚动容器内的滚动功能。
 
-## Usage
+
+## 基础用法
 
 ```tsx live
-
 function Demo() {
   const elementRef = useRef<HTMLDivElement>(null);
   const [locked, setLocked] = useScrollLock(elementRef);
@@ -32,6 +32,7 @@ function Demo() {
           margin: "auto",
           borderRadius: "0.25rem",
           overflow: "scroll",
+          border: "1px solid #e5e5e5",
         }}
       >
         <div style={{ width: 500, height: 400, position: "relative" }}>
@@ -42,7 +43,7 @@ function Demo() {
               left: "0rem",
             }}
           >
-            TopLeft
+            左上角
           </div>
           <div
             style={{
@@ -51,7 +52,7 @@ function Demo() {
               left: "0rem",
             }}
           >
-            BottomLeft
+            左下角
           </div>
           <div
             style={{
@@ -60,7 +61,7 @@ function Demo() {
               right: "0rem",
             }}
           >
-            TopRight
+            右上角
           </div>
           <div
             style={{
@@ -69,7 +70,7 @@ function Demo() {
               right: "0rem",
             }}
           >
-            BottomRight
+            右下角
           </div>
           <div
             style={{
@@ -78,7 +79,7 @@ function Demo() {
               left: "33.33333%",
             }}
           >
-            Scroll Me
+            滚动区域
           </div>
         </div>
       </div>
@@ -92,18 +93,169 @@ function Demo() {
           gap: 5,
         }}
       >
-        <div>Locked: {JSON.stringify(locked)}</div>
+        <div>锁定状态: {JSON.stringify(locked)}</div>
         <button
           onClick={() => {
             setLocked(!locked);
           }}
+          style={{
+            padding: "8px 16px",
+            border: "1px solid #333",
+            backgroundColor: "white",
+            color: "#333",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
         >
-          {locked ? "Unlock" : "Lock"}
+          {locked ? "解锁" : "锁定"}
         </button>
       </div>
     </div>
   );
 };
+
+```
+
+## 对话框示例
+
+```tsx live
+function DialogDemo() {
+  const { cloneElement, ReactElement, useRef, useState } = React;
+  
+  const Dialog = ({ trigger }: { trigger: ReactElement }) => {
+    const dialogRef = useRef<HTMLDialogElement>(null);
+    const boxRef = useRef(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const [, setLock] = useScrollLock(document.body);
+
+    const open = () => {
+      setIsOpen(true);
+      dialogRef.current?.showModal();
+      setLock(true);
+    };
+
+    const close = () => {
+      setIsOpen(false);
+      dialogRef.current?.close();
+      setLock(false);
+    };
+
+    useEventListener("close", () => setIsOpen(false), dialogRef);
+    useClickOutside(boxRef, close);
+
+    return (
+      <>
+        {cloneElement(trigger, { onClick: open })}
+
+        <dialog 
+          ref={dialogRef}
+          style={{
+            padding: 0,
+            border: "none",
+            borderRadius: "8px",
+            boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
+            maxWidth: "500px",
+            width: "90vw",
+          }}
+        >
+          <div 
+            ref={boxRef}
+            style={{
+              padding: "24px",
+              maxHeight: "70vh",
+              overflow: "auto",
+              backgroundColor: "white",
+              borderRadius: "8px",
+            }}
+          >
+            <h3 style={{ margin: "0 0 16px 0", color: "#333" }}>
+              可滚动内容的对话框
+            </h3>
+            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+              这个对话框演示了 useScrollLock 的使用。背景滚动被锁定，
+              但你仍然可以在对话框内容中正常滚动。
+            </p>
+            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+              faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+              pretium tellus duis convallis. Tempus leo eu aenean sed diam urna
+              tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+              Iaculis massa nisl malesuada lacinia integer nunc posuere.
+            </p>
+            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+              Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora
+              torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor 
+              sit amet consectetur adipiscing elit. Quisque faucibus ex sapien 
+              vitae pellentesque sem placerat.
+            </p>
+            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+              In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean 
+              sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus 
+              bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere.
+            </p>
+            <p style={{ lineHeight: "1.6", color: "#666", margin: "16px 0" }}>
+              Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora
+              torquent per conubia nostra inceptos himenaeos. Sed cursus turpis 
+              a purus aliquam condimentum. Nam bibendum cursus dolor.
+            </p>
+            <div style={{ 
+              display: "flex", 
+              justifyContent: "flex-end", 
+              marginTop: "24px",
+              gap: "12px"
+            }}>
+              <button
+                onClick={close}
+                style={{
+                  padding: "8px 16px",
+                  border: "1px solid #333",
+                  backgroundColor: "white",
+                  color: "#333",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                关闭
+              </button>
+            </div>
+          </div>
+        </dialog>
+      </>
+    );
+  };
+
+  return (
+    <div style={{ padding: "20px", textAlign: "center" }}>
+      <Dialog 
+        trigger={
+          <button
+            style={{
+              padding: "12px 24px",
+              border: "1px solid #333",
+              backgroundColor: "#333",
+              color: "white",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            打开对话框
+          </button>
+        } 
+      />
+      <p style={{ 
+        marginTop: "16px", 
+        color: "#666", 
+        fontSize: "14px",
+        maxWidth: "400px",
+        margin: "16px auto 0"
+      }}>
+        打开对话框并尝试滚动。背景滚动将被锁定，
+        但你可以在对话框内容中正常滚动。
+      </p>
+    </div>
+  );
+}
 
 ```
 
