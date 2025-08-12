@@ -91,7 +91,7 @@
     "@types/lodash-es": "^4.17.7",
     "@types/qrcode": "^1.5.5",
     "@types/use-sync-external-store": "^0.0.6",
-    "babel-jest": "^29.0.2",
+    "babel-jest": "^29.7.0",
     "consola": "^2.15.3",
     "esbuild": "^0.19.11",
     "esbuild-register": "^3.4.1",
