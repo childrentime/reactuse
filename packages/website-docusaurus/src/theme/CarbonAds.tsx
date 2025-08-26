@@ -81,17 +81,10 @@ export default function CarbonAds({
    style.textContent = `
      .carbon-ads-sidebar {
        position: fixed;
-       top: 45%; /* 确保在初始视口内可见 (1366x768) */
+       bottom: 0; /* 确保在初始视口内可见 (1366x768) */
        right: 20px;
        width: 160px;
        z-index: 999;
-     }
-     
-     /* 桌面端优化 - 确保在大屏幕上可见 */
-     @media (min-width: 1366px) {
-       .carbon-ads-sidebar {
-         top: 30%; /* 在大屏幕上稍微居中一些 */
-       }
      }
      
      /* 移动端完全隐藏 */
