@@ -13,8 +13,8 @@ env:
   PNPM_VERSION: 10.15.0
 
 jobs:
-  setup:
-    name: Setup Dependencies
+  ci:
+    name: CI
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -34,110 +34,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Upload workspace
-        uses: actions/upload-artifact@v4
-        with:
-          name: workspace
-          path: |
-            node_modules
-            packages/*/node_modules
-            .pnpm-store
-            pnpm-lock.yaml
-            pnpm-workspace.yaml
-          retention-days: 1
-
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: ${{ env.PNPM_VERSION }}
-
-      - name: Set node version to ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Download workspace
-        uses: actions/download-artifact@v4
-        with:
-          name: workspace
-          path: .
-
-      - name: Restore executable permissions
-        run: |
-          find node_modules/.bin -type f -exec chmod +x {} \; 2>/dev/null || true
-          find packages/*/node_modules/.bin -type f -exec chmod +x {} \; 2>/dev/null || true
-
       - name: Run build
         run: cd packages/core && pnpm run build
 
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: ${{ env.PNPM_VERSION }}
-
-      - name: Set node version to ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Download workspace
-        uses: actions/download-artifact@v4
-        with:
-          name: workspace
-          path: .
-
-      - name: Restore executable permissions
-        run: |
-          find node_modules/.bin -type f -exec chmod +x {} \; 2>/dev/null || true
-          find packages/*/node_modules/.bin -type f -exec chmod +x {} \; 2>/dev/null || true
-
       - name: Run lint
         run: pnpm run lint
-
-  test:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: ${{ env.PNPM_VERSION }}
-
-      - name: Set node version to ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Download workspace
-        uses: actions/download-artifact@v4
-        with:
-          name: workspace
-          path: .
-
-      - name: Restore executable permissions
-        run: |
-          find node_modules/.bin -type f -exec chmod +x {} \; 2>/dev/null || true
-          find packages/*/node_modules/.bin -type f -exec chmod +x {} \; 2>/dev/null || true
 
       - name: Run unit tests
         run: cd packages/core && pnpm run test
