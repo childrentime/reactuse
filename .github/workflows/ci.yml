@@ -70,6 +70,11 @@ jobs:
           name: workspace
           path: .
 
+      - name: Restore executable permissions
+        run: |
+          find node_modules/.bin -type f -exec chmod +x {} \; 2>/dev/null || true
+          find packages/*/node_modules/.bin -type f -exec chmod +x {} \; 2>/dev/null || true
+
       - name: Run build
         run: cd packages/core && pnpm run build
 
@@ -97,6 +102,11 @@ jobs:
           name: workspace
           path: .
 
+      - name: Restore executable permissions
+        run: |
+          find node_modules/.bin -type f -exec chmod +x {} \; 2>/dev/null || true
+          find packages/*/node_modules/.bin -type f -exec chmod +x {} \; 2>/dev/null || true
+
       - name: Run lint
         run: pnpm run lint
 
@@ -123,6 +133,11 @@ jobs:
         with:
           name: workspace
           path: .
+
+      - name: Restore executable permissions
+        run: |
+          find node_modules/.bin -type f -exec chmod +x {} \; 2>/dev/null || true
+          find packages/*/node_modules/.bin -type f -exec chmod +x {} \; 2>/dev/null || true
 
       - name: Run unit tests
         run: cd packages/core && pnpm run test
