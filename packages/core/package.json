@@ -99,7 +99,7 @@
     "jest-environment-jsdom": "^29.0.2",
     "jest-environment-node": "^29.7.0",
     "lodash": "^4.17.21",
-    "qrcode": "^1.5.3",
+    "qrcode": "^1.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "typescript": "^5.3.3"
