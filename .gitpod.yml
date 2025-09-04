@@ -1,7 +1,7 @@
 tasks:
   - init: cd packages && cd core
     command: pnpm run dev
-  - init: cd packages && cd website
+  - init: cd packages && cd website-docusaurus
     command: pnpm run dev
 ports:
   - port: 3000

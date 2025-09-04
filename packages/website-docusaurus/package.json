@@ -29,7 +29,6 @@
     "@docusaurus/theme-common": "^3.8.1",
     "@docusaurus/theme-live-codeblock": "3.8.1",
     "@docusaurus/types": "3.8.1",
-    "@easyops-cn/docusaurus-search-local": "^0.51.1",
     "@mdx-js/react": "^3.1.0",
     "@reactuses/core": "workspace:*",
     "clsx": "^2.1.1",

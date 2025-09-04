@@ -7,6 +7,9 @@ NPM_FLAGS = "--version"
 NODE_OPTIONS = "--max_old_space_size=4096"
 NODE_VERSION = "22"
 
+[build.processing.html]
+pretty_urls = false # 禁用 Pretty URLs
+
 [[redirects]]
 from = "/zh-Hans/*"
 to = "/zh-Hans/:splat"

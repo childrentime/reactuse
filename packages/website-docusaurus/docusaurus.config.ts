@@ -30,20 +30,6 @@ const config: Config = {
   },
 
   themes: [
-    [
-      require.resolve('@easyops-cn/docusaurus-search-local'),
-      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
-      {
-        docsRouteBasePath: '/',
-        // ... Your options.
-        // `hashed` is recommended as long-term-cache of index file is possible.
-        hashed: true,
-        // For Docs using Chinese, The `language` is recommended to set to:
-        // ```
-        language: ['en', 'zh'],
-        // ```
-      },
-    ],
     '@docusaurus/theme-live-codeblock',
   ],
   plugins: ['./webpack.plugin.js'],
@@ -70,7 +56,19 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+  trailingSlash: true,
   themeConfig: {
+    // Algolia search configuration
+    algolia: {
+      appId: '8I3BLA6GDS',
+      apiKey: 'd70ec992605c0048bc1301c882f4a2ec',
+      indexName: 'reactuse',
+      contextualSearch: true,
+      searchParameters: {
+        hitsPerPage: 10, // 每页显示的结果数量
+      },
+      searchPagePath: 'search',
+    },
     colorMode: {
       respectPrefersColorScheme: true,
       disableSwitch: false,
