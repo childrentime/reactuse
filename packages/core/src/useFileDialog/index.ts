@@ -42,7 +42,10 @@ export const useFileDialog: UseFileDialog = (
 
     inputRef.current.multiple = _options.multiple!
     inputRef.current.accept = _options.accept!
-    inputRef.current.capture = _options.capture!
+    // Only set capture attribute if it's explicitly provided
+    if (_options.capture !== undefined) {
+      inputRef.current.capture = _options.capture
+    }
 
     fileOpenPromiseRef.current = new Promise(resolve => {
       resolveFileOpenPromiseRef.current = resolve
