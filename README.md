@@ -10,8 +10,12 @@
   <a aria-label="License" href="https://jaredlunde.mit-license.org/">
     <img alt="UnLicense" src="https://img.shields.io/npm/l/@reactuses/core?style=for-the-badge&labelColor=24292e">
   </a>
-  <img alt="Tree Shaking Friendly" src="https://img.shields.io/badge/Tree%20Shaking-Friendly-brightgreen?style=for-the-badge&labelColor=24292e">
-  <img alt="TypeScript Support" src="https://img.shields.io/badge/TypeScript-Support-blue?style=for-the-badge&labelColor=24292e">
+  <a href="https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking">
+    <img alt="Tree Shaking Friendly" src="https://img.shields.io/badge/Tree%20Shaking-Friendly-brightgreen?style=for-the-badge&labelColor=24292e">
+  </a>
+  <a href="https://www.typescriptlang.org/">
+    <img alt="TypeScript Support" src="https://img.shields.io/badge/TypeScript-Support-blue?style=for-the-badge&labelColor=24292e">
+  </a>
 </p>
 
 ```bash
