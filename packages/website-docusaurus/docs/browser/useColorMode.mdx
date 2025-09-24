@@ -1,0 +1,227 @@
+---
+title: useColorMode – Browser Hook Usage & Examples
+sidebar_label: useColorMode
+description: >-
+  import Details from "@theme/Details"; Reactive color mode (theme) with auto data persistence and flexible configuration. <Details summary="click to open"> For server-side rendered applications, since
+  it's 
+---
+import Details from "@theme/Details";
+
+# useColorMode
+
+Reactive color mode (theme) with auto data persistence and flexible configuration.
+
+## 💡 New in v6.1.0
+
+**useColorMode is the more flexible successor to useDarkMode.** Key differences:
+
+- **useColorMode**: Supports multiple themes (light, dark, blue, green, etc.)
+- **useDarkMode**: Limited to dark/light modes only, but maintains boolean API for compatibility
+
+Both hooks now use string storage internally. Choose `useColorMode` for new projects requiring multiple themes.
+
+## Tips
+
+<Details summary="click to open">
+For server-side rendered applications, since it's not possible to obtain the user's color preference on the server side, there might be a flicker during the first render. To avoid this issue, you can refer to the following steps.
+
+1. add a script before your content.
+
+```tsx
+<script
+  dangerouslySetInnerHTML={{
+    // add a self-executing function
+    __html: `
+          (function () {
+            function setMode(mode) {
+              if (mode) {
+                document.documentElement.classList.add(mode);
+              }
+            }
+            let store = localStorage.getItem('reactuses-color-mode');
+            let mode;
+            if(store === null){
+              // You can customize this logic based on your needs
+              const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+              mode = darkQuery.matches ? 'dark' : 'light';
+            }else {
+              // Parse stored string value
+              try {
+                mode = JSON.parse(store);
+              } catch {
+                // Fallback if parsing fails
+                mode = 'light';
+              }
+            }
+            setMode(mode)
+          })();
+      `,
+  }}
+></script>
+```
+
+2. To conveniently manage color modes in a unified way, we recommend using context to store them.
+
+```tsx
+import { useColorMode } from "@reactuses/core";
+import React, { createContext, useContext } from "react";
+
+type ThemeContext = { 
+  theme: string | null; 
+  setTheme: (theme: string) => void;
+  cycleTheme: () => void;
+};
+
+const ThemeContext = createContext<ThemeContext | undefined>(undefined);
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setTheme, cycleTheme] = useColorMode({
+    modes: ['light', 'dark', 'auto'],
+    defaultValue: 'auto',
+    storageKey: 'my-app-theme',
+  });
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme, cycleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
+}
+```
+
+</Details>
+
+## Usage
+
+### Basic Usage
+
+```tsx live
+function Demo() {
+  const [colorMode, setColorMode, cycle] = useColorMode({
+    modes: ['light', 'dark'],
+    defaultValue: 'light',
+  });
+
+  return (
+    <div>
+      <div>Current mode: {colorMode}</div>
+      <br />
+      <div>
+        <button onClick={() => setColorMode('light')}>Light</button>
+        <button onClick={() => setColorMode('dark')}>Dark</button>
+        <button onClick={cycle}>Cycle</button>
+      </div>
+    </div>
+  );
+};
+```
+
+### Multiple Color Themes
+
+```tsx live
+function Demo() {
+  const [colorMode, setColorMode, cycle] = useColorMode({
+    modes: ['light', 'dark', 'blue', 'green', 'purple', 'sepia'],
+    defaultValue: 'light',
+    modeClassNames: {
+      light: 'theme-light',
+      dark: 'theme-dark', 
+      blue: 'theme-blue',
+      green: 'theme-green',
+      purple: 'theme-purple',
+      sepia: 'theme-sepia'
+    }
+  });
+
+  const themeColors = {
+    light: '#f8f9fa',
+    dark: '#343a40',
+    blue: '#0d6efd',
+    green: '#198754',
+    purple: '#6f42c1',
+    sepia: '#8b4513'
+  };
+
+  return (
+    <div style={{ 
+      padding: '20px', 
+      backgroundColor: themeColors[colorMode] || '#f8f9fa',
+      color: ['dark', 'blue', 'green', 'purple', 'sepia'].includes(colorMode) ? 'white' : 'black',
+      borderRadius: '8px',
+      transition: 'all 0.3s ease'
+    }}>
+      <div>Current theme: <strong>{colorMode}</strong></div>
+      <br />
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+        {['light', 'dark', 'blue', 'green', 'purple', 'sepia'].map(mode => (
+          <button 
+            key={mode}
+            onClick={() => setColorMode(mode)}
+            style={{ 
+              padding: '8px 16px',
+              border: colorMode === mode ? '2px solid #007bff' : '1px solid #ccc',
+              borderRadius: '4px',
+              backgroundColor: colorMode === mode ? '#007bff' : 'white',
+              color: colorMode === mode ? 'white' : 'black',
+              cursor: 'pointer',
+              textTransform: 'capitalize'
+            }}
+          >
+            {mode}
+          </button>
+        ))}
+      </div>
+      <br />
+      <button 
+        onClick={cycle}
+        style={{
+          padding: '10px 20px',
+          backgroundColor: '#28a745',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer'
+        }}
+      >
+        🔄 Cycle Themes
+      </button>
+    </div>
+  );
+};
+```
+
+### Using Data Attributes
+
+```tsx live
+function Demo() {
+  const [colorMode, setColorMode, cycle] = useColorMode({
+    modes: ['light', 'dark'],
+    defaultValue: 'light',
+    attribute: 'data-theme',
+    selector: 'body'
+  });
+
+  return (
+    <div>
+      <div>Current mode: {colorMode}</div>
+      <div>Check the body element's data-theme attribute!</div>
+      <br />
+      <div>
+        <button onClick={() => setColorMode('light')}>Light</button>
+        <button onClick={() => setColorMode('dark')}>Dark</button>
+        <button onClick={cycle}>Cycle</button>
+      </div>
+    </div>
+  );
+};
+```
+
+%%API%%

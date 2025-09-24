@@ -11,6 +11,22 @@ import Details from "@theme/Details";
 
 dark mode with auto data persistence.
 
+## ⚠️ Breaking Change in v6.1.0
+
+**Storage format has changed from boolean to string values.** If you're upgrading from a previous version:
+
+- **Old format**: `true`/`false` boolean values
+- **New format**: `"dark"`/`"light"` string values  
+- **Auto-migration**: Existing data will be automatically migrated
+- **SSR scripts**: Need to be updated to handle string comparisons
+
+<details>
+<summary>Migration Guide</summary>
+
+If you have custom SSR scripts, update them as shown in the examples below. The library handles data migration automatically, but your custom scripts need to handle both old and new formats during the transition period.
+
+</details>
+
 ## Tips
 
 <Details summary="click to open">
@@ -21,22 +37,34 @@ For server-side rendered applications, since it's not possible to obtain the use
 ```tsx
 <script
   dangerouslySetInnerHTML={{
-    // 增加一个自执行的函数
+    // add a self-executing function
     __html: `
           (function () {
             function setDark(dark) {
               dark &&  document.documentElement.classList.add('dark');
             }
-            let store;
-            try {
-              store = JSON.parse(localStorage.getItem('reactuses-color-scheme'));
-            } catch (err) { }
+            let store = localStorage.getItem('reactuses-color-scheme');
             let dark;
             if(store === null){
               const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
               dark = darkQuery.matches;
             }else {
-              dark = store;
+              // Handle backward compatibility: convert old boolean values to string
+              if (store === 'true' || store === 'false') {
+                const boolValue = store === 'true';
+                const stringValue = boolValue ? 'dark' : 'light';
+                localStorage.setItem('reactuses-color-scheme', JSON.stringify(stringValue));
+                dark = boolValue;
+              } else {
+                // Parse string value ('dark' or 'light')
+                try {
+                  const parsed = JSON.parse(store);
+                  dark = parsed === 'dark';
+                } catch {
+                  // Fallback if parsing fails
+                  dark = false;
+                }
+              }
             }
             setDark(dark)
           })();
@@ -56,14 +84,14 @@ type ThemeContext = { theme: boolean; toggleTheme: () => void };
 const ThemeContext = createContext<ThemeContext | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [dark, setDark] = useDarkMode({
+  const [dark, toggle] = useDarkMode({
     classNameDark: "dark",
     classNameLight: "light",
     defaultValue: false,
   });
 
   return (
-    <ThemeContext.Provider value={{ theme: !!dark, toggleTheme: setDark }}>
+    <ThemeContext.Provider value={{ theme: !!dark, toggleTheme: toggle }}>
       {children}
     </ThemeContext.Provider>
   );

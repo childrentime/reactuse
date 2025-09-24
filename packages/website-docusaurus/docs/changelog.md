@@ -426,3 +426,21 @@ List React19 as Dependency.
 ### Core
 
 - fix(useClipboard): add document focus check
+
+## 6.1.0(Sep 24, 2025)
+
+### Breaking Changes
+
+- **useDarkMode**: Storage format changed from boolean to string values ('dark'/'light'). This affects localStorage/sessionStorage data and SSR scripts. Existing stored boolean values will be automatically migrated, but custom SSR scripts need to be updated to handle string comparisons instead of boolean values.
+
+### Core
+
+- feat: add useMap hook for reactive Map state management with set, get, remove, has, clear, and reset operations
+- feat: add useColorMode hook with support for multiple color modes beyond dark/light
+- feat: add useBoolean hook for boolean state management with setValue, setTrue, setFalse, and toggle operations
+- feat: add useClickAway alias for useClickOutside hook
+- feat: add useCopyToClipboard alias for useClipboard hook
+- feat: add comprehensive documentation for useColorMode hook
+- docs: add context provider examples for both useColorMode and useDarkMode  
+- docs: add multi-color theme examples in useColorMode documentation (6 themes: light, dark, blue, green, purple, sepia)
+- docs: update useDarkMode documentation scripts to handle new string storage format

@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+import { useCallback } from 'react'
 import { isBrowser } from '../utils/is'
-import useStorage from '../createStorage'
+import { useColorMode } from '../useColorMode'
 import type { UseDarkMode, UseDarkOptions } from './interface'
 
-function value() {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
+function getSystemPreference(): 'dark' | 'light' {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
 export const useDarkMode: UseDarkMode = (options: UseDarkOptions) => {
@@ -18,45 +18,42 @@ export const useDarkMode: UseDarkMode = (options: UseDarkOptions) => {
     defaultValue = false,
   } = options
 
-  const [dark, setDark] = useStorage<boolean>(
+  // Convert boolean-based options to string-based options for useColorMode
+  const [colorMode, setColorMode] = useColorMode({
+    selector,
+    attribute,
+    modes: ['light', 'dark'],
+    defaultValue: defaultValue ? 'dark' : 'light',
     storageKey,
-    defaultValue,
     storage,
-    {
-      mountStorageValue: value,
+    initialValueDetector: getSystemPreference,
+    modeClassNames: {
+      dark: classNameDark,
+      light: classNameLight,
     },
-  )
+  })
 
-  useEffect(() => {
-    const element = window?.document.querySelector(selector)
-    if (!element) {
-      return
-    }
-    if (attribute === 'class') {
-      dark && classNameDark && element.classList.add(classNameDark)
-      !dark && classNameLight && element.classList.add(classNameLight)
-    }
-    else {
-      dark && classNameDark && element.setAttribute(attribute, classNameDark)
-      !dark
-      && classNameLight
-      && element.setAttribute(attribute, classNameLight)
-    }
+  // Convert string mode back to boolean
+  const dark = colorMode === 'dark'
 
-    return () => {
-      if (!element) {
-        return
-      }
-      if (attribute === 'class') {
-        dark && classNameDark && element.classList.remove(classNameDark)
-        !dark && classNameLight && element.classList.remove(classNameLight)
-      }
-      else {
-        dark && classNameDark && element.removeAttribute(attribute)
-        !dark && classNameLight && element.removeAttribute(attribute)
+  // Toggle function that switches between dark and light
+  const toggle = useCallback(() => {
+    setColorMode(dark ? 'light' : 'dark')
+  }, [dark, setColorMode])
+
+  // Set function that accepts boolean value
+  const setDark = useCallback((value: React.SetStateAction<boolean | null>) => {
+    if (typeof value === 'function') {
+      const currentDark = colorMode === 'dark'
+      const newDark = value(currentDark)
+      if (newDark !== null) {
+        setColorMode(newDark ? 'dark' : 'light')
       }
     }
-  }, [attribute, classNameDark, classNameLight, dark, selector])
+    else if (value !== null) {
+      setColorMode(value ? 'dark' : 'light')
+    }
+  }, [colorMode, setColorMode])
 
-  return [dark, () => setDark(dark => !dark), setDark] as const
+  return [dark, toggle, setDark] as const
 }

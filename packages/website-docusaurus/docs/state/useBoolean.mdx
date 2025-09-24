@@ -1,0 +1,68 @@
+---
+title: useBoolean – State Hook Usage & Examples
+sidebar_label: useBoolean
+description: React state hook that manages a boolean value. Learn usage patterns, best practices, and code examples for React developers.
+---
+# useBoolean
+
+React state hook that manages a boolean value
+
+## Usage
+
+```tsx live
+function Demo() {
+  const { value, setValue, setTrue, setFalse, toggle } = useBoolean(false);
+
+  return (
+    <div>
+      <p>Current value: <strong>{value ? 'True' : 'False'}</strong></p>
+      <div style={{ marginBottom: 16 }}>
+        <button
+          type="button"
+          onClick={() => setValue(true)}
+          style={{ marginRight: 8 }}
+          disabled={value}
+        >
+          Set True
+        </button>
+        <button
+          type="button"
+          onClick={() => setValue(false)}
+          style={{ marginRight: 8 }}
+          disabled={!value}
+        >
+          Set False
+        </button>
+        <button
+          type="button"
+          onClick={setTrue}
+          style={{ marginRight: 8 }}
+          disabled={value}
+        >
+          setTrue()
+        </button>
+        <button
+          type="button"
+          onClick={setFalse}
+          style={{ marginRight: 8 }}
+          disabled={!value}
+        >
+          setFalse()
+        </button>
+        <button
+          type="button"
+          onClick={toggle}
+          style={{ marginRight: 8 }}
+        >
+          Toggle
+        </button>
+      </div>
+      <div>
+        <p>Status: {value ? '✅ Enabled' : '❌ Disabled'}</p>
+      </div>
+    </div>
+  );
+};
+```
+
+%%API%%

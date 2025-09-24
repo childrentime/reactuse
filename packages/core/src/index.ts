@@ -99,9 +99,12 @@ import { assignRef, mergeRefs, useMergedRefs } from './useMergedRefs'
 import { use } from './use'
 import { usePreferredLanguages } from './usePreferredLanguages'
 import { useBroadcastChannel } from './useBroadcastChannel'
+import { useBoolean } from './useBoolean'
 import { useDevicePixelRatio } from './useDevicePixelRatio'
 import { useElementByPoint } from './useElementByPoint'
 import { useFetchEventSource } from './useFetchEventSource'
+import { useMap } from './useMap'
+import { useColorMode } from './useColorMode'
 
 export {
   usePrevious,
@@ -175,6 +178,9 @@ export {
   useWindowScroll,
   useClipboard,
   useClickOutside,
+  // Aliases
+  useClickOutside as useClickAway,
+  useClipboard as useCopyToClipboard,
   useCycleList,
   useFocus,
   useOnceEffect,
@@ -207,9 +213,12 @@ export {
   use,
   usePreferredLanguages,
   useBroadcastChannel,
+  useBoolean,
   useDevicePixelRatio,
   useElementByPoint,
   useFetchEventSource,
+  useMap,
+  useColorMode,
 }
 
 export * from './useActiveElement/interface'
@@ -308,6 +317,9 @@ export * from './useMergedRefs/interface'
 export * from './use/interface'
 export * from './usePreferredLanguages/interface'
 export * from './useBroadcastChannel/interface'
+export * from './useBoolean/interface'
 export * from './useDevicePixelRatio/interface'
 export * from './useElementByPoint/interface'
 export * from './useFetchEventSource/interface'
+export * from './useMap/interface'
+export * from './useColorMode/interface'

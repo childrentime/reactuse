@@ -11,6 +11,22 @@ import Details from "@theme/Details";
 
 具有自动数据持久性的深色模式。
 
+## ⚠️ v6.1.0 破坏性变更
+
+**存储格式已从布尔值更改为字符串值。** 如果你正在从旧版本升级：
+
+- **旧格式**: `true`/`false` 布尔值
+- **新格式**: `"dark"`/`"light"` 字符串值  
+- **自动迁移**: 现有数据将自动迁移
+- **SSR 脚本**: 需要更新以处理字符串比较
+
+<details>
+<summary>迁移指南</summary>
+
+如果你有自定义的 SSR 脚本，请按照下面示例中的方式进行更新。库会自动处理数据迁移，但你的自定义脚本需要在过渡期间处理新旧两种格式。
+
+</details>
+
 ## Tips
 
 <Details summary="点击展开">
@@ -27,16 +43,28 @@ import Details from "@theme/Details";
             function setDark(dark) {
               dark &&  document.documentElement.classList.add('dark');
             }
-            let store;
-            try {
-              store = JSON.parse(localStorage.getItem('reactuses-color-scheme'));
-            } catch (err) { }
+            let store = localStorage.getItem('reactuses-color-scheme');
             let dark;
             if(store === null){
               const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
               dark = darkQuery.matches;
             }else {
-              dark = store;
+              // 处理向后兼容性：将旧的布尔值转换为字符串
+              if (store === 'true' || store === 'false') {
+                const boolValue = store === 'true';
+                const stringValue = boolValue ? 'dark' : 'light';
+                localStorage.setItem('reactuses-color-scheme', JSON.stringify(stringValue));
+                dark = boolValue;
+              } else {
+                // 解析字符串值 ('dark' 或 'light')
+                try {
+                  const parsed = JSON.parse(store);
+                  dark = parsed === 'dark';
+                } catch {
+                  // 解析失败时的回退方案
+                  dark = false;
+                }
+              }
             }
             setDark(dark)
           })();
@@ -56,14 +84,14 @@ type ThemeContext = { theme: boolean; toggleTheme: () => void };
 const ThemeContext = createContext<ThemeContext | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [dark, setDark] = useDarkMode({
+  const [dark, toggle] = useDarkMode({
     classNameDark: "dark",
     classNameLight: "light",
     defaultValue: false,
   });
 
   return (
-    <ThemeContext.Provider value={{ theme: !!dark, toggleTheme: setDark }}>
+    <ThemeContext.Provider value={{ theme: !!dark, toggleTheme: toggle }}>
       {children}
     </ThemeContext.Provider>
   );
