@@ -1,31 +1,26 @@
-<div align = "center">
-   <h1 align = "center">
-    reactuse
-  </h1>
-</div>
+# reactuse
 
 <p align="center">
-  <a href="https://bundlephobia.com/result?p=@reactuses/core">
-    <img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/@reactuses/core?style=for-the-badge&labelColor=24292e">
-  </a>
-  <a aria-label="Types" href="https://www.npmjs.com/package/@reactuses/core">
-    <img alt="Types" src="https://img.shields.io/npm/types/react-use-system-color-mode?style=for-the-badge&labelColor=24292e">
-  </a>
   <a aria-label="NPM version" href="https://www.npmjs.com/package/@reactuses/core">
     <img alt="NPM Version" src="https://img.shields.io/npm/v/@reactuses/core?style=for-the-badge&labelColor=24292e">
+  </a>
+  <a href="https://www.npmjs.com/package/@reactuses/core" target="__blank">
+    <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@reactuses/core?color=50a36f&label=&style=for-the-badge&labelColor=24292e">
   </a>
   <a aria-label="License" href="https://jaredlunde.mit-license.org/">
     <img alt="UnLicense" src="https://img.shields.io/npm/l/@reactuses/core?style=for-the-badge&labelColor=24292e">
   </a>
+  <img alt="Tree Shaking Friendly" src="https://img.shields.io/badge/Tree%20Shaking-Friendly-brightgreen?style=for-the-badge&labelColor=24292e">
+  <img alt="TypeScript Support" src="https://img.shields.io/badge/TypeScript-Support-blue?style=for-the-badge&labelColor=24292e">
 </p>
 
-<pre align="center">npm i @reactuses/core</pre>
+```bash
+npm i @reactuses/core
+```
 
-<p align="center">
-Collection of essential React Hooks Utilities.
-</p>
+**Collection of essential React Hooks Utilities.**
 
-<hr>
+---
 
 ## MCP Support
 
@@ -62,26 +57,26 @@ function Demo() {
 
 Refer to [documentations](https://reactuse.com/) for more details.
 
-<hr>
+---
 
 ## Who's Using This
 
 [![PDD](https://img.shields.io/badge/PDD-E_Commerce-orange?style=for-the-badge)](https://www.pinduoduo.com/)
 [![Ctrip](https://img.shields.io/badge/Ctrip-Travel-blue?style=for-the-badge)](https://www.ctrip.com/)
 
-<hr>
+---
 
 ## Documentation & Live Examples
 
 - [Documentation](https://reactuse.com/)
 
-<hr/>
+---
 
 ## Feedback
 
 You can submit an [issue](https://github.com/childrentime/reactuse/issues) or provide feedback on [Discord](https://discord.gg/HMsq6cFkKp).
 
-<hr/>
+---
 
 ## Contribute
 
@@ -91,7 +86,7 @@ See the [**Contributing Guide**](https://github.com/childrentime/reactuse/blob/m
 
 See the [**ChangeLog**](https://github.com/childrentime/reactuse/blob/main/packages/core/changelog.md)
 
-<hr/>
+---
 
 ## Thanks
 
@@ -101,7 +96,7 @@ This project is heavily inspired by the following awesome projects.
 - [ahooks](https://github.com/alibaba/hooks)
 - [vueuse](https://github.com/vueuse/vueuse)
 
-<hr/>
+---
 
 ## Sponsor Me
 
