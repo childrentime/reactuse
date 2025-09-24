@@ -1,0 +1,78 @@
+---
+title: useMap 用法与示例
+sidebar_label: useMap
+description: 管理 Map 的 React hook。本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要管理键值对数据的场景。
+---
+# useMap
+
+管理 Map 的 React hook。
+
+## Usage
+
+```tsx live
+function Demo() {
+  const { map, set, get, remove, has, clear, reset, size } = useMap([
+    ['react', '18.0.0'],
+    ['vue', '3.0.0'],
+  ]);
+
+  return (
+    <div>
+      <p>Map 大小: {size}</p>
+      <div style={{ marginBottom: 16 }}>
+        <button
+          type="button"
+          onClick={() => set('angular', '16.0.0')}
+          style={{ marginRight: 8 }}
+        >
+          添加 Angular
+        </button>
+        <button
+          type="button"
+          onClick={() => set('react', '18.2.0')}
+          style={{ marginRight: 8 }}
+        >
+          更新 React
+        </button>
+        <button
+          type="button"
+          onClick={() => remove('vue')}
+          style={{ marginRight: 8 }}
+        >
+          删除 Vue
+        </button>
+        <button
+          type="button"
+          onClick={clear}
+          style={{ marginRight: 8 }}
+        >
+          清空所有
+        </button>
+        <button
+          type="button"
+          onClick={reset}
+          style={{ marginRight: 8 }}
+        >
+          重置
+        </button>
+      </div>
+      <div>
+        <p>当前条目:</p>
+        <ul>
+          {Array.from(map.entries()).map(([key, value]) => (
+            <li key={key}>
+              {key}: {value} 
+              {has(key) && ' ✓'}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p>获取 React 版本: {get('react') || '未找到'}</p>
+      </div>
+    </div>
+  );
+};
+```
+
+%%API%%

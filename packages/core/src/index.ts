@@ -102,6 +102,7 @@ import { useBroadcastChannel } from './useBroadcastChannel'
 import { useDevicePixelRatio } from './useDevicePixelRatio'
 import { useElementByPoint } from './useElementByPoint'
 import { useFetchEventSource } from './useFetchEventSource'
+import { useMap } from './useMap'
 
 export {
   usePrevious,
@@ -213,6 +214,7 @@ export {
   useDevicePixelRatio,
   useElementByPoint,
   useFetchEventSource,
+  useMap,
 }
 
 export * from './useActiveElement/interface'
@@ -314,3 +316,4 @@ export * from './useBroadcastChannel/interface'
 export * from './useDevicePixelRatio/interface'
 export * from './useElementByPoint/interface'
 export * from './useFetchEventSource/interface'
+export * from './useMap/interface'
