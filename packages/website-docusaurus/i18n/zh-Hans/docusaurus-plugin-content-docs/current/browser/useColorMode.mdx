@@ -45,13 +45,8 @@ import Details from "@theme/Details";
               const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
               mode = darkQuery.matches ? 'dark' : 'light';
             }else {
-              // 解析存储的字符串值
-              try {
-                mode = JSON.parse(store);
-              } catch {
-                // 解析失败时的回退方案
-                mode = 'light';
-              }
+              // 直接使用存储的字符串值
+              mode = store || 'light';
             }
             setMode(mode)
           })();

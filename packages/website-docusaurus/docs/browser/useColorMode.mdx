@@ -45,13 +45,8 @@ For server-side rendered applications, since it's not possible to obtain the use
               const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
               mode = darkQuery.matches ? 'dark' : 'light';
             }else {
-              // Parse stored string value
-              try {
-                mode = JSON.parse(store);
-              } catch {
-                // Fallback if parsing fails
-                mode = 'light';
-              }
+              // Use stored string value directly
+              mode = store || 'light';
             }
             setMode(mode)
           })();

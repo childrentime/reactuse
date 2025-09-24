@@ -53,17 +53,11 @@ import Details from "@theme/Details";
               if (store === 'true' || store === 'false') {
                 const boolValue = store === 'true';
                 const stringValue = boolValue ? 'dark' : 'light';
-                localStorage.setItem('reactuses-color-scheme', JSON.stringify(stringValue));
+                localStorage.setItem('reactuses-color-scheme', stringValue);
                 dark = boolValue;
               } else {
-                // 解析字符串值 ('dark' 或 'light')
-                try {
-                  const parsed = JSON.parse(store);
-                  dark = parsed === 'dark';
-                } catch {
-                  // 解析失败时的回退方案
-                  dark = false;
-                }
+                // 直接处理字符串值 ('dark' 或 'light')
+                dark = store === 'dark';
               }
             }
             setDark(dark)

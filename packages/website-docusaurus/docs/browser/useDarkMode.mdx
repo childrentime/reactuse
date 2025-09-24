@@ -53,17 +53,11 @@ For server-side rendered applications, since it's not possible to obtain the use
               if (store === 'true' || store === 'false') {
                 const boolValue = store === 'true';
                 const stringValue = boolValue ? 'dark' : 'light';
-                localStorage.setItem('reactuses-color-scheme', JSON.stringify(stringValue));
+                localStorage.setItem('reactuses-color-scheme', stringValue);
                 dark = boolValue;
               } else {
-                // Parse string value ('dark' or 'light')
-                try {
-                  const parsed = JSON.parse(store);
-                  dark = parsed === 'dark';
-                } catch {
-                  // Fallback if parsing fails
-                  dark = false;
-                }
+                // Handle string value ('dark' or 'light') directly
+                dark = store === 'dark';
               }
             }
             setDark(dark)
