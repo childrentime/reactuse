@@ -175,6 +175,9 @@ export {
   useWindowScroll,
   useClipboard,
   useClickOutside,
+  // Aliases
+  useClickOutside as useClickAway,
+  useClipboard as useCopyToClipboard,
   useCycleList,
   useFocus,
   useOnceEffect,

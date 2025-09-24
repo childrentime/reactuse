@@ -12,7 +12,16 @@ function injectLoader(content) {
 }
 
 function getAPI(component, isChinese) {
-  const pathname = path.resolve(__dirname, `../api/${component}-README${isChinese ? '-zhHans' : ''}.md`)
+  // Define hook aliases mapping
+  const aliases = {
+    'useClickAway': 'useClickOutside',
+    'useCopyToClipboard': 'useClipboard'
+  }
+  
+  // Use original hook name for aliases
+  const actualComponent = aliases[component] || component
+  const pathname = path.resolve(__dirname, `../api/${actualComponent}-README${isChinese ? '-zhHans' : ''}.md`)
+  
   if (!fs.existsSync(pathname)) {
     return ''
   }

@@ -1,15 +1,9 @@
 # reactuse
 
 <p align="center">
-  <a aria-label="NPM version" href="https://www.npmjs.com/package/@reactuses/core">
-    <img alt="NPM Version" src="https://img.shields.io/npm/v/@reactuses/core?style=for-the-badge&labelColor=24292e">
-  </a>
-  <a href="https://www.npmjs.com/package/@reactuses/core" target="__blank">
-    <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@reactuses/core?color=50a36f&label=&style=for-the-badge&labelColor=24292e">
-  </a>
-  <a aria-label="License" href="https://jaredlunde.mit-license.org/">
-    <img alt="UnLicense" src="https://img.shields.io/npm/l/@reactuses/core?style=for-the-badge&labelColor=24292e">
-  </a>
+  <img alt="NPM Version" src="https://img.shields.io/npm/v/@reactuses/core?style=for-the-badge&labelColor=24292e">
+  <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@reactuses/core?color=50a36f&label=&style=for-the-badge&labelColor=24292e">
+  <img alt="UnLicense" src="https://img.shields.io/npm/l/@reactuses/core?style=for-the-badge&labelColor=24292e">
   <img alt="Tree Shaking Friendly" src="https://img.shields.io/badge/Tree%20Shaking-Friendly-brightgreen?style=for-the-badge&labelColor=24292e">
   <img alt="TypeScript Support" src="https://img.shields.io/badge/TypeScript-Support-blue?style=for-the-badge&labelColor=24292e">
 </p>

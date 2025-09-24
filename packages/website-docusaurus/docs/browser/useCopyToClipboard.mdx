@@ -1,0 +1,44 @@
+---
+title: useCopyToClipboard – Browser Hook Usage & Examples (Alias for useClipboard)
+sidebar_label: useCopyToClipboard
+description: Copy text to a user's clipboard. Alias for useClipboard. Learn usage patterns, best practices, and code examples for React developers.
+---
+# useCopyToClipboard
+
+Copy text to a user's clipboard.
+
+:::info Alias
+`useCopyToClipboard` is an alias for [`useClipboard`](/browser/useClipboard). They have identical functionality and API.
+:::
+
+## Usage
+
+```tsx live
+function Demo() {
+  const [value, setValue] = useState("");
+  const [text, copy] = useCopyToClipboard();
+  const permissionRead = usePermission("clipboard-read");
+  const permissionWrite = usePermission("clipboard-write");
+  return (
+    <div>
+      <p>
+        Clipboard Permission: read <b>{permissionRead}</b> | write&nbsp;
+        <b>{permissionWrite}</b>
+      </p>
+      <p>
+        Current copied: <code>{text || "none"}</code>
+      </p>
+      <input
+        value={value}
+        onChange={(event) => {
+          setValue(event.currentTarget.value);
+        }}
+      />
+      <button onClick={() => copy(value)}>Copy</button>
+    </div>
+  );
+};
+
+```
+
+%%API%%
