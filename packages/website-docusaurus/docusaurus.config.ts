@@ -137,6 +137,11 @@ const config: Config = {
           position: 'right',
         },
         {
+          href: 'https://buymeacoffee.com/lianwenwu',
+          label: 'Buy me a coffee',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/childrentime/reactuse/tree/main',
           label: 'GitHub',
           position: 'right',
