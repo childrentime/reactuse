@@ -99,6 +99,7 @@ import { assignRef, mergeRefs, useMergedRefs } from './useMergedRefs'
 import { use } from './use'
 import { usePreferredLanguages } from './usePreferredLanguages'
 import { useBroadcastChannel } from './useBroadcastChannel'
+import { useBoolean } from './useBoolean'
 import { useDevicePixelRatio } from './useDevicePixelRatio'
 import { useElementByPoint } from './useElementByPoint'
 import { useFetchEventSource } from './useFetchEventSource'
@@ -211,6 +212,7 @@ export {
   use,
   usePreferredLanguages,
   useBroadcastChannel,
+  useBoolean,
   useDevicePixelRatio,
   useElementByPoint,
   useFetchEventSource,
@@ -313,6 +315,7 @@ export * from './useMergedRefs/interface'
 export * from './use/interface'
 export * from './usePreferredLanguages/interface'
 export * from './useBroadcastChannel/interface'
+export * from './useBoolean/interface'
 export * from './useDevicePixelRatio/interface'
 export * from './useElementByPoint/interface'
 export * from './useFetchEventSource/interface'
