@@ -11,6 +11,15 @@ import Details from "@theme/Details";
 
 响应式颜色模式（主题）管理，具有自动数据持久化和灵活配置功能。
 
+## 💡 v6.1.0 新功能
+
+**useColorMode 是 useDarkMode 更灵活的升级版。** 主要区别：
+
+- **useColorMode**: 支持多种主题（浅色、深色、蓝色、绿色等）
+- **useDarkMode**: 仅限于明暗模式，但保持布尔 API 以确保兼容性
+
+两个 hook 现在内部都使用字符串存储。对于需要多种主题的新项目，建议选择 `useColorMode`。
+
 ## Tips
 
 <Details summary="点击展开">
@@ -29,17 +38,20 @@ import Details from "@theme/Details";
                 document.documentElement.classList.add(mode);
               }
             }
-            let store;
-            try {
-              store = JSON.parse(localStorage.getItem('reactuses-color-mode'));
-            } catch (err) { }
+            let store = localStorage.getItem('reactuses-color-mode');
             let mode;
             if(store === null){
               // 你可以根据需要自定义这个逻辑
               const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
               mode = darkQuery.matches ? 'dark' : 'light';
             }else {
-              mode = store;
+              // 解析存储的字符串值
+              try {
+                mode = JSON.parse(store);
+              } catch {
+                // 解析失败时的回退方案
+                mode = 'light';
+              }
             }
             setMode(mode)
           })();

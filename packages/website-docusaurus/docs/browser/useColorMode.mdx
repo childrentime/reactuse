@@ -11,6 +11,15 @@ import Details from "@theme/Details";
 
 Reactive color mode (theme) with auto data persistence and flexible configuration.
 
+## 💡 New in v6.1.0
+
+**useColorMode is the more flexible successor to useDarkMode.** Key differences:
+
+- **useColorMode**: Supports multiple themes (light, dark, blue, green, etc.)
+- **useDarkMode**: Limited to dark/light modes only, but maintains boolean API for compatibility
+
+Both hooks now use string storage internally. Choose `useColorMode` for new projects requiring multiple themes.
+
 ## Tips
 
 <Details summary="click to open">
@@ -29,17 +38,20 @@ For server-side rendered applications, since it's not possible to obtain the use
                 document.documentElement.classList.add(mode);
               }
             }
-            let store;
-            try {
-              store = JSON.parse(localStorage.getItem('reactuses-color-mode'));
-            } catch (err) { }
+            let store = localStorage.getItem('reactuses-color-mode');
             let mode;
             if(store === null){
               // You can customize this logic based on your needs
               const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
               mode = darkQuery.matches ? 'dark' : 'light';
             }else {
-              mode = store;
+              // Parse stored string value
+              try {
+                mode = JSON.parse(store);
+              } catch {
+                // Fallback if parsing fails
+                mode = 'light';
+              }
             }
             setMode(mode)
           })();
