@@ -36,7 +36,8 @@ For server-side rendered applications, since it's not possible to obtain the use
               const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
               dark = darkQuery.matches;
             }else {
-              dark = store;
+              // Now store contains string value ('dark' or 'light')
+              dark = store === 'dark';
             }
             setDark(dark)
           })();
@@ -56,14 +57,14 @@ type ThemeContext = { theme: boolean; toggleTheme: () => void };
 const ThemeContext = createContext<ThemeContext | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [dark, setDark] = useDarkMode({
+  const [dark, toggle] = useDarkMode({
     classNameDark: "dark",
     classNameLight: "light",
     defaultValue: false,
   });
 
   return (
-    <ThemeContext.Provider value={{ theme: !!dark, toggleTheme: setDark }}>
+    <ThemeContext.Provider value={{ theme: !!dark, toggleTheme: toggle }}>
       {children}
     </ThemeContext.Provider>
   );

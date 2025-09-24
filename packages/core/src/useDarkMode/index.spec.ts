@@ -47,7 +47,7 @@ describe(useDarkMode, () => {
     )
 
     expect(result.current[0]).toBe(true)
-    expect(localStorage.getItem('dark-mode')).toEqual('true')
+    expect(localStorage.getItem('dark-mode')).toEqual('dark')
   })
 
   it('option storage', () => {
@@ -56,6 +56,6 @@ describe(useDarkMode, () => {
     )
 
     expect(result.current[0]).toBe(true)
-    expect(sessionStorage.getItem('reactuses-color-scheme')).toEqual('true')
+    expect(sessionStorage.getItem('reactuses-color-scheme')).toEqual('dark')
   })
 })

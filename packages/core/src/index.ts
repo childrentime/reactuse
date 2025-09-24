@@ -104,6 +104,7 @@ import { useDevicePixelRatio } from './useDevicePixelRatio'
 import { useElementByPoint } from './useElementByPoint'
 import { useFetchEventSource } from './useFetchEventSource'
 import { useMap } from './useMap'
+import { useColorMode } from './useColorMode'
 
 export {
   usePrevious,
@@ -217,6 +218,7 @@ export {
   useElementByPoint,
   useFetchEventSource,
   useMap,
+  useColorMode,
 }
 
 export * from './useActiveElement/interface'
@@ -320,3 +322,4 @@ export * from './useDevicePixelRatio/interface'
 export * from './useElementByPoint/interface'
 export * from './useFetchEventSource/interface'
 export * from './useMap/interface'
+export * from './useColorMode/interface'
