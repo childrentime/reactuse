@@ -100,12 +100,12 @@ export type UseSpeechRecognition = (
    * @zh 切换监听状态
    * @en Toggle listening state
    */
-  readonly toggle: (value?: boolean, language?: string, continuous?: boolean) => void
+  readonly toggle: (value?: boolean, startOptions?: Partial<UseSpeechRecognitionOptions>) => void
   /**
    * @zh 开始监听
    * @en Start listening
    */
-  readonly start: (language?: string, continuous?: boolean) => void
+  readonly start: (startOptions?: Partial<UseSpeechRecognitionOptions>) => void
   /**
    * @zh 停止监听
    * @en Stop listening

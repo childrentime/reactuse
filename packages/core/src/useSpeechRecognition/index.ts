@@ -28,15 +28,24 @@ export const useSpeechRecognition: UseSpeechRecognition = (options: UseSpeechRec
 
   const isSupported = useSupported(() => SpeechRecognitionClass)
 
-  const start = useEvent((language?: string, continuous?: boolean) => {
-    if (recognitionRef.current) {
-      if (language) {
-        recognitionRef.current.lang = language
-      }
-      if (typeof continuous === 'boolean') {
-        recognitionRef.current.continuous = continuous
-      }
+  const start = useEvent((startOptions?: Partial<UseSpeechRecognitionOptions>) => {
+    if (!recognitionRef.current) {
+      return
     }
+
+    // Apply options to recognition instance
+    const {
+      interimResults: newInterimResults = interimResults,
+      continuous: newContinuous = continuous,
+      maxAlternatives: newMaxAlternatives = maxAlternatives,
+      lang: newLang = lang,
+    } = startOptions || {}
+
+    recognitionRef.current.interimResults = newInterimResults
+    recognitionRef.current.continuous = newContinuous
+    recognitionRef.current.maxAlternatives = newMaxAlternatives
+    recognitionRef.current.lang = newLang
+
     setIsListening(true)
   })
 
@@ -44,9 +53,9 @@ export const useSpeechRecognition: UseSpeechRecognition = (options: UseSpeechRec
     setIsListening(false)
   })
 
-  const toggle = useEvent((value = !isListening, language?: string, continuous?: boolean) => {
+  const toggle = useEvent((value = !isListening, startOptions?: Partial<UseSpeechRecognitionOptions>) => {
     if (value) {
-      start(language, continuous)
+      start(startOptions)
     }
     else {
       stop()
@@ -62,11 +71,7 @@ export const useSpeechRecognition: UseSpeechRecognition = (options: UseSpeechRec
     const recognition = new SpeechRecognitionClass() as SpeechRecognition
     recognitionRef.current = recognition
 
-    recognition.continuous = continuous
-    recognition.interimResults = interimResults
-    recognition.lang = lang
-    recognition.maxAlternatives = maxAlternatives
-
+    // Set up event listeners
     recognition.onstart = () => {
       setIsListening(true)
       setIsFinal(false)
@@ -94,7 +99,7 @@ export const useSpeechRecognition: UseSpeechRecognition = (options: UseSpeechRec
         recognition.abort()
       }
     }
-  }, [isSupported, SpeechRecognitionClass, continuous, interimResults, maxAlternatives, lang])
+  }, [isSupported, SpeechRecognitionClass])
 
   // Handle listening state changes
   useEffect(() => {

@@ -197,7 +197,7 @@ function Demo() {
       </div>
       
       <div style={{ display: 'flex', gap: '10px' }}>
-        <button onClick={() => start(selectedLang)} disabled={isListening}>
+        <button onClick={() => start({ lang: selectedLang })} disabled={isListening}>
           Start ({selectedLang})
         </button>
         <button onClick={stop} disabled={!isListening}>
@@ -269,7 +269,7 @@ function DynamicOptionsDemo() {
           {quickOptions.map((option, index) => (
             <button
               key={index}
-              onClick={() => start(option.language, option.continuous)}
+              onClick={() => start({ lang: option.language, continuous: option.continuous })}
               disabled={isListening}
               style={{
                 padding: '12px 8px',
