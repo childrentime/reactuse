@@ -1,5 +1,8 @@
 import type { SpeechRecognition, SpeechRecognitionErrorEvent } from './types'
 
+/**
+ * @title UseSpeechRecognitionOptions
+ */
 export interface UseSpeechRecognitionOptions {
   /**
    * Controls whether continuous results are returned for each recognition, or only a single result.
