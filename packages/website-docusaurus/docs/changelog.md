@@ -444,3 +444,9 @@ List React19 as Dependency.
 - docs: add context provider examples for both useColorMode and useDarkMode  
 - docs: add multi-color theme examples in useColorMode documentation (6 themes: light, dark, blue, green, purple, sepia)
 - docs: update useDarkMode documentation scripts to handle new string storage format
+
+## 6.1.1(Oct 22, 2025)
+
+### Core
+
+- feat: add useSpeechRecognition hook.
