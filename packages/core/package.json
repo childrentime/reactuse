@@ -101,7 +101,7 @@
     "lodash": "^4.17.21",
     "qrcode": "^1.5.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^19.2.0",
     "typescript": "^5.3.3"
   }
 }
