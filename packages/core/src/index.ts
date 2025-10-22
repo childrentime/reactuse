@@ -105,6 +105,7 @@ import { useElementByPoint } from './useElementByPoint'
 import { useFetchEventSource } from './useFetchEventSource'
 import { useMap } from './useMap'
 import { useColorMode } from './useColorMode'
+import { useSpeechRecognition } from './useSpeechRecognition'
 
 export {
   usePrevious,
@@ -219,6 +220,7 @@ export {
   useFetchEventSource,
   useMap,
   useColorMode,
+  useSpeechRecognition,
 }
 
 export * from './useActiveElement/interface'
@@ -323,3 +325,4 @@ export * from './useElementByPoint/interface'
 export * from './useFetchEventSource/interface'
 export * from './useMap/interface'
 export * from './useColorMode/interface'
+export * from './useSpeechRecognition/interface'
