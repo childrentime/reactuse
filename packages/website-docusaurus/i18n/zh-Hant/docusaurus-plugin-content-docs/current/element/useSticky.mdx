@@ -1,0 +1,48 @@
+---
+title: useSticky 用法與示例
+sidebar_label: useSticky
+description: 跟蹤元素是否粘滞。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useSticky
+
+跟蹤元素是否粘滞
+
+## Usage
+
+```tsx live
+function Demo() {
+  const element = useRef<HTMLDivElement>(null);
+  const [isSticky] = useSticky(element, {
+    // header fixed height
+    nav: 64,
+  });
+
+  const stickyStyle: CSSProperties = isSticky
+    ? {
+        position: "fixed",
+        top: 64,
+        zIndex: 50,
+        height: 20,
+      }
+    : {
+        height: 20,
+      };
+
+  const guardStyle: CSSProperties = {
+    width: 1,
+    height: 1,
+  };
+
+  return (
+    <div style={{height: 300,overflow: 'scroll'}}>
+      <div ref={element} style={guardStyle} />
+      <button style={stickyStyle}>
+        {isSticky ? "stickying" : "not sticky"}
+      </button>
+      <div style={{ height: "100vh" }} />
+    </div>
+  );
+};
+```
+
+%%API%%

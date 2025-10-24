@@ -1,0 +1,35 @@
+---
+title: useObjectUrl 用法與示例
+sidebar_label: useObjectUrl
+description: 輕鬆創建對象 URL。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useObjectUrl
+
+輕鬆創建對象 URL。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [file, setFile] = useState<File>();
+  const url = useObjectUrl(file);
+
+  const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const target = e.target;
+    const files = target.files;
+    setFile(files && files.length > 0 ? files[0] : undefined);
+  };
+  return (
+    <div>
+      <p>選擇文件</p>
+      <input type="file" onChange={onFileChange} />
+      <p>對象 URL</p>
+      <div>{url}</div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

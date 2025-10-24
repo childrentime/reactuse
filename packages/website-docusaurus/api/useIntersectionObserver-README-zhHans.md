@@ -1,7 +1,7 @@
 ### useIntersectionObserver
 
 #### Returns
-`() => void`: 停止监听函数
+`() => void`: 停止監聽函數
 
 #### Arguments
 |参数名|描述|类型|默认值|

@@ -16,10 +16,10 @@ function Demo() {
 
   return (
     <div>
-      <div>{on ? "ON" : "OFF"}</div>
-      <button onClick={toggle}>Toggle</button>
-      <button onClick={() => toggle(true)}>set ON</button>
-      <button onClick={() => toggle(false)}>set OFF</button>
+      <div>{on ? "开启" : "关闭"}</div>
+      <button onClick={toggle}>切换</button>
+      <button onClick={() => toggle(true)}>设为开启</button>
+      <button onClick={() => toggle(false)}>设为关闭</button>
     </div>
   );
 };

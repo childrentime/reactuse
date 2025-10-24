@@ -1,0 +1,22 @@
+---
+title: useReducedMotion 用法與示例
+sidebar_label: useReducedMotion
+description: 跟蹤用戶動畫偏好。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useReducedMotion
+
+跟蹤用戶動畫偏好。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const motion = useReducedMotion(false);
+
+  return <div>動畫減少：{JSON.stringify(motion)}</div>;
+};
+
+```
+
+%%API%%

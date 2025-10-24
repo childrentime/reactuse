@@ -1,0 +1,57 @@
+---
+title: useElementVisibility 用法與示例
+sidebar_label: useElementVisibility
+description: 追踪視窗内元素可見性的 React Hook。这是 `useIntersectionObserver` 的一个封装器。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useElementVisibility
+
+追踪視窗内元素可見性的 React Hook。这是 `useIntersectionObserver` 的一个封装器
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, stop] = useElementVisibility(ref);
+
+  return (
+    <div>
+      <p>右下角的信息</p>
+      <div
+        ref={ref}
+        style={{
+          borderWidth: 2,
+          borderStyle: "solid",
+          padding: "1rem",
+        }}
+      >
+        目標元素（向下滾動）
+      </div>
+      <button
+        onClick={() => {
+          stop();
+        }}
+      >
+        停止
+      </button>
+      <div
+        style={{
+          borderWidth: 2,
+          borderStyle: "solid",
+          padding: "1rem",
+          position: "fixed",
+          bottom: 0,
+          right: 0,
+          zIndex: 100,
+        }}
+      >
+        元素 {visible ? "在視窗內" : "在視窗外"}
+      </div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

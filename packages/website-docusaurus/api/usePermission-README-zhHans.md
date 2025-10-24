@@ -1,7 +1,7 @@
 ### usePermission
 
 #### Returns
-`UsePermissionState`: 权限状态
+`UsePermissionState`: 權限狀態
 
 #### Arguments
 |参数名|描述|类型|默认值|

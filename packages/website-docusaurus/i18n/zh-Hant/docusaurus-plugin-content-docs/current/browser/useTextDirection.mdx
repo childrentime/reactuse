@@ -1,0 +1,46 @@
+---
+title: useTextDirection 用法與示例
+sidebar_label: useTextDirection
+description: 跟蹤文字排列方向。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useTextDirection
+
+跟蹤文字排列方向
+
+## Usage
+
+```tsx live noInline
+
+function Demo() {
+  const [dir, setDir] = useTextDirection({
+    selector: "#_useTextDirectionDemo",
+  });
+
+  const text = useMemo(
+    () =>
+      dir === "ltr"
+        ? "這個段落是英文，正確地從左到右。"
+        : "這個段落是英文，但錯誤地從右到左。",
+    [dir],
+  );
+
+  const handleOnClick = () => {
+    const value = dir === "rtl" ? "ltr" : "rtl";
+    setDir(value);
+  };
+
+  return (
+    <div id="_useTextDirectionDemo">
+      <p>{text}</p>
+      <button onClick={handleOnClick}>
+        <span>{dir?.toUpperCase()}</span>
+      </button>
+      <span>點擊以更改方向</span>
+    </div>
+  );
+};
+
+render(<Demo/>)
+```
+
+%%API%%

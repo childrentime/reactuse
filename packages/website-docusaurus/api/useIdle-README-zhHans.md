@@ -1,7 +1,7 @@
 ### UseIdle
 
 #### Returns
-`boolean`: 是否处于空闲
+`boolean`: 是否處於空閒
 
 #### Arguments
 |参数名|描述|类型|默认值|

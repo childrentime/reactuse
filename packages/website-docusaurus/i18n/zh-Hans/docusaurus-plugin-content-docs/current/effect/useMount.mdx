@@ -12,9 +12,9 @@ description: 组件挂载后执行一次副作用的 React Hook。 本文介绍�
 ```tsx live
 
 function Demo() {
-  const [value, setValue] = useState("UnMounted");
+  const [value, setValue] = useState("未挂载");
   useMount(() => {
-    setValue("Mounted");
+    setValue("已挂载");
   });
   return <div>{value}</div>;
 };

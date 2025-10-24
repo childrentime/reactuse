@@ -1,7 +1,7 @@
 ### useLatest
 
 #### Returns
-`React.MutableRefObject<T>`: ref 对象
+`React.MutableRefObject<T>`: ref 對象
 
 #### Arguments
 |参数名|描述|类型|默认值|

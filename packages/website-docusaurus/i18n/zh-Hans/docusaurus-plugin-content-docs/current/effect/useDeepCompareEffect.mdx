@@ -30,11 +30,11 @@ function Demo() {
 
   return (
     <div>
-      <p>effectCount: {effectCountRef.current}</p>
-      <p>deepCompareCount: {deepCompareCountRef.current}</p>
+      <p>effect计数: {effectCountRef.current}</p>
+      <p>深度比较计数: {deepCompareCountRef.current}</p>
       <p>
         <button type="button" onClick={() => setCount(c => c + 1)}>
-          reRender
+          重新渲染
         </button>
       </p>
     </div>

@@ -19,8 +19,8 @@ function Demo() {
   const text = useMemo(
     () =>
       dir === "ltr"
-        ? "This paragraph is in English and correctly goes left to right."
-        : "This paragraph is in English but incorrectly goes right to left.",
+        ? "这段文字是中文，正确地从左到右显示。"
+        : "这段文字是中文，但错误地从右到左显示。",
     [dir],
   );
 
@@ -35,7 +35,7 @@ function Demo() {
       <button onClick={handleOnClick}>
         <span>{dir?.toUpperCase()}</span>
       </button>
-      <span>Click to change the direction</span>
+      <span>点击更改方向</span>
     </div>
   );
 };

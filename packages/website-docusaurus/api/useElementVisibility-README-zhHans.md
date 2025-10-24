@@ -1,9 +1,9 @@
 ### useElementVisibility
 
 #### Returns
-`readonly [boolean, () => void]`: 包含以下元素的元组：
-- 当前元素是否可见。
-- 停止监听函数。
+`readonly [boolean, () => void]`: 包含以下元素的元組：
+- 當前元素是否可見。
+- 停止監聽函數。
 
 #### Arguments
 |参数名|描述|类型|默认值|

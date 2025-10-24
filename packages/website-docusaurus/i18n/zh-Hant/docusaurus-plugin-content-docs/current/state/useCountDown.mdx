@@ -1,0 +1,32 @@
+---
+title: useCountDown 用法與示例
+sidebar_label: useCountDown
+description: 返回分鐘倒計時的 React 狀態鉤子。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useCountDown
+
+返回分鐘倒計時的 React 狀態鉤子。
+
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const now = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(now.getDate() + 1);
+  tomorrow.setHours(0, 0, 0, 0);
+  const diffInSec = Math.floor((tomorrow.getTime() - now.getTime()) / 1000);
+
+  // 如果您的應用程式在伺服器端運行，必須傳遞與客戶端相同的时间
+  // 這個 demo 沒有在伺服器端運行
+  const [hour, minute, second] = useCountDown(diffInSec);
+  return (
+    <div suppressHydrationWarning={true}>{`${hour}:${minute}:${second}`}</div>
+  );
+};
+
+```
+
+%%API%%

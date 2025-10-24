@@ -40,11 +40,11 @@ function Demo() {
           marginBottom: 8,
         }}
       >
-        current width：{width}
+        当前宽度：{width}
       </div>
-      <button onClick={() => setWidth(w => w + 10)}>widening</button>
-      <button onClick={() => stop()}>stop observe</button>
-      <p>Mutation count {count}</p>
+      <button onClick={() => setWidth(w => w + 10)}>加宽</button>
+      <button onClick={() => stop()}>停止观察</button>
+      <p>变更次数 {count}</p>
     </div>
   );
 };

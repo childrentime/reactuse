@@ -1,0 +1,27 @@
+---
+title: useElementBounding 用法與示例
+sidebar_label: useElementBounding
+description: 追踪 HTML 元素边界框的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useElementBounding
+
+追踪 HTML 元素边界框的 React Hook
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  const rect = useElementBounding(ref);
+  return (
+    <div>
+      <p> Resize the box to see changes</p>
+      <textarea ref={ref} readOnly value={JSON.stringify(rect, null, 2)} />
+    </div>
+  );
+};
+
+```
+
+%%API%%

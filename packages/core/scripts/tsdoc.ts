@@ -37,3 +37,19 @@ for (const file of interfaces) {
     fs.writeFileSync(doc, content)
   }
 }
+
+const zhHantConfig: GenerateMarkdownConfig = {
+  sourceFilesPaths: interfaces,
+  lang: 'zh-Hant',
+}
+
+for (const file of interfaces) {
+  const res = generateMarkdown(file, zhHantConfig) as Record<string, string> | undefined
+  if (Object.keys(res ?? {}).length && res !== undefined) {
+    const content = Object.values(res).join('\n\n')
+    const temp = file.slice(0, file.lastIndexOf('/'))
+    const name = temp.slice(temp.lastIndexOf('/') + 1)
+    const doc = resolve(dirname(file), '../../../website-docusaurus/api/', `${name}-README-zhHant.md`)
+    fs.writeFileSync(doc, content)
+  }
+}

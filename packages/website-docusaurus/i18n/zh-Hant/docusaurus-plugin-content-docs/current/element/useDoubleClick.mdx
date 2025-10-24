@@ -1,0 +1,37 @@
+---
+title: useDoubleClick 用法與示例
+sidebar_label: useDoubleClick
+description: 雙擊跟蹤。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useDoubleClick
+
+雙擊跟蹤
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const element = useRef<HTMLButtonElement>(null);
+  const [text, setText] = useState("no click");
+
+  useDoubleClick({
+    target: element,
+    onSingleClick: () => {
+      setText("single click");
+    },
+    onDoubleClick: () => {
+      setText("double click");
+    },
+  });
+  return (
+    <div>
+      <button ref={element}>Click Me</button>
+      <p>{text}</p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

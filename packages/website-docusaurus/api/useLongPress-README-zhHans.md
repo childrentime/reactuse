@@ -1,12 +1,12 @@
 ### useLongPress
 
 #### Returns
-`{ readonly onMouseDown: (e: any) => void; readonly onTouchStart: (e: any) => void; readonly onMouseUp: () => void; readonly onMouseLeave: () => void; readonly onTouchEnd: () => void; }`: 包含以下元素的对象：
-- onMouseDown 鼠标按下事件。
+`{ readonly onMouseDown: (e: any) => void; readonly onTouchStart: (e: any) => void; readonly onMouseUp: () => void; readonly onMouseLeave: () => void; readonly onTouchEnd: () => void; }`: 包含以下元素的對象：
+- onMouseDown 滑鼠按下事件。
 - onTouchStart 手指按下事件。
-- onMouseUp 鼠标松开事件。
-- onMouseLeave 鼠标离开事件
-- onTouchEnd 手指松开事件
+- onMouseUp 滑鼠放開事件。
+- onMouseLeave 滑鼠離開事件
+- onTouchEnd 手指放開事件
 
 #### Arguments
 |参数名|描述|类型|默认值|

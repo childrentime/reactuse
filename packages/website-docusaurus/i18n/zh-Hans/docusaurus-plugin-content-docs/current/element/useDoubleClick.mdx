@@ -13,20 +13,20 @@ description: 双击跟踪。 本文介绍其用法、最佳实践与代码示例
 
 function Demo() {
   const element = useRef<HTMLButtonElement>(null);
-  const [text, setText] = useState("no click");
+  const [text, setText] = useState("未点击");
 
   useDoubleClick({
     target: element,
     onSingleClick: () => {
-      setText("single click");
+      setText("单击");
     },
     onDoubleClick: () => {
-      setText("double click");
+      setText("双击");
     },
   });
   return (
     <div>
-      <button ref={element}>Click Me</button>
+      <button ref={element}>点击我</button>
       <p>{text}</p>
     </div>
   );

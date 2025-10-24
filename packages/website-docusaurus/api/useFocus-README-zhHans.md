@@ -1,9 +1,9 @@
 ### useFocus
 
 #### Returns
-`readonly [boolean, (value: boolean) => void]`: 包含以下元素的元组：
+`readonly [boolean, (value: boolean) => void]`: 包含以下元素的元組：
 - 元素是否聚焦。
-- 更新聚焦状态。
+- 更新聚焦狀態。
 
 #### Arguments
 |参数名|描述|类型|默认值|

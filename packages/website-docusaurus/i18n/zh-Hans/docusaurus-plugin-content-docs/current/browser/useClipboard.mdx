@@ -20,11 +20,11 @@ function Demo() {
   return (
     <div>
       <p>
-        Clipboard Permission: read <b>{permissionRead}</b> | write&nbsp;
+        剪贴板权限: 读取 <b>{permissionRead}</b> | 写入&nbsp;
         <b>{permissionWrite}</b>
       </p>
       <p>
-        Current copied: <code>{text || "none"}</code>
+        当前复制内容: <code>{text || "无"}</code>
       </p>
       <input
         value={value}
@@ -32,7 +32,7 @@ function Demo() {
           setValue(event.currentTarget.value);
         }}
       />
-      <button onClick={() => copy(value)}>Copy</button>
+      <button onClick={() => copy(value)}>复制</button>
     </div>
   );
 };

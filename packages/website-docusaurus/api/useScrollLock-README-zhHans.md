@@ -1,9 +1,9 @@
 ### useScrollLock
 
 #### Returns
-`readonly [boolean, (flag: boolean) => void]`: 包含以下元素的元组：
-- 是否锁定。
-- 更新锁定值的函数。
+`readonly [boolean, (flag: boolean) => void]`: 包含以下元素的元組：
+- 是否鎖定。
+- 更新鎖定值的函數。
 
 #### Arguments
 |参数名|描述|类型|默认值|

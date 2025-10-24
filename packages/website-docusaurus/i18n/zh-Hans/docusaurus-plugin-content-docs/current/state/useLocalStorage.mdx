@@ -17,11 +17,11 @@ function Demo() {
 
   return (
     <div>
-      <div>Value: {value}</div>
-      <button onClick={() => setValue("bar")}>bar</button>
-      <button onClick={() => setValue("baz")}>baz</button>
+      <div>值: {value}</div>
+      <button onClick={() => setValue("bar")}>设置为bar</button>
+      <button onClick={() => setValue("baz")}>设置为baz</button>
       {/* delete data from storage */}
-      <button onClick={() => setValue(null)}>Remove</button>
+      <button onClick={() => setValue(null)}>移除</button>
     </div>
   );
 };

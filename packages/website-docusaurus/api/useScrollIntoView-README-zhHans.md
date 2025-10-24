@@ -1,9 +1,9 @@
 ### useScrollIntoView
 
 #### Returns
-`{ scrollIntoView: (animation?: UseScrollIntoViewAnimation | undefined) => void; cancel: () => void; }`: 包含以下元素的对象：
-- scrollIntoView：滚动进入视口函数。
-- cancel： 取消滚动函数。
+`{ scrollIntoView: (animation?: UseScrollIntoViewAnimation | undefined) => void; cancel: () => void; }`: 包含以下元素的對象：
+- scrollIntoView：滚動進入視口函數。
+- cancel： 取消滚動函數。
 
 #### Arguments
 |参数名|描述|类型|默认值|

@@ -1,7 +1,7 @@
 ### useMergedRef
 
 #### Returns
-`(node: T | null) => void`
+`(node: T | null) => void`: 合併多個 ref 的函數
 
 #### Arguments
 |参数名|描述|类型|默认值|

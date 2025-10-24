@@ -1,7 +1,7 @@
 ### useMeasure
 
 #### Returns
-`readonly [UseMeasureRect, () => void]`: [DOMRect值,停止监听函数]
+`readonly [UseMeasureRect, () => void]`: [DOMRect值,停止監聽函數]
 
 #### Arguments
 |参数名|描述|类型|默认值|

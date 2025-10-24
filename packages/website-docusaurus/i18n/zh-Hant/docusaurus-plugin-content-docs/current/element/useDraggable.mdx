@@ -1,0 +1,116 @@
+---
+title: useDraggable 用法與示例
+sidebar_label: useDraggable
+description: 元素拖动。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useDraggable
+
+元素拖动
+
+## Usage
+
+### Fixed Demo
+
+```tsx live
+
+function Demo() {
+  const el = useRef<HTMLDivElement>(null);
+
+  const [initialValue, setInitialValue] = useState({ x: 200 / 2.2, y: 120 });
+
+  useEffect(() => {
+    setInitialValue({ x: window.innerWidth / 2.2, y: 120 });
+  }, []);
+
+  const [x, y, isDragging] = useDraggable(el, {
+    initialValue,
+    preventDefault: true,
+  });
+
+  return (
+    <div>
+      <p style={{ textAlign: "center" }}>查看浮動方框</p>
+      <div
+        ref={el}
+        style={{
+          position: "fixed",
+          cursor: "move",
+          zIndex: 10,
+          touchAction: "none",
+          padding: 10,
+          border: "solid 1px",
+          left: x,
+          top: y,
+        }}
+      >
+        {isDragging ? "正在拖拽！" : "👋 拖拽我！"}
+        <div>
+          我在 {Math.round(x)}, {Math.round(y)}
+        </div>
+      </div>
+    </div>
+  );
+};
+```
+
+### Relative Demo
+
+```tsx live
+function Demo() {
+  const el = useRef<HTMLDivElement>(null);
+  const scope = useRef<HTMLDivElement>(null);
+
+  const initialValue = { x: 200 / 2.2, y: 120 };
+
+  const [x, y, isDragging, setPosition] = useDraggable(el, {
+    initialValue,
+    preventDefault: true,
+    containerElement: scope,
+  });
+
+  return (
+    <div
+      ref={scope}
+      style={{
+        width: 500,
+        height: 500,
+        border: "1px solid blue",
+        position: "relative",
+      }}
+    >
+      <button
+        style={{ textAlign: "center" }}
+        onClick={() => {
+          setPosition({
+            x: 250,
+            y: 250,
+          });
+        }}
+      >
+        設定位置
+      </button>
+      <div
+        ref={el}
+        style={{
+          position: "absolute",
+          cursor: "move",
+          zIndex: 10,
+          touchAction: "none",
+          padding: 10,
+          border: "solid 1px",
+          left: x,
+          top: y,
+          whiteSpace: "nowrap",
+        }}
+      >
+        {isDragging ? "正在拖拽！" : "👋 拖拽我！"}
+        <div style={{ whiteSpace: "nowrap" }}>
+          我在 {Math.round(x)}, {Math.round(y)}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+%%API%%

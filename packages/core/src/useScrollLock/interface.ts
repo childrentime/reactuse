@@ -8,10 +8,14 @@ import type { BasicTarget } from '../utils/domTarget'
  * @returns_en A tuple with the following elements:
  * - whether scroll is locked.
  * - A function to update the value of lock state.
+ * @returns_zh-Hant 包含以下元素的元組：
+ * - 是否鎖定。
+ * - 更新鎖定值的函數。
  */
 export type UseScrollLock = (
   /**
    * @zh dom元素
+   * @zh-Hant dom元素
    * @en dom element
    */
   target: BasicTarget<HTMLElement>,

@@ -6,11 +6,13 @@ import type { ThrottleSettings } from 'lodash-es'
 export type UseThrottle = <T>(
   /**
    * @zh 要节流的值
+   * @zh-Hant 要節流的值
    * @en the value need to throttle
    */
   value: T,
   /**
    * @zh 间隔时间
+   * @zh-Hant 間隔時間
    * @en wait time
    */
   wait?: number,

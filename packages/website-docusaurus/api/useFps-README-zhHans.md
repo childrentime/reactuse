@@ -1,7 +1,7 @@
 ### useFps
 
 #### Returns
-`number`: 每秒帧数
+`number`: 每秒幀數
 
 #### Arguments
 |参数名|描述|类型|默认值|

@@ -1,0 +1,22 @@
+---
+title: useNetwork 用法與示例
+sidebar_label: useNetwork
+description: 跟蹤瀏覽器網路連接狀況。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useNetwork
+
+跟蹤瀏覽器網路連接狀況
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const state = useNetwork();
+
+  return <pre>{JSON.stringify(state, null, 2)}</pre>;
+};
+
+```
+
+%%API%%

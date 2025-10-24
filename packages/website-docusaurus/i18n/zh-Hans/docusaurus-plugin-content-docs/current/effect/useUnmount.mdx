@@ -12,9 +12,9 @@ description: 组件卸载的时候执行。 本文介绍其用法、最佳实践
 ```tsx live
 
 function Demo() {
-  const [value] = useState("mounted");
+  const [value] = useState("已挂载");
   useUnmount(() => {
-    alert("UnMounted");
+    alert("已卸载");
   });
   return <div>{value}</div>;
 };

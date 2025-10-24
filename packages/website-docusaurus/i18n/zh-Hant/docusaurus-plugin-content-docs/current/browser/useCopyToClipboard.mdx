@@ -1,0 +1,44 @@
+---
+title: useCopyToClipboard – Browser Hook 使用方法與示例 (useClipboard 的別名)
+sidebar_label: useCopyToClipboard
+description: 將文本複製到用戶的剪貼板。useClipboard 的別名。學習使用模式、最佳實踐和 React 開發者的代碼示例。
+---
+# useCopyToClipboard
+
+將文本複製到用戶的剪貼板。
+
+:::info 別名
+`useCopyToClipboard` 是 [`useClipboard`](/zh-Hans/browser/useClipboard) 的別名。它們具有相同的功能和 API。
+:::
+
+## 用法
+
+```tsx live
+function Demo() {
+  const [value, setValue] = useState("");
+  const [text, copy] = useCopyToClipboard();
+  const permissionRead = usePermission("clipboard-read");
+  const permissionWrite = usePermission("clipboard-write");
+  return (
+    <div>
+      <p>
+        剪貼板權限: 讀取 <b>{permissionRead}</b> | 寫入&nbsp;
+        <b>{permissionWrite}</b>
+      </p>
+      <p>
+        當前複製的內容: <code>{text || "無"}</code>
+      </p>
+      <input
+        value={value}
+        onChange={(event) => {
+          setValue(event.currentTarget.value);
+        }}
+      />
+      <button onClick={() => copy(value)}>複製</button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

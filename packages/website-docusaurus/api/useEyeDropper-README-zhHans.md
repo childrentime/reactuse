@@ -1,9 +1,9 @@
 ### useEyeDropper
 
 #### Returns
-`readonly [boolean, (options?: UseEyeDropperOpenOptions | undefined) => Promise<UseEyeDropperOpenReturnType>]`: 包含以下元素的元组：
-- 浏览器是否支持该特性。
-- 打开颜色选择器的函数。
+`readonly [boolean, (options?: UseEyeDropperOpenOptions | undefined) => Promise<UseEyeDropperOpenReturnType>]`: 包含以下元素的元組：
+- 瀏覽器是否支援該特性。
+- 打開顏色選擇器的函數。
 
 #### Arguments
 

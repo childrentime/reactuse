@@ -1,9 +1,9 @@
 ### useToggle
 
 #### Returns
-`[boolean, (nextValue?: any) => void]`: 包含以下元素的元组：
-- 布尔状态的当前值。
-- 切换布尔状态值的函数。
+`[boolean, (nextValue?: any) => void]`: 包含以下元素的元組：
+- 布林狀態的當前值。
+- 切換布林狀態值的函數。
 
 #### Arguments
 |参数名|描述|类型|默认值|

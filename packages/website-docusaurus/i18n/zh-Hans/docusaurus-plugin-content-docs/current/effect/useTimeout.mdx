@@ -16,20 +16,20 @@ function Demo() {
 
   return (
     <div>
-      <div>Pending: {JSON.stringify(isPending)}</div>
+      <div>等待中: {JSON.stringify(isPending)}</div>
       <button
         onClick={() => {
           start();
         }}
       >
-        Start Again
+        重新开始
       </button>
       <button
         onClick={() => {
           cancel();
         }}
       >
-        Cancel
+        取消
       </button>
     </div>
   );

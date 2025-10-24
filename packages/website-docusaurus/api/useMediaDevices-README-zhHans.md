@@ -1,9 +1,9 @@
 ### useMediaDevices
 
 #### Returns
-`readonly [{ devices: { deviceId: string; groupId: string; kind: MediaDeviceKind; label: string; }[]; }, () => Promise<boolean>]`: 包含以下元素的元组：
-- 媒体设备信息。
-- 请求媒体设备权限。
+`readonly [{ devices: { deviceId: string; groupId: string; kind: MediaDeviceKind; label: string; }[]; }, () => Promise<boolean>]`: 包含以下元素的元組：
+- 媒體設備信息。
+- 請求媒體設備權限。
 
 #### Arguments
 |参数名|描述|类型|默认值|

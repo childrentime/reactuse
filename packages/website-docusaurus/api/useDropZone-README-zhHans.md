@@ -1,7 +1,7 @@
 ### useDropZone
 
 #### Returns
-`boolean`: 文件是否在区域上
+`boolean`: 檔案是否在區域上
 
 #### Arguments
 |参数名|描述|类型|默认值|

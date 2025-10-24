@@ -1,0 +1,20 @@
+---
+title: useDevicePixelRatio 用法與示例
+sidebar_label: useDevicePixelRatio
+description: '`useDevicePixelRatio` 是一個返回螢幕的設備像素比的 hook。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。'
+---
+# useDevicePixelRatio
+
+`useDevicePixelRatio` 是一個返回螢幕的設備像素比的 hook。
+
+## Usage
+
+```tsx live
+function Demo() {
+  const { pixelRatio } = useDevicePixelRatio();
+
+  return <p>設備像素比：{pixelRatio}</p>;
+}
+```
+
+%%API%%

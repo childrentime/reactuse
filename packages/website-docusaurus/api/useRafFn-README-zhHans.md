@@ -1,10 +1,10 @@
 ### useRafFn
 
 #### Returns
-`readonly [() => void, () => void, () => boolean]`: 包含以下元素的元组：
-- 停止函数。
-- 开始函数。
-- 函数是否在执行中。
+`readonly [() => void, () => void, () => boolean]`: 包含以下元素的元組：
+- 停止函數。
+- 開始函數。
+- 函數是否在執行中。
 
 #### Arguments
 |参数名|描述|类型|默认值|

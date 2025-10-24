@@ -25,10 +25,10 @@ function Demo() {
 
   return (
     <div>
-      <div>state: {state}</div>
-      <button onClick={() => fire(1)}>fire</button>
-      <button onClick={() => dispose()}>disposeALL</button>
-      <button onClick={() => event1.current?.dispose()}>disposeOne</button>
+      <div>状态: {state}</div>
+      <button onClick={() => fire(1)}>触发</button>
+      <button onClick={() => dispose()}>清除所有</button>
+      <button onClick={() => event1.current?.dispose()}>清除单个</button>
     </div>
   );
 };

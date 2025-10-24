@@ -1,0 +1,42 @@
+---
+title: useControlled 用法與示例
+sidebar_label: useControlled
+description: >-
+  `useControlled` 是一個自定義 hook，幫助你管理受控組件。它是 `useState` 的一個包裝器，允許你從外部控制組件的值。 :::note `useControlled` 組件不支持在受控和非受控之間切換，也不支持傳遞函數更新函數，可以參考這個討論
+  https://github.com/adobe
+---
+# useControlled
+
+`useControlled` 是一個自定義 hook，幫助你管理受控組件。它是 `useState` 的一個包裝器，允許你從外部控制組件的值。
+
+:::note
+`useControlled` 組件不支持在受控和非受控之间切换，也不支持传递函數更新函數，可以参考这个讨论 https://github.com/adobe/react-spectrum/issues/2320
+:::
+
+## Usage
+
+```tsx live
+function Demo() {
+  const [state, setState] = useState<string>("");
+  const [value, setValue] = useControlled(state, "");
+  const [value1, setValue1] = useControlled(undefined, "非受控值");
+
+  const handleChange = (event) => {
+    setState(event.target.value);
+  };
+
+  const handleChange1 = (event) => {
+    setValue1(event.target.value);
+  };
+
+  return (
+    <>
+      <input value={value} onChange={handleChange} />
+      <p>受控值：{value}</p>
+      <input value={value1} onChange={handleChange1} />
+    </>
+  );
+}
+```
+
+%%API%%

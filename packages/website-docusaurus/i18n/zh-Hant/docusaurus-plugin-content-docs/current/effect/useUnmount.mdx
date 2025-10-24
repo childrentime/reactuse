@@ -1,0 +1,24 @@
+---
+title: useUnmount 用法與示例
+sidebar_label: useUnmount
+description: 組件卸載的時候執行。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useUnmount
+
+組件卸載的時候執行
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [value] = useState("已掛載");
+  useUnmount(() => {
+    alert("已卸載");
+  });
+  return <div>{value}</div>;
+};
+
+```
+
+%%API%%

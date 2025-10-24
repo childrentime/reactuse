@@ -1,0 +1,22 @@
+---
+title: usePreferredDark 用法與示例
+sidebar_label: usePreferredDark
+description: 跟蹤是否偏好黑色主題。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# usePreferredDark
+
+跟蹤是否偏好黑色主題
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const isDark = usePreferredDark(false);
+
+  return <div>PreferredDark: {JSON.stringify(isDark)}</div>;
+};
+
+```
+
+%%API%%

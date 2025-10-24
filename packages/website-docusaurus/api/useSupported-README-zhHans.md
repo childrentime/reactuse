@@ -1,7 +1,7 @@
 ### useSupported
 
 #### Returns
-`boolean`: 浏览器是否支持
+`boolean`: 瀏覽器是否支援
 
 #### Arguments
 |参数名|描述|类型|默认值|

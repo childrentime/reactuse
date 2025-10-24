@@ -17,7 +17,7 @@ function Demo() {
   const isOver = useDropZone(ref, (_files) => {});
   return (
     <div>
-      <p>Drop files into dropZone</p>
+      <p>将文件拖拽到拖放区域</p>
       <div
         ref={ref}
         style={{
@@ -29,7 +29,7 @@ function Demo() {
           background: "rgba(156,163,175,0.1)",
         }}
       >
-        <div> isOverDropZone: {JSON.stringify(isOver)}</div>
+        <div>是否在拖放区域上方: {JSON.stringify(isOver)}</div>
       </div>
     </div>
   );

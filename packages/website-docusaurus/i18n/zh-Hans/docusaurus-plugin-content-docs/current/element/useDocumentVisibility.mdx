@@ -15,18 +15,18 @@ description: 跟踪 [document.visibilityState](https://developer.mozilla.org/en-
 function Demo() {
   const visibility = useDocumentVisibility("hidden");
   const [message, setMessage] = useState(
-    "💡 Minimize the page or switch tab then return",
+    "💡 最小化页面或切换标签页后返回",
   );
 
   useEffect(() => {
     if (visibility === "visible") {
       setTimeout(() => {
-        setMessage("🎉 Welcome back!");
+        setMessage("🎉 欢迎回来！");
       }, 2000);
     }
     else {
       setTimeout(() => {
-        setMessage("🥰 Take a break");
+        setMessage("🥰 休息一下");
       }, 2000);
     }
   }, [visibility]);

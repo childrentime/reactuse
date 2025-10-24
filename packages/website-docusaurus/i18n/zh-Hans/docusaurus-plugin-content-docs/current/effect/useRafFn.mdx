@@ -23,8 +23,8 @@ function Demo() {
 
   return (
     <div>
-      <div>RAF triggered: {ticks} (times)</div>
-      <div>Last high res timestamp: {lastCall}</div>
+      <div>RAF 触发次数: {ticks} 次</div>
+      <div>最后的高精度时间戳: {lastCall}</div>
       <br />
       <button
         onClick={() => {
@@ -32,7 +32,7 @@ function Demo() {
           update();
         }}
       >
-        {isActive() ? "STOP" : "START"}
+        {isActive() ? "停止" : "开始"}
       </button>
     </div>
   );

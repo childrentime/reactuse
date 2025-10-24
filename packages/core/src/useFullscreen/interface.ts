@@ -16,10 +16,18 @@ import type { BasicTarget } from '../utils/domTarget'
  * - exitFullscreen
  * - toggleFullscreen
  * - isEnabled: whether the browser support fullscreen
+ * @returns_zh-Hant 包含以下元素的元組：
+ * - 當前是否處於全螢幕。
+ * - 一個操作對象:
+ * - enterFullscreen： 進入全螢幕。
+ * - exitFullscreen： 退出全螢幕。
+ * - toggleFullscreen： 切換全螢幕。
+ * - isEnabled： 當前瀏覽器是否支援全螢幕。
  */
 export type UseFullscreen = (
   /**
    * @zh dom元素
+   * @zh-Hant dom元素
    * @en dom element
    */
   target: BasicTarget<Element>,

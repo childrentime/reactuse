@@ -8,6 +8,10 @@
  * - file array.
  * - A function to open file dialog.
  * - A function to reset files
+ * @returns_zh-Hant 包含以下元素的元組：
+ * - 檔案陣列。
+ * - 打開檔案選擇器函數。
+ * - 重設函數。
  */
 export type UseFileDialog = (
   options?: UseFileDialogOptions
@@ -23,6 +27,7 @@ export type UseFileDialog = (
 export interface UseFileDialogOptions {
   /**
    * @zh 选择多个文件
+   * @zh-Hant 選擇多個檔案
    * @en choose multiple file
    * @defaultValue true
    */

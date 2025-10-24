@@ -1,0 +1,22 @@
+---
+title: usePermission 用法與示例
+sidebar_label: usePermission
+description: 瀏覽器權限查詢。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# usePermission
+
+瀏覽器權限查詢
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const state = usePermission({ name: "microphone" });
+
+  return <pre>{JSON.stringify(state, null, 2)}</pre>;
+};
+
+```
+
+%%API%%

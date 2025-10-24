@@ -4,6 +4,7 @@
 export type UseWebNotification = (
   /**
    * @zh 自动请求权限
+   * @zh-Hant 自動請求權限
    * @en auto request permission
    */
   requestPermissions?: boolean
@@ -15,6 +16,7 @@ export type UseWebNotification = (
 export interface UseWebNotificationReturn {
   /**
    * @zh 浏览器是否支持
+   * @zh-Hant 瀏覽器是否支援
    * @en whether browser support
    */
   readonly isSupported: boolean

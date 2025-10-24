@@ -10,6 +10,7 @@ export interface IUseNetworkState {
   /**
    * @en Whether browser connected to the network or not.
    * @zh 浏览器是否连接网络
+   * @zh-Hant 瀏覽器是否連接網路
    */
   online: boolean | undefined
   /**
@@ -17,6 +18,8 @@ export interface IUseNetworkState {
    * just connected or lost connection.
    * @zh `online` 属性的先前值。 帮助识别浏览器是否
    * 刚刚连接或失去连接。
+   * @zh-Hant `online` 屬性的先前值。 幫助識別瀏覽器是否
+   * 剛剛連接或失去連接。
    */
   previous: boolean | undefined
   /**

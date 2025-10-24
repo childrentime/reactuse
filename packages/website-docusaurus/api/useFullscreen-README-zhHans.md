@@ -1,13 +1,13 @@
 ### useFullScreen
 
 #### Returns
-`readonly [boolean, { readonly enterFullscreen: () => void; readonly exitFullscreen: () => void; readonly toggleFullscreen: () => void; readonly isEnabled: boolean; }]`: 包含以下元素的元组：
-- 当前是否处于全屏。
-- 一个操作对象:
-- enterFullscreen： 进入全屏。
-- exitFullscreen： 退出全屏。
-- toggleFullscreen： 切换全屏。
-- isEnabled： 当前浏览器是否支持全屏。
+`readonly [boolean, { readonly enterFullscreen: () => void; readonly exitFullscreen: () => void; readonly toggleFullscreen: () => void; readonly isEnabled: boolean; }]`: 包含以下元素的元組：
+- 當前是否處於全螢幕。
+- 一個操作對象:
+- enterFullscreen： 進入全螢幕。
+- exitFullscreen： 退出全螢幕。
+- toggleFullscreen： 切換全螢幕。
+- isEnabled： 當前瀏覽器是否支援全螢幕。
 
 #### Arguments
 |参数名|描述|类型|默认值|

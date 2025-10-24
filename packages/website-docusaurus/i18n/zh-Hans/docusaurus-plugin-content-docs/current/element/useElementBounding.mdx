@@ -16,7 +16,7 @@ function Demo() {
   const rect = useElementBounding(ref);
   return (
     <div>
-      <p> Resize the box to see changes</p>
+      <p>调整框的大小以查看变化</p>
       <textarea ref={ref} readOnly value={JSON.stringify(rect, null, 2)} />
     </div>
   );

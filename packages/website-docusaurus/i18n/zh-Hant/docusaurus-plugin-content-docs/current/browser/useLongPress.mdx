@@ -1,0 +1,37 @@
+---
+title: useLongPress 用法與示例
+sidebar_label: useLongPress
+description: 跟蹤長按的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useLongPress
+
+跟蹤長按的 React Hook
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [state, setState] = useState("未按下");
+  const onLongPress = () => {
+    setState("長按了！");
+  };
+
+  const defaultOptions = {
+    isPreventDefault: true,
+    delay: 300,
+  };
+  const longPressEvent = useLongPress(onLongPress, defaultOptions);
+
+  return (
+    <div>
+      <button {...longPressEvent}>useLongPress</button>
+      <button onClick={() => setState("未按下")}>重置</button>
+      <div>按下狀態：{state}</div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

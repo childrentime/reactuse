@@ -25,14 +25,14 @@ function Demo() {
 
   return (
     <div>
-      <p>Supported: {JSON.stringify(isSupported)}</p>
-      <p>Please open this page in at least two tabs</p>
+      <p>支持状态: {JSON.stringify(isSupported)}</p>
+      <p>请在至少两个标签页中打开此页面</p>
       <p>
-        <b>Channel:</b> reactuse-demo-channel
+        <b>频道:</b> reactuse-demo-channel
       </p>
       <p>
-        <b>Message:</b> {data}<br/>
-        <b>TimeStamp:</b> {timeStamp}
+        <b>消息:</b> {data}<br/>
+        <b>时间戳:</b> {timeStamp}
       </p>
       <input
         value={message}
@@ -48,7 +48,7 @@ function Demo() {
       >
         发送
       </button>
-      {error && <p>Error: {error.message}</p>}
+      {error && <p>错误: {error.message}</p>}
     </div>
   );
 }

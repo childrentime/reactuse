@@ -1,0 +1,124 @@
+---
+title: useScroll 用法與示例
+sidebar_label: useScroll
+description: 跟蹤滾動位置和統計數據。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useScroll
+
+跟蹤滾動位置和統計數據
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const elementRef = useRef<HTMLDivElement>(null);
+  const [x, y, isScrolling, arrivedState, directions] = useScroll(elementRef);
+  const { left, right, top, bottom } = useMemo(
+    () => arrivedState,
+    [arrivedState],
+  );
+  const {
+    left: toLeft,
+    right: toRight,
+    top: toTop,
+    bottom: toBottom,
+  } = useMemo(() => directions, [directions]);
+
+  const absoluteStyle: CSSProperties = {
+    paddingTop: "0.25rem",
+    paddingBottom: "0.25rem",
+    paddingLeft: "0.5rem",
+    paddingRight: "0.5rem",
+    position: "absolute",
+  };
+  return (
+    <div style={{ display: "flex" }}>
+      <div
+        ref={elementRef}
+        style={{
+          width: 300,
+          height: 300,
+          margin: "auto",
+          borderRadius: "0.25rem",
+          overflow: "scroll",
+        }}
+      >
+        <div style={{ width: 500, height: 400, position: "relative" }}>
+          <div
+            style={{
+              ...absoluteStyle,
+              top: "0rem",
+              left: "0rem",
+            }}
+          >
+            左上
+          </div>
+          <div
+            style={{
+              ...absoluteStyle,
+              bottom: "0rem",
+              left: "0rem",
+            }}
+          >
+            左下
+          </div>
+          <div
+            style={{
+              ...absoluteStyle,
+              top: "0rem",
+              right: "0rem",
+            }}
+          >
+            右上
+          </div>
+          <div
+            style={{
+              ...absoluteStyle,
+              bottom: "0rem",
+              right: "0rem",
+            }}
+          >
+            右下
+          </div>
+          <div
+            style={{
+              ...absoluteStyle,
+              top: "33.33333%",
+              left: "33.33333%",
+            }}
+          >
+            滾動我
+          </div>
+        </div>
+      </div>
+      <div
+        style={{
+          width: 280,
+          margin: "auto",
+          paddingLeft: "1rem",
+          display: "flex",
+          flexDirection: "column",
+          gap: 5,
+        }}
+      >
+        <div>
+          位置：{x.toFixed(1)}, {y.toFixed(1)}
+        </div>
+        <div>正在滾動：{JSON.stringify(isScrolling)}</div>
+        <div>到達頂部：{JSON.stringify(top)}</div>
+        <div>到達右側：{JSON.stringify(right)}</div>
+        <div>到達底部：{JSON.stringify(bottom)}</div>
+        <div>到達左側：{JSON.stringify(left)}</div>
+        <div>向上滾動：{JSON.stringify(toTop)}</div>
+        <div>向右滾動：{JSON.stringify(toRight)}</div>
+        <div>向下滾動：{JSON.stringify(toBottom)}</div>
+        <div>向左滾動：{JSON.stringify(toLeft)}</div>
+      </div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

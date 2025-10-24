@@ -1,0 +1,43 @@
+---
+title: useRafFn 用法與示例
+sidebar_label: useRafFn
+description: 在每一幀 `requestAnimationFrame` 上執行回調函數。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useRafFn
+
+在每一幀 `requestAnimationFrame` 上執行回調函數。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [ticks, setTicks] = useState(0);
+  const [lastCall, setLastCall] = useState(0);
+  const update = useUpdate();
+
+  const [loopStop, loopStart, isActive] = useRafFn((time) => {
+    setTicks(ticks => ticks + 1);
+    setLastCall(time);
+  });
+
+  return (
+    <div>
+      <div>RAF 觸發次數：{ticks} (次)</div>
+      <div>最後高精度時間戳：{lastCall}</div>
+      <br />
+      <button
+        onClick={() => {
+          isActive() ? loopStop() : loopStart();
+          update();
+        }}
+      >
+        {isActive() ? "停止" : "開始"}
+      </button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

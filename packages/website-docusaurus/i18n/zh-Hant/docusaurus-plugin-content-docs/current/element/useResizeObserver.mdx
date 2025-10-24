@@ -1,0 +1,44 @@
+---
+title: useResizeObserver 用法與示例
+sidebar_label: useResizeObserver
+description: 使用 [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) 跟蹤元素大小。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useResizeObserver
+
+使用 [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) 跟蹤元素大小。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  const stop = useResizeObserver(ref, (entries) => {
+    const [entry] = entries;
+    const { width, height } = entry.contentRect;
+    setWidth(width);
+    setHeight(height);
+  });
+
+  return (
+    <div>
+      <div>Resize the box to see changes</div>
+      <div>
+        <button onClick={() => stop()}>stop observe</button>
+      </div>
+      <br />
+      <textarea
+        ref={ref}
+        disabled
+        style={{ width: 286, height: 166 }}
+        value={`width: ${width}\nheight: ${height}`}
+      />
+    </div>
+  );
+};
+
+```
+
+%%API%%

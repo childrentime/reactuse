@@ -1,7 +1,7 @@
 ### UsePreferredLanguages
 
 #### Returns
-`string[]`: 语言偏好
+`string[]`: 語言偏好
 
 #### Arguments
 |参数名|描述|类型|默认值|

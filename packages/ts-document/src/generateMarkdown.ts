@@ -47,7 +47,7 @@ function generateMarkdown(
 
     const tableBody = data
       .map(schema => {
-        const requiredTextWord = lang === 'zh' ? '必填' : 'Required'
+        const requiredTextWord = (lang === 'zh' || lang === 'zh-Hant') ? '必填' : 'Required'
         const requiredText = !schema.isOptional ? ` **(${requiredTextWord})**` : ''
         const singleLineMarkdown = tableColumns
           .map(column => {

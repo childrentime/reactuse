@@ -7,11 +7,13 @@ import type { BasicTarget } from '../utils/domTarget'
 export type UseElementBounding = (
   /**
    * @zh 目标元素
+   * @zh-Hant 目標元素
    * @en target element
    */
   target: BasicTarget<Element>,
   /**
    * @zh 可选参数
+   * @zh-Hant 可選參數
    * @en optional params
    */
   options?: UseElementBoundingOptions

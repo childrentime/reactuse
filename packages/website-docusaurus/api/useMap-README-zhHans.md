@@ -1,15 +1,15 @@
 ### useMap
 
 #### Returns
-`{ readonly map: Map<K, V>; readonly set: (key: K, value: V) => void; readonly get: (key: K) => V | undefined; readonly remove: (key: K) => boolean; readonly has: (key: K) => boolean; readonly clear: () => void; readonly reset: () => void; readonly size: number; }`: 包含以下属性的对象：
-- map: 当前的 Map 实例。
-- set: 在 map 中设置键值对的函数。
-- get: 通过键从 map 中获取值的函数。
-- remove: 从 map 中删除键并返回是否存在的函数。
-- has: 检查键是否存在于 map 中的函数。
-- clear: 清除 map 中所有条目的函数。
-- reset: 将 map 重置为其初始状态的函数。
-- size: map 的当前大小。
+`{ readonly map: Map<K, V>; readonly set: (key: K, value: V) => void; readonly get: (key: K) => V | undefined; readonly remove: (key: K) => boolean; readonly has: (key: K) => boolean; readonly clear: () => void; readonly reset: () => void; readonly size: number; }`: 包含以下屬性的對象：
+- map: 當前的 Map 實例。
+- set: 在 map 中設定鍵值對的函數。
+- get: 通過鍵從 map 中獲取值的函數。
+- remove: 從 map 中刪除鍵並返回是否存在的函數。
+- has: 檢查鍵是否存在於 map 中的函數。
+- clear: 清除 map 中所有條目的函數。
+- reset: 將 map 重置為其初始狀態的函數。
+- size: map 的當前大小。
 
 #### Arguments
 |参数名|描述|类型|默认值|

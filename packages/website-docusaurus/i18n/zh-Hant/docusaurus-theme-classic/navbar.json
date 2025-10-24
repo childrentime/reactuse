@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "React",
+    "description": "The title in the navbar"
+  },
+  "item.label.Buy me a coffee": {
+    "message": "Buy me a coffee",
+    "description": "Navbar item with label Buy me a coffee"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

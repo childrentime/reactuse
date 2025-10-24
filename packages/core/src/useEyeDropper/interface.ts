@@ -6,6 +6,9 @@
  * @returns_en A tuple with the following elements:
  * - Whether the browser supports this feature.
  * - A function to open eye dropper.
+ * @returns_zh-Hant 包含以下元素的元組：
+ * - 瀏覽器是否支援該特性。
+ * - 打開顏色選擇器的函數。
  */
 export type UseEyeDropper = () => readonly [
   boolean,
@@ -18,6 +21,7 @@ export type UseEyeDropper = () => readonly [
 export interface UseEyeDropperOpenOptions {
   /**
    * @zh 终止信号
+   * @zh-Hant 終止信號
    * @en abort signal
    */
   signal?: AbortSignal

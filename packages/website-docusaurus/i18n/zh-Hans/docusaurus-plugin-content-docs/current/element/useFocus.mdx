@@ -22,21 +22,21 @@ function Demo() {
   return (
     <div>
       <p ref={text} style={paragraphFocus ? { opacity: 0.5 } : {}} tabIndex={0}>
-        Paragraph that can be focused
+        可以获得焦点的段落
       </p>
-      <input ref={input} placeholder="Input that can be focused" />
+      <input ref={input} placeholder="可以获得焦点的输入框" />
       <br />
       <br />
       <button ref={button} style={buttonFocus ? { opacity: 0.5 } : {}}>
-        Button that can be focused
+        可以获得焦点的按钮
       </button>
       <br />
       <br />
       <hr />
       <p style={{ height: "2rem" }}>
-        {paragraphFocus && "The paragraph has focus"}
-        {inputFocus && "The input control has focus"}
-        {buttonFocus && "The button has focus"}
+        {paragraphFocus && "段落获得了焦点"}
+        {inputFocus && "输入框获得了焦点"}
+        {buttonFocus && "按钮获得了焦点"}
       </p>
       <div>
         <button
@@ -44,21 +44,21 @@ function Demo() {
             setParagraphFocus(!paragraphFocus);
           }}
         >
-          Focus text
+          聚焦文本
         </button>
         <button
           onClick={() => {
             setInputFocus(!inputFocus);
           }}
         >
-          Focus input
+          聚焦输入框
         </button>
         <button
           onClick={() => {
             setButtonFocus(!buttonFocus);
           }}
         >
-          Focus button
+          聚焦按钮
         </button>
       </div>
     </div>

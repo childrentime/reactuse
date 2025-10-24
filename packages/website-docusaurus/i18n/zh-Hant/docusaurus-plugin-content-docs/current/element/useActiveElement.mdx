@@ -1,0 +1,50 @@
+---
+title: useActiveElement 用法與示例
+sidebar_label: useActiveElement
+description: React 跟蹤 `document.activeElement` 的監聽 hook。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useActiveElement
+
+React 跟蹤 `document.activeElement` 的監聽 hook
+
+
+## Usage
+
+```tsx live noInline
+
+function Demo() {
+  const arr = [1, 2, 3, 4, 5, 6];
+
+  const activeElement = useActiveElement<HTMLElement>();
+
+  const key = useMemo(() => {
+    return activeElement?.dataset?.id;
+  }, [activeElement?.dataset?.id]);
+
+  return (
+    <div>
+      <p>選擇下方的輸入框以查看變化 </p>
+      <div style={{ display: "flex", gap: 15, flexWrap: "wrap" }}>
+        {arr.map((i) => {
+          return <input key={i} placeholder={`${i}`} data-id={i} />;
+        })}
+      </div>
+      <br />
+      <div>
+        當前活躍元素：
+        <span> {activeElement?.tagName}</span>
+      </div>
+       <div>
+        當前活躍元素數據鍵：
+        <span>{key}</span>
+      </div>
+    </div>
+  );
+};
+
+render(<Demo/>)
+```
+
+
+
+%%API%%

@@ -1,12 +1,12 @@
 ### useCounter
 
 #### Returns
-`readonly [number, (newState: number | ((prev: number) => number) | (() => number)) => void, (delta?: number | undefined) => void, (delta?: number | undefined) => void, () => void]`: 包含以下元素的元组：
-- 计数器的当前值。
-- 设置计数器状态的函数。 它可以接受数字或返回数字的函数。
-- 递增计数器的函数。 它可以选择接受一个数字来增加计数器，默认为 1。
-- 递减计数器的函数。 它可以选择接受一个数字来减少计数器，默认为 1。
-- 将计数器重置为其初始值的函数。
+`readonly [number, (newState: number | ((prev: number) => number) | (() => number)) => void, (delta?: number | undefined) => void, (delta?: number | undefined) => void, () => void]`: 包含以下元素的元組：
+- 計數器的當前值。
+- 設定計數器狀態的函數。它可以接受數字或返回數字的函數。
+- 遞增計數器的函數。它可以選擇接受一個數字來增加計數器，預設為 1。
+- 遞減計數器的函數。它可以選擇接受一個數字來減少計數器，預設為 1。
+- 將計數器重設為其初始值的函數。
 
 #### Arguments
 |参数名|描述|类型|默认值|

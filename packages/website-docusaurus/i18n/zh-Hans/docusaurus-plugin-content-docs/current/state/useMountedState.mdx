@@ -18,7 +18,7 @@ function Demo() {
   useEffect(() => {
     update(1);
   }, []);
-  return <div>This component is {isMounted() ? "MOUNTED" : "NOT MOUNTED"}</div>;
+  return <div>此组件 {isMounted() ? "已挂载" : "未挂载"}</div>;
 };
 
 ```

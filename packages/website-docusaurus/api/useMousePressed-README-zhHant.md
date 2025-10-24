@@ -1,0 +1,45 @@
+### useMousePressed
+
+#### Returns
+`readonly [boolean, UseMousePressedSourceType]`: 包含以下元素的元組：
+- 滑鼠是否按下。
+- 按下的事件來源。
+
+#### Arguments
+|參數名|描述|類型|預設值|
+|---|---|---|---|
+|target|dom对象|[BasicTarget](#BasicTarget)&lt;Element&gt; |-|
+|options|可选参数|[UseMousePressedOptions](#UseMousePressedOptions) \| undefined |-|
+
+### UseMousePressedOptions
+
+|參數名|描述|類型|預設值|
+|---|---|---|---|
+|touch|监听 `touchstart` 事件|boolean |`true`|
+|drag|监听 `dragStart` 事件|boolean |`true`|
+|initialValue|初始值|boolean \| (() => boolean) |`false`|
+
+### UseMousePressedSourceType
+
+#### Type
+
+`export type UseMousePressedSourceType = 'mouse' | 'touch' | null`
+
+
+### BasicTarget
+
+```js
+export type BasicTarget<T extends TargetType = Element> = (() => TargetValue<T>) | TargetValue<T> | MutableRefObject<TargetValue<T>>;
+```
+
+### TargetValue
+
+```js
+type TargetValue<T> = T | undefined | null;
+```
+
+### TargetType
+
+```js
+type TargetType = HTMLElement | Element | Window | Document | EventTarget;
+```

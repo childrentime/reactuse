@@ -14,10 +14,10 @@
 ### useColorMode
 
 #### Returns
-`readonly [T | null, React.Dispatch<React.SetStateAction<T | null>>, () => void]`: 包含以下元素的元组：
-- 当前颜色模式值。
-- 设置颜色模式的函数。
-- 循环切换可用模式的函数。
+`readonly [T | null, React.Dispatch<React.SetStateAction<T | null>>, () => void]`: 包含以下元素的元組：
+- 當前顏色模式值。
+- 設定顏色模式的函數。
+- 循環切換可用模式的函數。
 
 #### Arguments
 |参数名|描述|类型|默认值|

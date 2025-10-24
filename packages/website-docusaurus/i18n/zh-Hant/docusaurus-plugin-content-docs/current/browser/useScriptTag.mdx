@@ -1,0 +1,34 @@
+---
+title: useScriptTag 用法與示例
+sidebar_label: useScriptTag
+description: Script 標籤注入。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useScriptTag
+
+Script 標籤注入。
+
+## Usage
+
+```tsx live
+
+// it's an example, use your types instead
+
+declare const jQuery: any;
+function Demo() {
+  const [, status] = useScriptTag(
+    "https://code.jquery.com/jquery-3.5.1.min.js",
+  );
+
+  const [version, setVersion] = useState(0);
+  useEffect(() => {
+    if (typeof jQuery !== "undefined") {
+      setVersion(jQuery.fn.jquery);
+    }
+  }, [status]);
+
+  return <div>jQuery 版本：{version}</div>;
+};
+
+```
+
+%%API%%

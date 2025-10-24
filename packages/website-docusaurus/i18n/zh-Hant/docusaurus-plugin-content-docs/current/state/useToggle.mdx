@@ -1,0 +1,28 @@
+---
+title: useToggle 用法與示例
+sidebar_label: useToggle
+description: 優雅管理 `Boolean` 值。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useToggle
+
+優雅管理 `Boolean` 值。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [on, toggle] = useToggle(true);
+
+  return (
+    <div>
+      <div>{on ? "ON" : "OFF"}</div>
+      <button onClick={toggle}>切換</button>
+      <button onClick={() => toggle(true)}>設置為開啟</button>
+      <button onClick={() => toggle(false)}>設置為關閉</button>
+    </div>
+  );
+};
+```
+
+%%API%%

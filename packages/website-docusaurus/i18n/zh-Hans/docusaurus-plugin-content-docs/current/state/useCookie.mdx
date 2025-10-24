@@ -50,14 +50,14 @@ function Demo() {
 
   return (
     <div>
-      <p>Click on the button to update or clear the cookie</p>
-      <p color="blue">cookie: {cookieValue || "no value"}</p>
-      <button onClick={updateButtonClick}>Update the cookie</button>
-      <button onClick={deleteButtonClick}>Clear the cookie</button>
+      <p>点击按钮来更新或清除cookie</p>
+      <p color="blue">cookie: {cookieValue || "无值"}</p>
+      <button onClick={updateButtonClick}>更新cookie</button>
+      <button onClick={deleteButtonClick}>清除cookie</button>
       <button onClick={change}>
-        Changing the cookie through other methods
+        通过其他方法更改cookie
       </button>
-      <button onClick={refreshCookie}>Refresh the cookie</button>
+      <button onClick={refreshCookie}>刷新cookie</button>
     </div>
   );
 }

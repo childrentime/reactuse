@@ -1,0 +1,41 @@
+---
+title: useQRCode 用法與示例
+sidebar_label: useQRCode
+description: '`useQRCode` 是一個用於生成二維碼的 Hook。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。'
+---
+# useQRCode
+
+`useQRCode` 是一個用於生成二維碼的 Hook。
+
+## Install
+
+```shell
+npm i qrcode@^1
+```
+
+## Usage
+
+```tsx live 
+// import { useQRCode } from "@reactuses/core/useQRCode";
+
+function Demo() {
+  const [text, setText] = useState("https://reactuse.com/");
+  const { qrCode, error } = useQRCode(text);
+
+  return (
+    <div>
+      <input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="輸入文本以生成二維碼"
+      />
+      <br />
+      <br />
+      {error && <div style={{ color: "red" }}>{error}</div>}
+      {qrCode && <img src={qrCode} alt="二維碼" />}
+    </div>
+  );
+}
+```
+
+%%API%%

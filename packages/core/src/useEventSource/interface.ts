@@ -7,11 +7,13 @@ export interface UseEventSourceOptions extends EventSourceInit {
   /**
    * @en immediately open the connection, enabled by default
    * @zh 立即打开连接, 默认打开
+   * @zh-Hant 立即打開連接, 預設打開
    */
   immediate?: boolean
   /**
    * @en Automatically reconnect when the connection is disconnected
    * @zh 连接断开时自动重连
+   * @zh-Hant 連接斷開時自動重連
    */
   autoReconnect?: UseEventSourceAutoReconnectOptions
 }

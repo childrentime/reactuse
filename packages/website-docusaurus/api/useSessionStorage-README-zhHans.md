@@ -1,9 +1,9 @@
 ### useSessionStorage
 
 #### Returns
-`readonly [T | null, React.Dispatch<React.SetStateAction<T | null>>]`: 包含以下元素的元组：
-- sessionStorage 的当前值。
-- 更新 sessionStorage 值的函数。
+`readonly [T | null, React.Dispatch<React.SetStateAction<T | null>>]`: 包含以下元素的元組：
+- sessionStorage 的當前值。
+- 更新 sessionStorage 值的函數。
 
 #### Arguments
 |参数名|描述|类型|默认值|

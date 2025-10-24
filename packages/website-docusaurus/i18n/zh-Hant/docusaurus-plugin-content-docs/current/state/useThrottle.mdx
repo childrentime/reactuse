@@ -1,0 +1,33 @@
+---
+title: useThrottle 用法與示例
+sidebar_label: useThrottle
+description: 對值進行節流的React hook。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useThrottle
+
+對值進行節流的React hook
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [value, setValue] = useState<string>();
+  const throttledValue = useThrottle(value, 500);
+
+  return (
+    <div>
+      <input
+        value={value}
+        onChange={e => setValue(e.target.value)}
+        placeholder="輸入值"
+        style={{ width: 280 }}
+      />
+      <p style={{ marginTop: 16 }}>節流值：{throttledValue}</p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

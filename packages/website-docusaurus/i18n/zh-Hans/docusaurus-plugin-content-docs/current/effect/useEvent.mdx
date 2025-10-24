@@ -24,21 +24,21 @@ function Demo() {
 
   return (
     <>
-      <p>count: {count}</p>
+      <p>计数: {count}</p>
       <button
         type="button"
         onClick={() => {
           setCount(c => c + 1);
         }}
       >
-        Add Count
+        增加计数
       </button>
       <div style={{ marginTop: 16 }}>
         <button type="button" onClick={callbackFn}>
-          call callbackFn
+          调用 callbackFn
         </button>
         <button type="button" onClick={memoizedFn} style={{ marginLeft: 8 }}>
-          call memoizedFn
+          调用 memoizedFn
         </button>
       </div>
     </>

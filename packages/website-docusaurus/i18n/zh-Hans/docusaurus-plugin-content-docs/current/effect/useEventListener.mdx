@@ -13,10 +13,10 @@ description: 轻松使用 EventListener。 本文介绍其用法、最佳实践�
 
 function Demo() {
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const [state, setState] = useState("NO DB Click");
+  const [state, setState] = useState("未双击");
 
   const onDBClick = () => {
-    setState("DB Clicked");
+    setState("已双击");
   };
 
   const onClick = (event: Event) => {
@@ -42,7 +42,7 @@ function Demo() {
   return (
     <div>
       <p>{state}</p>
-      <button ref={buttonRef}>Click me</button>
+      <button ref={buttonRef}>点击我</button>
     </div>
   );
 };

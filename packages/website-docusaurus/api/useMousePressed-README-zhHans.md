@@ -1,9 +1,9 @@
 ### useMousePressed
 
 #### Returns
-`readonly [boolean, UseMousePressedSourceType]`: 包含以下元素的元组：
-- 鼠标是否按下。
-- 按下的事件来源。
+`readonly [boolean, UseMousePressedSourceType]`: 包含以下元素的元組：
+- 滑鼠是否按下。
+- 按下的事件來源。
 
 #### Arguments
 |参数名|描述|类型|默认值|

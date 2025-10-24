@@ -1,0 +1,29 @@
+---
+title: useFirstMountState 用法與示例
+sidebar_label: useFirstMountState
+description: 返回組件是否剛剛掛載的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useFirstMountState
+
+返回組件是否剛剛掛載的 React Hook
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const isFirstMount = useFirstMountState();
+  const [render, reRender] = useState(0);
+
+  return (
+    <div>
+      <span>這個組件剛剛掛載: {isFirstMount ? "是" : "否"}</span>
+      <br />
+      <button onClick={() => reRender(1)}>{render}</button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

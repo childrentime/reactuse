@@ -1,0 +1,70 @@
+---
+title: useFocus 用法與示例
+sidebar_label: useFocus
+description: 跟蹤元素焦點狀態的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useFocus
+
+跟蹤元素焦點狀態的 React Hook
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const text = useRef<HTMLParagraphElement>(null);
+  const input = useRef<HTMLInputElement>(null);
+  const button = useRef<HTMLButtonElement>(null);
+
+  const [paragraphFocus, setParagraphFocus] = useFocus(text);
+  const [inputFocus, setInputFocus] = useFocus(input, true);
+  const [buttonFocus, setButtonFocus] = useFocus(button);
+  return (
+    <div>
+      <p ref={text} style={paragraphFocus ? { opacity: 0.5 } : {}} tabIndex={0}>
+        可以被聚焦的段落
+      </p>
+      <input ref={input} placeholder="可以被聚焦的輸入框" />
+      <br />
+      <br />
+      <button ref={button} style={buttonFocus ? { opacity: 0.5 } : {}}>
+        可以被聚焦的按鈕
+      </button>
+      <br />
+      <br />
+      <hr />
+      <p style={{ height: "2rem" }}>
+        {paragraphFocus && "段落已聚焦"}
+        {inputFocus && "輸入框已聚焦"}
+        {buttonFocus && "按鈕已聚焦"}
+      </p>
+      <div>
+        <button
+          onClick={() => {
+            setParagraphFocus(!paragraphFocus);
+          }}
+        >
+          聚焦文本
+        </button>
+        <button
+          onClick={() => {
+            setInputFocus(!inputFocus);
+          }}
+        >
+          聚焦輸入框
+        </button>
+        <button
+          onClick={() => {
+            setButtonFocus(!buttonFocus);
+          }}
+        >
+          聚焦按鈕
+        </button>
+      </div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

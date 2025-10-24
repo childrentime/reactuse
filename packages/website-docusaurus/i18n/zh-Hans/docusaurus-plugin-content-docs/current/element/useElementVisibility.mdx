@@ -17,7 +17,7 @@ function Demo() {
 
   return (
     <div>
-      <p>Info on the right bottom corner</p>
+      <p>右下角的信息</p>
       <div
         ref={ref}
         style={{
@@ -26,14 +26,14 @@ function Demo() {
           padding: "1rem",
         }}
       >
-        Target Element (scroll down)
+        目标元素（向下滚动）
       </div>
       <button
         onClick={() => {
           stop();
         }}
       >
-        Stop
+        停止
       </button>
       <div
         style={{
@@ -46,7 +46,7 @@ function Demo() {
           zIndex: 100,
         }}
       >
-        Element {visible ? "inside" : "outside"} the viewport
+        元素 {visible ? "在视窗内" : "在视窗外"}
       </div>
     </div>
   );

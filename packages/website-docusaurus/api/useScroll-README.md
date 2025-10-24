@@ -18,7 +18,7 @@
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
-|throttle|Throttle time for scroll event, it’s disabled by default.|number |`0`|
+|throttle|Throttle time for scroll event, it's disabled by default.|number |`0`|
 |idle|The check time when scrolling ends.This configuration will be setting to (throttle + idle) when the `throttle` is configured.|number |`-`|
 |offset|Offset arrived states by x pixels|[UseScrollOffset](#UseScrollOffset) |`-`|
 |onScroll|Trigger it when scrolling.|(e: Event) => void |`-`|

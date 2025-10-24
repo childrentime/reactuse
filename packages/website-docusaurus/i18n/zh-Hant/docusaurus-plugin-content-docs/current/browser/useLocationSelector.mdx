@@ -1,0 +1,70 @@
+---
+title: useLocationSelector 用法與示例
+sidebar_label: useLocationSelector
+description: >-
+  有選擇地從 `location` 檢索屬性。 僅當您返回的值更改時，此 Hook 才會重新渲染。 有關更多信息，請參閱（https://thisweekinreact.com/articles/useSyncExternalStore-the-undererated-react-api）。
+  本文介紹其用法、最佳實踐與代
+---
+# useLocationSelector
+
+有選擇地從 `location` 檢索屬性。 僅當您返回的值更改時，此 Hook 才會重新渲染。
+有关更多信息，请参阅（https://thisweekinreact.com/articles/useSyncExternalStore-the-undererated-react-api）
+
+## Usage
+
+```tsx live noInline
+
+function CurrentPathname() {
+  const pathname = useLocationSelector(location => location.pathname);
+  const ref = useRef(0);
+
+  useEffect(() => {
+    ref.current = ref.current + 1;
+  });
+  return (
+    <div>
+      {pathname}
+      <div>渲染次數：{ref.current}</div>
+    </div>
+  );
+}
+
+function CurrentHash() {
+  const hash = useLocationSelector(location => location.hash || "無哈希");
+  const ref = useRef(0);
+
+  useEffect(() => {
+    ref.current = ref.current + 1;
+  });
+  return (
+    <div>
+      {hash}
+      <div>哈希渲染：{ref.current}</div>
+    </div>
+  );
+}
+
+function Links() {
+  return (
+    <div>
+      <a href="#link1">#link1</a>
+      <a href="#link2">#link2</a>
+      <a href="#link3">#link3</a>
+    </div>
+  );
+}
+
+function Demo() {
+  return (
+    <div>
+      <CurrentPathname />
+      <CurrentHash />
+      <Links />
+    </div>
+  );
+}
+
+render(<Demo/>)
+```
+
+%%API%%

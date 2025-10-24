@@ -1,10 +1,10 @@
 ### useFileDialog
 
 #### Returns
-`readonly [FileList | null, (localOptions?: Partial<UseFileDialogOptions> | undefined) => Promise<FileList | null | undefined>, () => void]`: 包含以下元素的元组：
-- 文件数组。
-- 打开文件选择器函数。
-- 重置函数。
+`readonly [FileList | null, (localOptions?: Partial<UseFileDialogOptions> | undefined) => Promise<FileList | null | undefined>, () => void]`: 包含以下元素的元組：
+- 檔案陣列。
+- 打開檔案選擇器函數。
+- 重設函數。
 
 #### Arguments
 |参数名|描述|类型|默认值|

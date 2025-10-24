@@ -1,0 +1,42 @@
+---
+title: useFavicon 用法與示例
+sidebar_label: useFavicon
+description: 設置頁面的 favicon 圖標。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useFavicon
+
+設置頁面的 favicon 圖標。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const logo = 'https://react.dev/favicon.ico';
+  const twitter = 'https://twitter.com/favicon.ico';
+  const [icon, setIcon] = useState(twitter);
+  useFavicon(icon);
+  return (
+    <div>
+      <p>更改 Favicon 為</p>
+      <button
+        onClick={() => {
+          setIcon(logo);
+        }}
+      >
+        React
+      </button>
+      <button
+        onClick={() => {
+          setIcon(twitter);
+        }}
+      >
+        Twitter
+      </button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

@@ -1,0 +1,36 @@
+---
+title: useSetState 用法與示例
+sidebar_label: useSetState
+description: 類似於 `class component` 中的 `setState`。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+---
+# useSetState
+
+類似於 `class component` 中的 `setState`
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [state, setState] = useSetState({ value1: "value1", value2: "value2" });
+  const { value1, value2 } = state;
+  return (
+    <div>
+      <p>value1: {value1}</p>
+      <p>value2: {value2}</p>
+      <button
+        onClick={() => {
+          setState({
+            value1: "value",
+          });
+        }}
+      >
+        改變值
+      </button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

@@ -1,7 +1,7 @@
 ### UseMutationObserver
 
 #### Returns
-`() => void`: 停止函数
+`() => void`: 停止函數
 
 #### Arguments
 |参数名|描述|类型|默认值|

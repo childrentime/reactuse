@@ -1,12 +1,12 @@
 ### useScroll
 
 #### Returns
-`readonly [number, number, boolean, UseScrollArrivedState, UseScrollDirection]`: 包含以下元素的元组：
+`readonly [number, number, boolean, UseScrollArrivedState, UseScrollDirection]`: 包含以下元素的元組：
 - x 值。
 - y 值。
-- 是否在滚动。
-- 到达边界状态。
-- 滚动方向
+- 是否在滚動。
+- 到達邊界狀態。
+- 滚動方向
 
 #### Arguments
 |参数名|描述|类型|默认值|

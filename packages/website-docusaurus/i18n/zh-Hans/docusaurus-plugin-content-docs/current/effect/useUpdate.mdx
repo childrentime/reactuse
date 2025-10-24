@@ -17,8 +17,8 @@ function Demo() {
   return (
     <>
       {/* to avoid ssr error beacause date.now() will not be same in server and client */}
-      <div suppressHydrationWarning={true}>Time: {Date.now()}</div>
-      <button onClick={update}>Update</button>
+      <div suppressHydrationWarning={true}>时间: {Date.now()}</div>
+      <button onClick={update}>更新</button>
     </>
   );
 };
