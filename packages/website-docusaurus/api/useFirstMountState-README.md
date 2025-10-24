@@ -1,6 +1,6 @@
 ### useFirstMountState
 
 #### Returns
-`boolean`
+`boolean`: A boolean value indicating whether the component is just mounted
 
 #### Arguments

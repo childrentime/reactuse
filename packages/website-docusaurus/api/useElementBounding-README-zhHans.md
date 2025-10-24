@@ -6,8 +6,8 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|target|目标元素|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(必填)**|-|
-|options|可选参数|[UseElementBoundingOptions](#UseElementBoundingOptions) \| undefined |-|
+|target|目标元素|[BasicTarget](#basictarget)&lt;Element&gt;  **(必填)**|-|
+|options|可选参数|[UseElementBoundingOptions](#useelementboundingoptions) \| undefined |-|
 
 ### UseElementBoundingOptions
 

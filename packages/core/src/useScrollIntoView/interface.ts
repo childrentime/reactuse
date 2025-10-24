@@ -8,10 +8,14 @@ import type { BasicTarget } from '../utils/domTarget'
  * @returns_en A object with the following elements:
  * - scrollIntoView: scroll target element into viewport
  * - cancel: cancel scroll function
+ * @returns_zh-Hant 包含以下元素的對象：
+ * - scrollIntoView：滚動進入視口函數。
+ * - cancel： 取消滚動函數。
  */
 export type UseScrollIntoView = (
   /**
    * @zh dom对象
+   * @zh-Hant dom對象
    * @en dom element
    */
   targetElement: BasicTarget<HTMLElement>,

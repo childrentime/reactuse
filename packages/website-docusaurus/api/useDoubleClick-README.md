@@ -6,13 +6,13 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|props|-|[UseDoubleClickProps](#UseDoubleClickProps)  **(Required)**|-|
+|props|-|[UseDoubleClickProps](#usedoubleclickprops)  **(Required)**|-|
 
 ### UseDoubleClickProps
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom element|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(Required)**|`-`|
+|target|dom element|[BasicTarget](#basictarget)&lt;Element&gt;  **(Required)**|`-`|
 |latency|latency time (milliseconds)|number \| undefined |`-`|
 |onSingleClick|single click event handler|((e?: MouseEvent \| TouchEvent) => void) \| undefined |`-`|
 |onDoubleClick|double click event handler|((e?: MouseEvent \| TouchEvent) => void) \| undefined |`-`|

@@ -6,7 +6,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|target|dom对象|[BasicTarget](#BasicTarget)&lt;T&gt;  **(必填)**|-|
+|target|dom对象|[BasicTarget](#basictarget)&lt;T&gt;  **(必填)**|-|
 
 ### BasicTarget
 

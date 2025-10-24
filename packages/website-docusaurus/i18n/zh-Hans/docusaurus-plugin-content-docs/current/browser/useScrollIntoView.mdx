@@ -1,7 +1,7 @@
 ---
 title: useScrollIntoView 用法与示例
 sidebar_label: useScrollIntoView
-description: 类似于 `element.scrollIntoView()` 的 React Hook。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 类似于 `element.scrollIntoView()` 的 React Hook。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useScrollIntoView
 
@@ -20,10 +20,10 @@ function Demo() {
   return (
     <div>
       <button onClick={() => scrollIntoView({ alignment: "center" })}>
-        Scroll to target
+        滚动到目标
       </button>
       <div style={{ height: "50vh" }} />
-      <p ref={targetRef}>Hello there</p>
+      <p ref={targetRef}>你好，这里是目标元素</p>
     </div>
   );
 }

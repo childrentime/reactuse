@@ -1,0 +1,47 @@
+### useMouse
+
+#### Returns
+`UseMouseCursorState`: 滑鼠位置
+
+#### Arguments
+|參數名|描述|類型|預設值|
+|---|---|---|---|
+|target|dom元素|[BasicTarget](#basictarget) |-|
+
+### UseMouseCursorState
+
+#### Type
+
+`export interface UseMouseCursorState {
+  screenX: number
+  screenY: number
+  clientX: number
+  clientY: number
+  pageX: number
+  pageY: number
+  elementX: number
+  elementY: number
+  elementH: number
+  elementW: number
+  elementPosX: number
+  elementPosY: number
+}`
+
+
+### BasicTarget
+
+```js
+export type BasicTarget<T extends TargetType = Element> = (() => TargetValue<T>) | TargetValue<T> | MutableRefObject<TargetValue<T>>;
+```
+
+### TargetValue
+
+```js
+type TargetValue<T> = T | undefined | null;
+```
+
+### TargetType
+
+```js
+type TargetType = HTMLElement | Element | Window | Document | EventTarget;
+```

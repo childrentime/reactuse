@@ -12,15 +12,23 @@
  * - onMouseUp: Mouse up event.
  * - onMouseLeave: Mouse leave event.
  * - onTouchEnd: Finger touch end event.
+ * @returns_zh-Hant 包含以下元素的對象：
+ * - onMouseDown 滑鼠按下事件。
+ * - onTouchStart 手指按下事件。
+ * - onMouseUp 滑鼠放開事件。
+ * - onMouseLeave 滑鼠離開事件
+ * - onTouchEnd 手指放開事件
  */
 export type UseLongPress = (
   /**
    * @zh 回调
+   * @zh-Hant 回調
    * @en callback
    */
   callback: (e: TouchEvent | MouseEvent) => void,
   /**
    * @zh 可选参数
+   * @zh-Hant 可選參數
    * @en optional params
    */
   options?: UseLongPressOptions
@@ -38,12 +46,14 @@ export type UseLongPress = (
 export interface UseLongPressOptions {
   /**
    * @zh 阻止默认事件
+   * @zh-Hant 阻止預設事件
    * @en whether prevent default event
    * @defaultValue true
    */
   isPreventDefault?: boolean
   /**
    * @zh 延迟
+   * @zh-Hant 延遲
    * @en delay time
    * @defaultValue 300
    */

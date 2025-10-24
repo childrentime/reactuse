@@ -1,7 +1,7 @@
 ---
 title: useFullscreen 用法与示例
 sidebar_label: useFullscreen
-description: 元素的全屏展示。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 元素的全屏展示。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useFullscreen
 
@@ -18,21 +18,21 @@ function Demo() {
   return (
     <div ref={ref}>
       <div style={{ marginBottom: 16 }}>
-        {isFullscreen ? "Fullscreen" : "Not fullscreen"}
+        {isFullscreen ? "全屏模式" : "非全屏模式"}
       </div>
       <div>
         <button type="button" onClick={enterFullscreen}>
-          enterFullscreen
+          进入全屏
         </button>
         <button
           type="button"
           onClick={exitFullscreen}
           style={{ margin: "0 8px" }}
         >
-          exitFullscreen
+          退出全屏
         </button>
         <button type="button" onClick={toggleFullscreen}>
-          toggleFullscreen
+          切换全屏
         </button>
       </div>
     </div>

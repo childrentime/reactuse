@@ -7,11 +7,13 @@ import type { BasicTarget } from '../utils/domTarget'
 export type UseInfiniteScroll = (
   /**
    * @zh dom元素
+   * @zh-Hant dom元素
    * @en dom element
    */
   target: BasicTarget<Element>,
   /**
    * @zh 加载更多函数
+   * @zh-Hant 加載更多函數
    * @en load more function
    */
   onLoadMore: UseInfiniteScrollLoadMore,

@@ -6,10 +6,14 @@
  * @returns_en A tuple with the following elements:
  * - The current value of the bool state.
  * - A function to update the value of the bool state.
+ * @returns_zh-Hant 包含以下元素的元組：
+ * - 布林狀態的當前值。
+ * - 切換布林狀態值的函數。
  */
 export type UseToggle = (
   /**
    * @zh 初始值
+   * @zh-Hant 初始值
    * @en initialValue
    */
   initialValue: boolean

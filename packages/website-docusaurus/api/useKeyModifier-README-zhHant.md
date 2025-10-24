@@ -1,0 +1,23 @@
+### useKeyModifier
+
+#### Returns
+`boolean`: 按鍵是否被按下
+
+#### Arguments
+|參數名|描述|類型|預設值|
+|---|---|---|---|
+|modifier|键位|[KeyModifier](#keymodifier)  **(必填)**|-|
+|options|可选参数|[UseModifierOptions](#usemodifieroptions) \| undefined |-|
+
+### UseModifierOptions
+
+|參數名|描述|類型|預設值|
+|---|---|---|---|
+|events|更新按键状态的事件|(keyof WindowEventMap)[] |`['mousedown', 'mouseup', 'keydown', 'keyup']`|
+|initial|初始值|boolean |`false`|
+
+### KeyModifier
+
+```js
+export type KeyModifier = 'Alt' | 'AltGraph' | 'CapsLock' | 'Control' | 'Fn' | 'FnLock' | 'Meta' | 'NumLock' | 'ScrollLock' | 'Shift' | 'Symbol' | 'SymbolLock';
+```

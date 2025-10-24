@@ -8,7 +8,7 @@
 |---|---|---|---|
 |callback|callback|() => void  **(Required)**|-|
 |delay|Time, if `null` then stop the timer|number \| null \| undefined |-|
-|options|optional params|[UseIntervalOptions](#UseIntervalOptions) \| undefined |-|
+|options|optional params|[UseIntervalOptions](#useintervaloptions) \| undefined |-|
 
 ### UseIntervalOptions
 

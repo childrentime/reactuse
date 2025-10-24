@@ -1,0 +1,10 @@
+{
+  "label": "整合",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Integrations React Hook"
+  },
+  "collapsible": true,
+  "collapsed": true
+}

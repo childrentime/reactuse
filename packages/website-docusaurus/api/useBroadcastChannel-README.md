@@ -12,7 +12,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|options|options|[UseBroadcastChannelOptions](#UseBroadcastChannelOptions)  **(Required)**|-|
+|options|options|[UseBroadcastChannelOptions](#usebroadcastchanneloptions)  **(Required)**|-|
 
 ### UseBroadcastChannelReturn
 

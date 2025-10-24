@@ -1,7 +1,7 @@
 ---
 title: useScroll 用法与示例
 sidebar_label: useScroll
-description: 跟踪滚动位置和统计数据。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 跟踪滚动位置和统计数据。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useScroll
 
@@ -52,7 +52,7 @@ function Demo() {
               left: "0rem",
             }}
           >
-            TopLeft
+            左上角
           </div>
           <div
             style={{
@@ -61,7 +61,7 @@ function Demo() {
               left: "0rem",
             }}
           >
-            BottomLeft
+            左下角
           </div>
           <div
             style={{
@@ -70,7 +70,7 @@ function Demo() {
               right: "0rem",
             }}
           >
-            TopRight
+            右上角
           </div>
           <div
             style={{
@@ -79,7 +79,7 @@ function Demo() {
               right: "0rem",
             }}
           >
-            BottomRight
+            右下角
           </div>
           <div
             style={{
@@ -88,7 +88,7 @@ function Demo() {
               left: "33.33333%",
             }}
           >
-            Scroll Me
+            滚动区域
           </div>
         </div>
       </div>
@@ -103,17 +103,17 @@ function Demo() {
         }}
       >
         <div>
-          Position: {x.toFixed(1)}, {y.toFixed(1)}
+          位置: {x.toFixed(1)}, {y.toFixed(1)}
         </div>
-        <div>isScrolling: {JSON.stringify(isScrolling)}</div>
-        <div>Top Arrived: {JSON.stringify(top)}</div>
-        <div>Right Arrived: {JSON.stringify(right)}</div>
-        <div>Bottom Arrived: {JSON.stringify(bottom)}</div>
-        <div>Left Arrived: {JSON.stringify(left)}</div>
-        <div>Scrolling Up: {JSON.stringify(toTop)}</div>
-        <div>Scrolling Right: {JSON.stringify(toRight)}</div>
-        <div>Scrolling Down: {JSON.stringify(toBottom)}</div>
-        <div>Scrolling Left: {JSON.stringify(toLeft)}</div>
+        <div>正在滚动: {JSON.stringify(isScrolling)}</div>
+        <div>到达顶部: {JSON.stringify(top)}</div>
+        <div>到达右侧: {JSON.stringify(right)}</div>
+        <div>到达底部: {JSON.stringify(bottom)}</div>
+        <div>到达左侧: {JSON.stringify(left)}</div>
+        <div>向上滚动: {JSON.stringify(toTop)}</div>
+        <div>向右滚动: {JSON.stringify(toRight)}</div>
+        <div>向下滚动: {JSON.stringify(toBottom)}</div>
+        <div>向左滚动: {JSON.stringify(toLeft)}</div>
       </div>
     </div>
   );

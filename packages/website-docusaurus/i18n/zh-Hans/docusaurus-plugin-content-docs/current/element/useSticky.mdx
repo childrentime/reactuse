@@ -1,7 +1,7 @@
 ---
 title: useSticky 用法与示例
 sidebar_label: useSticky
-description: 跟踪元素是否粘滞。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 跟踪元素是否粘滞。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useSticky
 
@@ -37,7 +37,7 @@ function Demo() {
     <div style={{height: 300,overflow: 'scroll'}}>
       <div ref={element} style={guardStyle} />
       <button style={stickyStyle}>
-        {isSticky ? "stickying" : "not sticky"}
+        {isSticky ? "粘滞中" : "未粘滞"}
       </button>
       <div style={{ height: "100vh" }} />
     </div>

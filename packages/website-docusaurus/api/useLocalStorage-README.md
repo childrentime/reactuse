@@ -10,13 +10,13 @@
 |---|---|---|---|
 |key|key|string  **(Required)**|-|
 |defaultValue|default value|T \| undefined |-|
-|options|optional params|[UseLocalStorageOptions](#UseLocalStorageOptions)&lt;T&gt; \| undefined |-|
+|options|optional params|[UseLocalStorageOptions](#uselocalstorageoptions)&lt;T&gt; \| undefined |-|
 
 ### UseLocalStorageOptions
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
-|serializer|Custom data serialization|[UseLocalStorageSerializer](#UseLocalStorageSerializer)&lt;T&gt; |`-`|
+|serializer|Custom data serialization|[UseLocalStorageSerializer](#uselocalstorageserializer)&lt;T&gt; |`-`|
 |onError|On error callback|(error: unknown) => void |``console.error``|
 |effectStorageValue|set to storage when nodata in first mount, deprecated|T \| (() => T) |`-`|
 |mountStorageValue|set to storage when nodata in first mount|T \| (() => T) |`-`|

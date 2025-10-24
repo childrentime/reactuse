@@ -1,0 +1,10 @@
+{
+  "label": "元素",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "React Dom Element Hook"
+  },
+  "collapsible": true,
+  "collapsed": true
+}

@@ -1,0 +1,40 @@
+---
+title: useTimeout 用法與示例
+sidebar_label: useTimeout
+description: 在给定时间后更新值。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useTimeout
+
+在给定时间后更新值。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [isPending, start, cancel] = useTimeout(5000);
+
+  return (
+    <div>
+      <div>等待中：{JSON.stringify(isPending)}</div>
+      <button
+        onClick={() => {
+          start();
+        }}
+      >
+        重新開始
+      </button>
+      <button
+        onClick={() => {
+          cancel();
+        }}
+      >
+        取消
+      </button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

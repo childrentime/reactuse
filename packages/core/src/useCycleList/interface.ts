@@ -8,15 +8,21 @@
  * - 数组中当前的索引对象值
  * - 设置索引为前一个的函数
  * - 设置索引为后一个的函数
+ * @returns_zh-Hant 包含以下元素的元組：
+ * - 陣列中當前的索引對象值
+ * - 設定索引為前一個的函數
+ * - 設定索引為後一個的函數
  */
 export type UseCycleList = <T>(
   /**
    * @zh 循环数组
+   * @zh-Hant 循環陣列
    * @en cycle array
    */
   list: T[],
   /**
    * @zh 数组索引
+   * @zh-Hant 陣列索引
    * @en array index
    */
   i?: number

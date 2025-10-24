@@ -11,16 +11,16 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom elment|[BasicTarget](#BasicTarget)&lt;Element&gt; \| Document \| Window  **(Required)**|-|
-|options|optional params|[UseScrollOptions](#UseScrollOptions) \| undefined |-|
+|target|dom elment|[BasicTarget](#basictarget)&lt;Element&gt; \| Document \| Window  **(Required)**|-|
+|options|optional params|[UseScrollOptions](#usescrolloptions) \| undefined |-|
 
 ### UseScrollOptions
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
-|throttle|Throttle time for scroll event, it’s disabled by default.|number |`0`|
+|throttle|Throttle time for scroll event, it's disabled by default.|number |`0`|
 |idle|The check time when scrolling ends.This configuration will be setting to (throttle + idle) when the `throttle` is configured.|number |`-`|
-|offset|Offset arrived states by x pixels|[UseScrollOffset](#UseScrollOffset) |`-`|
+|offset|Offset arrived states by x pixels|[UseScrollOffset](#usescrolloffset) |`-`|
 |onScroll|Trigger it when scrolling.|(e: Event) => void |`-`|
 |onStop|Trigger it when scrolling ends.|(e: Event) => void |`-`|
 |eventListenerOptions|Listener options for scroll event.|boolean \| AddEventListenerOptions |`{capture: false, passive: true}`|

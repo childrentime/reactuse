@@ -31,7 +31,7 @@ export const defaultTypeMap = {
   },
 }
 
-export const defaultLinkFormatter = ({ typeName }: LinkFormatterParam): string => `#${typeName}`
+export const defaultLinkFormatter = ({ typeName }: LinkFormatterParam): string => `#${typeName.toLowerCase()}`
 
 export const defaultMarkdownTableSchema: Record<
   string,
@@ -40,7 +40,7 @@ export const defaultMarkdownTableSchema: Record<
     value: string | Record<MarkdownTableType, string>
   }>
 > = {
-  zh: [
+  'zh': [
     {
       title: '参数名',
       value: 'name',
@@ -65,7 +65,32 @@ export const defaultMarkdownTableSchema: Record<
       value: 'tag.version',
     },
   ],
-  en: [
+  'zh-Hant': [
+    {
+      title: '參數名',
+      value: 'name',
+    },
+    {
+      title: '描述',
+      value: 'tag.zh-Hant',
+    },
+    {
+      title: '類型',
+      value: 'type',
+    },
+    {
+      title: '預設值',
+      value: {
+        interface: 'tag.defaultValue',
+        parameter: 'initializerText',
+      },
+    },
+    {
+      title: '版本',
+      value: 'tag.version',
+    },
+  ],
+  'en': [
     {
       title: {
         interface: 'Property',

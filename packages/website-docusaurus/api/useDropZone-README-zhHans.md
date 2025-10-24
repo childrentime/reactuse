@@ -6,7 +6,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|target|目标元素|[BasicTarget](#BasicTarget)&lt;EventTarget&gt;  **(必填)**|-|
+|target|目标元素|[BasicTarget](#basictarget)&lt;EventTarget&gt;  **(必填)**|-|
 |onDrop|拖拽释放时候的回调|((files: File[] \| null) => void) \| undefined |-|
 
 ### BasicTarget

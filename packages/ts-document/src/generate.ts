@@ -76,6 +76,9 @@ function getDeclarationTags(declaration: DeclarationCanBeParsed, lang = 'en') {
   const rawTags = declaration.getJsDocs()[0]?.getTags() || []
   let title
 
+  // First pass: collect all tags
+  const allTags: Array<{ name: string, value: string, isLanguageSpecific: boolean, baseName: string }> = []
+
   for (const tag of rawTags) {
     const name = tag.getTagName()
     const value = tag.getCommentText() || ''
@@ -85,14 +88,40 @@ function getDeclarationTags(declaration: DeclarationCanBeParsed, lang = 'en') {
       continue
     }
 
-    if (name.includes(lang)) {
-      tags.set(name.slice(0, name.indexOf('_')), value)
+    const underscoreIndex = name.indexOf('_')
+    const isLanguageSpecific = underscoreIndex !== -1
+    const baseName = isLanguageSpecific ? name.slice(0, underscoreIndex) : name
+
+    allTags.push({ name, value, isLanguageSpecific, baseName })
+  }
+
+  // Group tags by base name
+  const tagsByBaseName = new Map<string, Array<{ name: string, value: string, isLanguageSpecific: boolean }>>()
+
+  for (const tag of allTags) {
+    if (!tagsByBaseName.has(tag.baseName)) {
+      tagsByBaseName.set(tag.baseName, [])
+    }
+    tagsByBaseName.get(tag.baseName)!.push(tag)
+  }
+
+  // Process each base tag name
+  for (const [baseName, tagVariants] of tagsByBaseName) {
+    let selectedTag: { name: string, value: string, isLanguageSpecific: boolean } | undefined
+
+    if (lang === 'zh') {
+      // For simplified Chinese, prefer base tag (no suffix), then fall back to language-specific
+      selectedTag = tagVariants.find(t => !t.isLanguageSpecific)
+        || tagVariants.find(t => t.isLanguageSpecific && t.name === `${baseName}_${lang}`)
     }
     else {
-      if (tags.has(name)) {
-        continue
-      }
-      tags.set(name, value)
+      // For other languages, prefer language-specific tag, then fall back to base tag
+      selectedTag = tagVariants.find(t => t.isLanguageSpecific && t.name === `${baseName}_${lang}`)
+        || tagVariants.find(t => !t.isLanguageSpecific)
+    }
+
+    if (selectedTag) {
+      tags.set(baseName, selectedTag.value)
     }
   }
 
@@ -191,7 +220,7 @@ function getDeclarationTextBySymbol(symbol?: Symbol) {
  * @param declaration declaration to be parsed
  * @param nestedTypeList list to store the nested types to be displayed on the doc page
  * @param parsedNestedTypes set of parsed nested types to avoid infinite loop
- * @returns
+ * @returns the updated nestedTypeList with parsed nested types
  */
 function dumpNestedTypes(
   declaration: Node<ts.Node> | undefined,

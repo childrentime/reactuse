@@ -1,7 +1,7 @@
 ---
 title: useLocalStorage 用法与示例
 sidebar_label: useLocalStorage
-description: 轻松管理 `localStorage`。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 轻松管理 `localStorage`。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useLocalStorage
 
@@ -17,11 +17,11 @@ function Demo() {
 
   return (
     <div>
-      <div>Value: {value}</div>
-      <button onClick={() => setValue("bar")}>bar</button>
-      <button onClick={() => setValue("baz")}>baz</button>
+      <div>值: {value}</div>
+      <button onClick={() => setValue("bar")}>设置为bar</button>
+      <button onClick={() => setValue("baz")}>设置为baz</button>
       {/* delete data from storage */}
-      <button onClick={() => setValue(null)}>Remove</button>
+      <button onClick={() => setValue(null)}>移除</button>
     </div>
   );
 };

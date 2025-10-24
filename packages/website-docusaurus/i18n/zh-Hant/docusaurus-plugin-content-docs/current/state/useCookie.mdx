@@ -1,0 +1,67 @@
+---
+title: useCookie 用法與示例
+sidebar_label: useCookie
+description: >-
+  有助於在 CookieStore 中存儲、更新和刪除值的 hook :::note 當你在多個組件中使用相同鍵的 useCookie hook 並使用 setCookieValue 時，它不會觸發其他使用此 hook 的組件進行更新。
+  如果你想要一個廣播效果，可以參考以下鏈接：https://github.com/ch
+---
+# useCookie
+
+有助於在 CookieStore 中存儲、更新和刪除值的 hook
+
+:::note
+當你在多個組件中使用相同鍵的 useCookie hook 並使用 setCookieValue 時，它不會觸發其他使用此 hook 的組件進行更新。
+
+如果你想要一個廣播效果，可以參考以下鏈接：https://github.com/childrentime/reactuse/issues/91
+:::
+
+
+## Usage
+
+```tsx live
+function Demo() {
+    const defaultOption = {
+    path: "/",
+  };
+  const cookieName = "cookie-key";
+  const [cookieValue, updateCookie, refreshCookie] = useCookie(
+    cookieName,
+    defaultOption,
+    "default-value",
+  );
+
+  const updateButtonClick = () => {
+    updateCookie("new-cookie-value");
+  };
+
+  const deleteButtonClick = () => {
+    updateCookie(undefined);
+  };
+
+  const change = () => {
+    if ("cookieStore" in window) {
+      const store = window.cookieStore as any;
+      store.set({ name: cookieName, value: "changed" });
+    }
+    else {
+      document.cookie = `${cookieName}=changed; path=/`;
+    }
+  };
+
+  return (
+    <div>
+      <p>點擊按鈕以更新或清除 cookie</p>
+      <p color="blue">cookie：{cookieValue || "無值"}</p>
+      <button onClick={updateButtonClick}>更新 cookie</button>
+      <button onClick={deleteButtonClick}>清除 cookie</button>
+      <button onClick={change}>
+        通過其他方法更改 cookie
+      </button>
+      <button onClick={refreshCookie}>刷新 cookie</button>
+    </div>
+  );
+}
+
+```
+
+%%API%%

@@ -8,10 +8,15 @@
  * - orientation type.
  * - lock orientation.
  * - unlock orientation.
+ * @returns_zh-Hant 包含以下元素的元組：
+ * - 方向狀態。
+ * - 鎖定方向。
+ * - 解鎖方向。
  */
 export type UseOrientation = (
   /**
    * @zh 初始值
+   * @zh-Hant 初始值
    * @en initial value
    */
   initialState?: UseOrientationState

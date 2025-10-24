@@ -1,7 +1,7 @@
 ---
 title: useHover 用法与示例
 sidebar_label: useHover
-description: 跟踪鼠标是否在元素上。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 跟踪鼠标是否在元素上。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useHover
 
@@ -14,7 +14,7 @@ description: 跟踪鼠标是否在元素上。 本文介绍其用法、最佳实
 function Demo() {
   const ref = useRef<HTMLDivElement>(null);
   const hovered = useHover(ref);
-  return <div ref={ref}> {hovered ? "true" : "false"}</div>;
+  return <div ref={ref}> {hovered ? "是" : "否"}</div>;
 };
 
 ```

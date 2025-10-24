@@ -8,9 +8,9 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|targetElement|dom元素|[BasicTarget](#BasicTarget)&lt;HTMLElement&gt;  **(必填)**|-|
-|params|可选参数|[UseStickyParams](#UseStickyParams)  **(必填)**|-|
-|scrollElement|滚动容器|[BasicTarget](#BasicTarget)&lt;HTMLElement&gt; |-|
+|targetElement|dom元素|[BasicTarget](#basictarget)&lt;HTMLElement&gt;  **(必填)**|-|
+|params|可选参数|[UseStickyParams](#usestickyparams)  **(必填)**|-|
+|scrollElement|滚动容器|[BasicTarget](#basictarget)&lt;HTMLElement&gt; |-|
 
 ### UseStickyParams
 

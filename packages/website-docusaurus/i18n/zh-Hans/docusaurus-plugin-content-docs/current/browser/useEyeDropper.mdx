@@ -18,20 +18,20 @@ function Demo() {
   if (supported) {
     return (
       <div style={{ padding: 40 }}>
-        Supported: {supported.toString()}
+        支持状态: {supported.toString()}
         <br />
-        Color: {color}
+        颜色: {color}
         <button
           type="button"
           onClick={async () => setColor((await open()).sRGBHex)}
         >
-          Pick color
+          选择颜色
         </button>
       </div>
     );
   }
 
-  return <span>Not Supported by Your Browser</span>;
+  return <span>您的浏览器不支持此功能</span>;
 };
 
 ```

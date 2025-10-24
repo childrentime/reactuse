@@ -7,6 +7,7 @@ export type UseElementByPoint = <M extends boolean = false>(
   /**
    * @en options
    * @zh 配置项
+   * @zh-Hant 配置項
    */
   options: UseElementByPointOptions<M>
 ) => UseElementByPointReturn<M>

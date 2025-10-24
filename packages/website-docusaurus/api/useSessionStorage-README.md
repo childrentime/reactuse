@@ -10,13 +10,13 @@
 |---|---|---|---|
 |key|key|string  **(Required)**|-|
 |defaultValue|default value|T \| undefined |-|
-|options|optional params|[UseSessionStorageOptions](#UseSessionStorageOptions)&lt;T&gt; \| undefined |-|
+|options|optional params|[UseSessionStorageOptions](#usesessionstorageoptions)&lt;T&gt; \| undefined |-|
 
 ### UseSessionStorageOptions
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
-|serializer|Custom data serialization|[UseSessionStorageSerializer](#UseSessionStorageSerializer)&lt;T&gt; |`-`|
+|serializer|Custom data serialization|[UseSessionStorageSerializer](#usesessionstorageserializer)&lt;T&gt; |`-`|
 |onError|On error callback|(error: unknown) => void |``console.error``|
 |effectStorageValue|set to storage when nodata in first mount, deprecated|T \| (() => T) |`-`|
 |mountStorageValue|set to storage when nodata in first mount|T \| (() => T) |`-`|

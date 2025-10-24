@@ -9,14 +9,14 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|initialState|initial value|[UseOrientationState](#UseOrientationState) \| undefined |-|
+|initialState|initial value|[UseOrientationState](#useorientationstate) \| undefined |-|
 
 ### UseOrientationState
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
 |angle|document angle|number  **(Required)**|`-`|
-|type|orientation type|[UseOrientationType](#UseOrientationType) \| undefined  **(Required)**|`-`|
+|type|orientation type|[UseOrientationType](#useorientationtype) \| undefined  **(Required)**|`-`|
 
 ### UseOrientationType
 

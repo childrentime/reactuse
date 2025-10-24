@@ -12,7 +12,7 @@
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
 |callback|callback|(e: MouseEvent \| TouchEvent) => void  **(Required)**|-|
-|options|optional params|[UseLongPressOptions](#UseLongPressOptions) \| undefined |-|
+|options|optional params|[UseLongPressOptions](#uselongpressoptions) \| undefined |-|
 
 ### UseLongPressOptions
 

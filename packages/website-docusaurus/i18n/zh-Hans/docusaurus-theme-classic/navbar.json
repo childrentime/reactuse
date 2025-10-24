@@ -3,20 +3,12 @@
     "message": "React",
     "description": "The title in the navbar"
   },
-  "logo.alt": {
-    "message": "My Site Logo",
-    "description": "The alt text of navbar logo"
-  },
-  "item.label.Tutorial": {
-    "message": "教程",
-    "description": "Navbar item with label Tutorial"
-  },
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
   },
-  "item.label.ChangeLog": {
-    "message": "ChangeLog",
-    "description": "Navbar item with label ChangeLog"
+  "item.label.Buy me a coffee": {
+    "message": "Buy me a coffee",
+    "description": "Navbar item with label Buy me a coffee"
   }
 }

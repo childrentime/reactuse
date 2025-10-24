@@ -6,6 +6,7 @@ export type Platform = 'ios' | 'android' | 'unknown'
 export interface UsePlatformProps {
   /**
    * @zh 服务端渲染时，需要传递 `userAgent`
+   * @zh-Hant 服務端渲染時，需要傳遞 `userAgent`
    * @en When server rendering, you need to pass `userAgent`
    */
   userAgent?: string

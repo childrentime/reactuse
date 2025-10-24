@@ -9,7 +9,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|options|-|[UseFileDialogOptions](#UseFileDialogOptions) \| undefined |-|
+|options|-|[UseFileDialogOptions](#usefiledialogoptions) \| undefined |-|
 
 ### UseFileDialogOptions
 

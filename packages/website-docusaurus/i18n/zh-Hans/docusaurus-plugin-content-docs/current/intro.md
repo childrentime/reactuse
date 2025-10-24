@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
 slug: /
-title: intro
-sidebar_label: intro
+title: 介绍
+sidebar_label: 介绍
 description: Reactuse 是一个全面的自定义 React Hooks 集合，旨在增强您的功能组件！ 您可以轻松释放 React Hooks 的全部潜力，并利用其强大功能来创建可重用且高效的代码。 本文介绍其用法、最佳实践与代码示例。
 ---
 # 起步

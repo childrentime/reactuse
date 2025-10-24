@@ -4,11 +4,13 @@
 export type UseEventListener = (
   /**
    * @zh 事件名称
+   * @zh-Hant 事件名稱
    * @en event name
    */
   eventName: string,
   /**
    * @zh 事件处理器
+   * @zh-Hant 事件處理器
    * @en event handler
    */
   handler: (event: any) => void,

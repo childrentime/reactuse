@@ -12,7 +12,7 @@
 |---|---|---|---|
 |src|资源地址|string  **(必填)**|-|
 |onLoaded|资源加载完成的回调|((el: HTMLScriptElement) => void) \| undefined |-|
-|options|可选参数|[UseScriptTagOptions](#UseScriptTagOptions) \| undefined |-|
+|options|可选参数|[UseScriptTagOptions](#usescripttagoptions) \| undefined |-|
 
 ### UseScriptTagOptions
 

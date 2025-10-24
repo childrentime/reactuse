@@ -6,6 +6,5 @@
 - right safe distance
 - bottom safe distance
 - left safe distance
-- munual update function
 
 #### Arguments

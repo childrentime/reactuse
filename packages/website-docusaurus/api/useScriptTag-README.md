@@ -12,7 +12,7 @@
 |---|---|---|---|
 |src|source|string  **(Required)**|-|
 |onLoaded|source loaded callback|((el: HTMLScriptElement) => void) \| undefined |-|
-|options|optional params|[UseScriptTagOptions](#UseScriptTagOptions) \| undefined |-|
+|options|optional params|[UseScriptTagOptions](#usescripttagoptions) \| undefined |-|
 
 ### UseScriptTagOptions
 

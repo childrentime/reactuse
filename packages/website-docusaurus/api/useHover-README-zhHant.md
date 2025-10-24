@@ -1,0 +1,27 @@
+### useHover
+
+#### Returns
+`boolean`
+
+#### Arguments
+|參數名|描述|類型|預設值|
+|---|---|---|---|
+|target|dom对象|[BasicTarget](#basictarget)&lt;T&gt;  **(必填)**|-|
+
+### BasicTarget
+
+```js
+export type BasicTarget<T extends TargetType = Element> = (() => TargetValue<T>) | TargetValue<T> | MutableRefObject<TargetValue<T>>;
+```
+
+### TargetValue
+
+```js
+type TargetValue<T> = T | undefined | null;
+```
+
+### TargetType
+
+```js
+type TargetType = HTMLElement | Element | Window | Document | EventTarget;
+```

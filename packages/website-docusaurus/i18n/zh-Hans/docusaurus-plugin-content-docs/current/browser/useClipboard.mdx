@@ -1,7 +1,7 @@
 ---
 title: useClipboard 用法与示例
 sidebar_label: useClipboard
-description: 将文本复制到用户的剪贴板。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 将文本复制到用户的剪贴板。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useClipboard
 
@@ -20,11 +20,11 @@ function Demo() {
   return (
     <div>
       <p>
-        Clipboard Permission: read <b>{permissionRead}</b> | write&nbsp;
+        剪贴板权限: 读取 <b>{permissionRead}</b> | 写入&nbsp;
         <b>{permissionWrite}</b>
       </p>
       <p>
-        Current copied: <code>{text || "none"}</code>
+        当前复制内容: <code>{text || "无"}</code>
       </p>
       <input
         value={value}
@@ -32,7 +32,7 @@ function Demo() {
           setValue(event.currentTarget.value);
         }}
       />
-      <button onClick={() => copy(value)}>Copy</button>
+      <button onClick={() => copy(value)}>复制</button>
     </div>
   );
 };

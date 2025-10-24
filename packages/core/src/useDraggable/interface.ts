@@ -14,15 +14,22 @@ import type { BasicTarget } from '../utils/domTarget'
  * - y
  * - Whether the element is being dragged
  * set the element position
+ * @returns_zh-Hant 包含以下元素的元組：
+ * - x
+ * - y
+ * - 元素是否在拖動中
+ * - 設定元素的位置
  */
 export type UseDraggable = (
   /**
    * @zh dom对象
+   * @zh-Hant dom對象
    * @en dom element
    */
   target: BasicTarget<HTMLElement | SVGElement>,
   /**
    * @zh 可选参数
+   * @zh-Hant 可選參數
    * @en optional params
    */
   options?: UseDraggableOptions

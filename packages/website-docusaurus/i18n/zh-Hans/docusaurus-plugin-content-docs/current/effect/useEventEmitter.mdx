@@ -1,7 +1,7 @@
 ---
 title: useEventEmitter 用法与示例
 sidebar_label: useEventEmitter
-description: 基础的事件触发器。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 基础的事件触发器。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useEventEmitter
 
@@ -25,10 +25,10 @@ function Demo() {
 
   return (
     <div>
-      <div>state: {state}</div>
-      <button onClick={() => fire(1)}>fire</button>
-      <button onClick={() => dispose()}>disposeALL</button>
-      <button onClick={() => event1.current?.dispose()}>disposeOne</button>
+      <div>状态: {state}</div>
+      <button onClick={() => fire(1)}>触发</button>
+      <button onClick={() => dispose()}>清除所有</button>
+      <button onClick={() => event1.current?.dispose()}>清除单个</button>
     </div>
   );
 };

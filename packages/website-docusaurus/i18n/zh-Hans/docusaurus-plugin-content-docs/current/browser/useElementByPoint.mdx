@@ -1,7 +1,7 @@
 ---
 title: useElementByPoint 用法与示例
 sidebar_label: useElementByPoint
-description: '`useElementByPoint` 是一个用于获取指定坐标下的元素的 Hook。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。'
+description: '`useElementByPoint` 是一个用于获取指定坐标下的元素的 Hook。 本文介绍其用法、最佳实践与代码示例。'
 ---
 # useElementByPoint
 
@@ -9,7 +9,7 @@ description: '`useElementByPoint` 是一个用于获取指定坐标下的元素�
 
 ## Usage
 
-```tsx live noInline
+```tsx live noInline  
 function Demo() {
   const { clientX: x, clientY: y } = useMouse();
   const { element, pause, resume } = useElementByPoint({ x, y });
@@ -61,8 +61,8 @@ function Demo() {
         <span style={{ marginRight: "16px" }}>Y: {y}</span>
       </div>
       <div>
-        <button onClick={pause}>Pause</button>
-        <button onClick={resume}>Resume</button>
+        <button onClick={pause}>暂停</button>
+        <button onClick={resume}>恢复</button>
       </div>
     </>
   );

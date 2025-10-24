@@ -12,13 +12,13 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|props|-|[UsePlatformProps](#UsePlatformProps) \| undefined |-|
+|props|-|[UsePlatformProps](#useplatformprops) \| undefined |-|
 
 ### UsePlatformReturn
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
-|platform|platform|[Platform](#Platform)  **(Required)**|`-`|
+|platform|platform|[Platform](#platform)  **(Required)**|`-`|
 |isInMiniProgram|Whether in mini program|() => boolean  **(Required)**|`-`|
 |isInWechat|whether in wechat|() => boolean  **(Required)**|`-`|
 |isiPhoneX|whether is iPhoneX|() => boolean  **(Required)**|`-`|

@@ -6,7 +6,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|usable|promise or context|[Usable](#Usable)&lt;T&gt;  **(Required)**|-|
+|usable|promise or context|[Usable](#usable)&lt;T&gt;  **(Required)**|-|
 
 ### Usable
 

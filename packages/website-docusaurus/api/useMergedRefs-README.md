@@ -1,12 +1,12 @@
 ### useMergedRef
 
 #### Returns
-`(node: T | null) => void`
+`(node: T | null) => void`: A function that merges multiple refs
 
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|refs|-|[PossibleRef](#PossibleRef)&lt;T&gt;[] |-|
+|refs|-|[PossibleRef](#possibleref)&lt;T&gt;[] |-|
 
 ### PossibleRef
 

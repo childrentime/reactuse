@@ -21,4 +21,4 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|options|-|[UseDarkOptions](#UseDarkOptions)  **(Required)**|-|
+|options|-|[UseDarkOptions](#usedarkoptions)  **(Required)**|-|

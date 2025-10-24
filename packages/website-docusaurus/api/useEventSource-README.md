@@ -3,7 +3,7 @@
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
 |immediate|immediately open the connection, enabled by default|boolean |`-`|
-|autoReconnect|Automatically reconnect when the connection is disconnected|[UseEventSourceAutoReconnectOptions](#UseEventSourceAutoReconnectOptions) |`-`|
+|autoReconnect|Automatically reconnect when the connection is disconnected|[UseEventSourceAutoReconnectOptions](#useeventsourceautoreconnectoptions) |`-`|
 
 ### UseEventSourceAutoReconnectOptions
 
@@ -20,7 +20,7 @@
 |eventSourceRef|EventSource instance|React.MutableRefObject&lt;EventSource \| null&gt;  **(Required)**|`-`|
 |data|The data received|string \| null  **(Required)**|`-`|
 |error|The error occurred|Event \| null  **(Required)**|`-`|
-|status|The status of the connection|[EventSourceStatus](#EventSourceStatus)  **(Required)**|`-`|
+|status|The status of the connection|[EventSourceStatus](#eventsourcestatus)  **(Required)**|`-`|
 |lastEventId|The last event ID|string \| null  **(Required)**|`-`|
 |event|The event name|string \| null  **(Required)**|`-`|
 |close|Close the connection|() => void  **(Required)**|`-`|

@@ -1,0 +1,46 @@
+---
+title: useWebNotification 用法與示例
+sidebar_label: useWebNotification
+description: 通知 API 的 Web 通知接口用於配置並向用戶顯示桌面通知。 :::warning 注意：對於Mac系統的用戶，需要在系統設置中啟用Chrome的通知功能。 如果系統中沒有啟用Chrome的通知，即使前端頁面請求權限成功，也不會顯示通知。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useWebNotification
+
+通知 API 的 Web 通知接口用於配置並向用戶顯示桌面通知。
+
+:::warning
+注意：對於Mac系統的用戶，需要在系統設置中啟用Chrome的通知功能。 如果系統中沒有啟用Chrome的通知，即使前端頁面請求權限成功，也不會顯示通知。
+:::
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const { isSupported, show, close }
+    = useWebNotification(true);
+  return (
+    <div>
+      <p>支持狀態：{JSON.stringify(isSupported)}</p>
+      {isSupported
+        ? (
+          <div>
+            <button
+              onClick={() => {
+                show("你好，來自 ReactUse 的問候！");
+              }}
+            >
+              顯示通知
+            </button>
+            <button onClick={close}>關閉</button>
+          </div>
+          )
+        : (
+          <div>您的瀏覽器不支持 Web 通知 API。</div>
+          )}
+    </div>
+  );
+}
+
+```
+
+%%API%%

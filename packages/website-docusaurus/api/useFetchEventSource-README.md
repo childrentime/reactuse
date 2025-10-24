@@ -22,9 +22,9 @@
 |body|Request body for POST requests|any |`-`|
 |withCredentials|Use credentials|boolean |`-`|
 |immediate|Immediately open the connection, enabled by default|boolean |`-`|
-|autoReconnect|Automatically reconnect when the connection is disconnected|[UseFetchEventSourceAutoReconnectOptions](#UseFetchEventSourceAutoReconnectOptions) |`-`|
+|autoReconnect|Automatically reconnect when the connection is disconnected|[UseFetchEventSourceAutoReconnectOptions](#usefetcheventsourceautoreconnectoptions) |`-`|
 |onOpen|Callback when connection opens|() => void |`-`|
-|onMessage|Callback when message received|(event: [UseFetchEventSourceMessage](#UseFetchEventSourceMessage)) => void |`-`|
+|onMessage|Callback when message received|(event: [UseFetchEventSourceMessage](#usefetcheventsourcemessage)) => void |`-`|
 |onError|Callback when error occurs, return number to retry after specified milliseconds|(error: Error) => number \| void \| null \| undefined |`-`|
 |onClose|Callback when connection closes|() => void |`-`|
 
@@ -42,7 +42,7 @@
 |---|---|---|---|
 |data|The data received|string \| null  **(Required)**|`-`|
 |error|The error occurred|Error \| null  **(Required)**|`-`|
-|status|The status of the connection|[UseFetchEventSourceStatus](#UseFetchEventSourceStatus)  **(Required)**|`-`|
+|status|The status of the connection|[UseFetchEventSourceStatus](#usefetcheventsourcestatus)  **(Required)**|`-`|
 |lastEventId|The last event ID|string \| null  **(Required)**|`-`|
 |event|The event name|string \| null  **(Required)**|`-`|
 |close|Close the connection|() => void  **(Required)**|`-`|
@@ -57,4 +57,4 @@
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
 |url|The URL of the server-sent event|string \| URL  **(Required)**|-|
-|options|EventSource options|[UseFetchEventSourceOptions](#UseFetchEventSourceOptions) \| undefined |-|
+|options|EventSource options|[UseFetchEventSourceOptions](#usefetcheventsourceoptions) \| undefined |-|

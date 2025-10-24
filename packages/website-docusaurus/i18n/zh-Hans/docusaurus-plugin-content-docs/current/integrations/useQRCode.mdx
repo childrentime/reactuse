@@ -1,7 +1,7 @@
 ---
 title: useQRCode 用法与示例
 sidebar_label: useQRCode
-description: '`useQRCode` 是一个用于生成二维码的 Hook。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。'
+description: '`useQRCode` 是一个用于生成二维码的 Hook。 本文介绍其用法、最佳实践与代码示例。'
 ---
 # useQRCode
 
@@ -27,12 +27,12 @@ function Demo() {
       <input
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Enter text to generate QR code"
+        placeholder="输入文本生成二维码"
       />
       <br />
       <br />
       {error && <div style={{ color: "red" }}>{error}</div>}
-      {qrCode && <img src={qrCode} alt="QR Code" />}
+      {qrCode && <img src={qrCode} alt="二维码" />}
     </div>
   );
 }

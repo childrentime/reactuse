@@ -8,8 +8,8 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom element|[BasicTarget](#BasicTarget)&lt;Element&gt; |-|
-|options|optional params|[UseMousePressedOptions](#UseMousePressedOptions) \| undefined |-|
+|target|dom element|[BasicTarget](#basictarget)&lt;Element&gt; |-|
+|options|optional params|[UseMousePressedOptions](#usemousepressedoptions) \| undefined |-|
 
 ### UseMousePressedOptions
 

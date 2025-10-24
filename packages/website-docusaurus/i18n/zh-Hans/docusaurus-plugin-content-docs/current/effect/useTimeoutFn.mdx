@@ -1,7 +1,7 @@
 ---
 title: useTimeoutFn 用法与示例
 sidebar_label: useTimeoutFn
-description: 可取消的 `setTimeout`。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 可取消的 `setTimeout`。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useTimeoutFn
 
@@ -12,10 +12,10 @@ description: 可取消的 `setTimeout`。 本文介绍其用法、最佳实践�
 ```tsx live
 
 function Demo() {
-  const [text, setText] = useState("Please wait for 3 seconds");
+  const [text, setText] = useState("请等待3秒");
   const [isPending, start] = useTimeoutFn(
     () => {
-      setText("Fired!");
+      setText("触发了！");
     },
     3000,
     { immediate: false },
@@ -26,11 +26,11 @@ function Demo() {
       <p>{text}</p>
       <button
         onClick={() => {
-          setText("Please wait for 3 seconds");
+          setText("请等待3秒");
           start();
         }}
       >
-        {isPending ? "Pending" : "Restart"}
+        {isPending ? "等待中" : "重新开始"}
       </button>
     </div>
   );

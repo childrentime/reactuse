@@ -1,0 +1,35 @@
+---
+title: useElementSize 用法與示例
+sidebar_label: useElementSize
+description: 追踪 HTML 元素大小的React Hook. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useElementSize
+
+追踪 HTML 元素大小的React Hook. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const ref = useRef<HTMLTextAreaElement>(null);
+
+  const [width, height] = useElementSize(ref, { box: "border-box" });
+
+  return (
+    <div>
+      <div>調整方框大小以查看變化</div>
+      <br />
+      <textarea
+        ref={ref}
+        disabled
+        style={{ width: 200, height: 200 }}
+        value={`寬度: ${width}\n高度: ${height}`}
+      />
+    </div>
+  );
+};
+
+```
+
+%%API%%

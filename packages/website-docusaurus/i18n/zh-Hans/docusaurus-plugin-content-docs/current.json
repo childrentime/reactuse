@@ -3,14 +3,6 @@
     "message": "Next",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.category.STATE": {
-    "message": "STATE",
-    "description": "The label for category STATE in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.STATE.link.generated-index.description": {
-    "message": "React State Hook",
-    "description": "The generated-index page description for category STATE in sidebar tutorialSidebar"
-  },
   "sidebar.tutorialSidebar.category.Effect": {
     "message": "Effect",
     "description": "The label for category Effect in sidebar tutorialSidebar"
@@ -42,5 +34,13 @@
   "sidebar.tutorialSidebar.category.State.link.generated-index.description": {
     "message": "React State Hook",
     "description": "The generated-index page description for category State in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Integrations": {
+    "message": "Integrations",
+    "description": "The label for category Integrations in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Integrations.link.generated-index.description": {
+    "message": "Integrations React Hook",
+    "description": "The generated-index page description for category Integrations in sidebar tutorialSidebar"
   }
 }

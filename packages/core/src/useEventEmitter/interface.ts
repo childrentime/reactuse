@@ -8,6 +8,10 @@
  * - a function to add lisenter.
  * - fire functiion.
  * stop functiion
+ * @returns_zh-Hant 包含以下元素的元組：
+ * - 添加監聽器的函數。
+ * - 觸發函數。
+ * - 停止函數。
  */
 export type UseEventEmitter = <T, U = void>() => readonly [
   UseEventEmitterEvent<T, U>,

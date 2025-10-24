@@ -1,0 +1,28 @@
+---
+title: useUpdate 用法與示例
+sidebar_label: useUpdate
+description: 强制更新函數。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useUpdate
+
+强制更新函數
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const update = useUpdate();
+
+  return (
+    <>
+      {/* 为了避免 SSR 错误，因为 date.now() 在伺服器和客戶端上不會相同 */}
+      <div suppressHydrationWarning={true}>時間：{Date.now()}</div>
+      <button onClick={update}>更新</button>
+    </>
+  );
+};
+
+```
+
+%%API%%

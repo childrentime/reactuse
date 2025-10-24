@@ -6,7 +6,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|defaultState|default value|[Contrast](#Contrast) \| undefined |`no-preference`|
+|defaultState|default value|[Contrast](#contrast) \| undefined |`no-preference`|
 
 ### Contrast
 

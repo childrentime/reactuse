@@ -1,0 +1,40 @@
+---
+title: useDropZone 用法與示例
+sidebar_label: useDropZone
+description: 創建一个可以拖拽文件的区域。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useDropZone
+
+創建一个可以拖拽文件的区域
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const isOver = useDropZone(ref, (_files) => {});
+  return (
+    <div>
+      <p>將文件拖放到放置區域</p>
+      <div
+        ref={ref}
+        style={{
+          minHeight: 200,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: "1.5rem",
+          background: "rgba(156,163,175,0.1)",
+        }}
+      >
+        <div> 是否在放置區域上方：{JSON.stringify(isOver)}</div>
+      </div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

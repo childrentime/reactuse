@@ -1,0 +1,57 @@
+---
+title: useBroadcastChannel 用法與示例
+sidebar_label: useBroadcastChannel
+description: '`useBroadcastChannel` 是一個允許你在組件中使用 `BroadcastChannel API` 的 hook。 本文介紹其用法、最佳實踐與代碼示例。'
+---
+# useBroadcastChannel
+
+`useBroadcastChannel` 是一個允許你在組件中使用 `BroadcastChannel API` 的 hook。
+
+## Usage
+
+```tsx live
+function Demo() {
+  const { isSupported, data, post, error,timeStamp } = useBroadcastChannel({
+    name: "reactuse-demo-channel",
+  });
+
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (isSupported) {
+      alert(data);
+    }
+  }, [data]);
+
+  return (
+    <div>
+      <p>支持狀態：{JSON.stringify(isSupported)}</p>
+      <p>請在至少兩個標籤頁中打開此頁面</p>
+      <p>
+        <b>頻道：</b> reactuse-demo-channel
+      </p>
+      <p>
+        <b>消息：</b> {data}<br/>
+        <b>時間戳：</b> {timeStamp}
+      </p>
+      <input
+        value={message}
+        onChange={(event) => {
+          setMessage(event.currentTarget.value);
+        }}
+      />
+      <button
+        onClick={() => post(message)}
+        style={{
+          cursor: isSupported ? "pointer" : "not-allowed",
+        }}
+      >
+        發送
+      </button>
+      {error && <p>錯誤：{error.message}</p>}
+    </div>
+  );
+}
+```
+
+%%API%%

@@ -1,0 +1,30 @@
+### useScrollLock
+
+#### Returns
+`readonly [boolean, (flag: boolean) => void]`: 包含以下元素的元組：
+- 是否鎖定。
+- 更新鎖定值的函數。
+
+#### Arguments
+|參數名|描述|類型|預設值|
+|---|---|---|---|
+|target|dom元素|[BasicTarget](#basictarget)&lt;HTMLElement&gt;  **(必填)**|-|
+|initialState|默认值|boolean \| undefined |`false`|
+
+### BasicTarget
+
+```js
+export type BasicTarget<T extends TargetType = Element> = (() => TargetValue<T>) | TargetValue<T> | MutableRefObject<TargetValue<T>>;
+```
+
+### TargetValue
+
+```js
+type TargetValue<T> = T | undefined | null;
+```
+
+### TargetType
+
+```js
+type TargetType = HTMLElement | Element | Window | Document | EventTarget;
+```

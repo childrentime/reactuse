@@ -22,4 +22,4 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|options|-|[UseColorModeOptions](#UseColorModeOptions)&lt;T&gt;  **(Required)**|-|
+|options|-|[UseColorModeOptions](#usecolormodeoptions)&lt;T&gt;  **(Required)**|-|

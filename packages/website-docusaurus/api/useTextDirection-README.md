@@ -8,14 +8,14 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|options|optional params|[UseTextDirectionOptions](#UseTextDirectionOptions) \| undefined |-|
+|options|optional params|[UseTextDirectionOptions](#usetextdirectionoptions) \| undefined |-|
 
 ### UseTextDirectionOptions
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
 |selector|CSS Selector for the target element applying to|string |`'html'`|
-|initialValue|Initial value|[UseTextDirectionValue](#UseTextDirectionValue) |`'ltr'`|
+|initialValue|Initial value|[UseTextDirectionValue](#usetextdirectionvalue) |`'ltr'`|
 
 ### UseTextDirectionValue
 

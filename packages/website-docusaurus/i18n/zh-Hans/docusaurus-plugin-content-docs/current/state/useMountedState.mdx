@@ -1,7 +1,7 @@
 ---
 title: useMountedState 用法与示例
 sidebar_label: useMountedState
-description: 检查组件的挂载状态。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 检查组件的挂载状态。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useMountedState
 
@@ -18,7 +18,7 @@ function Demo() {
   useEffect(() => {
     update(1);
   }, []);
-  return <div>This component is {isMounted() ? "MOUNTED" : "NOT MOUNTED"}</div>;
+  return <div>此组件 {isMounted() ? "已挂载" : "未挂载"}</div>;
 };
 
 ```

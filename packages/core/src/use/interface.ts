@@ -29,10 +29,12 @@ type Usable<T> = Thenable<T> | Context<T>
  * @title Use
  * @returns 解析状态值
  * @returns_en resolved state value
+ * @returns_zh-Hant 解析狀態值
  */
 export type Use = <T>(
   /**
    * @zh promise 或者 context
+   * @zh-Hant promise 或者 context
    * @en promise or context
    */
   usable: Usable<T>

@@ -6,8 +6,8 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|target element|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(Required)**|-|
-|options|optional params|[UseElementBoundingOptions](#UseElementBoundingOptions) \| undefined |-|
+|target|target element|[BasicTarget](#basictarget)&lt;Element&gt;  **(Required)**|-|
+|options|optional params|[UseElementBoundingOptions](#useelementboundingoptions) \| undefined |-|
 
 ### UseElementBoundingOptions
 

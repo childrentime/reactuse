@@ -1,7 +1,7 @@
 ---
 title: useEventSource 用法与示例
 sidebar_label: useEventSource
-description: '`useEventSource` 是一个允许你订阅 EventSource 并实时接收更新的 hook。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。'
+description: '`useEventSource` 是一个允许你订阅 EventSource 并实时接收更新的 hook。 本文介绍其用法、最佳实践与代码示例。'
 ---
 # useEventSource
 
@@ -19,11 +19,11 @@ function Demo() {
 
   return (
     <div>
-      <div>Status: {status}</div>
-      <div>Data: {JSON.stringify(data)}</div>
-      <div>Error: {error}</div>
-      <button onClick={open}>open</button>
-      <button onClick={close}>Close</button>
+      <div>状态: {status}</div>
+      <div>数据: {JSON.stringify(data)}</div>
+      <div>错误: {error}</div>
+      <button onClick={open}>打开</button>
+      <button onClick={close}>关闭</button>
     </div>
   );
 }

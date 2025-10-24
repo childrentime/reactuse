@@ -8,10 +8,15 @@
  * - stop function
  * - start function
  * whether function is running
+ * @returns_zh-Hant 包含以下元素的元組：
+ * - 停止函數。
+ * - 開始函數。
+ * - 函數是否在執行中。
  */
 export type UseRafFn = (
   /**
    * @zh 回调
+   * @zh-Hant 回調
    * @en callback
    */
   callback: FrameRequestCallback,

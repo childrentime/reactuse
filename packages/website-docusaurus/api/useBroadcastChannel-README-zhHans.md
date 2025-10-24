@@ -12,7 +12,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|options|选项|[UseBroadcastChannelOptions](#UseBroadcastChannelOptions)  **(必填)**|-|
+|options|选项|[UseBroadcastChannelOptions](#usebroadcastchanneloptions)  **(必填)**|-|
 
 ### UseBroadcastChannelReturn
 

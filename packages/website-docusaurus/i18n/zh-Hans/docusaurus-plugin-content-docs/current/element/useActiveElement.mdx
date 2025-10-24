@@ -1,7 +1,7 @@
 ---
 title: useActiveElement 用法与示例
 sidebar_label: useActiveElement
-description: React 跟踪 `document.activeElement` 的监听 hook。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: React 跟踪 `document.activeElement` 的监听 hook。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useActiveElement
 
@@ -23,7 +23,7 @@ function Demo() {
 
   return (
     <div>
-      <p>Select the inputs below to see the changes </p>
+      <p>选择下面的输入框以查看变化</p>
       <div style={{ display: "flex", gap: 15, flexWrap: "wrap" }}>
         {arr.map((i) => {
           return <input key={i} placeholder={`${i}`} data-id={i} />;
@@ -31,11 +31,11 @@ function Demo() {
       </div>
       <br />
       <div>
-        Current Active Element:
+        当前活动元素:
         <span> {activeElement?.tagName}</span>
       </div>
        <div>
-        Current Active Element data-key:
+        当前活动元素的data-key:
         <span>{key}</span>
       </div>
     </div>

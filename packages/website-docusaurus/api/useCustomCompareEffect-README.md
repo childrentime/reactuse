@@ -8,7 +8,7 @@
 |---|---|---|---|
 |effect|effect callback|React.EffectCallback  **(Required)**|-|
 |deps|deps|TDeps  **(Required)**|-|
-|depsEqual|deps compare function|[DepsEqualFnType](#DepsEqualFnType)&lt;TDeps&gt;  **(Required)**|-|
+|depsEqual|deps compare function|[DepsEqualFnType](#depsequalfntype)&lt;TDeps&gt;  **(Required)**|-|
 
 ### DepsEqualFnType
 

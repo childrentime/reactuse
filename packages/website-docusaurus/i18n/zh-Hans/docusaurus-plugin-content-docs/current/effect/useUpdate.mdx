@@ -1,7 +1,7 @@
 ---
 title: useUpdate 用法与示例
 sidebar_label: useUpdate
-description: 强制更新函数。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 强制更新函数。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useUpdate
 
@@ -16,9 +16,9 @@ function Demo() {
 
   return (
     <>
-      {/* to avoid ssr error beacause date.now() will not be same in server and client */}
-      <div suppressHydrationWarning={true}>Time: {Date.now()}</div>
-      <button onClick={update}>Update</button>
+      {/* 为了避免 SSR 错误，因为 date.now() 在服务器和客户端上不会相同 */}
+      <div suppressHydrationWarning={true}>时间: {Date.now()}</div>
+      <button onClick={update}>更新</button>
     </>
   );
 };

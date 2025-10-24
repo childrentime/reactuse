@@ -6,6 +6,9 @@
  * @returns 包含以下元素的对象：
  * - width：当前视窗宽度。
  * - height： 当前视窗高度。
+ * @returns_zh-Hant 包含以下元素的對象：
+ * - width：當前視窗寬度。
+ * - height： 當前視窗高度。
  */
 export type UseWindowSize = () => {
   readonly width: number

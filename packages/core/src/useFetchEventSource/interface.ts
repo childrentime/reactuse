@@ -13,18 +13,21 @@ export interface UseFetchEventSourceAutoReconnectOptions {
   /**
    * @en The number of retries, if it is a function, it will be called to determine whether to retry
    * @zh 重试次数，如果是函数，会调用来判断是否重试
+   * @zh-Hant 重試次數，如果是函數，會調用來判斷是否重試
    */
   retries?: number | (() => boolean)
 
   /**
    * @en The delay time before reconnecting (ms)
    * @zh 重连前的延迟时间（毫秒）
+   * @zh-Hant 重連前的延遲時間（毫秒）
    */
   delay?: number
 
   /**
    * @en Callback when reconnection fails
    * @zh 重连失败时的回调
+   * @zh-Hant 重連失敗時的回調
    */
   onFailed?: () => void
 }

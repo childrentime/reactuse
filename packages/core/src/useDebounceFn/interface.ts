@@ -10,20 +10,27 @@ import type { DebounceSettings, DebouncedFunc } from 'lodash'
  * - run：执行函数。
  * - cancel：取消执行函数。
  * - flush: 立即执行函数
+ * @returns_zh-Hant 具有以下元素的對象:
+ * - run：執行函數。
+ * - cancel：取消執行函數。
+ * - flush: 立即執行函數
  */
 export type UseDebounceFn = <T extends (...args: any) => any>(
   /**
    * @zh 要防抖的函数
+   * @zh-Hant 要防抖的函數
    * @en debounce function
    */
   fn: T,
   /**
    * @zh 间隔时间
+   * @zh-Hant 間隔時間
    * @en wait time
    */
   wait?: number,
   /**
    * @zh 传递给 `lodash.debounce` 的属性
+   * @zh-Hant 傳遞給 `lodash.debounce` 的屬性
    * @en options passed to `lodash.debounce`
    */
   options?: DebounceSettings

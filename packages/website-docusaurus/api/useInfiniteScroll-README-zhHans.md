@@ -6,9 +6,9 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|target|dom元素|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(必填)**|-|
-|onLoadMore|加载更多函数|[UseInfiniteScrollLoadMore](#UseInfiniteScrollLoadMore)  **(必填)**|-|
-|options|可选参数|[UseInfiniteScrollOptions](#UseInfiniteScrollOptions) \| undefined |-|
+|target|dom元素|[BasicTarget](#basictarget)&lt;Element&gt;  **(必填)**|-|
+|onLoadMore|加载更多函数|[UseInfiniteScrollLoadMore](#useinfinitescrollloadmore)  **(必填)**|-|
+|options|可选参数|[UseInfiniteScrollOptions](#useinfinitescrolloptions) \| undefined |-|
 
 ### UseInfiniteScrollLoadMore
 
@@ -18,7 +18,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|state|`useScroll` 返回的状态|readonly [number, number, boolean, [UseInfiniteScrollArrivedState](#UseInfiniteScrollArrivedState), [UseInfiniteScrollDirection](#UseInfiniteScrollDirection)]  **(必填)**|-|
+|state|`useScroll` 返回的状态|readonly [number, number, boolean, [UseInfiniteScrollArrivedState](#useinfinitescrollarrivedstate), [UseInfiniteScrollDirection](#useinfinitescrolldirection)]  **(必填)**|-|
 
 ### UseInfiniteScrollOptions
 
@@ -29,7 +29,7 @@
 |preserveScrollPosition|加载更多项目时是否保留当前滚动位置|boolean |`-`|
 |throttle|滚动事件的节流时间，默认关闭。|number |`0`|
 |idle|滚动结束时的检查时间。当配置 `throttle` 时，此配置将设置为 (throttle +idle)。|number |`-`|
-|offset|将到达状态偏移 x 像素|[UseScrollOffset](#UseScrollOffset) |`-`|
+|offset|将到达状态偏移 x 像素|[UseScrollOffset](#usescrolloffset) |`-`|
 |onScroll|滚动的回调|(e: Event) => void |`-`|
 |onStop|滚动结束的回调|(e: Event) => void |`-`|
 |eventListenerOptions|滚动事件参数|boolean \| AddEventListenerOptions |`{capture: false, passive: true}`|

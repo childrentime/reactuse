@@ -1,7 +1,7 @@
 ---
 title: useDraggable 用法与示例
 sidebar_label: useDraggable
-description: 元素拖动。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 元素拖动。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useDraggable
 
@@ -29,7 +29,7 @@ function Demo() {
 
   return (
     <div>
-      <p style={{ textAlign: "center" }}>Check the floating boxes</p>
+      <p style={{ textAlign: "center" }}>检查浮动框</p>
       <div
         ref={el}
         style={{
@@ -43,9 +43,9 @@ function Demo() {
           top: y,
         }}
       >
-        {isDragging ? "Dragging!" : "👋 Drag me!"}
+        {isDragging ? "拖拽中！" : "👋 拖拽我！"}
         <div>
-          I am at {Math.round(x)}, {Math.round(y)}
+          我在 {Math.round(x)}, {Math.round(y)}
         </div>
       </div>
     </div>
@@ -87,7 +87,7 @@ function Demo() {
           });
         }}
       >
-        Set Position
+        设置位置
       </button>
       <div
         ref={el}
@@ -103,9 +103,9 @@ function Demo() {
           whiteSpace: "nowrap",
         }}
       >
-        {isDragging ? "Dragging!" : "👋 Drag me!"}
+        {isDragging ? "拖拽中！" : "👋 拖拽我！"}
         <div style={{ whiteSpace: "nowrap" }}>
-          I am at {Math.round(x)}, {Math.round(y)}
+          我在 {Math.round(x)}, {Math.round(y)}
         </div>
       </div>
     </div>

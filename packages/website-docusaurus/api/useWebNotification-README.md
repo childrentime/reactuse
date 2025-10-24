@@ -13,7 +13,7 @@
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
 |isSupported|whether browser support|boolean  **(Required)**|`-`|
-|show|show function|[UseWebNotificationShow](#UseWebNotificationShow)  **(Required)**|`-`|
+|show|show function|[UseWebNotificationShow](#usewebnotificationshow)  **(Required)**|`-`|
 |close|close function|() => void  **(Required)**|`-`|
 |ensurePermissions|request permissions function|() =&gt; Promise&lt;boolean \| undefined&gt;  **(Required)**|`-`|
 |permissionGranted|permission status|React.MutableRefObject&lt;boolean&gt;  **(Required)**|`-`|

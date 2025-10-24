@@ -1,0 +1,24 @@
+---
+title: useMount 用法與示例
+sidebar_label: useMount
+description: 組件掛載後執行一次副作用的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useMount
+
+組件掛載後執行一次副作用的 React Hook
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [value, setValue] = useState("未掛載");
+  useMount(() => {
+    setValue("已掛載");
+  });
+  return <div>{value}</div>;
+};
+
+```
+
+%%API%%

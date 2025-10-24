@@ -1,7 +1,7 @@
 ---
 title: useClickOutside 用法与示例
 sidebar_label: useClickOutside
-description: 监听元素外部的点击。 对于模式或下拉菜单很有用。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 监听元素外部的点击。 对于模式或下拉菜单很有用。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useClickOutside
 
@@ -23,7 +23,7 @@ function Demo() {
 
   return (
     <div>
-      <button onClick={() => setVisible(true)}> Open Modal</button>
+      <button onClick={() => setVisible(true)}>打开模态框</button>
       {visible && (
         <div
           ref={modalRef}
@@ -54,7 +54,7 @@ function Demo() {
             >
               Demo Modal
             </p>
-            <p>Click outside of the modal to close it.</p>
+            <p>点击模态框外部来关闭它。</p>
           </div>
         </div>
       )}

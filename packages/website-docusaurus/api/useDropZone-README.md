@@ -6,7 +6,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|target element|[BasicTarget](#BasicTarget)&lt;EventTarget&gt;  **(Required)**|-|
+|target|target element|[BasicTarget](#basictarget)&lt;EventTarget&gt;  **(Required)**|-|
 |onDrop|drop callback|((files: File[] \| null) => void) \| undefined |-|
 
 ### BasicTarget

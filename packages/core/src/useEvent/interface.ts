@@ -6,6 +6,7 @@ import type { Fn } from '../utils/types'
 export type UseEvent = <T extends Fn>(
   /**
    * @zh 函数
+   * @zh-Hant 函數
    * @en function
    */
   fn: T

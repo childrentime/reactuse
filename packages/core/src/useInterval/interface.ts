@@ -6,11 +6,13 @@ import type { RefObject } from 'react'
 export type UseInterval = (
   /**
    * @zh 回调
+   * @zh-Hant 回調
    * @en callback
    */
   callback: () => void,
   /**
    * @zh 时间，如果为 `null` 的话则停止计时器
+   * @zh-Hant 時間，如果為 `null` 的話則停止計時器
    * @en Time, if `null` then stop the timer
    */
   delay?: number | null,

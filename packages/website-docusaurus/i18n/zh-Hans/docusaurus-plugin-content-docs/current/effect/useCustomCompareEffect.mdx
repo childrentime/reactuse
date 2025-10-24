@@ -1,7 +1,7 @@
 ---
 title: useCustomCompareEffect 用法与示例
 sidebar_label: useCustomCompareEffect
-description: 修改后的 useEffect，它接受一个比较函数，用于比较依赖项而不是引用相等性。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 修改后的 useEffect，它接受一个比较函数，用于比较依赖项而不是引用相等性。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useCustomCompareEffect
 
@@ -30,16 +30,16 @@ function Demo() {
           setPerson({ name: "joey", id: 1 });
         }}
       >
-        Change Person Name
+        更改姓名
       </button>
       <button
         onClick={() => {
           setPerson({ name: "bob", id: 2 });
         }}
       >
-        Change Person Id
+        更改ID
       </button>
-      <p>useCustomCompareEffect with deep comparison: {count}</p>
+      <p>使用深度比较的useCustomCompareEffect: {count}</p>
     </div>
   );
 };

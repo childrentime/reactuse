@@ -20,22 +20,22 @@ function Demo() {
     = useWebNotification(true);
   return (
     <div>
-      <p>Supported: {JSON.stringify(isSupported)}</p>
+      <p>支持状态: {JSON.stringify(isSupported)}</p>
       {isSupported
         ? (
           <div>
             <button
               onClick={() => {
-                show("Hello, world from ReactUse!");
+                show("你好，来自 ReactUse 的问候！");
               }}
             >
-              Show Notification
+              显示通知
             </button>
-            <button onClick={close}>Close</button>
+            <button onClick={close}>关闭</button>
           </div>
           )
         : (
-          <div>The Notification Web API is not supported in your browser.</div>
+          <div>您的浏览器不支持通知 Web API。</div>
           )}
     </div>
   );

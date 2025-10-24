@@ -1,7 +1,7 @@
 ---
 title: useSessionStorage 用法与示例
 sidebar_label: useSessionStorage
-description: 轻松管理 `sessionStorage`。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 轻松管理 `sessionStorage`。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useSessionStorage
 
@@ -16,10 +16,10 @@ function Demo() {
 
   return (
     <div>
-      <div>Value: {value}</div>
-      <button onClick={() => setValue("bar")}>bar</button>
-      <button onClick={() => setValue("baz")}>baz</button>
-      <button onClick={() => setValue(null)}>Remove</button>
+      <div>值: {value}</div>
+      <button onClick={() => setValue("bar")}>设置为bar</button>
+      <button onClick={() => setValue("baz")}>设置为baz</button>
+      <button onClick={() => setValue(null)}>移除</button>
     </div>
   );
 };

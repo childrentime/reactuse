@@ -1,0 +1,45 @@
+---
+title: useUpdateLayoutEffect 用法與示例
+sidebar_label: useUpdateLayoutEffect
+description: 挂载完成后，在依赖更新的时候执行。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useUpdateLayoutEffect
+
+挂载完成后，在依赖更新的时候执行
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [count, setCount] = useState(0);
+  const [layoutEffectCount, setLayoutEffectCount] = useState(0);
+  const [updateLayoutEffectCount, setUpdateLayoutEffectCount] = useState(0);
+
+  useLayoutEffect(() => {
+    setLayoutEffectCount(c => c + 1);
+  }, [count]);
+
+  useUpdateLayoutEffect(() => {
+    setUpdateLayoutEffectCount(c => c + 1);
+    return () => {
+      // do something
+    };
+  }, [count]); // you can include deps array if necessary
+
+  return (
+    <div>
+      <p>layoutEffect計數：{layoutEffectCount}</p>
+      <p>更新layoutEffect計數：{updateLayoutEffectCount}</p>
+      <p>
+        <button type="button" onClick={() => setCount(c => c + 1)}>
+          重新渲染
+        </button>
+      </p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

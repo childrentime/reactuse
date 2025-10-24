@@ -7,7 +7,7 @@
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
 |callback|callback|MutationCallback  **(Required)**|-|
-|target|dom对象|[BasicTarget](#BasicTarget)  **(Required)**|-|
+|target|dom对象|[BasicTarget](#basictarget)  **(Required)**|-|
 |options|options passed to `MutationObserver`|MutationObserverInit \| undefined |-|
 
 ### BasicTarget

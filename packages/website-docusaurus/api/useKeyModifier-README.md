@@ -6,8 +6,8 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|modifier|key modifier|[KeyModifier](#KeyModifier)  **(Required)**|-|
-|options|optional params|[UseModifierOptions](#UseModifierOptions) \| undefined |-|
+|modifier|key modifier|[KeyModifier](#keymodifier)  **(Required)**|-|
+|options|optional params|[UseModifierOptions](#usemodifieroptions) \| undefined |-|
 
 ### UseModifierOptions
 

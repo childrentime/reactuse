@@ -8,10 +8,14 @@ import type { BasicTarget } from '../utils/domTarget'
  * @returns_en A tuple with the following elements:
  * - whether the mouse is pressed.
  * - the pressed source type
+ * @returns_zh-Hant 包含以下元素的元組：
+ * - 滑鼠是否按下。
+ * - 按下的事件來源。
  */
 export type UseMousePressed = (
   /**
    * @zh dom对象
+   * @zh-Hant dom對象
    * @en dom element
    */
   target?: BasicTarget<Element>,

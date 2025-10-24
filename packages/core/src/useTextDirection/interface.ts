@@ -6,10 +6,14 @@
  * @returns_en A tuple with the following elements:
  * - The current value of the text direction.
  * - A function to update the value of the text direction.
+ * @returns_zh-Hant 包含以下元素的元組：
+ * - 文字方向。
+ * - 更新文字方向值的函數。
  */
 export type UseTextDirection = (
   /**
    * @zh 可选参数
+   * @zh-Hant 可選參數
    * @en optional params
    */
   options?: UseTextDirectionOptions
@@ -22,12 +26,14 @@ export interface UseTextDirectionOptions {
   /**
    * @en CSS Selector for the target element applying to
    * @zh 适用于目标元素的 CSS 选择器
+   * @zh-Hant 適用於目標元素的 CSS 選擇器
    * @defaultValue 'html'
    */
   selector?: string
   /**
    * @en Initial value
    * @zh 初始值
+   * @zh-Hant 初始值
    * @defaultValue 'ltr'
    */
   initialValue?: UseTextDirectionValue

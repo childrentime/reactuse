@@ -12,8 +12,8 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom element|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(Required)**|-|
-|options|optional params|[UseFullScreenOptions](#UseFullScreenOptions) \| undefined |-|
+|target|dom element|[BasicTarget](#basictarget)&lt;Element&gt;  **(Required)**|-|
+|options|optional params|[UseFullScreenOptions](#usefullscreenoptions) \| undefined |-|
 
 ### UseFullScreenOptions
 

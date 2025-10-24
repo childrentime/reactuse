@@ -1,7 +1,7 @@
 ---
 title: useFileDialog 用法与示例
 sidebar_label: useFileDialog
-description: 轻松选取文件。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 轻松选取文件。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useFileDialog
 
@@ -16,7 +16,7 @@ function Demo() {
 
   return (
     <div>
-      <button onClick={() => open()}> Choose files</button>
+      <button onClick={() => open()}>选择文件</button>
       <button
         style={{ marginLeft: 20 }}
         disabled={!files}
@@ -24,12 +24,12 @@ function Demo() {
           reset();
         }}
       >
-        Reset
+        重置
       </button>
       {files && (
         <div>
           <p>
-            You have selected: <b>{files.length} files</b>
+            您已选择: <b>{files.length} 个文件</b>
             {Array.from(files).map((file) => {
               return <li key={file.name}>{file.name}</li>;
             })}
