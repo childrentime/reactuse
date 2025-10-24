@@ -1,7 +1,7 @@
 ---
 title: useLatest 用法与示例
 sidebar_label: useLatest
-description: 跟踪 React State 的最新值。 本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要处理副作用的场景。
+description: 跟踪 React State 的最新值。 本文介绍其用法、最佳实践与代码示例。
 ---
 # useLatest
 
@@ -16,15 +16,15 @@ function Demo() {
   const latestCount = useLatest(count);
   const handleAlertClick = () => {
     setTimeout(() => {
-      alert(`Latest count value: ${latestCount.current}`);
+      alert(`最新的计数值: ${latestCount.current}`);
     }, 3000);
   };
 
   return (
     <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
-      <button onClick={handleAlertClick}>Show alert</button>
+      <p>您点击了 {count} 次</p>
+      <button onClick={() => setCount(count + 1)}>点击我</button>
+      <button onClick={handleAlertClick}>显示警告</button>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 ---
 title: useDoubleClick 用法與示例
 sidebar_label: useDoubleClick
-description: 雙擊跟蹤。 本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要處理副作用的場景。
+description: 雙擊跟蹤。 本文介紹其用法、最佳實踐與代碼示例。
 ---
 # useDoubleClick
 
@@ -13,7 +13,7 @@ description: 雙擊跟蹤。 本文介紹其用法、最佳實踐與代碼示例
 
 function Demo() {
   const element = useRef<HTMLButtonElement>(null);
-  const [text, setText] = useState("no click");
+  const [text, setText] = useState("未點擊");
 
   useDoubleClick({
     target: element,
@@ -26,7 +26,7 @@ function Demo() {
   });
   return (
     <div>
-      <button ref={element}>Click Me</button>
+      <button ref={element}>點擊我</button>
       <p>{text}</p>
     </div>
   );

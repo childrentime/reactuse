@@ -24,16 +24,16 @@ function Demo() {
 
   return (
     <div>
-      <div>Resize the box to see changes</div>
+      <div>調整方框大小以查看變化</div>
       <div>
-        <button onClick={() => stop()}>stop observe</button>
+        <button onClick={() => stop()}>停止觀察</button>
       </div>
       <br />
       <textarea
         ref={ref}
         disabled
         style={{ width: 286, height: 166 }}
-        value={`width: ${width}\nheight: ${height}`}
+        value={`寬度: ${width}\n高度: ${height}`}
       />
     </div>
   );
