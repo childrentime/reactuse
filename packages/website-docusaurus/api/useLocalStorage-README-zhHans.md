@@ -1,9 +1,9 @@
 ### useLocalStorage
 
 #### Returns
-`readonly [T | null, React.Dispatch<React.SetStateAction<T | null>>]`: 包含以下元素的元組：
-- localStorage 的當前值。
-- 更新 localStorage 值的函數。
+`readonly [T | null, React.Dispatch<React.SetStateAction<T | null>>]`: 包含以下元素的元组：
+- localStorage 的当前值。
+- 更新 localStorage 值的函数。
 
 #### Arguments
 |参数名|描述|类型|默认值|

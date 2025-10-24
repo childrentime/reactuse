@@ -1,6 +1,6 @@
 ### useMountedState
 
 #### Returns
-`() => boolean`: 組件的挂載狀態
+`() => boolean`: 组件的挂载状态
 
 #### Arguments

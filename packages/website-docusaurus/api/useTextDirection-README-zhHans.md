@@ -1,9 +1,9 @@
 ### useTextDirection
 
 #### Returns
-`readonly [UseTextDirectionValue, (value: UseTextDirectionValue) => void]`: 包含以下元素的元組：
+`readonly [UseTextDirectionValue, (value: UseTextDirectionValue) => void]`: 包含以下元素的元组：
 - 文字方向。
-- 更新文字方向值的函數。
+- 更新文字方向值的函数。
 
 #### Arguments
 |参数名|描述|类型|默认值|

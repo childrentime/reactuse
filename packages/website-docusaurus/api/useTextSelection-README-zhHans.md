@@ -1,6 +1,6 @@
 ### useTextSelection
 
 #### Returns
-`Selection | null`: 選擇的文本對象
+`Selection | null`: 选择的文本对象
 
 #### Arguments

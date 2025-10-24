@@ -1,9 +1,9 @@
 ### useControlledState
 
 #### Returns
-`[T, (value: T) => void]`: 包含以下元素的元組：
-- 當前值。
-- 更新當前值的函數。
+`[T, (value: T) => void]`: 包含以下元素的元组：
+- 当前值。
+- 更新当前值的函数。
 
 #### Arguments
 |参数名|描述|类型|默认值|

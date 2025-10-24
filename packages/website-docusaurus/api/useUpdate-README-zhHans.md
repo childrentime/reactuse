@@ -1,6 +1,6 @@
 ### useUpdate
 
 #### Returns
-`() => void`: 強制更新函數
+`() => void`: 强制更新函数
 
 #### Arguments

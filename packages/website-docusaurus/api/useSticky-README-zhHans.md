@@ -1,9 +1,9 @@
 ### useSticky
 
 #### Returns
-`[boolean, React.Dispatch<React.SetStateAction<boolean>>]`: 包含以下元素的元組：
-- 當前是否粘滞。
-- 更新粘滞值的函數。
+`[boolean, React.Dispatch<React.SetStateAction<boolean>>]`: 包含以下元素的元组：
+- 当前是否粘滞。
+- 更新粘滞值的函数。
 
 #### Arguments
 |参数名|描述|类型|默认值|

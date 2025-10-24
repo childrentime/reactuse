@@ -1,10 +1,10 @@
 ### useCountdown
 
 #### Returns
-`readonly [string, string, string]`: 包含以下元素的元組：
-- 小時。
-- 分鐘。
-- 秒數。
+`readonly [string, string, string]`: 包含以下元素的元组：
+- 小时。
+- 分钟。
+- 秒数。
 
 #### Arguments
 |参数名|描述|类型|默认值|

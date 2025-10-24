@@ -1,6 +1,6 @@
 ### useOnline
 
 #### Returns
-`boolean | undefined`: 網路是否在線
+`boolean | undefined`: 网络是否在线
 
 #### Arguments

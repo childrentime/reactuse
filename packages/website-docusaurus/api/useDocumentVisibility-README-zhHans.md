@@ -1,7 +1,7 @@
 ### useDocumentVisiblity
 
 #### Returns
-`DocumentVisibilityState`: 文檔可見性
+`DocumentVisibilityState`: 文档可见性
 
 #### Arguments
 |参数名|描述|类型|默认值|

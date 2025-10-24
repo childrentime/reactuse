@@ -10,16 +10,16 @@
 ### useSpeechRecognition
 
 #### Returns
-`{ readonly isSupported: boolean; readonly isListening: boolean; readonly isFinal: boolean; readonly recognition: SpeechRecognition | undefined; readonly result: string; readonly error: SpeechRecognitionErrorEvent | undefined; readonly toggle: (value?: boolean | undefined, startOptions?: Partial<UseSpeechRecognitionOptions> | undefined) => void; readonly start: (startOptions?: Partial<UseSpeechRecognitionOptions> | undefined) => void; readonly stop: () => void; }`: 包含以下元素的對象：
-- 是否支持語音識別。
-- 是否正在監聽。
-- 識別結果是否為最終結果。
-- SpeechRecognition 實例。
-- 識別結果文本。
-- 錯誤信息。
-- 切換監聽狀態的函數。
-- 開始監聽的函數。
-- 停止監聽的函數。
+`{ readonly isSupported: boolean; readonly isListening: boolean; readonly isFinal: boolean; readonly recognition: SpeechRecognition | undefined; readonly result: string; readonly error: SpeechRecognitionErrorEvent | undefined; readonly toggle: (value?: boolean | undefined, startOptions?: Partial<UseSpeechRecognitionOptions> | undefined) => void; readonly start: (startOptions?: Partial<UseSpeechRecognitionOptions> | undefined) => void; readonly stop: () => void; }`: 包含以下元素的对象：
+- 是否支持语音识别。
+- 是否正在监听。
+- 识别结果是否为最终结果。
+- SpeechRecognition 实例。
+- 识别结果文本。
+- 错误信息。
+- 切换监听状态的函数。
+- 开始监听的函数。
+- 停止监听的函数。
 
 #### Arguments
 |参数名|描述|类型|默认值|

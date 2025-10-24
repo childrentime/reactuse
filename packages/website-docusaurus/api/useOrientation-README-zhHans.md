@@ -1,10 +1,10 @@
 ### useOrientation
 
 #### Returns
-`readonly [UseOrientationState, (type: UseOrientationLockType) => any, () => void]`: 包含以下元素的元組：
-- 方向狀態。
-- 鎖定方向。
-- 解鎖方向。
+`readonly [UseOrientationState, (type: UseOrientationLockType) => any, () => void]`: 包含以下元素的元组：
+- 方向状态。
+- 锁定方向。
+- 解锁方向。
 
 #### Arguments
 |参数名|描述|类型|默认值|

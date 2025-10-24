@@ -1,7 +1,7 @@
 ### useMediaQuery
 
 #### Returns
-`boolean`: 是否符合媒體查詢
+`boolean`: 是否符合媒体查询
 
 #### Arguments
 |参数名|描述|类型|默认值|

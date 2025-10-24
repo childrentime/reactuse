@@ -1,6 +1,6 @@
 ### useFirstMountState
 
 #### Returns
-`boolean`: 組件是否剛剛掛載的布爾值
+`boolean`: 组件是否刚刚挂载的布尔值
 
 #### Arguments

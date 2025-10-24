@@ -1,7 +1,7 @@
 ### useMouse
 
 #### Returns
-`UseMouseCursorState`: 滑鼠位置
+`UseMouseCursorState`: 鼠标位置
 
 #### Arguments
 |参数名|描述|类型|默认值|

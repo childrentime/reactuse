@@ -1,9 +1,9 @@
 ### useCssVar
 
 #### Returns
-`readonly [string, (v: string) => void]`: 包含以下元素的元組：
-- css 變數值
-- 更新 css 變數值的函數
+`readonly [string, (v: string) => void]`: 包含以下元素的元组：
+- css 变量值
+- 更新 css 变量值的函数
 
 #### Arguments
 |参数名|描述|类型|默认值|

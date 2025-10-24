@@ -1,7 +1,7 @@
 ### usePreferredColorScheme
 
 #### Returns
-`ColorScheme`: prefers-color-scheme的媒體查詢值
+`ColorScheme`: prefers-color-scheme的媒体查询值
 
 #### Arguments
 |参数名|描述|类型|默认值|

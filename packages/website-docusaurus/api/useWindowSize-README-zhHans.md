@@ -1,8 +1,8 @@
 ### useWindowSize
 
 #### Returns
-`{ readonly width: number; readonly height: number; }`: 包含以下元素的對象：
-- width：當前視窗寬度。
-- height： 當前視窗高度。
+`{ readonly width: number; readonly height: number; }`: 包含以下元素的对象：
+- width：当前视窗宽度。
+- height： 当前视窗高度。
 
 #### Arguments

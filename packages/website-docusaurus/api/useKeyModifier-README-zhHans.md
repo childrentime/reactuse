@@ -1,7 +1,7 @@
 ### useKeyModifier
 
 #### Returns
-`boolean`: 按鍵是否被按下
+`boolean`: 按键是否被按下
 
 #### Arguments
 |参数名|描述|类型|默认值|

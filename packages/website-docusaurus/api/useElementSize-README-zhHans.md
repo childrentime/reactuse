@@ -1,8 +1,8 @@
 ### useElementSize
 
 #### Returns
-`readonly [number, number]`: 包含以下元素的元組：
-- 元素寬度。
+`readonly [number, number]`: 包含以下元素的元组：
+- 元素宽度。
 - 元素高度。
 
 #### Arguments

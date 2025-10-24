@@ -1,11 +1,11 @@
 ### useScriptTag
 
 #### Returns
-`readonly [HTMLScriptElement | null, UseScriptTagStatus, (waitForScriptLoad?: boolean | undefined) => Promise<boolean | HTMLScriptElement>, () => void]`: 包含以下元素的元組：
-- 用來加載資源的 html 元素。
-- 資源加載狀態。
-- 資源加載函數。
-- 資源卸載函數
+`readonly [HTMLScriptElement | null, UseScriptTagStatus, (waitForScriptLoad?: boolean | undefined) => Promise<boolean | HTMLScriptElement>, () => void]`: 包含以下元素的元组：
+- 用来加载资源的 html 元素。
+- 资源加载状态。
+- 资源加载函数。
+- 资源卸载函数
 
 #### Arguments
 |参数名|描述|类型|默认值|

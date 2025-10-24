@@ -1,6 +1,6 @@
 ### useMobileLandscape
 
 #### Returns
-`boolean`: 是否是行動端橫屏
+`boolean`: 是否是移动端横屏
 
 #### Arguments

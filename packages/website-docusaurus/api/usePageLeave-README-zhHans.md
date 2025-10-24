@@ -1,6 +1,6 @@
 ### usePageLeave
 
 #### Returns
-`boolean`: 滑鼠是否離開頁面
+`boolean`: 鼠标是否离开页面
 
 #### Arguments
