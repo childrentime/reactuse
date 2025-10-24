@@ -8,9 +8,9 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|targetElement|dom element|[BasicTarget](#BasicTarget)&lt;HTMLElement&gt;  **(Required)**|-|
-|params|optional params|[UseStickyParams](#UseStickyParams)  **(Required)**|-|
-|scrollElement|scroll container|[BasicTarget](#BasicTarget)&lt;HTMLElement&gt; |-|
+|targetElement|dom element|[BasicTarget](#basictarget)&lt;HTMLElement&gt;  **(Required)**|-|
+|params|optional params|[UseStickyParams](#usestickyparams)  **(Required)**|-|
+|scrollElement|scroll container|[BasicTarget](#basictarget)&lt;HTMLElement&gt; |-|
 
 ### UseStickyParams
 

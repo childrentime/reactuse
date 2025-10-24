@@ -24,4 +24,4 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|options|Optional speech recognition configuration options|[UseSpeechRecognitionOptions](#UseSpeechRecognitionOptions) \| undefined |-|
+|options|Optional speech recognition configuration options|[UseSpeechRecognitionOptions](#usespeechrecognitionoptions) \| undefined |-|

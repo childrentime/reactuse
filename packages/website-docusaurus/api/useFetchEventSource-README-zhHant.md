@@ -22,9 +22,9 @@
 |body|POST 请求的请求体|any |`-`|
 |withCredentials|使用凭证|boolean |`-`|
 |immediate|立即打开连接，默认打开|boolean |`-`|
-|autoReconnect|连接断开时自动重连|[UseFetchEventSourceAutoReconnectOptions](#UseFetchEventSourceAutoReconnectOptions) |`-`|
+|autoReconnect|连接断开时自动重连|[UseFetchEventSourceAutoReconnectOptions](#usefetcheventsourceautoreconnectoptions) |`-`|
 |onOpen|连接打开时的回调|() => void |`-`|
-|onMessage|接收到消息时的回调|(event: [UseFetchEventSourceMessage](#UseFetchEventSourceMessage)) => void |`-`|
+|onMessage|接收到消息时的回调|(event: [UseFetchEventSourceMessage](#usefetcheventsourcemessage)) => void |`-`|
 |onError|发生错误时的回调，返回数字表示多少毫秒后重试|(error: Error) => number \| void \| null \| undefined |`-`|
 |onClose|连接关闭时的回调|() => void |`-`|
 
@@ -42,7 +42,7 @@
 |---|---|---|---|
 |data|接收到的数据|string \| null  **(必填)**|`-`|
 |error|发生的错误|Error \| null  **(必填)**|`-`|
-|status|连接的状态|[UseFetchEventSourceStatus](#UseFetchEventSourceStatus)  **(必填)**|`-`|
+|status|连接的状态|[UseFetchEventSourceStatus](#usefetcheventsourcestatus)  **(必填)**|`-`|
 |lastEventId|最后的事件 ID|string \| null  **(必填)**|`-`|
 |event|事件名|string \| null  **(必填)**|`-`|
 |close|关闭连接|() => void  **(必填)**|`-`|
@@ -57,4 +57,4 @@
 |參數名|描述|類型|預設值|
 |---|---|---|---|
 |url|服务器发送事件的 URL|string \| URL  **(必填)**|-|
-|options|EventSource 选项|[UseFetchEventSourceOptions](#UseFetchEventSourceOptions) \| undefined |-|
+|options|EventSource 选项|[UseFetchEventSourceOptions](#usefetcheventsourceoptions) \| undefined |-|

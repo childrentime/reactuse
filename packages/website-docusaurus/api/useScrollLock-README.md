@@ -8,7 +8,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom element|[BasicTarget](#BasicTarget)&lt;HTMLElement&gt;  **(Required)**|-|
+|target|dom element|[BasicTarget](#basictarget)&lt;HTMLElement&gt;  **(Required)**|-|
 |initialState|default value|boolean \| undefined |`false`|
 
 ### BasicTarget

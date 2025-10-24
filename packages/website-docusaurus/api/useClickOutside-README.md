@@ -6,8 +6,8 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom element|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(Required)**|-|
-|handler|listener fucntion|(evt: [EventType](#EventType)) => void  **(Required)**|-|
+|target|dom element|[BasicTarget](#basictarget)&lt;Element&gt;  **(Required)**|-|
+|handler|listener fucntion|(evt: [EventType](#eventtype)) => void  **(Required)**|-|
 |enabled|whether the listener fucntion is enabled|boolean \| undefined |-|
 
 ### BasicTarget

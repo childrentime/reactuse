@@ -11,8 +11,8 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|target|dom元素|[BasicTarget](#BasicTarget)&lt;Element&gt; \| Document \| Window  **(必填)**|-|
-|options|可选参数|[UseScrollOptions](#UseScrollOptions) \| undefined |-|
+|target|dom元素|[BasicTarget](#basictarget)&lt;Element&gt; \| Document \| Window  **(必填)**|-|
+|options|可选参数|[UseScrollOptions](#usescrolloptions) \| undefined |-|
 
 ### UseScrollOptions
 
@@ -20,7 +20,7 @@
 |---|---|---|---|
 |throttle|滚动事件的节流时间，默认关闭。|number |`0`|
 |idle|滚动结束时的检查时间。当配置 `throttle` 时，此配置将设置为 (throttle +idle)。|number |`-`|
-|offset|将到达状态偏移 x 像素|[UseScrollOffset](#UseScrollOffset) |`-`|
+|offset|将到达状态偏移 x 像素|[UseScrollOffset](#usescrolloffset) |`-`|
 |onScroll|滚动的回调|(e: Event) => void |`-`|
 |onStop|滚动结束的回调|(e: Event) => void |`-`|
 |eventListenerOptions|滚动事件参数|boolean \| AddEventListenerOptions |`{capture: false, passive: true}`|

@@ -10,8 +10,8 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|target|dom对象|[BasicTarget](#BasicTarget)&lt;HTMLElement \| SVGElement&gt;  **(必填)**|-|
-|options|可选参数|[UseDraggableOptions](#UseDraggableOptions) \| undefined |-|
+|target|dom对象|[BasicTarget](#basictarget)&lt;HTMLElement \| SVGElement&gt;  **(必填)**|-|
+|options|可选参数|[UseDraggableOptions](#usedraggableoptions) \| undefined |-|
 
 ### UseDraggableOptions
 
@@ -20,14 +20,14 @@
 |exact|仅当直接单击元素时才开始拖动|boolean |`false`|
 |preventDefault|阻止默认事件|boolean |`false`|
 |stopPropagation|阻止事件冒泡|boolean |`false`|
-|draggingElement|将“pointermove”和“pointerup”事件附加到的dom元素|[BasicTarget](#BasicTarget)&lt;HTMLElement \| SVGElement&gt; |`window`|
-|containerElement|设置拖拽容器边界|[BasicTarget](#BasicTarget)&lt;HTMLElement \| SVGAElement&gt; |`undefined`|
+|draggingElement|将“pointermove”和“pointerup”事件附加到的dom元素|[BasicTarget](#basictarget)&lt;HTMLElement \| SVGElement&gt; |`window`|
+|containerElement|设置拖拽容器边界|[BasicTarget](#basictarget)&lt;HTMLElement \| SVGAElement&gt; |`undefined`|
 |handle|触发拖动事件的dom元素|RefObject&lt;HTMLElement \| SVGElement&gt; |`target`|
-|pointerTypes|监听的事件类型|[PointerType](#PointerType)[] |`['mouse', 'touch', 'pen']`|
-|initialValue|初始的元素位置|[Position](#Position) |`{ x: 0, y: 0 }`|
-|onStart|拖动开始时的回调。 返回“false”以防止拖动|(position: [Position](#Position), event: PointerEvent) => void \| false |`-`|
-|onMove|拖动时候的回调|(position: [Position](#Position), event: PointerEvent) => void |`-`|
-|onEnd|拖动结束的回调|(position: [Position](#Position), event: PointerEvent) => void |`-`|
+|pointerTypes|监听的事件类型|[PointerType](#pointertype)[] |`['mouse', 'touch', 'pen']`|
+|initialValue|初始的元素位置|[Position](#position) |`{ x: 0, y: 0 }`|
+|onStart|拖动开始时的回调。 返回“false”以防止拖动|(position: [Position](#position), event: PointerEvent) => void \| false |`-`|
+|onMove|拖动时候的回调|(position: [Position](#position), event: PointerEvent) => void |`-`|
+|onEnd|拖动结束的回调|(position: [Position](#position), event: PointerEvent) => void |`-`|
 
 ### BasicTarget
 

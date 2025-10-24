@@ -12,13 +12,13 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|props|-|[UsePlatformProps](#UsePlatformProps) \| undefined |-|
+|props|-|[UsePlatformProps](#useplatformprops) \| undefined |-|
 
 ### UsePlatformReturn
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|platform|平台|[Platform](#Platform)  **(必填)**|`-`|
+|platform|平台|[Platform](#platform)  **(必填)**|`-`|
 |isInMiniProgram|是否在小程序中|() => boolean  **(必填)**|`-`|
 |isInWechat|是否在微信中|() => boolean  **(必填)**|`-`|
 |isiPhoneX|是否是 iPhoneX|() => boolean  **(必填)**|`-`|

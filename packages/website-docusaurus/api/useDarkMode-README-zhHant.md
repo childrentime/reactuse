@@ -21,4 +21,4 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|options|-|[UseDarkOptions](#UseDarkOptions)  **(必填)**|-|
+|options|-|[UseDarkOptions](#usedarkoptions)  **(必填)**|-|

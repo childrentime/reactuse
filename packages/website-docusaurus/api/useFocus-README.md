@@ -8,7 +8,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom element|[BasicTarget](#BasicTarget)&lt;HTMLElement \| SVGElement&gt;  **(Required)**|-|
+|target|dom element|[BasicTarget](#basictarget)&lt;HTMLElement \| SVGElement&gt;  **(Required)**|-|
 |initialValue|defaultValue|boolean \| undefined |`false`|
 
 ### BasicTarget

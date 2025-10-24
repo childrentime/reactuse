@@ -24,4 +24,4 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|options|可选的语音识别配置参数|[UseSpeechRecognitionOptions](#UseSpeechRecognitionOptions) \| undefined |-|
+|options|可选的语音识别配置参数|[UseSpeechRecognitionOptions](#usespeechrecognitionoptions) \| undefined |-|

@@ -6,9 +6,9 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom element|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(Required)**|-|
-|onLoadMore|load more function|[UseInfiniteScrollLoadMore](#UseInfiniteScrollLoadMore)  **(Required)**|-|
-|options|optional params|[UseInfiniteScrollOptions](#UseInfiniteScrollOptions) \| undefined |-|
+|target|dom element|[BasicTarget](#basictarget)&lt;Element&gt;  **(Required)**|-|
+|onLoadMore|load more function|[UseInfiniteScrollLoadMore](#useinfinitescrollloadmore)  **(Required)**|-|
+|options|optional params|[UseInfiniteScrollOptions](#useinfinitescrolloptions) \| undefined |-|
 
 ### UseInfiniteScrollLoadMore
 
@@ -18,7 +18,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|state|the return state of `useScroll`|readonly [number, number, boolean, [UseInfiniteScrollArrivedState](#UseInfiniteScrollArrivedState), [UseInfiniteScrollDirection](#UseInfiniteScrollDirection)]  **(Required)**|-|
+|state|the return state of `useScroll`|readonly [number, number, boolean, [UseInfiniteScrollArrivedState](#useinfinitescrollarrivedstate), [UseInfiniteScrollDirection](#useinfinitescrolldirection)]  **(Required)**|-|
 
 ### UseInfiniteScrollOptions
 
@@ -29,7 +29,7 @@
 |preserveScrollPosition|Whether to preserve the current scroll position when loading more items.|boolean |`-`|
 |throttle|Throttle time for scroll event, it's disabled by default.|number |`0`|
 |idle|The check time when scrolling ends.This configuration will be setting to (throttle + idle) when the `throttle` is configured.|number |`-`|
-|offset|Offset arrived states by x pixels|[UseScrollOffset](#UseScrollOffset) |`-`|
+|offset|Offset arrived states by x pixels|[UseScrollOffset](#usescrolloffset) |`-`|
 |onScroll|Trigger it when scrolling.|(e: Event) => void |`-`|
 |onStop|Trigger it when scrolling ends.|(e: Event) => void |`-`|
 |eventListenerOptions|Listener options for scroll event.|boolean \| AddEventListenerOptions |`{capture: false, passive: true}`|

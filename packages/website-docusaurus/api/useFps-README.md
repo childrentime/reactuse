@@ -6,7 +6,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|options|-|[UseFpsOptions](#UseFpsOptions) \| undefined |-|
+|options|-|[UseFpsOptions](#usefpsoptions) \| undefined |-|
 
 ### UseFpsOptions
 

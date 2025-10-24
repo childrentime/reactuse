@@ -22,4 +22,4 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|options|-|[UseColorModeOptions](#UseColorModeOptions)&lt;T&gt;  **(必填)**|-|
+|options|-|[UseColorModeOptions](#usecolormodeoptions)&lt;T&gt;  **(必填)**|-|

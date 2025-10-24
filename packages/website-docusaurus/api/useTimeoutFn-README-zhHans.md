@@ -11,7 +11,7 @@
 |---|---|---|---|
 |cb|回调|(...args: unknown[]) => any  **(必填)**|-|
 |interval|间隔时间|number  **(必填)**|-|
-|options|可选参数|[UseTimeoutFnOptions](#UseTimeoutFnOptions) \| undefined |-|
+|options|可选参数|[UseTimeoutFnOptions](#usetimeoutfnoptions) \| undefined |-|
 
 ### UseTimeoutFnOptions
 

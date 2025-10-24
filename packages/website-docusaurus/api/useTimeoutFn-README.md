@@ -11,7 +11,7 @@
 |---|---|---|---|
 |cb|callback|(...args: unknown[]) => any  **(Required)**|-|
 |interval|wait time|number  **(Required)**|-|
-|options|optional param|[UseTimeoutFnOptions](#UseTimeoutFnOptions) \| undefined |-|
+|options|optional param|[UseTimeoutFnOptions](#usetimeoutfnoptions) \| undefined |-|
 
 ### UseTimeoutFnOptions
 

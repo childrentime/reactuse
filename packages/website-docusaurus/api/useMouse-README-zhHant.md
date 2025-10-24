@@ -6,7 +6,7 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|target|dom元素|[BasicTarget](#BasicTarget) |-|
+|target|dom元素|[BasicTarget](#basictarget) |-|
 
 ### UseMouseCursorState
 

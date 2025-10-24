@@ -8,7 +8,7 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|options|可选参数|[UseMediaDeviceOptions](#UseMediaDeviceOptions) \| undefined |-|
+|options|可选参数|[UseMediaDeviceOptions](#usemediadeviceoptions) \| undefined |-|
 
 ### UseMediaDeviceOptions
 

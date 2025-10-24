@@ -6,7 +6,7 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|options|配置项|[UseElementByPointOptions](#UseElementByPointOptions)&lt;M&gt;  **(必填)**|-|
+|options|配置项|[UseElementByPointOptions](#useelementbypointoptions)&lt;M&gt;  **(必填)**|-|
 
 ### UseElementByPointOptions
 
@@ -26,8 +26,8 @@
 |isSupported|功能是否支持|boolean  **(必填)**|`-`|
 |element|查询到的元素|M extends true ? Element[] : Element \| null  **(必填)**|`-`|
 |isActive|一个 ref，表示一个 pausable 实例是否处于激活状态|boolean  **(必填)**|`-`|
-|pause|暂时暂停效果的执行|[Fn](#Fn)  **(必填)**|`-`|
-|resume|恢复效果|[Fn](#Fn)  **(必填)**|`-`|
+|pause|暂时暂停效果的执行|[Fn](#fn)  **(必填)**|`-`|
+|resume|恢复效果|[Fn](#fn)  **(必填)**|`-`|
 
 ### Fn
 

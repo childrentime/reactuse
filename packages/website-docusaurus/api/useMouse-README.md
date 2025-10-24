@@ -6,7 +6,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom element|[BasicTarget](#BasicTarget) |-|
+|target|dom element|[BasicTarget](#basictarget) |-|
 
 ### UseMouseCursorState
 

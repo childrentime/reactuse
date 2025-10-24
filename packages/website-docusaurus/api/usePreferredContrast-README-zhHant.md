@@ -6,7 +6,7 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|defaultState|默认值|[Contrast](#Contrast) \| undefined |`no-preference`|
+|defaultState|默认值|[Contrast](#contrast) \| undefined |`no-preference`|
 
 ### Contrast
 

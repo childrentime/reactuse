@@ -9,14 +9,14 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|initialState|初始值|[UseOrientationState](#UseOrientationState) \| undefined |-|
+|initialState|初始值|[UseOrientationState](#useorientationstate) \| undefined |-|
 
 ### UseOrientationState
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
 |angle|角度|number  **(必填)**|`-`|
-|type|方向类型|[UseOrientationType](#UseOrientationType) \| undefined  **(必填)**|`-`|
+|type|方向类型|[UseOrientationType](#useorientationtype) \| undefined  **(必填)**|`-`|
 
 ### UseOrientationType
 

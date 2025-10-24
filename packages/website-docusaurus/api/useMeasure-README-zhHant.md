@@ -6,7 +6,7 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|target|dom对象|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(必填)**|-|
+|target|dom对象|[BasicTarget](#basictarget)&lt;Element&gt;  **(必填)**|-|
 |options|可选参数|ResizeObserverOptions \| undefined |-|
 
 ### UseMeasureRect

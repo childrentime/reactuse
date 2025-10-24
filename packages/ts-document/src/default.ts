@@ -31,7 +31,7 @@ export const defaultTypeMap = {
   },
 }
 
-export const defaultLinkFormatter = ({ typeName }: LinkFormatterParam): string => `#${typeName}`
+export const defaultLinkFormatter = ({ typeName }: LinkFormatterParam): string => `#${typeName.toLowerCase()}`
 
 export const defaultMarkdownTableSchema: Record<
   string,

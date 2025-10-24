@@ -8,7 +8,7 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|target|dom元素|[BasicTarget](#BasicTarget)&lt;HTMLElement&gt;  **(必填)**|-|
+|target|dom元素|[BasicTarget](#basictarget)&lt;HTMLElement&gt;  **(必填)**|-|
 |initialState|默认值|boolean \| undefined |`false`|
 
 ### BasicTarget

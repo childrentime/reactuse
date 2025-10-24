@@ -6,7 +6,7 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|options|-|[UseFpsOptions](#UseFpsOptions) \| undefined |-|
+|options|-|[UseFpsOptions](#usefpsoptions) \| undefined |-|
 
 ### UseFpsOptions
 

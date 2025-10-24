@@ -16,4 +16,4 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|props|-|[UseDisclosureProps](#UseDisclosureProps) \| undefined |-|
+|props|-|[UseDisclosureProps](#usedisclosureprops) \| undefined |-|

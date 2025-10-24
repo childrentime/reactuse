@@ -9,7 +9,7 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|options|-|[UseFileDialogOptions](#UseFileDialogOptions) \| undefined |-|
+|options|-|[UseFileDialogOptions](#usefiledialogoptions) \| undefined |-|
 
 ### UseFileDialogOptions
 

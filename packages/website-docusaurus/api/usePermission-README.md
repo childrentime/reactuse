@@ -6,7 +6,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|permissionDesc|permission desc|[UsePermissionGeneralPermissionDescriptor](#UsePermissionGeneralPermissionDescriptor) \| "geolocation" \| "notifications" \| "persistent-storage" \| "push" \| "screen-wake-lock" \| "xr-spatial-tracking" \| "accelerometer" \| "accessibility-events" \| "ambient-light-sensor" \| "background-sync" \| "camera" \| "clipboard-read" \| "clipboard-write" \| "gyroscope" \| "magnetometer" \| "microphone" \| "payment-handler" \| "speaker"  **(Required)**|-|
+|permissionDesc|permission desc|[UsePermissionGeneralPermissionDescriptor](#usepermissiongeneralpermissiondescriptor) \| "geolocation" \| "notifications" \| "persistent-storage" \| "push" \| "screen-wake-lock" \| "xr-spatial-tracking" \| "accelerometer" \| "accessibility-events" \| "ambient-light-sensor" \| "background-sync" \| "camera" \| "clipboard-read" \| "clipboard-write" \| "gyroscope" \| "magnetometer" \| "microphone" \| "payment-handler" \| "speaker"  **(Required)**|-|
 
 ### UsePermissionState
 

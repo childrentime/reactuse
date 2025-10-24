@@ -6,7 +6,7 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|usable|promise 或者 context|[Usable](#Usable)&lt;T&gt;  **(必填)**|-|
+|usable|promise 或者 context|[Usable](#usable)&lt;T&gt;  **(必填)**|-|
 
 ### Usable
 

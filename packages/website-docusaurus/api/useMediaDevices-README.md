@@ -8,7 +8,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|options|optional params|[UseMediaDeviceOptions](#UseMediaDeviceOptions) \| undefined |-|
+|options|optional params|[UseMediaDeviceOptions](#usemediadeviceoptions) \| undefined |-|
 
 ### UseMediaDeviceOptions
 

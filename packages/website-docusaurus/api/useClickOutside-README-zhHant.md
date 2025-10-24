@@ -6,8 +6,8 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|target|dom对象|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(必填)**|-|
-|handler|监听函数|(evt: [EventType](#EventType)) => void  **(必填)**|-|
+|target|dom对象|[BasicTarget](#basictarget)&lt;Element&gt;  **(必填)**|-|
+|handler|监听函数|(evt: [EventType](#eventtype)) => void  **(必填)**|-|
 |enabled|监听函数是否生效|boolean \| undefined |-|
 
 ### BasicTarget

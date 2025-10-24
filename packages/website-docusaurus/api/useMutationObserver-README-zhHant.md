@@ -7,7 +7,7 @@
 |參數名|描述|類型|預設值|
 |---|---|---|---|
 |callback|回调|MutationCallback  **(必填)**|-|
-|target|dom元素|[BasicTarget](#BasicTarget)  **(必填)**|-|
+|target|dom元素|[BasicTarget](#basictarget)  **(必填)**|-|
 |options|传递给 `MutationObserver` 的参数|MutationObserverInit \| undefined |-|
 
 ### BasicTarget

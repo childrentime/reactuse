@@ -6,7 +6,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom element|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(Required)**|-|
+|target|dom element|[BasicTarget](#basictarget)&lt;Element&gt;  **(Required)**|-|
 |options|optional params|ResizeObserverOptions \| undefined |-|
 
 ### UseMeasureRect

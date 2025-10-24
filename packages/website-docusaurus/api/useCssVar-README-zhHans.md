@@ -9,9 +9,9 @@
 |参数名|描述|类型|默认值|
 |---|---|---|---|
 |prop|属性值，比如 --color|string  **(必填)**|-|
-|target|dom元素|[BasicTarget](#BasicTarget)&lt;T&gt;  **(必填)**|-|
+|target|dom元素|[BasicTarget](#basictarget)&lt;T&gt;  **(必填)**|-|
 |defaultValue|默认值|string \| undefined |-|
-|options|可选项|[UseCssVarOptions](#UseCssVarOptions) \| undefined |-|
+|options|可选项|[UseCssVarOptions](#usecssvaroptions) \| undefined |-|
 
 ### UseCssVarOptions
 

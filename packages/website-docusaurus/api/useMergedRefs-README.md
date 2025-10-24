@@ -6,7 +6,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|refs|-|[PossibleRef](#PossibleRef)&lt;T&gt;[] |-|
+|refs|-|[PossibleRef](#possibleref)&lt;T&gt;[] |-|
 
 ### PossibleRef
 

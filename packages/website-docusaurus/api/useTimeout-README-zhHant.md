@@ -10,7 +10,7 @@
 |參數名|描述|類型|預設值|
 |---|---|---|---|
 |ms|间隔时间|number \| undefined |-|
-|options|-|[UseTimeoutOptions](#UseTimeoutOptions) \| undefined |-|
+|options|-|[UseTimeoutOptions](#usetimeoutoptions) \| undefined |-|
 
 ### UseTimeoutOptions
 

@@ -8,7 +8,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|target|dom element|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(Required)**|-|
+|target|dom element|[BasicTarget](#basictarget)&lt;Element&gt;  **(Required)**|-|
 |options|options passed to `resizeObserver`|ResizeObserverOptions \| undefined |-|
 
 ### BasicTarget

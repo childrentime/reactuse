@@ -6,7 +6,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|target|dom元素|[BasicTarget](#BasicTarget)&lt;Element&gt;  **(必填)**|-|
+|target|dom元素|[BasicTarget](#basictarget)&lt;Element&gt;  **(必填)**|-|
 |callback|回调|ResizeObserverCallback  **(必填)**|-|
 |options|`resizeObserver` 参数|ResizeObserverOptions \| undefined |-|
 

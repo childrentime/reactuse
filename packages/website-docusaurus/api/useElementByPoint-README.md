@@ -6,7 +6,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|options|options|[UseElementByPointOptions](#UseElementByPointOptions)&lt;M&gt;  **(Required)**|-|
+|options|options|[UseElementByPointOptions](#useelementbypointoptions)&lt;M&gt;  **(Required)**|-|
 
 ### UseElementByPointOptions
 
@@ -26,8 +26,8 @@
 |isSupported|Whether the feature is supported|boolean  **(Required)**|`-`|
 |element|The queried element|M extends true ? Element[] : Element \| null  **(Required)**|`-`|
 |isActive|A ref indicate whether a pausable instance is active|boolean  **(Required)**|`-`|
-|pause|Temporary pause the effect from executing|[Fn](#Fn)  **(Required)**|`-`|
-|resume|Resume the effects|[Fn](#Fn)  **(Required)**|`-`|
+|pause|Temporary pause the effect from executing|[Fn](#fn)  **(Required)**|`-`|
+|resume|Resume the effects|[Fn](#fn)  **(Required)**|`-`|
 
 ### Fn
 

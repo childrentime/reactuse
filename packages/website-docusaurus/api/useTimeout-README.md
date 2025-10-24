@@ -10,7 +10,7 @@
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
 |ms|wait time|number \| undefined |-|
-|options|-|[UseTimeoutOptions](#UseTimeoutOptions) \| undefined |-|
+|options|-|[UseTimeoutOptions](#usetimeoutoptions) \| undefined |-|
 
 ### UseTimeoutOptions
 

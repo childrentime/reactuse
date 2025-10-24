@@ -12,7 +12,7 @@
 |參數名|描述|類型|預設值|
 |---|---|---|---|
 |callback|回调|(e: MouseEvent \| TouchEvent) => void  **(必填)**|-|
-|options|可选参数|[UseLongPressOptions](#UseLongPressOptions) \| undefined |-|
+|options|可选参数|[UseLongPressOptions](#uselongpressoptions) \| undefined |-|
 
 ### UseLongPressOptions
 

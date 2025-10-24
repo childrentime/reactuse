@@ -8,7 +8,7 @@
 #### Arguments
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|target|dom对象|[BasicTarget](#BasicTarget)&lt;HTMLElement \| SVGElement&gt;  **(必填)**|-|
+|target|dom对象|[BasicTarget](#basictarget)&lt;HTMLElement \| SVGElement&gt;  **(必填)**|-|
 |initialValue|默认值|boolean \| undefined |`false`|
 
 ### BasicTarget

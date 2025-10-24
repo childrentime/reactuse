@@ -6,7 +6,7 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|defaultState|default value|[ColorScheme](#ColorScheme) \| undefined |`no-preference`|
+|defaultState|default value|[ColorScheme](#colorscheme) \| undefined |`no-preference`|
 
 ### ColorScheme
 

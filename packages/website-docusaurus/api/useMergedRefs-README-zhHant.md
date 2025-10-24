@@ -6,7 +6,7 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|refs|-|[PossibleRef](#PossibleRef)&lt;T&gt;[] |-|
+|refs|-|[PossibleRef](#possibleref)&lt;T&gt;[] |-|
 
 ### PossibleRef
 

@@ -16,4 +16,4 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|props|-|[UseDisclosureProps](#UseDisclosureProps) \| undefined |-|
+|props|-|[UseDisclosureProps](#usedisclosureprops) \| undefined |-|

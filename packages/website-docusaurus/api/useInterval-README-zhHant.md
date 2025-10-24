@@ -8,7 +8,7 @@
 |---|---|---|---|
 |callback|回调|() => void  **(必填)**|-|
 |delay|时间，如果为 `null` 的话则停止计时器|number \| null \| undefined |-|
-|options|可选参数|[UseIntervalOptions](#UseIntervalOptions) \| undefined |-|
+|options|可选参数|[UseIntervalOptions](#useintervaloptions) \| undefined |-|
 
 ### UseIntervalOptions
 

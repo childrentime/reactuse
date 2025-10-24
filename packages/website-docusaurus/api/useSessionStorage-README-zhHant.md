@@ -10,13 +10,13 @@
 |---|---|---|---|
 |key|键值|string  **(必填)**|-|
 |defaultValue|默认值|T \| undefined |-|
-|options|可选参数|[UseSessionStorageOptions](#UseSessionStorageOptions)&lt;T&gt; \| undefined |-|
+|options|可选参数|[UseSessionStorageOptions](#usesessionstorageoptions)&lt;T&gt; \| undefined |-|
 
 ### UseSessionStorageOptions
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|serializer|自定义数据序列化|[UseSessionStorageSerializer](#UseSessionStorageSerializer)&lt;T&gt; |`-`|
+|serializer|自定义数据序列化|[UseSessionStorageSerializer](#usesessionstorageserializer)&lt;T&gt; |`-`|
 |onError|错误回调|(error: unknown) => void |``console.error``|
 |effectStorageValue|首次挂载时没有数据时设置到 storage, 已弃用|T \| (() => T) |`-`|
 |mountStorageValue|首次挂载时没有数据时设置到 storage|T \| (() => T) |`-`|
