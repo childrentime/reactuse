@@ -14,23 +14,30 @@ import type { DebounceSettings, DebouncedFunc } from 'lodash'
  * - run：執行函數。
  * - cancel：取消執行函數。
  * - flush: 立即執行函數
+ * @returns_ru Объект со следующими элементами:
+ * - run: выполнить функцию.
+ * - cancel: отменить выполнение функции.
+ * - flush: немедленно выполнить функцию
  */
 export type UseDebounceFn = <T extends (...args: any) => any>(
   /**
    * @zh 要防抖的函数
    * @zh-Hant 要防抖的函數
+   * @ru функция для дебаунса
    * @en debounce function
    */
   fn: T,
   /**
    * @zh 间隔时间
    * @zh-Hant 間隔時間
+   * @ru время ожидания
    * @en wait time
    */
   wait?: number,
   /**
    * @zh 传递给 `lodash.debounce` 的属性
    * @zh-Hant 傳遞給 `lodash.debounce` 的屬性
+   * @ru параметры, передаваемые в `lodash.debounce`
    * @en options passed to `lodash.debounce`
    */
   options?: DebounceSettings

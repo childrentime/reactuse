@@ -12,16 +12,22 @@
  * - 停止函數。
  * - 開始函數。
  * - 函數是否在執行中。
+ * @returns_ru Кортеж со следующими элементами:
+ * - функция остановки.
+ * - функция запуска.
+ * - выполняется ли функция.
  */
 export type UseRafFn = (
   /**
    * @zh 回调
    * @zh-Hant 回調
+   * @ru обратный вызов
    * @en callback
    */
   callback: FrameRequestCallback,
   /**
    * @zh 立即执行
+   * @ru немедленно запустить
    * @en immediatly start
    */
   initiallyActive?: boolean

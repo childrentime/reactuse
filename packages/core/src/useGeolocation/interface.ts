@@ -15,11 +15,17 @@
  * - 獲取坐標的時間戳。
  * - 錯誤。
  * - 瀏覽器是否支援 `geolocation`。
+ * @returns_ru Объект со следующими элементами:
+ * - координаты.
+ * - временная метка получения координат.
+ * - ошибки.
+ * - поддерживает ли браузер `geolocation`.
  */
 export type UseGeolocation = (
   /**
    * @zh 可选 `PositionOptions` 参数
    * @zh-Hant 可選 `PositionOptions` 參數
+   * @ru опциональные параметры `PositionOptions`
    * @en optional `PositionOptions` params
    */
   options?: Partial<PositionOptions>
@@ -29,6 +35,7 @@ export type UseGeolocation = (
   readonly error: GeolocationPositionError | null
   /**
    * @zh 浏览器是否支持 `geolocation`
+   * @ru поддерживает ли браузер `geolocation`
    * @en Whether the browser supports `geolocation`
    */
   readonly isSupported: boolean

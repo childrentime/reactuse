@@ -18,11 +18,18 @@
  * - setTrue: 將值設定為 true 的函數。
  * - setFalse: 將值設定為 false 的函數。
  * - toggle: 切換布林值的函數。
+ * @returns_ru Объект со следующими свойствами:
+ * - value: Текущее булево значение.
+ * - setValue: Функция для прямого установки булева значения.
+ * - setTrue: Функция для установки значения в true.
+ * - setFalse: Функция для установки значения в false.
+ * - toggle: Функция для переключения булева значения.
  */
 export type UseBoolean = (
   /**
    * @zh 初始值，默认为 false
    * @zh-Hant 初始值，預設為 false
+   * @ru Начальное булево значение. По умолчанию false.
    * @en The initial boolean value. Defaults to false.
    */
   initialValue?: boolean

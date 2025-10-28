@@ -7,6 +7,7 @@ export type UseEvent = <T extends Fn>(
   /**
    * @zh 函数
    * @zh-Hant 函數
+   * @ru функция
    * @en function
    */
   fn: T

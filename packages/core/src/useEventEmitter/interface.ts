@@ -12,6 +12,10 @@
  * - 添加監聽器的函數。
  * - 觸發函數。
  * - 停止函數。
+ * @returns_ru Кортеж со следующими элементами:
+ * - функция для добавления слушателя.
+ * - функция запуска.
+ * - функция остановки.
  */
 export type UseEventEmitter = <T, U = void>() => readonly [
   UseEventEmitterEvent<T, U>,

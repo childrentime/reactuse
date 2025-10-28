@@ -19,17 +19,24 @@ import type { BasicTarget } from '../utils/domTarget'
  * - y
  * - 元素是否在拖動中
  * - 設定元素的位置
+ * @returns_ru Кортеж со следующими элементами:
+ * - x
+ * - y
+ * - Перетаскивается ли элемент
+ * - установить позицию элемента
  */
 export type UseDraggable = (
   /**
    * @zh dom对象
    * @zh-Hant dom對象
+   * @ru dom элемент
    * @en dom element
    */
   target: BasicTarget<HTMLElement | SVGElement>,
   /**
    * @zh 可选参数
    * @zh-Hant 可選參數
+   * @ru опциональные параметры
    * @en optional params
    */
   options?: UseDraggableOptions
@@ -42,6 +49,7 @@ export interface UseDraggableOptions {
   /**
    * @en Only start the dragging when click on the element directly
    * @zh 仅当直接单击元素时才开始拖动
+   * @ru начинать перетаскивание только при прямом клике на элемент
    * @defaultValue false
    */
   exact?: boolean
@@ -49,6 +57,7 @@ export interface UseDraggableOptions {
   /**
    * @en Prevent events defaults
    * @zh 阻止默认事件
+   * @ru предотвратить действия по умолчанию
    * @defaultValue false
    */
   preventDefault?: boolean
@@ -56,13 +65,15 @@ export interface UseDraggableOptions {
   /**
    * @en Prevent events propagation
    * @zh 阻止事件冒泡
+   * @ru предотвратить всплытие событий
    * @defaultValue false
    */
   stopPropagation?: boolean
 
   /**
    * @en Element to attach `pointermove` and `pointerup` events to.
-   * @zh 将“pointermove”和“pointerup”事件附加到的dom元素
+   * @zh 将"pointermove"和"pointerup"事件附加到的dom元素
+   * @ru элемент для присоединения событий `pointermove` и `pointerup`
    * @defaultValue window
    */
   draggingElement?: BasicTarget<HTMLElement | SVGElement>
@@ -70,6 +81,7 @@ export interface UseDraggableOptions {
   /**
    * @en Element for calculating bounds (If not set, it will use the event's target).
    * @zh 设置拖拽容器边界
+   * @ru элемент для расчета границ (если не установлен, будет использоваться цель события)
    * @defaultValue undefined
    */
   containerElement?: BasicTarget<HTMLElement | SVGAElement>
@@ -77,6 +89,7 @@ export interface UseDraggableOptions {
   /**
    * @en Handle that triggers the drag event
    * @zh 触发拖动事件的dom元素
+   * @ru элемент, который запускает событие перетаскивания
    * @defaultValue target
    */
   handle?: RefObject<HTMLElement | SVGElement>
@@ -84,6 +97,7 @@ export interface UseDraggableOptions {
   /**
    * @en Pointer types that listen to.
    * @zh 监听的事件类型
+   * @ru типы указателей для прослушивания
    * @defaultValue ['mouse', 'touch', 'pen']
    */
   pointerTypes?: PointerType[]
@@ -91,25 +105,29 @@ export interface UseDraggableOptions {
   /**
    * @en Initial position of the element.
    * @zh 初始的元素位置
+   * @ru начальная позиция элемента
    * @defaultValue { x: 0, y: 0 }
    */
   initialValue?: Position
 
   /**
    * @en Callback when the dragging starts. Return `false` to prevent dragging.
-   * @zh 拖动开始时的回调。 返回“false”以防止拖动
+   * @zh 拖动开始时的回调。 返回"false"以防止拖动
+   * @ru обратный вызов при начале перетаскивания. Верните `false`, чтобы предотвратить перетаскивание
    */
   onStart?: (position: Position, event: PointerEvent) => void | false
 
   /**
    * @en Callback during dragging.
    * @zh 拖动时候的回调
+   * @ru обратный вызов во время перетаскивания
    */
   onMove?: (position: Position, event: PointerEvent) => void
 
   /**
    * @en Callback when dragging end.
    * @zh 拖动结束的回调
+   * @ru обратный вызов при завершении перетаскивания
    */
   onEnd?: (position: Position, event: PointerEvent) => void
 }

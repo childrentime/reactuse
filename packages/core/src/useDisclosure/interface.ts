@@ -6,30 +6,35 @@ export interface UseDisclosureProps {
    * @en Whether the disclosure is open, if passed, it will be controlled
    * @zh 是否打开，传了则为受控
    * @zh-Hant 是否打開，傳了則為受控
+   * @ru открыто ли раскрытие, если передано, будет контролироваться
    */
   isOpen?: boolean
   /**
    * @en default open state
    * @zh 默认打开状态
    * @zh-Hant 預設打開狀態
+   * @ru состояние открытия по умолчанию
    */
   defaultOpen?: boolean
   /**
    * @en Callback when disclosure is closed
    * @zh 关闭时的回调
    * @zh-Hant 關閉時的回調
+   * @ru обратный вызов при закрытии
    */
   onClose?: () => void
   /**
    * @en Callback when disclosure is opened
    * @zh 打开时的回调
    * @zh-Hant 打開時的回調
+   * @ru обратный вызов при открытии
    */
   onOpen?: () => void
   /**
    * @en Callback when disclosure is changed
    * @zh 状态改变时的回调
    * @zh-Hant 狀態改變時的回調
+   * @ru обратный вызов при изменении состояния
    */
   onChange?: (isOpen: boolean | undefined) => void
 }

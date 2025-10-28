@@ -11,11 +11,15 @@ import type { Dispatch, SetStateAction } from 'react'
  * @returns_zh-Hant 包含以下元素的元組：
  * - state 的當前值。
  * - 在 `requestAnimationFrame` 中更新 state 值的函數。
+ * @returns_ru Кортеж со следующими элементами:
+ * - текущее значение state.
+ * - функция для обновления state в `requestAnimationFrame`.
  */
 export type UseRafState = <S>(
   /**
    * @zh 状态值
    * @zh-Hant 狀態值
+   * @ru значение состояния
    * @en state value
    */
   initialState: S | (() => S)

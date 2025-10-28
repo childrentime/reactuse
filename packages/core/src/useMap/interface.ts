@@ -22,11 +22,21 @@
  * - clear: 清除 map 中所有條目的函數。
  * - reset: 將 map 重置為其初始狀態的函數。
  * - size: map 的當前大小。
+ * @returns_ru Объект со следующими свойствами:
+ * - map: Текущий экземпляр Map.
+ * - set: Функция для установки пары ключ-значение в map.
+ * - get: Функция для получения значения по ключу из map.
+ * - remove: Функция для удаления ключа из map и возврата информации о его существовании.
+ * - has: Функция для проверки существования ключа в map.
+ * - clear: Функция для очистки всех записей в map.
+ * - reset: Функция для сброса map к начальному состоянию.
+ * - size: Текущий размер map.
  */
 export type UseMap<K = any, V = any> = (
   /**
    * @zh 初始值，可以为 Map 实例、数组或者一个初始化的函数
    * @zh-Hant 初始值，可以為 Map 實例、數組或者一個初始化的函數
+   * @ru Начальное значение map. Может быть экземпляром Map, массивом пар ключ-значение или функцией, возвращающей начальные записи.
    * @en The initial value of the map. It can be a Map instance, an array of key-value pairs, or a function that returns initial entries.
    */
   initialValue?: Map<K, V> | readonly (readonly [K, V])[] | (() => Map<K, V> | readonly (readonly [K, V])[])

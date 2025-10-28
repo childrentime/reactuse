@@ -3,11 +3,13 @@
  * @returns 权限状态
  * @returns_en permission state
  * @returns_zh-Hant 權限狀態
+ * @returns_ru состояние разрешения
  */
 export type UsePermission = (
   /**
    * @zh 权限描述符
    * @zh-Hant 權限描述符
+   * @ru дескриптор разрешения
    * @en permission desc
    */
   permissionDesc:

@@ -15,24 +15,32 @@
  * - 資源加載狀態。
  * - 資源加載函數。
  * - 資源卸載函數
+ * @returns_ru Кортеж со следующими элементами:
+ * - html элемент, используемый для загрузки ресурсов.
+ * - статус загрузки ресурса.
+ * - функция загрузки ресурса.
+ * - функция разгрузки ресурса.
  */
 export type UseScriptTag = (
   /**
    * @zh 资源地址
    * @zh-Hant 資源地址
    * @en source
+   * @ru адрес ресурса
    */
   src: string,
   /**
    * @zh 资源加载完成的回调
    * @zh-Hant 資源加載完成的回調
    * @en source loaded callback
+   * @ru callback, вызываемый после загрузки ресурса
    */
   onLoaded?: (el: HTMLScriptElement) => void,
   /**
    * @zh 可选参数
    * @zh-Hant 可選參數
    * @en optional params
+   * @ru опциональные параметры
    */
   options?: UseScriptTagOptions
 ) => readonly [

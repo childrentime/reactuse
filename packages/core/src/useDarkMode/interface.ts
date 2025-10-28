@@ -6,6 +6,7 @@ export interface UseDarkOptions {
    * @en CSS Selector for the target element applying to
    * @zh 适用于目标元素的 CSS 选择器
    * @zh-Hant 適用於目標元素的 CSS 選擇器
+   * @ru CSS-селектор для целевого элемента
    * @defaultValue 'html'
    */
   selector?: string
@@ -14,6 +15,7 @@ export interface UseDarkOptions {
    * @en HTML attribute applying the target element
    * @zh 应用到目标元素的 html 属性
    * @zh-Hant 應用到目標元素的 html 屬性
+   * @ru HTML-атрибут для целевого элемента
    * @defaultValue 'class'
    */
   attribute?: string
@@ -21,6 +23,7 @@ export interface UseDarkOptions {
    * @en default value
    * @zh 默认值
    * @zh-Hant 預設值
+   * @ru значение по умолчанию
    * @defaultValue false
    */
   defaultValue?: boolean
@@ -28,6 +31,7 @@ export interface UseDarkOptions {
    * @en Key to persist the data into localStorage/sessionStorage.
    * @zh 将数据持久保存到 localStorage/sessionStorage 的键值
    * @zh-Hant 將資料持久保存到 localStorage/sessionStorage 的鍵值
+   * @ru Ключ для сохранения данных в localStorage/sessionStorage
    * @defaultValue 'reactuses-color-scheme'
    */
   storageKey?: string
@@ -35,6 +39,7 @@ export interface UseDarkOptions {
    * @en Storage object, can be localStorage or sessionStorage
    * @zh 存储对象，可以是localStorage或sessionStorage
    * @zh-Hant 儲存對象，可以是localStorage或sessionStorage
+   * @ru Объект хранилища, может быть localStorage или sessionStorage
    * @defaultValue `localStorage`
    */
   storage?: () => Storage
@@ -42,12 +47,14 @@ export interface UseDarkOptions {
    * @en name dark apply to element
    * @zh  应用到目标元素上黑色类名称
    * @zh-Hant 應用到目標元素上黑色類名稱
+   * @ru имя темного класса для применения к элементу
    */
   classNameDark: string
   /**
    * @en name light apply to element
    * @zh 应用到目标元素上的亮色类名称
    * @zh-Hant 應用到目標元素上的亮色類名稱
+   * @ru имя светлого класса для применения к элементу
    */
   classNameLight: string
 }
@@ -66,6 +73,10 @@ export interface UseDarkOptions {
  * - 黑暗狀態的當前值。
  * - 切換黑暗狀態的功能。
  * - 更新黑暗狀態的功能。
+ * @returns_ru Кортеж со следующими элементами:
+ * - Текущее значение темного режима.
+ * - Функция для переключения темного режима.
+ * - Функция для обновления темного режима.
  */
 export type UseDarkMode = (
   options: UseDarkOptions

@@ -12,6 +12,10 @@
  * - 檔案陣列。
  * - 打開檔案選擇器函數。
  * - 重設函數。
+ * @returns_ru Кортеж со следующими элементами:
+ * - массив файлов.
+ * - функция для открытия диалога выбора файлов.
+ * - функция сброса.
  */
 export type UseFileDialog = (
   options?: UseFileDialogOptions
@@ -28,18 +32,21 @@ export interface UseFileDialogOptions {
   /**
    * @zh 选择多个文件
    * @zh-Hant 選擇多個檔案
+   * @ru выбрать несколько файлов
    * @en choose multiple file
    * @defaultValue true
    */
   multiple?: boolean
   /**
    * @zh 可以接受的文件类型
+   * @ru принимаемые типы файлов
    * @en accept file type
    * @defaultValue '*'
    */
   accept?: string
   /**
    * @zh [指定设备，可以从麦克风或者摄像头中获取文件](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)
+   * @ru [Указать устройство для получения файлов с микрофона или камеры](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)
    * @en [Specify the device to obtain files from the microphone or camera](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)
    * @see [HTMLInputElement Capture](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)
    */

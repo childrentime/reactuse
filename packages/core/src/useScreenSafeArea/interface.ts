@@ -13,12 +13,18 @@ import type { DebouncedFunc } from 'lodash-es'
  * - right safe distance
  * - bottom safe distance
  * - left safe distance
+ * - munual update function
  * @returns_zh-Hant 包含以下元素的元組：
  * - 頂部安全距離。
  * - 右邊安全距離。
  * - 底部安全距離。
  * - 左邊安全距離，
  * - 手動更新函數
- * - munual update function
+ * @returns_ru Кортеж со следующими элементами:
+ * - верхнее безопасное расстояние.
+ * - правое безопасное расстояние.
+ * - нижнее безопасное расстояние.
+ * - левое безопасное расстояние.
+ * - функция ручного обновления.
  */
 export type UseScreenSafeArea = () => readonly [string, string, string, string, DebouncedFunc<() => void>]

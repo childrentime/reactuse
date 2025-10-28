@@ -9,11 +9,15 @@
  * @returns_zh-Hant 包含以下元素的元組：
  * - 媒體設備信息。
  * - 請求媒體設備權限。
+ * @returns_ru Кортеж со следующими элементами:
+ * - Информация о медиаустройствах.
+ * - Функция для запроса разрешений медиаустройств.
  */
 export type UseMediaDevices = (
   /**
    * @zh 可选参数
    * @zh-Hant 可選參數
+   * @ru опциональные параметры
    * @en optional params
    */
   options?: UseMediaDeviceOptions
@@ -38,6 +42,7 @@ export interface UseMediaDeviceOptions {
    * otherwise label and deviceIds could be empty
    * @zh 自动请求权限
    * @zh-Hant 自動請求權限
+   * @ru автоматически запрашивать разрешения
    * @defaultValue false
    */
   requestPermissions?: boolean
@@ -45,6 +50,7 @@ export interface UseMediaDeviceOptions {
    * @en Request for types of media permissions
    * @zh 请求媒体权限类型
    * @zh-Hant 請求媒體權限類型
+   * @ru типы запрашиваемых разрешений для медиа
    * @defaultValue { audio: true, video: true }
    */
   constraints?: MediaStreamConstraints

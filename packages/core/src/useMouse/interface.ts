@@ -5,11 +5,13 @@ import type { BasicTarget } from '../utils/domTarget'
  * @returns 鼠标位置
  * @returns_en Mouse Position
  * @returns_zh-Hant 滑鼠位置
+ * @returns_ru позиция мыши
  */
 export type UseMouse = (
   /**
    * @zh dom元素
    * @zh-Hant dom元素
+   * @ru dom элемент
    * @en dom element
    */
   target?: BasicTarget

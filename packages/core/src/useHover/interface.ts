@@ -7,6 +7,7 @@ export type UseHover = <T extends Element = HTMLDivElement>(
   /**
    * @zh dom对象
    * @zh-Hant dom對象
+   * @ru dom элемент
    * @en dom element
    */
   target: BasicTarget<T>

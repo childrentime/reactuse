@@ -5,6 +5,7 @@ export type UsePreferredContrast = (
   /**
    * @zh 默认值
    * @zh-Hant 預設值
+   * @ru значение по умолчанию
    * @en default value
    * @defaultValue no-preference
    */

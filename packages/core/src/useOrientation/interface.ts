@@ -12,11 +12,16 @@
  * - 方向狀態。
  * - 鎖定方向。
  * - 解鎖方向。
+ * @returns_ru Кортеж со следующими элементами:
+ * - тип ориентации.
+ * - заблокировать ориентацию.
+ * - разблокировать ориентацию.
  */
 export type UseOrientation = (
   /**
    * @zh 初始值
    * @zh-Hant 初始值
+   * @ru начальное значение
    * @en initial value
    */
   initialState?: UseOrientationState
@@ -32,11 +37,13 @@ export type UseOrientation = (
 export interface UseOrientationState {
   /**
    * @zh 角度
+   * @ru угол документа
    * @en document angle
    */
   angle: number
   /**
    * @zh 方向类型
+   * @ru тип ориентации
    * @en orientation type
    */
   type: UseOrientationType | undefined

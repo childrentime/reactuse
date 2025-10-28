@@ -5,6 +5,7 @@ export interface UseBroadcastChannelOptions {
   /**
    * @zh 频道名称
    * @zh-Hant 頻道名稱
+   * @ru название канала
    * @en channel name
    */
   name: string
@@ -17,6 +18,7 @@ export type UseBroadcastChannel = <D, P>(
   /**
    * @zh 选项
    * @zh-Hant 選項
+   * @ru параметры
    * @en options
    */
   options: UseBroadcastChannelOptions
@@ -29,6 +31,7 @@ export interface UseBroadcastChannelReturn<D, P> {
   /**
    * @zh 是否支持
    * @zh-Hant 是否支援
+   * @ru поддерживается ли
    * @en is supported
    */
   readonly isSupported: boolean
@@ -36,6 +39,7 @@ export interface UseBroadcastChannelReturn<D, P> {
   /**
    * @zh 频道
    * @zh-Hant 頻道
+   * @ru канал
    * @en channel
    */
   readonly channel: BroadcastChannel | undefined
@@ -43,6 +47,7 @@ export interface UseBroadcastChannelReturn<D, P> {
   /**
    * @zh 数据
    * @zh-Hant 資料
+   * @ru данные
    * @en data
    */
   readonly data: D | undefined
@@ -50,6 +55,7 @@ export interface UseBroadcastChannelReturn<D, P> {
   /**
    * @zh 发送数据
    * @zh-Hant 發送資料
+   * @ru отправить данные
    * @en post data
    */
   readonly post: (data: P) => void
@@ -57,6 +63,7 @@ export interface UseBroadcastChannelReturn<D, P> {
   /**
    * @zh 关闭
    * @zh-Hant 關閉
+   * @ru закрыть
    * @en close
    */
   readonly close: () => void
@@ -64,6 +71,7 @@ export interface UseBroadcastChannelReturn<D, P> {
   /**
    * @zh 错误
    * @zh-Hant 錯誤
+   * @ru ошибка
    * @en error
    */
   readonly error: Event | null
@@ -71,6 +79,7 @@ export interface UseBroadcastChannelReturn<D, P> {
   /**
    * @zh 是否关闭
    * @zh-Hant 是否關閉
+   * @ru закрыт ли
    * @en is closed
    */
   readonly isClosed: boolean
@@ -78,6 +87,7 @@ export interface UseBroadcastChannelReturn<D, P> {
   /**
    * @zh 时间戳
    * @zh-Hant 時間戳
+   * @ru временная метка
    * @en timestamp
    */
   readonly timeStamp: number

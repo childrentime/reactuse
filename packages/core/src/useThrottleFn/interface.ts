@@ -14,23 +14,30 @@ import type { DebouncedFunc, ThrottleSettings } from 'lodash'
  * - run：執行函數。
  * - cancel：取消執行函數。
  * - flush: 立即執行函數
+ * @returns_ru Объект со следующими элементами:
+ * - run: выполнить функцию.
+ * - cancel: отменить выполнение функции.
+ * - flush: немедленно выполнить функцию
  */
 export type UseThrottleFn = <T extends (...args: any) => any>(
   /**
    * @zh 要节流的函数
    * @zh-Hant 要節流的函數
+   * @ru функция для троттлинга
    * @en Throttle function
    */
   fn: T,
   /**
    * @zh 间隔时间
    * @zh-Hant 間隔時間
+   * @ru время ожидания
    * @en wait time
    */
   wait?: number,
   /**
    * @zh 传递给 `lodash.throttle` 的属性
    * @zh-Hant 傳遞給 `lodash.throttle` 的屬性
+   * @ru параметры, передаваемые в `lodash.throttle`
    * @en options passed to `lodash.throttle`
    */
   options?: ThrottleSettings

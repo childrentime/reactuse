@@ -6,6 +6,7 @@ export interface UseColorModeOptions<T extends string = string> {
    * @en CSS Selector for the target element applying to
    * @zh 适用于目标元素的 CSS 选择器
    * @zh-Hant 適用於目標元素的 CSS 選擇器
+   * @ru CSS-селектор для целевого элемента
    * @defaultValue 'html'
    */
   selector?: string
@@ -14,6 +15,7 @@ export interface UseColorModeOptions<T extends string = string> {
    * @en HTML attribute applying the target element
    * @zh 应用到目标元素的 html 属性
    * @zh-Hant 應用到目標元素的 html 屬性
+   * @ru HTML-атрибут для целевого элемента
    * @defaultValue 'class'
    */
   attribute?: string
@@ -22,6 +24,7 @@ export interface UseColorModeOptions<T extends string = string> {
    * @en Available color modes
    * @zh 可用的颜色模式
    * @zh-Hant 可用的顏色模式
+   * @ru Доступные цветовые режимы
    */
   modes: T[]
 
@@ -29,6 +32,7 @@ export interface UseColorModeOptions<T extends string = string> {
    * @en Default color mode
    * @zh 默认颜色模式
    * @zh-Hant 預設顏色模式
+   * @ru Цветовой режим по умолчанию
    */
   defaultValue?: T
 
@@ -36,6 +40,7 @@ export interface UseColorModeOptions<T extends string = string> {
    * @en Key to persist the data into localStorage/sessionStorage.
    * @zh 将数据持久保存到 localStorage/sessionStorage 的键值
    * @zh-Hant 將資料持久保存到 localStorage/sessionStorage 的鍵值
+   * @ru Ключ для сохранения данных в localStorage/sessionStorage
    * @defaultValue 'reactuses-color-mode'
    */
   storageKey?: string
@@ -44,6 +49,7 @@ export interface UseColorModeOptions<T extends string = string> {
    * @en Storage object, can be localStorage or sessionStorage
    * @zh 存储对象，可以是localStorage或sessionStorage
    * @zh-Hant 儲存對象，可以是localStorage或sessionStorage
+   * @ru Объект хранилища, может быть localStorage или sessionStorage
    * @defaultValue `localStorage`
    */
   storage?: () => Storage | undefined
@@ -52,6 +58,7 @@ export interface UseColorModeOptions<T extends string = string> {
    * @en Function to get initial color mode from system preference
    * @zh 从系统偏好获取初始颜色模式的函数
    * @zh-Hant 從系統偏好獲取初始顏色模式的函數
+   * @ru Функция для получения начального цветового режима из системных настроек
    */
   initialValueDetector?: () => T
 
@@ -59,6 +66,7 @@ export interface UseColorModeOptions<T extends string = string> {
    * @en Mapping of color modes to their corresponding class names or attribute values
    * @zh 颜色模式到对应类名或属性值的映射
    * @zh-Hant 顏色模式到對應類名或屬性值的映射
+   * @ru Сопоставление цветовых режимов с соответствующими именами классов или значениями атрибутов
    */
   modeClassNames?: Partial<Record<T, string>>
 }
@@ -77,6 +85,10 @@ export interface UseColorModeOptions<T extends string = string> {
  * - 當前顏色模式值。
  * - 設定顏色模式的函數。
  * - 循環切換可用模式的函數。
+ * @returns_ru Кортеж со следующими элементами:
+ * - Текущее значение цветового режима.
+ * - Функция для установки цветового режима.
+ * - Функция для циклического переключения доступных режимов.
  */
 export type UseColorMode<T extends string = string> = (
   options: UseColorModeOptions<T>
