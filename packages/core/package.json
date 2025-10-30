@@ -78,7 +78,7 @@
     "@testing-library/dom": "^10.4.0",
     "js-cookie": "^3.0.5",
     "lodash-es": "^4.17.21",
-    "screenfull": "^5.0.0",
+    "screenfull": "^5.2.0",
     "use-sync-external-store": "^1.2.0"
   },
   "devDependencies": {
