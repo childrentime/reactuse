@@ -65,6 +65,7 @@ import { useRafState } from './useRafState'
 import { useReducedMotion } from './useReducedMotion'
 import { useResizeObserver } from './useResizeObserver'
 import { useScreenSafeArea } from './useScreenSafeArea'
+import { useScratch } from './useScratch'
 import { useScriptTag } from './useScriptTag'
 import { useScroll } from './useScroll'
 import { useScrollIntoView } from './useScrollIntoView'
@@ -200,6 +201,7 @@ export {
   useMeasure,
   useHover,
   useScreenSafeArea,
+  useScratch,
   useCssVar,
   useWebNotification,
   useLocationSelector,
@@ -288,6 +290,7 @@ export * from './useRafState/interface'
 export * from './useReducedMotion/interface'
 export * from './useResizeObserver/interface'
 export * from './useScreenSafeArea/interface'
+export * from './useScratch/interface'
 export * from './useScriptTag/interface'
 export * from './useScroll/interface'
 export * from './useScrollIntoView/interface'

@@ -1,0 +1,62 @@
+---
+title: useScratch – Browser Hook Usage & Examples
+sidebar_label: useScratch
+description: React sensor hook that tracks scratching/dragging gestures on an element with mouse and touch support. Learn usage patterns, best practices, and code examples for React developers.
+---
+# useScratch
+
+React sensor hook that tracks scratching/dragging gestures on an element with mouse and touch support.
+
+
+## Usage
+
+```tsx live
+function Demo() {
+  const elementRef = useRef(null);
+  const state = useScratch(elementRef, {
+    onScratchStart: (s) => {
+      console.log('Scratch started:', s);
+    },
+    onScratch: (s) => {
+      console.log('Scratching:', s);
+    },
+    onScratchEnd: (s) => {
+      console.log('Scratch ended:', s);
+    },
+  });
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <div
+        ref={elementRef}
+        style={{
+          width: '300px',
+          height: '200px',
+          border: '1px solid var(--ifm-color-emphasis-300)',
+          borderRadius: '8px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: state.isScratching ? 'var(--ifm-color-emphasis-200)' : 'var(--ifm-background-surface-color)',
+          color: 'var(--ifm-color-content)',
+          cursor: 'pointer',
+          userSelect: 'none',
+        }}
+      >
+        {state.isScratching ? 'Scratching...' : 'Click and drag to scratch'}
+      </div>
+      <div style={{ marginTop: '20px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ifm-color-content)' }}>
+        <div><strong>isScratching:</strong> {state.isScratching ? 'true' : 'false'}</div>
+        {state.x !== undefined && <div><strong>x:</strong> {Math.round(state.x)}</div>}
+        {state.y !== undefined && <div><strong>y:</strong> {Math.round(state.y)}</div>}
+        {state.dx !== undefined && <div><strong>dx:</strong> {Math.round(state.dx)}</div>}
+        {state.dy !== undefined && <div><strong>dy:</strong> {Math.round(state.dy)}</div>}
+      </div>
+    </div>
+  );
+};
+
+```
+
+%%API%%
+
