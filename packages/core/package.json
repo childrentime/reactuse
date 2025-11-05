@@ -84,7 +84,7 @@
   "devDependencies": {
     "@jsdevtools/version-bump-prompt": "^6.1.0",
     "@reactuses/ts-document": "workspace:*",
-    "@testing-library/react": "^16.1.0",
+    "@testing-library/react": "^16.3.0",
     "@types/jest": "^27.5.2",
     "@types/js-cookie": "^3.0.3",
     "@types/lodash": "^4.14.184",
