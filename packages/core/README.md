@@ -1,9 +1,6 @@
 <p align="center">
-<a href="https://github.com/childrentime/reactuse#gh-light-mode-only">
-  <img src="https://reactuse.com/img/og.png#gh-light-mode-only" alt="ReactUse - Collection of essential React Hooks" width="300">
-</a>
-<a href="https://github.com/childrentime/reactuse#gh-dark-mode-only">
-  <img src="https://reactuse.com/img/og-dark.png#gh-dark-mode-only" alt="ReactUse - Collection of essential React Hooks" width="300">
+<a href="https://github.com/childrentime/reactuse">
+  <img src="https://reactuse.com/img/og.png" alt="ReactUse - Collection of essential React Hooks" width="300">
 </a>
 </p>
 
