@@ -1,4 +1,11 @@
-# reactuse
+<p align="center">
+<a href="https://github.com/your-username/your-repo#gh-light-mode-only">
+  <img src="https://reactuse.com/img/og.png#gh-light-mode-only" alt="ReactUse - Collection of essential React Hooks" width="300">
+</a>
+<a href="https://github.com/your-username/your-repo#gh-dark-mode-only">
+  <img src="https://reactuse.com/img/og-dark.png#gh-dark-mode-only" alt="ReactUse - Collection of essential React Hooks" width="300">
+</a>
+</p>
 
 <p align="center">
   <img alt="NPM Version" src="https://img.shields.io/npm/v/@reactuses/core?style=for-the-badge&labelColor=24292e">
@@ -7,14 +14,6 @@
   <img alt="Tree Shaking Friendly" src="https://img.shields.io/badge/Tree%20Shaking-Friendly-brightgreen?style=for-the-badge&labelColor=24292e">
   <img alt="TypeScript Support" src="https://img.shields.io/badge/TypeScript-Support-blue?style=for-the-badge&labelColor=24292e">
 </p>
-
-```bash
-npm i @reactuses/core
-```
-
-**Collection of essential React Hooks Utilities.**
-
----
 
 ## MCP Support
 
