@@ -14,6 +14,27 @@ React side-effect hook that manages a single `localStorage` key
 function Demo() {
   // bind string
   const [value, setValue] = useLocalStorage("my-key", "key");
+   const [myObj, setMyObj] = useLocalStorage(
+    "myObj",
+    {
+      name: "test",
+    },
+    {
+      serializer: {
+        read: (val) => {
+          console.log("read", val);
+
+          return JSON.parse(val);
+        },
+        write: (val) => {
+          console.log("write", val);
+
+          return JSON.stringify(val);
+        },
+      },
+    }
+  );
+  console.log("myObj", myObj);
 
   return (
     <div>

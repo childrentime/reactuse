@@ -329,3 +329,7 @@ function Component() {
 ## 6.1.2(Oct 30, 2025)
 
 - feat: add useScratch hook.
+
+## 6.1.6(Nov 21, 2025)
+
+- fix(createStorage): use `useLatest` to avoid unnecessary re-renders and simplify dependency arrays

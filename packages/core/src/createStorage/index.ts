@@ -5,6 +5,7 @@ import { guessSerializerType } from '../utils/serializer'
 import { useEvent } from '../useEvent'
 import { defaultOnError, defaultOptions } from '../utils/defaults'
 import { useDeepCompareEffect } from '../useDeepCompareEffect'
+import { useLatest } from '../useLatest'
 
 export interface Serializer<T> {
   read: (raw: string) => T
@@ -131,23 +132,26 @@ export default function useStorage<
     mountStorageValue,
     listenToStorageChanges = true,
   } = options
-  const storageValue = mountStorageValue ?? effectStorageValue
+  const storageValueRef = useLatest(mountStorageValue ?? effectStorageValue)
+  const onErrorRef = useLatest(onError)
 
   try {
     storage = getStorage()
   }
   catch (err) {
-    onError(err)
+    onErrorRef.current(err)
   }
 
   const type = guessSerializerType<T | undefined>(defaultValue)
-  const serializer = options.serializer ?? StorageSerializers[type]
+  const serializerRef = useLatest(options.serializer ?? StorageSerializers[type])
 
   const [state, setState] = useState<T | null>(
-    getInitialState(key, defaultValue, storage, serializer, onError),
+    getInitialState(key, defaultValue, storage, serializerRef.current, onError),
   )
 
   useDeepCompareEffect(() => {
+    const serializer = serializerRef.current
+    const storageValue = storageValueRef.current
     const data
       = (storageValue
         ? isFunction(storageValue)
@@ -167,12 +171,12 @@ export default function useStorage<
         }
       }
       catch (e) {
-        onError(e)
+        onErrorRef.current(e)
       }
     }
 
     setState(getStoredValue())
-  }, [key, serializer, storage, onError, storageValue])
+  }, [key, storage])
 
   const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
     valOrFunc => {
@@ -184,10 +188,10 @@ export default function useStorage<
       }
       else {
         try {
-          storage?.setItem(key, serializer.write(currentState))
+          storage?.setItem(key, serializerRef.current.write(currentState))
         }
         catch (e) {
-          onError(e)
+          onErrorRef.current(e)
         }
       }
     },
@@ -197,14 +201,14 @@ export default function useStorage<
     try {
       const raw = storage?.getItem(key)
       if (raw !== undefined && raw !== null) {
-        updateState(serializer.read(raw))
+        updateState(serializerRef.current.read(raw))
       }
       else {
         updateState(null)
       }
     }
     catch (e) {
-      onError(e)
+      onErrorRef.current(e)
     }
   })
 
