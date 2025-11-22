@@ -10,18 +10,51 @@ description: 轻松管理 `localStorage`。 本文介绍其用法、最佳实践
 ## Usage
 
 ```tsx live
-
 function Demo() {
-  // bind string
+  // 绑定字符串
   const [value, setValue] = useLocalStorage("my-key", "key");
+  
+  // 绑定对象（使用自定义序列化器）
+  const [myObj, setMyObj] = useLocalStorage(
+    "myObj",
+    {
+      name: "test",
+    },
+    {
+      serializer: {
+        read: (val) => {
+          console.log("读取", val);
+          return JSON.parse(val);
+        },
+        write: (val) => {
+          console.log("写入", val);
+          return JSON.stringify(val);
+        },
+      },
+    }
+  );
 
   return (
     <div>
-      <div>值: {value}</div>
-      <button onClick={() => setValue("bar")}>设置为bar</button>
-      <button onClick={() => setValue("baz")}>设置为baz</button>
-      {/* delete data from storage */}
-      <button onClick={() => setValue(null)}>移除</button>
+      <div>
+        <h3>字符串值</h3>
+        <div>值: {value}</div>
+        <button onClick={() => setValue("bar")}>设置为 "bar"</button>
+        <button onClick={() => setValue("baz")}>设置为 "baz"</button>
+        <button onClick={() => setValue(null)}>移除</button>
+      </div>
+      
+      <div style={{ marginTop: "20px" }}>
+        <h3>对象值</h3>
+        <div>对象: {JSON.stringify(myObj)}</div>
+        <button onClick={() => setMyObj({ name: "updated" })}>
+          更新对象
+        </button>
+        <button onClick={() => setMyObj({ name: "test", count: 1 })}>
+          添加属性
+        </button>
+        <button onClick={() => setMyObj(null)}>移除对象</button>
+      </div>
     </div>
   );
 };
