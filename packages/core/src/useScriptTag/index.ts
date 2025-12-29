@@ -98,11 +98,19 @@ export const useScriptTag: UseScriptTag = (
       // Event listeners
       el.addEventListener('error', event => {
         setStatus(event.type === 'load' ? 'ready' : 'error')
-        return reject(event)
+        const error = new Error(`Failed to load script: ${src}`)
+        error.name = 'ScriptLoadError'
+        // Preserve the original event for debugging
+        ;(error as any).event = event
+        return reject(error)
       })
       el.addEventListener('abort', event => {
         setStatus(event.type === 'load' ? 'ready' : 'error')
-        return reject(event)
+        const error = new Error(`Script load aborted: ${src}`)
+        error.name = 'ScriptLoadAbortError'
+        // Preserve the original event for debugging
+        ;(error as any).event = event
+        return reject(error)
       })
       el.addEventListener('load', event => {
         setStatus(event.type === 'load' ? 'ready' : 'error')
