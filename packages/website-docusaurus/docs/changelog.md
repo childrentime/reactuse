@@ -341,6 +341,6 @@ function Component() {
 
 - fix(createStorage): use `useLatest` to avoid unnecessary re-renders and simplify dependency arrays
 
-## 6.1.7(Dec 2025)
+## 6.1.8(Dec 2025)
 
 - fix(useMap): fix type parameter support by moving generics into function signature, now `useMap<string, number>()` works correctly
