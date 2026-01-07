@@ -23,7 +23,7 @@
  * - reset: 將 map 重置為其初始狀態的函數。
  * - size: map 的當前大小。
  */
-export type UseMap<K = any, V = any> = (
+export type UseMap = <K = any, V = any>(
   /**
    * @zh 初始值，可以为 Map 实例、数组或者一个初始化的函数
    * @zh-Hant 初始值，可以為 Map 實例、數組或者一個初始化的函數

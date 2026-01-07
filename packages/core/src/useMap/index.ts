@@ -6,7 +6,7 @@ export const useMap: UseMap = <K, V>(
   initialValue?: Map<K, V> | readonly (readonly [K, V])[] | (() => Map<K, V> | readonly (readonly [K, V])[]),
 ) => {
   // avoid exec init code every render
-  const initFunc = () => {
+  const initFunc = (): Map<K, V> => {
     if (typeof initialValue === 'function') {
       const result = initialValue()
       return result instanceof Map ? new Map(result) : new Map(result)
@@ -23,7 +23,7 @@ export const useMap: UseMap = <K, V>(
     return new Map<K, V>()
   }
 
-  const [map, setMap] = useState(initFunc)
+  const [map, setMap] = useState<Map<K, V>>(initFunc)
 
   const set = useEvent((key: K, value: V) => {
     setMap(prevMap => {
