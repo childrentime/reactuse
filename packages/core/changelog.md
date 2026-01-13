@@ -337,3 +337,7 @@ function Component() {
 ## 6.1.8(Dec 2025)
 
 - fix(useMap): fix type parameter support by moving generics into function signature, now `useMap<string, number>()` works correctly
+
+## 6.1.9(Jan 2026)
+
+- fix(useRafState): fix bug where multiple consecutive functional updates would only apply the last one. Now correctly accumulates all updates within the same animation frame, matching React's useState behavior. For example, calling `setState(n => n + 1)` three times consecutively will now correctly increase the value by 3 instead of 1.
