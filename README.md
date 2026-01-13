@@ -55,13 +55,16 @@ Refer to [documentations](https://reactuse.com/) for more details.
 ## Who's Using This
 
 [![PDD](https://img.shields.io/badge/PDD-E_Commerce-orange?style=for-the-badge)](https://www.pinduoduo.com/)
+[![Shopee](https://img.shields.io/badge/Shopee-E_Commerce-red?style=for-the-badge)](https://shopee.com/)
 [![Ctrip](https://img.shields.io/badge/Ctrip-Travel-blue?style=for-the-badge)](https://www.ctrip.com/)
+[![Bambu Lab](https://img.shields.io/badge/Bambu_Lab-3D_Printing-green?style=for-the-badge)](https://bambulab.com/)
 
 ---
 
 ## Documentation & Live Examples
 
 - [Documentation](https://reactuse.com/)
+- [LLM-friendly Documentation](https://reactuse.com/llm.txt) - AI-optimized format with all 112+ hooks
 
 ---
 

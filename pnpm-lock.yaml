@@ -120,9 +120,6 @@ importers:
       '@microsoft/fetch-event-source':
         specifier: ^2.0.1
         version: 2.0.1
-      '@testing-library/dom':
-        specifier: ^10.4.0
-        version: 10.4.1
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
@@ -142,6 +139,9 @@ importers:
       '@reactuses/ts-document':
         specifier: workspace:*
         version: link:../ts-document
+      '@testing-library/dom':
+        specifier: ^10.4.0
+        version: 10.4.1
       '@testing-library/react':
         specifier: ^16.1.0
         version: 16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.24))(@types/react@18.3.24)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -1630,15 +1630,6 @@ packages:
   '@dprint/toml@0.6.4':
     resolution: {integrity: sha512-bZXIUjxr0LIuHWshZr/5mtUkOrnh0NKVZEF6ACojW5z7zkJu7s9sV2mMXm8XQDqN4cJzdHYUYzUyEGdfciaLJA==}
 
-  '@emnapi/core@1.4.5':
-    resolution: {integrity: sha512-XsLw1dEOpkSX/WucdqUhPWP7hDxSvZiY+fsUC14h+FtQ2Ifni4znbBt8punRX+Uj2JG/uDb8nEHVKvrVlvdZ5Q==}
-
-  '@emnapi/runtime@1.4.5':
-    resolution: {integrity: sha512-++LApOtY0pEEz1zrd9vy1/zXVaVJJ/EbAF3u0fXIzPJEDtnITsBGbbK0EkM72amhl/R5b+5xx0Y/QhcVOpuulg==}
-
-  '@emnapi/wasi-threads@1.0.4':
-    resolution: {integrity: sha512-PJR+bOmMOPH8AtcTGAyYNiuJ3/Fcoj2XN/gBEWzDIKh254XO+mM9XoXHk5GNEhodxeMznbg7BlRojVbKN+gC6g==}
-
   '@es-joy/jsdoccomment@0.49.0':
     resolution: {integrity: sha512-xjZTSFgECpb9Ohuk5yMX5RhUEbfeQcuOp8IF60e+wyzWEF0M5xeSgqsfLtvPEX8BIyOX9saZqzuGPmZ8oWc+5Q==}
     engines: {node: '>=16'}
@@ -2208,9 +2199,6 @@ packages:
     resolution: {integrity: sha512-zq24hfuAmmlNZvik0FLI58uE5sriN0WWsQzIlYnzSuKDAHFqJtBFrl/LfB1NLgJT5Y7dEBzaX4yAKqOPrcetaw==}
     engines: {node: '>=18'}
 
-  '@napi-rs/wasm-runtime@0.2.12':
-    resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
-
   '@next/eslint-plugin-next@14.2.32':
     resolution: {integrity: sha512-tyZMX8g4cWg/uPW4NxiJK13t62Pab47SKGJGVZJa6YtFwtfrXovH4j1n9tdpRdXW03PGQBugYEVGM7OhWfytdA==}
 
@@ -2683,9 +2671,6 @@ packages:
 
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
-
-  '@tybys/wasm-util@0.10.0':
-    resolution: {integrity: sha512-VyyPYFlOMNylG45GoAe0xDoLwWuowvf92F9kySqzYh8vmYm7D2u4iUJKa1tOUpS70Ku13ASrOkS4ScXFsTaCNQ==}
 
   '@types/aria-query@5.0.4':
     resolution: {integrity: sha512-rfT93uj5s0PRL7EzccGMs3brplhcrghnDoV26NqKhCAS1hVo+WdNsPvE/yb6ilfr5hi2MEk6d5EWJTKdxg8jVw==}
@@ -11382,22 +11367,6 @@ snapshots:
 
   '@dprint/toml@0.6.4': {}
 
-  '@emnapi/core@1.4.5':
-    dependencies:
-      '@emnapi/wasi-threads': 1.0.4
-      tslib: 2.8.1
-    optional: true
-
-  '@emnapi/runtime@1.4.5':
-    dependencies:
-      tslib: 2.8.1
-    optional: true
-
-  '@emnapi/wasi-threads@1.0.4':
-    dependencies:
-      tslib: 2.8.1
-    optional: true
-
   '@es-joy/jsdoccomment@0.49.0':
     dependencies:
       comment-parser: 1.4.1
@@ -12134,13 +12103,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@napi-rs/wasm-runtime@0.2.12':
-    dependencies:
-      '@emnapi/core': 1.4.5
-      '@emnapi/runtime': 1.4.5
-      '@tybys/wasm-util': 0.10.0
-    optional: true
-
   '@next/eslint-plugin-next@14.2.32':
     dependencies:
       glob: 10.3.10
@@ -12600,11 +12562,6 @@ snapshots:
   '@tsconfig/node14@1.0.3': {}
 
   '@tsconfig/node16@1.0.4': {}
-
-  '@tybys/wasm-util@0.10.0':
-    dependencies:
-      tslib: 2.8.1
-    optional: true
 
   '@types/aria-query@5.0.4': {}
 
@@ -13114,8 +13071,6 @@ snapshots:
     optional: true
 
   '@unrs/resolver-binding-wasm32-wasi@1.11.1':
-    dependencies:
-      '@napi-rs/wasm-runtime': 0.2.12
     optional: true
 
   '@unrs/resolver-binding-win32-arm64-msvc@1.11.1':

@@ -75,7 +75,6 @@
   },
   "dependencies": {
     "@microsoft/fetch-event-source": "^2.0.1",
-    "@testing-library/dom": "^10.4.0",
     "js-cookie": "^3.0.5",
     "lodash-es": "^4.17.21",
     "screenfull": "^5.0.0",
@@ -84,6 +83,7 @@
   "devDependencies": {
     "@jsdevtools/version-bump-prompt": "^6.1.0",
     "@reactuses/ts-document": "workspace:*",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.1.0",
     "@types/jest": "^27.5.2",
     "@types/js-cookie": "^3.0.3",

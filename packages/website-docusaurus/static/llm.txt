@@ -1,0 +1,1013 @@
+# ReactUse - Collection of Essential React Hooks
+
+Website: https://reactuse.com | GitHub: https://github.com/childrentime/reactuse | NPM: https://www.npmjs.com/package/@reactuses/core
+
+## Overview
+
+ReactUse is a comprehensive collection of custom React Hooks designed to supercharge your functional components. It provides a wide range of reusable hooks for state management, side effects, DOM manipulation, browser APIs, and more.
+
+## Key Features
+
+- Tree-shakable: Only bundle the hooks you use
+- TypeScript Support: Full type definitions included
+- SSR Compatible: Works with Next.js and other SSR frameworks
+- Minimal Dependencies: Lightweight with only essential dependencies
+- Modern React: Built for React 16.8+ with hooks
+- Well Documented: Comprehensive docs with live examples
+
+## Installation
+
+```bash
+npm i @reactuses/core
+# or
+yarn add @reactuses/core
+# or
+pnpm add @reactuses/core
+```
+
+## Quick Start
+
+```tsx
+import { useToggle } from '@reactuses/core'
+
+function Demo() {
+  const [on, toggle] = useToggle(true)
+
+  return (
+    <div>
+      <div>{on ? 'ON' : 'OFF'}</div>
+      <button onClick={toggle}>Toggle</button>
+      <button onClick={() => toggle(true)}>set ON</button>
+      <button onClick={() => toggle(false)}>set OFF</button>
+    </div>
+  )
+}
+```
+
+## Documentation Structure
+
+The hooks are organized into the following categories:
+
+### State
+
+React State Hook (24 hooks available)
+
+### Effect
+
+React Effect Hook (20 hooks available)
+
+### Element
+
+React Dom Element Hook (19 hooks available)
+
+### Browser
+
+React BOM Hook (48 hooks available)
+
+### Integrations
+
+Integrations React Hook (1 hooks available)
+
+
+## Complete Hook Reference
+
+### State Hooks
+
+#### use
+
+`use` is a polyfill hook to resolve promises state for React v18 and below. Note that it only implements the ability to consume promises. For React v19 and abov
+
+Documentation: https://reactuse.com/state/use/
+
+Usage: `import { use } from '@reactuses/core'`
+
+#### useBoolean
+
+React state hook that manages a boolean value. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useBoolean/
+
+Usage: `import { useBoolean } from '@reactuses/core'`
+
+#### useControlled
+
+`useControlled` is a custom hook that helps you manage controlled components. It is a wrapper around `useState` that allows you to control the value of a compon
+
+Documentation: https://reactuse.com/state/useControlled/
+
+Usage: `import { useControlled } from '@reactuses/core'`
+
+#### useCookie
+
+React hook that facilitates the storage, updating and deletion of values within the CookieStore
+
+Documentation: https://reactuse.com/state/useCookie/
+
+Usage: `import { useCookie } from '@reactuses/core'`
+
+#### useCountDown
+
+React State Hooks that return the minutes gracefull. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useCountDown/
+
+Usage: `import { useCountDown } from '@reactuses/core'`
+
+#### useCounter
+
+React state hook that tracks a numeric value. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useCounter/
+
+Usage: `import { useCounter } from '@reactuses/core'`
+
+#### useCycleList
+
+Cycle through a list of items. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useCycleList/
+
+Usage: `import { useCycleList } from '@reactuses/core'`
+
+#### useDebounce
+
+React hooks that [debounce](https://lodash.com/docs/4.17.15#debounce) value. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useDebounce/
+
+Usage: `import { useDebounce } from '@reactuses/core'`
+
+#### useDisclosure
+
+`useDisclosure` is a hook that provides all the tools you need to create a disclosure widget. Disclosure widgets are used to show or hide content. This hook pro
+
+Documentation: https://reactuse.com/state/useDisclosure/
+
+Usage: `import { useDisclosure } from '@reactuses/core'`
+
+#### useFirstMountState
+
+React state hook that returns true if component is just mounted. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useFirstMountState/
+
+Usage: `import { useFirstMountState } from '@reactuses/core'`
+
+#### useHover
+
+Detect if mouse is over given element. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useHover/
+
+Usage: `import { useHover } from '@reactuses/core'`
+
+#### useLatest
+
+React state hook that returns the latest state as described in the [React hooks
+
+Documentation: https://reactuse.com/state/useLatest/
+
+Usage: `import { useLatest } from '@reactuses/core'`
+
+#### useLocalStorage
+
+React side-effect hook that manages a single `localStorage` key. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useLocalStorage/
+
+Usage: `import { useLocalStorage } from '@reactuses/core'`
+
+#### useMap
+
+React state hook that manages a Map. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useMap/
+
+Usage: `import { useMap } from '@reactuses/core'`
+
+#### useMergedRefs
+
+`useMergedRefs` is a hook that merges multiple refs into a single ref. Use this hook when you need to use more than one ref on a single dom node. Learn usage pa
+
+Documentation: https://reactuse.com/state/useMergedRefs/
+
+Usage: `import { useMergedRefs } from '@reactuses/core'`
+
+#### useMountedState
+
+Lifecycle hook providing ability to check component's mount state. Returns a function that will return `true` if component mounted and `false` otherwise. Learn
+
+Documentation: https://reactuse.com/state/useMountedState/
+
+Usage: `import { useMountedState } from '@reactuses/core'`
+
+#### usePrevious
+
+React state hook that returns the previous state as described in the [React
+
+Documentation: https://reactuse.com/state/usePrevious/
+
+Usage: `import { usePrevious } from '@reactuses/core'`
+
+#### useRafState
+
+React state hook that only updates state in the callback of
+
+Documentation: https://reactuse.com/state/useRafState/
+
+Usage: `import { useRafState } from '@reactuses/core'`
+
+#### useSessionStorage
+
+React side-effect hook that manages a single `sessionStorage` key. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useSessionStorage/
+
+Usage: `import { useSessionStorage } from '@reactuses/core'`
+
+#### useSetState
+
+useState wrapper to work with state like in class component. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useSetState/
+
+Usage: `import { useSetState } from '@reactuses/core'`
+
+#### useSupported
+
+Check to see if your browser supports some feature. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useSupported/
+
+Usage: `import { useSupported } from '@reactuses/core'`
+
+#### useTextSelection
+
+Track user text selection based on [document.getSelection](https://developer.mozilla.org/en-US/docs/Web/API/Document/getSelection)
+
+Documentation: https://reactuse.com/state/useTextSelection/
+
+Usage: `import { useTextSelection } from '@reactuses/core'`
+
+#### useThrottle
+
+React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) value. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useThrottle/
+
+Usage: `import { useThrottle } from '@reactuses/core'`
+
+#### useToggle
+
+React state hook that tracks value of a boolean. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/state/useToggle/
+
+Usage: `import { useToggle } from '@reactuses/core'`
+
+
+### Effect Hooks
+
+#### useAsyncEffect
+
+React useEffect with async await support. Note it don't support generator function. Learn usage patterns, best practices, and code examples for React developers
+
+Documentation: https://reactuse.com/effect/useAsyncEffect/
+
+Usage: `import { useAsyncEffect } from '@reactuses/core'`
+
+#### useCustomCompareEffect
+
+A modified useEffect hook that accepts a comparator which is used for comparison on dependencies instead of reference equality. Learn usage patterns, best pract
+
+Documentation: https://reactuse.com/effect/useCustomCompareEffect/
+
+Usage: `import { useCustomCompareEffect } from '@reactuses/core'`
+
+#### useDebounceFn
+
+React hooks that [debounce](https://lodash.com/docs/4.17.15#debounce) function. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/effect/useDebounceFn/
+
+Usage: `import { useDebounceFn } from '@reactuses/core'`
+
+#### useDeepCompareEffect
+
+A modified useEffect hook that is using deep comparison on its dependencies instead of reference equality. Learn usage patterns, best practices, and code exampl
+
+Documentation: https://reactuse.com/effect/useDeepCompareEffect/
+
+Usage: `import { useDeepCompareEffect } from '@reactuses/core'`
+
+#### useEvent
+
+Basic implementation of [React RFC useEvent](https://github.com/reactjs/rfcs/pull/220). It lets you define event handlers that can read the latest props/state but have always stable function identity
+
+Documentation: https://reactuse.com/effect/useEvent/
+
+Usage: `import { useEvent } from '@reactuses/core'`
+
+#### useEventEmitter
+
+A basic eventemitter. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/effect/useEventEmitter/
+
+Usage: `import { useEventEmitter } from '@reactuses/core'`
+
+#### useEventListener
+
+Use EventListener with ease. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/effect/useEventListener/
+
+Usage: `import { useEventListener } from '@reactuses/core'`
+
+#### useInterval
+
+A declarative interval hook based on [Dan Abramov's article on overreacted.io](https://overreacted.io/making-setinterval-declarative-with-react-hooks/). The interval can be paused by setting the delay to null
+
+Documentation: https://reactuse.com/effect/useInterval/
+
+Usage: `import { useInterval } from '@reactuses/core'`
+
+#### useIsomorphicLayoutEffect
+
+`useIsomorphicLayoutEffect` that does not show warning when server-side rendering, see [Alex Reardon's
+
+Documentation: https://reactuse.com/effect/useIsomorphicLayoutEffect/
+
+Usage: `import { useIsomorphicLayoutEffect } from '@reactuses/core'`
+
+#### useMount
+
+React lifecycle hook that executes a function after the component is mounted. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/effect/useMount/
+
+Usage: `import { useMount } from '@reactuses/core'`
+
+#### useOnceEffect
+
+A Hook that avoids React18 useEffect run twice. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/effect/useOnceEffect/
+
+Usage: `import { useOnceEffect } from '@reactuses/core'`
+
+#### useOnceLayoutEffect
+
+A Hook that avoids React18 useLayoutEffect run twice. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/effect/useOnceLayoutEffect/
+
+Usage: `import { useOnceLayoutEffect } from '@reactuses/core'`
+
+#### useRafFn
+
+Call function on every [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame). With controls of pausing and resuming
+
+Documentation: https://reactuse.com/effect/useRafFn/
+
+Usage: `import { useRafFn } from '@reactuses/core'`
+
+#### useThrottleFn
+
+React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) function. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/effect/useThrottleFn/
+
+Usage: `import { useThrottleFn } from '@reactuses/core'`
+
+#### useTimeout
+
+Update value after a given time. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/effect/useTimeout/
+
+Usage: `import { useTimeout } from '@reactuses/core'`
+
+#### useTimeoutFn
+
+Wrapper for setTimeout with controls. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/effect/useTimeoutFn/
+
+Usage: `import { useTimeoutFn } from '@reactuses/core'`
+
+#### useUnmount
+
+React lifecycle hook that calls a function when the component will unmount. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/effect/useUnmount/
+
+Usage: `import { useUnmount } from '@reactuses/core'`
+
+#### useUpdate
+
+React utility hook that returns a function that forces component to re-render when called. Learn usage patterns, best practices, and code examples for React dev
+
+Documentation: https://reactuse.com/effect/useUpdate/
+
+Usage: `import { useUpdate } from '@reactuses/core'`
+
+#### useUpdateEffect
+
+React effect hook that ignores the first invocation (e.g. on mount). The signature is exactly the same as the `useEffect` hook. Learn usage patterns, best pract
+
+Documentation: https://reactuse.com/effect/useUpdateEffect/
+
+Usage: `import { useUpdateEffect } from '@reactuses/core'`
+
+#### useUpdateLayoutEffect
+
+React layoutEffect hook that ignores the first invocation (e.g. on mount). The signature is exactly the same as the `useLayoutEffect` hook. Learn usage patterns
+
+Documentation: https://reactuse.com/effect/useUpdateLayoutEffect/
+
+Usage: `import { useUpdateLayoutEffect } from '@reactuses/core'`
+
+
+### Element Hooks
+
+#### useActiveElement
+
+React Sensor Hooks that tracks document.activeElement. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/element/useActiveElement/
+
+Usage: `import { useActiveElement } from '@reactuses/core'`
+
+#### useClickAway
+
+Listen for clicks outside of an element. Alias for useClickOutside. Useful for modal or dropdown. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/element/useClickAway/
+
+Usage: `import { useClickAway } from '@reactuses/core'`
+
+#### useClickOutside
+
+Listen for clicks outside of an element. Useful for modal or dropdown. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/element/useClickOutside/
+
+Usage: `import { useClickOutside } from '@reactuses/core'`
+
+#### useDocumentVisibility
+
+React Sensor Hook that tracks [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState)
+
+Documentation: https://reactuse.com/element/useDocumentVisibility/
+
+Usage: `import { useDocumentVisibility } from '@reactuses/core'`
+
+#### useDoubleClick
+
+React sensor hook that controls double click and single click. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/element/useDoubleClick/
+
+Usage: `import { useDoubleClick } from '@reactuses/core'`
+
+#### useDraggable
+
+Make elements draggable. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/element/useDraggable/
+
+Usage: `import { useDraggable } from '@reactuses/core'`
+
+#### useDropZone
+
+Create an zone where files can be dropped. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/element/useDropZone/
+
+Usage: `import { useDropZone } from '@reactuses/core'`
+
+#### useElementBounding
+
+React Element Hook that tracks bounding box of an HTML element. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/element/useElementBounding/
+
+Usage: `import { useElementBounding } from '@reactuses/core'`
+
+#### useElementSize
+
+React Sensor Hook that tracks size of an HTML element. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)
+
+Documentation: https://reactuse.com/element/useElementSize/
+
+Usage: `import { useElementSize } from '@reactuses/core'`
+
+#### useElementVisibility
+
+React Element Hooks that tracks the visibility of an element within the viewport. A wrapper of `useIntersectionObserver`. Learn usage patterns, best practices,
+
+Documentation: https://reactuse.com/element/useElementVisibility/
+
+Usage: `import { useElementVisibility } from '@reactuses/core'`
+
+#### useFocus
+
+React Sensor Hooks that tracks element foucs state. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/element/useFocus/
+
+Usage: `import { useFocus } from '@reactuses/core'`
+
+#### useIntersectionObserver
+
+React sensor hook that tracks the changes in the intersection of a target element with an ancestor element or with a top-level document's viewport. Uses the [In
+
+Documentation: https://reactuse.com/element/useIntersectionObserver/
+
+Usage: `import { useIntersectionObserver } from '@reactuses/core'`
+
+#### useMeasure
+
+React sensor hook that tracks dimensions of an HTML element using the Resize Observer API. Learn usage patterns, best practices, and code examples for React dev
+
+Documentation: https://reactuse.com/element/useMeasure/
+
+Usage: `import { useMeasure } from '@reactuses/core'`
+
+#### useMutationObserver
+
+Watch for changes being made to the DOM tree. [MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
+
+Documentation: https://reactuse.com/element/useMutationObserver/
+
+Usage: `import { useMutationObserver } from '@reactuses/core'`
+
+#### useResizeObserver
+
+Watch size of an HTML element. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)
+
+Documentation: https://reactuse.com/element/useResizeObserver/
+
+Usage: `import { useResizeObserver } from '@reactuses/core'`
+
+#### useSticky
+
+React Hook that tracks element sticky. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/element/useSticky/
+
+Usage: `import { useSticky } from '@reactuses/core'`
+
+#### useWindowFocus
+
+React Element Hook that tracks window focus with `window.onfocus` and `window.onblur` events. Learn usage patterns, best practices, and code examples for React
+
+Documentation: https://reactuse.com/element/useWindowFocus/
+
+Usage: `import { useWindowFocus } from '@reactuses/core'`
+
+#### useWindowScroll
+
+useWindowScroll is a React Hook that is used to get the scroll position of the browser window. Learn usage patterns, best practices, and code examples for React
+
+Documentation: https://reactuse.com/element/useWindowScroll/
+
+Usage: `import { useWindowScroll } from '@reactuses/core'`
+
+#### useWindowSize
+
+React Element Hooks that tracks window size. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/element/useWindowSize/
+
+Usage: `import { useWindowSize } from '@reactuses/core'`
+
+
+### Browser Hooks
+
+#### useBroadcastChannel
+
+`useBroadcastChannel` is a hook that allows you to use the `BroadcastChannel API` in your components. Learn usage patterns, best practices, and code examples fo
+
+Documentation: https://reactuse.com/browser/useBroadcastChannel/
+
+Usage: `import { useBroadcastChannel } from '@reactuses/core'`
+
+#### useClipboard
+
+Copy text to a user's clipboard. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useClipboard/
+
+Usage: `import { useClipboard } from '@reactuses/core'`
+
+#### useColorMode
+
+import Details from "@theme/Details"; Reactive color mode (theme) with auto data persistence and flexible configuration. <Details summary="click to open"> For server-side rendered applications, since it's
+
+Documentation: https://reactuse.com/browser/useColorMode/
+
+Usage: `import { useColorMode } from '@reactuses/core'`
+
+#### useCopyToClipboard
+
+Copy text to a user's clipboard. Alias for useClipboard. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useCopyToClipboard/
+
+Usage: `import { useCopyToClipboard } from '@reactuses/core'`
+
+#### useCssVar
+
+Manipulate CSS variables. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useCssVar/
+
+Usage: `import { useCssVar } from '@reactuses/core'`
+
+#### useDarkMode
+
+import Details from "@theme/Details"; dark mode with auto data persistence. <Details summary="click to open"> For server-side rendered applications, since it's
+
+Documentation: https://reactuse.com/browser/useDarkMode/
+
+Usage: `import { useDarkMode } from '@reactuses/core'`
+
+#### useDevicePixelRatio
+
+`useDevicePixelRatio` is a hook that returns the device pixel ratio of the screen. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useDevicePixelRatio/
+
+Usage: `import { useDevicePixelRatio } from '@reactuses/core'`
+
+#### useElementByPoint
+
+`useElementByPoint` is a hook that returns the element at a given point. It is useful for implementing drag and drop, or for any other use case where you need t
+
+Documentation: https://reactuse.com/browser/useElementByPoint/
+
+Usage: `import { useElementByPoint } from '@reactuses/core'`
+
+#### useEventSource
+
+`useEventSource` is a hook that allows you to subscribe to an EventSource and receive updates in real-time. Learn usage patterns, best practices, and code examp
+
+Documentation: https://reactuse.com/browser/useEventSource/
+
+Usage: `import { useEventSource } from '@reactuses/core'`
+
+#### useEyeDropper
+
+Use [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) to pick color
+
+Documentation: https://reactuse.com/browser/useEyeDropper/
+
+Usage: `import { useEyeDropper } from '@reactuses/core'`
+
+#### useFavicon
+
+React side-effect hook sets the favicon of the page. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useFavicon/
+
+Usage: `import { useFavicon } from '@reactuses/core'`
+
+#### useFetchEventSource
+
+`useFetchEventSource` is a hook that allows you to subscribe to an EventSource using HTTP methods like POST and receive updates in real-time.
+
+Documentation: https://reactuse.com/browser/useFetchEventSource/
+
+Usage: `import { useFetchEventSource } from '@reactuses/core'`
+
+#### useFileDialog
+
+Open file dialog with ease. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useFileDialog/
+
+Usage: `import { useFileDialog } from '@reactuses/core'`
+
+#### useFps
+
+React Sensor Hooks that tracks FPS (frames per second). Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useFps/
+
+Usage: `import { useFps } from '@reactuses/core'`
+
+#### useFullscreen
+
+Display an element full-screen. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useFullscreen/
+
+Usage: `import { useFullscreen } from '@reactuses/core'`
+
+#### useGeolocation
+
+React Sensor Hooks that tracks [Geolocation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+
+Documentation: https://reactuse.com/browser/useGeolocation/
+
+Usage: `import { useGeolocation } from '@reactuses/core'`
+
+#### useIdle
+
+React sensor hook that tracks if user on the page is idle. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useIdle/
+
+Usage: `import { useIdle } from '@reactuses/core'`
+
+#### useInfiniteScroll
+
+Infinite scrolling of the element. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useInfiniteScroll/
+
+Usage: `import { useInfiniteScroll } from '@reactuses/core'`
+
+#### useKeyModifier
+
+React Sensor Hook that tracks state of any of the [supported
+
+Documentation: https://reactuse.com/browser/useKeyModifier/
+
+Usage: `import { useKeyModifier } from '@reactuses/core'`
+
+#### useLocationSelector
+
+Selectively retrieve properties from location. This hook will only re-render when the value you return is changed. For more information,
+
+Documentation: https://reactuse.com/browser/useLocationSelector/
+
+Usage: `import { useLocationSelector } from '@reactuses/core'`
+
+#### useLongPress
+
+React sensor hook that fires a callback after long pressing. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useLongPress/
+
+Usage: `import { useLongPress } from '@reactuses/core'`
+
+#### useMediaDevices
+
+React sensor hook that tracks connected hardware devices. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useMediaDevices/
+
+Usage: `import { useMediaDevices } from '@reactuses/core'`
+
+#### useMediaQuery
+
+Ease with media query. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useMediaQuery/
+
+Usage: `import { useMediaQuery } from '@reactuses/core'`
+
+#### useMobileLandscape
+
+React hook that returns `true` if the mobile device is in landscape mode and `false` otherwise. Learn usage patterns, best practices, and code examples for Reac
+
+Documentation: https://reactuse.com/browser/useMobileLandscape/
+
+Usage: `import { useMobileLandscape } from '@reactuses/core'`
+
+#### useMouse
+
+React sensor hooks that track cursor positio. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useMouse/
+
+Usage: `import { useMouse } from '@reactuses/core'`
+
+#### useMousePressed
+
+React Sensor Hook that tracks mouse pressing state. Triggered by mousedown touchstart on target element and released by mouseup mouseleave touchend touchcancel
+
+Documentation: https://reactuse.com/browser/useMousePressed/
+
+Usage: `import { useMousePressed } from '@reactuses/core'`
+
+#### useNetwork
+
+Tracks the state of browser's network connection. As of the standard it is not guaranteed that browser connected to the Internet, it only guarantees the network
+
+Documentation: https://reactuse.com/browser/useNetwork/
+
+Usage: `import { useNetwork } from '@reactuses/core'`
+
+#### useObjectUrl
+
+Creates an URL for the provided `File`, `Blob`, or `MediaSource` via
+
+Documentation: https://reactuse.com/browser/useObjectUrl/
+
+Usage: `import { useObjectUrl } from '@reactuses/core'`
+
+#### useOnline
+
+A wrapper of `useNetwork`. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useOnline/
+
+Usage: `import { useOnline } from '@reactuses/core'`
+
+#### useOrientation
+
+React sensor hook that tracks screen orientation of user's device. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useOrientation/
+
+Usage: `import { useOrientation } from '@reactuses/core'`
+
+#### usePageLeave
+
+React sensor hook that tracks when mouse leaves the page. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/usePageLeave/
+
+Usage: `import { usePageLeave } from '@reactuses/core'`
+
+#### usePermission
+
+React side-effect hook to query permission status of browser APIs. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/usePermission/
+
+Usage: `import { usePermission } from '@reactuses/core'`
+
+#### usePlatform
+
+React hook to tracked the platform of the user. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/usePlatform/
+
+Usage: `import { usePlatform } from '@reactuses/core'`
+
+#### usePreferredColorScheme
+
+[prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query
+
+Documentation: https://reactuse.com/browser/usePreferredColorScheme/
+
+Usage: `import { usePreferredColorScheme } from '@reactuses/core'`
+
+#### usePreferredContrast
+
+[prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) media query
+
+Documentation: https://reactuse.com/browser/usePreferredContrast/
+
+Usage: `import { usePreferredContrast } from '@reactuses/core'`
+
+#### usePreferredDark
+
+React Hook that tracks dark theme preference. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/usePreferredDark/
+
+Usage: `import { usePreferredDark } from '@reactuses/core'`
+
+#### usePreferredLanguages
+
+`usePreferredLanguages` is a hook that returns the user's preferred languages as an array of strings. It uses the `navigator.languages`. Learn usage patterns, b
+
+Documentation: https://reactuse.com/browser/usePreferredLanguages/
+
+Usage: `import { usePreferredLanguages } from '@reactuses/core'`
+
+#### useReducedMotion
+
+React Hook that tracks motion preference. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useReducedMotion/
+
+Usage: `import { useReducedMotion } from '@reactuses/core'`
+
+#### useScratch
+
+React sensor hook that tracks scratching/dragging gestures on an element with mouse and touch support. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useScratch/
+
+Usage: `import { useScratch } from '@reactuses/core'`
+
+#### useScreenSafeArea
+
+React sensor hook that tracks `env(safe-area-inset-*)`. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useScreenSafeArea/
+
+Usage: `import { useScreenSafeArea } from '@reactuses/core'`
+
+#### useScriptTag
+
+Script tag injecting. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useScriptTag/
+
+Usage: `import { useScriptTag } from '@reactuses/core'`
+
+#### useScroll
+
+React Sensor Hook that tracks scroll position and stat. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useScroll/
+
+Usage: `import { useScroll } from '@reactuses/core'`
+
+#### useScrollIntoView
+
+React sensor hook works like `element.scrollIntoView(). Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useScrollIntoView/
+
+Usage: `import { useScrollIntoView } from '@reactuses/core'`
+
+#### useScrollLock
+
+Lock scrolling of the element while preserving scrolling within nested scrollable containers. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useScrollLock/
+
+Usage: `import { useScrollLock } from '@reactuses/core'`
+
+#### useSpeechRecognition
+
+Reactive SpeechRecognition API for React. Real-time speech recognition with configurable options, cross-browser compatibility, and TypeScript support. Learn usage patterns, best practices, and code examples.
+
+Documentation: https://reactuse.com/browser/useSpeechRecognition/
+
+Usage: `import { useSpeechRecognition } from '@reactuses/core'`
+
+#### useTextDirection
+
+change [dir](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) of the element's text
+
+Documentation: https://reactuse.com/browser/useTextDirection/
+
+Usage: `import { useTextDirection } from '@reactuses/core'`
+
+#### useTitle
+
+set document title. Learn usage patterns, best practices, and code examples for React developers.
+
+Documentation: https://reactuse.com/browser/useTitle/
+
+Usage: `import { useTitle } from '@reactuses/core'`
+
+#### useWebNotification
+
+The Web Notification interface of the Notifications API is used to configure and display desktop notifications to the user.
+
+Documentation: https://reactuse.com/browser/useWebNotification/
+
+Usage: `import { useWebNotification } from '@reactuses/core'`
+
+
+### Integrations Hooks
+
+#### useQRCode
+
+The `useQRCode` hook is a hook that generates a QR code for a given string. It is useful for generating QR codes for things like URLs, email addresses, and more
+
+Documentation: https://reactuse.com/integrations/useQRCode/
+
+Usage: `import { useQRCode } from '@reactuses/core'`
+
+
+## MCP Support
+
+ReactUse supports Model Context Protocol (MCP) integration for enhanced command-line support:
+
+```json
+{
+  "@reactuses/mcp": {
+    "command": "npx",
+    "args": ["-y", "@reactuses/mcp@latest"],
+    "type": "stdio"
+  }
+}
+```
+
+## Community & Support
+
+Discord: https://discord.gg/HMsq6cFkKp | Issues: https://github.com/childrentime/reactuse/issues | Contributing: https://github.com/childrentime/reactuse/blob/main/CONTRIBUTING.md
+
+## License
+
+UnLicense - Use freely without restrictions
+
+## Companies Using ReactUse
+
+PDD (Pinduoduo) - E-Commerce | Ctrip - Travel Platform
+
+---
+
+Generated: 2026-01-13T15:19:40.594Z | Total Hooks: 112
