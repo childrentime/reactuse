@@ -342,7 +342,12 @@ function Component() {
 
 - fix(useRafState): fix bug where multiple consecutive functional updates would only apply the last one. Now correctly accumulates all updates within the same animation frame, matching React's useState behavior. For example, calling `setState(n => n + 1)` three times consecutively will now correctly increase the value by 3 instead of 1.
 
-## 6.1.10(Jan 20, 2026)
+## 6.1.11(Jan 20, 2026)
 
-- fix(usePageLeave): fix infinite re-render issue caused by unstable event listener references
-- fix(useEventListener): improve parameter stability by moving `getTargetElement` call outside of effect to prevent unnecessary re-bindings
+- fix(usePageLeave): fix infinite re-render issue caused by unstable handler references  
+- fix(useEventListener): improve stability to prevent unnecessary event listener re-bindings while maintaining support for ref-based targets. Uses stable element identifiers: for refs, tracks the ref object itself; for functions/direct elements, tracks the resolved actual element. This allows function-based targets like `() => document` to work without causing infinite loops, while still re-binding when the actual target element changes
+- fix(useSticky): fix infinite re-render issue when passing unstable function references as target or scroll element
+- fix(useMutationObserver): add missing `target` dependency - now correctly re-observes when target element changes
+- fix(useResizeObserver): fix infinite re-render issue when passing unstable function references as target
+- fix(useIntersectionObserver): add missing `target` dependency - now correctly re-observes when target element changes
+- feat(useStableTarget): add new internal utility hook for creating stable identifiers for BasicTarget parameters that can be safely used in effect dependencies. This solves the common problem where passing unstable function references like `() => document` would cause infinite re-renders

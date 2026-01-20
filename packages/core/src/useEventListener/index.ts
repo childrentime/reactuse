@@ -5,6 +5,7 @@ import type { BasicTarget } from '../utils/domTarget'
 import { getTargetElement } from '../utils/domTarget'
 import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { isBrowser } from '../utils/is'
+import { useStableTarget } from '../utils/useStableTarget'
 
 export type Target = BasicTarget<HTMLElement | Element | Window | Document | EventTarget>
 
@@ -66,9 +67,12 @@ function useEventListenerImpl(
   options: boolean | AddEventListenerOptions = defaultOptions,
 ) {
   const savedHandler = useLatest(handler)
-  const targetElement = getTargetElement(element, defaultWindow)
+  const { key: elementKey, ref: elementRef } = useStableTarget(element, defaultWindow)
 
   useDeepCompareEffect(() => {
+    // Call getTargetElement inside effect to support ref-based targets
+    // (ref.current is null during render, only available in commit phase)
+    const targetElement = getTargetElement(elementRef.current, defaultWindow)
     if (!(targetElement && targetElement.addEventListener)) {
       return
     }
@@ -84,7 +88,7 @@ function useEventListenerImpl(
       }
       off(targetElement, eventName, eventListener)
     }
-  }, [eventName, targetElement, options])
+  }, [eventName, elementKey, options])
 }
 
 function noop() {}
