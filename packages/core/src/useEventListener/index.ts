@@ -4,11 +4,13 @@ import { defaultOptions } from '../utils/defaults'
 import type { BasicTarget } from '../utils/domTarget'
 import { getTargetElement } from '../utils/domTarget'
 import { useDeepCompareEffect } from '../useDeepCompareEffect'
+import { isBrowser } from '../utils/is'
+import { useStableTarget } from '../utils/useStableTarget'
 
 export type Target = BasicTarget<HTMLElement | Element | Window | Document | EventTarget>
 
 // Overload 1 Window Event based useEventListener interface
-export function useEventListener<K extends keyof WindowEventMap>(
+function useEventListenerImpl<K extends keyof WindowEventMap>(
   eventName: K,
   handler: (event: WindowEventMap[K]) => void,
   element?: Window,
@@ -16,7 +18,7 @@ export function useEventListener<K extends keyof WindowEventMap>(
 ): void
 
 // Overload 2 Document Event based useEventListener interface
-export function useEventListener<K extends keyof DocumentEventMap>(
+function useEventListenerImpl<K extends keyof DocumentEventMap>(
   eventName: K,
   handler: (event: DocumentEventMap[K]) => void,
   element: Document,
@@ -24,7 +26,7 @@ export function useEventListener<K extends keyof DocumentEventMap>(
 ): void
 
 // Overload 3 HTMLElement Event based useEventListener interface
-export function useEventListener<
+function useEventListenerImpl<
   K extends keyof HTMLElementEventMap,
   T extends HTMLElement = HTMLDivElement,
 >(
@@ -35,7 +37,7 @@ export function useEventListener<
 ): void
 
 // Overload 4 Element Event based useEventListener interface
-export function useEventListener<K extends keyof ElementEventMap>(
+function useEventListenerImpl<K extends keyof ElementEventMap>(
   eventName: K,
   handler: (event: ElementEventMap[K]) => void,
   element: Element,
@@ -43,7 +45,7 @@ export function useEventListener<K extends keyof ElementEventMap>(
 ): void
 
 // Overload 5 Element Event based useEventListener interface
-export function useEventListener<K = Event>(
+function useEventListenerImpl<K = Event>(
   eventName: string,
   handler: (event: K) => void,
   element: EventTarget | null | undefined,
@@ -51,23 +53,26 @@ export function useEventListener<K = Event>(
 ): void
 
 // Overload 6
-export function useEventListener(
+function useEventListenerImpl(
   eventName: string,
   handler: (...p: any) => void,
   element?: Target,
   options?: boolean | AddEventListenerOptions
 ): void
 
-export function useEventListener(
+function useEventListenerImpl(
   eventName: string,
   handler: (...p: any) => void,
   element?: Target,
   options: boolean | AddEventListenerOptions = defaultOptions,
 ) {
   const savedHandler = useLatest(handler)
+  const { key: elementKey, ref: elementRef } = useStableTarget(element, defaultWindow)
 
   useDeepCompareEffect(() => {
-    const targetElement = getTargetElement(element, defaultWindow)
+    // Call getTargetElement inside effect to support ref-based targets
+    // (ref.current is null during render, only available in commit phase)
+    const targetElement = getTargetElement(elementRef.current, defaultWindow)
     if (!(targetElement && targetElement.addEventListener)) {
       return
     }
@@ -83,5 +88,9 @@ export function useEventListener(
       }
       off(targetElement, eventName, eventListener)
     }
-  }, [eventName, element, options])
+  }, [eventName, elementKey, options])
 }
+
+function noop() {}
+
+export const useEventListener = isBrowser ? useEventListenerImpl : noop as typeof useEventListenerImpl

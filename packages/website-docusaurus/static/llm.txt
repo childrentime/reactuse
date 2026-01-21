@@ -1006,8 +1006,8 @@ UnLicense - Use freely without restrictions
 
 ## Companies Using ReactUse
 
-PDD (Pinduoduo) - E-Commerce | Ctrip - Travel Platform
+PDD (Pinduoduo) - E-Commerce | Shopee - E-Commerce | Ctrip - Travel Platform | Bambu Lab - 3D Printing
 
 ---
 
-Generated: 2026-01-13T15:19:40.594Z | Total Hooks: 112
+Generated: 2026-01-20T09:42:26.595Z | Total Hooks: 112

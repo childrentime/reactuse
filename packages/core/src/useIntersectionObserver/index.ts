@@ -3,6 +3,7 @@ import { useLatest } from '../useLatest'
 import { defaultOptions } from '../utils/defaults'
 import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { getTargetElement } from '../utils/domTarget'
+import { useStableTarget } from '../utils/useStableTarget'
 import type { UseIntersectionObserver } from './interface'
 
 export const useIntersectionObserver: UseIntersectionObserver = (
@@ -12,6 +13,7 @@ export const useIntersectionObserver: UseIntersectionObserver = (
 ): () => void => {
   const savedCallback = useLatest(callback)
   const observerRef = useRef<IntersectionObserver>()
+  const { key: targetKey, ref: targetRef } = useStableTarget(target)
 
   const stop = useCallback(() => {
     if (observerRef.current) {
@@ -20,7 +22,7 @@ export const useIntersectionObserver: UseIntersectionObserver = (
   }, [])
 
   useDeepCompareEffect(() => {
-    const element = getTargetElement(target)
+    const element = getTargetElement(targetRef.current)
     if (!element) {
       return
     }
@@ -32,7 +34,7 @@ export const useIntersectionObserver: UseIntersectionObserver = (
     observerRef.current.observe(element)
 
     return stop
-  }, [options])
+  }, [targetKey, options])
 
   return stop
 }

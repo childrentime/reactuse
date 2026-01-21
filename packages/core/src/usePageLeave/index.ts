@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useEventListener } from '../useEventListener'
+import { defaultDocument, defaultWindow } from '../utils/browser'
 
 export function usePageLeave(): boolean {
   const [isLeft, setIsLeft] = useState(false)
@@ -14,9 +15,9 @@ export function usePageLeave(): boolean {
     setIsLeft(!from)
   }
 
-  useEventListener('mouseout', handler, () => window, { passive: true })
-  useEventListener('mouseleave', handler, () => document, { passive: true })
-  useEventListener('mouseenter', handler, () => document, { passive: true })
+  useEventListener('mouseout', handler, defaultWindow, { passive: true })
+  useEventListener('mouseleave', handler, defaultDocument, { passive: true })
+  useEventListener('mouseenter', handler, defaultDocument, { passive: true })
 
   return isLeft
 }

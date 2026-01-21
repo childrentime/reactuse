@@ -3,6 +3,7 @@ import { useLatest } from '../useLatest'
 import { defaultOptions } from '../utils/defaults'
 import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { getTargetElement } from '../utils/domTarget'
+import { useStableTarget } from '../utils/useStableTarget'
 import type { UseResizeObserver } from './interface'
 
 export const useResizeObserver: UseResizeObserver = (
@@ -12,14 +13,16 @@ export const useResizeObserver: UseResizeObserver = (
 ): () => void => {
   const savedCallback = useLatest(callback)
   const observerRef = useRef<ResizeObserver>()
+  const { key: targetKey, ref: targetRef } = useStableTarget(target)
 
   const stop = useCallback(() => {
     if (observerRef.current) {
       observerRef.current.disconnect()
     }
   }, [])
+
   useDeepCompareEffect(() => {
-    const element = getTargetElement(target)
+    const element = getTargetElement(targetRef.current)
     if (!element) {
       return
     }
@@ -27,7 +30,7 @@ export const useResizeObserver: UseResizeObserver = (
     observerRef.current.observe(element, options)
 
     return stop
-  }, [savedCallback, stop, target, options])
+  }, [targetKey, options])
 
   return stop
 }
