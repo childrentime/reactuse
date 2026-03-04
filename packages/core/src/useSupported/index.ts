@@ -6,7 +6,11 @@ export function useSupported(callback: () => unknown, sync = false): boolean {
 
   const effect = sync ? useIsomorphicLayoutEffect : useEffect
   effect(() => {
-    setSupported(Boolean(callback()))
+    try {
+      setSupported(Boolean(callback()))
+    } catch {
+      setSupported(false)
+    }
   }, [])
 
   return supported
