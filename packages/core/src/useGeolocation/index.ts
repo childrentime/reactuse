@@ -19,14 +19,13 @@ export const useGeolocation: UseGeolocation = (options: Partial<PositionOptions>
     maximumAge = 30000,
     timeout = 27000,
   } = options
-  // eslint-disable-next-line operator-linebreak
   const isSupported = useSupported(
     () =>
-      typeof navigator !== 'undefined' &&
-      !!navigator.geolocation &&
-      typeof navigator.geolocation.getCurrentPosition === 'function' &&
-      typeof navigator.geolocation.watchPosition === 'function' &&
-      typeof navigator.geolocation.clearWatch === 'function',
+      typeof navigator !== 'undefined'
+      && !!navigator.geolocation
+      && typeof navigator.geolocation.getCurrentPosition === 'function'
+      && typeof navigator.geolocation.watchPosition === 'function'
+      && typeof navigator.geolocation.clearWatch === 'function',
   )
   const [coordinates, setCoordinates]
     = useState<GeolocationPosition['coords']>(initCoord)
