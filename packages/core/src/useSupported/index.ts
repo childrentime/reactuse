@@ -8,7 +8,8 @@ export function useSupported(callback: () => unknown, sync = false): boolean {
   effect(() => {
     try {
       setSupported(Boolean(callback()))
-    } catch {
+    }
+    catch {
       setSupported(false)
     }
   }, [])
