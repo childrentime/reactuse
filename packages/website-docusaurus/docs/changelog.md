@@ -7,6 +7,10 @@ description: >-
 ---
 # ChangeLog
 
+## 6.1.12(Mar 10, 2026)
+
+- fix(useGeolocation): make useSupported check more robust
+
 ## 6.1.11(Jan 20, 2026)
 
 - fix(usePageLeave): fix infinite re-render issue caused by unstable handler references  

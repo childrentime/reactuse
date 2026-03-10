@@ -8,48 +8,58 @@ NODE_OPTIONS = "--max_old_space_size=4096"
 NODE_VERSION = "22"
 
 [build.processing]
-  skip_processing = false
+skip_processing = false
+
 [build.processing.css]
-  bundle = false
-  minify = false
+bundle = false
+minify = false
+
 [build.processing.js]
-  bundle = false
-  minify = false
+bundle = false
+minify = false
+
 [build.processing.html]
-  pretty_urls = false
+pretty_urls = false
+
 [build.processing.images]
-  compress = true
+compress = true
 
 [[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "/assets/*"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "*.js"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "*.css"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/img/*"
-  [headers.values]
-    Cache-Control = "public, max-age=604800"
+for = "/img/*"
+
+[headers.values]
+Cache-Control = "public, max-age=604800"
 
 [[headers]]
-  for = "*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
+for = "*.html"
+
+[headers.values]
+Cache-Control = "public, max-age=3600"
 
 [[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+for = "/*"
+
+[headers.values]
+X-Frame-Options = "DENY"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+Permissions-Policy = "camera=(), microphone=(), geolocation=()"
