@@ -351,3 +351,7 @@ function Component() {
 - fix(useResizeObserver): fix infinite re-render issue when passing unstable function references as target
 - fix(useIntersectionObserver): add missing `target` dependency - now correctly re-observes when target element changes
 - feat(useStableTarget): add new internal utility hook for creating stable identifiers for BasicTarget parameters that can be safely used in effect dependencies. This solves the common problem where passing unstable function references like `() => document` would cause infinite re-renders
+
+## 6.1.12(Mar 10, 2026)
+
+- fix(useGeolocation): make useSupported check more robust
