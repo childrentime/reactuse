@@ -150,17 +150,17 @@ const config: Config = {
       title: 'React',
       items: [
         {
-          to: '/blog',
-          label: 'Blog',
-          position: 'left',
-        },
-        {
           type: 'localeDropdown',
           position: 'right',
         },
         {
           href: 'https://buymeacoffee.com/lianwenwu',
           label: 'Buy me a coffee',
+          position: 'right',
+        },
+        {
+          to: '/blog',
+          label: 'Blog',
           position: 'right',
         },
         {
