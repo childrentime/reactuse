@@ -33,5 +33,5 @@ export const useBeforeUnload: UseBeforeUnload = (options = true) => {
 
     window.addEventListener('beforeunload', handler)
     return () => window.removeEventListener('beforeunload', handler)
-  }, [])
+  }, [optionsRef])
 }

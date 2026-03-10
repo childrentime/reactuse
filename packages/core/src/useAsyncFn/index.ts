@@ -19,9 +19,7 @@ export const useAsyncFn: UseAsyncFn = <T, Args extends any[] = any[]>(
     async (...args: Args): Promise<T | undefined> => {
       const callId = ++lastCallId.current
 
-      if (!state.loading) {
-        setState(prev => ({ ...prev, loading: true }))
-      }
+      setState(prev => prev.loading ? prev : { ...prev, loading: true })
 
       try {
         const value = await fn(...args)
@@ -37,7 +35,7 @@ export const useAsyncFn: UseAsyncFn = <T, Args extends any[] = any[]>(
         return undefined
       }
     },
-    [fn],
+    [fn, isMounted],
   )
 
   return [state, callback] as const

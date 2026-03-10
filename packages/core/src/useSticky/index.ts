@@ -42,6 +42,6 @@ export function useSticky(targetElement: BasicTarget<HTMLElement>, { axis = 'y',
     return () => {
       scrollParent.removeEventListener('scroll', scrollHandler)
     }
-  }, [targetKey, scrollKey, scrollHandler])
+  }, [targetKey, scrollKey, scrollHandler, targetRef, scrollRef, axisRef])
   return [isSticky, setSticky]
 }

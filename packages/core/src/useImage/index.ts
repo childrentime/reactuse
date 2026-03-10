@@ -18,13 +18,13 @@ export const useImage: UseImage = options => {
       setState({ isLoading: false, error })
     }
 
+    setState({ isLoading: true, error: undefined })
+
     if (options.srcset)
       img.srcset = options.srcset
     if (options.sizes)
       img.sizes = options.sizes
     img.src = options.src
-
-    setState({ isLoading: true, error: undefined })
 
     return () => {
       img.onload = null

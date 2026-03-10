@@ -1,11 +1,13 @@
-import { useMemo, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import type { UseSet } from './interface'
 
 export const useSet: UseSet = <T>(initialValues?: Iterable<T>) => {
   const initialRef = useRef(initialValues)
   const [set, setSet] = useState(() => new Set<T>(initialValues))
+  const setRef = useRef(set)
+  setRef.current = set
 
-  const actions = useMemo(() => ({
+  const actions = useRef({
     add: (value: T) => {
       setSet(prev => {
         const next = new Set(prev)
@@ -32,10 +34,10 @@ export const useSet: UseSet = <T>(initialValues?: Iterable<T>) => {
         return next
       })
     },
-    has: (value: T) => set.has(value),
+    has: (value: T) => setRef.current.has(value),
     clear: () => setSet(new Set<T>()),
     reset: () => setSet(new Set<T>(initialRef.current)),
-  }), [set])
+  })
 
-  return [set, actions] as const
+  return [set, actions.current] as const
 }

@@ -20,12 +20,14 @@ export const useKeyPress: UseKeyPress = (key, options = {}) => {
   const [pressed, setPressed] = useState(false)
   const keyRef = useLatest(key)
   const { target, events = ['keydown', 'keyup'] } = options
+  const eventsRef = useLatest(events)
 
   useEffect(() => {
     if (!isBrowser)
       return
 
     const el = target ?? window
+    const currentEvents = eventsRef.current
 
     const handleKeyDown = (e: Event) => {
       if (matchKey(e as KeyboardEvent, keyRef.current)) {
@@ -39,22 +41,22 @@ export const useKeyPress: UseKeyPress = (key, options = {}) => {
       }
     }
 
-    if (events.includes('keydown')) {
+    if (currentEvents.includes('keydown')) {
       el.addEventListener('keydown', handleKeyDown)
     }
-    if (events.includes('keyup')) {
+    if (currentEvents.includes('keyup')) {
       el.addEventListener('keyup', handleKeyUp)
     }
 
     return () => {
-      if (events.includes('keydown')) {
+      if (currentEvents.includes('keydown')) {
         el.removeEventListener('keydown', handleKeyDown)
       }
-      if (events.includes('keyup')) {
+      if (currentEvents.includes('keyup')) {
         el.removeEventListener('keyup', handleKeyUp)
       }
     }
-  }, [target])
+  }, [target, eventsRef, keyRef])
 
   return pressed
 }

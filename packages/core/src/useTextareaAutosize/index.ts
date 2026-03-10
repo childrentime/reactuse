@@ -39,7 +39,7 @@ export const useTextareaAutosize: UseTextareaAutosize = (target, options = {}) =
       return
     el.value = value
     triggerResize()
-  }, [value, triggerResize])
+  }, [value, triggerResize, target])
 
   return { value, setValue, triggerResize }
 }

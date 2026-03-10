@@ -34,6 +34,7 @@ export const useBattery: UseBattery = () => {
       return
 
     let battery: BatteryManager | null = null
+    let cancelled = false
 
     const updateState = () => {
       if (!battery)
@@ -48,6 +49,8 @@ export const useBattery: UseBattery = () => {
     };
 
     (navigator as NavigatorWithBattery).getBattery!().then(b => {
+      if (cancelled)
+        return
       battery = b
       updateState()
 
@@ -58,6 +61,7 @@ export const useBattery: UseBattery = () => {
     })
 
     return () => {
+      cancelled = true
       if (battery) {
         battery.removeEventListener('chargingchange', updateState)
         battery.removeEventListener('chargingtimechange', updateState)
@@ -65,7 +69,7 @@ export const useBattery: UseBattery = () => {
         battery.removeEventListener('levelchange', updateState)
       }
     }
-  }, [])
+  }, [isSupported])
 
   return state
 }
