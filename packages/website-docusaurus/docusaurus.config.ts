@@ -3,8 +3,8 @@ import type { Config } from '@docusaurus/types'
 import type * as Preset from '@docusaurus/preset-classic'
 
 const config: Config = {
-  title: 'React Use',
-  tagline: 'Collection of essential React Hooks Utilities.',
+  title: 'ReactUse',
+  tagline: '100+ Essential React Hooks - The React Equivalent of VueUse',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -15,7 +15,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'berlin', // Usually your GitHub org/user name.
+  organizationName: 'childrentime', // Usually your GitHub org/user name.
   projectName: 'reactuse', // Usually your repo name.
 
   onBrokenLinks: 'throw',
@@ -27,6 +27,11 @@ const config: Config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'zh-Hans', 'zh-Hant'],
+    localeConfigs: {
+      en: { label: 'English', htmlLang: 'en' },
+      'zh-Hans': { label: '简体中文', htmlLang: 'zh-Hans' },
+      'zh-Hant': { label: '繁體中文', htmlLang: 'zh-Hant' },
+    },
   },
 
   themes: [
@@ -45,7 +50,13 @@ const config: Config = {
           editUrl:
             'https://github.com/childrentime/reactuse/tree/main/packages/website-docusaurus',
         },
-        blog: false,
+        blog: {
+          showReadingTime: true,
+          blogTitle: 'ReactUse Blog',
+          blogDescription: 'Tutorials, guides, and updates about React Hooks and the ReactUse library',
+          blogSidebarTitle: 'Recent Posts',
+          blogSidebarCount: 'ALL',
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -55,6 +66,28 @@ const config: Config = {
         },
       } satisfies Preset.Options,
     ],
+  ],
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'ReactUse',
+        url: 'https://reactuse.com',
+        description: 'Collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://reactuse.com/search/?q={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
+      }),
+    },
+    {
+      tagName: 'link',
+      attributes: { rel: 'preconnect', href: 'https://8I3BLA6GDS-dsn.algolia.net', crossorigin: 'anonymous' },
+    },
   ],
   trailingSlash: true,
   themeConfig: {
@@ -88,24 +121,16 @@ const config: Config = {
         content: 'code-WMH1e8oKID',
       },
       {
+        name: 'description',
+        content: 'Collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility. The React equivalent of VueUse.',
+      },
+      {
+        name: 'keywords',
+        content: 'react hooks, custom hooks, react hook library, react utilities, useEffect, useState, typescript hooks, SSR hooks, reactuse, react use, browser hooks, state management hooks',
+      },
+      {
         property: 'og:type',
         content: 'website',
-      },
-      {
-        property: 'og:url',
-        content: 'https://reactuse.com/',
-      },
-      {
-        property: 'og:title',
-        content: 'ReactUse Docs',
-      },
-      {
-        property: 'og:description',
-        content: 'Collection of essential React Hooks Utilities.',
-      },
-      {
-        property: 'description',
-        content: 'Collection of essential React Hooks Utilities.',
       },
       {
         name: 'twitter:card',
@@ -116,16 +141,8 @@ const config: Config = {
         content: 'reactuse.com',
       },
       {
-        property: 'twitter:url',
-        content: 'https://www.reactuse.com/',
-      },
-      {
-        property: 'twitter:title',
-        content: 'ReactUse Docs',
-      },
-      {
-        property: 'twitter:description',
-        content: 'Collection of essential React Hooks Utilities.',
+        name: 'twitter:site',
+        content: '@wulianwen1',
       },
     ],
     image: 'img/og.png',
@@ -139,6 +156,11 @@ const config: Config = {
         {
           href: 'https://buymeacoffee.com/lianwenwu',
           label: 'Buy me a coffee',
+          position: 'right',
+        },
+        {
+          to: '/blog',
+          label: 'Blog',
           position: 'right',
         },
         {

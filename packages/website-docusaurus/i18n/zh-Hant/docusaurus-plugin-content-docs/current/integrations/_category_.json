@@ -3,7 +3,7 @@
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "Integrations React Hook"
+    "description": "React第三方整合Hooks，包括QR碼生成等。"
   },
   "collapsible": true,
   "collapsed": true

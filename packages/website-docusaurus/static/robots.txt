@@ -1,2 +1,25 @@
 User-agent: *
-Disallow:
+Disallow: /search/
+
+# Allow AI crawlers for AI search citation
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://reactuse.com/sitemap.xml
+Sitemap: https://reactuse.com/zh-Hans/sitemap.xml
+Sitemap: https://reactuse.com/zh-Hant/sitemap.xml

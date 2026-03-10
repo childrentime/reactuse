@@ -3,7 +3,7 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "React State Hook"
+    "description": "24個React狀態管理Hooks，包括localStorage、sessionStorage、防抖、節流、布林值切換、計數器等。"
   },
   "collapsible": true,
   "collapsed": true

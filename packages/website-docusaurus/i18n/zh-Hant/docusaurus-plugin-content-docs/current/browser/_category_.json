@@ -3,7 +3,7 @@
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "React BOM Hook"
+    "description": "48個React瀏覽器API Hooks，包括剪貼簿、地理位置、媒體查詢、權限、暗黑模式、全螢幕、通知等。"
   },
   "collapsible": true,
   "collapsed": true

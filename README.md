@@ -15,6 +15,79 @@
   <img alt="TypeScript Support" src="https://img.shields.io/badge/TypeScript-Support-blue?style=for-the-badge&labelColor=24292e">
 </p>
 
+## Introduction
+
+**ReactUse** is a comprehensive collection of **100+ essential React Hooks** for building modern React applications. Inspired by [VueUse](https://vueuse.org/), it provides production-ready hooks for browser APIs, state management, sensors, animations, DOM elements, and more.
+
+### Features
+
+- 🎯 **100+ Hooks** — The most comprehensive React hooks collection
+- 📦 **Tree-Shakable** — Import only what you need
+- 🔷 **TypeScript** — Full type definitions for every hook
+- 🖥️ **SSR Compatible** — Works with Next.js, Remix, and more
+- 📚 **Well Documented** — Interactive demos for every hook
+- 🤖 **MCP Support** — AI-powered hook discovery
+
+### Installation
+
+```bash
+npm i @reactuses/core
+```
+
+### Quick Start
+
+```tsx
+import { useToggle } from "@reactuses/core";
+
+const Demo = () => {
+  const [on, toggle] = useToggle(true);
+  return <button onClick={toggle}>{on ? "ON" : "OFF"}</button>;
+};
+```
+
+---
+
+## Who's Using This
+
+[![PDD](https://img.shields.io/badge/PDD-E_Commerce-orange?style=for-the-badge)](https://www.pinduoduo.com/)
+[![Shopee](https://img.shields.io/badge/Shopee-E_Commerce-red?style=for-the-badge)](https://shopee.com/)
+[![Ctrip](https://img.shields.io/badge/Ctrip-Travel-blue?style=for-the-badge)](https://www.ctrip.com/)
+[![Bambu Lab](https://img.shields.io/badge/Bambu_Lab-3D_Printing-green?style=for-the-badge)](https://bambulab.com/)
+
+---
+
+## Hook Categories
+
+<details>
+<summary><strong>Browser (48 hooks)</strong></summary>
+
+useClipboard, useColorMode, useCookie, useDarkMode, useDocumentVisibility, useEyeDropper, useFavicon, useFileDialog, useFullscreen, useMediaDevices, useMediaQuery, useOnline, usePermission, usePlatform, usePreferredColorScheme, usePreferredContrast, usePreferredDark, usePreferredLanguages, useScreenSafeArea, useScriptTag, useTextDirection, useTitle, useWebNotification, useBroadcastChannel, useEventSource, useFetchEventSource, useGeolocation, useIdle, useKeyModifier, useMobileLandscape, useNetwork, useOrientation, usePageLeave, useSpeechRecognition, useWindowFocus, useWindowScroll, useWindowSize, and more...
+
+</details>
+
+<details>
+<summary><strong>State (24 hooks)</strong></summary>
+
+useBoolean, useControlled, useCounter, useCycleList, useDebounce, useDebounceFn, useDisclosure, useLocalStorage, useMap, usePrevious, useSessionStorage, useSetState, useThrottle, useThrottleFn, useToggle, and more...
+
+</details>
+
+<details>
+<summary><strong>Element (19 hooks)</strong></summary>
+
+useClickOutside, useDraggable, useDropZone, useElementBounding, useElementByPoint, useElementSize, useElementVisibility, useFocus, useHover, useInfiniteScroll, useIntersectionObserver, useLongPress, useMeasure, useMouse, useMousePressed, useMutationObserver, useResizeObserver, useScroll, useScrollIntoView, and more...
+
+</details>
+
+<details>
+<summary><strong>Effect (20 hooks)</strong></summary>
+
+useAsyncEffect, useCustomCompareEffect, useDeepCompareEffect, useEventListener, useInterval, useMount, useRafFn, useTimeout, useTimeoutFn, useUnmount, useUpdate, and more...
+
+</details>
+
+---
+
 ## MCP Support
 
 If you want to use the MCP (Model Context Protocol) integration with reactuse, you can easily set it up with the following configuration. This allows you to run the `@reactuses/mcp` utility via `npx` for enhanced command-line support and automation.
@@ -29,48 +102,11 @@ Add the following to your configuration:
 }
 ```
 
-## QuickStart
-
-```tsx harmony
-import { useToggle } from '@reactuses/core'
-
-function Demo() {
-  const [on, toggle] = useToggle(true)
-
-  return (
-    <div>
-      <div>{on ? 'ON' : 'OFF'}</div>
-      <button onClick={toggle}>Toggle</button>
-      <button onClick={() => toggle(true)}>set ON</button>
-      <button onClick={() => toggle(false)}>set OFF</button>
-    </div>
-  )
-}
-```
-
-Refer to [documentations](https://reactuse.com/) for more details.
-
 ---
 
-## Who's Using This
+## Documentation
 
-[![PDD](https://img.shields.io/badge/PDD-E_Commerce-orange?style=for-the-badge)](https://www.pinduoduo.com/)
-[![Shopee](https://img.shields.io/badge/Shopee-E_Commerce-red?style=for-the-badge)](https://shopee.com/)
-[![Ctrip](https://img.shields.io/badge/Ctrip-Travel-blue?style=for-the-badge)](https://www.ctrip.com/)
-[![Bambu Lab](https://img.shields.io/badge/Bambu_Lab-3D_Printing-green?style=for-the-badge)](https://bambulab.com/)
-
----
-
-## Documentation & Live Examples
-
-- [Documentation](https://reactuse.com/)
-- [LLM-friendly Documentation](https://reactuse.com/llm.txt) - AI-optimized format with all 112+ hooks
-
----
-
-## Feedback
-
-You can submit an [issue](https://github.com/childrentime/reactuse/issues) or provide feedback on [Discord](https://discord.gg/HMsq6cFkKp).
+📖 [Full Documentation](https://reactuse.com) | 📖 [LLM-friendly Documentation](https://reactuse.com/llm.txt) | 💬 [Discord](https://discord.gg/VEMFdByJ) | 🐛 [Issues](https://github.com/childrentime/reactuse/issues)
 
 ---
 

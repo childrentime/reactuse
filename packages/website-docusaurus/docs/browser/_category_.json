@@ -3,7 +3,7 @@
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "React BOM Hook"
+    "description": "48 React hooks for browser APIs including clipboard, geolocation, media queries, permissions, dark mode, fullscreen, notifications, and more."
   },
   "collapsible": true,
   "collapsed": true
