@@ -2,3 +2,5 @@ User-agent: *
 Disallow: /search/
 
 Sitemap: https://reactuse.com/sitemap.xml
+Sitemap: https://reactuse.com/zh-Hans/sitemap.xml
+Sitemap: https://reactuse.com/zh-Hant/sitemap.xml
