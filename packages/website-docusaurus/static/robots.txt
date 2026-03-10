@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+Disallow: /search/
+
+Sitemap: https://reactuse.com/sitemap.xml

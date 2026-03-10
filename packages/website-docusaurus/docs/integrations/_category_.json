@@ -3,7 +3,7 @@
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "Integrations React Hook"
+    "description": "React hooks for third-party integrations including QR code generation and more."
   },
   "collapsible": true,
   "collapsed": true

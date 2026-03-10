@@ -3,7 +3,7 @@
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "React BOM Hook"
+    "description": "48个React浏览器API Hooks，包括剪贴板、地理位置、媒体查询、权限、暗黑模式、全屏、通知等。"
   },
   "collapsible": true,
   "collapsed": true

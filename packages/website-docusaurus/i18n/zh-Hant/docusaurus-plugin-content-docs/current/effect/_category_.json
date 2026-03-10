@@ -3,7 +3,7 @@
   "position": 3,
   "link": {
     "type": "generated-index",
-    "description": "React Effect Hook"
+    "description": "20個React副作用Hooks，包括事件監聽器、計時器、間隔器、非同步效果、生命週期管理和副作用工具。"
   },
   "collapsible": true,
   "collapsed": true

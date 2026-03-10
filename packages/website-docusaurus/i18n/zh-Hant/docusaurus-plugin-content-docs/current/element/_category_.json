@@ -3,7 +3,7 @@
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "React Dom Element Hook"
+    "description": "19個React DOM元素Hooks，用於測量尺寸、偵測可見性、觀察交叉、拖曳、捲動等。"
   },
   "collapsible": true,
   "collapsed": true
