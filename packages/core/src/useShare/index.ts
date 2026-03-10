@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useSupported } from '../useSupported'
 import type { UseShare, UseShareData } from './interface'
 
-export const useShare: UseShare = (initialData) => {
+export const useShare: UseShare = initialData => {
   const isSupported = useSupported(() => typeof navigator !== 'undefined' && 'share' in navigator)
 
   const share = useCallback(async (data?: UseShareData) => {

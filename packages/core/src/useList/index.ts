@@ -1,9 +1,9 @@
-import { useMemo, useRef, useState } from 'react';
-import type { UseList } from './interface';
+import { useMemo, useRef, useState } from 'react'
+import type { UseList } from './interface'
 
 export const useList: UseList = <T>(initialList: T[] = []) => {
-  const initialRef = useRef(initialList);
-  const [list, setList] = useState<T[]>(initialList);
+  const initialRef = useRef(initialList)
+  const [list, setList] = useState<T[]>(initialList)
 
   const actions = useMemo(() => ({
     set: (newList: T[]) => setList(newList),
@@ -15,7 +15,7 @@ export const useList: UseList = <T>(initialList: T[] = []) => {
     reset: () => setList(initialRef.current),
     filter: (fn: (item: T, index: number) => boolean) => setList(prev => prev.filter(fn)),
     sort: (fn?: (a: T, b: T) => number) => setList(prev => [...prev].sort(fn)),
-  }), []);
+  }), [])
 
-  return [list, actions] as const;
-};
+  return [list, actions] as const
+}

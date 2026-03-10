@@ -11,7 +11,7 @@ export interface UseBeforeUnloadOptions {
    * @zh-Hant 是否啟用 beforeunload 提示
    * @defaultValue true
    */
-  enabled?: boolean | (() => boolean);
+  enabled?: boolean | (() => boolean)
 }
 
-export type UseBeforeUnload = (options?: UseBeforeUnloadOptions | boolean | (() => boolean)) => void;
+export type UseBeforeUnload = (options?: UseBeforeUnloadOptions | boolean | (() => boolean)) => void

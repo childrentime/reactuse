@@ -4,7 +4,8 @@ import type { UseLockBodyScroll } from './interface'
 
 export const useLockBodyScroll: UseLockBodyScroll = (locked = true) => {
   useEffect(() => {
-    if (!isBrowser || !locked) return
+    if (!isBrowser || !locked)
+      return
 
     const originalOverflow = document.body.style.overflow
     const originalPaddingRight = document.body.style.paddingRight

@@ -22,7 +22,8 @@ export const useKeyPress: UseKeyPress = (key, options = {}) => {
   const { target, events = ['keydown', 'keyup'] } = options
 
   useEffect(() => {
-    if (!isBrowser) return
+    if (!isBrowser)
+      return
 
     const el = target ?? window
 

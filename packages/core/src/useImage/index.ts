@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { UseImage, UseImageState } from './interface'
 
-export const useImage: UseImage = (options) => {
+export const useImage: UseImage = options => {
   const [state, setState] = useState<UseImageState>({
     isLoading: true,
     error: undefined,
@@ -14,12 +14,14 @@ export const useImage: UseImage = (options) => {
       setState({ isLoading: false, error: undefined })
     }
 
-    img.onerror = (error) => {
+    img.onerror = error => {
       setState({ isLoading: false, error })
     }
 
-    if (options.srcset) img.srcset = options.srcset
-    if (options.sizes) img.sizes = options.sizes
+    if (options.srcset)
+      img.srcset = options.srcset
+    if (options.sizes)
+      img.sizes = options.sizes
     img.src = options.src
 
     setState({ isLoading: true, error: undefined })

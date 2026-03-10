@@ -11,16 +11,16 @@ export interface UseKeyPressOptions {
    * @zh-Hant 要監聽的事件目標
    * @defaultValue window
    */
-  target?: EventTarget | null;
+  target?: EventTarget | null
   /**
    * @en Event types to listen for
    * @zh 要监听的事件类型
    * @zh-Hant 要監聽的事件類型
    * @defaultValue ['keydown', 'keyup']
    */
-  events?: ('keydown' | 'keyup')[];
+  events?: ('keydown' | 'keyup')[]
 }
 
-export type KeyFilter = string | string[] | ((event: KeyboardEvent) => boolean);
+export type KeyFilter = string | string[] | ((event: KeyboardEvent) => boolean)
 
-export type UseKeyPress = (key: KeyFilter, options?: UseKeyPressOptions) => boolean;
+export type UseKeyPress = (key: KeyFilter, options?: UseKeyPressOptions) => boolean

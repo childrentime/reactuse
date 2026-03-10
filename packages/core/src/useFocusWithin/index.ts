@@ -9,7 +9,8 @@ export const useFocusWithin: UseFocusWithin = (target, options = {}) => {
 
   useEffect(() => {
     const el = getTargetElement(target)
-    if (!el) return
+    if (!el)
+      return
 
     const handleFocusIn = (event: FocusEvent) => {
       if (!focused) {

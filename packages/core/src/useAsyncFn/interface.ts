@@ -10,22 +10,22 @@ export interface UseAsyncFnState<T> {
    * @zh 异步函数是否正在加载
    * @zh-Hant 異步函數是否正在載入
    */
-  loading: boolean;
+  loading: boolean
   /**
    * @en Error from the async function
    * @zh 异步函数的错误
    * @zh-Hant 異步函數的錯誤
    */
-  error: Error | undefined;
+  error: Error | undefined
   /**
    * @en Value returned by the async function
    * @zh 异步函数返回的值
    * @zh-Hant 異步函數返回的值
    */
-  value: T | undefined;
+  value: T | undefined
 }
 
 export type UseAsyncFn = <T, Args extends any[] = any[]>(
   fn: (...args: Args) => Promise<T>,
   initialState?: Partial<UseAsyncFnState<T>>,
-) => readonly [UseAsyncFnState<T>, (...args: Args) => Promise<T | undefined>];
+) => readonly [UseAsyncFnState<T>, (...args: Args) => Promise<T | undefined>]
