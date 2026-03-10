@@ -1,17 +1,17 @@
 ---
 sidebar_position: 1
 slug: /
-title: "ReactUse - 115+ Essential React Hooks Library"
+title: "ReactUse - 100+ Essential React Hooks Library"
 sidebar_label: Get Started
-description: "ReactUse is a comprehensive collection of 115+ custom React Hooks for browser APIs, state management, sensors, animations, and more. TypeScript-first, tree-shakable, and SSR-compatible."
+description: "ReactUse is a comprehensive collection of 100+ custom React Hooks for browser APIs, state management, sensors, animations, and more. TypeScript-first, tree-shakable, and SSR-compatible."
 ---
-# ReactUse: 115+ Essential React Hooks
+# ReactUse: 100+ Essential React Hooks
 
 Reactuse is a comprehensive collection of custom React Hooks designed to supercharge your functional components! you can easily unlock the full potential of React Hooks and leverage their power to create reusable and efficient code.
 
 ## Why ReactUse?
 
-- **115+ Hooks** covering browser APIs, state management, DOM elements, effects, and integrations
+- **100+ Hooks** covering browser APIs, state management, DOM elements, effects, and integrations
 - **TypeScript-First** with full type definitions for every hook
 - **Tree-Shakable** import only what you need, zero bloat
 - **SSR Compatible** works seamlessly with Next.js, Remix, and other SSR frameworks

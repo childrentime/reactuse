@@ -107,4 +107,4 @@ npm i @reactuses/core
 
 ---
 
-ReactUse provides 115+ hooks for React. [Explore them all →](https://reactuse.com)
+ReactUse provides 100+ hooks for React. [Explore them all →](https://reactuse.com)

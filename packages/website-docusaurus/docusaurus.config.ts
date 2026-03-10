@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic'
 
 const config: Config = {
   title: 'ReactUse',
-  tagline: '115+ Essential React Hooks - The React Equivalent of VueUse',
+  tagline: '100+ Essential React Hooks - The React Equivalent of VueUse',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -76,7 +76,7 @@ const config: Config = {
         '@type': 'WebSite',
         name: 'ReactUse',
         url: 'https://reactuse.com',
-        description: 'Collection of 115+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility',
+        description: 'Collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility',
         potentialAction: {
           '@type': 'SearchAction',
           target: 'https://reactuse.com/search/?q={search_term_string}',
@@ -122,7 +122,7 @@ const config: Config = {
       },
       {
         name: 'description',
-        content: 'Collection of 115+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility. The React equivalent of VueUse.',
+        content: 'Collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility. The React equivalent of VueUse.',
       },
       {
         name: 'keywords',
@@ -149,6 +149,11 @@ const config: Config = {
     navbar: {
       title: 'React',
       items: [
+        {
+          to: '/blog',
+          label: 'Blog',
+          position: 'left',
+        },
         {
           type: 'localeDropdown',
           position: 'right',

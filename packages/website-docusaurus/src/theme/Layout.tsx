@@ -11,7 +11,7 @@ const structuredData = {
       '@type': 'SoftwareSourceCode',
       name: '@reactuses/core',
       description:
-        'Collection of 115+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility',
+        'Collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility',
       programmingLanguage: ['TypeScript', 'React'],
       runtimePlatform: ['Node.js', 'Browser'],
       codeRepository: 'https://github.com/childrentime/reactuse',
@@ -32,7 +32,7 @@ const structuredData = {
           name: 'What is ReactUse?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'ReactUse is a comprehensive collection of 115+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility. It is the React equivalent of VueUse.',
+            text: 'ReactUse is a comprehensive collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility. It is the React equivalent of VueUse.',
           },
         },
         {
@@ -56,7 +56,7 @@ const structuredData = {
           name: 'How many hooks does ReactUse provide?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'ReactUse provides 115+ hooks across 5 categories: Browser (48), State (24), Element (19), Effect (20), and Integrations.',
+            text: 'ReactUse provides 100+ hooks across 5 categories: Browser (48), State (24), Element (19), Effect (20), and Integrations.',
           },
         },
       ],

@@ -14,11 +14,11 @@
 
 ## Introduction
 
-**ReactUse** is a comprehensive collection of **115+ essential React Hooks** for building modern React applications. Inspired by [VueUse](https://vueuse.org/), it provides production-ready hooks for browser APIs, state management, sensors, animations, DOM elements, and more.
+**ReactUse** is a comprehensive collection of **100+ essential React Hooks** for building modern React applications. Inspired by [VueUse](https://vueuse.org/), it provides production-ready hooks for browser APIs, state management, sensors, animations, DOM elements, and more.
 
 ### Features
 
-- 🎯 **115+ Hooks** — The most comprehensive React hooks collection
+- 🎯 **100+ Hooks** — The most comprehensive React hooks collection
 - 📦 **Tree-Shakable** — Import only what you need
 - 🔷 **TypeScript** — Full type definitions for every hook
 - 🖥️ **SSR Compatible** — Works with Next.js, Remix, and more

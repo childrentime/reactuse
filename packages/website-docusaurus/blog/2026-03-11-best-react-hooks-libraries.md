@@ -22,12 +22,12 @@ We maintain ReactUse, so we have an obvious perspective, but we have done our be
 
 ### 1. ReactUse (@reactuses/core)
 
-[ReactUse](https://reactuse.com) is a comprehensive collection of 115+ hooks inspired by [VueUse](https://vueuse.org/). It is TypeScript-first, tree-shakable, and SSR-compatible out of the box.
+[ReactUse](https://reactuse.com) is a comprehensive collection of 100+ hooks inspired by [VueUse](https://vueuse.org/). It is TypeScript-first, tree-shakable, and SSR-compatible out of the box.
 
 Hooks are organized into clear categories — Browser, State, Element, Effect, and Sensor — and every hook ships with an interactive demo on the documentation site. ReactUse also provides an MCP server for AI-assisted hook discovery, which is unique among hooks libraries.
 
 **Pros:**
-- 115+ hooks, one of the largest collections available
+- 100+ hooks, one of the largest collections available
 - Full TypeScript definitions for every hook
 - Tree-shakable ESM build — you only pay for what you import
 - SSR-compatible with Next.js, Remix, and other frameworks
@@ -115,7 +115,7 @@ Hooks are organized into clear categories — Browser, State, Element, Effect, a
 
 | Feature | ReactUse | ahooks | react-use | usehooks-ts | @uidotdev/usehooks |
 |---|---|---|---|---|---|
-| **Hook count** | 115+ | 60+ | 100+ | ~30 | ~20 |
+| **Hook count** | 100+ | 60+ | 100+ | ~30 | ~20 |
 | **TypeScript-first** | Yes | Partial | Partial | Yes | No (JS + types) |
 | **Tree-shakable** | Yes | Partial | No | Yes | Yes |
 | **SSR support** | Yes | Yes | Partial | Limited | No |

@@ -1,7 +1,7 @@
 ---
-title: "ReactUse: 115+ Production-Ready React Hooks You Need to Know"
-description: "Introducing ReactUse, a comprehensive collection of 115+ React Hooks covering browser APIs, state management, sensors, animations, and more. TypeScript-first, tree-shakable, and SSR-compatible."
-slug: reactuse-115-hooks
+title: "ReactUse: 100+ Production-Ready React Hooks You Need to Know"
+description: "Introducing ReactUse, a comprehensive collection of 100+ React Hooks covering browser APIs, state management, sensors, animations, and more. TypeScript-first, tree-shakable, and SSR-compatible."
+slug: reactuse-100-hooks
 authors:
   - name: ReactUse Team
     url: https://github.com/childrentime
@@ -10,9 +10,9 @@ keywords: [react hooks, custom hooks, react hook library, reactuse, typescript h
 image: /img/og.png
 ---
 
-# ReactUse: 115+ Production-Ready React Hooks
+# ReactUse: 100+ Production-Ready React Hooks
 
-Building modern React applications requires handling countless browser APIs, state management patterns, and DOM interactions. **ReactUse** provides 115+ carefully crafted hooks that eliminate boilerplate and let you focus on building features.
+Building modern React applications requires handling countless browser APIs, state management patterns, and DOM interactions. **ReactUse** provides 100+ carefully crafted hooks that eliminate boilerplate and let you focus on building features.
 
 <!-- truncate -->
 
@@ -22,7 +22,7 @@ If you've used [VueUse](https://vueuse.org/) in the Vue ecosystem, ReactUse brin
 
 ### What Makes ReactUse Different?
 
-- **115+ hooks** — the most comprehensive React hooks collection available
+- **100+ hooks** — the most comprehensive React hooks collection available
 - **TypeScript-first** — every hook has full type definitions
 - **Tree-shakable** — import only what you need, zero bundle bloat
 - **SSR-compatible** — works seamlessly with Next.js, Remix, and other frameworks
