@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
-import { isBrowser } from '../utils/is'
 import type { UseLockBodyScroll } from './interface'
 
 export const useLockBodyScroll: UseLockBodyScroll = (locked = true) => {
   useEffect(() => {
-    if (!isBrowser || !locked)
+    if (!locked)
       return
 
     const originalOverflow = document.body.style.overflow

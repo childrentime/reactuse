@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { isBrowser } from '../utils/is'
+import { useSupported } from '../useSupported'
 import type { UseBattery, UseBatteryState } from './interface'
 
 interface BatteryManager extends EventTarget {
@@ -22,16 +22,17 @@ const defaultState: UseBatteryState = {
 }
 
 export const useBattery: UseBattery = () => {
-  const isSupported = isBrowser && typeof (navigator as NavigatorWithBattery).getBattery === 'function'
+  const isSupported = useSupported(
+    () => typeof navigator !== 'undefined' && 'getBattery' in navigator,
+  )
 
-  const [state, setState] = useState<UseBatteryState>({
-    ...defaultState,
-    isSupported,
-  })
+  const [state, setState] = useState<UseBatteryState>(defaultState)
 
   useEffect(() => {
     if (!isSupported)
       return
+
+    setState(prev => prev.isSupported ? prev : { ...prev, isSupported: true })
 
     let battery: BatteryManager | null = null
     let cancelled = false

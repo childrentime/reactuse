@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useLatest } from '../useLatest'
-import { isBrowser } from '../utils/is'
 import type { KeyFilter, UseKeyPress } from './interface'
 
 function matchKey(event: KeyboardEvent, keyFilter: KeyFilter): boolean {
@@ -23,9 +22,6 @@ export const useKeyPress: UseKeyPress = (key, options = {}) => {
   const eventsRef = useLatest(events)
 
   useEffect(() => {
-    if (!isBrowser)
-      return
-
     const el = target ?? window
     const currentEvents = eventsRef.current
 

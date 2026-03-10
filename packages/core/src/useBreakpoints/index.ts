@@ -1,5 +1,6 @@
-import { useCallback, useMemo } from 'react'
+import { useRef } from 'react'
 import { useWindowSize } from '../useWindowSize'
+import { useLatest } from '../useLatest'
 import type { Breakpoints, UseBreakpoints, UseBreakpointsReturn } from './interface'
 
 export const breakpointsTailwind = {
@@ -29,25 +30,20 @@ export const breakpointsAntDesign = {
 
 export const useBreakpoints: UseBreakpoints = <K extends string>(breakpoints: Breakpoints<K>): UseBreakpointsReturn<K> => {
   const { width } = useWindowSize()
+  const widthRef = useLatest(width)
+  const bpRef = useLatest(breakpoints)
 
-  const greater = useCallback((key: K) => width > breakpoints[key], [width, breakpoints])
-  const greaterOrEqual = useCallback((key: K) => width >= breakpoints[key], [width, breakpoints])
-  const smaller = useCallback((key: K) => width < breakpoints[key], [width, breakpoints])
-  const smallerOrEqual = useCallback((key: K) => width <= breakpoints[key], [width, breakpoints])
-  const between = useCallback((min: K, max: K) => width >= breakpoints[min] && width < breakpoints[max], [width, breakpoints])
+  const actionsRef = useRef<UseBreakpointsReturn<K>>({
+    greater: (key: K) => widthRef.current > bpRef.current[key],
+    greaterOrEqual: (key: K) => widthRef.current >= bpRef.current[key],
+    smaller: (key: K) => widthRef.current < bpRef.current[key],
+    smallerOrEqual: (key: K) => widthRef.current <= bpRef.current[key],
+    between: (min: K, max: K) => widthRef.current >= bpRef.current[min] && widthRef.current < bpRef.current[max],
+    current: () => {
+      const entries = Object.entries(bpRef.current) as [K, number][]
+      return [...entries].sort((a, b) => a[1] - b[1]).filter(([, value]) => widthRef.current >= value).map(([key]) => key)
+    },
+  })
 
-  const current = useCallback(() => {
-    const entries = Object.entries(breakpoints) as [K, number][]
-    const sorted = entries.sort((a, b) => a[1] - b[1])
-    return sorted.filter(([, value]) => width >= value).map(([key]) => key)
-  }, [width, breakpoints])
-
-  return useMemo(() => ({
-    greater,
-    greaterOrEqual,
-    smaller,
-    smallerOrEqual,
-    between,
-    current,
-  }), [greater, greaterOrEqual, smaller, smallerOrEqual, between, current])
+  return actionsRef.current
 }
