@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content'
+
+interface Props {
+  currentSlug?: string
+}
+const { currentSlug } = Astro.props
+
+const allDocs = await getCollection('docs')
+
+// Category display config
+const categories: Record<string, { label: string; order: number }> = {
+  state: { label: 'State', order: 1 },
+  effect: { label: 'Effect', order: 2 },
+  element: { label: 'Element', order: 3 },
+  browser: { label: 'Browser', order: 4 },
+  integrations: { label: 'Integrations', order: 5 },
+}
+
+// Group docs by category
+const grouped = new Map<string, Array<{ slug: string; title: string; label: string }>>()
+
+// Top-level docs (intro, changelog, sponsor, etc.)
+const topLevel: Array<{ slug: string; title: string; label: string }> = []
+
+for (const doc of allDocs) {
+  const id = doc.id
+  const parts = id.split('/')
+  const title = doc.data.title || id
+  const label = doc.data.sidebar_label || title.replace(/\s*[–—].*$/, '')
+
+  if (parts.length === 1) {
+    // Top-level doc (intro.md, changelog.md, etc.)
+    const slug = id.replace(/\.(mdx?|md)$/, '')
+    topLevel.push({ slug, title, label })
+  } else {
+    const cat = parts[0]
+    const slug = id.replace(/\.(mdx?|md)$/, '')
+    if (!grouped.has(cat)) grouped.set(cat, [])
+    grouped.get(cat)!.push({ slug, title, label })
+  }
+}
+
+// Sort items within each group
+for (const [, items] of grouped) {
+  items.sort((a, b) => a.label.localeCompare(b.label))
+}
+
+// Sort categories by config order
+const sortedCategories = [...grouped.entries()].sort((a, b) => {
+  const oa = categories[a[0]]?.order ?? 99
+  const ob = categories[b[0]]?.order ?? 99
+  return oa - ob
+})
+---
+
+<aside class="sidebar" id="sidebar">
+  {/* Top-level links */}
+  <div class="sidebar-group">
+    <ul class="sidebar-items">
+      {topLevel.map(doc => (
+        <li class="sidebar-item">
+          <a href={`/${doc.slug === 'index' ? '' : doc.slug + '/'}`} aria-current={currentSlug === doc.slug ? 'page' : undefined}>
+            {doc.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  {/* Categorized hooks */}
+  {sortedCategories.map(([cat, items]) => (
+    <div class="sidebar-group" data-group={cat}>
+      <div class="sidebar-group-label">
+        {categories[cat]?.label || cat} <span style="font-weight:400;opacity:0.5;font-size:0.9em;margin-left:4px">{items.length}</span>
+      </div>
+      <ul class="sidebar-items">
+        {items.map(doc => (
+          <li class="sidebar-item">
+            <a href={`/${doc.slug}/`} aria-current={currentSlug === doc.slug ? 'page' : undefined}>
+              {doc.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</aside>
+
+<script is:inline>
+  // Collapsible sidebar groups
+  document.querySelectorAll('.sidebar-group-label').forEach(label => {
+    label.addEventListener('click', () => {
+      label.parentElement.classList.toggle('collapsed');
+    });
+  });
+  // Close sidebar on link click (mobile)
+  document.querySelectorAll('.sidebar-item a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.querySelector('.sidebar')?.classList.remove('open');
+    });
+  });
+</script>

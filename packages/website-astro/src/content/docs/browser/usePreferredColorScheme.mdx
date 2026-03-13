@@ -1,0 +1,24 @@
+---
+title: usePreferredColorScheme – Browser Hook Usage & Examples
+sidebar_label: usePreferredColorScheme
+description: >-
+  [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query. Learn usage patterns, best practices, and
+  code
+---
+# usePreferredColorScheme
+
+[prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query
+
+
+## Usage
+
+```tsx live
+function Demo() {
+  const color = usePreferredColorScheme();
+
+  return <div>PreferredColorScheme: {color}</div>;
+};
+
+```
+
+%%API%%

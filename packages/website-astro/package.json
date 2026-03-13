@@ -1,0 +1,32 @@
+{
+  "name": "website-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/react": "^4.2.1",
+    "@astrojs/sitemap": "^3.3.1",
+    "@reactuses/core": "workspace:*",
+    "astro": "^5.7.10",
+    "mdast-util-from-markdown": "^2.0.2",
+    "mdast-util-gfm-table": "^2.0.0",
+    "micromark-extension-gfm-table": "^2.1.1",
+    "qrcode": "^1.5.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-live": "^4.1.8",
+    "remark-directive": "^4.0.0",
+    "sharp": "^0.33.5",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0"
+  }
+}

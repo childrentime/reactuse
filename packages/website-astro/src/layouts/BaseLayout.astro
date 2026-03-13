@@ -1,0 +1,105 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title: string
+  description?: string
+}
+
+const { title, description = '100+ Essential React Hooks - The React Equivalent of VueUse' } = Astro.props
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareSourceCode',
+      name: '@reactuses/core',
+      description: 'Collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility',
+      programmingLanguage: ['TypeScript', 'React'],
+      runtimePlatform: ['Node.js', 'Browser'],
+      codeRepository: 'https://github.com/childrentime/reactuse',
+      license: 'https://choosealicense.com/licenses/unlicense/',
+      url: 'https://reactuse.com',
+      author: { '@type': 'Person', name: 'childrentime', url: 'https://github.com/childrentime' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'What is ReactUse?', acceptedAnswer: { '@type': 'Answer', text: 'ReactUse is a comprehensive collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility.' } },
+        { '@type': 'Question', name: 'How do I install ReactUse?', acceptedAnswer: { '@type': 'Answer', text: 'Install via npm: npm i @reactuses/core. Then import any hook: import { useToggle } from "@reactuses/core".' } },
+        { '@type': 'Question', name: 'Is ReactUse compatible with Next.js and SSR?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, all ReactUse hooks are SSR-compatible and work seamlessly with Next.js, Remix, and other server-side rendering frameworks.' } },
+      ],
+    },
+  ],
+}
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title} | ReactUse</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content="react hooks, custom hooks, react hook library, react utilities, useEffect, useState, typescript hooks, SSR hooks, reactuse, react use, browser hooks, state management hooks" />
+  <link rel="canonical" href={canonicalURL} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:site_name" content="ReactUse" />
+  <meta property="og:image" content={new URL('/img/og.png', Astro.site)} />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@wulianwen1" />
+  <meta name="twitter:domain" content="reactuse.com" />
+  <!-- Search engine verifications -->
+  <meta name="google-site-verification" content="jGWJsBba9JzJsllkMHCduKPUDx5bJYKU1JlXHjF3vHI" />
+  <meta name="msvalidate.01" content="FCAB31FC7E191890AC6C3BC3A945596A" />
+  <meta name="baidu-site-verification" content="WMH1e8oKID" />
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3JKY4KFF7Y"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3JKY4KFF7Y');
+  </script>
+  <!-- Clarity -->
+  <script is:inline>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "lyyaspthbt");
+  </script>
+  <!-- Theme init (prevent flash) -->
+  <script is:inline>
+    (function(){
+      const t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Algolia DocSearch -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+</head>
+<body>
+  <slot />
+  <script is:inline src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+  <script is:inline>
+    docsearch({
+      appId: '8I3BLA6GDS',
+      apiKey: 'fc39c0beb7535e044de0566f18fc4817',
+      indexName: 'reactuse',
+      container: '#docsearch',
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+---
+import BaseLayout from './BaseLayout.astro'
+import Navbar from '../components/Navbar.astro'
+import Sidebar from '../components/Sidebar.astro'
+import Footer from '../components/Footer.astro'
+
+interface Props {
+  title: string
+  description?: string
+  category?: string
+  slug?: string
+}
+
+const { title, description, category, slug } = Astro.props
+---
+
+<BaseLayout title={title} description={description}>
+  <Navbar />
+  <div class="page-shell">
+    <Sidebar currentSlug={slug} />
+    <main class="main-content">
+      <article class="doc-prose">
+        <slot />
+      </article>
+    </main>
+  </div>
+  <Footer />
+</BaseLayout>

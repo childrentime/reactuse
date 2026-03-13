@@ -1,0 +1,24 @@
+---
+import { getCollection, render } from 'astro:content'
+import DocLayout from '../layouts/DocLayout.astro'
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs')
+  return docs.map((entry) => {
+    const slug = entry.id
+    return {
+      params: { slug: slug === 'index' ? undefined : slug },
+      props: { entry },
+    }
+  })
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+const slug = entry.id
+const category = slug.includes('/') ? slug.split('/')[0] : undefined
+---
+
+<DocLayout title={entry.data.title} description={entry.data.description} category={category} slug={slug}>
+  <Content />
+</DocLayout>

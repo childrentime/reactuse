@@ -1,0 +1,37 @@
+---
+title: useDoubleClick – Element Hook Usage & Examples
+sidebar_label: useDoubleClick
+description: React sensor hook that controls double click and single click. Learn usage patterns, best practices, and code examples for React developers.
+---
+# useDoubleClick
+
+React sensor hook that controls double click and single click
+
+
+## Usage
+
+```tsx live
+function Demo() {
+  const element = useRef<HTMLButtonElement>(null);
+  const [text, setText] = useState("no click");
+
+  useDoubleClick({
+    target: element,
+    onSingleClick: () => {
+      setText("single click");
+    },
+    onDoubleClick: () => {
+      setText("double click");
+    },
+  });
+  return (
+    <div>
+      <button ref={element}>Click Me</button>
+      <p>{text}</p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

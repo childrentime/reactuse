@@ -1,0 +1,35 @@
+---
+title: useScriptTag – Browser Hook Usage & Examples
+sidebar_label: useScriptTag
+description: Script tag injecting. Learn usage patterns, best practices, and code examples for React developers.
+---
+# useScriptTag
+
+Script tag injecting
+
+
+## Usage
+
+```tsx live
+// it's an example, use your types instead
+
+// Add this if you are using TypeScript
+// declare const jQuery: any;
+function Demo() {
+  const [, status] = useScriptTag(
+    "https://code.jquery.com/jquery-3.5.1.min.js",
+  );
+
+  const [version, setVersion] = useState(0);
+  useEffect(() => {
+    if (typeof jQuery !== "undefined") {
+      setVersion(jQuery.fn.jquery);
+    }
+  }, [status]);
+
+  return <div>jQuery version: {version}</div>;
+};
+
+```
+
+%%API%%

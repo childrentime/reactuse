@@ -1,0 +1,31 @@
+---
+title: useWindowFocus – Element Hook Usage & Examples
+sidebar_label: useWindowFocus
+description: >-
+  React Element Hook that tracks window focus with `window.onfocus` and `window.onblur` events. Learn usage patterns, best practices, and code examples for
+  React 
+---
+# useWindowsFocus
+
+React Element Hook that tracks window focus with `window.onfocus` and `window.onblur` events
+
+
+## Usage
+
+```tsx live
+function Demo() {
+  const focus = useWindowsFocus();
+  return (
+    <div>
+      <p>
+        {focus
+          ? "💡 Click somewhere outside of the document to unfocus."
+          : "ℹ Tab is unfocused"}
+      </p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

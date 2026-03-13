@@ -1,0 +1,42 @@
+---
+---
+
+<nav class="navbar">
+  <div style="display:flex;align-items:center;gap:16px;">
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <a href="/" class="navbar-brand">
+      React<span>Use</span>
+    </a>
+  </div>
+  <div class="navbar-links">
+    <div id="docsearch"></div>
+    <a href="https://buymeacoffee.com/lianwenwu" target="_blank" rel="noopener">Buy me a coffee</a>
+    <a href="/blog/">Blog</a>
+    <a href="https://github.com/childrentime/reactuse" target="_blank" rel="noopener">GitHub</a>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" type="button">
+      <span class="theme-icon-light">&#9789;</span>
+      <span class="theme-icon-dark">&#9728;</span>
+    </button>
+  </div>
+</nav>
+
+<style>
+  [data-theme="dark"] .theme-icon-dark { display: inline; }
+  [data-theme="dark"] .theme-icon-light { display: none; }
+  [data-theme="light"] .theme-icon-dark { display: none; }
+  [data-theme="light"] .theme-icon-light { display: inline; }
+</style>
+
+<script is:inline>
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+  document.getElementById('sidebar-toggle').addEventListener('click', () => {
+    document.querySelector('.sidebar').classList.toggle('open');
+  });
+</script>

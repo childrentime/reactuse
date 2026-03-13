@@ -1,0 +1,41 @@
+---
+title: useEyeDropper – Browser Hook Usage & Examples
+sidebar_label: useEyeDropper
+description: >-
+  Use [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) to pick color. Learn usage patterns, best practices, and code examples
+  for
+---
+# useEyeDropper
+
+Use [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) to pick color
+
+
+## Usage
+
+```tsx live
+function Demo() {
+  const [color, setColor] = useState("");
+  const [supported, open] = useEyeDropper();
+
+  if (supported) {
+    return (
+      <div style={{ padding: 40 }}>
+        Supported: {supported.toString()}
+        <br />
+        Color: {color}
+        <button
+          type="button"
+          onClick={async () => setColor((await open()).sRGBHex)}
+        >
+          Pick color
+        </button>
+      </div>
+    );
+  }
+
+  return <span>Not Supported by Your Browser</span>;
+};
+
+```
+
+%%API%%

@@ -1,0 +1,24 @@
+---
+title: useMediaDevices – Browser Hook Usage & Examples
+sidebar_label: useMediaDevices
+description: React sensor hook that tracks connected hardware devices. Learn usage patterns, best practices, and code examples for React developers.
+---
+# useMediaDevices
+
+React sensor hook that tracks connected hardware devices
+
+
+## Usage
+
+```tsx live
+function Demo() {
+  const [state] = useMediaDevices({
+    requestPermissions: true,
+  });
+
+  return <pre>{JSON.stringify(state, null, 2)}</pre>;
+};
+
+```
+
+%%API%%

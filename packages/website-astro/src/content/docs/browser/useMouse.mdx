@@ -1,0 +1,34 @@
+---
+title: useMouse – Browser Hook Usage & Examples
+sidebar_label: useMouse
+description: React sensor hooks that track cursor positio. Learn usage patterns, best practices, and code examples for React developers.
+---
+# useMouse
+
+React sensor hooks that track cursor positio
+
+
+## Usage
+
+```tsx live
+function Demo() {
+  const mouse = useMouse();
+
+  return (
+    <div>
+      <p>
+        Client - x: {mouse.clientX}, y: {mouse.clientY}
+      </p>
+      <p>
+        Page - x: {mouse.pageX}, y: {mouse.pageY}
+      </p>
+      <p>
+        Screen - x: {mouse.screenX}, y: {mouse.screenY}
+      </p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

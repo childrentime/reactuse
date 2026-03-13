@@ -1,0 +1,22 @@
+---
+title: usePreferredLanguages – Browser Hook Usage & Examples
+sidebar_label: usePreferredLanguages
+description: >-
+  `usePreferredLanguages` is a hook that returns the user's preferred languages as an array of strings. It uses the `navigator.languages`. Learn usage patterns,
+  b
+---
+# usePreferredLanguages
+
+`usePreferredLanguages` is a hook that returns the user's preferred languages as an array of strings. It uses the `navigator.languages`.
+
+## Usage
+
+```tsx live
+function Demo() {
+  const preferredLanguages = usePreferredLanguages();
+  return <div>PreferredLanguages: {JSON.stringify(preferredLanguages)}</div>;
+};
+
+```
+
+%%API%%

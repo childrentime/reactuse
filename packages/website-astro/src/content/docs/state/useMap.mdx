@@ -1,0 +1,78 @@
+---
+title: useMap – State Hook Usage & Examples
+sidebar_label: useMap
+description: React state hook that manages a Map. Learn usage patterns, best practices, and code examples for React developers.
+---
+# useMap
+
+React state hook that manages a Map
+
+## Usage
+
+```tsx live
+function Demo() {
+  const { map, set, get, remove, has, clear, reset, size } = useMap([
+    ['react', '18.0.0'],
+    ['vue', '3.0.0'],
+  ]);
+
+  return (
+    <div>
+      <p>Map size: {size}</p>
+      <div style={{ marginBottom: 16 }}>
+        <button
+          type="button"
+          onClick={() => set('angular', '16.0.0')}
+          style={{ marginRight: 8 }}
+        >
+          Add Angular
+        </button>
+        <button
+          type="button"
+          onClick={() => set('react', '18.2.0')}
+          style={{ marginRight: 8 }}
+        >
+          Update React
+        </button>
+        <button
+          type="button"
+          onClick={() => remove('vue')}
+          style={{ marginRight: 8 }}
+        >
+          Remove Vue
+        </button>
+        <button
+          type="button"
+          onClick={clear}
+          style={{ marginRight: 8 }}
+        >
+          Clear All
+        </button>
+        <button
+          type="button"
+          onClick={reset}
+          style={{ marginRight: 8 }}
+        >
+          Reset
+        </button>
+      </div>
+      <div>
+        <p>Current entries:</p>
+        <ul>
+          {Array.from(map.entries()).map(([key, value]) => (
+            <li key={key}>
+              {key}: {value} 
+              {has(key) && ' ✓'}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p>Get React version: {get('react') || 'Not found'}</p>
+      </div>
+    </div>
+  );
+};
+```
+
+%%API%%

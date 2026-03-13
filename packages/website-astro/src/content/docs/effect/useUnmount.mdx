@@ -1,0 +1,24 @@
+---
+title: useUnmount – Effect Hook Usage & Examples
+sidebar_label: useUnmount
+description: React lifecycle hook that calls a function when the component will unmount. Learn usage patterns, best practices, and code examples for React developers.
+---
+# useUnmount
+
+React lifecycle hook that calls a function when the component will unmount
+
+
+## Usage
+
+```tsx live
+function Demo() {
+  const [value] = useState("mounted");
+  useUnmount(() => {
+    alert("UnMounted");
+  });
+  return <div>{value}</div>;
+};
+
+```
+
+%%API%%

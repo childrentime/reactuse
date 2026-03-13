@@ -1,0 +1,63 @@
+/* LiveCode component styles */
+.live-code-container {
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.live-code-header {
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--sl-color-gray-6);
+  color: var(--sl-color-gray-2);
+  border-bottom: 1px solid var(--sl-color-gray-5);
+}
+
+.live-code-editor-area {
+  font-size: 14px !important;
+  font-family: var(--sl-font-mono) !important;
+}
+
+.live-code-editor-area textarea,
+.live-code-editor-area pre {
+  padding: 1rem !important;
+}
+
+.live-code-preview {
+  padding: 1.5rem;
+  min-height: 60px;
+}
+
+.live-code-error {
+  padding: 0.75rem 1rem;
+  margin: 0;
+  background: #ff000015;
+  color: #ef4444;
+  font-size: 0.85rem;
+  font-family: var(--sl-font-mono);
+  white-space: pre-wrap;
+}
+
+/* Buttons in demos */
+.live-code-preview button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--sl-color-gray-4);
+  border-radius: 4px;
+  background: var(--sl-color-gray-6);
+  color: var(--sl-color-white);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.live-code-preview button:hover {
+  background: var(--sl-color-gray-5);
+}
+
+.live-code-preview button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
