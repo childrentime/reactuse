@@ -1,12 +1,26 @@
 ---
 import { getCollection } from 'astro:content'
-import { t, getCollectionName, localePath, type Locale } from '../i18n/translations'
+import { t, localeLabels, getCollectionName, localePath, type Locale } from '../i18n/translations'
 
 interface Props {
   currentSlug?: string
   locale?: Locale
 }
 const { currentSlug, locale = 'en' } = Astro.props
+
+// Locale switch URLs for mobile sidebar
+const pathname = Astro.url.pathname
+let basePath = pathname
+if (pathname.startsWith('/zh-Hans/') || pathname.startsWith('/zh-Hans')) {
+  basePath = pathname.replace(/^\/zh-Hans/, '') || '/'
+} else if (pathname.startsWith('/zh-Hant/') || pathname.startsWith('/zh-Hant')) {
+  basePath = pathname.replace(/^\/zh-Hant/, '') || '/'
+}
+const switchUrls = {
+  en: basePath,
+  'zh-Hans': `/zh-Hans${basePath === '/' ? '/' : basePath}`,
+  'zh-Hant': `/zh-Hant${basePath === '/' ? '/' : basePath}`,
+}
 
 const collectionName = getCollectionName(locale)
 const allDocs = await getCollection(collectionName as any)
@@ -88,6 +102,22 @@ const sortedCategories = [...grouped.entries()].sort((a, b) => {
       </ul>
     </div>
   ))}
+
+  {/* Mobile-only: links hidden from navbar */}
+  <div class="sidebar-mobile-extras">
+    <div class="sidebar-group-label">{t(locale, 'sidebar.language') || 'Language'}</div>
+    <ul class="sidebar-items">
+      <li class="sidebar-item"><a href={switchUrls.en} class:list={[{ active: locale === 'en' }]}>English</a></li>
+      <li class="sidebar-item"><a href={switchUrls['zh-Hans']} class:list={[{ active: locale === 'zh-Hans' }]}>简体中文</a></li>
+      <li class="sidebar-item"><a href={switchUrls['zh-Hant']} class:list={[{ active: locale === 'zh-Hant' }]}>繁體中文</a></li>
+    </ul>
+    <div class="sidebar-group-label" style="margin-top:8px">Links</div>
+    <ul class="sidebar-items">
+      <li class="sidebar-item"><a href={localePath(locale, '/blog/')}>{t(locale, 'nav.blog')}</a></li>
+      <li class="sidebar-item"><a href="https://github.com/childrentime/reactuse" target="_blank" rel="noopener">GitHub</a></li>
+      <li class="sidebar-item"><a href="https://buymeacoffee.com/lianwenwu" target="_blank" rel="noopener">{t(locale, 'nav.coffee')}</a></li>
+    </ul>
+  </div>
 </aside>
 
 <script is:inline>

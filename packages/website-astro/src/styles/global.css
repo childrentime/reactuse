@@ -65,7 +65,7 @@
   --border-hard: oklch(0.35 0.02 var(--hue));
   --text-1: oklch(0.92 0.01 var(--hue));
   --text-2: oklch(0.72 0.01 var(--hue));
-  --text-3: oklch(0.52 0.01 var(--hue));
+  --text-3: oklch(0.58 0.01 var(--hue));
 
   color-scheme: dark;
 }
@@ -218,7 +218,7 @@ a:hover {
 .main-content {
   margin-left: var(--sidebar-w);
   flex: 1;
-  max-width: 52rem;
+  max-width: 48rem;
   padding: var(--sp-10) var(--sp-10) var(--sp-16);
 }
 
@@ -439,6 +439,18 @@ a:hover {
   border-color: var(--border-hard);
 }
 
+/* --- Sidebar mobile extras --- */
+.sidebar-mobile-extras {
+  display: none;
+  border-top: 1px solid var(--border);
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-4);
+}
+.sidebar-mobile-extras .sidebar-item a.active {
+  color: var(--brand);
+  font-weight: 600;
+}
+
 /* --- Mobile responsive --- */
 .sidebar-toggle {
   display: none;
@@ -467,6 +479,20 @@ a:hover {
   }
   .sidebar-toggle {
     display: block;
+  }
+  .sidebar-mobile-extras {
+    display: block;
+  }
+}
+
+/* Tablet breakpoint */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+  }
+  .main-content,
+  .footer {
+    margin-left: 220px;
   }
 }
 
@@ -584,4 +610,13 @@ a:hover {
   padding: 0 4px !important;
   border-radius: 3px !important;
   width: auto !important;
+}
+@media (max-width: 768px) {
+  .DocSearch-Button-Placeholder,
+  .DocSearch-Button-Keys {
+    display: none !important;
+  }
+  .DocSearch-Button {
+    padding: var(--sp-1) var(--sp-2) !important;
+  }
 }
