@@ -128,12 +128,21 @@ const structuredData = {
   <slot />
   <script is:inline src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
   <script is:inline>
-    docsearch({
-      appId: '8I3BLA6GDS',
-      apiKey: 'd70ec992605c0048bc1301c882f4a2ec',
-      indexName: 'reactuse',
-      container: '#docsearch',
-    });
+    (function() {
+      var lang = 'en';
+      var path = window.location.pathname;
+      if (path.startsWith('/zh-Hans/')) lang = 'zh-Hans';
+      else if (path.startsWith('/zh-Hant/')) lang = 'zh-Hant';
+      docsearch({
+        appId: '8I3BLA6GDS',
+        apiKey: 'd70ec992605c0048bc1301c882f4a2ec',
+        indexName: 'reactuse',
+        container: '#docsearch',
+        searchParameters: {
+          facetFilters: ['language:' + lang],
+        },
+      });
+    })();
   </script>
 </body>
 </html>
