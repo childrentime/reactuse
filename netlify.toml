@@ -1,5 +1,5 @@
 [build]
-base = ""
+base = "/"
 command = "pnpm i && pnpm --filter @reactuses/core run build && pnpm --filter website-astro run build"
 publish = "packages/website-astro/dist"
 
