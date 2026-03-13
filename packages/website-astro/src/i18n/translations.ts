@@ -2,13 +2,13 @@ export const locales = ['en', 'zh-Hans', 'zh-Hant'] as const
 export type Locale = (typeof locales)[number]
 
 export const localeLabels: Record<Locale, string> = {
-  en: 'English',
+  'en': 'English',
   'zh-Hans': '简体中文',
   'zh-Hant': '繁體中文',
 }
 
 const ui: Record<Locale, Record<string, string>> = {
-  en: {
+  'en': {
     'nav.coffee': 'Buy me a coffee',
     'nav.blog': 'Blog',
     'nav.github': 'GitHub',
@@ -55,18 +55,23 @@ export function t(locale: Locale, key: string): string {
 
 export function getLocaleFromUrl(url: URL): Locale {
   const seg = url.pathname.split('/')[1]
-  if (seg === 'zh-Hans') return 'zh-Hans'
-  if (seg === 'zh-Hant') return 'zh-Hant'
+  if (seg === 'zh-Hans')
+    return 'zh-Hans'
+  if (seg === 'zh-Hant')
+    return 'zh-Hant'
   return 'en'
 }
 
 export function getCollectionName(locale: Locale): string {
-  if (locale === 'zh-Hans') return 'docs-zh-hans'
-  if (locale === 'zh-Hant') return 'docs-zh-hant'
+  if (locale === 'zh-Hans')
+    return 'docs-zh-hans'
+  if (locale === 'zh-Hant')
+    return 'docs-zh-hant'
   return 'docs'
 }
 
 export function localePath(locale: Locale, path: string): string {
-  if (locale === 'en') return path
+  if (locale === 'en')
+    return path
   return `/${locale}${path}`
 }

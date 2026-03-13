@@ -26,6 +26,7 @@ yarn-error.log*
 **/esm
 **/lib
 **/ssg
+**/.astro
 
 types
 **/common-server

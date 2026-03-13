@@ -45,8 +45,8 @@
   --sp-16: 64px;
 
   /* Typography */
-  --font-body: "Source Sans 3", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", "Fira Code", monospace;
+  --font-body: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
   --font-heading: var(--font-body);
 
   /* Radius */
@@ -57,7 +57,7 @@
   color-scheme: light;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --bg: oklch(0.16 0.015 var(--hue));
   --bg-soft: oklch(0.19 0.015 var(--hue));
   --bg-mute: oklch(0.22 0.015 var(--hue));
@@ -175,7 +175,7 @@ a:hover {
   user-select: none;
 }
 .sidebar-group-label::after {
-  content: "";
+  content: '';
   width: 5px;
   height: 5px;
   border-right: 1.5px solid var(--text-3);
@@ -197,7 +197,9 @@ a:hover {
   display: block;
   padding: var(--sp-1) var(--sp-6) var(--sp-1) var(--sp-8);
   color: var(--text-2);
-  transition: color 0.1s, background 0.1s;
+  transition:
+    color 0.1s,
+    background 0.1s;
   border-left: 2px solid transparent;
 }
 .sidebar-item a:hover {
@@ -205,7 +207,7 @@ a:hover {
   background: var(--bg-soft);
   text-decoration: none;
 }
-.sidebar-item a[aria-current="page"] {
+.sidebar-item a[aria-current='page'] {
   color: var(--brand);
   border-left-color: var(--brand);
   background: var(--bg-soft);
@@ -257,7 +259,8 @@ a:hover {
 .doc-prose p {
   margin-bottom: var(--sp-4);
 }
-.doc-prose ul, .doc-prose ol {
+.doc-prose ul,
+.doc-prose ol {
   padding-left: var(--sp-6);
   margin-bottom: var(--sp-4);
 }
@@ -294,8 +297,8 @@ a:hover {
   color: inherit;
 }
 /* Shiki dual-theme: dark mode swaps to --shiki-dark CSS variables */
-[data-theme="dark"] .doc-prose .astro-code,
-[data-theme="dark"] .doc-prose .astro-code span {
+[data-theme='dark'] .doc-prose .astro-code,
+[data-theme='dark'] .doc-prose .astro-code span {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
 }
@@ -360,7 +363,7 @@ a:hover {
   font-family: var(--font-mono);
   white-space: pre-wrap;
 }
-[data-theme="dark"] .live-code-error {
+[data-theme='dark'] .live-code-error {
   background: oklch(0.22 0.05 25);
   color: oklch(0.7 0.15 25);
 }
@@ -427,7 +430,9 @@ a:hover {
   color: var(--text-2);
   font-size: 0.9rem;
   line-height: 1;
-  transition: color 0.15s, border-color 0.15s;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
 }
 .theme-toggle:hover {
   color: var(--text-1);
@@ -480,30 +485,47 @@ a:hover {
   letter-spacing: 0.04em;
   margin-bottom: var(--sp-2) !important;
 }
-.admonition-note { border-left-color: oklch(0.6 0.12 250); }
-.admonition-note .admonition-title { color: oklch(0.6 0.12 250); }
-.admonition-tip { border-left-color: oklch(0.6 0.15 155); }
-.admonition-tip .admonition-title { color: oklch(0.6 0.15 155); }
-.admonition-info { border-left-color: oklch(0.6 0.12 250); }
-.admonition-info .admonition-title { color: oklch(0.6 0.12 250); }
-.admonition-warning, .admonition-caution {
+.admonition-note {
+  border-left-color: oklch(0.6 0.12 250);
+}
+.admonition-note .admonition-title {
+  color: oklch(0.6 0.12 250);
+}
+.admonition-tip {
+  border-left-color: oklch(0.6 0.15 155);
+}
+.admonition-tip .admonition-title {
+  color: oklch(0.6 0.15 155);
+}
+.admonition-info {
+  border-left-color: oklch(0.6 0.12 250);
+}
+.admonition-info .admonition-title {
+  color: oklch(0.6 0.12 250);
+}
+.admonition-warning,
+.admonition-caution {
   border-left-color: oklch(0.7 0.15 80);
   background: oklch(0.97 0.02 80);
 }
-[data-theme="dark"] .admonition-warning,
-[data-theme="dark"] .admonition-caution {
+[data-theme='dark'] .admonition-warning,
+[data-theme='dark'] .admonition-caution {
   background: oklch(0.22 0.03 80);
 }
 .admonition-warning .admonition-title,
-.admonition-caution .admonition-title { color: oklch(0.7 0.15 80); }
+.admonition-caution .admonition-title {
+  color: oklch(0.7 0.15 80);
+}
 .admonition-danger {
   border-left-color: oklch(0.6 0.2 25);
   background: oklch(0.97 0.02 25);
 }
-[data-theme="dark"] .admonition-danger {
+[data-theme='dark'] .admonition-danger {
   background: oklch(0.22 0.03 25);
 }
-.admonition-danger .admonition-title { color: oklch(0.6 0.2 25); }
+.admonition-danger .admonition-title {
+  color: oklch(0.6 0.2 25);
+}
 
 /* --- Details/Summary --- */
 .doc-prose details {

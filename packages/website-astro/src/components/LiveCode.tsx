@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-import * as ReactUse from "@reactuses/core";
-import { useQRCode } from "@reactuses/core/useQRCode";
+import React from 'react'
+import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
+import * as ReactUse from '@reactuses/core'
+import { useQRCode } from '@reactuses/core/useQRCode'
 
 /**
  * Scope available in live code blocks - mirrors the Docusaurus ReactLiveScope
@@ -11,20 +11,20 @@ const scope = {
   ...React,
   ...ReactUse,
   useQRCode,
-};
-
-interface LiveCodeProps {
-  code: string;
-  noInline?: boolean;
 }
 
-const transformCode = (code: string) => `${code}`;
+interface LiveCodeProps {
+  code: string
+  noInline?: boolean
+}
+
+const transformCode = (code: string) => `${code}`
 
 export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
   return (
     <div className="live-code-container">
       <LiveProvider
-        code={code.replace(/\n$/, "")}
+        code={code.replace(/\n$/, '')}
         scope={scope}
         noInline={noInline}
         transformCode={transformCode}
@@ -42,5 +42,5 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
         </div>
       </LiveProvider>
     </div>
-  );
+  )
 }
