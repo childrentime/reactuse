@@ -1,0 +1,21 @@
+---
+title: useOnline 用法与示例
+sidebar_label: useOnline
+description: '`useNetwork` 的包装，检测网络状况。 本文介绍其用法、最佳实践与代码示例。'
+---
+# useOnline
+
+`useNetwork` 的包装，检测网络状况
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const online = useOnline();
+  return <div>{JSON.stringify(online)}</div>;
+};
+
+```
+
+%%API%%

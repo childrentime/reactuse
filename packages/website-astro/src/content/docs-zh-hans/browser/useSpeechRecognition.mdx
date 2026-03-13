@@ -1,0 +1,357 @@
+---
+title: useSpeechRecognition 用法与示例
+sidebar_label: useSpeechRecognition
+description: >-
+  用于 React 的响应式语音识别 API。支持实时语音识别、可配置选项、跨浏览器兼容性和 TypeScript 支持。了解用法模式、最佳实践和代码示例。
+---
+# useSpeechRecognition
+
+用于 React 的响应式语音识别 API
+
+支持实时语音识别、可配置选项、跨浏览器兼容性和 TypeScript 支持。非常适合语音控制应用程序、听写功能和无障碍增强。
+
+## 基本用法
+
+```tsx live
+function Demo() {
+  const {
+    isSupported,
+    isListening,
+    isFinal,
+    result,
+    error,
+    start,
+    stop,
+    toggle,
+  } = useSpeechRecognition();
+
+  if (!isSupported) {
+    return <div>此浏览器不支持语音识别</div>;
+  }
+
+  return (
+    <div>
+      <div style={{ marginBottom: '20px' }}>
+        <p><strong>状态:</strong> {isListening ? '正在监听...' : '已停止'}</p>
+        <p><strong>结果:</strong> {result || '未检测到语音'}</p>
+        <p><strong>最终结果:</strong> {isFinal ? '是' : '否'}</p>
+        {error && <p style={{ color: 'var(--ifm-color-danger)' }}><strong>错误:</strong> {error.error}</p>}
+      </div>
+      
+      <div style={{ display: 'flex', gap: '10px' }}>
+        <button onClick={start} disabled={isListening}>
+          开始
+        </button>
+        <button onClick={stop} disabled={!isListening}>
+          停止
+        </button>
+        <button onClick={() => toggle()}>
+          切换
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+## 自定义配置选项
+
+```tsx live
+function Demo() {
+  const {
+    isSupported,
+    isListening,
+    result,
+    start,
+    stop,
+  } = useSpeechRecognition({
+    continuous: true,
+    interimResults: true,
+    lang: 'zh-CN',
+    maxAlternatives: 1,
+  });
+
+  if (!isSupported) {
+    return <div>不支持语音识别</div>;
+  }
+
+  return (
+    <div>
+      <div style={{ marginBottom: '20px' }}>
+        <p><strong>识别结果:</strong></p>
+        <div style={{ 
+          padding: '10px', 
+          border: '1px solid var(--ifm-color-emphasis-200)', 
+          borderRadius: '4px',
+          minHeight: '60px',
+          backgroundColor: 'var(--ifm-background-surface-color)',
+          color: 'var(--ifm-color-content)'
+        }}>
+          {result || '开始说话...'}
+        </div>
+      </div>
+      
+      <div style={{ display: 'flex', gap: '10px' }}>
+        <button 
+          onClick={start} 
+          disabled={isListening}
+          style={{ 
+            backgroundColor: isListening ? 'var(--ifm-color-emphasis-300)' : 'var(--ifm-color-primary)',
+            color: 'var(--ifm-color-white)',
+            border: 'none',
+            padding: '8px 16px',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+        >
+          {isListening ? '正在监听...' : '开始识别'}
+        </button>
+        <button 
+          onClick={stop} 
+          disabled={!isListening}
+          style={{ 
+            backgroundColor: !isListening ? 'var(--ifm-color-emphasis-300)' : 'var(--ifm-color-danger)',
+            color: 'var(--ifm-color-white)',
+            border: 'none',
+            padding: '8px 16px',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+        >
+          停止
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+## 多语言支持
+
+```tsx live
+function Demo() {
+  const [selectedLang, setSelectedLang] = React.useState('zh-CN');
+  
+  const {
+    isSupported,
+    isListening,
+    result,
+    start,
+    stop,
+  } = useSpeechRecognition({
+    lang: selectedLang,
+    continuous: true,
+    interimResults: true,
+  });
+
+  const languages = [
+    { code: 'zh-CN', name: '中文 (简体)' },
+    { code: 'en-US', name: 'English (US)' },
+    { code: 'ja-JP', name: '日本語' },
+    { code: 'ko-KR', name: '한국어' },
+    { code: 'es-ES', name: 'Español' },
+    { code: 'fr-FR', name: 'Français' },
+  ];
+
+  if (!isSupported) {
+    return <div>不支持语音识别</div>;
+  }
+
+  return (
+    <div>
+      <div style={{ marginBottom: '20px' }}>
+        <label>
+          <strong>语言:</strong>
+          <select 
+            value={selectedLang} 
+            onChange={(e) => setSelectedLang(e.target.value)}
+            style={{ 
+              marginLeft: '10px', 
+              padding: '4px',
+              backgroundColor: 'var(--ifm-background-color)',
+              color: 'var(--ifm-color-content)',
+              border: '1px solid var(--ifm-color-emphasis-300)',
+              borderRadius: '4px'
+            }}
+            disabled={isListening}
+          >
+            {languages.map(lang => (
+              <option key={lang.code} value={lang.code}>
+                {lang.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      
+      <div style={{ marginBottom: '20px' }}>
+        <div style={{ 
+          padding: '10px', 
+          border: '1px solid var(--ifm-color-emphasis-200)', 
+          borderRadius: '4px',
+          minHeight: '80px',
+          backgroundColor: 'var(--ifm-background-surface-color)',
+          color: 'var(--ifm-color-content)'
+        }}>
+          {result || `开始用${languages.find(l => l.code === selectedLang)?.name}说话...`}
+        </div>
+      </div>
+      
+      <div style={{ display: 'flex', gap: '10px' }}>
+        <button onClick={() => start({ lang: selectedLang })} disabled={isListening}>
+          开始 ({selectedLang})
+        </button>
+        <button onClick={stop} disabled={!isListening}>
+          停止
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+## 动态语言和模式切换
+
+```tsx live
+function DynamicOptionsDemo() {
+  const {
+    isSupported,
+    isListening,
+    result,
+    start,
+    stop,
+  } = useSpeechRecognition();
+
+  const quickOptions = [
+    { 
+      language: 'zh-CN', 
+      name: '中文 (连续)', 
+      flag: '🇨🇳', 
+      continuous: true,
+      color: 'var(--ifm-color-primary)'
+    },
+    { 
+      language: 'zh-CN', 
+      name: '中文 (单次)', 
+      flag: '🇨🇳', 
+      continuous: false,
+      color: 'var(--ifm-color-secondary)'
+    },
+    { 
+      language: 'en-US', 
+      name: 'English (Continuous)', 
+      flag: '🇺🇸', 
+      continuous: true,
+      color: 'var(--ifm-color-success)'
+    },
+    { 
+      language: 'en-US', 
+      name: 'English (Single)', 
+      flag: '🇺🇸', 
+      continuous: false,
+      color: 'var(--ifm-color-warning)'
+    },
+  ];
+
+  if (!isSupported) {
+    return <div>不支持语音识别</div>;
+  }
+
+  return (
+    <div>
+      <div style={{ marginBottom: '20px' }}>
+        <p><strong>快速开始不同语言和模式:</strong></p>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: '10px',
+          marginBottom: '16px'
+        }}>
+          {quickOptions.map((option, index) => (
+            <button
+              key={index}
+              onClick={() => start({ lang: option.language, continuous: option.continuous })}
+              disabled={isListening}
+              style={{
+                padding: '12px 8px',
+                border: '1px solid var(--ifm-color-emphasis-300)',
+                backgroundColor: isListening ? 'var(--ifm-color-emphasis-300)' : option.color,
+                color: 'var(--ifm-color-white)',
+                borderRadius: '6px',
+                cursor: isListening ? 'not-allowed' : 'pointer',
+                fontSize: '13px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '4px',
+                textAlign: 'center'
+              }}
+            >
+              <span style={{ fontSize: '18px' }}>{option.flag}</span>
+              <span>{option.name}</span>
+            </button>
+          ))}
+        </div>
+        
+        {isListening && (
+          <button
+            onClick={stop}
+            style={{
+              padding: '8px 16px',
+              border: 'none',
+              backgroundColor: 'var(--ifm-color-danger)',
+              color: 'var(--ifm-color-white)',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              width: '100%'
+            }}
+          >
+            停止监听
+          </button>
+        )}
+      </div>
+      
+      <div style={{ 
+        padding: '16px', 
+        border: '1px solid var(--ifm-color-emphasis-200)', 
+        borderRadius: '6px',
+        minHeight: '80px',
+        backgroundColor: 'var(--ifm-background-surface-color)',
+        color: 'var(--ifm-color-content)'
+      }}>
+        <strong>结果:</strong> {result || '点击任意按钮开始说话...'}
+      </div>
+      
+      <div style={{ 
+        marginTop: '12px',
+        padding: '12px',
+        backgroundColor: 'var(--ifm-background-surface-color)',
+        borderRadius: '4px',
+        fontSize: '14px',
+        color: 'var(--ifm-color-content-secondary)'
+      }}>
+        <strong>提示:</strong> 连续模式会持续监听直到您停止，
+        而单次模式在检测到一个短语后会自动停止。
+      </div>
+    </div>
+  );
+}
+```
+
+## 注意事项
+
+- **需要 HTTPS**: 此 API 在生产环境中需要 HTTPS
+- **用户交互**: 某些浏览器可能需要用户交互才能开始语音识别
+- **权限**: 浏览器会在首次使用时请求麦克风权限
+- **隐私**: 语音数据可能会发送到云服务进行处理
+- **准确性**: 结果可能因麦克风质量、环境噪音和口音而有所不同
+
+## 常见用例
+
+- **语音命令**: 实现语音控制界面
+- **听写**: 为表单添加语音转文本功能
+- **无障碍**: 为行动不便的用户提供语音输入
+- **搜索**: 启用语音搜索功能
+- **笔记**: 创建语音备忘录应用程序
+
+%%API%%

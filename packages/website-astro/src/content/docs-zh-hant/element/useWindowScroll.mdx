@@ -1,0 +1,38 @@
+---
+title: useWindowScroll 用法與示例
+sidebar_label: useWindowScroll
+description: useWindowScroll 是一个 React Hook，它用于獲取瀏覽器窗口的滾動位置。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useWindowScroll
+
+useWindowScroll 是一个 React Hook，它用于獲取瀏覽器窗口的滾動位置
+
+## Usage
+
+```tsx live
+function Demo() {
+  return (
+    <div>
+      <div>
+        <iframe
+          src="https://codesandbox.io/embed/dreamy-lehmann-mzg96r?fontsize=14&hidenavigation=1&theme=dark"
+          style={{
+            width: "100%",
+            height: 500,
+            border: 0,
+            borderRadius: 4,
+            overflow: "hidden",
+          }}
+          title="dreamy-lehmann-mzg96r"
+          allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+          sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+        >
+        </iframe>
+      </div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

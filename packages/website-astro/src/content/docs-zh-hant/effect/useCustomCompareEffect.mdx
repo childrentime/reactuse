@@ -1,0 +1,49 @@
+---
+title: useCustomCompareEffect 用法與示例
+sidebar_label: useCustomCompareEffect
+description: 修改後的 useEffect，它接受一個比較函數，用於比較依賴項而不是引用相等性。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useCustomCompareEffect
+
+修改後的 useEffect，它接受一個比較函數，用於比較依賴項而不是引用相等性
+
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [person, setPerson] = useState({ name: "bob", id: 1 });
+  const [count, setCount] = useState(0);
+  useCustomCompareEffect(
+    () => {
+      setCount(c => c + 1);
+    },
+    [person],
+    (prevDeps, nextDeps) => prevDeps[0].id === nextDeps[0].id,
+  );
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          setPerson({ name: "joey", id: 1 });
+        }}
+      >
+        更改人名
+      </button>
+      <button
+        onClick={() => {
+          setPerson({ name: "bob", id: 2 });
+        }}
+      >
+        更改人員ID
+      </button>
+      <p>useCustomCompareEffect 深度比較：{count}</p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

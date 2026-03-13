@@ -1,0 +1,28 @@
+---
+title: useWindowSize 用法与示例
+sidebar_label: useWindowSize
+description: 跟踪视窗大小的 React Hook。 本文介绍其用法、最佳实践与代码示例。
+---
+# useWindowSize
+
+跟踪视窗大小的 React Hook。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const { width, height } = useWindowSize();
+
+  return (
+    <div>
+      <p>
+        宽度: {width}, 高度: {height}
+      </p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

@@ -1,0 +1,67 @@
+---
+title: useClickOutside 用法與示例
+sidebar_label: useClickOutside
+description: 監聽元素外部的點擊。 對於模式或下拉選單很有用。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useClickOutside
+
+監聽元素外部的點擊。 對於模式或下拉選單很有用。
+
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [visible, setVisible] = useState(false);
+
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(modalRef, () => {
+    setVisible(false);
+  });
+
+  return (
+    <div>
+      <button onClick={() => setVisible(true)}> 打開模態框</button>
+      {visible && (
+        <div
+          ref={modalRef}
+          style={{
+            position: "fixed",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%,-50%)",
+            width: 420,
+            maxWidth: "100%",
+            zIndex: 10,
+            border: "1px solid var(--c-input-border)",
+            background: "var(--c-bg)",
+          }}
+        >
+          <div
+            style={{
+              padding: "0.4em 2em",
+              boxShadow: "2px 2px 10px var(--c-box-shadow)",
+            }}
+          >
+            <p
+              style={{
+                fontWeight: 700,
+                fontSize: "1.4rem",
+                marginBottom: "2rem",
+              }}
+            >
+              演示模態框
+            </p>
+            <p>點擊模態框外部關閉它。</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+```
+
+%%API%%

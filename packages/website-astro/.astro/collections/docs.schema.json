@@ -13,6 +13,9 @@
         "sidebar_label": {
           "type": "string"
         },
+        "sidebar_position": {
+          "type": "number"
+        },
         "$schema": {
           "type": "string"
         }

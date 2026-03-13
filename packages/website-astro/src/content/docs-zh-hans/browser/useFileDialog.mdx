@@ -1,0 +1,45 @@
+---
+title: useFileDialog 用法与示例
+sidebar_label: useFileDialog
+description: 轻松选取文件。 本文介绍其用法、最佳实践与代码示例。
+---
+# useFileDialog
+
+轻松选取文件
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [files, open, reset] = useFileDialog();
+
+  return (
+    <div>
+      <button onClick={() => open()}>选择文件</button>
+      <button
+        style={{ marginLeft: 20 }}
+        disabled={!files}
+        onClick={() => {
+          reset();
+        }}
+      >
+        重置
+      </button>
+      {files && (
+        <div>
+          <p>
+            您已选择: <b>{files.length} 个文件</b>
+            {Array.from(files).map((file) => {
+              return <li key={file.name}>{file.name}</li>;
+            })}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+```
+
+%%API%%

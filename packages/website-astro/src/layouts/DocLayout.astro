@@ -3,26 +3,28 @@ import BaseLayout from './BaseLayout.astro'
 import Navbar from '../components/Navbar.astro'
 import Sidebar from '../components/Sidebar.astro'
 import Footer from '../components/Footer.astro'
+import type { Locale } from '../i18n/translations'
 
 interface Props {
   title: string
   description?: string
   category?: string
   slug?: string
+  locale?: Locale
 }
 
-const { title, description, category, slug } = Astro.props
+const { title, description, category, slug, locale = 'en' } = Astro.props
 ---
 
-<BaseLayout title={title} description={description}>
-  <Navbar />
+<BaseLayout title={title} description={description} locale={locale}>
+  <Navbar locale={locale} />
   <div class="page-shell">
-    <Sidebar currentSlug={slug} />
+    <Sidebar currentSlug={slug} locale={locale} />
     <main class="main-content">
       <article class="doc-prose">
         <slot />
       </article>
     </main>
   </div>
-  <Footer />
+  <Footer locale={locale} />
 </BaseLayout>

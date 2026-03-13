@@ -1,0 +1,31 @@
+---
+title: useTextSelection 用法与示例
+sidebar_label: useTextSelection
+description: 跟踪用户选中的文字。 本文介绍其用法、最佳实践与代码示例。
+---
+# useTextSelection
+
+跟踪用户选中的文字
+
+## Usage
+
+```tsx live noInline
+
+function Demo() {
+  const selection = useTextSelection();
+
+  return (
+    <div style={{ padding: 40 }}>
+      <p>
+        在这里或页面上的任何地方选择一些文本，它将显示在下面
+      </p>
+
+      <div>选中的文本: {selection?.toString()}</div>
+    </div>
+  );
+};
+
+render(<Demo/>)
+```
+
+%%API%%

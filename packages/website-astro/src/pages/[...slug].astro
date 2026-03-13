@@ -19,6 +19,6 @@ const slug = entry.id
 const category = slug.includes('/') ? slug.split('/')[0] : undefined
 ---
 
-<DocLayout title={entry.data.title} description={entry.data.description} category={category} slug={slug}>
+<DocLayout title={entry.data.title} description={entry.data.description} category={category} slug={slug} locale="en">
   <Content />
 </DocLayout>

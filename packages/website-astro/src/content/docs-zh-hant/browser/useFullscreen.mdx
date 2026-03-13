@@ -1,0 +1,44 @@
+---
+title: useFullscreen 用法與示例
+sidebar_label: useFullscreen
+description: 元素的全螢幕展示。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useFullscreen
+
+元素的全螢幕展示
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const ref = useRef(null);
+  const [isFullscreen, { enterFullscreen, exitFullscreen, toggleFullscreen }]
+    = useFullscreen(ref);
+  return (
+    <div ref={ref}>
+      <div style={{ marginBottom: 16 }}>
+        {isFullscreen ? "全螢幕" : "非全螢幕"}
+      </div>
+      <div>
+        <button type="button" onClick={enterFullscreen}>
+          進入全螢幕
+        </button>
+        <button
+          type="button"
+          onClick={exitFullscreen}
+          style={{ margin: "0 8px" }}
+        >
+          退出全螢幕
+        </button>
+        <button type="button" onClick={toggleFullscreen}>
+          切換全螢幕
+        </button>
+      </div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

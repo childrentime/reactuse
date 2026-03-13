@@ -1,13 +1,26 @@
 import { defineCollection, z } from 'astro:content'
 import { glob } from 'astro/loaders'
 
+const docSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  sidebar_label: z.string().optional(),
+  sidebar_position: z.number().optional(),
+})
+
 const docs = defineCollection({
   loader: glob({ base: './src/content/docs', pattern: '**/*.{md,mdx}' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    sidebar_label: z.string().optional(),
-  }),
+  schema: docSchema,
+})
+
+const docsZhHans = defineCollection({
+  loader: glob({ base: './src/content/docs-zh-hans', pattern: '**/*.{md,mdx}' }),
+  schema: docSchema,
+})
+
+const docsZhHant = defineCollection({
+  loader: glob({ base: './src/content/docs-zh-hant', pattern: '**/*.{md,mdx}' }),
+  schema: docSchema,
 })
 
 const blog = defineCollection({
@@ -27,4 +40,4 @@ const blog = defineCollection({
   }),
 })
 
-export const collections = { docs, blog }
+export const collections = { docs, 'docs-zh-hans': docsZhHans, 'docs-zh-hant': docsZhHant, blog }

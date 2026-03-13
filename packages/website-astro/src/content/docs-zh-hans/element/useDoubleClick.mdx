@@ -1,0 +1,37 @@
+---
+title: useDoubleClick 用法与示例
+sidebar_label: useDoubleClick
+description: 双击跟踪。 本文介绍其用法、最佳实践与代码示例。
+---
+# useDoubleClick
+
+双击跟踪
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const element = useRef<HTMLButtonElement>(null);
+  const [text, setText] = useState("未点击");
+
+  useDoubleClick({
+    target: element,
+    onSingleClick: () => {
+      setText("单击");
+    },
+    onDoubleClick: () => {
+      setText("双击");
+    },
+  });
+  return (
+    <div>
+      <button ref={element}>点击我</button>
+      <p>{text}</p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

@@ -1,0 +1,37 @@
+---
+title: useMeasure 用法与示例
+sidebar_label: useMeasure
+description: 使用 `Resize Observer API` 跟踪 HTML 元素的尺寸。 本文介绍其用法、最佳实践与代码示例。
+---
+# useMeasure
+
+使用 `Resize Observer API` 跟踪 HTML 元素的尺寸
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  const [rect, stop] = useMeasure(ref);
+
+  return (
+    <div>
+      <div>调整框的大小以查看变化</div>
+      <div>
+        <button onClick={() => stop()}>停止观察</button>
+      </div>
+      <br />
+      <textarea
+        ref={ref}
+        disabled
+        style={{ width: 286, height: 166 }}
+        value={JSON.stringify(rect, null, 2)}
+      />
+    </div>
+  );
+};
+
+```
+
+%%API%%

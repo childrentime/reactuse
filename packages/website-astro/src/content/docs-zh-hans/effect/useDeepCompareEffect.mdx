@@ -1,0 +1,46 @@
+---
+title: useDeepCompareEffect 用法与示例
+sidebar_label: useDeepCompareEffect
+description: 修改后的 useEffect ，对其依赖项使用深度比较而不是引用相等。 本文介绍其用法、最佳实践与代码示例。
+---
+# useDeepCompareEffect
+
+修改后的 useEffect ，对其依赖项使用深度比较而不是引用相等
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [count, setCount] = useState(0);
+  const effectCountRef = useRef(0);
+  const deepCompareCountRef = useRef(0);
+
+  useEffect(() => {
+    effectCountRef.current += 1;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [{}]);
+
+  useDeepCompareEffect(() => {
+    deepCompareCountRef.current += 1;
+    return () => {
+      // do something
+    };
+  }, [{}]);
+
+  return (
+    <div>
+      <p>effect计数: {effectCountRef.current}</p>
+      <p>深度比较计数: {deepCompareCountRef.current}</p>
+      <p>
+        <button type="button" onClick={() => setCount(c => c + 1)}>
+          重新渲染
+        </button>
+      </p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

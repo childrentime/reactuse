@@ -1,0 +1,22 @@
+---
+title: usePreferredContrast 用法與示例
+sidebar_label: usePreferredContrast
+description: '[prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) 媒體查詢。 本文介紹其用法、最佳實踐與代碼示例。'
+---
+# usePreferredContrast
+
+[prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) 媒體查詢
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const contrast = usePreferredContrast();
+
+  return <div>首選對比度：{contrast}</div>;
+};
+
+```
+
+%%API%%

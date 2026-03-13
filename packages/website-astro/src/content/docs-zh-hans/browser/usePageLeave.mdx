@@ -1,0 +1,22 @@
+---
+title: usePageLeave 用法与示例
+sidebar_label: usePageLeave
+description: 跟踪鼠标是否离开页面。 本文介绍其用法、最佳实践与代码示例。
+---
+# usePageLeave
+
+跟踪鼠标是否离开页面
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const isLeft = usePageLeave();
+
+  return <div>isLeft: {JSON.stringify(isLeft)}</div>;
+};
+
+```
+
+%%API%%

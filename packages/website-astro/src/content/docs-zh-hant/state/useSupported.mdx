@@ -1,0 +1,27 @@
+---
+title: useSupported 用法與示例
+sidebar_label: useSupported
+description: 檢測瀏覽器是否支持某些新的特性。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useSupported
+
+檢測瀏覽器是否支持某些新的特性
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const isSupported = useSupported(() => "EyeDropper" in window);
+  return (
+    <div>
+      <p>
+        window.EyeDropper 在您的瀏覽器中是 {isSupported ? "支持" : "不支持"}
+      </p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

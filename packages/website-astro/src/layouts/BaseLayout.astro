@@ -1,12 +1,16 @@
 ---
 import '../styles/global.css'
 
+import type { Locale } from '../i18n/translations'
+
 interface Props {
   title: string
   description?: string
+  locale?: Locale
 }
 
-const { title, description = '100+ Essential React Hooks - The React Equivalent of VueUse' } = Astro.props
+const { title, description = '100+ Essential React Hooks - The React Equivalent of VueUse', locale = 'en' } = Astro.props
+const htmlLang = locale === 'zh-Hans' ? 'zh-Hans' : locale === 'zh-Hant' ? 'zh-Hant' : 'en'
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
 const structuredData = {
@@ -36,7 +40,7 @@ const structuredData = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={htmlLang}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />

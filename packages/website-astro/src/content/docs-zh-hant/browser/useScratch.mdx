@@ -1,0 +1,61 @@
+---
+title: useScratch 用法與示例
+sidebar_label: useScratch
+description: 跟蹤元素上的刮擦/拖動手勢，支持滑鼠和觸摸。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useScratch
+
+跟蹤元素上的刮擦/拖動手勢，支持滑鼠和觸摸。
+
+## Usage
+
+```tsx live
+function Demo() {
+  const elementRef = useRef(null);
+  const state = useScratch(elementRef, {
+    onScratchStart: (s) => {
+      console.log('開始刮擦:', s);
+    },
+    onScratch: (s) => {
+      console.log('刮擦中:', s);
+    },
+    onScratchEnd: (s) => {
+      console.log('刮擦結束:', s);
+    },
+  });
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <div
+        ref={elementRef}
+        style={{
+          width: '300px',
+          height: '200px',
+          border: '1px solid var(--ifm-color-emphasis-300)',
+          borderRadius: '8px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: state.isScratching ? 'var(--ifm-color-emphasis-200)' : 'var(--ifm-background-surface-color)',
+          color: 'var(--ifm-color-content)',
+          cursor: 'pointer',
+          userSelect: 'none',
+        }}
+      >
+        {state.isScratching ? '刮擦中...' : '點擊並拖動以刮擦'}
+      </div>
+      <div style={{ marginTop: '20px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ifm-color-content)' }}>
+        <div><strong>正在刮擦:</strong> {state.isScratching ? '是' : '否'}</div>
+        {state.x !== undefined && <div><strong>x:</strong> {Math.round(state.x)}</div>}
+        {state.y !== undefined && <div><strong>y:</strong> {Math.round(state.y)}</div>}
+        {state.dx !== undefined && <div><strong>dx:</strong> {Math.round(state.dx)}</div>}
+        {state.dy !== undefined && <div><strong>dy:</strong> {Math.round(state.dy)}</div>}
+      </div>
+    </div>
+  );
+};
+
+```
+
+%%API%%
+

@@ -1,0 +1,34 @@
+---
+title: useDebounce 用法與示例
+sidebar_label: useDebounce
+description: 對值進行防抖的React hook。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useDebounce
+
+對值進行防抖的React hook
+
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [value, setValue] = useState<string>("");
+  const debouncedValue = useDebounce(value, 500);
+
+  return (
+    <div>
+      <input
+        value={value}
+        onChange={e => setValue(e.target.value)}
+        placeholder="輸入值"
+        style={{ width: 280 }}
+      />
+      <p style={{ marginTop: 16 }}>防抖值：{debouncedValue}</p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

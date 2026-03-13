@@ -10,6 +10,13 @@ import { remarkAdmonitions } from "./src/plugins/remark-admonitions.mjs";
 export default defineConfig({
   site: "https://reactuse.com",
   trailingSlash: "always",
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "zh-Hans", "zh-Hant"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   integrations: [react(), mdx(), sitemap()],
   markdown: {
     remarkPlugins: [remarkDirective, remarkAdmonitions, remarkLiveCode, remarkApiInject],

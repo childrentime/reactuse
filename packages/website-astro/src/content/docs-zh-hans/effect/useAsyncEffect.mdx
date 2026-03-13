@@ -1,0 +1,35 @@
+---
+title: useAsyncEffect 用法与示例
+sidebar_label: useAsyncEffect
+description: 支持 Promise 的 React useEffect。 本文介绍其用法、最佳实践与代码示例。
+---
+# useAsyncEffect
+
+支持 Promise 的 React useEffect。
+
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [data, setData] = useState(0);
+
+  useAsyncEffect(
+    async () => {
+      const result = await new Promise<number>((resolve) => {
+        setTimeout(() => {
+          resolve(200);
+        }, 5000);
+      });
+      setData(result);
+    },
+    () => {},
+    [],
+  );
+  return <div>数据: {data}</div>;
+};
+
+```
+
+%%API%%

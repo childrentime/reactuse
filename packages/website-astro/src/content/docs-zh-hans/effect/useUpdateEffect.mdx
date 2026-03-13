@@ -1,0 +1,45 @@
+---
+title: useUpdateEffect 用法与示例
+sidebar_label: useUpdateEffect
+description: 挂载完成后，在依赖更新的时候执行。 本文介绍其用法、最佳实践与代码示例。
+---
+# useUpdateEffect
+
+挂载完成后，在依赖更新的时候执行
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [count, setCount] = useState(0);
+  const [effectCount, setEffectCount] = useState(0);
+  const [updateEffectCount, setUpdateEffectCount] = useState(0);
+
+  useEffect(() => {
+    setEffectCount(c => c + 1);
+  }, [count]);
+
+  useUpdateEffect(() => {
+    setUpdateEffectCount(c => c + 1);
+    return () => {
+      // 做一些事情
+    };
+  }, [count]); // 如果需要，可以包含 deps 数组
+
+  return (
+    <div>
+      <p>effect计数: {effectCount}</p>
+      <p>更新effect计数: {updateEffectCount}</p>
+      <p>
+        <button type="button" onClick={() => setCount(c => c + 1)}>
+          重新渲染
+        </button>
+      </p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

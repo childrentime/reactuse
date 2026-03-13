@@ -1,0 +1,32 @@
+---
+title: useEventSource 用法与示例
+sidebar_label: useEventSource
+description: '`useEventSource` 是一个 hook，允许您订阅 EventSource 并实时接收更新。 本文介绍其用法、最佳实践与代码示例。'
+---
+# useEventSource
+
+`useEventSource` 是一个 hook，允许您订阅 EventSource 并实时接收更新。
+
+```tsx live
+function Demo() {
+  const { status, data, error, close, open } = useEventSource(
+    "https://sse.dev/test",
+    [],
+    {
+      immediate: false,
+    }
+  );
+
+  return (
+    <div>
+      <div>状态: {status}</div>
+      <div>数据: {JSON.stringify(data)}</div>
+      <div>错误: {error}</div>
+      <button onClick={open}>打开</button>
+      <button onClick={close}>关闭</button>
+    </div>
+  );
+}
+```
+
+%%API%%

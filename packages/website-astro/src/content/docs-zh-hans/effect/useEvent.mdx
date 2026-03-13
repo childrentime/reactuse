@@ -1,0 +1,50 @@
+---
+title: useEvent 用法与示例
+sidebar_label: useEvent
+description: 这是 [React RFC useEvent](https://github.com/reactjs/rfcs/pull/220) 的基础实现。它让你定义的事件处理器可以读取最新的 props/state，但总是保持稳定的函数引用。 本文介绍其用法、最佳实践与代码示例。
+---
+# useEvent
+
+这是 [React RFC useEvent](https://github.com/reactjs/rfcs/pull/220) 的基础实现。它让你定义的事件处理器可以读取最新的 props/state，但总是保持稳定的函数引用。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [count, setCount] = useState(0);
+
+  const callbackFn = useCallback(() => {
+    alert(`Current count is ${count}`);
+  }, [count]);
+
+  const memoizedFn = useEvent(() => {
+    alert(`Current count is ${count}`);
+  });
+
+  return (
+    <>
+      <p>计数: {count}</p>
+      <button
+        type="button"
+        onClick={() => {
+          setCount(c => c + 1);
+        }}
+      >
+        增加计数
+      </button>
+      <div style={{ marginTop: 16 }}>
+        <button type="button" onClick={callbackFn}>
+          调用 callbackFn
+        </button>
+        <button type="button" onClick={memoizedFn} style={{ marginLeft: 8 }}>
+          调用 memoizedFn
+        </button>
+      </div>
+    </>
+  );
+};
+
+```
+
+%%API%%

@@ -1,0 +1,39 @@
+---
+title: useEyeDropper 用法与示例
+sidebar_label: useEyeDropper
+description: 使用 [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) 来选择颜色。 本文介绍其用法、最佳实践与代码示例。
+---
+# useEyeDropper
+
+使用 [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) 来选择颜色。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [color, setColor] = useState("");
+  const [supported, open] = useEyeDropper();
+
+  if (supported) {
+    return (
+      <div style={{ padding: 40 }}>
+        支持状态: {supported.toString()}
+        <br />
+        颜色: {color}
+        <button
+          type="button"
+          onClick={async () => setColor((await open()).sRGBHex)}
+        >
+          选择颜色
+        </button>
+      </div>
+    );
+  }
+
+  return <span>您的浏览器不支持此功能</span>;
+};
+
+```
+
+%%API%%

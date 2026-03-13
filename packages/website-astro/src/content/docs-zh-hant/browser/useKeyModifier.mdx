@@ -1,0 +1,50 @@
+---
+title: useKeyModifier 用法與示例
+sidebar_label: useKeyModifier
+description: 跟蹤[按鍵](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#browser_compatibility)是否被按下。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useKeyModifier
+
+跟蹤[按鍵](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#browser_compatibility)是否被按下
+
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const Button = (props: { mode: boolean; name: string }) => {
+    const { mode, name } = props;
+    return (
+      <button style={mode ? { background: "var(--c-input-border-focus)" } : {}}>
+        {name}
+      </button>
+    );
+  };
+
+  const capsLock = useKeyModifier("CapsLock");
+  const numLock = useKeyModifier("NumLock");
+  const scrollLock = useKeyModifier("ScrollLock");
+  const shift = useKeyModifier("Shift");
+  const control = useKeyModifier("Control");
+  const alt = useKeyModifier("Alt");
+
+  return (
+    <div>
+      <div style={{ marginBottom: 10 }}>
+        <Button mode={capsLock} name="CapsLock" />
+        <Button mode={numLock} name="NumLock" />
+        <Button mode={scrollLock} name="ScrollLock" />
+      </div>
+      <div>
+        <Button mode={shift} name="Shift" />
+        <Button mode={control} name="Control" />
+        <Button mode={alt} name="Alt" />
+      </div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

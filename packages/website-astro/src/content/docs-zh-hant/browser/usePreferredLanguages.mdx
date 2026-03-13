@@ -1,0 +1,19 @@
+---
+title: usePreferredLanguages 用法與示例
+sidebar_label: usePreferredLanguages
+description: '`usePreferredLanguages` 是一個返回用戶首選語言的字符串數組的 hook。它使用 `navigator.languages`。 本文介紹其用法、最佳實踐與代碼示例。'
+---
+# usePreferredLanguages
+
+`usePreferredLanguages` 是一個返回用戶首選語言的字符串數組的 hook。它使用 `navigator.languages`。
+
+## Usage
+
+```tsx live
+function Demo() {
+  const preferredLanguages = usePreferredLanguages();
+  return <div>首選語言：{JSON.stringify(preferredLanguages)}</div>;
+}
+```
+
+%%API%%

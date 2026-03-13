@@ -189,6 +189,22 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
+"docs-zh-hans": Record<string, {
+  id: string;
+  body?: string;
+  collection: "docs-zh-hans";
+  data: InferEntrySchema<"docs-zh-hans">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"docs-zh-hant": Record<string, {
+  id: string;
+  body?: string;
+  collection: "docs-zh-hant";
+  data: InferEntrySchema<"docs-zh-hant">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
 
 	};
 

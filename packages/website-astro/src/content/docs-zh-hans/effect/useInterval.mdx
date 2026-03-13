@@ -1,0 +1,26 @@
+---
+title: useInterval 用法与示例
+sidebar_label: useInterval
+description: 计时器。你可以通过传递 `controls` 参数来手动控制计时器。 本文介绍其用法、最佳实践与代码示例。
+---
+# useInterval
+
+计时器。你可以通过传递 `controls` 参数来手动控制计时器。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [count, setCount] = useState(0);
+
+  useInterval(() => {
+    setCount(count + 1);
+  }, 1000);
+
+  return <div>计数: {count}</div>;
+};
+
+```
+
+%%API%%

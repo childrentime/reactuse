@@ -1,0 +1,33 @@
+---
+title: useThrottleFn 用法與示例
+sidebar_label: useThrottleFn
+description: React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) function。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useThrottleFn
+
+React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) function
+
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [value, setValue] = useState(0);
+  const { run } = useThrottleFn(() => {
+    setValue(value + 1);
+  }, 500);
+
+  return (
+    <div>
+      <p style={{ marginTop: 16 }}> 點擊次數：{value} </p>
+      <button type="button" onClick={run}>
+        快速點擊！
+      </button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

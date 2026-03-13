@@ -1,0 +1,41 @@
+---
+title: useTimeoutFn 用法與示例
+sidebar_label: useTimeoutFn
+description: 可取消的 `setTimeout`。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useTimeoutFn
+
+可取消的 `setTimeout`
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [text, setText] = useState("請等待3秒鐘");
+  const [isPending, start] = useTimeoutFn(
+    () => {
+      setText("已觸發！");
+    },
+    3000,
+    { immediate: false },
+  );
+
+  return (
+    <div>
+      <p>{text}</p>
+      <button
+        onClick={() => {
+          setText("請等待3秒鐘");
+          start();
+        }}
+      >
+        {isPending ? "等待中" : "重新開始"}
+      </button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

@@ -1,0 +1,36 @@
+---
+title: useScreenSafeArea 用法與示例
+sidebar_label: useScreenSafeArea
+description: 跟蹤 `env(safe-area-inset-*)` 值。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useScreenSafeArea
+
+跟蹤 `env(safe-area-inset-*)` 值
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [top, right, bottom, left] = useScreenSafeArea();
+  return (
+    <div>
+      <div>
+        頂部：<>{top}</>
+      </div>
+      <div>
+        底部：<>{bottom}</>
+      </div>
+      <div>
+        左側：<>{left}</>
+      </div>
+      <div>
+        右側：<>{right}</>
+      </div>
+    </div>
+  );
+}
+
+```
+
+%%API%%

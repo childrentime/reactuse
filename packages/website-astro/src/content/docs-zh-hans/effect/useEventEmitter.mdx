@@ -1,0 +1,39 @@
+---
+title: useEventEmitter 用法与示例
+sidebar_label: useEventEmitter
+description: 基础的事件触发器。 本文介绍其用法、最佳实践与代码示例。
+---
+# useEventEmitter
+
+基础的事件触发器
+
+## Usage
+
+```tsx live noInline
+
+function Demo() {
+  const [state, setState] = useState(0);
+  const [event, fire, dispose] = useEventEmitter<number>();
+
+  const event1 = useRef<IDisposable>();
+  useEffect(() => {
+    event((val) => {
+      setState(s => s + val);
+    });
+    event1.current = event(val => setState(s => s + val + 10));
+  }, [event]);
+
+  return (
+    <div>
+      <div>状态: {state}</div>
+      <button onClick={() => fire(1)}>触发</button>
+      <button onClick={() => dispose()}>清除所有</button>
+      <button onClick={() => event1.current?.dispose()}>清除单个</button>
+    </div>
+  );
+};
+
+render(<Demo/>)
+```
+
+%%API%%

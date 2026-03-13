@@ -1,0 +1,68 @@
+---
+title: useBoolean 用法與示例
+sidebar_label: useBoolean
+description: 管理布爾值的 React hook。本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要管理布爾狀態的場景。
+---
+# useBoolean
+
+管理布爾值的 React hook。
+
+## Usage
+
+```tsx live
+function Demo() {
+  const { value, setValue, setTrue, setFalse, toggle } = useBoolean(false);
+
+  return (
+    <div>
+      <p>當前值: <strong>{value ? '真' : '假'}</strong></p>
+      <div style={{ marginBottom: 16 }}>
+        <button
+          type="button"
+          onClick={() => setValue(true)}
+          style={{ marginRight: 8 }}
+          disabled={value}
+        >
+          設置為真
+        </button>
+        <button
+          type="button"
+          onClick={() => setValue(false)}
+          style={{ marginRight: 8 }}
+          disabled={!value}
+        >
+          設置為假
+        </button>
+        <button
+          type="button"
+          onClick={setTrue}
+          style={{ marginRight: 8 }}
+          disabled={value}
+        >
+          setTrue()
+        </button>
+        <button
+          type="button"
+          onClick={setFalse}
+          style={{ marginRight: 8 }}
+          disabled={!value}
+        >
+          setFalse()
+        </button>
+        <button
+          type="button"
+          onClick={toggle}
+          style={{ marginRight: 8 }}
+        >
+          切換
+        </button>
+      </div>
+      <div>
+        <p>狀態: {value ? '✅ 啟用' : '❌ 禁用'}</p>
+      </div>
+    </div>
+  );
+};
+```
+
+%%API%%

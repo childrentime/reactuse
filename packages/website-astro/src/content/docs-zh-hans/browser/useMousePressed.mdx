@@ -1,0 +1,27 @@
+---
+title: useMousePressed 用法与示例
+sidebar_label: useMousePressed
+description: 跟踪鼠标按下状态。 本文介绍其用法、最佳实践与代码示例。
+---
+# useMousePressed
+
+跟踪鼠标按下状态
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [mouse, type] = useMousePressed();
+
+  return (
+    <div>
+      <p>按下: {JSON.stringify(mouse)}</p>
+      <p>来源类型: {JSON.stringify(type)}</p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

@@ -1,20 +1,24 @@
 ---
 import { getCollection } from 'astro:content'
+import { t, getCollectionName, localePath, type Locale } from '../i18n/translations'
 
 interface Props {
   currentSlug?: string
+  locale?: Locale
 }
-const { currentSlug } = Astro.props
+const { currentSlug, locale = 'en' } = Astro.props
 
-const allDocs = await getCollection('docs')
+const collectionName = getCollectionName(locale)
+const allDocs = await getCollection(collectionName as any)
 
 // Category display config
+const categoryKeys = ['state', 'effect', 'element', 'browser', 'integrations'] as const
 const categories: Record<string, { label: string; order: number }> = {
-  state: { label: 'State', order: 1 },
-  effect: { label: 'Effect', order: 2 },
-  element: { label: 'Element', order: 3 },
-  browser: { label: 'Browser', order: 4 },
-  integrations: { label: 'Integrations', order: 5 },
+  state: { label: t(locale, 'sidebar.state'), order: 1 },
+  effect: { label: t(locale, 'sidebar.effect'), order: 2 },
+  element: { label: t(locale, 'sidebar.element'), order: 3 },
+  browser: { label: t(locale, 'sidebar.browser'), order: 4 },
+  integrations: { label: t(locale, 'sidebar.integrations'), order: 5 },
 }
 
 // Group docs by category
@@ -30,7 +34,6 @@ for (const doc of allDocs) {
   const label = doc.data.sidebar_label || title.replace(/\s*[–—].*$/, '')
 
   if (parts.length === 1) {
-    // Top-level doc (intro.md, changelog.md, etc.)
     const slug = id.replace(/\.(mdx?|md)$/, '')
     topLevel.push({ slug, title, label })
   } else {
@@ -60,7 +63,7 @@ const sortedCategories = [...grouped.entries()].sort((a, b) => {
     <ul class="sidebar-items">
       {topLevel.map(doc => (
         <li class="sidebar-item">
-          <a href={`/${doc.slug === 'index' ? '' : doc.slug + '/'}`} aria-current={currentSlug === doc.slug ? 'page' : undefined}>
+          <a href={localePath(locale, `/${doc.slug === 'index' ? '' : doc.slug + '/'}`)} aria-current={currentSlug === doc.slug ? 'page' : undefined}>
             {doc.label}
           </a>
         </li>
@@ -77,7 +80,7 @@ const sortedCategories = [...grouped.entries()].sort((a, b) => {
       <ul class="sidebar-items">
         {items.map(doc => (
           <li class="sidebar-item">
-            <a href={`/${doc.slug}/`} aria-current={currentSlug === doc.slug ? 'page' : undefined}>
+            <a href={localePath(locale, `/${doc.slug}/`)} aria-current={currentSlug === doc.slug ? 'page' : undefined}>
               {doc.label}
             </a>
           </li>
