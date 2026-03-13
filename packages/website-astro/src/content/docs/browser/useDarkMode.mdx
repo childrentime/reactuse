@@ -1,0 +1,123 @@
+---
+title: useDarkMode – Browser Hook Usage & Examples
+sidebar_label: useDarkMode
+description: Dark mode with auto data persistence.
+---
+
+# useDarkMode
+
+dark mode with auto data persistence.
+
+## Breaking Change in v6.1.0
+
+**Storage format has changed from boolean to string values.** If you're upgrading from a previous version:
+
+- **Old format**: `true`/`false` boolean values
+- **New format**: `"dark"`/`"light"` string values
+- **Auto-migration**: Existing data will be automatically migrated
+- **SSR scripts**: Need to be updated to handle string comparisons
+
+<details>
+<summary>Migration Guide</summary>
+
+If you have custom SSR scripts, update them as shown in the examples below. The library handles data migration automatically, but your custom scripts need to handle both old and new formats during the transition period.
+
+</details>
+
+## Tips
+
+<details>
+<summary>click to open</summary>
+
+For server-side rendered applications, since it's not possible to obtain the user's color preference on the server side, there might be a flicker during the first render. To avoid this issue, you can refer to the following steps.
+
+1. add a script before your content.
+
+```tsx
+<script
+  dangerouslySetInnerHTML={{
+    __html: `
+          (function () {
+            function setDark(dark) {
+              dark &&  document.documentElement.classList.add('dark');
+            }
+            let store = localStorage.getItem('reactuses-color-scheme');
+            let dark;
+            if(store === null){
+              const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+              dark = darkQuery.matches;
+            }else {
+              if (store === 'true' || store === 'false') {
+                const boolValue = store === 'true';
+                const stringValue = boolValue ? 'dark' : 'light';
+                localStorage.setItem('reactuses-color-scheme', stringValue);
+                dark = boolValue;
+              } else {
+                dark = store === 'dark';
+              }
+            }
+            setDark(dark)
+          })();
+      `,
+  }}
+></script>
+```
+
+2. To conveniently manage theme colors in a unified way, we recommend using context to store them.
+
+```tsx
+import { useDarkMode } from "@reactuses/core";
+import React, { createContext, useContext } from "react";
+
+type ThemeContext = { theme: boolean; toggleTheme: () => void };
+
+const ThemeContext = createContext<ThemeContext | undefined>(undefined);
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [dark, toggle] = useDarkMode({
+    classNameDark: "dark",
+    classNameLight: "light",
+    defaultValue: false,
+  });
+
+  return (
+    <ThemeContext.Provider value={{ theme: !!dark, toggleTheme: toggle }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
+}
+```
+
+</details>
+
+## Usage
+
+```tsx live
+function Demo() {
+  const [theme, toggleDark] = useDarkMode({
+    classNameDark: "dark",
+    classNameLight: "light",
+    defaultValue: false,
+  });
+
+  return (
+    <div>
+      <div>theme: {theme ? "dark" : "light"}</div>
+      <br />
+      <div>
+        <button onClick={toggleDark}>toggleDark</button>
+      </div>
+    </div>
+  );
+}
+```
+
+%%API%%

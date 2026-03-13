@@ -1,0 +1,52 @@
+---
+title: useEventListener 用法与示例
+sidebar_label: useEventListener
+description: 轻松使用 EventListener。 本文介绍其用法、最佳实践与代码示例。
+---
+# useEventListener
+
+轻松使用 EventListener。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [state, setState] = useState("未双击");
+
+  const onDBClick = () => {
+    setState("已双击");
+  };
+
+  const onClick = (event: Event) => {
+    console.log("button clicked!", event);
+  };
+
+  const onVisibilityChange = (event: Event) => {
+    console.log("doc visibility changed!", {
+      isVisible: !document.hidden,
+      event,
+    });
+  };
+
+  // example with window based event
+  useEventListener("dblclick", onDBClick);
+
+  // example with document based event
+  useEventListener("visibilitychange", onVisibilityChange, () => document);
+
+  // example with element based event
+  useEventListener("click", onClick, buttonRef);
+
+  return (
+    <div>
+      <p>{state}</p>
+      <button ref={buttonRef}>点击我</button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

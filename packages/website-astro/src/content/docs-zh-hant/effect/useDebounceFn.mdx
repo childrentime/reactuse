@@ -1,0 +1,32 @@
+---
+title: useDebounceFn 用法與示例
+sidebar_label: useDebounceFn
+description: 使用React hooks防抖（debounce）函數。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useDebounceFn
+
+使用React hooks防抖（debounce）函數
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [value, setValue] = useState(0);
+  const { run } = useDebounceFn(() => {
+    setValue(value + 1);
+  }, 500);
+
+  return (
+    <div>
+      <p style={{ marginTop: 16 }}> 點擊次數：{value} </p>
+      <button type="button" onClick={run}>
+        快速點擊！
+      </button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

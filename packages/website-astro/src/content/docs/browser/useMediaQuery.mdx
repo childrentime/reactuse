@@ -1,0 +1,21 @@
+---
+title: useMediaQuery – Browser Hook Usage & Examples
+sidebar_label: useMediaQuery
+description: Ease with media query. Learn usage patterns, best practices, and code examples for React developers.
+---
+# useMediaQuery
+
+Ease with media query
+
+## Usage
+
+```tsx live
+function Demo() {
+  const isWide = useMediaQuery("(min-width: 480px)");
+
+  return <div>Screen is wide: {isWide ? "Yes" : "No"}</div>;
+};
+
+```
+
+%%API%%

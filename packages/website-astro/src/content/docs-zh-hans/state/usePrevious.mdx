@@ -1,0 +1,31 @@
+---
+title: usePrevious 用法与示例
+sidebar_label: usePrevious
+description: 跟踪更新前的值。 本文介绍其用法、最佳实践与代码示例。
+---
+# usePrevious
+
+跟踪更新前的值
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [count, setCount] = useState(0);
+  const prevCount = usePrevious(count);
+
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <button onClick={() => setCount(count - 1)}>-</button>
+      <p>
+        现在: {count}, 之前: {prevCount}
+      </p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

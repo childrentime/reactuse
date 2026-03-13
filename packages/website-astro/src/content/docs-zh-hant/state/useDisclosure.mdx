@@ -1,0 +1,26 @@
+---
+title: useDisclosure 用法與示例
+sidebar_label: useDisclosure
+description: '`useDisclosure` 是一個提供了創建披露小部件所需的所有工具的 hook。披露小部件用於顯示或隱藏內容。此 hook 提供了控制內容可見性的狀態和函數。 本文介紹其用法、最佳實踐與代碼示例。'
+---
+# useDisclosure
+
+`useDisclosure` 是一個提供了創建披露小部件所需的所有工具的 hook。披露小部件用於顯示或隱藏內容。此 hook 提供了控制內容可見性的狀態和函數。
+
+## Usage
+
+```tsx live
+function Demo() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  return (
+    <>
+      <button onClick={onOpen}>開啟</button>
+      <button onClick={onClose}>關閉</button>
+      <p>{isOpen ? "開啟" : "關閉"}</p>
+    </>
+  );
+}
+```
+
+%%API%%

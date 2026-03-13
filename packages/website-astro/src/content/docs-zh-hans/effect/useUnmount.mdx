@@ -1,0 +1,24 @@
+---
+title: useUnmount 用法与示例
+sidebar_label: useUnmount
+description: 组件卸载的时候执行。 本文介绍其用法、最佳实践与代码示例。
+---
+# useUnmount
+
+组件卸载的时候执行
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [value] = useState("已挂载");
+  useUnmount(() => {
+    alert("已卸载");
+  });
+  return <div>{value}</div>;
+};
+
+```
+
+%%API%%

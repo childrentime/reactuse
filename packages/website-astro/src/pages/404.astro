@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Navbar from '../components/Navbar.astro'
+---
+
+<BaseLayout title="Page Not Found">
+  <Navbar />
+  <div class="page-shell">
+    <main class="main-content" style="text-align:center;padding-top:120px;">
+      <h1 style="font-size:4rem;font-weight:800;margin-bottom:8px;">404</h1>
+      <p style="font-size:1.2rem;color:var(--text-2);margin-bottom:24px;">Page not found.</p>
+      <a href="/" style="color:var(--brand);font-weight:600;">Go back home</a>
+    </main>
+  </div>
+</BaseLayout>

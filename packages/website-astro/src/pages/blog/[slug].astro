@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Navbar from '../../components/Navbar.astro'
+import Footer from '../../components/Footer.astro'
+import type { Locale } from '../../i18n/translations'
+
+const locale: Locale = 'en'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+  return posts.map((entry) => ({
+    params: { slug: entry.data.slug || entry.id },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+const dateStr = entry.data.date
+  ? new Date(entry.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  : ''
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description} locale={locale}>
+  <Navbar locale={locale} />
+  <div class="page-shell" style="justify-content:center;">
+    <main class="main-content" style="margin-left:0;max-width:42rem;">
+      <article class="doc-prose">
+        {dateStr && <p style="color:var(--text-3);font-size:0.85rem;margin-bottom:var(--sp-2);">{dateStr}</p>}
+        <Content />
+      </article>
+    </main>
+  </div>
+  <Footer locale={locale} />
+</BaseLayout>

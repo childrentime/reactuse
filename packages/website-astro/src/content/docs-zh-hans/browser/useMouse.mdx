@@ -1,0 +1,34 @@
+---
+title: useMouse 用法与示例
+sidebar_label: useMouse
+description: 跟踪鼠标位置。 本文介绍其用法、最佳实践与代码示例。
+---
+# useMouse
+
+跟踪鼠标位置。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const mouse = useMouse();
+
+  return (
+    <div>
+      <p>
+        客户端 - x: {mouse.clientX}, y: {mouse.clientY}
+      </p>
+      <p>
+        页面 - x: {mouse.pageX}, y: {mouse.pageY}
+      </p>
+      <p>
+        屏幕 - x: {mouse.screenX}, y: {mouse.screenY}
+      </p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

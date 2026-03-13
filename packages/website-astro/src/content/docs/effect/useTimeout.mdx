@@ -1,0 +1,40 @@
+---
+title: useTimeout – Effect Hook Usage & Examples
+sidebar_label: useTimeout
+description: Update value after a given time. Learn usage patterns, best practices, and code examples for React developers.
+---
+# useTimeout
+
+Update value after a given time
+
+
+## Usage
+
+```tsx live
+function Demo() {
+  const [isPending, start, cancel] = useTimeout(5000);
+
+  return (
+    <div>
+      <div>Pending: {JSON.stringify(isPending)}</div>
+      <button
+        onClick={() => {
+          start();
+        }}
+      >
+        Start Again
+      </button>
+      <button
+        onClick={() => {
+          cancel();
+        }}
+      >
+        Cancel
+      </button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

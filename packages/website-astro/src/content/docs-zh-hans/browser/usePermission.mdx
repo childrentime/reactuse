@@ -1,0 +1,22 @@
+---
+title: usePermission 用法与示例
+sidebar_label: usePermission
+description: 浏览器权限查询。 本文介绍其用法、最佳实践与代码示例。
+---
+# usePermission
+
+浏览器权限查询
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const state = usePermission({ name: "microphone" });
+
+  return <pre>{JSON.stringify(state, null, 2)}</pre>;
+};
+
+```
+
+%%API%%

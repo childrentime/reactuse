@@ -1,0 +1,39 @@
+---
+title: useDocumentVisibility 用法與示例
+sidebar_label: useDocumentVisibility
+description: 跟蹤 [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState) 的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useDocumentVisibility
+
+跟蹤 [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState) 的 React Hook
+
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const visibility = useDocumentVisibility("hidden");
+  const [message, setMessage] = useState(
+    "💡 最小化頁面或切換標籤然後返回",
+  );
+
+  useEffect(() => {
+    if (visibility === "visible") {
+      setTimeout(() => {
+        setMessage("🎉 歡迎回來!");
+      }, 2000);
+    }
+    else {
+      setTimeout(() => {
+        setMessage("🥰 休息一下");
+      }, 2000);
+    }
+  }, [visibility]);
+
+  return <div>{message}</div>;
+}
+
+```
+
+%%API%%

@@ -1,0 +1,65 @@
+---
+title: useCookie – State Hook Usage & Examples
+sidebar_label: useCookie
+description: React hook that facilitates the storage, updating and deletion of values within the CookieStore.
+---
+# useCookie
+
+React hook that facilitates the storage, updating and deletion of values within the CookieStore
+
+:::note
+When you use setCookieValue with useCookie hook that shares the same key across multiple components,
+it does not trigger an update in the other components using this hook.
+
+ If you want a broadcast effect, you can refer to the following https://github.com/childrentime/reactuse/issues/91
+:::
+
+## Usage
+
+```tsx live
+function Demo() {
+  const defaultOption = {
+    path: "/",
+  };
+
+  const cookieName = "cookie-key";
+  const [cookieValue, updateCookie, refreshCookie] = useCookie(
+    cookieName,
+    defaultOption,
+    "default-value"
+  );
+
+  const updateButtonClick = () => {
+    updateCookie("new-cookie-value");
+  };
+
+  const deleteButtonClick = () => {
+    updateCookie(undefined);
+  };
+
+  const change = () => {
+    if ("cookieStore" in window) {
+      const store = window.cookieStore as any;
+      store.set({ name: cookieName, value: "changed" });
+    } else {
+      document.cookie = `${cookieName}=changed; path=/`;
+    }
+  };
+
+  return (
+    <div>
+      <p>Click on the button to update or clear the cookie</p>
+      <p color="blue">cookie: {cookieValue || "no value"}</p>
+      <button onClick={updateButtonClick}>Update the cookie</button>
+      <button onClick={deleteButtonClick}>Clear the cookie</button>
+      <button onClick={change}>
+        Changing the cookie through other methods
+      </button>
+      <button onClick={refreshCookie}>Refresh the cookie</button>
+    </div>
+  );
+};
+
+```
+
+%%API%%

@@ -1,0 +1,36 @@
+---
+title: use – State Hook Usage & Examples
+sidebar_label: use
+description: >-
+  `use` is a polyfill hook to resolve promises state for React v18 and below. Note that it only implements the ability to consume promises. For React v19 and
+  abov
+---
+# use
+
+`use` is a polyfill hook to resolve promises state for React v18 and below. Note that it only implements the ability to consume promises.
+For React v19 and above, you can use the built-in `use` hook: https://react.dev/reference/react/use
+
+## Usage
+
+```tsx live noInline
+const promise = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve("resolved");
+  }, 5000);
+});
+
+function Demo() {
+  const data = use(promise);
+
+  return <p>{data}</p>;
+};
+
+render(
+  <Suspense fallback="loading...">
+    <Demo />
+  </Suspense>
+);
+
+```
+
+%%API%%

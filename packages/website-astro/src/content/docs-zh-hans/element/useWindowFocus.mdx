@@ -1,0 +1,29 @@
+---
+title: useWindowFocus 用法与示例
+sidebar_label: useWindowFocus
+description: 使用 `window.onfocus` and `window.onblur` 事件跟踪页面焦点。 本文介绍其用法、最佳实践与代码示例。
+---
+# useWindowsFocus
+
+使用 `window.onfocus` and `window.onblur` 事件跟踪页面焦点
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const focus = useWindowsFocus();
+  return (
+    <div>
+      <p>
+        {focus
+          ? "💡 点击文档外的地方来失去焦点。"
+          : "ℹ 标签页失去焦点"}
+      </p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

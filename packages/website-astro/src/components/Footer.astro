@@ -1,0 +1,22 @@
+---
+import { t, type Locale } from '../i18n/translations'
+
+interface Props {
+  locale?: Locale
+}
+
+const { locale = 'en' } = Astro.props
+const year = new Date().getFullYear()
+---
+
+<footer class="footer">
+  <p>
+    Copyright &copy; {year} ReactUse.
+    {t(locale, 'footer.built')} <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>.
+    <a href="https://github.com/childrentime/reactuse" target="_blank" rel="noopener">GitHub</a>
+    &middot;
+    <a href="https://discord.gg/aMhGpqEe" target="_blank" rel="noopener">Discord</a>
+    &middot;
+    <a href="https://twitter.com/wulianwen1" target="_blank" rel="noopener">Twitter</a>
+  </p>
+</footer>

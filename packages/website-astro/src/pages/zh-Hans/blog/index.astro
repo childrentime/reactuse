@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import Navbar from '../../../components/Navbar.astro'
+import Footer from '../../../components/Footer.astro'
+import { t, localePath, type Locale } from '../../../i18n/translations'
+
+const locale: Locale = 'zh-Hans'
+
+const posts = (await getCollection('blog-zh-hans')).sort((a, b) => {
+  const da = a.data.date ? new Date(a.data.date).getTime() : 0
+  const db = b.data.date ? new Date(b.data.date).getTime() : 0
+  return db - da
+})
+
+const dateLocale = 'zh-CN'
+---
+
+<BaseLayout title={t(locale, 'blog.title')} description={t(locale, 'blog.description')} locale={locale}>
+  <Navbar locale={locale} />
+  <div class="page-shell" style="justify-content:center;">
+    <main class="main-content" style="margin-left:0;max-width:42rem;">
+      <div class="doc-prose">
+        <h1>{t(locale, 'blog.title')}</h1>
+        <ul class="blog-list">
+          {posts.map(post => {
+            const slug = post.data.slug || post.id
+            const dateStr = post.data.date
+              ? new Date(post.data.date).toLocaleDateString(dateLocale, { year: 'numeric', month: 'long', day: 'numeric' })
+              : ''
+            return (
+              <li>
+                {dateStr && <time>{dateStr}</time>}
+                <h3><a href={localePath(locale, `/blog/${slug}/`)}>{post.data.title}</a></h3>
+                {post.data.description && <p style="color:var(--text-2);font-size:0.9rem;margin:0;">{post.data.description}</p>}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    </main>
+  </div>
+  <Footer locale={locale} />
+</BaseLayout>

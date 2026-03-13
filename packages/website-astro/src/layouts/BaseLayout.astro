@@ -1,0 +1,148 @@
+---
+import '../styles/global.css'
+
+import type { Locale } from '../i18n/translations'
+
+interface Props {
+  title: string
+  description?: string
+  locale?: Locale
+}
+
+const { title, description = '100+ Essential React Hooks - The React Equivalent of VueUse', locale = 'en' } = Astro.props
+const htmlLang = locale === 'zh-Hans' ? 'zh-Hans' : locale === 'zh-Hant' ? 'zh-Hant' : 'en'
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+
+// Generate hreflang alternate URLs
+const pathname = Astro.url.pathname
+let basePath = pathname
+if (pathname.startsWith('/zh-Hans/')) {
+  basePath = pathname.replace(/^\/zh-Hans/, '')
+} else if (pathname.startsWith('/zh-Hant/')) {
+  basePath = pathname.replace(/^\/zh-Hant/, '')
+}
+const alternates = [
+  { hreflang: 'en', href: new URL(basePath, Astro.site).href },
+  { hreflang: 'zh-Hans', href: new URL(`/zh-Hans${basePath}`, Astro.site).href },
+  { hreflang: 'zh-Hant', href: new URL(`/zh-Hant${basePath}`, Astro.site).href },
+  { hreflang: 'x-default', href: new URL(basePath, Astro.site).href },
+]
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      url: 'https://reactuse.com',
+      name: 'ReactUse',
+      description: 'Collection of 100+ essential React Hooks',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: 'https://reactuse.com/?q={search_term_string}',
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@type': 'SoftwareSourceCode',
+      name: '@reactuses/core',
+      description: 'Collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility',
+      programmingLanguage: ['TypeScript', 'React'],
+      runtimePlatform: ['Node.js', 'Browser'],
+      codeRepository: 'https://github.com/childrentime/reactuse',
+      license: 'https://choosealicense.com/licenses/unlicense/',
+      url: 'https://reactuse.com',
+      author: { '@type': 'Person', name: 'childrentime', url: 'https://github.com/childrentime' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'What is ReactUse?', acceptedAnswer: { '@type': 'Answer', text: 'ReactUse is a comprehensive collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility.' } },
+        { '@type': 'Question', name: 'How do I install ReactUse?', acceptedAnswer: { '@type': 'Answer', text: 'Install via npm: npm i @reactuses/core. Then import any hook: import { useToggle } from "@reactuses/core".' } },
+        { '@type': 'Question', name: 'Is ReactUse compatible with Next.js and SSR?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, all ReactUse hooks are SSR-compatible and work seamlessly with Next.js, Remix, and other server-side rendering frameworks.' } },
+        { '@type': 'Question', name: 'What hooks does ReactUse provide?', acceptedAnswer: { '@type': 'Answer', text: 'ReactUse provides hooks across several categories: State Management (useToggle, useLocalStorage, useSessionStorage), Browser APIs (useClipboard, useFullscreen, useMediaQuery), Sensors (useMouse, useScroll, useGeolocation), UI (useDark, useTitle, useFavicon), Animation (useInterval, useTimeout, useRafFn), and Network (useFetch, useWebSocket, useEventSource).' } },
+      ],
+    },
+  ],
+}
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title} | ReactUse</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content="react hooks, custom hooks, react hook library, react utilities, useEffect, useState, typescript hooks, SSR hooks, reactuse, react use, browser hooks, state management hooks" />
+  <link rel="canonical" href={canonicalURL} />
+  {alternates.map(alt => (
+    <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+  ))}
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:site_name" content="ReactUse" />
+  <meta property="og:image" content={new URL('/img/og.png', Astro.site)} />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@wulianwen1" />
+  <meta name="twitter:domain" content="reactuse.com" />
+  <!-- Search engine verifications -->
+  <meta name="google-site-verification" content="cYSXMQh7Yfm6rW16yR-5_x0jmMX_ABwMDwAoPPlPc1M" />
+  <meta name="msvalidate.01" content="FCAB31FC7E191890AC6C3BC3A945596A" />
+  <meta name="baidu-site-verification" content="code-WMH1e8oKID" />
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3JKY4KFF7Y"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3JKY4KFF7Y');
+  </script>
+  <!-- Clarity -->
+  <script is:inline>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "lyyaspthbt");
+  </script>
+  <!-- Theme init (prevent flash) -->
+  <script is:inline>
+    (function(){
+      const t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Algolia DocSearch -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+</head>
+<body>
+  <slot />
+  <script is:inline src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+  <script is:inline>
+    (function() {
+      var lang = 'en';
+      var path = window.location.pathname;
+      if (path.startsWith('/zh-Hans/')) lang = 'zh-Hans';
+      else if (path.startsWith('/zh-Hant/')) lang = 'zh-Hant';
+      docsearch({
+        appId: '8I3BLA6GDS',
+        apiKey: 'd70ec992605c0048bc1301c882f4a2ec',
+        indexName: 'reactuse',
+        container: '#docsearch',
+        searchParameters: {
+          facetFilters: ['language:' + lang],
+        },
+      });
+    })();
+  </script>
+</body>
+</html>

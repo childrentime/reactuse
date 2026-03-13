@@ -1,0 +1,22 @@
+---
+title: usePreferredColorScheme 用法與示例
+sidebar_label: usePreferredColorScheme
+description: '[prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) 媒體查詢。 本文介紹其用法、最佳實踐與代碼示例。'
+---
+# usePreferredColorScheme
+
+[prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) 媒體查詢
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const color = usePreferredColorScheme();
+
+  return <div>首選色彩方案：{color}</div>;
+};
+
+```
+
+%%API%%

@@ -1,0 +1,33 @@
+---
+title: useTextSelection – State Hook Usage & Examples
+sidebar_label: useTextSelection
+description: >-
+  Track user text selection based on [document.getSelection](https://developer.mozilla.org/en-US/docs/Web/API/Document/getSelection). Learn usage patterns, best
+  p
+---
+# useTextSelection
+
+Track user text selection based on [document.getSelection](https://developer.mozilla.org/en-US/docs/Web/API/Document/getSelection)
+
+
+## Usage
+
+```tsx live
+function Demo() {
+  const selection = useTextSelection();
+
+  return (
+    <div style={{ padding: 40 }}>
+      <p>
+        Select some text here or anywhere on the page and it will be displayed
+        below
+      </p>
+
+      <div>Selected text: {selection?.toString()}</div>
+    </div>
+  );
+};
+
+```
+
+%%API%%

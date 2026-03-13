@@ -1,0 +1,46 @@
+---
+title: useGeolocation 用法與示例
+sidebar_label: useGeolocation
+description: 跟蹤[地理位置](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)的 React Hook 如果用戶願意，它允許用戶向網絡應用程式提供他們的位置。 出於隱私原因，報告位置信息需要用戶許可。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useGeolocation
+
+跟蹤[地理位置](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)的 React Hook
+
+如果用户愿意，它允许用户向網路应用程序提供他们的位置。 出于隐私原因，报告位置信息需要用户许可
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const { coordinates, locatedAt, error } = useGeolocation();
+
+  return (
+    <div>
+      <pre lang="json">
+        {JSON.stringify(
+          {
+            coordinates: {
+              accuracy: coordinates.accuracy,
+              latitude: coordinates.latitude,
+              longitude: coordinates.longitude,
+              altitude: coordinates.altitude,
+              altitudeAccuracy: coordinates.altitudeAccuracy,
+              heading: coordinates.heading,
+              speed: coordinates.speed,
+            },
+            locatedAt,
+            error: error ? error.message : error,
+          },
+          null,
+          2,
+        )}
+      </pre>
+    </div>
+  );
+};
+
+```
+
+%%API%%

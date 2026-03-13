@@ -9,6 +9,7 @@ export default ririd(
     ignores: [
       'scripts/templates/**',
       'packages/website-docusaurus/**',
+      '**/.astro/**',
       '**/*.test.ts',
       '**/*.md',
       '**/*.spec.ts',

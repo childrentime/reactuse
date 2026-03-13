@@ -1,0 +1,29 @@
+---
+title: useInterval – Effect Hook Usage & Examples
+sidebar_label: useInterval
+description: >-
+  A declarative interval hook based on [Dan Abramov's article on overreacted.io](https://overreacted.io/making-setinterval-declarative-with-react-hooks/). The
+  int
+---
+# useInterval
+
+A declarative interval hook based on [Dan Abramov's article on overreacted.io](https://overreacted.io/making-setinterval-declarative-with-react-hooks/). The interval can be paused by setting the delay to null
+
+You can also manually control it by passing the `controls` parameter.
+
+## Usage
+
+```tsx live
+function Demo() {
+  const [count, setCount] = useState(0);
+
+  useInterval(() => {
+    setCount(count + 1);
+  }, 1000);
+
+  return <div>count: {count}</div>;
+};
+
+```
+
+%%API%%

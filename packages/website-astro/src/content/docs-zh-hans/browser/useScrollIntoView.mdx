@@ -1,0 +1,33 @@
+---
+title: useScrollIntoView 用法与示例
+sidebar_label: useScrollIntoView
+description: 类似于 `element.scrollIntoView()` 的 React Hook。 本文介绍其用法、最佳实践与代码示例。
+---
+# useScrollIntoView
+
+类似于 `element.scrollIntoView()` 的 React Hook
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const targetRef = useRef<HTMLParagraphElement>(null);
+  const { scrollIntoView } = useScrollIntoView(targetRef, {
+    offset: 60,
+  });
+
+  return (
+    <div>
+      <button onClick={() => scrollIntoView({ alignment: "center" })}>
+        滚动到目标
+      </button>
+      <div style={{ height: "50vh" }} />
+      <p ref={targetRef}>你好，这里是目标元素</p>
+    </div>
+  );
+}
+
+```
+
+%%API%%

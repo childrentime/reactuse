@@ -1,0 +1,31 @@
+---
+title: useMousePressed – Browser Hook Usage & Examples
+sidebar_label: useMousePressed
+description: >-
+  React Sensor Hook that tracks mouse pressing state. Triggered by mousedown touchstart on target element and released by mouseup mouseleave touchend
+  touchcancel 
+---
+# useMousePressed
+
+React Sensor Hook that tracks mouse pressing state.
+
+Triggered by mousedown touchstart on target element and released by mouseup mouseleave touchend touchcancel on window
+
+
+## Usage
+
+```tsx live
+function Demo() {
+  const [mouse, type] = useMousePressed();
+
+  return (
+    <div>
+      <p>Pressed: {JSON.stringify(mouse)}</p>
+      <p>SourceType: {JSON.stringify(type)}</p>
+    </div>
+  );
+};
+
+```
+
+%%API%%

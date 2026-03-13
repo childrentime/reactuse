@@ -1,0 +1,75 @@
+---
+title: useIntersectionObserver 用法与示例
+sidebar_label: useIntersectionObserver
+description: 使用 [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) 跟踪元素。 本文介绍其用法、最佳实践与代码示例。
+---
+# useIntersectionObserver
+
+使用 [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) 跟踪元素
+
+## Usage
+
+```tsx live
+function Demo() {
+  const Spacer = () => (
+    <div
+      style={{
+        width: "200px",
+        height: "300px",
+      }}
+    />
+  );
+
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 1,
+  };
+
+  const intersectionRef = useRef(null);
+  const [entry, setEntry] = useState<IntersectionObserverEntry[]>([]);
+  const stop = useIntersectionObserver(
+    intersectionRef,
+    (entry) => {
+      setEntry(entry);
+    },
+    options
+  );
+
+  return (
+    <div
+      style={{
+        width: "400px",
+        height: "400px",
+        overflow: "scroll",
+      }}
+    >
+      滚动我
+      <Spacer />
+      <button
+        onClick={() => {
+          stop();
+        }}
+      >
+        停止观察
+      </button>
+      <div
+        ref={intersectionRef}
+        style={{
+          width: "100px",
+          height: "100px",
+          padding: "20px",
+          background: "var(--c-hj-b)",
+        }}
+      >
+        {entry[0] && entry[0].intersectionRatio < 1
+          ? "被遮挡"
+          : "完全可见"}
+      </div>
+      <Spacer />
+    </div>
+  );
+}
+```
+
+%%API%%

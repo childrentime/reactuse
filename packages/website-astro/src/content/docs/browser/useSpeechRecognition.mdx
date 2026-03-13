@@ -1,0 +1,356 @@
+---
+title: useSpeechRecognition – Browser Hook Usage & Examples
+sidebar_label: useSpeechRecognition
+description: >-
+  Reactive SpeechRecognition API for React. Real-time speech recognition with configurable options, cross-browser compatibility, and TypeScript support. Learn usage patterns, best practices, and code examples.
+---
+# useSpeechRecognition
+
+Reactive SpeechRecognition API for React
+
+Real-time speech recognition with configurable options, cross-browser compatibility, and TypeScript support. Perfect for voice-controlled applications, dictation features, and accessibility enhancements.
+
+## Usage
+
+```tsx live
+function Demo() {
+  const {
+    isSupported,
+    isListening,
+    isFinal,
+    result,
+    error,
+    start,
+    stop,
+    toggle,
+  } = useSpeechRecognition();
+
+  if (!isSupported) {
+    return <div>Speech recognition is not supported in this browser</div>;
+  }
+
+  return (
+    <div>
+      <div style={{ marginBottom: '20px' }}>
+        <p><strong>Status:</strong> {isListening ? 'Listening...' : 'Stopped'}</p>
+        <p><strong>Result:</strong> {result || 'No speech detected'}</p>
+        <p><strong>Final:</strong> {isFinal ? 'Yes' : 'No'}</p>
+        {error && <p style={{ color: 'var(--ifm-color-danger)' }}><strong>Error:</strong> {error.error}</p>}
+      </div>
+      
+      <div style={{ display: 'flex', gap: '10px' }}>
+        <button onClick={start} disabled={isListening}>
+          Start
+        </button>
+        <button onClick={stop} disabled={!isListening}>
+          Stop
+        </button>
+        <button onClick={() => toggle()}>
+          Toggle
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+## With Custom Options
+
+```tsx live
+function Demo() {
+  const {
+    isSupported,
+    isListening,
+    result,
+    start,
+    stop,
+  } = useSpeechRecognition({
+    continuous: true,
+    interimResults: true,
+    lang: 'en-US',
+    maxAlternatives: 1,
+  });
+
+  if (!isSupported) {
+    return <div>Speech recognition is not supported</div>;
+  }
+
+  return (
+    <div>
+      <div style={{ marginBottom: '20px' }}>
+        <p><strong>Recognition Result:</strong></p>
+        <div style={{ 
+          padding: '10px', 
+          border: '1px solid var(--ifm-color-emphasis-200)', 
+          borderRadius: '4px',
+          minHeight: '60px',
+          backgroundColor: 'var(--ifm-background-surface-color)'
+        }}>
+          {result || 'Start speaking...'}
+        </div>
+      </div>
+      
+      <div style={{ display: 'flex', gap: '10px' }}>
+        <button 
+          onClick={start} 
+          disabled={isListening}
+          style={{ 
+            backgroundColor: isListening ? 'var(--ifm-color-emphasis-300)' : 'var(--ifm-color-primary)',
+            color: 'var(--ifm-color-white)',
+            border: 'none',
+            padding: '8px 16px',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+        >
+          {isListening ? 'Listening...' : 'Start Recognition'}
+        </button>
+        <button 
+          onClick={stop} 
+          disabled={!isListening}
+          style={{ 
+            backgroundColor: !isListening ? 'var(--ifm-color-emphasis-300)' : 'var(--ifm-color-danger)',
+            color: 'var(--ifm-color-white)',
+            border: 'none',
+            padding: '8px 16px',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+        >
+          Stop
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+## Multi-language Support
+
+```tsx live
+function Demo() {
+  const [selectedLang, setSelectedLang] = React.useState('en-US');
+  
+  const {
+    isSupported,
+    isListening,
+    result,
+    start,
+    stop,
+  } = useSpeechRecognition({
+    lang: selectedLang,
+    continuous: true,
+    interimResults: true,
+  });
+
+  const languages = [
+    { code: 'en-US', name: 'English (US)' },
+    { code: 'zh-CN', name: '中文 (简体)' },
+    { code: 'ja-JP', name: '日本語' },
+    { code: 'ko-KR', name: '한국어' },
+    { code: 'es-ES', name: 'Español' },
+    { code: 'fr-FR', name: 'Français' },
+  ];
+
+  if (!isSupported) {
+    return <div>Speech recognition is not supported</div>;
+  }
+
+  return (
+    <div>
+      <div style={{ marginBottom: '20px' }}>
+        <label>
+          <strong>Language:</strong>
+          <select 
+            value={selectedLang} 
+            onChange={(e) => setSelectedLang(e.target.value)}
+            style={{ 
+              marginLeft: '10px', 
+              padding: '4px',
+              backgroundColor: 'var(--ifm-background-color)',
+              color: 'var(--ifm-color-content)',
+              border: '1px solid var(--ifm-color-emphasis-300)',
+              borderRadius: '4px'
+            }}
+            disabled={isListening}
+          >
+            {languages.map(lang => (
+              <option key={lang.code} value={lang.code}>
+                {lang.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      
+      <div style={{ marginBottom: '20px' }}>
+        <div style={{ 
+          padding: '10px', 
+          border: '1px solid var(--ifm-color-emphasis-200)', 
+          borderRadius: '4px',
+          minHeight: '80px',
+          backgroundColor: 'var(--ifm-background-surface-color)',
+          color: 'var(--ifm-color-content)'
+        }}>
+          {result || `Start speaking in ${languages.find(l => l.code === selectedLang)?.name}...`}
+        </div>
+      </div>
+      
+      <div style={{ display: 'flex', gap: '10px' }}>
+        <button onClick={() => start({ lang: selectedLang })} disabled={isListening}>
+          Start ({selectedLang})
+        </button>
+        <button onClick={stop} disabled={!isListening}>
+          Stop
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+## Dynamic Language and Mode Switching
+
+```tsx live
+function DynamicOptionsDemo() {
+  const {
+    isSupported,
+    isListening,
+    result,
+    start,
+    stop,
+  } = useSpeechRecognition();
+
+  const quickOptions = [
+    { 
+      language: 'en-US', 
+      name: 'English (Continuous)', 
+      flag: '🇺🇸', 
+      continuous: true,
+      color: 'var(--ifm-color-primary)'
+    },
+    { 
+      language: 'en-US', 
+      name: 'English (Single)', 
+      flag: '🇺🇸', 
+      continuous: false,
+      color: 'var(--ifm-color-secondary)'
+    },
+    { 
+      language: 'zh-CN', 
+      name: '中文 (连续)', 
+      flag: '🇨🇳', 
+      continuous: true,
+      color: 'var(--ifm-color-success)'
+    },
+    { 
+      language: 'zh-CN', 
+      name: '中文 (单次)', 
+      flag: '🇨🇳', 
+      continuous: false,
+      color: 'var(--ifm-color-warning)'
+    },
+  ];
+
+  if (!isSupported) {
+    return <div>Speech recognition is not supported</div>;
+  }
+
+  return (
+    <div>
+      <div style={{ marginBottom: '20px' }}>
+        <p><strong>Quick Start with Different Languages and Modes:</strong></p>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: '10px',
+          marginBottom: '16px'
+        }}>
+          {quickOptions.map((option, index) => (
+            <button
+              key={index}
+              onClick={() => start({ lang: option.language, continuous: option.continuous })}
+              disabled={isListening}
+              style={{
+                padding: '12px 8px',
+                border: '1px solid var(--ifm-color-emphasis-300)',
+                backgroundColor: isListening ? 'var(--ifm-color-emphasis-300)' : option.color,
+                color: 'var(--ifm-color-white)',
+                borderRadius: '6px',
+                cursor: isListening ? 'not-allowed' : 'pointer',
+                fontSize: '13px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '4px',
+                textAlign: 'center'
+              }}
+            >
+              <span style={{ fontSize: '18px' }}>{option.flag}</span>
+              <span>{option.name}</span>
+            </button>
+          ))}
+        </div>
+        
+        {isListening && (
+          <button
+            onClick={stop}
+            style={{
+              padding: '8px 16px',
+              border: 'none',
+              backgroundColor: 'var(--ifm-color-danger)',
+              color: 'var(--ifm-color-white)',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              width: '100%'
+            }}
+          >
+            Stop Listening
+          </button>
+        )}
+      </div>
+      
+      <div style={{ 
+        padding: '16px', 
+        border: '1px solid var(--ifm-color-emphasis-200)', 
+        borderRadius: '6px',
+        minHeight: '80px',
+        backgroundColor: 'var(--ifm-background-surface-color)',
+        color: 'var(--ifm-color-content)'
+      }}>
+        <strong>Result:</strong> {result || 'Click any button to start speaking...'}
+      </div>
+      
+      <div style={{ 
+        marginTop: '12px',
+        padding: '12px',
+        backgroundColor: 'var(--ifm-background-surface-color)',
+        borderRadius: '4px',
+        fontSize: '14px',
+        color: 'var(--ifm-color-content-secondary)'
+      }}>
+        <strong>Tip:</strong> Continuous mode keeps listening until you stop it, 
+        while single mode stops after detecting one phrase.
+      </div>
+    </div>
+  );
+}
+```
+
+## Notes
+
+- **HTTPS Required**: This API requires HTTPS in production environments
+- **User Interaction**: Some browsers may require user interaction before starting speech recognition
+- **Permissions**: The browser will request microphone permissions when first used
+- **Privacy**: Speech data may be sent to cloud services for processing
+- **Accuracy**: Results may vary based on microphone quality, ambient noise, and accent
+
+## Common Use Cases
+
+- **Voice Commands**: Implement voice-controlled interfaces
+- **Dictation**: Add speech-to-text functionality to forms
+- **Accessibility**: Provide voice input for users with mobility impairments
+- **Search**: Enable voice search functionality
+- **Note Taking**: Create voice memo applications
+
+%%API%%

@@ -1,0 +1,136 @@
+---
+import { getCollection } from 'astro:content'
+import { t, localeLabels, getCollectionName, localePath, type Locale } from '../i18n/translations'
+
+interface Props {
+  currentSlug?: string
+  locale?: Locale
+}
+const { currentSlug, locale = 'en' } = Astro.props
+
+// Locale switch URLs for mobile sidebar
+const pathname = Astro.url.pathname
+let basePath = pathname
+if (pathname.startsWith('/zh-Hans/') || pathname.startsWith('/zh-Hans')) {
+  basePath = pathname.replace(/^\/zh-Hans/, '') || '/'
+} else if (pathname.startsWith('/zh-Hant/') || pathname.startsWith('/zh-Hant')) {
+  basePath = pathname.replace(/^\/zh-Hant/, '') || '/'
+}
+const switchUrls = {
+  en: basePath,
+  'zh-Hans': `/zh-Hans${basePath === '/' ? '/' : basePath}`,
+  'zh-Hant': `/zh-Hant${basePath === '/' ? '/' : basePath}`,
+}
+
+const collectionName = getCollectionName(locale)
+const allDocs = await getCollection(collectionName as any)
+
+// Category display config
+const categoryKeys = ['state', 'effect', 'element', 'browser', 'integrations'] as const
+const categories: Record<string, { label: string; order: number }> = {
+  state: { label: t(locale, 'sidebar.state'), order: 1 },
+  effect: { label: t(locale, 'sidebar.effect'), order: 2 },
+  element: { label: t(locale, 'sidebar.element'), order: 3 },
+  browser: { label: t(locale, 'sidebar.browser'), order: 4 },
+  integrations: { label: t(locale, 'sidebar.integrations'), order: 5 },
+}
+
+// Group docs by category
+const grouped = new Map<string, Array<{ slug: string; title: string; label: string }>>()
+
+// Top-level docs (intro, changelog, sponsor, etc.)
+const topLevel: Array<{ slug: string; title: string; label: string }> = []
+
+for (const doc of allDocs) {
+  const id = doc.id
+  const parts = id.split('/')
+  const title = doc.data.title || id
+  const label = doc.data.sidebar_label || title.replace(/\s*[–—].*$/, '')
+
+  if (parts.length === 1) {
+    const slug = id.replace(/\.(mdx?|md)$/, '')
+    topLevel.push({ slug, title, label })
+  } else {
+    const cat = parts[0]
+    const slug = id.replace(/\.(mdx?|md)$/, '')
+    if (!grouped.has(cat)) grouped.set(cat, [])
+    grouped.get(cat)!.push({ slug, title, label })
+  }
+}
+
+// Sort items within each group
+for (const [, items] of grouped) {
+  items.sort((a, b) => a.label.localeCompare(b.label))
+}
+
+// Sort categories by config order
+const sortedCategories = [...grouped.entries()].sort((a, b) => {
+  const oa = categories[a[0]]?.order ?? 99
+  const ob = categories[b[0]]?.order ?? 99
+  return oa - ob
+})
+---
+
+<aside class="sidebar" id="sidebar">
+  {/* Top-level links */}
+  <div class="sidebar-group">
+    <ul class="sidebar-items">
+      {topLevel.map(doc => (
+        <li class="sidebar-item">
+          <a href={localePath(locale, `/${doc.slug === 'index' ? '' : doc.slug + '/'}`)} aria-current={currentSlug === doc.slug ? 'page' : undefined}>
+            {doc.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  {/* Categorized hooks */}
+  {sortedCategories.map(([cat, items]) => (
+    <div class="sidebar-group" data-group={cat}>
+      <div class="sidebar-group-label">
+        {categories[cat]?.label || cat} <span style="font-weight:400;opacity:0.5;font-size:0.9em;margin-left:4px">{items.length}</span>
+      </div>
+      <ul class="sidebar-items">
+        {items.map(doc => (
+          <li class="sidebar-item">
+            <a href={localePath(locale, `/${doc.slug}/`)} aria-current={currentSlug === doc.slug ? 'page' : undefined}>
+              {doc.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+
+  {/* Mobile-only: links hidden from navbar */}
+  <div class="sidebar-mobile-extras">
+    <div class="sidebar-group-label">{t(locale, 'sidebar.language') || 'Language'}</div>
+    <ul class="sidebar-items">
+      <li class="sidebar-item"><a href={switchUrls.en} class:list={[{ active: locale === 'en' }]}>English</a></li>
+      <li class="sidebar-item"><a href={switchUrls['zh-Hans']} class:list={[{ active: locale === 'zh-Hans' }]}>简体中文</a></li>
+      <li class="sidebar-item"><a href={switchUrls['zh-Hant']} class:list={[{ active: locale === 'zh-Hant' }]}>繁體中文</a></li>
+    </ul>
+    <div class="sidebar-group-label" style="margin-top:8px">Links</div>
+    <ul class="sidebar-items">
+      <li class="sidebar-item"><a href={localePath(locale, '/blog/')}>{t(locale, 'nav.blog')}</a></li>
+      <li class="sidebar-item"><a href="https://github.com/childrentime/reactuse" target="_blank" rel="noopener">GitHub</a></li>
+      <li class="sidebar-item"><a href="https://buymeacoffee.com/lianwenwu" target="_blank" rel="noopener">{t(locale, 'nav.coffee')}</a></li>
+    </ul>
+  </div>
+</aside>
+
+<script is:inline>
+  // Collapsible sidebar groups
+  document.querySelectorAll('.sidebar-group-label').forEach(label => {
+    label.addEventListener('click', () => {
+      label.parentElement.classList.toggle('collapsed');
+    });
+  });
+  // Close sidebar on link click (mobile)
+  document.querySelectorAll('.sidebar-item a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.querySelector('.sidebar')?.classList.remove('open');
+    });
+  });
+</script>

@@ -1,0 +1,26 @@
+---
+title: useMountedState 用法与示例
+sidebar_label: useMountedState
+description: 检查组件的挂载状态。 本文介绍其用法、最佳实践与代码示例。
+---
+# useMountedState
+
+检查组件的挂载状态
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const isMounted = useMountedState();
+
+  const [, update] = useState(0);
+  useEffect(() => {
+    update(1);
+  }, []);
+  return <div>此组件 {isMounted() ? "已挂载" : "未挂载"}</div>;
+};
+
+```
+
+%%API%%

@@ -1,0 +1,28 @@
+---
+title: useToggle 用法与示例
+sidebar_label: useToggle
+description: 优雅管理 `Boolean` 值。 本文介绍其用法、最佳实践与代码示例。
+---
+# useToggle
+
+优雅管理 `Boolean` 值。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [on, toggle] = useToggle(true);
+
+  return (
+    <div>
+      <div>{on ? "开启" : "关闭"}</div>
+      <button onClick={toggle}>切换</button>
+      <button onClick={() => toggle(true)}>设为开启</button>
+      <button onClick={() => toggle(false)}>设为关闭</button>
+    </div>
+  );
+};
+```
+
+%%API%%

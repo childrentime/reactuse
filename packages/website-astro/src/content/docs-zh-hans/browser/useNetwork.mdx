@@ -1,0 +1,22 @@
+---
+title: useNetwork 用法与示例
+sidebar_label: useNetwork
+description: 跟踪浏览器网络连接状况。 本文介绍其用法、最佳实践与代码示例。
+---
+# useNetwork
+
+跟踪浏览器网络连接状况
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const state = useNetwork();
+
+  return <pre>{JSON.stringify(state, null, 2)}</pre>;
+};
+
+```
+
+%%API%%

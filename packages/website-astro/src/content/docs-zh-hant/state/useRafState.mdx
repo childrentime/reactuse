@@ -1,0 +1,42 @@
+---
+title: useRafState 用法與示例
+sidebar_label: useRafState
+description: 在 [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) 更新狀態。 本文介紹其用法、最佳實踐與代碼示例。
+---
+# useRafState
+
+在 [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) 更新狀態。
+
+## Usage
+
+```tsx live
+
+function Demo() {
+  const [state, setState] = useRafState({ x: 0, y: 0 });
+
+  useMount(() => {
+    const onMouseMove = (event: MouseEvent) => {
+      setState({ x: event.clientX, y: event.clientY });
+    };
+    const onTouchMove = (event: TouchEvent) => {
+      setState({
+        x: event.changedTouches[0].clientX,
+        y: event.changedTouches[0].clientY,
+      });
+    };
+
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("touchmove", onTouchMove);
+
+    return () => {
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("touchmove", onTouchMove);
+    };
+  });
+
+  return <pre>{JSON.stringify(state, null, 2)}</pre>;
+};
+
+```
+
+%%API%%

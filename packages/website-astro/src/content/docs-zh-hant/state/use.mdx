@@ -1,0 +1,32 @@
+---
+title: use 用法與示例
+sidebar_label: use
+description: '`use` 是一個用於解析 React v18 及以下版本的 promise 狀態的 polyfill hook。請注意，它只實現了消費 promise 的能力。 本文介紹其用法、最佳實踐與代碼示例。'
+---
+# use
+
+`use` 是一個用於解析 React v18 及以下版本的 promise 狀態的 polyfill hook。請注意，它只實現了消費 promise 的能力。
+
+## Usage
+
+```tsx live noInline
+const promise = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve("resolved");
+  }, 5000);
+});
+
+function Demo() {
+  const data = use(promise);
+
+  return <p>{data}</p>;
+}
+
+render(
+  <Suspense fallback="loading...">
+    <Demo />
+  </Suspense>
+);
+```
+
+%%API%%

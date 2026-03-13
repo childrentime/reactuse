@@ -1,0 +1,262 @@
+---
+title: useScrollLock 用法與示例
+sidebar_label: useScrollLock
+description: 鎖定元素的滾動行為，同時保留嵌套可滾動容器內的滾動功能。學習用法模式、最佳實踐以及代碼示例。
+---
+# useScrollLock
+
+鎖定元素的滾動行為，同時保留嵌套可滾動容器內的滾動功能。
+
+
+## 基礎用法
+
+```tsx live
+function Demo() {
+  const elementRef = useRef<HTMLDivElement>(null);
+  const [locked, setLocked] = useScrollLock(elementRef);
+
+  const absoluteStyle: CSSProperties = {
+    paddingTop: "0.25rem",
+    paddingBottom: "0.25rem",
+    paddingLeft: "0.5rem",
+    paddingRight: "0.5rem",
+    position: "absolute",
+  };
+  return (
+    <div style={{ display: "flex" }}>
+      <div
+        ref={elementRef}
+        style={{
+          width: 300,
+          height: 300,
+          margin: "auto",
+          borderRadius: "0.25rem",
+          overflow: "scroll",
+          border: "1px solid var(--ifm-color-emphasis-200)",
+        }}
+      >
+        <div style={{ width: 500, height: 400, position: "relative" }}>
+          <div
+            style={{
+              ...absoluteStyle,
+              top: "0rem",
+              left: "0rem",
+            }}
+          >
+            左上角
+          </div>
+          <div
+            style={{
+              ...absoluteStyle,
+              bottom: "0rem",
+              left: "0rem",
+            }}
+          >
+            左下角
+          </div>
+          <div
+            style={{
+              ...absoluteStyle,
+              top: "0rem",
+              right: "0rem",
+            }}
+          >
+            右上角
+          </div>
+          <div
+            style={{
+              ...absoluteStyle,
+              bottom: "0rem",
+              right: "0rem",
+            }}
+          >
+            右下角
+          </div>
+          <div
+            style={{
+              ...absoluteStyle,
+              top: "33.33333%",
+              left: "33.33333%",
+            }}
+          >
+            滾動區域
+          </div>
+        </div>
+      </div>
+      <div
+        style={{
+          width: 280,
+          margin: "auto",
+          paddingLeft: "1rem",
+          display: "flex",
+          flexDirection: "column",
+          gap: 5,
+        }}
+      >
+        <div>鎖定狀態: {JSON.stringify(locked)}</div>
+        <button
+          onClick={() => {
+            setLocked(!locked);
+          }}
+          style={{
+            padding: "8px 16px",
+            border: "1px solid var(--ifm-color-emphasis-300)",
+            backgroundColor: "var(--ifm-background-color)",
+            color: "var(--ifm-color-content)",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          {locked ? "解鎖" : "鎖定"}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+```
+
+## 對話框示例
+
+```tsx live
+function DialogDemo() {
+  const { cloneElement, ReactElement, useRef, useState } = React;
+  
+  const Dialog = ({ trigger }: { trigger: ReactElement }) => {
+    const dialogRef = useRef<HTMLDialogElement>(null);
+    const boxRef = useRef(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const [, setLock] = useScrollLock(document.body);
+
+    const open = () => {
+      setIsOpen(true);
+      dialogRef.current?.showModal();
+      setLock(true);
+    };
+
+    const close = () => {
+      setIsOpen(false);
+      dialogRef.current?.close();
+      setLock(false);
+    };
+
+    useEventListener("close", () => setIsOpen(false), dialogRef);
+    useClickOutside(boxRef, close);
+
+    return (
+      <>
+        {cloneElement(trigger, { onClick: open })}
+
+        <dialog 
+          ref={dialogRef}
+          style={{
+            padding: 0,
+            border: "none",
+            borderRadius: "8px",
+            boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
+            maxWidth: "500px",
+            width: "90vw",
+          }}
+        >
+          <div 
+            ref={boxRef}
+            style={{
+              padding: "24px",
+              maxHeight: "70vh",
+              overflow: "auto",
+              backgroundColor: "var(--ifm-background-color)",
+              borderRadius: "8px",
+            }}
+          >
+            <h3 style={{ margin: "0 0 16px 0", color: "var(--ifm-color-content)" }}>
+              可滾動內容的對話框
+            </h3>
+            <p style={{ lineHeight: "1.6", color: "var(--ifm-color-content-secondary)", margin: "16px 0" }}>
+              這個對話框演示了 useScrollLock 的使用。背景滾動被鎖定，
+              但你仍然可以在對話框內容中正常滾動。
+            </p>
+            <p style={{ lineHeight: "1.6", color: "var(--ifm-color-content-secondary)", margin: "16px 0" }}>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
+              faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+              pretium tellus duis convallis. Tempus leo eu aenean sed diam urna
+              tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+              Iaculis massa nisl malesuada lacinia integer nunc posuere.
+            </p>
+            <p style={{ lineHeight: "1.6", color: "var(--ifm-color-content-secondary)", margin: "16px 0" }}>
+              Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora
+              torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor 
+              sit amet consectetur adipiscing elit. Quisque faucibus ex sapien 
+              vitae pellentesque sem placerat.
+            </p>
+            <p style={{ lineHeight: "1.6", color: "var(--ifm-color-content-secondary)", margin: "16px 0" }}>
+              In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean 
+              sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus 
+              bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere.
+            </p>
+            <p style={{ lineHeight: "1.6", color: "var(--ifm-color-content-secondary)", margin: "16px 0" }}>
+              Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora
+              torquent per conubia nostra inceptos himenaeos. Sed cursus turpis 
+              a purus aliquam condimentum. Nam bibendum cursus dolor.
+            </p>
+            <div style={{ 
+              display: "flex", 
+              justifyContent: "flex-end", 
+              marginTop: "24px",
+              gap: "12px"
+            }}>
+              <button
+                onClick={close}
+                style={{
+                  padding: "8px 16px",
+                  border: "1px solid var(--ifm-color-emphasis-300)",
+                  backgroundColor: "var(--ifm-background-color)",
+                  color: "var(--ifm-color-content)",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                關閉
+              </button>
+            </div>
+          </div>
+        </dialog>
+      </>
+    );
+  };
+
+  return (
+    <div style={{ padding: "20px", textAlign: "center" }}>
+      <Dialog 
+        trigger={
+          <button
+            style={{
+              padding: "12px 24px",
+              border: "1px solid var(--ifm-color-primary)",
+              backgroundColor: "var(--ifm-color-primary)",
+              color: "var(--ifm-color-white)",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            打開對話框
+          </button>
+        } 
+      />
+      <p style={{ 
+        marginTop: "16px", 
+        color: "var(--ifm-color-content-secondary)", 
+        fontSize: "14px",
+        maxWidth: "400px",
+        margin: "16px auto 0"
+      }}>
+        打開對話框并尝试滾動。背景滾動將被鎖定，
+        但你可以在對話框內容中正常滾動。
+      </p>
+    </div>
+  );
+}
+
+```
+
+%%API%%
