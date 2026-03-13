@@ -18,6 +18,8 @@ const ui: Record<Locale, Record<string, string>> = {
     'sidebar.element': 'Element',
     'sidebar.browser': 'Browser',
     'sidebar.integrations': 'Integrations',
+    'blog.title': 'Blog',
+    'blog.description': 'ReactUse Blog - Articles about React hooks and best practices',
   },
   'zh-Hans': {
     'nav.coffee': 'Buy me a coffee',
@@ -29,6 +31,8 @@ const ui: Record<Locale, Record<string, string>> = {
     'sidebar.element': '元素',
     'sidebar.browser': '浏览器',
     'sidebar.integrations': '集成',
+    'blog.title': '博客',
+    'blog.description': 'ReactUse 博客 - 关于 React Hooks 的文章和最佳实践',
   },
   'zh-Hant': {
     'nav.coffee': 'Buy me a coffee',
@@ -40,6 +44,8 @@ const ui: Record<Locale, Record<string, string>> = {
     'sidebar.element': '元素',
     'sidebar.browser': '瀏覽器',
     'sidebar.integrations': '整合',
+    'blog.title': '部落格',
+    'blog.description': 'ReactUse 部落格 - 關於 React Hooks 的文章和最佳實踐',
   },
 }
 

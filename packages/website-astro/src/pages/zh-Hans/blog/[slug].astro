@@ -1,14 +1,14 @@
 ---
 import { getCollection, render } from 'astro:content'
-import BaseLayout from '../../layouts/BaseLayout.astro'
-import Navbar from '../../components/Navbar.astro'
-import Footer from '../../components/Footer.astro'
-import type { Locale } from '../../i18n/translations'
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import Navbar from '../../../components/Navbar.astro'
+import Footer from '../../../components/Footer.astro'
+import { localePath, type Locale } from '../../../i18n/translations'
 
-const locale: Locale = 'en'
+const locale: Locale = 'zh-Hans'
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog')
+  const posts = await getCollection('blog-zh-hans')
   return posts.map((entry) => ({
     params: { slug: entry.data.slug || entry.id },
     props: { entry },
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props
 const { Content } = await render(entry)
 const dateStr = entry.data.date
-  ? new Date(entry.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  ? new Date(entry.data.date).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })
   : ''
 ---
 

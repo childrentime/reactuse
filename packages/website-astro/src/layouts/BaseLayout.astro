@@ -17,6 +17,17 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'WebSite',
+      url: 'https://reactuse.com',
+      name: 'ReactUse',
+      description: 'Collection of 100+ essential React Hooks',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: 'https://reactuse.com/?q={search_term_string}',
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
       '@type': 'SoftwareSourceCode',
       name: '@reactuses/core',
       description: 'Collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility',
@@ -33,6 +44,7 @@ const structuredData = {
         { '@type': 'Question', name: 'What is ReactUse?', acceptedAnswer: { '@type': 'Answer', text: 'ReactUse is a comprehensive collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility.' } },
         { '@type': 'Question', name: 'How do I install ReactUse?', acceptedAnswer: { '@type': 'Answer', text: 'Install via npm: npm i @reactuses/core. Then import any hook: import { useToggle } from "@reactuses/core".' } },
         { '@type': 'Question', name: 'Is ReactUse compatible with Next.js and SSR?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, all ReactUse hooks are SSR-compatible and work seamlessly with Next.js, Remix, and other server-side rendering frameworks.' } },
+        { '@type': 'Question', name: 'What hooks does ReactUse provide?', acceptedAnswer: { '@type': 'Answer', text: 'ReactUse provides hooks across several categories: State Management (useToggle, useLocalStorage, useSessionStorage), Browser APIs (useClipboard, useFullscreen, useMediaQuery), Sensors (useMouse, useScroll, useGeolocation), UI (useDark, useTitle, useFavicon), Animation (useInterval, useTimeout, useRafFn), and Network (useFetch, useWebSocket, useEventSource).' } },
       ],
     },
   ],

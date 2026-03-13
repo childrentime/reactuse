@@ -44,8 +44,19 @@ export function remarkApiInject() {
       const basename = path.basename(filePath, path.extname(filePath));
       const hookName = aliases[basename] || basename;
 
-      // Read API doc
-      const apiPath = path.join(API_DIR, `${hookName}-README.md`);
+      // Detect locale from file path
+      let localeSuffix = "";
+      if (filePath.includes("docs-zh-hans")) {
+        localeSuffix = "-zhHans";
+      } else if (filePath.includes("docs-zh-hant")) {
+        localeSuffix = "-zhHant";
+      }
+
+      // Read API doc (try locale-specific first, fallback to English)
+      let apiPath = path.join(API_DIR, `${hookName}-README${localeSuffix}.md`);
+      if (localeSuffix && !fs.existsSync(apiPath)) {
+        apiPath = path.join(API_DIR, `${hookName}-README.md`);
+      }
       if (!fs.existsSync(apiPath)) {
         // Remove the %%API%% placeholder silently
         parent.children.splice(index, 1);
