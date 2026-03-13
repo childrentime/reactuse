@@ -13,6 +13,21 @@ const { title, description = '100+ Essential React Hooks - The React Equivalent 
 const htmlLang = locale === 'zh-Hans' ? 'zh-Hans' : locale === 'zh-Hant' ? 'zh-Hant' : 'en'
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
+// Generate hreflang alternate URLs
+const pathname = Astro.url.pathname
+let basePath = pathname
+if (pathname.startsWith('/zh-Hans/')) {
+  basePath = pathname.replace(/^\/zh-Hans/, '')
+} else if (pathname.startsWith('/zh-Hant/')) {
+  basePath = pathname.replace(/^\/zh-Hant/, '')
+}
+const alternates = [
+  { hreflang: 'en', href: new URL(basePath, Astro.site).href },
+  { hreflang: 'zh-Hans', href: new URL(`/zh-Hans${basePath}`, Astro.site).href },
+  { hreflang: 'zh-Hant', href: new URL(`/zh-Hant${basePath}`, Astro.site).href },
+  { hreflang: 'x-default', href: new URL(basePath, Astro.site).href },
+]
+
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -60,6 +75,9 @@ const structuredData = {
   <meta name="description" content={description} />
   <meta name="keywords" content="react hooks, custom hooks, react hook library, react utilities, useEffect, useState, typescript hooks, SSR hooks, reactuse, react use, browser hooks, state management hooks" />
   <link rel="canonical" href={canonicalURL} />
+  {alternates.map(alt => (
+    <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+  ))}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <!-- Open Graph -->
   <meta property="og:title" content={title} />
@@ -73,9 +91,9 @@ const structuredData = {
   <meta name="twitter:site" content="@wulianwen1" />
   <meta name="twitter:domain" content="reactuse.com" />
   <!-- Search engine verifications -->
-  <meta name="google-site-verification" content="jGWJsBba9JzJsllkMHCduKPUDx5bJYKU1JlXHjF3vHI" />
+  <meta name="google-site-verification" content="cYSXMQh7Yfm6rW16yR-5_x0jmMX_ABwMDwAoPPlPc1M" />
   <meta name="msvalidate.01" content="FCAB31FC7E191890AC6C3BC3A945596A" />
-  <meta name="baidu-site-verification" content="WMH1e8oKID" />
+  <meta name="baidu-site-verification" content="code-WMH1e8oKID" />
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3JKY4KFF7Y"></script>
