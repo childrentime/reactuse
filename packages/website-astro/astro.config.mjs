@@ -17,7 +17,20 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  integrations: [react(), mdx(), sitemap()],
+  integrations: [
+    react(),
+    mdx(),
+    sitemap({
+      i18n: {
+        defaultLocale: "en",
+        locales: {
+          en: "en",
+          "zh-Hans": "zh-Hans",
+          "zh-Hant": "zh-Hant",
+        },
+      },
+    }),
+  ],
   markdown: {
     remarkPlugins: [remarkDirective, remarkAdmonitions, remarkLiveCode, remarkApiInject],
     shikiConfig: {

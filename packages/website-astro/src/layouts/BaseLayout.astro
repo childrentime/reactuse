@@ -22,10 +22,10 @@ if (pathname.startsWith('/zh-Hans/')) {
   basePath = pathname.replace(/^\/zh-Hant/, '')
 }
 const alternates = [
+  { hreflang: 'x-default', href: new URL(basePath, Astro.site).href },
   { hreflang: 'en', href: new URL(basePath, Astro.site).href },
   { hreflang: 'zh-Hans', href: new URL(`/zh-Hans${basePath}`, Astro.site).href },
   { hreflang: 'zh-Hant', href: new URL(`/zh-Hant${basePath}`, Astro.site).href },
-  { hreflang: 'x-default', href: new URL(basePath, Astro.site).href },
 ]
 
 const structuredData = {
