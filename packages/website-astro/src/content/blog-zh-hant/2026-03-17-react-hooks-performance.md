@@ -5,6 +5,7 @@ slug: react-hooks-performance
 authors:
   - name: ReactUse Team
     url: https://github.com/childrentime
+date: 2026-03-17
 tags: [react, hooks, performance, optimization, best-practices]
 keywords: [react hooks performance, react re-render, useMemo, useCallback, react optimization, avoid re-renders]
 image: /img/og.png

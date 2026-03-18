@@ -5,6 +5,7 @@ slug: react-media-query-hook
 authors:
   - name: ReactUse Team
     url: https://github.com/childrentime
+date: 2026-03-17
 tags: [react, hooks, tutorial, responsive-design, useMediaQuery]
 keywords: [react media query, useMediaQuery, responsive react, react responsive design, media query hook]
 image: /img/og.png

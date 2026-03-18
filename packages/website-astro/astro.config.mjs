@@ -22,11 +22,11 @@ export default defineConfig({
     mdx(),
     sitemap({
       i18n: {
-        defaultLocale: "en",
+        defaultLocale: 'en',
         locales: {
-          en: "en",
-          "zh-Hans": "zh-Hans",
-          "zh-Hant": "zh-Hant",
+          'en': 'en',
+          'zh-Hans': 'zh-Hans',
+          'zh-Hant': 'zh-Hant',
         },
       },
     }),
