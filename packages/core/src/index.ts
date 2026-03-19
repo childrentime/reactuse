@@ -107,6 +107,7 @@ import { useFetchEventSource } from './useFetchEventSource'
 import { useMap } from './useMap'
 import { useColorMode } from './useColorMode'
 import { useSpeechRecognition } from './useSpeechRecognition'
+import { useWakeLock } from './useWakeLock'
 
 export {
   usePrevious,
@@ -223,6 +224,7 @@ export {
   useMap,
   useColorMode,
   useSpeechRecognition,
+  useWakeLock,
 }
 
 export * from './useActiveElement/interface'
@@ -329,3 +331,4 @@ export * from './useFetchEventSource/interface'
 export * from './useMap/interface'
 export * from './useColorMode/interface'
 export * from './useSpeechRecognition/interface'
+export * from './useWakeLock/interface'

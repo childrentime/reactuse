@@ -1,0 +1,50 @@
+---
+title: useWakeLock 用法與示例
+sidebar_label: useWakeLock
+description: 響應式螢幕喚醒鎖 API，防止螢幕變暗或鎖定。本文介紹其用法、最佳實踐與代碼示例。
+---
+# useWakeLock
+
+響應式螢幕喚醒鎖 API，防止螢幕變暗或鎖定。
+
+## Usage
+
+```tsx live
+function Demo() {
+  const { isSupported, isActive, request, forceRequest, release } = useWakeLock({
+    onRequest: () => console.log("喚醒鎖已獲取"),
+    onRelease: () => console.log("喚醒鎖已釋放"),
+    onError: (e) => console.error("喚醒鎖錯誤:", e),
+  });
+
+  if (!isSupported) {
+    return <div>您的瀏覽器不支援 Wake Lock API。</div>;
+  }
+
+  return (
+    <div>
+      <div style={{ marginBottom: 16 }}>
+        喚醒鎖: <b>{isActive ? "已啟用" : "未啟用"}</b>
+      </div>
+      <div>
+        <button type="button" onClick={request}>
+          請求
+        </button>
+        <button
+          type="button"
+          onClick={forceRequest}
+          style={{ margin: "0 8px" }}
+        >
+          強制請求
+        </button>
+        <button type="button" onClick={release}>
+          釋放
+        </button>
+      </div>
+    </div>
+  );
+};
+
+```
+
+%%API%%
