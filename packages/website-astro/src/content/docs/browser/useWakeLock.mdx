@@ -1,0 +1,50 @@
+---
+title: useWakeLock – Browser Hook Usage & Examples
+sidebar_label: useWakeLock
+description: Reactive Screen Wake Lock API. Prevent the screen from dimming or locking. Learn usage patterns, best practices, and code examples for React developers.
+---
+# useWakeLock
+
+Reactive Screen Wake Lock API. Prevent the screen from dimming or locking.
+
+## Usage
+
+```tsx live
+function Demo() {
+  const { isSupported, isActive, request, forceRequest, release } = useWakeLock({
+    onRequest: () => console.log("Wake lock acquired"),
+    onRelease: () => console.log("Wake lock released"),
+    onError: (e) => console.error("Wake lock error:", e),
+  });
+
+  if (!isSupported) {
+    return <div>Wake Lock API is not supported in your browser.</div>;
+  }
+
+  return (
+    <div>
+      <div style={{ marginBottom: 16 }}>
+        Wake Lock: <b>{isActive ? "Active" : "Inactive"}</b>
+      </div>
+      <div>
+        <button type="button" onClick={request}>
+          Request
+        </button>
+        <button
+          type="button"
+          onClick={forceRequest}
+          style={{ margin: "0 8px" }}
+        >
+          Force Request
+        </button>
+        <button type="button" onClick={release}>
+          Release
+        </button>
+      </div>
+    </div>
+  );
+};
+
+```
+
+%%API%%
