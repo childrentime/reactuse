@@ -1,0 +1,454 @@
+{
+  "use": {
+    "category": "state",
+    "url": "https://reactuse.com/state/use/"
+  },
+  "useActiveElement": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useActiveElement/"
+  },
+  "useAsyncEffect": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useAsyncEffect/"
+  },
+  "useBoolean": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useBoolean/"
+  },
+  "useBroadcastChannel": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useBroadcastChannel/"
+  },
+  "useClickAway": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useClickAway/"
+  },
+  "useClickOutside": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useClickOutside/"
+  },
+  "useClipboard": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useClipboard/"
+  },
+  "useColorMode": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useColorMode/"
+  },
+  "useControlled": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useControlled/"
+  },
+  "useCookie": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useCookie/"
+  },
+  "useCopyToClipboard": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useCopyToClipboard/"
+  },
+  "useCountDown": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useCountDown/"
+  },
+  "useCounter": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useCounter/"
+  },
+  "useCssVar": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useCssVar/"
+  },
+  "useCustomCompareEffect": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useCustomCompareEffect/"
+  },
+  "useCycleList": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useCycleList/"
+  },
+  "useDarkMode": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useDarkMode/"
+  },
+  "useDebounce": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useDebounce/"
+  },
+  "useDebounceFn": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useDebounceFn/"
+  },
+  "useDeepCompareEffect": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useDeepCompareEffect/"
+  },
+  "useDevicePixelRatio": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useDevicePixelRatio/"
+  },
+  "useDisclosure": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useDisclosure/"
+  },
+  "useDocumentVisibility": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useDocumentVisibility/"
+  },
+  "useDoubleClick": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useDoubleClick/"
+  },
+  "useDraggable": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useDraggable/"
+  },
+  "useDropZone": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useDropZone/"
+  },
+  "useElementBounding": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useElementBounding/"
+  },
+  "useElementByPoint": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useElementByPoint/"
+  },
+  "useElementSize": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useElementSize/"
+  },
+  "useElementVisibility": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useElementVisibility/"
+  },
+  "useEvent": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useEvent/"
+  },
+  "useEventEmitter": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useEventEmitter/"
+  },
+  "useEventListener": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useEventListener/"
+  },
+  "useEventSource": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useEventSource/"
+  },
+  "useEyeDropper": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useEyeDropper/"
+  },
+  "useFavicon": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useFavicon/"
+  },
+  "useFetchEventSource": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useFetchEventSource/"
+  },
+  "useFileDialog": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useFileDialog/"
+  },
+  "useFirstMountState": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useFirstMountState/"
+  },
+  "useFocus": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useFocus/"
+  },
+  "useFps": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useFps/"
+  },
+  "useFullscreen": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useFullscreen/"
+  },
+  "useGeolocation": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useGeolocation/"
+  },
+  "useHover": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useHover/"
+  },
+  "useIdle": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useIdle/"
+  },
+  "useInfiniteScroll": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useInfiniteScroll/"
+  },
+  "useIntersectionObserver": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useIntersectionObserver/"
+  },
+  "useInterval": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useInterval/"
+  },
+  "useIsomorphicLayoutEffect": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useIsomorphicLayoutEffect/"
+  },
+  "useKeyModifier": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useKeyModifier/"
+  },
+  "useLatest": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useLatest/"
+  },
+  "useLocalStorage": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useLocalStorage/"
+  },
+  "useLocationSelector": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useLocationSelector/"
+  },
+  "useLongPress": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useLongPress/"
+  },
+  "useMap": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useMap/"
+  },
+  "useMeasure": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useMeasure/"
+  },
+  "useMediaDevices": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useMediaDevices/"
+  },
+  "useMediaQuery": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useMediaQuery/"
+  },
+  "useMergedRefs": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useMergedRefs/"
+  },
+  "useMobileLandscape": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useMobileLandscape/"
+  },
+  "useMount": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useMount/"
+  },
+  "useMountedState": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useMountedState/"
+  },
+  "useMouse": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useMouse/"
+  },
+  "useMousePressed": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useMousePressed/"
+  },
+  "useMutationObserver": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useMutationObserver/"
+  },
+  "useNetwork": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useNetwork/"
+  },
+  "useObjectUrl": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useObjectUrl/"
+  },
+  "useOnceEffect": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useOnceEffect/"
+  },
+  "useOnceLayoutEffect": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useOnceLayoutEffect/"
+  },
+  "useOnline": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useOnline/"
+  },
+  "useOrientation": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useOrientation/"
+  },
+  "usePageLeave": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/usePageLeave/"
+  },
+  "usePermission": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/usePermission/"
+  },
+  "usePlatform": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/usePlatform/"
+  },
+  "usePreferredColorScheme": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/usePreferredColorScheme/"
+  },
+  "usePreferredContrast": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/usePreferredContrast/"
+  },
+  "usePreferredDark": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/usePreferredDark/"
+  },
+  "usePreferredLanguages": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/usePreferredLanguages/"
+  },
+  "usePrevious": {
+    "category": "state",
+    "url": "https://reactuse.com/state/usePrevious/"
+  },
+  "useQRCode": {
+    "category": "integrations",
+    "url": "https://reactuse.com/integrations/useQRCode/"
+  },
+  "useRafFn": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useRafFn/"
+  },
+  "useRafState": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useRafState/"
+  },
+  "useReducedMotion": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useReducedMotion/"
+  },
+  "useResizeObserver": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useResizeObserver/"
+  },
+  "useScratch": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useScratch/"
+  },
+  "useScreenSafeArea": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useScreenSafeArea/"
+  },
+  "useScriptTag": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useScriptTag/"
+  },
+  "useScroll": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useScroll/"
+  },
+  "useScrollIntoView": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useScrollIntoView/"
+  },
+  "useScrollLock": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useScrollLock/"
+  },
+  "useSessionStorage": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useSessionStorage/"
+  },
+  "useSetState": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useSetState/"
+  },
+  "useSpeechRecognition": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useSpeechRecognition/"
+  },
+  "useSticky": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useSticky/"
+  },
+  "useSupported": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useSupported/"
+  },
+  "useTextDirection": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useTextDirection/"
+  },
+  "useTextSelection": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useTextSelection/"
+  },
+  "useThrottle": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useThrottle/"
+  },
+  "useThrottleFn": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useThrottleFn/"
+  },
+  "useTimeout": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useTimeout/"
+  },
+  "useTimeoutFn": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useTimeoutFn/"
+  },
+  "useTitle": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useTitle/"
+  },
+  "useToggle": {
+    "category": "state",
+    "url": "https://reactuse.com/state/useToggle/"
+  },
+  "useUnmount": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useUnmount/"
+  },
+  "useUpdate": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useUpdate/"
+  },
+  "useUpdateEffect": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useUpdateEffect/"
+  },
+  "useUpdateLayoutEffect": {
+    "category": "effect",
+    "url": "https://reactuse.com/effect/useUpdateLayoutEffect/"
+  },
+  "useWakeLock": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useWakeLock/"
+  },
+  "useWebNotification": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/useWebNotification/"
+  },
+  "useWindowFocus": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useWindowFocus/"
+  },
+  "useWindowScroll": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useWindowScroll/"
+  },
+  "useWindowSize": {
+    "category": "element",
+    "url": "https://reactuse.com/element/useWindowSize/"
+  }
+}
