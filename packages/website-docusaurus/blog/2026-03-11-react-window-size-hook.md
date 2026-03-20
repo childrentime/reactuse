@@ -148,10 +148,9 @@ yarn add @reactuses/core
 
 ## Related Hooks
 
-- [useWindowSize documentation](https://reactuse.com/browser/useWindowSize/) — full API reference and interactive demo
+- [useWindowSize documentation](https://reactuse.com/element/useWindowSize/) — full API reference and interactive demo
 - [useMediaQuery](https://reactuse.com/browser/useMediaQuery/) — reactive CSS media query matching
 - [useElementSize](https://reactuse.com/element/useElementSize/) — track the size of a specific DOM element
-- [useBreakpoints](https://reactuse.com/browser/useBreakpoints/) — named breakpoint helpers (sm, md, lg, xl)
 
 ---
 

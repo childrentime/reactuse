@@ -197,9 +197,8 @@ npm i @reactuses/core
 
 ## 相關 Hooks
 
-- [useInfiniteScroll 文件](https://reactuse.com/element/useInfiniteScroll/) -- 互動式範例和完整 API 參考
-- [useScroll](https://reactuse.com/element/useScroll/) -- 響應式捲動位置和方向追蹤
-- [useVirtualList](https://reactuse.com/element/useVirtualList/) -- 虛擬化長列表，搭配無限捲動使用以獲得更好的效能
+- [useInfiniteScroll 文件](https://reactuse.com/browser/useInfiniteScroll/) -- 互動式範例和完整 API 參考
+- [useScroll](https://reactuse.com/browser/useScroll/) -- 響應式捲動位置和方向追蹤
 
 ---
 

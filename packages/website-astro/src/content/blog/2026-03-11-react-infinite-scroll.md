@@ -197,9 +197,8 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [useInfiniteScroll documentation](https://reactuse.com/element/useInfiniteScroll/) -- interactive demo and full API reference
-- [useScroll](https://reactuse.com/element/useScroll/) -- reactive scroll position and direction tracking
-- [useVirtualList](https://reactuse.com/element/useVirtualList/) -- virtualize long lists for better performance alongside infinite scroll
+- [useInfiniteScroll documentation](https://reactuse.com/browser/useInfiniteScroll/) -- interactive demo and full API reference
+- [useScroll](https://reactuse.com/browser/useScroll/) -- reactive scroll position and direction tracking
 
 ---
 

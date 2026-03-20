@@ -179,7 +179,7 @@ import { useClipboard } from "@reactuses/core";
 - [useClipboard documentation](https://reactuse.com/browser/useClipboard/) — full API reference and live demo
 - [usePermission](https://reactuse.com/browser/usePermission/) — check whether the clipboard-read permission has been granted
 - [useEventListener](https://reactuse.com/effect/useEventListener/) — the lower-level hook used internally by useClipboard
-- [useSupported](https://reactuse.com/browser/useSupported/) — detect whether the Clipboard API is available in the current environment
+- [useSupported](https://reactuse.com/state/useSupported/) — detect whether the Clipboard API is available in the current environment
 
 ---
 

@@ -249,8 +249,7 @@ yarn add @reactuses/core
 ## 相关 Hooks
 
 - [useMediaQuery 文档](https://reactuse.com/browser/useMediaQuery/) -- 完整 API 参考和交互式演示
-- [useWindowSize](https://reactuse.com/browser/useWindowSize/) -- 获取视口的实际像素尺寸
-- [useBreakpoints](https://reactuse.com/browser/useBreakpoints/) -- 命名断点辅助工具（sm、md、lg、xl）
+- [useWindowSize](https://reactuse.com/element/useWindowSize/) -- 获取视口的实际像素尺寸
 - [useDarkMode](https://reactuse.com/browser/useDarkMode/) -- 完整的深色模式管理与持久化
 
 ---

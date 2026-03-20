@@ -289,11 +289,11 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [useDebounce documentation](https://reactuse.com/hooks/useDebounce/) -- Debounce a reactive value
-- [useDebounceFn documentation](https://reactuse.com/hooks/useDebounceFn/) -- Debounce a function
-- [useThrottle documentation](https://reactuse.com/hooks/useThrottle/) -- Throttle a reactive value
-- [useThrottleFn documentation](https://reactuse.com/hooks/useThrottleFn/) -- Throttle a function
-- [useLatest documentation](https://reactuse.com/hooks/useLatest/) -- Keep a ref to the latest value
+- [useDebounce documentation](https://reactuse.com/state/useDebounce/) -- Debounce a reactive value
+- [useDebounceFn documentation](https://reactuse.com/effect/useDebounceFn/) -- Debounce a function
+- [useThrottle documentation](https://reactuse.com/state/useThrottle/) -- Throttle a reactive value
+- [useThrottleFn documentation](https://reactuse.com/effect/useThrottleFn/) -- Throttle a function
+- [useLatest documentation](https://reactuse.com/state/useLatest/) -- Keep a ref to the latest value
 
 ---
 

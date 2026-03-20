@@ -249,8 +249,7 @@ yarn add @reactuses/core
 ## 相關 Hooks
 
 - [useMediaQuery 文件](https://reactuse.com/browser/useMediaQuery/) -- 完整 API 參考和互動式範例
-- [useWindowSize](https://reactuse.com/browser/useWindowSize/) -- 取得視窗的實際像素尺寸
-- [useBreakpoints](https://reactuse.com/browser/useBreakpoints/) -- 命名斷點輔助工具（sm、md、lg、xl）
+- [useWindowSize](https://reactuse.com/element/useWindowSize/) -- 取得視窗的實際像素尺寸
 - [useDarkMode](https://reactuse.com/browser/useDarkMode/) -- 完整的深色模式管理與持久化
 
 ---

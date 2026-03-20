@@ -136,10 +136,10 @@ npm i @reactuses/core
 
 ## 相关 Hooks
 
-- [useDebounce 文档](https://reactuse.com/hooks/useDebounce/) -- 对响应式值进行防抖
-- [useDebounceFn 文档](https://reactuse.com/hooks/useDebounceFn/) -- 对函数进行防抖
-- [useThrottle 文档](https://reactuse.com/hooks/useThrottle/) -- 对响应式值进行节流
-- [useThrottleFn 文档](https://reactuse.com/hooks/useThrottleFn/) -- 对函数进行节流
+- [useDebounce 文档](https://reactuse.com/state/useDebounce/) -- 对响应式值进行防抖
+- [useDebounceFn 文档](https://reactuse.com/effect/useDebounceFn/) -- 对函数进行防抖
+- [useThrottle 文档](https://reactuse.com/state/useThrottle/) -- 对响应式值进行节流
+- [useThrottleFn 文档](https://reactuse.com/effect/useThrottleFn/) -- 对函数进行节流
 
 ---
 

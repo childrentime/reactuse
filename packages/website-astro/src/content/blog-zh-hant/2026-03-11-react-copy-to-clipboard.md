@@ -179,7 +179,7 @@ import { useClipboard } from "@reactuses/core";
 - [useClipboard 文件](https://reactuse.com/browser/useClipboard/) — 完整 API 參考和即時範例
 - [usePermission](https://reactuse.com/browser/usePermission/) — 檢查剪貼簿讀取權限是否已授予
 - [useEventListener](https://reactuse.com/effect/useEventListener/) — useClipboard 內部使用的底層 hook
-- [useSupported](https://reactuse.com/browser/useSupported/) — 偵測 Clipboard API 在目前環境中是否可用
+- [useSupported](https://reactuse.com/state/useSupported/) — 偵測 Clipboard API 在目前環境中是否可用
 
 ---
 
