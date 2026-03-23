@@ -1,11 +1,25 @@
 ---
 title: useFirstMountState 用法與示例
 sidebar_label: useFirstMountState
-description: 返回組件是否剛剛掛載的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。
+description: 返回組件是否剛剛掛載的 React Hook。
 ---
 # useFirstMountState
 
 返回組件是否剛剛掛載的 React Hook
+
+`useFirstMountState` 回傳一個布林值，指示當前渲染是否是元件的首次掛載（首次渲染）。首次渲染時回傳 `true`，後續渲染回傳 `false`。
+
+### 使用場景
+
+- 在首次渲染和後續渲染之間有條件地執行不同邏輯
+- 跳過元件掛載時的動畫或過渡效果
+- 區分初始資料載入和後續更新
+
+### 注意事項
+
+- **僅追蹤首次渲染**：值在首次渲染後永遠為 `false`，且不會改變。
+- **輕量**：使用 ref 追蹤，不觸發額外的重新渲染。
+- **相關 hooks**：另請參閱 `useMountedState` 追蹤元件是否已掛載，以及 `useUpdateEffect` 跳過首次渲染的 effect。
 
 ## Usage
 

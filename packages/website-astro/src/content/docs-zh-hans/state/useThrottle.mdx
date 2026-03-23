@@ -1,11 +1,25 @@
 ---
 title: useThrottle 用法与示例
 sidebar_label: useThrottle
-description: 对值进行节流的React hook。 本文介绍其用法、最佳实践与代码示例。
+description: 对值进行节流的React hook。
 ---
 # useThrottle
 
 对值进行节流的React hook
+
+`useThrottle` 接受一个值和以毫秒为单位的等待时间，返回该值的节流版本。与防抖（等待空闲）不同，节流确保值在每个间隔内最多更新一次，提供稳定的更新流。底层使用 `lodash.throttle`，因此你可以传入相同的选项（`leading`、`trailing`）进行精细控制。
+
+### 使用场景
+
+- 限制由高频事件（例如滚动位置、调整大小尺寸）驱动的 UI 更新频率
+- 确保值以固定间隔发出，而非等待变化暂停
+- 从快速变化的源值提供稳定的视觉反馈（例如进度指示器）
+
+### 注意事项
+
+- **值级别节流**：此 hook 节流的是*值*本身，而不是回调。如果你需要节流函数调用，请使用带有 `maxWait` 选项的 `useDebounceFn` 或专用的节流工具。
+- **选项透传**：第三个参数直接传递给 `lodash.throttle`，支持 `leading` 和 `trailing` 边缘配置。
+- 参见 `useDebounce` 了解延迟更新直到值停止变化，更适合搜索输入和验证。
 
 ## Usage
 

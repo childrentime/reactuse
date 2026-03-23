@@ -11,6 +11,20 @@ A declarative interval hook based on [Dan Abramov's article on overreacted.io](h
 
 You can also manually control it by passing the `controls` parameter.
 
+`useInterval` wraps `setInterval` in a declarative React API. It takes a callback, a delay in milliseconds (or `null` to pause), and an optional options object. It returns a `Pausable` object with `isActive`, `pause`, and `resume` methods for manual control. The callback always references the latest closure without resetting the interval.
+
+### When to Use
+
+- Building countdown timers, clocks, or polling mechanisms that tick at a regular interval
+- Auto-refreshing data from an API at a fixed cadence
+- Animating values over time with a consistent step interval
+
+### Notes
+
+- **Pause/resume**: Set `delay` to `null` to pause the interval, or use the returned `pause()`/`resume()` methods for imperative control.
+- **Immediate option**: Pass `{ immediate: true }` to execute the callback immediately on start in addition to after each interval.
+- The interval is automatically cleared on component unmount. See also `useTimeout` for single-fire delayed execution and `useRafFn` for frame-based animation loops.
+
 ## Usage
 
 ```tsx live

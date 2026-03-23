@@ -1,11 +1,25 @@
 ---
 title: useReducedMotion 用法与示例
 sidebar_label: useReducedMotion
-description: 跟踪用户动画偏好。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪用户动画偏好。
 ---
 # useReducedMotion
 
 跟踪用户动画偏好。
+
+`useReducedMotion` 使用 [`window.matchMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) 配合 [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) 媒体查询，返回一个布尔值表示用户是否请求了减少动效。当用户更改系统辅助功能设置时，值会自动更新。使用此 hook 为对动效敏感的用户禁用或简化动画。
+
+### 使用场景
+
+- 为有前庭障碍的用户禁用或减少复杂的 CSS/JS 动画
+- 当偏好减少动效时，用即时状态更改替代动画过渡
+- 在 UI 元素（例如轮播、视差效果）的动画版本和静态版本之间选择
+
+### 注意事项
+
+- **SSR 安全**：接受一个 `defaultState` 参数（默认 `false`），在服务端渲染期间 `window.matchMedia` 不可用时返回该值。
+- **无障碍性**：尊重 `prefers-reduced-motion` 偏好是重要的无障碍实践。建议禁用自动播放动画并减少过渡时长。
+- **相关 hooks**：基于 `useMediaQuery` 构建。参见 `usePreferredContrast` 和 `usePreferredColorScheme` 了解其他辅助功能相关的偏好 hook。
 
 ## Usage
 

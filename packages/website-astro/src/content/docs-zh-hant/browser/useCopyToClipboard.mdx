@@ -11,6 +11,20 @@ description: 將文本複製到用戶的剪貼板。useClipboard 的別名。學
 `useCopyToClipboard` 是 [`useClipboard`](/zh-Hant/browser/useClipboard) 的別名。它們具有相同的功能和 API。
 :::
 
+`useCopyToClipboard` 封裝了 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)，提供一個包含最近複製文字和 `copy` 函式的便捷元組。這是 `useClipboard` 的直接替代別名，你可以根據程式碼庫的命名慣例選擇使用任一名稱。完整詳情請參閱 `useClipboard`。
+
+### 使用場景
+
+- 當你偏好 `useCopyToClipboard` 命名慣例時，新增「複製到剪貼簿」功能
+- 從使用此命名模式的其他 hook 函式庫遷移
+- 任何適用 `useClipboard` 的場景——兩個 hooks 可互換使用
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳空字串和空操作函式。伺服器上不會存取 `navigator`。
+- **瀏覽器支援**：需要 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)（所有現代瀏覽器均支援）。
+- **權限**：某些瀏覽器需要使用者授權才能存取剪貼簿。可搭配 `usePermission` 檢查 `clipboard-read` 和 `clipboard-write` 狀態。
+
 ## 用法
 
 ```tsx live

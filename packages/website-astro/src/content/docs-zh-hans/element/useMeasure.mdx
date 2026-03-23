@@ -1,11 +1,25 @@
 ---
 title: useMeasure 用法与示例
 sidebar_label: useMeasure
-description: 使用 `Resize Observer API` 跟踪 HTML 元素的尺寸。 本文介绍其用法、最佳实践与代码示例。
+description: 使用 `Resize Observer API` 跟踪 HTML 元素的尺寸。
 ---
 # useMeasure
 
 使用 `Resize Observer API` 跟踪 HTML 元素的尺寸
+
+`useMeasure` 使用 [ResizeObserver API](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) 跟踪 DOM 元素的完整尺寸。它返回一个 `[rect, stop]` 元组，其中 `rect` 是一个类 `DOMRect` 对象，包含 `x`、`y`、`width`、`height`、`top`、`right`、`bottom` 和 `left`，`stop` 是断开观察器的函数。传入元素的 ref 和可选的 `ResizeObserverOptions`。
+
+### 使用场景
+
+- 为需要完整边界框数据的布局计算测量元素尺寸
+- 构建根据自身大小调整内部布局的响应式容器
+- 跟踪动态可调整大小组件（如文本编辑器或分割面板）的大小变化
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回全零的 rect 值。观察在挂载后开始。
+- **可停止**：当不再需要测量时，调用返回的 `stop` 函数断开 ResizeObserver。
+- 参见 `useElementSize` 了解更简单的 `[width, height]` 元组，`useElementBounding` 了解通过 `getBoundingClientRect` 的位置感知测量，以及 `useResizeObserver` 了解直接访问原始 ResizeObserver 回调。
 
 ## Usage
 

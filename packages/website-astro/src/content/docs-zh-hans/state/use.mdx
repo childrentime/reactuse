@@ -1,11 +1,25 @@
 ---
 title: use 用法与示例
 sidebar_label: use
-description: '`use` 是一个用于解析 React v18 及以下版本的 promise 状态的 polyfill hook。请注意，它只实现了消费 promise 的能力。 本文介绍其用法、最佳实践与代码示例。'
+description: '`use` 是一个用于解析 React v18 及以下版本的 promise 状态的 polyfill hook。请注意，它只实现了消费 promise 的能力。'
 ---
 # use
 
 `use` 是一个用于解析 React v18 及以下版本的 promise 状态的 polyfill hook。请注意，它只实现了消费 promise 的能力。
+
+`use` 接受一个 `Usable<T>`（promise 或 React context）并在 Suspense 边界内解析它。它在内部跟踪 thenable 的状态（`pending`、`fulfilled`、`rejected`），在 pending 时抛出 promise 以便父级 `<Suspense>` 显示 fallback。解析后直接返回解包的值。这将 React 19 的 `use` 语义带到了旧版 React 中。
+
+### 使用场景
+
+- 在已使用 `<Suspense>` 边界的组件树中加载异步数据
+- 在仍支持 React 18 的同时将代码库迁移到 React 19 的 `use` 模式
+- 在不使用 `useContext` hook 的情况下读取 React context，以保持与未来 React 版本的 API 一致性
+
+### 注意事项
+
+- **需要 Suspense**：调用 `use` 的组件必须包裹在 `<Suspense>` 边界中；否则抛出的 promise 将不会被处理。
+- **Promise 标识重要**：传入稳定的 promise 引用（例如在渲染外部创建或记忆化的）。在每次渲染时创建新的 promise 将重新启动加载周期。
+- **有限范围**：此 polyfill 仅支持 promise 和 context。React 19 未来可能支持的其他 usable 类型不在覆盖范围内。
 
 ## Usage
 

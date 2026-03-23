@@ -1,11 +1,25 @@
 ---
 title: useUnmount 用法与示例
 sidebar_label: useUnmount
-description: 组件卸载的时候执行。 本文介绍其用法、最佳实践与代码示例。
+description: 组件卸载的时候执行。
 ---
 # useUnmount
 
 组件卸载的时候执行
+
+`useUnmount` 在组件卸载时恰好运行一次清理函数。它通过 `useLatest` 将回调存储在 ref 中，确保函数在卸载时始终能访问最新的 props 和 state——无需将它们列为依赖。这避免了普通 `useEffect` 清理中常见的过时闭包问题。
+
+### 使用场景
+
+- 当组件从树中移除时清理订阅、WebSocket 连接或事件监听器
+- 在卸载时取消正在进行的网络请求或中止异步操作
+- 当用户导航离开页面或关闭模态框时进行日志记录或分析跟踪
+
+### 注意事项
+
+- **最新闭包**：与普通的 `useEffect` 清理不同，回调始终能看到最新的 state 和 props，因为它从 ref 中读取。
+- **开发验证**：在开发模式下，如果提供的参数不是函数，将记录控制台错误。
+- 参见 `useMount` 了解对应的挂载生命周期 hook。
 
 ## Usage
 

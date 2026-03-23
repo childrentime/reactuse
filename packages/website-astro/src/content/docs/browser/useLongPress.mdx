@@ -1,12 +1,25 @@
 ---
 title: useLongPress – Browser Hook Usage & Examples
 sidebar_label: useLongPress
-description: React sensor hook that fires a callback after long pressing. Learn usage patterns, best practices, and code examples for React developers.
+description: React sensor hook that fires a callback after long pressing.
 ---
 # useLongPress
 
 React sensor hook that fires a callback after long pressing
 
+`useLongPress` detects long-press gestures on any element by tracking `mousedown`/`mouseup` and `touchstart`/`touchend` events. It returns an object of event handlers that you spread onto the target element. When the user presses and holds for the configured delay (default: 300ms), the callback fires. The hook supports both mouse and touch interactions and can optionally prevent default browser behavior.
+
+### When to Use
+
+- Adding context-menu-like actions triggered by long press on mobile and desktop
+- Implementing "press and hold to delete" or "press and hold to confirm" interactions
+- Building touch-friendly interfaces with long-press gestures for secondary actions
+
+### Notes
+
+- **SSR-safe**: Returns no-op event handlers during server-side rendering. No `window` or `document` access occurs on the server.
+- **Touch and mouse**: Handles both pointer types. The `isPreventDefault` option (default: `true`) prevents text selection and context menus during the press.
+- **Customizable delay**: Set the `delay` option in milliseconds to control how long the user must press before the callback fires.
 
 ## Usage
 

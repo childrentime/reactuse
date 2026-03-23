@@ -1,11 +1,25 @@
 ---
 title: useSetState 用法与示例
 sidebar_label: useSetState
-description: 类似于 `class component` 中的 `setState`。 本文介绍其用法、最佳实践与代码示例。
+description: 类似于 `class component` 中的 `setState`。
 ---
 # useSetState
 
 类似于 `class component` 中的 `setState`
+
+`useSetState` 返回一个 `[state, setState]` 元组，其中 `setState` 接受*部分*对象（或返回部分对象的函数）并将其合并到当前状态中，就像 React 类组件中的 `this.setState`。这避免了在更新对象中的单个字段时需要手动展开先前状态。
+
+### 使用场景
+
+- 管理有许多字段的复杂表单状态，你想一次更新一个字段而不展开其余字段
+- 将类组件迁移到 hook，同时保留熟悉的 `this.setState({ key: value })` 模式
+- 任何涉及对象状态且部分更新比完整替换更人性化的场景
+
+### 注意事项
+
+- **浅合并**：部分对象通过对象展开进行一层深度合并。嵌套对象被替换，而非深度合并。
+- **函数更新器**：你可以传入 `(currentState) => Partial<T>` 函数，用于依赖当前状态的更新。
+- **SSR 安全**：内部仅使用 React 状态，无浏览器依赖。
 
 ## Usage
 

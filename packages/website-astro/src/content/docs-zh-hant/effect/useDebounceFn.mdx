@@ -1,11 +1,25 @@
 ---
 title: useDebounceFn 用法與示例
 sidebar_label: useDebounceFn
-description: 使用React hooks防抖（debounce）函數。 本文介紹其用法、最佳實踐與代碼示例。
+description: 使用React hooks防抖（debounce）函數。
 ---
 # useDebounceFn
 
 使用React hooks防抖（debounce）函數
+
+`useDebounceFn` 建立一個防抖版本的函式，在指定的延遲時間內如果再次呼叫，會重置計時器。只有在最後一次呼叫後經過指定延遲才會執行。它回傳防抖後的函式和一個取消函式。
+
+### 使用場景
+
+- 對搜尋輸入進行防抖處理，避免每次按鍵都發送 API 請求
+- 延遲表單驗證直到使用者停止輸入
+- 節制視窗調整大小或捲動時的回呼執行
+
+### 注意事項
+
+- **最新參數**：防抖函式總是使用最後一次呼叫時傳入的參數執行。
+- **取消**：回傳的 `cancel` 函式可用於取消待處理的呼叫。
+- **相關 hooks**：另請參閱 `useDebounce` 用於值的防抖，以及 `useThrottleFn` 用於限制函式執行頻率。
 
 ## Usage
 

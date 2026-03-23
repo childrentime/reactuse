@@ -1,11 +1,25 @@
 ---
 title: useOrientation 用法與示例
 sidebar_label: useOrientation
-description: 跟蹤用戶設備的螢幕方向。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤用戶設備的螢幕方向。
 ---
 # useOrientation
 
 跟蹤用戶設備的螢幕方向。
+
+`useOrientation` 封裝了 [Screen Orientation API](https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation)，用於追蹤裝置的螢幕方向。它回傳一個物件，包含 `angle`（旋轉角度）、`type`（方向類型字串）、`lock` 函式（鎖定方向）和 `unlock` 函式。方向變更時值會自動更新。
+
+### 使用場景
+
+- 在行動裝置上根據方向調整佈局或渲染不同的 UI
+- 為遊戲或媒體應用程式鎖定螢幕方向
+- 偵測方向變更以調整圖表、地圖或其他視覺化元素
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳預設方向值（`angle: 0`、`type: undefined`）。伺服器上不會存取 `screen.orientation`。
+- **方向鎖定**：在大多數瀏覽器中，`lock` 函式需要頁面處於全螢幕模式。搭配 `useFullscreen` 使用以實現可靠的方向鎖定。
+- **相關 hooks**：另請參閱 `useMobileLandscape` 用於簡化的布林值檢查，以及 `useMediaQuery` 用於自訂基於方向的媒體查詢。
 
 ## Usage
 

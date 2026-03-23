@@ -1,12 +1,25 @@
 ---
 title: useClipboard – Browser Hook Usage & Examples
 sidebar_label: useClipboard
-description: Copy text to a user's clipboard. Learn usage patterns, best practices, and code examples for React developers.
+description: Copy text to a user's clipboard.
 ---
 # useClipboard
 
 Copy text to a user's clipboard
 
+`useClipboard` provides a simple interface for reading and writing to the system clipboard using the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API). It returns a tuple of the most recently copied text and a `copy` function. The hook handles permission checks internally and works across modern browsers that support the Clipboard API.
+
+### When to Use
+
+- Adding "copy to clipboard" buttons for code snippets, URLs, or share links
+- Building a paste-from-clipboard feature in forms or editors
+- Implementing copy functionality in data tables or dashboards
+
+### Notes
+
+- **SSR-safe**: Returns an empty string and a no-op function during server-side rendering. No `navigator` access occurs on the server.
+- **Browser support**: Requires the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) (supported in all modern browsers). Falls back gracefully in older browsers.
+- **Permissions**: Some browsers require user permission for clipboard access. Use alongside `usePermission` to check `clipboard-read` and `clipboard-write` status.
 
 ## Usage
 

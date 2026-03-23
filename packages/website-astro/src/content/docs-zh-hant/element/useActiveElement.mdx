@@ -1,12 +1,26 @@
 ---
 title: useActiveElement 用法與示例
 sidebar_label: useActiveElement
-description: React 跟蹤 `document.activeElement` 的監聽 hook。 本文介紹其用法、最佳實踐與代碼示例。
+description: React 跟蹤 `document.activeElement` 的監聽 hook。
 ---
 # useActiveElement
 
 React 跟蹤 `document.activeElement` 的監聽 hook
 
+
+`useActiveElement` 追蹤當前獲得焦點的 DOM 元素，透過監聽 `document` 上的 `focus` 和 `blur` 事件。它回傳一個指向 `document.activeElement` 的響應式值，在焦點變更時自動更新。這對於建構焦點管理和無障礙功能很有用。
+
+### 使用場景
+
+- 追蹤哪個表單欄位當前處於焦點以顯示上下文提示
+- 建構焦點陷阱或焦點管理系統（例如模態框中的焦點循環）
+- 為除錯或無障礙測試追蹤焦點流
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `null`。伺服器上不會存取 `document`。
+- **Shadow DOM**：預設使用 `document.activeElement`。如果你的應用程式使用 Shadow DOM，焦點追蹤可能受限於 shadow root。
+- **相關 hooks**：另請參閱 `useFocus` 用於程式化控制元素焦點，以及 `useWindowFocus` 用於追蹤視窗焦點。
 
 ## Usage
 

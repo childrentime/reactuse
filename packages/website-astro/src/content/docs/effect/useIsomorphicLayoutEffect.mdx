@@ -9,6 +9,20 @@ description: >-
 
 `useIsomorphicLayoutEffect` that does not show warning when server-side rendering, see [Alex Reardon's article](https://medium.com/@alexandereardon/uselayouteffect-and-ssr-192986cdcf7a) for more info
 
+`useIsomorphicLayoutEffect` resolves to `useLayoutEffect` in browser environments and `useEffect` on the server. This eliminates the React warning about `useLayoutEffect` doing nothing during SSR while preserving synchronous DOM measurement behavior in the client. It has the exact same signature as `useEffect`/`useLayoutEffect`, making it a drop-in replacement.
+
+### When to Use
+
+- Measuring or mutating the DOM synchronously before the browser paints, in projects that also support server-side rendering
+- Building library hooks that need layout-phase timing but must work in SSR frameworks (Next.js, Remix, etc.)
+- Any place you would use `useLayoutEffect` but need to avoid SSR console warnings
+
+### Notes
+
+- **Environment detection**: Uses a simple `isBrowser` check (typeof `window` !== `undefined`) to select the appropriate hook.
+- **Same API**: Accepts an effect callback and optional dependency array, identical to both `useEffect` and `useLayoutEffect`.
+- This hook is used internally by several other hooks in this library (e.g., `useEvent`) to ensure SSR compatibility.
+
 ## Usage
 
 ```tsx live

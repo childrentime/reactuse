@@ -1,11 +1,25 @@
 ---
 title: useElementSize 用法與示例
 sidebar_label: useElementSize
-description: 追踪 HTML 元素大小的React Hook. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)。 本文介紹其用法、最佳實踐與代碼示例。
+description: 追踪 HTML 元素大小的React Hook. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)。
 ---
 # useElementSize
 
 追踪 HTML 元素大小的React Hook. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)
+
+`useElementSize` 響應式追蹤 DOM 元素的 `width` 和 `height`，使用 [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)。它回傳一個包含元素當前尺寸的物件，在元素大小變更時自動更新。支援 `content-box`、`border-box` 和 `device-pixel-content-box` 盒模型。
+
+### 使用場景
+
+- 根據容器大小調整子元素佈局或行為
+- 建構響應式元件，在元素尺寸變更時調整顯示
+- 追蹤元素尺寸以進行動態樣式計算
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時寬高回傳初始值。伺服器上不會建立 `ResizeObserver`。
+- **盒模型**：預設測量 `content-box`。透過 `box` 選項可切換到 `border-box` 或 `device-pixel-content-box`。
+- **相關 hooks**：另請參閱 `useElementBounding` 獲取完整的位置和尺寸資訊，`useMeasure` 用於 content-box 的寬高測量，以及 `useWindowSize` 追蹤視窗尺寸。
 
 ## Usage
 

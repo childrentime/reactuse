@@ -8,6 +8,20 @@ description: Dark mode with auto data persistence.
 
 dark mode with auto data persistence.
 
+`useDarkMode` provides a simple dark/light mode toggle with automatic persistence to `localStorage`. It returns a tuple of the current theme state and a toggle function. The hook applies CSS class names (configurable as `classNameDark` and `classNameLight`) to the `<html>` element and syncs with the user's system preference via the `prefers-color-scheme` media query when no stored value exists. It respects the system preference as a default but allows the user to override it.
+
+### When to Use
+
+- Adding a dark mode toggle to your application with automatic persistence
+- Building a theme switcher that respects the user's system color scheme preference as a default
+- Applying dark/light CSS classes to the root element for CSS-driven theming
+
+### Notes
+
+- **SSR-safe**: Returns `false` for the dark mode state during server-side rendering. No DOM or localStorage access occurs on the server. See the Tips section below for preventing flash of unstyled content.
+- **Persistence**: Stores the preference in `localStorage` under the key `"reactuses-color-scheme"`. The stored value is automatically migrated from the old boolean format to the new string format in v6.1.0+.
+- **Related hooks**: For multi-theme support beyond dark/light, see `useColorMode`. For detecting the system preference without persistence, see `usePreferredDark` or `usePreferredColorScheme`.
+
 ## Breaking Change in v6.1.0
 
 **Storage format has changed from boolean to string values.** If you're upgrading from a previous version:

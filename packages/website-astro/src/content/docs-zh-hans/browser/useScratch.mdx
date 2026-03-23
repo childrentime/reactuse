@@ -1,11 +1,25 @@
 ---
 title: useScratch 用法与示例
 sidebar_label: useScratch
-description: 跟踪元素上的刮擦/拖动手势，支持鼠标和触摸。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪元素上的刮擦/拖动手势，支持鼠标和触摸。
 ---
 # useScratch
 
 跟踪元素上的刮擦/拖动手势，支持鼠标和触摸。
+
+`useScratch` 跟踪目标元素上的鼠标和触摸拖拽手势，返回详细状态包括 `isScratching`、位置坐标（`x`、`y`）、增量（`dx`、`dy`）、文档级坐标（`docX`、`docY`）、元素尺寸和计时信息。它支持拖拽开始、进行中和结束事件的回调。这对于构建绘图、滑动或手势驱动的交互非常有用。
+
+### 使用场景
+
+- 构建跟踪元素内指针移动的绘图或签名板
+- 实现卡片、轮播或可消除元素的滑动手势
+- 创建交互式刮开或拖拽揭示效果
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `isScratching: false` 和 undefined 坐标的默认状态。服务端不会附加事件监听器。
+- **鼠标和触摸**：处理 `mousedown`/`mousemove`/`mouseup` 和 `touchstart`/`touchmove`/`touchend` 事件，实现跨设备兼容。
+- **相关 hooks**：参见 `useMouse` 了解通用光标跟踪，以及 `useLongPress` 了解按住检测。
 
 ## Usage
 

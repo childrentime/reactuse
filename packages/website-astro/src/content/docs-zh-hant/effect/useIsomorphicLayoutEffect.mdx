@@ -9,6 +9,20 @@ description: >-
 
 `useLayoutEffect` 會在服務端渲染的時候發出警告，所以我們在服務端用 `useEffect` 進行替代。 詳情可見 [Alex Reardon's article](https://medium.com/@alexandereardon/uselayouteffect-and-ssr-192986cdcf7a) 的文章
 
+`useIsomorphicLayoutEffect` 在瀏覽器環境中使用 `useLayoutEffect`，在伺服器端使用 `useEffect`。這解決了 React 在 SSR 期間對 `useLayoutEffect` 產生的警告，同時仍在客戶端獲得同步佈局 effect 的好處。
+
+### 使用場景
+
+- 在需要 SSR 相容的元件中使用 `useLayoutEffect`
+- 建構需要在瀏覽器繪製前同步讀取或修改 DOM 的 SSR 安全元件
+- 作為函式庫作者建立跨環境安全的 effect hooks
+
+### 注意事項
+
+- **自動環境偵測**：在伺服器上使用 `useEffect`，在瀏覽器中使用 `useLayoutEffect`，無需手動判斷。
+- **React 警告**：直接在 SSR 中使用 `useLayoutEffect` 會產生 React 警告。此 hook 消除了該警告。
+- **相關 hooks**：另請參閱 `useUpdateLayoutEffect` 用於跳過初始渲染的佈局 effect，以及 `useOnceLayoutEffect` 用於僅執行一次的佈局 effect。
+
 ## Usage
 
 ```tsx live

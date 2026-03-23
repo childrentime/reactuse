@@ -1,11 +1,25 @@
 ---
 title: useTextDirection 用法與示例
 sidebar_label: useTextDirection
-description: 跟蹤文字排列方向。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤文字排列方向。
 ---
 # useTextDirection
 
 跟蹤文字排列方向
+
+`useTextDirection` 管理 HTML 元素的文字方向（`dir` 屬性），支援 `"ltr"`（從左到右）、`"rtl"`（從右到左）和 `"auto"` 值。它回傳一個元組，包含當前方向值和設定函式。預設情況下在 `<html>` 元素上設定方向，但可以透過選擇器指定其他目標元素。
+
+### 使用場景
+
+- 為多語言應用程式動態切換文字方向（例如阿拉伯語、希伯來語使用 RTL）
+- 根據使用者選擇的語言自動調整 UI 佈局方向
+- 在特定區域中為混合方向文字提供正確的顯示
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `initialValue`（預設：`"ltr"`）和空操作設定函式。伺服器上不會存取 `document`。
+- **目標選擇器**：預設情況下，此 hook 在 `<html>` 元素上設定 `dir`。使用 `selector` 選項可針對特定元素進行範圍內的方向變更。
+- **相關 hooks**：另請參閱 `usePreferredLanguages` 偵測使用者的語言偏好，這可以為文字方向選擇提供參考。
 
 ## Usage
 

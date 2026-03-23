@@ -1,7 +1,7 @@
 ---
 title: useWebNotification 用法与示例
 sidebar_label: useWebNotification
-description: 通知 API 的 Web 通知接口用于配置并向用户显示桌面通知。本文介绍其用法、最佳实践与代码示例。
+description: 通知 API 的 Web 通知接口用于配置并向用户显示桌面通知。
 ---
 # useWebNotification
 
@@ -10,6 +10,20 @@ description: 通知 API 的 Web 通知接口用于配置并向用户显示桌面
 :::warning
 注意：对于Mac系统的用户，需要在系统设置中启用Chrome的通知功能。 如果系统中没有启用Chrome的通知，即使前端页面请求权限成功，也不会显示通知。
 :::
+
+`useWebNotification` 封装了 [Notifications API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API)，用于显示原生桌面/移动通知。它返回一个包含 `isSupported`、`show` 函数（接受标题和 `NotificationOptions`）、`close` 函数、`ensurePermissions` 函数和 `permissionGranted` ref 的对象。传入 `true` 可在挂载时自动请求通知权限。
+
+### 使用场景
+
+- 即使浏览器标签页未聚焦时，也向用户发送新消息、更新或事件的提醒
+- 为计划任务、定时器或日历事件发送提醒
+- 通知用户已完成的后台操作（上传、下载、构建）
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `isSupported: false` 和空操作函数。服务端不会调用 `Notification` 构造函数或请求权限。
+- **权限**：通知需要明确的用户许可。使用 `ensurePermissions()` 或传入 `requestPermissions: true` 提示用户。`permissionGranted` ref 跟踪当前的权限状态。
+- **相关 hooks**：配合 `usePermission`（使用 `"notifications"`）使用，以在不触发提示的情况下主动检查通知权限状态。
 
 ## Usage
 

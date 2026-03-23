@@ -1,11 +1,25 @@
 ---
 title: useRafState 用法與示例
 sidebar_label: useRafState
-description: 在 [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) 更新狀態。 本文介紹其用法、最佳實踐與代碼示例。
+description: 在 [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) 更新狀態。
 ---
 # useRafState
 
 在 [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) 更新狀態。
+
+`useRafState` 提供一個在 `requestAnimationFrame` 回呼中批次處理 state 更新的 `useState` 替代方案。設定函式會將 state 更新排程到下一個動畫幀，避免在頻繁更新時造成效能問題。
+
+### 使用場景
+
+- 在動畫迴圈或捲動/調整大小事件中頻繁更新 state
+- 避免高頻率 state 更新導致的效能問題
+- 批次處理多個快速連續的 state 更新
+
+### 注意事項
+
+- **延遲更新**：State 更新不是立即的——它被延遲到下一個 `requestAnimationFrame`。這意味著更新可能比直接 `setState` 稍有延遲。
+- **自動清理**：待處理的 RAF 在元件卸載時自動取消。
+- **相關 hooks**：另請參閱 `useRafFn` 用於在每個動畫幀執行函式，以及 `useUpdate` 用於強制重新渲染。
 
 ## Usage
 

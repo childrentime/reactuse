@@ -1,12 +1,25 @@
 ---
 title: useCountDown – State Hook Usage & Examples
 sidebar_label: useCountDown
-description: React State Hooks that return the minutes gracefull. Learn usage patterns, best practices, and code examples for React developers.
+description: React State Hooks that return the minutes gracefull.
 ---
 # useCountDown
 
 React State Hooks that return the minutes gracefull
 
+`useCountDown` accepts a duration in seconds and returns a `[hour, minute, second]` tuple of formatted strings that update every second. An optional `format` function lets you customize the string formatting, and an optional `callback` is invoked when the countdown reaches zero. The hook handles the interval lifecycle automatically, cleaning up on unmount.
+
+### When to Use
+
+- Displaying countdown timers for sales, events, or limited-time offers
+- Building exam or quiz timers that trigger an action when time expires
+- Showing time remaining until a scheduled event (e.g., midnight, a launch date)
+
+### Notes
+
+- **SSR compatibility**: When rendering on the server, ensure the initial `time` value is computed identically on both server and client to avoid hydration mismatches. The demo uses `suppressHydrationWarning` for this reason.
+- **Custom formatting**: The default format produces `HH:MM:SS` strings. Pass a custom `format` function to change the output (e.g., zero-padding, localized labels).
+- **Completion callback**: The optional third argument fires once when the countdown reaches zero, useful for redirects, alerts, or state transitions.
 
 ## Usage
 

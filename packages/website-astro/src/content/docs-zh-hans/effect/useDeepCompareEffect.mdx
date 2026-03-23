@@ -1,11 +1,25 @@
 ---
 title: useDeepCompareEffect 用法与示例
 sidebar_label: useDeepCompareEffect
-description: 修改后的 useEffect ，对其依赖项使用深度比较而不是引用相等。 本文介绍其用法、最佳实践与代码示例。
+description: 修改后的 useEffect ，对其依赖项使用深度比较而不是引用相等。
 ---
 # useDeepCompareEffect
 
 修改后的 useEffect ，对其依赖项使用深度比较而不是引用相等
+
+`useDeepCompareEffect` 是 `useEffect` 的直接替代品，对依赖数组执行深度结构比较而非浅引用检查。这防止了依赖项是包含相同值的新对象或数组引用时的不必要 effect 执行。它与 `useEffect` 具有相同的签名，并支持清理函数。
+
+### 使用场景
+
+- 当 effect 依赖于每次渲染都重新创建的对象或数组时（例如内联对象、API 响应数据）
+- 避免由非记忆化的依赖引用导致的无限 effect 循环
+- 当对每个依赖都使用 `useMemo` 或 `useCallback` 过于冗长时
+
+### 注意事项
+
+- **性能**：深度比较的开销与依赖值的大小成正比。对于大型或深度嵌套的对象，考虑使用 `useCustomCompareEffect` 配合有针对性的比较器。
+- **清理支持**：与 `useEffect` 完全相同地支持基于返回值的清理函数。
+- 当你需要超越深度相等的比较逻辑时，参见 `useCustomCompareEffect`。
 
 ## Usage
 

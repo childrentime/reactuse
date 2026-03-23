@@ -1,12 +1,26 @@
 ---
 title: useAsyncEffect 用法与示例
 sidebar_label: useAsyncEffect
-description: 支持 Promise 的 React useEffect。 本文介绍其用法、最佳实践与代码示例。
+description: 支持 Promise 的 React useEffect。
 ---
 # useAsyncEffect
 
 支持 Promise 的 React useEffect。
 
+
+`useAsyncEffect` 封装了 React 的 `useEffect`，允许直接在 effect 回调内使用 async/await 语法。它接受一个异步 effect 函数、一个可选的异步清理函数和依赖列表。该 hook 通过在运行 effect 前检查组件的挂载状态来防止卸载后的状态更新。
+
+### 使用场景
+
+- 在挂载或依赖变化时从 API 获取数据，无需在 `useEffect` 内部使用单独的异步 IIFE
+- 使用简洁的语法运行顺序异步操作（例如从 IndexedDB 读取后更新状态）
+- 在组件卸载或依赖变化时执行异步清理逻辑（例如关闭连接）
+
+### 注意事项
+
+- **不支持生成器**：仅支持 `async` 函数和普通函数；不处理生成器函数。
+- **卸载安全**：内部使用 `useMountedState` 在组件已卸载时跳过执行，防止"在未挂载组件上更新状态"的警告。
+- 清理函数在 effect 重新触发或组件卸载时同步运行，与标准 `useEffect` 清理行为一致。
 
 ## Usage
 

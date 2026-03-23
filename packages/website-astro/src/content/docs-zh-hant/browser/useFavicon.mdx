@@ -1,11 +1,25 @@
 ---
 title: useFavicon 用法與示例
 sidebar_label: useFavicon
-description: 設置頁面的 favicon 圖標。 本文介紹其用法、最佳實踐與代碼示例。
+description: 設置頁面的 favicon 圖標。
 ---
 # useFavicon
 
 設置頁面的 favicon 圖標。
+
+`useFavicon` 透過操作文件標頭中的 `<link rel="icon">` 元素來動態更新頁面的網站圖示。傳入圖示 URL（以及可選的基礎 URL 和 `rel` 屬性），hook 將建立或更新相應的連結元素。這對於在瀏覽器分頁中視覺化反映應用程式狀態非常有用。
+
+### 使用場景
+
+- 更改網站圖示以指示未讀通知或狀態變更
+- 根據當前主題或品牌上下文切換網站圖示
+- 在瀏覽器分頁中顯示使用者上傳或動態生成的圖示
+
+### 注意事項
+
+- **SSR 安全**：此 hook 在伺服器端渲染時為空操作。伺服器上不會存取 `document`。
+- **DOM 操作**：此 hook 直接修改 `document.head` 中的 `<link>` 元素。變更會立即反映在瀏覽器分頁中。
+- **相關 hooks**：另請參閱 `useTitle` 用於動態設定文件標題。
 
 ## Usage
 

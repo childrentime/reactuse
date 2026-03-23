@@ -1,12 +1,25 @@
 ---
 title: useThrottleFn – Effect Hook Usage & Examples
 sidebar_label: useThrottleFn
-description: React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) function. Learn usage patterns, best practices, and code examples for React developers.
+description: React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) function.
 ---
 # useThrottleFn
 
 React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) function
 
+`useThrottleFn` wraps a function with throttle behavior powered by `lodash.throttle`. It returns an object with `run`, `cancel`, and `flush` methods. Unlike debounce, throttle guarantees that the function executes at most once per specified time interval, making it ideal for rate-limiting high-frequency events while still providing periodic updates.
+
+### When to Use
+
+- Rate-limiting scroll or mousemove event handlers to maintain smooth performance without dropping all intermediate calls
+- Ensuring a save or sync operation runs at regular intervals during continuous user input
+- Throttling resize handlers to limit layout recalculations while still responding periodically
+
+### Notes
+
+- **Lodash options**: The third parameter accepts `lodash.throttle` options such as `leading` and `trailing` to control whether the function fires at the start, end, or both edges of the throttle window.
+- **Cleanup**: Call `cancel()` to discard any pending throttled invocation, or `flush()` to execute it immediately.
+- See also `useDebounceFn` for delaying execution until after a pause in activity, which is better suited for search-as-you-type patterns.
 
 ## Usage
 

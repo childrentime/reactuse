@@ -2,13 +2,26 @@
 title: useEyeDropper – Browser Hook Usage & Examples
 sidebar_label: useEyeDropper
 description: >-
-  Use [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) to pick color. Learn usage patterns, best practices, and code examples
+  Use [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) to pick color.
   for
 ---
 # useEyeDropper
 
 Use [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) to pick color
 
+`useEyeDropper` provides access to the [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API), which lets users sample colors from any pixel on their screen. It returns a tuple of a boolean indicating browser support and an `open` function that launches the native color picker. The `open` function returns a promise resolving to an object with the selected color in `sRGBHex` format.
+
+### When to Use
+
+- Building color picker tools that let users sample colors from anywhere on screen
+- Creating design or theming tools where users need to match existing colors
+- Implementing accessibility contrast checkers that sample page colors
+
+### Notes
+
+- **SSR-safe**: Returns `false` for support and a no-op function during server-side rendering. No `window` or `EyeDropper` access occurs on the server.
+- **Browser support**: The EyeDropper API is currently only supported in Chromium-based browsers. Always check the first tuple element (`isSupported`) before offering the feature.
+- **User activation**: The `open` function requires a user gesture (e.g., button click) to launch the picker. You can pass an `AbortSignal` to cancel the operation.
 
 ## Usage
 

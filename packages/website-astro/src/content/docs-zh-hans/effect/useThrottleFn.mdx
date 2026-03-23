@@ -1,12 +1,26 @@
 ---
 title: useThrottleFn 用法与示例
 sidebar_label: useThrottleFn
-description: React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) function。 本文介绍其用法、最佳实践与代码示例。
+description: React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) function。
 ---
 # useThrottleFn
 
 React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) function
 
+
+`useThrottleFn` 使用 `lodash.throttle` 为函数添加节流行为。它返回一个包含 `run`、`cancel` 和 `flush` 方法的对象。与防抖不同，节流保证函数在指定时间间隔内最多执行一次，使其非常适合在高频事件中限速的同时仍提供定期更新。
+
+### 使用场景
+
+- 限制滚动或 mousemove 事件处理器的频率以保持流畅性能，同时不丢弃所有中间调用
+- 确保保存或同步操作在持续用户输入期间以固定间隔运行
+- 节流 resize 处理器以限制布局重新计算，同时仍定期响应
+
+### 注意事项
+
+- **Lodash 选项**：第三个参数接受 `lodash.throttle` 选项，如 `leading` 和 `trailing`，控制函数是在节流窗口的开始、结束还是两端触发。
+- **清理**：调用 `cancel()` 丢弃任何待处理的节流调用，或调用 `flush()` 立即执行。
+- 参见 `useDebounceFn` 了解延迟执行直到活动暂停，更适合搜索即时输入模式。
 
 ## Usage
 

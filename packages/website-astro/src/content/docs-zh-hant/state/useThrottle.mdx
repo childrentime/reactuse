@@ -1,11 +1,25 @@
 ---
 title: useThrottle 用法與示例
 sidebar_label: useThrottle
-description: 對值進行節流的React hook。 本文介紹其用法、最佳實踐與代碼示例。
+description: 對值進行節流的React hook。
 ---
 # useThrottle
 
 對值進行節流的React hook
+
+`useThrottle` 回傳一個節流版本的值，在指定的時間間隔內最多更新一次。與防抖不同，節流確保值在固定的最大頻率下更新，即使來源值持續變更。
+
+### 使用場景
+
+- 在拖動、捲動或調整大小期間以固定頻率更新顯示值
+- 限制依賴快速變化輸入的計算或渲染頻率
+- 以穩定的更新率追蹤快速變化的感測器或輸入資料
+
+### 注意事項
+
+- **值節流**：此 hook 對值進行節流。如需對函式進行節流，請使用 `useThrottleFn`。
+- **前緣觸發**：值在間隔開始時立即更新，然後在間隔到期後才會再次更新。
+- **相關 hooks**：另請參閱 `useThrottleFn` 用於函式節流，以及 `useDebounce` 用於值防抖。
 
 ## Usage
 

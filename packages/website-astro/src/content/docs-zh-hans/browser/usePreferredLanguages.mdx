@@ -1,11 +1,25 @@
 ---
 title: usePreferredLanguages 用法与示例
 sidebar_label: usePreferredLanguages
-description: '`usePreferredLanguages` 是一个返回用户首选语言的字符串数组的 hook。它使用 `navigator.languages`。 本文介绍其用法、最佳实践与代码示例。'
+description: '`usePreferredLanguages` 是一个返回用户首选语言的字符串数组的 hook。它使用 `navigator.languages`。'
 ---
 # usePreferredLanguages
 
 `usePreferredLanguages` 是一个返回用户首选语言的字符串数组的 hook。它使用 `navigator.languages`。
+
+`usePreferredLanguages` 响应式地跟踪 [`navigator.languages`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/languages)，返回按用户偏好排序的 BCP 47 语言标签数组（例如 `["en-US", "en", "fr"]`）。该 hook 监听 [`languagechange`](https://developer.mozilla.org/en-US/docs/Web/API/Window/languagechange_event) 事件，当用户修改浏览器或系统语言设置时自动更新。
+
+### 使用场景
+
+- 基于用户的语言偏好选择最佳可用语言环境用于国际化/本地化
+- 显示与语言相关的内容、日期格式或数字格式
+- 构建语言选择器 UI，高亮显示用户的首选语言
+
+### 注意事项
+
+- **SSR 安全**：接受一个 `defaultLanguages` 参数，在服务端渲染期间返回该值。服务端不会访问 `navigator`。
+- **响应式**：当用户通过 `languagechange` 事件更改浏览器语言偏好时自动更新。
+- **顺序重要**：返回的数组按偏好排序。第一个元素是用户最偏好的语言。
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: usePermission 用法与示例
 sidebar_label: usePermission
-description: 浏览器权限查询。 本文介绍其用法、最佳实践与代码示例。
+description: 浏览器权限查询。
 ---
 # usePermission
 
 浏览器权限查询
+
+`usePermission` 封装了 [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API)，用于响应式地查询和跟踪浏览器权限的状态。传入权限名称（例如 `"geolocation"`、`"camera"`、`"clipboard-read"`），它返回当前状态：`"granted"`、`"denied"`、`"prompt"` 或 `""`（API 不可用时为空字符串）。当用户更改权限时，值会自动更新。
+
+### 使用场景
+
+- 在尝试使用受限 API（剪贴板、地理位置、摄像头、麦克风）之前检查权限状态
+- 根据权限已授予、被拒绝或尚未请求来显示适当的 UI
+- 构建显示所有相关权限当前状态的设置页面
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回空字符串（`""`）。服务端不会访问 `navigator.permissions`。
+- **响应式**：该 hook 订阅权限的 `change` 事件，因此当用户通过浏览器设置撤销或授予权限时，返回的状态会实时更新。
+- **相关 hooks**：常与 `useClipboard`、`useGeolocation`、`useMediaDevices` 和 `useWebNotification` 配合使用，以在使用前检查各自的权限。
 
 ## Usage
 

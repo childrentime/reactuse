@@ -1,12 +1,26 @@
 ---
 title: useDocumentVisibility 用法与示例
 sidebar_label: useDocumentVisibility
-description: 跟踪 [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState) 的 React Hook。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪 [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState) 的 React Hook。
 ---
 # useDocumentVisibility
 
 跟踪 [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState) 的 React Hook
 
+
+`useDocumentVisibility` 使用 [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API) 响应式地跟踪页面是否可见或隐藏。它返回当前的 `DocumentVisibilityState`（`"visible"` 或 `"hidden"`），当用户切换标签页或最小化浏览器时自动更新。你可以为初始状态提供默认值。
+
+### 使用场景
+
+- 当用户导航离开标签页时暂停动画、视频或定时器
+- 当用户返回时显示"欢迎回来"消息或刷新过期数据
+- 在页面处于后台时减少网络请求或资源消耗
+
+### 注意事项
+
+- **SSR 安全**：接受一个 `defaultValue` 参数（例如 `"hidden"`），在服务端渲染期间 `document` 不可用时使用。
+- **轻量级**：监听 `document` 上的 `visibilitychange` 事件，并在卸载时清理监听器。
+- 参见 `useWindowFocus` 了解跟踪浏览器窗口本身是否获得焦点（相对于标签页可见性）。
 
 ## Usage
 

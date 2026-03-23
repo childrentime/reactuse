@@ -1,11 +1,25 @@
 ---
 title: useMap 用法與示例
 sidebar_label: useMap
-description: 管理 Map 的 React hook。本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要管理鍵值對數據的場景。
+description: 管理 Map 的 React hook。適用於 React 開發中需要管理鍵值對數據的場景。
 ---
 # useMap
 
 管理 Map 的 React hook。
+
+`useMap` 提供一個響應式的 `Map` 資料結構。它回傳一個包含 `Map` 實例和操作函式（`set`、`delete`、`clear`、`reset`）的元組。每次修改操作都會觸發重新渲染以反映最新狀態。
+
+### 使用場景
+
+- 管理鍵值對集合並在值變更時觸發 UI 更新
+- 建構需要高效查找和更新的標籤系統或篩選器
+- 替代使用物件來管理動態鍵值對資料
+
+### 注意事項
+
+- **不可變更新**：每次修改操作會建立新的 `Map` 實例以觸發 React 重新渲染。
+- **初始值**：接受初始鍵值對作為建構參數。
+- **相關 hooks**：另請參閱 `useSetState` 用於物件狀態的部分更新。
 
 ## Usage
 

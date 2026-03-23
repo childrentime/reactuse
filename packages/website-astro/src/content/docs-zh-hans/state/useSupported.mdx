@@ -1,11 +1,25 @@
 ---
 title: useSupported 用法与示例
 sidebar_label: useSupported
-description: 检测浏览器是否支持某些新的特性。 本文介绍其用法、最佳实践与代码示例。
+description: 检测浏览器是否支持某些新的特性。
 ---
 # useSupported
 
 检测浏览器是否支持某些新的特性
+
+`useSupported` 接受一个执行特性检测检查的回调（例如 `() => 'IntersectionObserver' in window`），返回一个表示特性是否可用的布尔值。检查在 `useEffect` 中挂载后运行（如果 `sync` 选项为 `true` 则在 `useLayoutEffect` 中），因此在 SSR 和初始服务端渲染期间安全返回 `false`。
+
+### 使用场景
+
+- 基于运行时可用性有条件地启用浏览器特性（例如 EyeDropper API、Clipboard API、Web Bluetooth）
+- 当所需 API 不受支持时显示备用 UI 或提示信息
+- 控制依赖特定浏览器能力的 hook 逻辑以避免运行时错误
+
+### 注意事项
+
+- **SSR 安全**：在服务端和初始渲染期间始终返回 `false`，然后在挂载后更新为真实值。
+- **同步模式**：传入 `sync: true` 在 `useLayoutEffect` 而非 `useEffect` 中运行检查，可防止不正确 UI 的闪烁。
+- 此 hook 被本库的许多其他 hook（例如 `useEyeDropper`、`useClipboard`）内部使用，以控制浏览器 API 访问。
 
 ## Usage
 

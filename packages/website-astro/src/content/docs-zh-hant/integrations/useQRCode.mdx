@@ -1,7 +1,7 @@
 ---
 title: useQRCode 用法與示例
 sidebar_label: useQRCode
-description: '`useQRCode` 是一個用於生成二維碼的 Hook。 本文介紹其用法、最佳實踐與代碼示例。'
+description: '`useQRCode` 是一個用於生成二維碼的 Hook。'
 ---
 # useQRCode
 
@@ -12,6 +12,20 @@ description: '`useQRCode` 是一個用於生成二維碼的 Hook。 本文介紹
 ```shell
 npm i qrcode@^1
 ```
+
+`useQRCode` 為給定的文字或 URL 生成 QR 碼。它回傳一個 QR 碼的資料 URL（data URL）字串，可直接用作 `<img>` 元素的 `src`。支援自訂 QR 碼的大小、顏色、糾錯級別和邊距等選項。
+
+### 使用場景
+
+- 為 URL、文字或聯絡資訊動態生成 QR 碼
+- 建構允許使用者以 QR 碼形式分享連結的功能
+- 在發票、票證或名片上嵌入可掃描的 QR 碼
+
+### 注意事項
+
+- **相依套件**：需要安裝 `qrcode` 套件作為對等依賴。
+- **資料 URL**：回傳的是 base64 編碼的資料 URL，可直接用作圖片來源。
+- **選項**：支援透過 `qrcode` 函式庫的完整選項，包括糾錯級別（L、M、Q、H）、寬度和色彩設定。
 
 ## Usage
 

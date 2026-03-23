@@ -1,12 +1,25 @@
 ---
 title: useClickOutside – Element Hook Usage & Examples
 sidebar_label: useClickOutside
-description: Listen for clicks outside of an element. Useful for modal or dropdown. Learn usage patterns, best practices, and code examples for React developers.
+description: Listen for clicks outside of an element. Useful for modal or dropdown.
 ---
 # useClickOutside
 
 Listen for clicks outside of an element. Useful for modal or dropdown
 
+`useClickOutside` detects clicks (mouse and touch events) that occur outside of a referenced DOM element and invokes a callback when they happen. Pass a ref to the target element, a handler function, and an optional `enabled` boolean to conditionally toggle the listener. The handler receives the original `MouseEvent` or `TouchEvent`.
+
+### When to Use
+
+- Closing dropdown menus, popovers, or modals when the user clicks outside of them
+- Deselecting or deactivating an inline editing component when focus moves away
+- Dismissing notification toasts or context menus on outside interaction
+
+### Notes
+
+- **Event types**: Listens for both `mousedown` and `touchstart` events, covering desktop and mobile interactions.
+- **Cleanup**: The event listeners are automatically removed when the component unmounts or when `enabled` is set to `false`.
+- Also available as `useClickAway`, which is an alias with the identical API and implementation.
 
 ## Usage
 

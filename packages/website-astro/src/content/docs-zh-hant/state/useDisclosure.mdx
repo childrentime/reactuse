@@ -1,11 +1,25 @@
 ---
 title: useDisclosure 用法與示例
 sidebar_label: useDisclosure
-description: '`useDisclosure` 是一個提供了創建披露小部件所需的所有工具的 hook。披露小部件用於顯示或隱藏內容。此 hook 提供了控制內容可見性的狀態和函數。 本文介紹其用法、最佳實踐與代碼示例。'
+description: '`useDisclosure` 是一個提供了創建披露小部件所需的所有工具的 hook。披露小部件用於顯示或隱藏內容。此 hook 提供了控制內容可見性的狀態和函數。'
 ---
 # useDisclosure
 
 `useDisclosure` 是一個提供了創建披露小部件所需的所有工具的 hook。披露小部件用於顯示或隱藏內容。此 hook 提供了控制內容可見性的狀態和函數。
+
+`useDisclosure` 管理一個布林狀態及其 `open`、`close` 和 `toggle` 操作，並支援可選的 `onOpen` 和 `onClose` 回呼。此 hook 是建構模態框、抽屜、折疊面板等需要開啟/關閉狀態管理的 UI 元件的理想選擇。
+
+### 使用場景
+
+- 管理模態框或對話框的開啟和關閉狀態
+- 控制側邊欄、抽屜或折疊面板的展開/收合
+- 實作帶有開啟/關閉回呼的通知或 toast 系統
+
+### 注意事項
+
+- **回呼**：`onOpen` 和 `onClose` 回呼在狀態改變時觸發，適合進行副作用操作（如焦點管理、分析追蹤）。
+- **初始狀態**：接受可選的初始開啟狀態（預設：`false`）。
+- **相關 hooks**：另請參閱 `useBoolean` 用於更簡單的布林切換，以及 `useToggle` 用於通用的雙值切換。
 
 ## Usage
 

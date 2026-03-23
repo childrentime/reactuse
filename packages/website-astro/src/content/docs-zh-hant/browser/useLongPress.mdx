@@ -1,11 +1,25 @@
 ---
 title: useLongPress 用法與示例
 sidebar_label: useLongPress
-description: 跟蹤長按的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤長按的 React Hook。
 ---
 # useLongPress
 
 跟蹤長按的 React Hook
+
+`useLongPress` 偵測元素上的長按手勢，在使用者按住指定時間後觸發回呼。它回傳可以展開到目標元素上的事件處理器屬性。此 hook 同時處理滑鼠和觸控事件，提供可設定的延遲和移動容差選項。
+
+### 使用場景
+
+- 在行動裝置上長按時顯示上下文選單或工具提示
+- 實作按住以確認的操作模式（例如刪除確認）
+- 建構需要使用者持續按壓的互動式遊戲或控制元素
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳空操作事件處理器。伺服器上不會存取 `window` 或 `document`。
+- **觸控和滑鼠**：同時處理兩種指標類型。`isPreventDefault` 選項（預設：`true`）可防止按壓期間的文字選取和右鍵選單。
+- **可自訂延遲**：設定 `delay` 選項（毫秒）以控制使用者必須按住多長時間才觸發回呼。
 
 ## Usage
 

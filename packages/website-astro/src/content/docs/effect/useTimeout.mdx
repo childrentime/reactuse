@@ -1,12 +1,25 @@
 ---
 title: useTimeout – Effect Hook Usage & Examples
 sidebar_label: useTimeout
-description: Update value after a given time. Learn usage patterns, best practices, and code examples for React developers.
+description: Update value after a given time.
 ---
 # useTimeout
 
 Update value after a given time
 
+`useTimeout` provides a reactive pending state that flips from `true` to `false` after a specified delay. It returns a tuple of `[isPending, start, cancel]`, giving you both a declarative status value and imperative controls. By default, the timer starts immediately on mount, but you can configure it to start manually via the `immediate` option.
+
+### When to Use
+
+- Showing a loading indicator or splash screen for a minimum duration before revealing content
+- Implementing auto-dismiss behavior for notifications, toasts, or banners after a fixed time
+- Creating timed UI state transitions (e.g., disabling a button for a cooldown period)
+
+### Notes
+
+- **Immediate by default**: The timer starts automatically on mount. Pass `{ immediate: false }` to require an explicit `start()` call.
+- **Restartable**: Calling `start()` resets and restarts the timer. Calling `cancel()` stops it and keeps `isPending` at its current value.
+- See also `useTimeoutFn` for executing a callback after a delay instead of toggling a boolean state, and `useInterval` for repeated execution.
 
 ## Usage
 

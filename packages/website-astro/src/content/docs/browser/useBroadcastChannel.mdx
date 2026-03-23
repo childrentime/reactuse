@@ -2,12 +2,26 @@
 title: useBroadcastChannel – Browser Hook Usage & Examples
 sidebar_label: useBroadcastChannel
 description: >-
-  `useBroadcastChannel` is a hook that allows you to use the `BroadcastChannel API` in your components. Learn usage patterns, best practices, and code examples
+  `useBroadcastChannel` is a hook that allows you to use the `BroadcastChannel API` in your components.
   fo
 ---
 # useBroadcastChannel
 
 `useBroadcastChannel` is a hook that allows you to use the `BroadcastChannel API` in your components.
+
+`useBroadcastChannel` wraps the [BroadcastChannel API](https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel) to enable simple messaging between browsing contexts (tabs, windows, iframes) on the same origin. It returns an object containing the current `data`, a `post` function for sending messages, connection status, error state, and a `close` function. The hook automatically manages the channel lifecycle and cleans up on unmount.
+
+### When to Use
+
+- Synchronizing state across multiple open tabs of the same application (e.g., theme changes, logout events)
+- Broadcasting real-time updates to all open instances of your app without a server
+- Coordinating actions between iframes or popup windows on the same origin
+
+### Notes
+
+- **SSR-safe**: Returns `isSupported: false` and no-op functions during server-side rendering. No `BroadcastChannel` constructor is called on the server.
+- **Browser support**: Supported in all modern browsers. Check `isSupported` before relying on channel functionality.
+- **Same-origin only**: The BroadcastChannel API only works between browsing contexts of the same origin.
 
 ## Usage
 

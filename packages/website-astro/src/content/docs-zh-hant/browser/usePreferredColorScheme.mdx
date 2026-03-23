@@ -1,11 +1,25 @@
 ---
 title: usePreferredColorScheme 用法與示例
 sidebar_label: usePreferredColorScheme
-description: '[prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) 媒體查詢。 本文介紹其用法、最佳實踐與代碼示例。'
+description: '[prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) 媒體查詢。'
 ---
 # usePreferredColorScheme
 
 [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) 媒體查詢
+
+`usePreferredColorScheme` 使用 `prefers-color-scheme` 媒體查詢偵測使用者的系統色彩方案偏好。它回傳一個字串值：`"dark"`、`"light"` 或 `"no-preference"`，並在使用者更改系統設定時即時更新。
+
+### 使用場景
+
+- 根據使用者的系統偏好自動設定應用程式主題
+- 在應用程式中顯示使用者目前的系統色彩方案設定
+- 根據系統偏好預先載入適當的主題資源
+
+### 注意事項
+
+- **SSR 安全**：接受一個 `defaultState` 參數（預設：`"no-preference"`），在 `window.matchMedia` 不可用的伺服器端渲染時回傳。
+- **響應式**：當使用者切換系統色彩方案時（例如在作業系統設定中啟用深色模式）即時更新。
+- **相關 hooks**：另請參閱 `usePreferredDark` 用於更簡單的布林值檢查，`useColorMode` 用於多主題管理，以及 `useDarkMode` 用於帶持久化的明暗切換。
 
 ## Usage
 

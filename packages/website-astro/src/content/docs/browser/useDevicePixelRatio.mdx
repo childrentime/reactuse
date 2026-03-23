@@ -2,12 +2,26 @@
 title: useDevicePixelRatio – Browser Hook Usage & Examples
 sidebar_label: useDevicePixelRatio
 description: >-
-  `useDevicePixelRatio` is a hook that returns the device pixel ratio of the screen. Learn usage patterns, best practices, and code examples for React
+  `useDevicePixelRatio` is a hook that returns the device pixel ratio of the screen. for React
   developers.
 ---
 # useDevicePixelRatio
 
 `useDevicePixelRatio` is a hook that returns the device pixel ratio of the screen.
+
+`useDevicePixelRatio` reactively tracks [`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio), which indicates the ratio of physical pixels to CSS pixels on the current display. It returns an object with a `pixelRatio` property that updates automatically when the user moves the window between displays with different densities or changes their system zoom level.
+
+### When to Use
+
+- Rendering high-DPI (Retina) images or canvas elements at the correct resolution
+- Adjusting visual fidelity or detail level based on display density
+- Debugging or displaying device display characteristics in developer tools
+
+### Notes
+
+- **SSR-safe**: Returns a default `pixelRatio` of `1` during server-side rendering. No `window` access occurs on the server.
+- **Reactive updates**: Listens for changes via [`matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) so the value updates when display density changes (e.g., dragging a window between monitors).
+- **Related hooks**: See also `useMediaQuery` for general media query tracking.
 
 ## Usage
 

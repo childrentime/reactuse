@@ -1,11 +1,25 @@
 ---
 title: useEventListener – Effect Hook Usage & Examples
 sidebar_label: useEventListener
-description: Use EventListener with ease. Learn usage patterns, best practices, and code examples for React developers.
+description: Use EventListener with ease.
 ---
 # useEventListener
 
 Use EventListener with ease.
+
+`useEventListener` attaches a DOM event listener to a target element (or `window`/`document`) and automatically removes it on unmount or when dependencies change. It accepts the event name, handler function, and an optional target ref or element. The handler is always up-to-date without needing to re-register the listener, thanks to an internal ref via `useLatest`.
+
+### When to Use
+
+- Listening for keyboard shortcuts, mouse clicks, or scroll events on specific elements
+- Attaching `resize`, `visibilitychange`, or `storage` events to `window`/`document`
+- Any case where you need automatic cleanup of event listeners tied to component lifecycle
+
+### Notes
+
+- **SSR-safe**: Skips listener registration during server-side rendering since `window`/`document` are unavailable.
+- **Stable handler**: Uses `useLatest` internally so the handler always points to the latest closure without re-attaching the listener.
+- The third argument defaults to `window` and accepts a raw element, a ref object, or a function returning an element. See also `useEvent` for a stable callback ref pattern, and `useDebounceFn`/`useThrottleFn` for rate-limited event handling.
 
 ## Usage
 

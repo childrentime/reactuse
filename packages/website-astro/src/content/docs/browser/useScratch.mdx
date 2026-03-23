@@ -1,12 +1,25 @@
 ---
 title: useScratch – Browser Hook Usage & Examples
 sidebar_label: useScratch
-description: React sensor hook that tracks scratching/dragging gestures on an element with mouse and touch support. Learn usage patterns, best practices, and code examples for React developers.
+description: React sensor hook that tracks scratching/dragging gestures on an element with mouse and touch support.
 ---
 # useScratch
 
 React sensor hook that tracks scratching/dragging gestures on an element with mouse and touch support.
 
+`useScratch` tracks mouse and touch drag gestures on a target element, returning detailed state including `isScratching`, position coordinates (`x`, `y`), deltas (`dx`, `dy`), document-level coordinates (`docX`, `docY`), element dimensions, and timing information. It supports callbacks for scratch start, ongoing scratch, and scratch end events. This is useful for building drawing, swiping, or gesture-driven interactions.
+
+### When to Use
+
+- Building drawing or signature pads that track pointer movement within an element
+- Implementing swipe gestures for cards, carousels, or dismissible elements
+- Creating interactive scratch-off or reveal-on-drag effects
+
+### Notes
+
+- **SSR-safe**: Returns a default state with `isScratching: false` and undefined coordinates during server-side rendering. No event listeners are attached on the server.
+- **Mouse and touch**: Handles both `mousedown`/`mousemove`/`mouseup` and `touchstart`/`touchmove`/`touchend` events for cross-device compatibility.
+- **Related hooks**: See also `useMouse` for general cursor tracking and `useLongPress` for press-and-hold detection.
 
 ## Usage
 

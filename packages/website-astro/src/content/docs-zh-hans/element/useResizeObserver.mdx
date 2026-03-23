@@ -1,11 +1,25 @@
 ---
 title: useResizeObserver 用法与示例
 sidebar_label: useResizeObserver
-description: 使用 [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) 跟踪元素大小。 本文介绍其用法、最佳实践与代码示例。
+description: 使用 [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) 跟踪元素大小。
 ---
 # useResizeObserver
 
 使用 [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) 跟踪元素大小。
+
+`useResizeObserver` 封装了原生 [ResizeObserver API](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)，用于监视 DOM 元素的大小变化。它在元素尺寸改变时调用带有完整 `ResizeObserverEntry` 数组的回调。该 hook 返回一个 `stop` 函数来断开观察器。你还可以传入 `ResizeObserverOptions` 来控制观察的盒模型（`content-box`、`border-box` 或 `device-pixel-content-box`）。
+
+### 使用场景
+
+- 响应元素大小变化执行自定义逻辑（例如重新计算布局或重绘 canvas）
+- 构建需要原始 ResizeObserver 条目进行高级测量逻辑的包装组件
+- 观察独立于窗口调整大小的元素的大小变化（例如可调整大小的面板、flex 项目）
+
+### 注意事项
+
+- **性能**：ResizeObserver 比轮询元素尺寸或监听窗口 resize 事件高效得多。回调仅在被观察元素实际改变大小时触发。
+- **清理**：观察器在卸载时自动断开。随时调用返回的 `stop` 函数手动断开。
+- 参见 `useElementSize` 了解简单的 `[width, height]` 返回值，以及 `useMeasure` 了解完整的 `DOMRect` 返回值——两者都基于 ResizeObserver 构建。
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useEvent 用法與示例
 sidebar_label: useEvent
-description: 這是 [React RFC useEvent](https://github.com/reactjs/rfcs/pull/220) 的基礎實現。它讓你定義的事件處理器可以讀取最新的 props/state，但總是保持穩定的函數引用。 本文介紹其用法、最佳實踐與代碼示例。
+description: 這是 [React RFC useEvent](https://github.com/reactjs/rfcs/pull/220) 的基礎實現。它讓你定義的事件處理器可以讀取最新的 props/state，但總是保持穩定的函數引用。
 ---
 # useEvent
 
 這是 [React RFC useEvent](https://github.com/reactjs/rfcs/pull/220) 的基礎實現。它讓你定義的事件處理器可以讀取最新的 props/state，但總是保持穩定的函數引用。
+
+`useEvent` 建立一個穩定的事件處理器，其參考在渲染之間保持不變，但始終使用最新的 props 和 state 呼叫。這解決了常見的閉包過時問題，讓你無需在依賴陣列中包含回呼即可獲得最新值。
+
+### 使用場景
+
+- 建立傳遞給子元件的穩定回呼，避免不必要的重新渲染
+- 在 `useEffect` 依賴中使用回呼而不觸發無限迴圈
+- 從事件處理器中存取最新的 state 而不將其加入依賴陣列
+
+### 注意事項
+
+- **穩定參考**：回傳的函式參考在元件的整個生命週期中保持穩定，可安全地傳遞給使用參考相等性的 `memo` 化子元件。
+- **不可在渲染期間呼叫**：此函式僅供事件處理器和 effect 使用，不應在渲染階段呼叫。
+- **相關 hooks**：另請參閱 `useLatest` 用於保持對最新值的可變參考。
 
 ## Usage
 

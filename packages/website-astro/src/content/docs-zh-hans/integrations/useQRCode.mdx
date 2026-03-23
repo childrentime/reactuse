@@ -1,11 +1,25 @@
 ---
 title: useQRCode 用法与示例
 sidebar_label: useQRCode
-description: '`useQRCode` 是一个用于生成二维码的 Hook。 本文介绍其用法、最佳实践与代码示例。'
+description: '`useQRCode` 是一个用于生成二维码的 Hook。'
 ---
 # useQRCode
 
 `useQRCode` 是一个用于生成二维码的 Hook。
+
+`useQRCode` 接受一个字符串和可选的 `QRCodeToDataURLOptions`，返回一个包含 `qrCode`（生成的二维码图片的 data URL 字符串）和 `error`（生成期间发生的任何错误）的对象。当输入文本改变时，二维码会响应式地重新生成。此 hook 依赖于 [`qrcode`](https://www.npmjs.com/package/qrcode) 库。
+
+### 使用场景
+
+- 为 URL、联系信息或深度链接生成可分享的二维码
+- 构建显示可扫描二维码的支付或认证流程
+- 创建嵌入二维码的可打印标签、票据或营销材料
+
+### 注意事项
+
+- **外部依赖**：需要单独安装 `qrcode@^1`（`npm i qrcode@^1`）。没有它 hook 将无法工作。
+- **错误处理**：如果输入文本无效或二维码生成失败，`error` 字段将包含错误详情，`qrCode` 将为空字符串。
+- **自定义**：传入 `QRCodeToDataURLOptions` 控制输出格式（例如 PNG 或 SVG data URL）、纠错级别、边距、颜色和缩放。
 
 ## Install
 

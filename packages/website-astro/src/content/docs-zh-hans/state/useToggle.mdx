@@ -1,11 +1,25 @@
 ---
 title: useToggle 用法与示例
 sidebar_label: useToggle
-description: 优雅管理 `Boolean` 值。 本文介绍其用法、最佳实践与代码示例。
+description: 优雅管理 `Boolean` 值。
 ---
 # useToggle
 
 优雅管理 `Boolean` 值。
+
+`useToggle` 管理一个布尔状态值，附带便捷的切换函数。它返回一个包含当前布尔值和切换函数的元组。无参调用 `toggle()` 翻转值；调用 `toggle(true)` 或 `toggle(false)` 直接设置。这为最常见的布尔状态模式提供了最小化的 API。
+
+### 使用场景
+
+- 切换模态框、下拉菜单、侧边栏或手风琴等 UI 元素
+- 管理功能、深色模式或设置的开/关状态
+- 使用简单的元组 API 控制组件的显示/隐藏可见性
+
+### 注意事项
+
+- **SSR 安全**：在服务端和客户端的行为完全相同，因为它仅使用 React 状态。
+- **灵活切换**：切换函数接受可选参数。传入布尔值设置特定值，或无参调用翻转。
+- 参见 `useBoolean` 了解带有明确 `setTrue`/`setFalse` 辅助方法的更丰富 API，以及 `useDisclosure` 了解带回调的模态框风格打开/关闭模式。
 
 ## Usage
 

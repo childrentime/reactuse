@@ -1,12 +1,26 @@
 ---
 title: useDebounce 用法與示例
 sidebar_label: useDebounce
-description: 對值進行防抖的React hook。 本文介紹其用法、最佳實踐與代碼示例。
+description: 對值進行防抖的React hook。
 ---
 # useDebounce
 
 對值進行防抖的React hook
 
+
+`useDebounce` 回傳一個防抖版本的值，只有在指定延遲內沒有新值到來時才更新。這對於避免由快速變化的值觸發的昂貴操作（如 API 呼叫或複雜計算）非常有用。
+
+### 使用場景
+
+- 對搜尋輸入值進行防抖以延遲觸發 API 請求
+- 避免在快速拖動滑桿時頻繁更新
+- 延遲處理使用者輸入直到使用者暫停輸入
+
+### 注意事項
+
+- **值防抖**：此 hook 對值進行防抖。如需對函式進行防抖，請使用 `useDebounceFn`。
+- **延遲**：預設延遲可自訂。較長的延遲減少更新頻率但增加感知延遲。
+- **相關 hooks**：另請參閱 `useDebounceFn` 用於函式防抖，以及 `useThrottle` 用於值節流。
 
 ## Usage
 

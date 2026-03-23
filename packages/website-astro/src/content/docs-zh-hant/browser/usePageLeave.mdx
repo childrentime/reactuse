@@ -1,11 +1,25 @@
 ---
 title: usePageLeave 用法與示例
 sidebar_label: usePageLeave
-description: 跟蹤滑鼠是否離開頁面。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤滑鼠是否離開頁面。
 ---
 # usePageLeave
 
 跟蹤滑鼠是否離開頁面
+
+`usePageLeave` 偵測使用者的滑鼠游標何時離開頁面視窗區域。它回傳一個布林值，當游標在頁面外時為 `true`。此 hook 監聽 `document` 上的 `mouseout` 事件，並檢查相關目標以確定游標是否真的離開了頁面。
+
+### 使用場景
+
+- 當使用者即將離開頁面時顯示留存提示或特別優惠
+- 觸發自動儲存操作以防止資料遺失
+- 追蹤使用者參與度指標（游標離開頁面的頻率和時長）
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `false`。伺服器上不會附加 `document` 事件監聽器。
+- **僅限滑鼠**：此 hook 追蹤滑鼠游標位置，因此不會在純觸控裝置上偵測頁面離開。如需偵測使用者切換分頁，請參閱 `document.visibilitychange` 事件。
+- **相關 hooks**：另請參閱 `useIdle` 用於偵測頁面內的使用者閒置狀態。
 
 ## Usage
 

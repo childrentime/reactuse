@@ -1,11 +1,25 @@
 ---
 title: useLatest 用法与示例
 sidebar_label: useLatest
-description: 跟踪 React State 的最新值。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪 React State 的最新值。
 ---
 # useLatest
 
 跟踪 React State 的最新值。
+
+`useLatest` 接受任何值，返回一个 `MutableRefObject`，其 `.current` 属性始终保存最新的值。ref 在每次渲染时同步更新，因此在 setTimeout、setInterval 或事件处理器中读取 `ref.current` 始终给你最新的值，而非过时的闭包捕获。
+
+### 使用场景
+
+- 在 `setTimeout`、`setInterval` 或其他异步回调中访问最新的 state 或 props
+- 避免注册一次但需要引用变化值的事件处理器中的过时闭包
+- 将最新值传递给命令式代码（例如第三方库回调）而无需重新注册监听器
+
+### 注意事项
+
+- **不是状态 hook**：返回的 ref 在更新时不触发重新渲染。它旨在在回调中读取，而非用作渲染依赖。
+- **SSR 安全**：内部仅使用 React ref，无浏览器依赖。
+- 参见 `usePrevious` 了解跟踪上一次渲染的值而非当前值。
 
 ## Usage
 

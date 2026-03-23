@@ -1,11 +1,25 @@
 ---
 title: useMouse 用法与示例
 sidebar_label: useMouse
-description: 跟踪鼠标位置。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪鼠标位置。
 ---
 # useMouse
 
 跟踪鼠标位置。
+
+`useMouse` 通过监听 [`mousemove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event) 事件，在多个坐标系中跟踪鼠标光标位置。它返回一个包含 `screenX`/`screenY`（相对于屏幕）、`clientX`/`clientY`（相对于视口）、`pageX`/`pageY`（相对于文档）和 `elementX`/`elementY`/`elementW`/`elementH`/`elementPosX`/`elementPosY`（如果提供了目标元素，则相对于该元素）的对象。所有值在光标移动时实时更新。
+
+### 使用场景
+
+- 构建跟随鼠标位置的自定义光标、工具提示或上下文菜单
+- 实现拖拽交互、绘图画布或视差效果
+- 跟踪相对于特定元素的鼠标位置，用于基于悬停的可视化
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间所有坐标返回 `0`。服务端不会附加 `mousemove` 监听器。
+- **元素相对坐标**：传递一个 DOM 元素的 ref 还可以获取相对于该元素的坐标，包括其尺寸和位置。
+- **相关 hooks**：参见 `useMousePressed` 了解按压状态跟踪，以及 `useElementByPoint` 了解检测光标下方的元素。
 
 ## Usage
 

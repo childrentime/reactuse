@@ -1,11 +1,25 @@
 ---
 title: useMount 用法與示例
 sidebar_label: useMount
-description: 組件掛載後執行一次副作用的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。
+description: 組件掛載後執行一次副作用的 React Hook。
 ---
 # useMount
 
 組件掛載後執行一次副作用的 React Hook
+
+`useMount` 在元件首次掛載時執行一個回呼函式。它是 `useEffect(() => { fn() }, [])` 的語義化封裝，讓程式碼意圖更清晰。回呼只執行一次，在元件掛載之後。
+
+### 使用場景
+
+- 在元件掛載時執行初始化邏輯（例如獲取資料、設定訂閱）
+- 傳送分析事件或記錄元件掛載
+- 執行只需在元件生命週期開始時執行一次的設定操作
+
+### 注意事項
+
+- **僅客戶端**：與 `useEffect` 相同，在 SSR 期間不會執行。回呼只在瀏覽器中元件掛載後執行。
+- **無清理**：此 hook 不支援清理函式。如需在卸載時執行清理，請使用 `useUnmount` 或標準 `useEffect`。
+- **相關 hooks**：另請參閱 `useUnmount` 用於元件卸載時的回呼，以及 `useOnceEffect` 用於僅執行一次的 effect。
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useOnceEffect 用法与示例
 sidebar_label: useOnceEffect
-description: 避免 React18 useEffect 运行两次。 本文介绍其用法、最佳实践与代码示例。
+description: 避免 React18 useEffect 运行两次。
 ---
 # useOnceEffect
 
 避免 React18 useEffect 运行两次
+
+`useOnceEffect` 是 `useEffect` 的变体，保证 effect 回调只执行一次，即使在 React 18 的严格模式下（该模式在开发期间有意双重调用 effect）。它使用基于 `WeakSet` 的跟踪机制来检测并跳过重复调用。API 与 `useEffect` 完全相同——接受 effect 回调和可选的依赖数组。
+
+### 使用场景
+
+- 执行必须恰好运行一次的副作用（例如发送分析事件、初始化第三方库），且不能容忍 React 18 严格模式的双重触发
+- 在启用 `<StrictMode>` 的开发模式中防止重复的 API 调用
+- 用更清洁的 API 替代手动的 `useRef` "已运行"防护
+
+### 注意事项
+
+- **React 18 严格模式**：在开发中，React 18 会挂载、卸载然后重新挂载组件以暴露不纯的 effect。`useOnceEffect` 通过在 `WeakSet` 中跟踪 effect 引用来防止第二次调用。
+- **生产行为**：在不发生严格模式双重调用的生产构建中，`useOnceEffect` 的行为与 `useEffect` 完全相同。
+- 参见 `useOnceLayoutEffect` 了解使用 `useLayoutEffect` 时序的相同行为，以及 `useMount` 了解更简单的仅挂载回调。
 
 ## Usage
 

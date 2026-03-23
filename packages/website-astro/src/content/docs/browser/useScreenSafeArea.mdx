@@ -1,13 +1,25 @@
 ---
 title: useScreenSafeArea – Browser Hook Usage & Examples
 sidebar_label: useScreenSafeArea
-description: React sensor hook that tracks `env(safe-area-inset-*)`. Learn usage patterns, best practices, and code examples for React developers.
+description: React sensor hook that tracks `env(safe-area-inset-*)`.
 ---
 # useScreenSafeArea
 
 React sensor hook that tracks `env(safe-area-inset-*)`
 
+`useScreenSafeArea` reads the CSS [`env(safe-area-inset-*)`](https://developer.mozilla.org/en-US/docs/Web/CSS/env) values to determine the safe area insets on devices with notches, rounded corners, or software navigation bars. It returns a tuple of four strings (`top`, `right`, `bottom`, `left`) representing the inset values, plus a debounced `update` function for manual refresh. These values are useful for positioning content to avoid being obscured by device hardware or system UI.
 
+### When to Use
+
+- Positioning fixed or sticky elements (headers, footers, FABs) to avoid overlap with device notches or home indicators
+- Adjusting layout padding on iOS devices with notches or Android devices with gesture navigation bars
+- Building full-viewport experiences (games, maps) that need to account for hardware obstructions
+
+### Notes
+
+- **SSR-safe**: Returns `"0px"` for all insets during server-side rendering. No DOM or CSS computation occurs on the server.
+- **CSS `env()` function**: Requires the page to include `<meta name="viewport" content="viewport-fit=cover">` for the safe area insets to be non-zero.
+- **Related hooks**: See also `usePlatform` for detecting the device platform and `useMobileLandscape` for orientation detection.
 
 ## Usage
 

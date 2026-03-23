@@ -1,15 +1,29 @@
 ---
 title: useClickAway – Element Hook 使用方法与示例 (useClickOutside 的别名)
 sidebar_label: useClickAway
-description: 监听元素外部的点击事件。useClickOutside 的别名。适用于模态框或下拉菜单。学习使用模式、最佳实践和 React 开发者的代码示例。
+description: 监听元素外部的点击事件。useClickOutside 的别名。适用于模态框或下拉菜单。
 ---
 # useClickAway
 
 监听元素外部的点击事件。适用于模态框或下拉菜单。
 
 :::info
-`useClickAway` 是 [`useClickOutside`](/zh-Hans/element/useClickOutside) 的别名。它们具有相同的功能和 API。
+`useClickAway` 是 [`useClickOutside`](/zh-Hans/element/useClickOutside) 的别名。它们具有完全相同的功能和 API。
 :::
+
+`useClickAway` 检测发生在引用 DOM 元素外部的点击（鼠标和触摸事件），并在发生时调用回调。传入要保护的元素的 ref 和处理函数。你还可以传入 `enabled` 标志来有条件地激活或停用监听器。
+
+### 使用场景
+
+- 当用户点击外部时关闭下拉菜单、弹出框或模态框
+- 当焦点移走时取消选择或停用内联编辑组件
+- 在外部交互时关闭通知提示或上下文菜单
+
+### 注意事项
+
+- **事件类型**：监听 `mousedown` 和 `touchstart` 事件，覆盖桌面和移动交互。
+- **清理**：当组件卸载或 `enabled` 设为 `false` 时，事件监听器会自动移除。
+- 此 hook 是 `useClickOutside` 的别名。使用你偏好的名称即可——它们共享相同的实现。
 
 ## 用法
 

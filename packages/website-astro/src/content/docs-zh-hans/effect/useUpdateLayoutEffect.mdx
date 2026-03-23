@@ -1,11 +1,25 @@
 ---
 title: useUpdateLayoutEffect 用法与示例
 sidebar_label: useUpdateLayoutEffect
-description: 挂载完成后，在依赖更新的时候执行。 本文介绍其用法、最佳实践与代码示例。
+description: 挂载完成后，在依赖更新的时候执行。
 ---
 # useUpdateLayoutEffect
 
 挂载完成后，在依赖更新的时候执行
+
+`useUpdateLayoutEffect` 与 `useLayoutEffect` 功能完全相同，只是跳过挂载时的初始执行。effect 在 DOM 变更后同步触发，但仅在后续依赖变化时，不在首次渲染时。这对于应仅响应更新的 DOM 测量或修改非常有用。
+
+### 使用场景
+
+- 响应状态变化调整布局或滚动位置，但不在 DOM 首次绘制的初始渲染时
+- 仅在挂载后依赖实际变化时同步更新 DOM 属性或样式
+- 防止布局 effect 在挂载时错误运行其更新逻辑导致的初始内容闪烁问题
+
+### 注意事项
+
+- **布局时序**：在 DOM 变更后同步运行，在浏览器重绘之前，与 `useLayoutEffect` 相同。避免慢操作以防止阻塞视觉更新。
+- **相同签名**：接受 effect 回调和可选的依赖数组，与 `useLayoutEffect` 完全相同。通过返回值支持清理函数。
+- 参见 `useUpdateEffect` 了解 `useEffect` 时序的等价物，以及 `useIsomorphicLayoutEffect` 了解 SSR 安全的布局 effect。
 
 ## Usage
 

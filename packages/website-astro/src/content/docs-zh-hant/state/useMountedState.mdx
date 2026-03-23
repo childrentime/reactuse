@@ -1,11 +1,25 @@
 ---
 title: useMountedState 用法與示例
 sidebar_label: useMountedState
-description: 檢查組件的掛載狀態。 本文介紹其用法、最佳實踐與代碼示例。
+description: 檢查組件的掛載狀態。
 ---
 # useMountedState
 
 檢查組件的掛載狀態
+
+`useMountedState` 回傳一個函式，呼叫它可以檢查元件當前是否已掛載。這對於在非同步操作完成後安全地更新 state 很有用——在元件可能已經卸載的情況下避免 state 更新警告。
+
+### 使用場景
+
+- 在非同步操作（如 API 呼叫）完成後檢查元件是否仍然掛載再更新 state
+- 防止在已卸載元件上執行 state 更新
+- 為有延遲回呼的場景提供安全的 state 更新保障
+
+### 注意事項
+
+- **函式回傳**：回傳的是一個函式（非布林值），呼叫它來檢查掛載狀態。這確保始終獲得最新的掛載狀態。
+- **React 18+**：在 React 18+ 中，對已卸載元件的 state 更新不再產生警告，但此 hook 仍可用於避免不必要的操作。
+- **相關 hooks**：另請參閱 `useFirstMountState` 追蹤是否為首次渲染，以及 `useMount` 用於掛載時的回呼。
 
 ## Usage
 

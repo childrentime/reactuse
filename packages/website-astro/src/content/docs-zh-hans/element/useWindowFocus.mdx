@@ -1,11 +1,25 @@
 ---
 title: useWindowFocus 用法与示例
 sidebar_label: useWindowFocus
-description: 使用 `window.onfocus` and `window.onblur` 事件跟踪页面焦点。 本文介绍其用法、最佳实践与代码示例。
+description: 使用 `window.onfocus` and `window.onblur` 事件跟踪页面焦点。
 ---
 # useWindowsFocus
 
 使用 `window.onfocus` and `window.onblur` 事件跟踪页面焦点
+
+`useWindowsFocus` 通过监听 `window.onfocus` 和 `window.onblur` 事件响应式地跟踪浏览器窗口当前是否获得焦点。它返回一个布尔值，窗口获得焦点时为 `true`，未获得焦点时为 `false`。你可以选择提供初始状态的默认值。
+
+### 使用场景
+
+- 当用户切换到另一个应用时暂停实时更新（例如 WebSocket 消息或轮询）
+- 当窗口失去焦点时显示视觉指示器如"你已离开"或调暗 UI
+- 当用户返回应用窗口时恢复或刷新数据
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回提供的 `defaultValue`（或 `true`），因为 `window` 不可用。
+- **清理**：组件卸载时事件监听器自动移除。
+- 参见 `useDocumentVisibility` 了解跟踪标签页可见性（也覆盖最小化窗口），以及 `useFocus` 了解跟踪单个元素的焦点。
 
 ## Usage
 

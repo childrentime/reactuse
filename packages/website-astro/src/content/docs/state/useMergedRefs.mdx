@@ -9,6 +9,20 @@ description: >-
 
 `useMergedRefs` is a hook that merges multiple refs into a single ref. Use this hook when you need to use more than one ref on a single dom node.
 
+`useMergedRefs` accepts any number of refs (callback refs, `RefObject`s, or `undefined`) and returns a single callback ref that forwards the DOM node to all of them. This eliminates the need to manually synchronize multiple refs on the same element. The returned ref is stable and handles both ref objects and callback refs uniformly.
+
+### When to Use
+
+- Combining a forwarded ref from `React.forwardRef` with an internal ref used by another hook (e.g., `useHover`, `useFocus`)
+- Attaching multiple independent behaviors (measurement, intersection observation, drag handling) to the same DOM element
+- Building compound components or component libraries where both the library and the consumer need ref access
+
+### Notes
+
+- **Handles all ref types**: Works with `RefObject`, callback refs, and `undefined` values seamlessly.
+- **SSR-safe**: The returned callback ref does not access any browser APIs on its own.
+- See also `useHover` and other element hooks that accept refs, which can be combined via `useMergedRefs`.
+
 ## Usage
 
 ```tsx live noInline

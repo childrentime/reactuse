@@ -1,11 +1,25 @@
 ---
 title: useMergedRefs 用法與示例
 sidebar_label: useMergedRefs
-description: '`useMergedRefs` 是一个合并多个 ref 到单个 ref 的 hook。当你需要在单个 dom 节点上使用多个 ref 时，请使用此 hook。 本文介紹其用法、最佳實踐與代碼示例。'
+description: '`useMergedRefs` 是一个合并多个 ref 到单个 ref 的 hook。当你需要在单个 dom 节点上使用多个 ref 时，请使用此 hook。'
 ---
 # useMergedRefs
 
 `useMergedRefs` 是一个合并多个 ref 到单个 ref 的 hook。当你需要在单个 dom 节点上使用多个 ref 时，请使用此 hook。
+
+`useMergedRefs` 將多個 React ref 合併為一個。當你需要將多個 ref 附加到同一個 DOM 元素時（例如一個 ref 用於內部邏輯，另一個從 `forwardRef` 轉發），此 hook 非常有用。回傳的合併 ref 在設定時會同步更新所有輸入 ref。
+
+### 使用場景
+
+- 在使用 `forwardRef` 的元件中同時保持內部 ref 和外部轉發 ref
+- 將多個 hook 回傳的 ref 附加到同一個元素
+- 整合需要自己 ref 的多個函式庫到同一個元素
+
+### 注意事項
+
+- **Ref 類型**：支援回呼 ref 和物件 ref（`useRef` 建立的 ref）。
+- **空值處理**：自動忽略 `null` 或 `undefined` 的 ref。
+- **相關 hooks**：另請參閱 `useLatest` 用於保持對最新值的 ref。
 
 ## Usage
 

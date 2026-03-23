@@ -1,11 +1,25 @@
 ---
 title: useNetwork 用法与示例
 sidebar_label: useNetwork
-description: 跟踪浏览器网络连接状况。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪浏览器网络连接状况。
 ---
 # useNetwork
 
 跟踪浏览器网络连接状况
+
+`useNetwork` 封装了 [Network Information API](https://developer.mozilla.org/en-US/docs/Web/API/NetworkInformation) 和 `online`/`offline` 事件，提供网络状态的全面视图。它返回一个包含 `online`（布尔值）、上一个在线状态、`since`（上次变化的时间戳）和详细连接信息的对象，连接信息包括 `downlink`、`effectiveType`（2g/3g/4g）、`rtt`、`type`（wifi/cellular/ethernet）和 `saveData`。值会在网络条件变化时响应式更新。
+
+### 使用场景
+
+- 显示在线/离线状态指示器，并在断开连接时显示备用 UI
+- 根据连接速度调整内容质量（图片分辨率、视频码率）
+- 实现离线优先功能，在连接恢复时排队操作并同步
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间所有值返回 `undefined`。服务端不会访问 `navigator` 或 `window` 事件。
+- **Network Information API**：详细的连接属性（`downlink`、`effectiveType`、`rtt`、`type`）仅在基于 Chromium 的浏览器中可用。`online` 状态在所有浏览器中均受支持。
+- **相关 hooks**：参见 `useOnline` 了解围绕网络连接状态的更简单的布尔值封装。
 
 ## Usage
 

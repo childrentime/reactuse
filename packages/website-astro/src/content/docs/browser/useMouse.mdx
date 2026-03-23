@@ -1,12 +1,25 @@
 ---
 title: useMouse – Browser Hook Usage & Examples
 sidebar_label: useMouse
-description: React sensor hooks that track cursor positio. Learn usage patterns, best practices, and code examples for React developers.
+description: React sensor hooks that track cursor positio.
 ---
 # useMouse
 
-React sensor hooks that track cursor positio
+React sensor hooks that track cursor position
 
+`useMouse` tracks the mouse cursor position across multiple coordinate systems by listening to [`mousemove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event) events. It returns an object with `screenX`/`screenY` (relative to the screen), `clientX`/`clientY` (relative to the viewport), `pageX`/`pageY` (relative to the document), and `elementX`/`elementY`/`elementW`/`elementH`/`elementPosX`/`elementPosY` (relative to a target element, if provided). All values update in real time as the cursor moves.
+
+### When to Use
+
+- Building custom cursors, tooltips, or context menus that follow the mouse position
+- Implementing drag interactions, drawing canvases, or parallax effects
+- Tracking mouse position relative to a specific element for hover-based visualizations
+
+### Notes
+
+- **SSR-safe**: Returns all coordinates as `0` during server-side rendering. No `mousemove` listeners are attached on the server.
+- **Element-relative coordinates**: Pass a ref to a DOM element to also get coordinates relative to that element, including its dimensions and position.
+- **Related hooks**: See also `useMousePressed` for tracking press state, and `useElementByPoint` for detecting which element is under the cursor.
 
 ## Usage
 

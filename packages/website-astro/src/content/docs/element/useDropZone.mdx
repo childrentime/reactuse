@@ -1,12 +1,25 @@
 ---
 title: useDropZone – Element Hook Usage & Examples
 sidebar_label: useDropZone
-description: Create an zone where files can be dropped. Learn usage patterns, best practices, and code examples for React developers.
+description: Create an zone where files can be dropped.
 ---
 # useDropZone
 
 Create an zone where files can be dropped
 
+`useDropZone` turns a DOM element into a file drop target by handling the `dragenter`, `dragover`, `dragleave`, and `drop` events. It returns a boolean indicating whether a file is currently being dragged over the zone. When files are dropped, the provided callback receives an array of `File` objects (or `null` if no files were dropped).
+
+### When to Use
+
+- Building file upload interfaces where users drag and drop files from their desktop
+- Creating media galleries or document managers with drag-and-drop support
+- Implementing drag-and-drop zones in form builders or CMS editors
+
+### Notes
+
+- **Visual feedback**: Use the returned `isOver` boolean to highlight the drop zone (e.g., change border color or background) when a file is dragged over it.
+- **Cleanup**: All drag-related event listeners are removed automatically when the component unmounts.
+- See also `useDraggable` for making elements draggable within the page (element repositioning vs. file drops).
 
 ## Usage
 

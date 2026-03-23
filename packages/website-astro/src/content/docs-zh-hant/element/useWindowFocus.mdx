@@ -1,11 +1,25 @@
 ---
 title: useWindowFocus 用法與示例
 sidebar_label: useWindowFocus
-description: 使用 `window.onfocus` and `window.onblur` 事件跟蹤頁面焦點。 本文介紹其用法、最佳實踐與代碼示例。
+description: 使用 `window.onfocus` and `window.onblur` 事件跟蹤頁面焦點。
 ---
 # useWindowsFocus
 
 使用 `window.onfocus` and `window.onblur` 事件跟蹤頁面焦點
+
+`useWindowFocus` 追蹤瀏覽器視窗是否處於焦點狀態。它回傳一個布林值，在視窗獲得或失去焦點時更新。此 hook 監聽 `window` 上的 `focus` 和 `blur` 事件。
+
+### 使用場景
+
+- 當視窗失去焦點時暫停動畫或計時器以節省資源
+- 當使用者返回視窗時重新獲取過時的資料
+- 追蹤使用者的視窗焦點模式以分析用途
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `false`。伺服器上不會附加事件監聽器。
+- **視窗焦點 vs 分頁可見性**：視窗焦點與分頁可見性不同。視窗可能可見但沒有焦點（例如使用者在另一個視窗中）。
+- **相關 hooks**：另請參閱 `useDocumentVisibility` 追蹤分頁可見性，以及 `useActiveElement` 追蹤焦點元素。
 
 ## Usage
 

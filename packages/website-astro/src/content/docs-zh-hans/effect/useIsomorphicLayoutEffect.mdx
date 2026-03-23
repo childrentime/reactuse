@@ -9,6 +9,20 @@ description: >-
 
 `useLayoutEffect` 会在服务端渲染的时候发出警告，所以我们在服务端用 `useEffect` 进行替代。 详情可见 [Alex Reardon's article](https://medium.com/@alexandereardon/uselayouteffect-and-ssr-192986cdcf7a) 的文章
 
+`useIsomorphicLayoutEffect` 在浏览器环境中解析为 `useLayoutEffect`，在服务端解析为 `useEffect`。这消除了 React 关于 `useLayoutEffect` 在 SSR 期间无效的警告，同时保留了客户端的同步 DOM 测量行为。它与 `useEffect`/`useLayoutEffect` 具有完全相同的签名，可以直接替换使用。
+
+### 使用场景
+
+- 在同时支持服务端渲染的项目中，在浏览器绘制前同步测量或操作 DOM
+- 构建需要布局阶段时序但必须在 SSR 框架（Next.js、Remix 等）中工作的库 hook
+- 任何你想使用 `useLayoutEffect` 但需要避免 SSR 控制台警告的地方
+
+### 注意事项
+
+- **环境检测**：使用简单的 `isBrowser` 检查（typeof `window` !== `undefined`）来选择适当的 hook。
+- **相同 API**：接受 effect 回调和可选的依赖数组，与 `useEffect` 和 `useLayoutEffect` 完全相同。
+- 此 hook 被本库的其他多个 hook（例如 `useEvent`）内部使用，以确保 SSR 兼容性。
+
 ## Usage
 
 ```tsx live

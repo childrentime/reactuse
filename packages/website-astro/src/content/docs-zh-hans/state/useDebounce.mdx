@@ -1,12 +1,26 @@
 ---
 title: useDebounce 用法与示例
 sidebar_label: useDebounce
-description: 对值进行防抖的React hook。 本文介绍其用法、最佳实践与代码示例。
+description: 对值进行防抖的React hook。
 ---
 # useDebounce
 
 对值进行防抖的React hook
 
+
+`useDebounce` 接受一个值和以毫秒为单位的等待时间，返回该值的防抖版本。返回的值仅在自输入值最后一次更改以来经过指定延迟后才更新。底层使用 `lodash.debounce`，因此你可以传入相同的选项（`leading`、`trailing`、`maxWait`）进行精细控制。
+
+### 使用场景
+
+- 延迟搜索输入以避免每次按键都触发 API 请求
+- 节制由快速变化的值（例如窗口调整大小尺寸）触发的昂贵重新渲染
+- 平滑表单验证以防用户仍在输入时错误消息闪烁
+
+### 注意事项
+
+- **值级别防抖**：此 hook 防抖的是*值*本身，而不是回调。如果你需要防抖函数，请使用 `useDebounceFn`。
+- **选项透传**：第三个参数直接传递给 `lodash.debounce`，支持 `leading`、`trailing` 和 `maxWait`。
+- 参见 `useThrottle` 了解以固定间隔限制值更新而非延迟到空闲。
 
 ## Usage
 

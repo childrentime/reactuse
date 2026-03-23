@@ -1,12 +1,25 @@
 ---
 title: useFileDialog – Browser Hook Usage & Examples
 sidebar_label: useFileDialog
-description: Open file dialog with ease. Learn usage patterns, best practices, and code examples for React developers.
+description: Open file dialog with ease.
 ---
 # useFileDialog
 
 Open file dialog with ease
 
+`useFileDialog` provides a programmatic way to open the browser's native file picker without needing a visible `<input type="file">` element. It returns a tuple of the selected `FileList` (or `null`), an `open` function to trigger the dialog, and a `reset` function to clear the selection. You can configure accepted file types, multiple selection, and device capture (camera/microphone).
+
+### When to Use
+
+- Building custom-styled file upload buttons that don't rely on the default `<input>` appearance
+- Implementing drag-and-drop upload areas with an optional "browse files" fallback
+- Triggering file selection from any interactive element (e.g., a card, icon, or context menu item)
+
+### Notes
+
+- **SSR-safe**: Returns `null` for the file list and no-op functions during server-side rendering. No DOM access occurs on the server.
+- **File filtering**: Use the `accept` option to restrict selectable file types (e.g., `"image/*"`, `".pdf,.doc"`), following the [HTML `accept` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) syntax.
+- **Capture**: Use the `capture` option to request files directly from the device camera or microphone on mobile devices.
 
 ## Usage
 

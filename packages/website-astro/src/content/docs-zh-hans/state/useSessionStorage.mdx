@@ -1,11 +1,26 @@
 ---
 title: useSessionStorage 用法与示例
 sidebar_label: useSessionStorage
-description: 轻松管理 `sessionStorage`。 本文介绍其用法、最佳实践与代码示例。
+description: 轻松管理 `sessionStorage`。
 ---
 # useSessionStorage
 
 轻松管理 `sessionStorage`
+
+`useSessionStorage` 将 React 状态绑定到一个 `sessionStorage` 键。它返回一个行为类似 `useState` 的 `[value, setValue]` 元组。值在挂载时从会话存储中读取，在更新时写回。将值设为 `null` 移除该键。与 `useLocalStorage` 一样，它支持自定义序列化器，默认监听跨标签页的 `storage` 事件。
+
+### 使用场景
+
+- 存储在同一标签页内页面导航之间应持久化但不跨浏览器重启的临时状态
+- 保持向导或多步骤表单进度，用户关闭标签页时重置
+- 缓存敏感或会话特定的数据（例如一次性令牌、临时筛选器）
+
+### 注意事项
+
+- **会话作用域**：与 `localStorage` 不同，`sessionStorage` 中的数据在标签页或浏览器关闭时被清除。使用 `useLocalStorage` 进行长期持久化。
+- **跨标签页同步**：hook 默认监听 `storage` 事件。通过 `listenToStorageChanges: false` 禁用。
+- **自定义序列化**：在选项中为非字符串数据类型提供 `serializer.read` 和 `serializer.write`。
+- 参见 `useLocalStorage` 了解持久化存储，以及 `useCookie` 了解基于 cookie 的持久化。
 
 ## Usage
 

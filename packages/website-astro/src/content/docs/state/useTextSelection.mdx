@@ -2,13 +2,26 @@
 title: useTextSelection – State Hook Usage & Examples
 sidebar_label: useTextSelection
 description: >-
-  Track user text selection based on [document.getSelection](https://developer.mozilla.org/en-US/docs/Web/API/Document/getSelection). Learn usage patterns, best
+  Track user text selection based on [document.getSelection](https://developer.mozilla.org/en-US/docs/Web/API/Document/getSelection).
   p
 ---
 # useTextSelection
 
 Track user text selection based on [document.getSelection](https://developer.mozilla.org/en-US/docs/Web/API/Document/getSelection)
 
+`useTextSelection` listens for `selectionchange` events on the document and returns the current `Selection` object (or `null` if nothing is selected). The returned object updates reactively whenever the user selects, modifies, or clears a text selection anywhere on the page. You can call `.toString()` on the result to get the selected text as a string.
+
+### When to Use
+
+- Building annotation or highlighting tools that respond to user text selections
+- Displaying floating toolbars (bold, italic, link) when the user selects text in an editor
+- Tracking selected text for search, copy, or share-to-social features
+
+### Notes
+
+- **Document-wide**: The hook tracks selections across the entire document, not a specific element. Filter by checking the selection's anchor or focus node if you need element-scoped behavior.
+- **Browser-only**: `document.getSelection` is not available during SSR. The hook returns `null` on the server.
+- The returned `Selection` object is a live reference from the browser; its properties update in place between re-renders.
 
 ## Usage
 

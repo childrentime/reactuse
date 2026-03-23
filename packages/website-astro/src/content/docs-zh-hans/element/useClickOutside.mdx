@@ -1,12 +1,26 @@
 ---
 title: useClickOutside 用法与示例
 sidebar_label: useClickOutside
-description: 监听元素外部的点击。 对于模式或下拉菜单很有用。 本文介绍其用法、最佳实践与代码示例。
+description: 监听元素外部的点击。 对于模式或下拉菜单很有用。
 ---
 # useClickOutside
 
 监听元素外部的点击。 对于模式或下拉菜单很有用。
 
+
+`useClickOutside` 检测发生在引用 DOM 元素外部的点击（鼠标和触摸事件），并在发生时调用回调。传入目标元素的 ref、处理函数和可选的 `enabled` 布尔值来有条件地切换监听器。处理器接收原始的 `MouseEvent` 或 `TouchEvent`。
+
+### 使用场景
+
+- 当用户点击外部时关闭下拉菜单、弹出框或模态框
+- 当焦点移走时取消选择或停用内联编辑组件
+- 在外部交互时关闭通知提示或上下文菜单
+
+### 注意事项
+
+- **事件类型**：监听 `mousedown` 和 `touchstart` 事件，覆盖桌面和移动交互。
+- **清理**：当组件卸载或 `enabled` 设为 `false` 时，事件监听器会自动移除。
+- 也可使用 `useClickAway`，它是具有相同 API 和实现的别名。
 
 ## Usage
 

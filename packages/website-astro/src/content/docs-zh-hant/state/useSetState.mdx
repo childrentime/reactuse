@@ -1,11 +1,25 @@
 ---
 title: useSetState 用法與示例
 sidebar_label: useSetState
-description: 類似於 `class component` 中的 `setState`。 本文介紹其用法、最佳實踐與代碼示例。
+description: 類似於 `class component` 中的 `setState`。
 ---
 # useSetState
 
 類似於 `class component` 中的 `setState`
+
+`useSetState` 提供類似 React 類別元件 `this.setState` 的行為——接受部分狀態物件並將其合併到當前狀態中，而非完全替換。這對於管理包含多個欄位的物件狀態很方便。
+
+### 使用場景
+
+- 管理包含多個欄位的表單狀態，每次只更新部分欄位
+- 從類別元件遷移到函式元件時保持 `setState` 的合併行為
+- 簡化物件狀態的部分更新邏輯
+
+### 注意事項
+
+- **淺合併**：狀態更新是淺合併，不是深度合併。巢狀物件不會被遞迴合併。
+- **函式更新**：也支援函式形式的更新（接收前一個狀態，回傳部分狀態物件）。
+- **相關 hooks**：另請參閱 `useMap` 用於鍵值對管理，以及 `useBoolean` 用於布林狀態。
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useTimeout 用法與示例
 sidebar_label: useTimeout
-description: 在给定时间后更新值。 本文介紹其用法、最佳實踐與代碼示例。
+description: 在给定时间后更新值。
 ---
 # useTimeout
 
 在给定时间后更新值。
+
+`useTimeout` 在指定的延遲後執行一個回呼。它回傳一個布林值指示是否已「準備好」（計時器是否已觸發），以及 `cancel` 和 `reset` 控制函式。此 hook 是 `setTimeout` 的宣告式封裝，自動在卸載時清理。
+
+### 使用場景
+
+- 在指定延遲後顯示元素（例如歡迎訊息、工具提示）
+- 實作延遲導航或重定向
+- 建構自動消失的通知或 toast 訊息
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時為空操作。伺服器上不會設定計時器。
+- **可重置**：呼叫 `reset` 可重啟計時器；呼叫 `cancel` 可取消待處理的計時器。
+- **相關 hooks**：另請參閱 `useTimeoutFn` 用於更靈活的計時器控制，以及 `useInterval` 用於重複執行的計時器。
 
 ## Usage
 

@@ -14,9 +14,24 @@ interface Props {
 }
 
 const { title, description, category, slug, locale = 'en' } = Astro.props
+
+// Build breadcrumbs for documentation pages (skip homepage)
+const isHomepage = !category && (!slug || slug === 'index' || slug === '/')
+const breadcrumbs = isHomepage ? [] : (() => {
+  const crumbs = [{ name: 'Home', url: 'https://reactuse.com/' }]
+  if (category) {
+    const catLabel = category.charAt(0).toUpperCase() + category.slice(1)
+    crumbs.push({ name: catLabel, url: `https://reactuse.com/${category}/` })
+  }
+  if (slug && slug !== 'index') {
+    const hookName = slug.split('/').pop() || slug
+    crumbs.push({ name: hookName, url: `https://reactuse.com/${slug}/` })
+  }
+  return crumbs
+})()
 ---
 
-<BaseLayout title={title} description={description} locale={locale}>
+<BaseLayout title={title} description={description} locale={locale} breadcrumbs={breadcrumbs}>
   <Navbar locale={locale} />
   <div class="page-shell">
     <Sidebar currentSlug={slug} locale={locale} />

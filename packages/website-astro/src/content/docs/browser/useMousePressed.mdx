@@ -11,6 +11,19 @@ React Sensor Hook that tracks mouse pressing state.
 
 Triggered by mousedown touchstart on target element and released by mouseup mouseleave touchend touchcancel on window
 
+`useMousePressed` returns a tuple of a boolean indicating whether the mouse (or touch) is currently pressed and a source type string (`"mouse"`, `"touch"`, or `null`). It listens for `mousedown`/`touchstart`/`dragstart` events on the target element and releases on `mouseup`/`mouseleave`/`touchend`/`touchcancel`/`dragend`/`drop` on `window`. You can configure which input types (touch, drag) to listen for.
+
+### When to Use
+
+- Implementing press-and-hold visual feedback (e.g., button ripple effects or scale animations)
+- Building drawing or painting tools that need to know when the user is actively pressing
+- Detecting whether a drag operation is in progress across the page
+
+### Notes
+
+- **SSR-safe**: Returns `false` for pressed state and `null` for source type during server-side rendering. No event listeners are attached on the server.
+- **Input sources**: By default, mouse, touch, and drag events are all tracked. Disable touch or drag tracking via the `touch` and `drag` options.
+- **Related hooks**: See also `useMouse` for tracking cursor position, and `useLongPress` for detecting extended press gestures.
 
 ## Usage
 

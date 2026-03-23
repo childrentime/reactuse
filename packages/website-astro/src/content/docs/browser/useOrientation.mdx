@@ -1,11 +1,25 @@
 ---
 title: useOrientation – Browser Hook Usage & Examples
 sidebar_label: useOrientation
-description: React sensor hook that tracks screen orientation of user's device. Learn usage patterns, best practices, and code examples for React developers.
+description: React sensor hook that tracks screen orientation of user's device.
 ---
 # useOrientation
 
 React sensor hook that tracks screen orientation of user's device.
+
+`useOrientation` wraps the [Screen Orientation API](https://developer.mozilla.org/en-US/docs/Web/API/Screen/orientation) to reactively track the device's orientation angle and type (e.g., `portrait-primary`, `landscape-secondary`). It returns a tuple of the current orientation state, a `lock` function to lock the screen to a specific orientation, and an `unlock` function. The orientation state includes the `angle` (in degrees) and `type`.
+
+### When to Use
+
+- Adapting UI layouts when the device is rotated between portrait and landscape
+- Locking screen orientation for games, video players, or presentation modes
+- Displaying orientation-dependent content or triggering layout recalculations
+
+### Notes
+
+- **SSR-safe**: Returns default orientation values (`angle: 0`, `type: undefined`) during server-side rendering. No `screen.orientation` access occurs on the server.
+- **Orientation lock**: The `lock` function requires the page to be in fullscreen mode in most browsers. Use alongside `useFullscreen` for reliable orientation locking.
+- **Related hooks**: See also `useMobileLandscape` for a simplified boolean check, and `useMediaQuery` for custom orientation-based media queries.
 
 ## Usage
 

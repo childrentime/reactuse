@@ -1,12 +1,25 @@
 ---
 title: useFirstMountState – State Hook Usage & Examples
 sidebar_label: useFirstMountState
-description: React state hook that returns true if component is just mounted. Learn usage patterns, best practices, and code examples for React developers.
+description: React state hook that returns true if component is just mounted.
 ---
 # useFirstMountState
 
 React state hook that returns true if component is just mounted
 
+`useFirstMountState` returns `true` during the component's initial render and `false` on all subsequent renders. It uses a ref internally so the check is synchronous and does not trigger additional re-renders. This is useful for skipping logic that should only run after the first paint or for distinguishing the initial mount from updates.
+
+### When to Use
+
+- Skipping animations or transitions on the very first render so the component appears instantly
+- Conditionally running effect logic only on updates (not on mount) by combining with `useEffect`
+- Displaying "new" or "just loaded" indicators that disappear after the first re-render
+
+### Notes
+
+- **Synchronous check**: The returned value is available immediately during render, not deferred to an effect.
+- **SSR-safe**: Works identically on server and client since it only uses a React ref internally.
+- See also `useMountedState` for a function-based approach that checks whether the component is currently mounted (as opposed to whether it is on its *first* render).
 
 ## Usage
 

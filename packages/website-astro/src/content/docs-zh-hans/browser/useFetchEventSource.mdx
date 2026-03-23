@@ -1,11 +1,25 @@
 ---
 title: useFetchEventSource 用法与示例
 sidebar_label: useFetchEventSource
-description: '`useFetchEventSource` 是一个 React Hook，允许你使用 POST 等 HTTP 方法订阅 EventSource 并实时接收更新。本文介绍其用法、最佳实践与代码示例。'
+description: '`useFetchEventSource` 是一个 React Hook，允许你使用 POST 等 HTTP 方法订阅 EventSource 并实时接收更新。'
 ---
 # useFetchEventSource
 
 `useFetchEventSource` 是一个 React Hook，允许你使用 POST 等 HTTP 方法订阅 EventSource 并实时接收更新。
+
+`useFetchEventSource` 通过使用 [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) 代替原生 `EventSource` 构造函数来扩展标准的 Server-Sent Events 模式。这使得可以使用自定义 HTTP 方法（POST、PUT）、请求头和请求体——这些都是标准 `EventSource` API 不支持的功能。它返回的状态、数据、错误和控制函数与 `useEventSource` 相同，但具有 `fetch` 的灵活性。
+
+### 使用场景
+
+- 从需要 POST 请求和 JSON 负载的 AI/LLM API 流式获取响应
+- 连接需要认证头或自定义内容类型的 SSE 端点
+- 构建聊天界面、代码生成 UI 或任何通过非 GET 请求消费 server-sent events 的功能
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回无活动连接的默认状态。服务端不会进行 fetch 调用。
+- **自定义请求**：与 `useEventSource` 不同，你可以指定任意 HTTP 方法、请求头和请求体。这对于接受 POST 请求的端点（例如 OpenAI 流式 API）至关重要。
+- **相关 hooks**：参见 `useEventSource`，用于不需要自定义请求配置的标准 GET-based SSE 连接。
 
 :::note
 这个例子在实时编辑器中不起作用，因为它需要一个服务器来发送事件。你可以在本地环境中尝试它。

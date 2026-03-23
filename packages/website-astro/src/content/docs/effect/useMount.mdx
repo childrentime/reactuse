@@ -1,12 +1,25 @@
 ---
 title: useMount – Effect Hook Usage & Examples
 sidebar_label: useMount
-description: React lifecycle hook that executes a function after the component is mounted. Learn usage patterns, best practices, and code examples for React developers.
+description: React lifecycle hook that executes a function after the component is mounted.
 ---
 # useMount
 
 React lifecycle hook that executes a function after the component is mounted
 
+`useMount` runs a callback exactly once after the component mounts, equivalent to `useEffect(() => { ... }, [])`. It provides a semantically clear way to express mount-only logic without manually specifying an empty dependency array. The callback receives no arguments and does not support a return-based cleanup function.
+
+### When to Use
+
+- Running one-time initialization logic such as analytics tracking, logging, or third-party SDK setup
+- Performing DOM measurements or imperative focus calls immediately after the component first renders
+- Replacing class component `componentDidMount` behavior with a concise hook
+
+### Notes
+
+- **No cleanup**: `useMount` does not support a cleanup return value. If you need unmount cleanup, pair it with `useUnmount` or use `useEffect` directly.
+- **Development validation**: In development mode, a console error is logged if the provided argument is not a function.
+- See also `useUnmount` for the corresponding unmount lifecycle, and `useOnceEffect` if you need React 18 Strict Mode double-invoke protection.
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useFileDialog 用法與示例
 sidebar_label: useFileDialog
-description: 輕鬆選取文件。 本文介紹其用法、最佳實踐與代碼示例。
+description: 輕鬆選取文件。
 ---
 # useFileDialog
 
 輕鬆選取文件
+
+`useFileDialog` 提供了一種程式化方式來開啟瀏覽器的原生檔案選擇器，無需可見的 `<input type="file">` 元素。它回傳一個元組，包含選中的 `FileList`（或 `null`）、觸發對話框的 `open` 函式和清除選擇的 `reset` 函式。你可以設定接受的檔案類型、多選和裝置擷取（相機/麥克風）。
+
+### 使用場景
+
+- 建構不依賴預設 `<input>` 外觀的自訂樣式檔案上傳按鈕
+- 實作帶有可選「瀏覽檔案」備選方案的拖放上傳區域
+- 從任何互動式元素（例如卡片、圖示或右鍵選單項目）觸發檔案選擇
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時，檔案清單回傳 `null`，函式為空操作。伺服器上不會存取 DOM。
+- **檔案篩選**：使用 `accept` 選項限制可選檔案類型（例如 `"image/*"`、`".pdf,.doc"`），遵循 [HTML `accept` 屬性](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept)語法。
+- **擷取**：使用 `capture` 選項在行動裝置上直接從裝置相機或麥克風請求檔案。
 
 ## Usage
 

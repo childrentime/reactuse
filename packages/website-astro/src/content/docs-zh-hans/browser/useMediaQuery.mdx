@@ -1,11 +1,25 @@
 ---
 title: useMediaQuery 用法与示例
 sidebar_label: useMediaQuery
-description: 轻松使用媒体查询。 本文介绍其用法、最佳实践与代码示例。
+description: 轻松使用媒体查询。
 ---
 # useMediaQuery
 
 轻松使用媒体查询
+
+`useMediaQuery` 封装了 [`window.matchMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)，用于响应式地评估 CSS 媒体查询字符串。它返回一个布尔值，表示文档当前是否匹配该查询。当匹配状态改变时（例如窗口大小调整或系统颜色方案更改），值会自动更新。
+
+### 使用场景
+
+- 根据屏幕宽度断点渲染不同的布局或组件
+- 检测系统偏好，如深色模式、减少动效或高对比度
+- 仅在大屏幕上有条件地加载重量级组件或资源
+
+### 注意事项
+
+- **SSR 安全**：接受一个 `defaultState` 参数（默认 `false`），在服务端渲染期间 `window.matchMedia` 不可用时返回该值。
+- **任何有效的媒体查询**：适用于任何 CSS 媒体查询字符串，包括 `prefers-color-scheme`、`prefers-reduced-motion`、`orientation` 和自定义断点。
+- **相关 hooks**：几个专用 hook 基于 `useMediaQuery` 构建，包括 `usePreferredDark`、`usePreferredColorScheme`、`usePreferredContrast`、`useReducedMotion` 和 `useMobileLandscape`。
 
 ## Usage
 

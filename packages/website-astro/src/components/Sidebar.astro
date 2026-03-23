@@ -46,15 +46,23 @@ for (const doc of allDocs) {
   const parts = id.split('/')
   const title = doc.data.title || id
   const label = doc.data.sidebar_label || title.replace(/\s*[–—].*$/, '')
+  const slug = id.replace(/\.(mdx?|md)$/, '')
 
-  if (parts.length === 1) {
-    const slug = id.replace(/\.(mdx?|md)$/, '')
-    topLevel.push({ slug, title, label })
-  } else {
-    const cat = parts[0]
-    const slug = id.replace(/\.(mdx?|md)$/, '')
+  // Detect homepage entry (frontmatter slug: /, or id is 'index')
+  const isHomepage = slug === 'index' || slug === '' || slug === '/' || label === 'Get Started'
+  const cat = parts.length > 1 ? parts[0] : ''
+  const isKnownCategory = !!(cat && categories[cat])
+
+  if (isHomepage) {
+    topLevel.push({ slug: '__homepage__', title, label })
+  } else if (isKnownCategory) {
     if (!grouped.has(cat)) grouped.set(cat, [])
     grouped.get(cat)!.push({ slug, title, label })
+  } else if (parts.length <= 1) {
+    topLevel.push({ slug, title, label })
+  } else {
+    // Unknown multi-part path, treat as top-level with just the last segment
+    topLevel.push({ slug, title, label })
   }
 }
 
@@ -75,13 +83,21 @@ const sortedCategories = [...grouped.entries()].sort((a, b) => {
   {/* Top-level links */}
   <div class="sidebar-group">
     <ul class="sidebar-items">
-      {topLevel.map(doc => (
-        <li class="sidebar-item">
-          <a href={localePath(locale, `/${doc.slug === 'index' ? '' : doc.slug + '/'}`)} aria-current={currentSlug === doc.slug ? 'page' : undefined}>
-            {doc.label}
-          </a>
-        </li>
-      ))}
+      {topLevel.map(doc => {
+        const href = doc.slug === '__homepage__'
+          ? localePath(locale, '/')
+          : localePath(locale, `/${doc.slug}/`)
+        const isCurrent = doc.slug === '__homepage__'
+          ? (currentSlug === 'index' || currentSlug === '/' || currentSlug === '')
+          : currentSlug === doc.slug
+        return (
+          <li class="sidebar-item">
+            <a href={href} aria-current={isCurrent ? 'page' : undefined}>
+              {doc.label}
+            </a>
+          </li>
+        )
+      })}
     </ul>
   </div>
 

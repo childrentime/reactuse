@@ -1,12 +1,26 @@
 ---
 title: useDocumentVisibility 用法與示例
 sidebar_label: useDocumentVisibility
-description: 跟蹤 [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState) 的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤 [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState) 的 React Hook。
 ---
 # useDocumentVisibility
 
 跟蹤 [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState) 的 React Hook
 
+
+`useDocumentVisibility` 使用 [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API) 追蹤文件的可見性狀態。它回傳一個字串值（`"visible"`、`"hidden"` 或 `"prerender"`），在使用者切換分頁或最小化瀏覽器時自動更新。
+
+### 使用場景
+
+- 當頁面不可見時暫停影片播放或動畫以節省資源
+- 當使用者返回分頁時重新獲取過時的資料
+- 追蹤使用者在頁面上的實際停留時間（排除分頁切換）
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `"visible"` 作為預設值。伺服器上不會存取 `document`。
+- **分頁可見性**：此 hook 追蹤分頁可見性而非頁面焦點。即使頁面可見，它也可能沒有焦點（例如使用者在其他視窗中操作）。
+- **相關 hooks**：另請參閱 `useWindowFocus` 追蹤視窗焦點，以及 `usePageLeave` 偵測游標離開頁面。
 
 ## Usage
 

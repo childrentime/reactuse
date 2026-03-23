@@ -1,12 +1,26 @@
 ---
 title: useDarkMode 用法與示例
 sidebar_label: useDarkMode
-description: 具有自動數據持久性的深色模式。本文介紹其用法、最佳實踐與示例。
+description: 具有自動數據持久性的深色模式。
 ---
 
 # useDarkMode
 
 具有自動數據持久性的深色模式。
+
+`useDarkMode` 提供了簡單的明暗模式切換功能，並自動持久化到 `localStorage`。它回傳一個包含當前主題狀態和切換函式的元組。此 hook 將 CSS 類別名稱（可透過 `classNameDark` 和 `classNameLight` 設定）套用到 `<html>` 元素，並在沒有已儲存值時透過 `prefers-color-scheme` 媒體查詢與使用者的系統偏好同步。它預設尊重系統偏好，但允許使用者覆寫。
+
+### 使用場景
+
+- 為應用程式新增具有自動持久化的深色模式切換
+- 建構一個以使用者系統色彩方案偏好為預設值的主題切換器
+- 將明暗 CSS 類別套用到根元素以實現 CSS 驅動的主題設定
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時，深色模式狀態回傳 `false`。伺服器上不會存取 DOM 或 localStorage。請參閱下方的 Tips 章節以防止未樣式化內容的閃爍。
+- **持久化**：將偏好儲存在 `localStorage` 中，鍵名為 `"reactuses-color-scheme"`。已儲存的值會在 v6.1.0+ 中自動從舊的布林格式遷移到新的字串格式。
+- **相關 hooks**：如需超越明暗的多主題支援，請參閱 `useColorMode`。如需在不持久化的情況下偵測系統偏好，請參閱 `usePreferredDark` 或 `usePreferredColorScheme`。
 
 ## ⚠️ v6.1.0 破壞性變更
 

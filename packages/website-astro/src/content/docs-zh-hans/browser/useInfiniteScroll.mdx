@@ -1,11 +1,25 @@
 ---
 title: useInfiniteScroll 用法与示例
 sidebar_label: useInfiniteScroll
-description: 无限滚动。 本文介绍其用法、最佳实践与代码示例。
+description: 无限滚动。
 ---
 # useInfiniteScroll
 
 无限滚动
+
+`useInfiniteScroll` 基于 `useScroll` 构建，当用户滚动接近可滚动容器边缘时自动触发回调。传入一个目标元素 ref、一个加载更多函数和可选配置（滚动方向、距离阈值、节流）。加载更多回调接收当前滚动状态，便于你决定是否获取更多数据。该 hook 还支持在前置内容时保留滚动位置。
+
+### 使用场景
+
+- 构建在用户滚动时加载更多项目的信息流、时间线或产品列表
+- 实现滚动到顶部时加载更早消息的聊天界面
+- 创建按需获取额外内容的水平滚动画廊
+
+### 注意事项
+
+- **SSR 安全**：该 hook 在服务端渲染期间为空操作。服务端不会附加滚动监听器。
+- **方向**：默认在 `bottom` 边缘触发。使用 `direction` 选项在 `top`、`left` 或 `right` 边缘触发，用于反向或水平滚动。
+- **相关 hooks**：基于 `useScroll` 构建，后者提供底层的滚动位置、方向和到达状态跟踪。
 
 ## Usage
 

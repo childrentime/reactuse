@@ -1,12 +1,25 @@
 ---
 title: useDebounceFn – Effect Hook Usage & Examples
 sidebar_label: useDebounceFn
-description: React hooks that [debounce](https://lodash.com/docs/4.17.15#debounce) function. Learn usage patterns, best practices, and code examples for React developers.
+description: React hooks that [debounce](https://lodash.com/docs/4.17.15#debounce) function.
 ---
 # useDebounceFn
 
 React hooks that [debounce](https://lodash.com/docs/4.17.15#debounce) function
 
+`useDebounceFn` wraps a function with debounce behavior powered by `lodash.debounce`. It returns an object with `run`, `cancel`, and `flush` methods, giving you full control over the debounced execution. The debounced function delays invoking your callback until after the specified wait time has elapsed since the last call.
+
+### When to Use
+
+- Debouncing search input so API requests are only sent after the user stops typing
+- Limiting the rate of expensive computations triggered by rapidly changing values (e.g., window resize calculations)
+- Delaying form validation until the user pauses input
+
+### Notes
+
+- **Lodash options**: The third parameter accepts `lodash.debounce` options such as `leading`, `trailing`, and `maxWait` for fine-tuned control.
+- **Cleanup**: Call `cancel()` to discard any pending debounced invocation, or `flush()` to execute it immediately.
+- See also `useThrottleFn` for rate-limiting that guarantees execution at regular intervals rather than waiting for inactivity.
 
 ## Usage
 

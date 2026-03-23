@@ -1,11 +1,25 @@
 ---
 title: usePermission 用法與示例
 sidebar_label: usePermission
-description: 瀏覽器權限查詢。 本文介紹其用法、最佳實踐與代碼示例。
+description: 瀏覽器權限查詢。
 ---
 # usePermission
 
 瀏覽器權限查詢
+
+`usePermission` 使用 [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API) 查詢特定瀏覽器功能的權限狀態（如 `"clipboard-read"`、`"geolocation"`、`"notifications"` 等）。它回傳一個字串，值為 `"granted"`、`"denied"`、`"prompt"` 或空字串，並且在使用者更改權限時即時更新。
+
+### 使用場景
+
+- 在請求存取之前檢查功能權限狀態以提供適當的 UI
+- 根據權限狀態有條件地顯示或停用功能
+- 監控權限變更以在使用者撤銷存取時做出反應
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳空字串（`""`）。伺服器上不會存取 `navigator.permissions`。
+- **響應式**：此 hook 訂閱權限的 `change` 事件，因此如果使用者透過瀏覽器設定撤銷或授予權限，回傳的狀態會即時更新。
+- **相關 hooks**：常與 `useClipboard`、`useGeolocation`、`useMediaDevices` 和 `useWebNotification` 一起使用，以在使用前檢查各自的權限。
 
 ## Usage
 

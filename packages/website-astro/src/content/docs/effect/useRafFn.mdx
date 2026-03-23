@@ -9,6 +9,19 @@ description: >-
 
 Call function on every [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame). With controls of pausing and resuming
 
+`useRafFn` schedules a callback to run on every `requestAnimationFrame` tick, providing a high-resolution timestamp to the callback on each frame. It returns a tuple of `[stop, start, isActive]` for full imperative control over the animation loop. The callback reference is kept up-to-date via `useLatest`, so you always access the latest closure values without restarting the loop.
+
+### When to Use
+
+- Building smooth animations that need to update on every browser paint frame (e.g., canvas drawing, CSS transforms)
+- Implementing real-time visualizations like FPS counters, progress indicators, or physics simulations
+- Running continuous visual updates that should pause and resume based on user interaction or visibility
+
+### Notes
+
+- **Auto-start**: By default the loop starts immediately on mount. Pass `false` as the second argument to start in a paused state.
+- **Cleanup**: The animation frame is automatically cancelled on unmount via the effect cleanup.
+- See also `useInterval` for fixed-interval timing and `useUpdate` for triggering a single re-render on demand.
 
 ## Usage
 

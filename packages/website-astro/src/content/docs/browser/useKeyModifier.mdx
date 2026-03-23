@@ -9,6 +9,19 @@ description: >-
 
 React Sensor Hook that tracks state of any of the [supported modifiers](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#browser_compatibility) - see Browser Compatibility notes
 
+`useKeyModifier` uses [`KeyboardEvent.getModifierState()`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState) to reactively track whether a specific modifier key (Shift, Control, Alt, CapsLock, Meta, etc.) is currently pressed. It returns a boolean that updates on `keydown`, `keyup`, `mousedown`, and `mouseup` events. You can customize which events trigger updates and set an initial value.
+
+### When to Use
+
+- Building keyboard shortcut indicators that visually highlight when modifier keys are held
+- Showing different tooltips or cursor styles based on active modifier keys
+- Implementing modifier-aware interactions (e.g., Ctrl+Click for multi-select)
+
+### Notes
+
+- **SSR-safe**: Returns the `initial` value (default: `false`) during server-side rendering. No event listeners are attached on the server.
+- **Supported modifiers**: Supports `Alt`, `AltGraph`, `CapsLock`, `Control`, `Fn`, `FnLock`, `Meta`, `NumLock`, `ScrollLock`, `Shift`, `Symbol`, and `SymbolLock`. Not all modifiers are available in all browsers -- see [MDN compatibility](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#browser_compatibility).
+- **Event customization**: The default events (`mousedown`, `mouseup`, `keydown`, `keyup`) can be overridden via the `events` option.
 
 ## Usage
 

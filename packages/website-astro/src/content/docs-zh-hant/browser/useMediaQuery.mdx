@@ -1,11 +1,25 @@
 ---
 title: useMediaQuery 用法與示例
 sidebar_label: useMediaQuery
-description: 輕鬆使用媒體查詢。 本文介紹其用法、最佳實踐與代碼示例。
+description: 輕鬆使用媒體查詢。
 ---
 # useMediaQuery
 
 輕鬆使用媒體查詢
+
+`useMediaQuery` 訂閱一個 [CSS 媒體查詢](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries)字串，並回傳一個布林值指示查詢當前是否匹配。此值在使用者調整視窗大小、更改系統設定或切換裝置方向時即時更新。
+
+### 使用場景
+
+- 根據斷點有條件地渲染元件或佈局（例如行動端與桌面端 UI）
+- 偵測系統偏好設定如 `prefers-color-scheme` 或 `prefers-reduced-motion`
+- 建構響應式元件，根據視窗特性調整行為
+
+### 注意事項
+
+- **SSR 安全**：接受一個 `defaultState` 參數（預設：`false`），在 `window.matchMedia` 不可用的伺服器端渲染時回傳。
+- **任何有效的媒體查詢**：適用於任何 CSS 媒體查詢字串，包括 `prefers-color-scheme`、`prefers-reduced-motion`、`orientation` 和自訂斷點。
+- **相關 hooks**：多個專門的 hooks 基於 `useMediaQuery` 建構，包括 `usePreferredDark`、`usePreferredColorScheme`、`usePreferredContrast`、`useReducedMotion` 和 `useMobileLandscape`。
 
 ## Usage
 

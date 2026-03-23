@@ -1,12 +1,25 @@
 ---
 title: useScroll – Browser Hook Usage & Examples
 sidebar_label: useScroll
-description: React Sensor Hook that tracks scroll position and stat. Learn usage patterns, best practices, and code examples for React developers.
+description: React Sensor Hook that tracks scroll position and stat.
 ---
 # useScroll
 
-React Sensor Hook that tracks scroll position and stat
+React Sensor Hook that tracks scroll position and state
 
+`useScroll` reactively tracks the scroll position and state of a target element (or `window`/`document`). It returns a tuple of `x` position, `y` position, `isScrolling` boolean, an `arrivedState` object (`{ top, bottom, left, right }` booleans indicating edge arrival), and a `directions` object indicating the current scroll direction. The hook supports throttling, offset configuration, and callbacks for scroll and scroll-end events.
+
+### When to Use
+
+- Implementing scroll-dependent UI such as sticky headers, scroll progress bars, or "back to top" buttons
+- Detecting when the user has scrolled to the top or bottom of a container (e.g., for loading more content)
+- Tracking scroll direction to show or hide navigation elements
+
+### Notes
+
+- **SSR-safe**: Returns `0` for positions, `false` for `isScrolling`, and default arrived/direction states during server-side rendering. No scroll listeners are attached on the server.
+- **Throttling**: Use the `throttle` option to limit how often the scroll handler fires, improving performance for complex scroll-based UI updates.
+- **Related hooks**: See also `useInfiniteScroll` for automatic load-more triggers, `useScrollLock` for disabling scroll, and `useScrollIntoView` for programmatic scrolling.
 
 ## Usage
 

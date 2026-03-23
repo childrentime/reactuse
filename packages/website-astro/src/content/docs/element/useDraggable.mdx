@@ -1,11 +1,26 @@
 ---
 title: useDraggable – Element Hook Usage & Examples
 sidebar_label: useDraggable
-description: Make elements draggable. Learn usage patterns, best practices, and code examples for React developers.
+description: Make elements draggable.
 ---
 # useDraggable
 
 Make elements draggable
+
+`useDraggable` makes any HTML or SVG element draggable by tracking pointer events and returning the current `x` and `y` position, a boolean indicating whether the element is being dragged, and a function to programmatically set the position. It supports pointer, mouse, touch, and pen inputs, and can optionally constrain movement within a container element.
+
+### When to Use
+
+- Building draggable panels, floating toolbars, or resizable widgets
+- Implementing drag-to-reposition functionality for dashboard cards or kanban items
+- Creating interactive diagrams or editors where elements need free movement
+
+### Notes
+
+- **Touch support**: Set `touch-action: none` on the draggable element's CSS to prevent browser scroll interference on touch devices.
+- **Container bounds**: Use the `containerElement` option to restrict dragging within a parent element. The hook will calculate bounds automatically.
+- **Callbacks**: The `onStart`, `onMove`, and `onEnd` callbacks give you fine-grained control. Returning `false` from `onStart` prevents the drag from beginning.
+- **Cleanup**: All pointer event listeners are removed automatically on unmount.
 
 ## Usage
 

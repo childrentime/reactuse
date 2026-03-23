@@ -1,11 +1,25 @@
 ---
 title: useCounter 用法与示例
 sidebar_label: useCounter
-description: 跟踪数值的 React hook。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪数值的 React hook。
 ---
 # useCounter
 
 跟踪数值的 React hook。
+
+`useCounter` 管理一个整数计数器，内置 `inc`、`dec`、`set` 和 `reset` 函数。它返回一个 `[current, set, inc, dec, reset]` 元组。你可以选择指定 `max` 和 `min` 边界；计数器将被钳制在这些限制内。初始值默认为 `0`，可以是数字或返回数字的函数。
+
+### 使用场景
+
+- 实现数量选择器、分页控件或步进器输入
+- 跟踪带有强制最小/最大边界的分数、投票或项目计数
+- 任何受益于专用递增、递减和重置操作的数值状态
+
+### 注意事项
+
+- **有界值**：当提供 `max` 或 `min` 时，每次操作后计数器都会被钳制。设置超出边界的值将被静默调整。
+- **SSR 安全**：内部仅使用 React 状态，无浏览器 API 依赖。
+- 参见 `useCycleList` 了解在固定列表项目之间循环而非开放的数值范围。
 
 ## Usage
 

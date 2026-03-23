@@ -2,13 +2,26 @@
 title: useUpdateEffect – Effect Hook Usage & Examples
 sidebar_label: useUpdateEffect
 description: >-
-  React effect hook that ignores the first invocation (e.g. on mount). The signature is exactly the same as the `useEffect` hook. Learn usage patterns, best
+  React effect hook that ignores the first invocation (e.g. on mount). The signature is exactly the same as the `useEffect` hook.
   pract
 ---
 # useUpdateEffect
 
 React effect hook that ignores the first invocation (e.g. on mount). The signature is exactly the same as the `useEffect` hook
 
+`useUpdateEffect` works identically to `useEffect` except that it skips the initial execution on mount. The effect only fires on subsequent dependency changes, making it useful when you want to react to updates but not to the initial render. It uses `useFirstMountState` internally to detect and skip the first invocation.
+
+### When to Use
+
+- Running a side effect only when a value changes after the initial render (e.g., syncing a form field to an API only on updates, not on mount)
+- Showing a "value changed" notification without triggering it when the component first appears
+- Skipping initial data fetches when the component already has default or cached data
+
+### Notes
+
+- **Same signature**: Accepts an effect callback and optional dependency array, identical to `useEffect`. Supports cleanup functions via the return value.
+- **First-mount detection**: Uses `useFirstMountState` internally, which tracks mount status via a ref.
+- See also `useUpdateLayoutEffect` for the same skip-first-run behavior using `useLayoutEffect` timing, and `useDeepCompareEffect` for deep dependency comparison.
 
 ## Usage
 

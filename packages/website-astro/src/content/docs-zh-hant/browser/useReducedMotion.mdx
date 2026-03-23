@@ -1,11 +1,25 @@
 ---
 title: useReducedMotion 用法與示例
 sidebar_label: useReducedMotion
-description: 跟蹤用戶動畫偏好。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤用戶動畫偏好。
 ---
 # useReducedMotion
 
 跟蹤用戶動畫偏好。
+
+`useReducedMotion` 使用 `prefers-reduced-motion` 媒體查詢偵測使用者是否在系統設定中請求減少動畫效果。它回傳一個布林值，在使用者偏好減少動畫時為 `true`。此 hook 對建構尊重使用者無障礙偏好的應用程式至關重要。
+
+### 使用場景
+
+- 在使用者偏好減少動畫時停用或簡化過渡效果和動畫
+- 為前庭障礙使用者提供更靜態的替代內容
+- 根據使用者偏好有條件地載入輕量級動畫庫
+
+### 注意事項
+
+- **SSR 安全**：接受一個 `defaultState` 參數（預設：`false`），在 `window.matchMedia` 不可用的伺服器端渲染時回傳。
+- **無障礙**：尊重 `prefers-reduced-motion` 偏好是重要的無障礙實踐。請考慮停用自動播放動畫並減少過渡時長。
+- **相關 hooks**：基於 `useMediaQuery` 建構。另請參閱 `usePreferredContrast` 和 `usePreferredColorScheme` 用於其他無障礙相關的偏好 hooks。
 
 ## Usage
 

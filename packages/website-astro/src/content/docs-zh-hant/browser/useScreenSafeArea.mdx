@@ -1,11 +1,25 @@
 ---
 title: useScreenSafeArea 用法與示例
 sidebar_label: useScreenSafeArea
-description: 跟蹤 `env(safe-area-inset-*)` 值。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤 `env(safe-area-inset-*)` 值。
 ---
 # useScreenSafeArea
 
 跟蹤 `env(safe-area-inset-*)` 值
+
+`useScreenSafeArea` 回傳裝置螢幕安全區域的內縮值（上、右、下、左），使用 CSS `env()` 函式讀取 `safe-area-inset-*` 值。這對於帶有瀏海或圓角的行動裝置特別有用，可確保內容不會被遮擋。
+
+### 使用場景
+
+- 在帶有瀏海或動態島的裝置上調整佈局以避免內容被遮擋
+- 確保固定位置元素（如底部導覽列）不被裝置邊框遮蓋
+- 為 PWA 或全螢幕 Web 應用程式提供適當的內距
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時所有內縮值回傳 `"0px"`。伺服器上不會進行 DOM 或 CSS 計算。
+- **CSS `env()` 函式**：需要頁面包含 `<meta name="viewport" content="viewport-fit=cover">` 才能使安全區域內縮值不為零。
+- **相關 hooks**：另請參閱 `usePlatform` 偵測裝置平台，以及 `useMobileLandscape` 偵測方向。
 
 ## Usage
 

@@ -1,12 +1,25 @@
 ---
 title: useMediaDevices – Browser Hook Usage & Examples
 sidebar_label: useMediaDevices
-description: React sensor hook that tracks connected hardware devices. Learn usage patterns, best practices, and code examples for React developers.
+description: React sensor hook that tracks connected hardware devices.
 ---
 # useMediaDevices
 
 React sensor hook that tracks connected hardware devices
 
+`useMediaDevices` wraps the [MediaDevices API](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices) to enumerate available media input/output devices (cameras, microphones, speakers). It returns a tuple of the device list and a function to request permissions. Each device entry includes `deviceId`, `groupId`, `kind` (audioinput, audiooutput, videoinput), and `label`. The hook can automatically request permissions on mount or let you trigger them manually.
+
+### When to Use
+
+- Building video/audio conferencing apps that let users choose their preferred camera or microphone
+- Displaying a list of available input/output devices for media settings
+- Detecting when new media devices are connected or disconnected
+
+### Notes
+
+- **SSR-safe**: Returns an empty device list and a no-op permission function during server-side rendering. No `navigator.mediaDevices` access occurs on the server.
+- **Permissions**: Device labels and IDs may be empty until the user grants media permissions. Set `requestPermissions: true` to automatically prompt, or call the returned permission function manually.
+- **Related hooks**: Use alongside `usePermission` with `"camera"` or `"microphone"` to check permission status without triggering a prompt.
 
 ## Usage
 

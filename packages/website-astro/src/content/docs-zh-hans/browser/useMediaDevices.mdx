@@ -1,11 +1,25 @@
 ---
 title: useMediaDevices 用法与示例
 sidebar_label: useMediaDevices
-description: 轻松跟踪已连接的硬件设备。 本文介绍其用法、最佳实践与代码示例。
+description: 轻松跟踪已连接的硬件设备。
 ---
 # useMediaDevices
 
 轻松跟踪已连接的硬件设备。
+
+`useMediaDevices` 封装了 [MediaDevices API](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices)，用于枚举可用的媒体输入/输出设备（摄像头、麦克风、扬声器）。它返回一个包含设备列表和请求权限函数的元组。每个设备条目包含 `deviceId`、`groupId`、`kind`（audioinput、audiooutput、videoinput）和 `label`。该 hook 可以在挂载时自动请求权限，也可以让你手动触发。
+
+### 使用场景
+
+- 构建让用户选择首选摄像头或麦克风的视频/音频会议应用
+- 显示可用输入/输出设备列表用于媒体设置
+- 检测新媒体设备的连接或断开
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回空设备列表和空操作权限函数。服务端不会访问 `navigator.mediaDevices`。
+- **权限**：设备标签和 ID 在用户授予媒体权限之前可能为空。设置 `requestPermissions: true` 自动提示，或手动调用返回的权限函数。
+- **相关 hooks**：配合 `usePermission`（使用 `"camera"` 或 `"microphone"`）检查权限状态而不触发提示。
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useMediaDevices 用法與示例
 sidebar_label: useMediaDevices
-description: 輕鬆跟蹤已連接的硬體設備。 本文介紹其用法、最佳實踐與代碼示例。
+description: 輕鬆跟蹤已連接的硬體設備。
 ---
 # useMediaDevices
 
 輕鬆跟蹤已連接的硬體設備。
+
+`useMediaDevices` 使用 [`navigator.mediaDevices.enumerateDevices()`](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices) 列舉可用的媒體輸入和輸出裝置（攝影機、麥克風、揚聲器）。它回傳裝置清單、一個請求權限的函式、裝置的更新時間戳和支援旗標。當裝置連接或斷開時，清單會自動更新。
+
+### 使用場景
+
+- 建構可讓使用者在視訊通話中選擇攝影機或麥克風的裝置選擇器
+- 偵測可用的音訊/視訊裝置以顯示適當的 UI 選項
+- 監控裝置變更（例如，當使用者插入 USB 網路攝影機時更新裝置清單）
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳空的裝置清單和空操作權限函式。伺服器上不會存取 `navigator.mediaDevices`。
+- **權限**：在使用者授予媒體權限之前，裝置標籤和 ID 可能為空。設定 `requestPermissions: true` 以自動提示，或手動呼叫回傳的權限函式。
+- **相關 hooks**：搭配 `usePermission` 使用 `"camera"` 或 `"microphone"` 以在不觸發提示的情況下檢查權限狀態。
 
 ## Usage
 

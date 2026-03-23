@@ -1,12 +1,25 @@
 ---
 title: useCounter – State Hook Usage & Examples
 sidebar_label: useCounter
-description: React state hook that tracks a numeric value. Learn usage patterns, best practices, and code examples for React developers.
+description: React state hook that tracks a numeric value.
 ---
 # useCounter
 
 React state hook that tracks a numeric value
 
+`useCounter` manages an integer counter with built-in `inc`, `dec`, `set`, and `reset` functions. It returns a tuple of `[current, set, inc, dec, reset]`. You can optionally specify `max` and `min` bounds; the counter will be clamped to stay within those limits. The initial value defaults to `0` and can be a number or a function returning a number.
+
+### When to Use
+
+- Implementing quantity selectors, pagination controls, or stepper inputs
+- Tracking scores, votes, or item counts with enforced minimum/maximum boundaries
+- Any numeric state that benefits from dedicated increment, decrement, and reset actions
+
+### Notes
+
+- **Bounded values**: When `max` or `min` is provided, the counter is clamped after every operation. Setting a value outside the bounds will be silently adjusted.
+- **SSR-safe**: Uses only React state internally with no browser API dependencies.
+- See also `useCycleList` for cycling through a fixed list of items rather than an open numeric range.
 
 ## Usage
 

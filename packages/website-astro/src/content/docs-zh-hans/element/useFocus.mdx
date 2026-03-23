@@ -1,11 +1,25 @@
 ---
 title: useFocus 用法与示例
 sidebar_label: useFocus
-description: 跟踪元素焦点状态的 React Hook。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪元素焦点状态的 React Hook。
 ---
 # useFocus
 
 跟踪元素焦点状态的 React Hook
+
+`useFocus` 跟踪和控制特定 DOM 元素的焦点状态。它返回一个 `[isFocused, setFocused]` 元组——表示元素当前是否获得焦点的布尔值和程序化聚焦或失焦的函数。你可以选择传入 `true` 作为第二个参数在挂载时自动聚焦元素。
+
+### 使用场景
+
+- 构建需要跟踪和程序化控制焦点的无障碍表单组件
+- 在模态对话框、向导或多步骤表单中实现焦点管理
+- 创建响应焦点状态变化的焦点指示器或视觉反馈
+
+### 注意事项
+
+- **双向绑定**：返回的设置函数在底层调用 `element.focus()` 或 `element.blur()`，因此 DOM 和 React 状态保持同步。
+- **初始焦点**：传入 `true` 作为 `initialValue` 参数可在挂载后立即聚焦元素。
+- 参见 `useActiveElement` 了解在整个文档中全局跟踪哪个元素获得焦点。
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useMousePressed 用法与示例
 sidebar_label: useMousePressed
-description: 跟踪鼠标按下状态。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪鼠标按下状态。
 ---
 # useMousePressed
 
 跟踪鼠标按下状态
+
+`useMousePressed` 返回一个包含鼠标（或触摸）当前是否被按下的布尔值和来源类型字符串（`"mouse"`、`"touch"` 或 `null`）的元组。它监听目标元素上的 `mousedown`/`touchstart`/`dragstart` 事件，并在 `window` 上的 `mouseup`/`mouseleave`/`touchend`/`touchcancel`/`dragend`/`drop` 事件时释放。你可以配置监听哪些输入类型（触摸、拖拽）。
+
+### 使用场景
+
+- 实现按住时的视觉反馈（例如按钮涟漪效果或缩放动画）
+- 构建需要知道用户是否正在按下的绘图或绘画工具
+- 检测整个页面中是否正在进行拖拽操作
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间按下状态返回 `false`，来源类型返回 `null`。服务端不会附加事件监听器。
+- **输入来源**：默认跟踪鼠标、触摸和拖拽事件。通过 `touch` 和 `drag` 选项禁用触摸或拖拽跟踪。
+- **相关 hooks**：参见 `useMouse` 了解光标位置跟踪，以及 `useLongPress` 了解长按手势检测。
 
 ## Usage
 

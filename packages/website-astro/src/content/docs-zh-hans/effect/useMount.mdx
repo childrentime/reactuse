@@ -1,11 +1,25 @@
 ---
 title: useMount 用法与示例
 sidebar_label: useMount
-description: 组件挂载后执行一次副作用的 React Hook。 本文介绍其用法、最佳实践与代码示例。
+description: 组件挂载后执行一次副作用的 React Hook。
 ---
 # useMount
 
 组件挂载后执行一次副作用的 React Hook
+
+`useMount` 在组件挂载后恰好运行一次回调，等同于 `useEffect(() => { ... }, [])`。它提供了一种语义清晰的方式来表达仅在挂载时执行的逻辑，无需手动指定空依赖数组。回调不接收参数，也不支持基于返回值的清理函数。
+
+### 使用场景
+
+- 运行一次性初始化逻辑，如分析跟踪、日志记录或第三方 SDK 设置
+- 在组件首次渲染后立即执行 DOM 测量或命令式聚焦调用
+- 用简洁的 hook 替代类组件的 `componentDidMount` 行为
+
+### 注意事项
+
+- **无清理**：`useMount` 不支持清理返回值。如果需要卸载清理，请配合 `useUnmount` 使用或直接使用 `useEffect`。
+- **开发验证**：在开发模式下，如果提供的参数不是函数，将记录控制台错误。
+- 参见 `useUnmount` 了解对应的卸载生命周期，以及 `useOnceEffect` 了解需要 React 18 严格模式双重调用保护的场景。
 
 ## Usage
 

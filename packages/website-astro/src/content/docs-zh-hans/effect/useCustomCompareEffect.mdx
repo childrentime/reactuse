@@ -1,12 +1,26 @@
 ---
 title: useCustomCompareEffect 用法与示例
 sidebar_label: useCustomCompareEffect
-description: 修改后的 useEffect，它接受一个比较函数，用于比较依赖项而不是引用相等性。 本文介绍其用法、最佳实践与代码示例。
+description: 修改后的 useEffect，它接受一个比较函数，用于比较依赖项而不是引用相等性。
 ---
 # useCustomCompareEffect
 
 修改后的 useEffect，它接受一个比较函数，用于比较依赖项而不是引用相等性
 
+
+`useCustomCompareEffect` 通过让你提供自定义比较函数来完全控制 effect 何时重新运行。代替 React 默认的引用相等检查，只有当你的比较器返回 `false` 时 effect 才会触发。这在依赖项是结构上等价但跨渲染引用不同的对象或数组时非常有用。
+
+### 使用场景
+
+- 仅当依赖对象的特定属性变化时运行 effect（例如 `id` 字段），忽略其他属性变化
+- 与每次读取都产生新对象引用但很少发生有意义变化的外部数据源集成
+- 当 `useDeepCompareEffect` 过于宽泛时，需要精细的比较逻辑
+
+### 注意事项
+
+- **比较器签名**：比较器接收 `(prevDeps, nextDeps)`，如果认为相等（跳过 effect）应返回 `true`，否则返回 `false` 重新运行。
+- **返回值**：与标准 `useEffect` 相同方式支持清理函数。
+- 参见 `useDeepCompareEffect` 了解不需要自定义比较器的自动深度相等比较。
 
 ## Usage
 

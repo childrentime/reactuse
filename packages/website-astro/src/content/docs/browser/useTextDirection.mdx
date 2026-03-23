@@ -2,13 +2,26 @@
 title: useTextDirection – Browser Hook Usage & Examples
 sidebar_label: useTextDirection
 description: >-
-  change [dir](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) of the element's text. Learn usage patterns, best practices, and code
+  change [dir](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) of the element's text. practices, and code
   exam
 ---
 # useTextDirection
 
 change [dir](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) of the element's text
 
+`useTextDirection` reads and updates the [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) attribute on a target element (default: `<html>`), controlling the text direction. It returns a tuple of the current direction value (`"ltr"`, `"rtl"`, or `"auto"`) and a setter function. This is essential for building internationalized applications that support right-to-left languages like Arabic, Hebrew, and Persian.
+
+### When to Use
+
+- Supporting bidirectional (BiDi) content in multilingual applications
+- Building language switchers that toggle between LTR and RTL layouts
+- Dynamically adjusting text direction based on user input or content language
+
+### Notes
+
+- **SSR-safe**: Returns the `initialValue` (default: `"ltr"`) and a no-op setter during server-side rendering. No `document` access occurs on the server.
+- **Target selector**: By default, the hook sets `dir` on the `<html>` element. Use the `selector` option to target a specific element for scoped direction changes.
+- **Related hooks**: See also `usePreferredLanguages` for detecting the user's language preferences, which can inform the text direction choice.
 
 ## Usage
 

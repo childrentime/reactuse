@@ -2,12 +2,26 @@
 title: useWindowScroll – Element Hook Usage & Examples
 sidebar_label: useWindowScroll
 description: >-
-  useWindowScroll is a React Hook that is used to get the scroll position of the browser window. Learn usage patterns, best practices, and code examples for
+  useWindowScroll is a React Hook that is used to get the scroll position of the browser window. for
   React
 ---
 # useWindowScroll
 
 useWindowScroll is a React Hook that is used to get the scroll position of the browser window
+
+`useWindowScroll` returns the current horizontal (`x`) and vertical (`y`) scroll position of the browser window as a reactive state object. It listens to the `scroll` event on the window and updates the values whenever the user scrolls. This provides a simple way to access `window.scrollX` and `window.scrollY` as React state.
+
+### When to Use
+
+- Building scroll-progress indicators or reading-position trackers
+- Implementing parallax scrolling effects or scroll-linked animations
+- Showing or hiding UI elements (e.g., "back to top" buttons) based on the current scroll position
+
+### Notes
+
+- **SSR-safe**: Returns `{ x: 0, y: 0 }` during server-side rendering since `window` is not available.
+- **Performance**: The hook listens to the window `scroll` event. For high-frequency scroll tracking, consider combining with `requestAnimationFrame` or throttling in your consuming component.
+- See also `useSticky` for detecting when an element should become sticky, and `useWindowSize` for tracking viewport dimensions.
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useTimeoutFn 用法与示例
 sidebar_label: useTimeoutFn
-description: 可取消的 `setTimeout`。 本文介绍其用法、最佳实践与代码示例。
+description: 可取消的 `setTimeout`。
 ---
 # useTimeoutFn
 
 可取消的 `setTimeout`
+
+`useTimeoutFn` 以 React 友好的 API 封装 `setTimeout`，在指定延迟后执行回调。它返回一个 `[isPending, start, cancel]` 元组，用于完全控制超时生命周期。回调引用保持最新，因此定时器触发时你始终执行最新的闭包值。
+
+### 使用场景
+
+- 在用户操作后延迟副作用（例如显示工具提示、触发重定向）固定时间
+- 实现带有尝试间延迟的重试逻辑
+- 将昂贵操作延迟到短暂暂停后运行（例如过渡后的懒加载内容）
+
+### 注意事项
+
+- **默认立即**：定时器在挂载时启动，除非传入 `{ immediate: false }`，此时需要手动调用 `start()`。
+- **可重启**：调用 `start()` 取消任何正在进行的超时并启动新的。调用 `cancel()` 停止待处理的超时。
+- 参见 `useTimeout` 了解更简单的布尔状态变体，以及 `useDebounceFn` 了解延迟执行直到输入活动停止。
 
 ## Usage
 

@@ -9,6 +9,19 @@ description: >-
 
 Creates an URL for the provided `File`, `Blob`, or `MediaSource` via [URL.createObjectURL()](https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL) and automatically releases the URL via [URL.revokeObjectURL()](https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL) when the source changes or the component is unmounted
 
+`useObjectUrl` manages the lifecycle of object URLs created from `Blob`, `File`, or `MediaSource` objects. It calls [`URL.createObjectURL()`](https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL) when the source is provided and automatically revokes the URL with [`URL.revokeObjectURL()`](https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL) when the source changes or the component unmounts, preventing memory leaks.
+
+### When to Use
+
+- Previewing user-selected files (images, videos, PDFs) before upload
+- Displaying Blob data from API responses as downloadable links or embedded media
+- Creating temporary URLs for dynamically generated content (e.g., canvas exports)
+
+### Notes
+
+- **SSR-safe**: Returns `undefined` during server-side rendering. No `URL` API access occurs on the server.
+- **Memory management**: The hook automatically revokes old object URLs when the source changes or on unmount, preventing the memory leaks that commonly occur with manual `createObjectURL` usage.
+- **Related hooks**: See also `useFileDialog` for selecting files from the user's device.
 
 ## Usage
 

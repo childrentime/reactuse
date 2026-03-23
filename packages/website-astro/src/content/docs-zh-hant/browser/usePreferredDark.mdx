@@ -1,11 +1,25 @@
 ---
 title: usePreferredDark 用法與示例
 sidebar_label: usePreferredDark
-description: 跟蹤是否偏好黑色主題。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤是否偏好黑色主題。
 ---
 # usePreferredDark
 
 跟蹤是否偏好黑色主題
+
+`usePreferredDark` 使用 `prefers-color-scheme: dark` 媒體查詢偵測使用者是否偏好深色模式。它回傳一個布林值，在系統偏好為深色模式時為 `true`，並在使用者更改偏好時即時更新。
+
+### 使用場景
+
+- 快速檢查使用者是否偏好深色模式以調整預設主題
+- 根據系統偏好有條件地載入深色或淺色樣式
+- 建構在系統偏好變更時自動回應的主題邏輯
+
+### 注意事項
+
+- **SSR 安全**：接受一個 `defaultState` 參數（預設：`false`），在 `window.matchMedia` 不可用的伺服器端渲染時回傳。
+- **響應式**：當使用者更改系統深色模式偏好時立即更新。
+- **相關 hooks**：另請參閱 `usePreferredColorScheme` 獲取 `"dark"`/`"light"`/`"no-preference"` 字串值，`useDarkMode` 用於帶 localStorage 持久化的切換，以及 `useColorMode` 用於多主題支援。
 
 ## Usage
 

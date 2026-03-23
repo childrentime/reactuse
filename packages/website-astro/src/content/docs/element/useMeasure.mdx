@@ -2,13 +2,26 @@
 title: useMeasure – Element Hook Usage & Examples
 sidebar_label: useMeasure
 description: >-
-  React sensor hook that tracks dimensions of an HTML element using the Resize Observer API. Learn usage patterns, best practices, and code examples for React
+  React sensor hook that tracks dimensions of an HTML element using the Resize Observer API. for React
   dev
 ---
 # useMeasure
 
 React sensor hook that tracks dimensions of an HTML element using the Resize Observer API
 
+`useMeasure` tracks the full dimensions of a DOM element using the [ResizeObserver API](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver). It returns a tuple of `[rect, stop]` where `rect` is a `DOMRect`-like object containing `x`, `y`, `width`, `height`, `top`, `right`, `bottom`, and `left`, and `stop` is a function to disconnect the observer. Pass a ref to the element and optional `ResizeObserverOptions`.
+
+### When to Use
+
+- Measuring element dimensions for layout calculations that need full bounding-box data
+- Building responsive containers that adjust internal layout based on their own size
+- Tracking size changes in dynamically resizable components like text editors or split panes
+
+### Notes
+
+- **SSR-safe**: Returns zeroed-out rect values during server-side rendering. Observation begins after mount.
+- **Stoppable**: Call the returned `stop` function to disconnect the ResizeObserver when measurement is no longer needed.
+- See also `useElementSize` for a simpler `[width, height]` tuple, `useElementBounding` for position-aware measurements via `getBoundingClientRect`, and `useResizeObserver` for direct access to the raw ResizeObserver callback.
 
 ## Usage
 

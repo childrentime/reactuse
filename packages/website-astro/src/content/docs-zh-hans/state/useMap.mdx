@@ -1,11 +1,25 @@
 ---
 title: useMap 用法与示例
 sidebar_label: useMap
-description: 管理 Map 的 React hook。本文介绍其用法、最佳实践与代码示例。适用于 React 开发中需要管理键值对数据的场景。
+description: 管理 Map 的 React hook。
 ---
 # useMap
 
 管理 Map 的 React hook。
+
+`useMap` 将 JavaScript `Map` 封装在 React 状态中，暴露丰富的方法集：`set`、`get`、`remove`、`has`、`clear` 和 `reset`，以及当前的 `map` 实例和 `size`。通过这些方法的修改会自动触发重新渲染。初始值可以是 `Map` 实例、键值对数组或工厂函数。
+
+### 使用场景
+
+- 管理频繁变化的键值集合（例如选中项、标签映射、查找表）
+- 构建在运行时添加和删除条目的动态表单或配置编辑器
+- 任何需要 `Map` 语义（有序键、非字符串键）并带有响应式状态更新的场景
+
+### 注意事项
+
+- **不可变更新**：每次修改在内部创建一个新的 `Map` 实例，以便 React 检测到状态变化并重新渲染。
+- **重置支持**：`reset` 函数将映射恢复到初始值，适用于"撤销"或"清除筛选"操作。
+- **SSR 安全**：内部仅使用 React 状态，无浏览器 API 依赖。
 
 ## Usage
 

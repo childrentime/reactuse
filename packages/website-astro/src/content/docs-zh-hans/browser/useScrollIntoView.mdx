@@ -1,11 +1,25 @@
 ---
 title: useScrollIntoView 用法与示例
 sidebar_label: useScrollIntoView
-description: 类似于 `element.scrollIntoView()` 的 React Hook。 本文介绍其用法、最佳实践与代码示例。
+description: 类似于 `element.scrollIntoView()` 的 React Hook。
 ---
 # useScrollIntoView
 
 类似于 `element.scrollIntoView()` 的 React Hook
+
+`useScrollIntoView` 提供类似 [`Element.scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) 的平滑动画滚动到目标元素的功能，但有更多控制。它返回一个包含 `scrollIntoView`（接受对齐选项如 `"start"`、`"end"`、`"center"`）和 `cancel` 函数的对象。你可以配置滚动轴、持续时间、缓动函数、偏移量以及用户是否可以通过滚动来中断动画。
+
+### 使用场景
+
+- 通过平滑、可自定义的动画滚动到锚点部分（例如目录导航）
+- 在验证后聚焦到新添加的内容、错误消息或表单字段
+- 构建可滚动列表，选择项目时将其滚动到可见区域
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回空操作函数。服务端不会进行 DOM 滚动。
+- **可取消**：设置 `cancelable: true`（默认）允许用户通过手动滚动来中断滚动动画。设置 `isList: true` 防止列表中的内容跳动。
+- **相关 hooks**：参见 `useScroll` 了解跟踪滚动位置和状态，以及 `useScrollLock` 了解完全阻止滚动。
 
 ## Usage
 

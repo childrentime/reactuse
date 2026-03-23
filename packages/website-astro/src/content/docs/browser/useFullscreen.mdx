@@ -1,12 +1,25 @@
 ---
 title: useFullscreen – Browser Hook Usage & Examples
 sidebar_label: useFullscreen
-description: Display an element full-screen. Learn usage patterns, best practices, and code examples for React developers.
+description: Display an element full-screen.
 ---
 # useFullscreen
 
 Display an element full-screen
 
+`useFullscreen` wraps the [Fullscreen API](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API) to manage entering and exiting fullscreen mode for a given DOM element. It returns a tuple of the current fullscreen state (boolean) and an actions object with `enterFullscreen`, `exitFullscreen`, `toggleFullscreen`, and an `isEnabled` flag indicating browser support. Callbacks for enter/exit events are available via options.
+
+### When to Use
+
+- Building video players, image galleries, or presentation modes that benefit from fullscreen display
+- Creating immersive reading or gaming experiences that use the entire screen
+- Adding a fullscreen toggle to data dashboards or visualization tools
+
+### Notes
+
+- **SSR-safe**: Returns `false` for fullscreen state and `isEnabled` during server-side rendering. No `document` access occurs on the server.
+- **Browser support**: The Fullscreen API is supported in all modern browsers. Check `isEnabled` to confirm support before showing fullscreen controls.
+- **User gesture**: Browsers require a user-initiated event (e.g., a click) to enter fullscreen. Programmatic calls without user interaction will be rejected.
 
 ## Usage
 

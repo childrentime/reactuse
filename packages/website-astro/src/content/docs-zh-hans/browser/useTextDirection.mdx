@@ -1,11 +1,25 @@
 ---
 title: useTextDirection 用法与示例
 sidebar_label: useTextDirection
-description: 跟踪文字排列方向。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪文字排列方向。
 ---
 # useTextDirection
 
 跟踪文字排列方向
+
+`useTextDirection` 读取并更新目标元素（默认为 `<html>`）上的 [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) 属性，控制文本方向。它返回一个包含当前方向值（`"ltr"`、`"rtl"` 或 `"auto"`）和设置函数的元组。这对于构建支持从右到左语言（如阿拉伯语、希伯来语和波斯语）的国际化应用至关重要。
+
+### 使用场景
+
+- 在多语言应用中支持双向（BiDi）内容
+- 构建在 LTR 和 RTL 布局之间切换的语言选择器
+- 基于用户输入或内容语言动态调整文本方向
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `initialValue`（默认 `"ltr"`）和空操作设置函数。服务端不会访问 `document`。
+- **目标选择器**：默认情况下，hook 在 `<html>` 元素上设置 `dir`。使用 `selector` 选项定位特定元素以进行作用域内的方向更改。
+- **相关 hooks**：参见 `usePreferredLanguages` 了解检测用户的语言偏好，这可以为文本方向的选择提供参考。
 
 ## Usage
 

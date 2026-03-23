@@ -1,13 +1,29 @@
 ---
 title: useGeolocation 用法與示例
 sidebar_label: useGeolocation
-description: 跟蹤[地理位置](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)的 React Hook 如果用戶願意，它允許用戶向網絡應用程式提供他們的位置。 出於隱私原因，報告位置信息需要用戶許可。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤[地理位置](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)的 React Hook 如果用戶願意，它允許用戶向網絡應用程式提供他們的位置。 出於隱私原因，報告位置信息需要用戶許可。
 ---
 # useGeolocation
 
 跟蹤[地理位置](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)的 React Hook
 
 如果用户愿意，它允许用户向網路应用程序提供他们的位置。 出于隐私原因，报告位置信息需要用户许可
+
+它允許使用者在願意的情況下向 Web 應用程式提供其位置。出於隱私原因，系統會要求使用者授權以回報位置資訊。
+
+`useGeolocation` 封裝了 [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)，用於響應式追蹤使用者的地理位置。它回傳一個物件，包含 `coordinates`（緯度、經度、海拔、精確度等）、`locatedAt` 時間戳、`error` 物件和 `isSupported` 旗標。此 hook 會監視位置變更並自動更新。標準 `PositionOptions`（如 `enableHighAccuracy` 和 `timeout`）可作為選項傳入。
+
+### 使用場景
+
+- 在地圖上顯示使用者的當前位置或提供基於位置的搜尋結果
+- 建構地理圍欄功能，在使用者進入或離開地理區域時觸發操作
+- 根據使用者的即時位置計算距離或方向
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳預設座標和 `null` 值。伺服器上不會存取 `navigator.geolocation`。
+- **權限**：瀏覽器會提示使用者授權位置權限。`error` 屬性會捕獲任何拒絕或逾時。搭配 `usePermission` 使用 `"geolocation"` 可主動檢查權限狀態。
+- **隱私**：位置資料是敏感的。僅在真正需要時才請求地理位置，並告知使用者為何需要存取其位置。
 
 ## Usage
 

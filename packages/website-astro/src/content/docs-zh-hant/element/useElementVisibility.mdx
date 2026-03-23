@@ -1,11 +1,25 @@
 ---
 title: useElementVisibility 用法與示例
 sidebar_label: useElementVisibility
-description: 追踪視窗内元素可見性的 React Hook。这是 `useIntersectionObserver` 的一个封装器。 本文介紹其用法、最佳實踐與代碼示例。
+description: 追踪視窗内元素可見性的 React Hook。这是 `useIntersectionObserver` 的一个封装器。
 ---
 # useElementVisibility
 
 追踪視窗内元素可見性的 React Hook。这是 `useIntersectionObserver` 的一个封装器
+
+`useElementVisibility` 追蹤一個 DOM 元素是否在視窗中可見，使用 [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)。它回傳一個布林值，在元素進入或離開視窗時更新。
+
+### 使用場景
+
+- 實作延遲載入——在元素進入視窗時載入圖片或內容
+- 當元素可見時觸發進入動畫
+- 追蹤廣告或內容區塊的可見性以記錄曝光次數
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `false`。伺服器上不會建立 `IntersectionObserver`。
+- **閾值**：可透過選項設定可見性閾值，以控制元素需要多少部分可見才觸發。
+- **相關 hooks**：另請參閱 `useIntersectionObserver` 用於更低階的 Intersection Observer 存取。
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useScriptTag 用法与示例
 sidebar_label: useScriptTag
-description: Script 标签注入。 本文介绍其用法、最佳实践与代码示例。
+description: Script 标签注入。
 ---
 # useScriptTag
 
 Script 标签注入。
+
+`useScriptTag` 动态注入 `<script>` 标签到文档中并管理其生命周期。它返回一个包含脚本元素、加载状态（`"idle"`、`"loading"`、`"ready"` 或 `"error"`）、`load` 函数和 `unload` 函数的元组。该 hook 支持 `async`、`defer`、`type`、`crossOrigin`、`referrerPolicy`、自定义属性和手动加载/卸载控制等选项。
+
+### 使用场景
+
+- 按需加载第三方库（分析、小部件、地图），而非在构建时加载
+- 延迟加载重量级脚本直到组件挂载或用户交互发生
+- 根据运行时条件动态加载不同的脚本版本或配置
+
+### 注意事项
+
+- **SSR 安全**：该 hook 在服务端渲染期间为空操作。服务端不会创建 `<script>` 元素。状态将保持 `"idle"` 直到组件在浏览器中挂载。
+- **生命周期管理**：组件卸载时脚本会自动从 DOM 中移除（除非设置了 `manual` 为 `true`）。使用 `load` 和 `unload` 进行精细控制。
+- **去重**：如果文档中已存在具有相同 `src` 的脚本，hook 将复用它而不是创建副本。
 
 ## Usage
 

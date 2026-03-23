@@ -1,11 +1,25 @@
 ---
 title: useScroll 用法与示例
 sidebar_label: useScroll
-description: 跟踪滚动位置和统计数据。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪滚动位置和统计数据。
 ---
 # useScroll
 
 跟踪滚动位置和统计数据
+
+`useScroll` 响应式地跟踪目标元素（或 `window`/`document`）的滚动位置和状态。它返回一个包含 `x` 位置、`y` 位置、`isScrolling` 布尔值、`arrivedState` 对象（`{ top, bottom, left, right }` 布尔值表示是否到达边缘）和 `directions` 对象（表示当前滚动方向）的元组。该 hook 支持节流、偏移配置和滚动及滚动结束事件的回调。
+
+### 使用场景
+
+- 实现滚动相关的 UI，如粘性头部、滚动进度条或"回到顶部"按钮
+- 检测用户是否已滚动到容器的顶部或底部（例如用于加载更多内容）
+- 跟踪滚动方向以显示或隐藏导航元素
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间位置返回 `0`，`isScrolling` 返回 `false`，到达/方向状态返回默认值。服务端不会附加滚动监听器。
+- **节流**：使用 `throttle` 选项限制滚动处理器触发频率，提高复杂滚动 UI 更新的性能。
+- **相关 hooks**：参见 `useInfiniteScroll` 了解自动加载更多触发器，`useScrollLock` 了解禁用滚动，以及 `useScrollIntoView` 了解程序化滚动。
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useElementBounding 用法与示例
 sidebar_label: useElementBounding
-description: 追踪 HTML 元素边界框的 React Hook。 本文介绍其用法、最佳实践与代码示例。
+description: 追踪 HTML 元素边界框的 React Hook。
 ---
 # useElementBounding
 
 追踪 HTML 元素边界框的 React Hook
+
+`useElementBounding` 使用 [`getBoundingClientRect()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) 响应式地跟踪 DOM 元素的边界矩形。它返回一个包含 `x`、`y`、`top`、`bottom`、`left`、`right`、`width`、`height` 和手动重新测量的 `update()` 函数的对象。默认情况下，它在窗口滚动和调整大小时自动重新计算。
+
+### 使用场景
+
+- 相对于目标元素定位工具提示、弹出框或浮动元素
+- 实现 UI 元素之间的碰撞检测或重叠检查
+- 跟踪元素位置用于滚动关联动画或视差效果
+
+### 注意事项
+
+- **响应式**：默认在窗口 `resize` 和 `scroll` 事件上自动更新。两种行为都可以通过 `windowResize` 和 `windowScroll` 选项禁用。
+- **SSR 安全**：在服务端渲染期间返回零值。设置 `immediate: false` 延迟首次测量直到你显式调用 `update()`。
+- 参见 `useElementSize` 和 `useMeasure` 了解通过 ResizeObserver 仅跟踪宽高，以及 `useWindowSize` 了解视口尺寸。
 
 ## Usage
 

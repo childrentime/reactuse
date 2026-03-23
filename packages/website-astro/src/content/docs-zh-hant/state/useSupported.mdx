@@ -1,11 +1,25 @@
 ---
 title: useSupported 用法與示例
 sidebar_label: useSupported
-description: 檢測瀏覽器是否支持某些新的特性。 本文介紹其用法、最佳實踐與代碼示例。
+description: 檢測瀏覽器是否支持某些新的特性。
 ---
 # useSupported
 
 檢測瀏覽器是否支持某些新的特性
+
+`useSupported` 檢查瀏覽器是否支援特定的 API 或功能。它接受一個回呼函式，回呼回傳布林值表示功能是否可用。此 hook 在客戶端渲染後執行檢查並回傳結果。
+
+### 使用場景
+
+- 在使用瀏覽器 API 之前檢查支援性（例如 `IntersectionObserver`、`ResizeObserver`）
+- 有條件地渲染依賴特定瀏覽器功能的 UI
+- 為函式庫作者建構跨瀏覽器相容的 hooks
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `false`。檢查僅在客戶端掛載後執行。
+- **僅檢查一次**：支援性檢查在掛載時執行一次。瀏覽器功能不會在執行時變更。
+- **相關 hooks**：大多數瀏覽器相關的 hooks（如 `useMediaQuery`、`useGeolocation` 等）內部使用 `useSupported` 來檢查 API 可用性。
 
 ## Usage
 

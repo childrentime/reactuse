@@ -2,12 +2,26 @@
 title: useMobileLandscape – Browser Hook Usage & Examples
 sidebar_label: useMobileLandscape
 description: >-
-  React hook that returns `true` if the mobile device is in landscape mode and `false` otherwise. Learn usage patterns, best practices, and code examples for
+  React hook that returns `true` if the mobile device is in landscape mode and `false` otherwise. for
   Reac
 ---
 # useMobileLandscape
 
 React hook that returns `true` if the mobile device is in landscape mode and `false` otherwise.
+
+`useMobileLandscape` uses media queries internally to detect whether the current device is a mobile device in landscape orientation. It returns a single boolean value that updates reactively when the device is rotated. This is useful for adapting layouts or showing landscape-specific UI on phones and tablets.
+
+### When to Use
+
+- Showing or hiding landscape-specific UI elements (e.g., rotating a "turn your device" prompt)
+- Adjusting layout or component sizing for mobile landscape orientation
+- Triggering different behavior for games or media players when in landscape mode
+
+### Notes
+
+- **SSR-safe**: Returns `false` during server-side rendering. No `window.matchMedia` access occurs on the server.
+- **Mobile-specific**: Detects landscape orientation specifically on mobile devices, not desktop. For general orientation tracking, see `useOrientation`.
+- **Related hooks**: Built on `useMediaQuery`. See also `useOrientation` for more detailed orientation information including angle and lock capabilities.
 
 ## Usage
 

@@ -1,12 +1,26 @@
 ---
 title: useAsyncEffect 用法與示例
 sidebar_label: useAsyncEffect
-description: 支持 Promise 的 React useEffect。 本文介紹其用法、最佳實踐與代碼示例。
+description: 支持 Promise 的 React useEffect。
 ---
 # useAsyncEffect
 
 支持 Promise 的 React useEffect。
 
+
+`useAsyncEffect` 是 React `useEffect` 的非同步版本，允許你在 effect 回呼中直接使用 `async/await`。它接受一個非同步函式和依賴陣列，在內部處理非同步函式的生命週期。支援清理函式和中止信號。
+
+### 使用場景
+
+- 在 effect 中進行非同步資料獲取而無需手動建立自執行非同步函式
+- 在元件掛載或依賴變更時執行非同步初始化邏輯
+- 使用 `async/await` 語法簡化 effect 中的非同步流程
+
+### 注意事項
+
+- **SSR 安全**：行為與標準 `useEffect` 相同——在伺服器端渲染時不執行。
+- **清理**：支援回傳清理函式。非同步函式的結果如果是函式，將作為清理函式使用。
+- **相關 hooks**：另請參閱 `useMount` 用於僅在掛載時執行的邏輯，以及 `useUpdateEffect` 用於跳過初始渲染的 effect。
 
 ## Usage
 

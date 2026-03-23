@@ -1,11 +1,25 @@
 ---
 title: useUpdate 用法與示例
 sidebar_label: useUpdate
-description: 强制更新函數。 本文介紹其用法、最佳實踐與代碼示例。
+description: 强制更新函數。
 ---
 # useUpdate
 
 强制更新函數
+
+`useUpdate` 回傳一個函式，呼叫它會強制元件重新渲染。這在需要手動觸發重新渲染而不更改任何 state 時很有用。它透過內部遞增一個計數器來觸發重新渲染。
+
+### 使用場景
+
+- 在外部可變資料變更時強制元件重新渲染
+- 與不使用 React state 的第三方函式庫整合時觸發更新
+- 在除錯或測試中手動觸發重新渲染
+
+### 注意事項
+
+- **謹慎使用**：頻繁呼叫此函式可能導致效能問題。優先考慮使用 React 的 state 和 props 來驅動更新。
+- **同步更新**：呼叫回傳的函式會安排一次重新渲染，與 `setState` 行為一致。
+- **相關 hooks**：另請參閱 `useRafState` 用於在 `requestAnimationFrame` 中批次處理 state 更新。
 
 ## Usage
 

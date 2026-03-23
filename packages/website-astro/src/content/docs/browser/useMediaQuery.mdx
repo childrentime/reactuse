@@ -1,11 +1,25 @@
 ---
 title: useMediaQuery – Browser Hook Usage & Examples
 sidebar_label: useMediaQuery
-description: Ease with media query. Learn usage patterns, best practices, and code examples for React developers.
+description: Ease with media query.
 ---
 # useMediaQuery
 
 Ease with media query
+
+`useMediaQuery` wraps [`window.matchMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to reactively evaluate a CSS media query string. It returns a boolean indicating whether the document currently matches the query. The value updates automatically whenever the match state changes (e.g., when the window is resized or the system color scheme changes).
+
+### When to Use
+
+- Rendering different layouts or components based on screen width breakpoints
+- Detecting system preferences like dark mode, reduced motion, or high contrast
+- Conditionally loading heavy components or assets only on large screens
+
+### Notes
+
+- **SSR-safe**: Accepts a `defaultState` parameter (default: `false`) that is returned during server-side rendering when `window.matchMedia` is not available.
+- **Any valid media query**: Works with any CSS media query string, including `prefers-color-scheme`, `prefers-reduced-motion`, `orientation`, and custom breakpoints.
+- **Related hooks**: Several specialized hooks are built on `useMediaQuery`, including `usePreferredDark`, `usePreferredColorScheme`, `usePreferredContrast`, `useReducedMotion`, and `useMobileLandscape`.
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useIntersectionObserver 用法与示例
 sidebar_label: useIntersectionObserver
-description: 使用 [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) 跟踪元素。 本文介绍其用法、最佳实践与代码示例。
+description: 使用 [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) 跟踪元素。
 ---
 # useIntersectionObserver
 
 使用 [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) 跟踪元素
+
+`useIntersectionObserver` 将原生 [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) 封装在 React 友好的接口中。它观察目标元素，并在元素与根容器的交叉状态改变时触发带有完整 `IntersectionObserverEntry` 数组的回调。该 hook 返回一个 `stop` 函数用于提前断开观察器。
+
+### 使用场景
+
+- 通过检测哨兵元素进入视口来实现无限滚动
+- 仅在图片或重量级组件变得可见时才进行懒加载
+- 在特定交叉阈值触发基于滚动的动画或分析事件
+
+### 注意事项
+
+- **可配置**：支持所有标准 `IntersectionObserverInit` 选项（`root`、`rootMargin`、`threshold`），精确控制回调触发时机。
+- **清理**：观察器在卸载时自动断开。如需手动断开，调用返回的 `stop` 函数。
+- 参见 `useElementVisibility` 了解此 hook 的简化布尔值封装。
 
 ## Usage
 

@@ -2,13 +2,26 @@
 title: useElementVisibility – Element Hook Usage & Examples
 sidebar_label: useElementVisibility
 description: >-
-  React Element Hooks that tracks the visibility of an element within the viewport. A wrapper of `useIntersectionObserver`. Learn usage patterns, best
+  React Element Hooks that tracks the visibility of an element within the viewport. A wrapper of `useIntersectionObserver`.
   practices, 
 ---
 # useElementVisibility
 
 React Element Hooks that tracks the visibility of an element within the viewport. A wrapper of `useIntersectionObserver`
 
+`useElementVisibility` provides a simple boolean indicating whether a DOM element is currently visible within the viewport. It is built on top of `useIntersectionObserver` and abstracts away the complexity of the Intersection Observer API. It returns a tuple of `[isVisible, stop]` where `stop` is a function to disconnect the observer.
+
+### When to Use
+
+- Triggering animations or lazy-loading content when an element scrolls into view
+- Implementing "read receipt" or "seen" tracking for feed items or notifications
+- Conditionally rendering or pausing resource-intensive components when they are off-screen
+
+### Notes
+
+- **SSR-safe**: Returns `false` during server-side rendering since no DOM is available.
+- **Customizable**: Accepts standard `IntersectionObserverInit` options (`root`, `rootMargin`, `threshold`) for fine-grained control over when visibility triggers.
+- See also `useIntersectionObserver` for full access to `IntersectionObserverEntry` data, and `useDocumentVisibility` for page-level (tab) visibility.
 
 ## Usage
 

@@ -1,12 +1,25 @@
 ---
 title: useCycleList – State Hook Usage & Examples
 sidebar_label: useCycleList
-description: Cycle through a list of items. Learn usage patterns, best practices, and code examples for React developers.
+description: Cycle through a list of items.
 ---
 # useCycleList
 
 Cycle through a list of items
 
+`useCycleList` takes an array of items and returns a tuple of `[currentItem, next, prev]`. Calling `next()` advances to the next item in the list, wrapping around to the beginning when the end is reached. Calling `prev()` moves backward with the same wraparound behavior. You can optionally pass a starting index and also jump by more than one step by passing an offset to `next` or `prev`.
+
+### When to Use
+
+- Cycling through theme options, color schemes, or display modes
+- Building carousels or slideshows that loop through a set of items
+- Rotating through a list of predefined values (e.g., font sizes, sort orders)
+
+### Notes
+
+- **Generic type**: The hook is fully generic; the list can contain any type (strings, numbers, objects, etc.).
+- **SSR-safe**: Uses only React state with no browser API dependencies.
+- See also `useCounter` for cycling through a numeric range with min/max bounds.
 
 ## Usage
 

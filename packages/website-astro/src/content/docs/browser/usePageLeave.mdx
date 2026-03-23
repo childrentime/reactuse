@@ -1,12 +1,25 @@
 ---
 title: usePageLeave – Browser Hook Usage & Examples
 sidebar_label: usePageLeave
-description: React sensor hook that tracks when mouse leaves the page. Learn usage patterns, best practices, and code examples for React developers.
+description: React sensor hook that tracks when mouse leaves the page.
 ---
 # usePageLeave
 
 React sensor hook that tracks when mouse leaves the page
 
+`usePageLeave` detects when the user's mouse cursor leaves the page viewport by listening to the [`mouseout`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event) event on `document`. It returns a boolean that is `true` when the cursor is outside the page and `false` when inside. This is commonly used to trigger exit-intent actions.
+
+### When to Use
+
+- Showing exit-intent popups or special offers when the user moves the cursor toward the browser's close button or address bar
+- Pausing animations or media when the user's attention appears to be leaving the page
+- Triggering auto-save or state preservation when the user seems about to navigate away
+
+### Notes
+
+- **SSR-safe**: Returns `false` during server-side rendering. No `document` event listeners are attached on the server.
+- **Mouse only**: This hook tracks mouse cursor position, so it does not detect page leave on touch-only devices. For detecting when the user switches tabs, see the `document.visibilitychange` event.
+- **Related hooks**: See also `useIdle` for detecting user inactivity within the page.
 
 ## Usage
 

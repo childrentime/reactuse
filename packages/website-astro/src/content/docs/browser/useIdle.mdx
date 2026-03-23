@@ -1,12 +1,25 @@
 ---
 title: useIdle – Browser Hook Usage & Examples
 sidebar_label: useIdle
-description: React sensor hook that tracks if user on the page is idle. Learn usage patterns, best practices, and code examples for React developers.
+description: React sensor hook that tracks if user on the page is idle.
 ---
 # useIdle
 
 React sensor hook that tracks if user on the page is idle
 
+`useIdle` detects user inactivity by listening to DOM events such as `mousemove`, `mousedown`, `keydown`, `touchstart`, `resize`, and `wheel`. It returns a boolean indicating whether the user has been idle for longer than a specified duration (default: 60 seconds). You can customize the timeout, initial state, and which events reset the idle timer.
+
+### When to Use
+
+- Auto-saving drafts or pausing expensive operations when the user steps away
+- Showing "Are you still there?" prompts for security-sensitive applications
+- Dimming the UI or pausing media playback after a period of inactivity
+
+### Notes
+
+- **SSR-safe**: Returns the `initialState` value (default: `false`) during server-side rendering. No event listeners are attached on the server.
+- **Configurable events**: By default, the hook listens to mouse, keyboard, touch, resize, and wheel events on `window`. You can override the event list via the `events` parameter.
+- **Related hooks**: See also `usePageLeave` for detecting when the cursor leaves the page viewport.
 
 ## Usage
 

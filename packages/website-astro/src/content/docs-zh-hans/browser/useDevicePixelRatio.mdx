@@ -1,11 +1,25 @@
 ---
 title: useDevicePixelRatio 用法与示例
 sidebar_label: useDevicePixelRatio
-description: '`useDevicePixelRatio` 是一个返回屏幕的设备像素比的 hook。 本文介绍其用法、最佳实践与代码示例。'
+description: '`useDevicePixelRatio` 是一个返回屏幕的设备像素比的 hook。'
 ---
 # useDevicePixelRatio
 
 `useDevicePixelRatio` 是一个返回屏幕的设备像素比的 hook。
+
+`useDevicePixelRatio` 响应式地跟踪 [`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio)，该值表示当前显示器上物理像素与 CSS 像素的比率。它返回一个包含 `pixelRatio` 属性的对象，当用户在不同密度的显示器之间移动窗口或更改系统缩放级别时会自动更新。
+
+### 使用场景
+
+- 以正确的分辨率渲染高 DPI（Retina）图像或 canvas 元素
+- 根据显示密度调整视觉保真度或细节级别
+- 在开发者工具中调试或显示设备显示特征
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回默认 `pixelRatio` 为 `1`。服务端不会访问 `window`。
+- **响应式更新**：通过 [`matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) 监听变化，因此当显示密度改变时（例如在不同显示器之间拖动窗口），值会自动更新。
+- **相关 hooks**：参见 `useMediaQuery` 了解通用的媒体查询跟踪。
 
 ## Usage
 

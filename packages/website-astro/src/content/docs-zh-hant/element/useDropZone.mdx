@@ -1,11 +1,25 @@
 ---
 title: useDropZone 用法與示例
 sidebar_label: useDropZone
-description: 創建一个可以拖拽文件的区域。 本文介紹其用法、最佳實踐與代碼示例。
+description: 創建一个可以拖拽文件的区域。
 ---
 # useDropZone
 
 創建一个可以拖拽文件的区域
+
+`useDropZone` 將一個 DOM 元素設定為拖放的放置區域。它追蹤拖曳進入/離開狀態和放下的檔案，回傳 `isOverDropZone` 狀態和放下的檔案清單。支援檔案類型篩選和自訂資料類型。
+
+### 使用場景
+
+- 建構檔案上傳區域，使用者可以將檔案拖放到指定區域
+- 實作拖放式的內容排版編輯器
+- 建立接受特定檔案類型的拖放目標
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `isOverDropZone: false` 和空的檔案清單。伺服器上不會附加事件監聽器。
+- **檔案類型**：使用 `dataTypes` 選項篩選可接受的檔案類型。
+- **相關 hooks**：另請參閱 `useFileDialog` 用於程式化開啟檔案選擇器，以及 `useDraggable` 用於使元素可拖曳。
 
 ## Usage
 

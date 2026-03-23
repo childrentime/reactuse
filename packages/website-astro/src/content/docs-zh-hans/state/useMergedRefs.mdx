@@ -1,11 +1,25 @@
 ---
 title: useMergedRefs 用法与示例
 sidebar_label: useMergedRefs
-description: '`useMergedRefs` 是一个合并多个 ref 到单个 ref 的 hook。当你需要在单个 dom 节点上使用多个 ref 时，请使用此 hook。 本文介绍其用法、最佳实践与代码示例。'
+description: '`useMergedRefs` 是一个合并多个 ref 到单个 ref 的 hook。当你需要在单个 dom 节点上使用多个 ref 时，请使用此 hook。'
 ---
 # useMergedRefs
 
 `useMergedRefs` 是一个合并多个 ref 到单个 ref 的 hook。当你需要在单个 dom 节点上使用多个 ref 时，请使用此 hook。
+
+`useMergedRefs` 接受任意数量的 ref（回调 ref、`RefObject` 或 `undefined`），返回一个将 DOM 节点转发给所有 ref 的单一回调 ref。这消除了在同一元素上手动同步多个 ref 的需要。返回的 ref 是稳定的，统一处理 ref 对象和回调 ref。
+
+### 使用场景
+
+- 将来自 `React.forwardRef` 的转发 ref 与另一个 hook（例如 `useHover`、`useFocus`）使用的内部 ref 合并
+- 在同一 DOM 元素上附加多个独立行为（测量、交叉观察、拖拽处理）
+- 构建复合组件或组件库，库和使用者都需要 ref 访问
+
+### 注意事项
+
+- **处理所有 ref 类型**：无缝支持 `RefObject`、回调 ref 和 `undefined` 值。
+- **SSR 安全**：返回的回调 ref 不会自行访问任何浏览器 API。
+- 参见 `useHover` 和其他接受 ref 的元素 hook，可以通过 `useMergedRefs` 合并。
 
 ## Usage
 

@@ -9,8 +9,21 @@ description: >-
 
 React state hook that returns the latest state as described in the [React hooks FAQ](https://reactjs.org/docs/hooks-faq.html#why-am-i-seeing-stale-props-or-state-inside-my-function).
 
-This is mostly useful to get access to the latest value of some props or state inside an asynchronous callback, instead of that value at the time the callback was created from
+This is mostly useful to get access to the latest value of some props or state inside an asynchronous callback, instead of that value at the time the callback was created from.
 
+`useLatest` accepts any value and returns a `MutableRefObject` whose `.current` property always holds the most recent value. The ref is updated synchronously on every render, so reading `ref.current` inside timeouts, intervals, or event handlers always gives you the up-to-date value rather than a stale closure capture.
+
+### When to Use
+
+- Accessing the latest state or props inside `setTimeout`, `setInterval`, or other asynchronous callbacks
+- Avoiding stale closures in event handlers that are registered once but need to reference changing values
+- Passing the latest value into imperative code (e.g., third-party library callbacks) without re-registering listeners
+
+### Notes
+
+- **Not a state hook**: The returned ref does not trigger re-renders when updated. It is meant to be read inside callbacks, not used as a render dependency.
+- **SSR-safe**: Uses only a React ref internally with no browser dependencies.
+- See also `usePrevious` for tracking the value from the prior render rather than the current one.
 
 ## Usage
 

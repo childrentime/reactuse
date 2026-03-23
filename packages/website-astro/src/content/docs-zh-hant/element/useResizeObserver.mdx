@@ -1,11 +1,25 @@
 ---
 title: useResizeObserver 用法與示例
 sidebar_label: useResizeObserver
-description: 使用 [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) 跟蹤元素大小。 本文介紹其用法、最佳實踐與代碼示例。
+description: 使用 [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) 跟蹤元素大小。
 ---
 # useResizeObserver
 
 使用 [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) 跟蹤元素大小。
+
+`useResizeObserver` 封裝了 [ResizeObserver API](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)，在目標元素的尺寸發生變化時觸發回呼。回呼接收 `ResizeObserverEntry` 陣列，提供有關新尺寸的詳細資訊。此 hook 管理觀察器的建立、觀察和清理。
+
+### 使用場景
+
+- 建構容器查詢式的邏輯——根據容器寬度而非視窗寬度調整佈局
+- 在元素調整大小時重新計算依賴尺寸的值（例如 canvas 解析度）
+- 監控多個元素的尺寸變更以實現複雜的響應式佈局
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時為空操作。伺服器上不會建立 `ResizeObserver`。
+- **盒模型**：透過 `box` 選項可選擇觀察 `content-box`、`border-box` 或 `device-pixel-content-box`。
+- **相關 hooks**：另請參閱 `useElementSize` 和 `useMeasure` 用於簡化的尺寸追蹤，以及 `useElementBounding` 獲取完整的位置和尺寸資訊。
 
 ## Usage
 

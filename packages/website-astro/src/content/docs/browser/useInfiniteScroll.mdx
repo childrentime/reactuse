@@ -1,12 +1,25 @@
 ---
 title: useInfiniteScroll – Browser Hook Usage & Examples
 sidebar_label: useInfiniteScroll
-description: Infinite scrolling of the element. Learn usage patterns, best practices, and code examples for React developers.
+description: Infinite scrolling of the element.
 ---
 # useInfiniteScroll
 
 Infinite scrolling of the element
 
+`useInfiniteScroll` builds on `useScroll` to automatically trigger a callback when the user scrolls near the edge of a scrollable container. Pass a target element ref, a load-more function, and optional configuration (scroll direction, distance threshold, throttle). The load-more callback receives the current scroll state so you can decide whether to fetch more data. The hook also supports preserving scroll position when prepending content.
+
+### When to Use
+
+- Building feeds, timelines, or product listings that load more items as the user scrolls
+- Implementing chat interfaces that load older messages when scrolling to the top
+- Creating horizontally scrolling galleries that fetch additional content on demand
+
+### Notes
+
+- **SSR-safe**: The hook is a no-op during server-side rendering. No scroll listeners are attached on the server.
+- **Direction**: By default, triggers at the `bottom` edge. Use the `direction` option to trigger on `top`, `left`, or `right` edges for reverse or horizontal scrolling.
+- **Related hooks**: Built on top of `useScroll`, which provides the underlying scroll position, direction, and arrived-state tracking.
 
 ## Usage
 

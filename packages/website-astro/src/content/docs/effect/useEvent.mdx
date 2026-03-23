@@ -9,6 +9,19 @@ description: >-
 
 Basic implementation of [React RFC useEvent](https://github.com/reactjs/rfcs/pull/220). It lets you define event handlers that can read the latest props/state but have always stable function identity
 
+`useEvent` returns a function with a stable reference that never changes between renders, while always calling through to the latest version of your callback. This is achieved by storing the callback in a ref that is updated on every render via `useIsomorphicLayoutEffect`. The returned function can safely be passed as a prop or dependency without causing unnecessary re-renders or effect re-runs.
+
+### When to Use
+
+- Passing event handlers to memoized child components (`React.memo`) without breaking their memoization
+- Using a callback as a dependency in `useEffect` without triggering the effect on every render
+- Any scenario where you need a stable function identity that always reads the latest closure values
+
+### Notes
+
+- **Stable identity**: The returned function reference is created once via `useCallback([], ...)` and never changes, making it safe to omit from dependency arrays.
+- **Layout-phase update**: The internal ref is updated during the layout phase (`useIsomorphicLayoutEffect`), ensuring the latest callback is available before any post-layout effects run.
+- In development mode, a console error is logged if the argument is not a function.
 
 ## Usage
 

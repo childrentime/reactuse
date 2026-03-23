@@ -2,13 +2,26 @@
 title: useMutationObserver – Element Hook Usage & Examples
 sidebar_label: useMutationObserver
 description: >-
-  Watch for changes being made to the DOM tree. [MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver). Learn usage patterns,
+  Watch for changes being made to the DOM tree. [MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver).
   b
 ---
 # useMutationObserver
 
 Watch for changes being made to the DOM tree. [MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
 
+`useMutationObserver` wraps the native [MutationObserver API](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) to watch for changes in the DOM subtree of a target element. It fires a callback with the list of `MutationRecord` entries whenever observed mutations occur. The hook returns a `stop` function to disconnect the observer at any time.
+
+### When to Use
+
+- Reacting to attribute changes on elements controlled by third-party libraries
+- Monitoring dynamic DOM changes such as child node additions or removals in content-editable areas
+- Building devtools or debugging utilities that track DOM mutations in real time
+
+### Notes
+
+- **Configuration**: Pass standard `MutationObserverInit` options (`attributes`, `childList`, `subtree`, `characterData`, etc.) to control which types of mutations are observed.
+- **Cleanup**: The observer is automatically disconnected on unmount. Use the returned `stop` function for early disconnection.
+- See also `useResizeObserver` for observing size changes and `useIntersectionObserver` for visibility changes.
 
 ## Usage
 

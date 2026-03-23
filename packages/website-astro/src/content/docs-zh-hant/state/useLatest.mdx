@@ -1,11 +1,25 @@
 ---
 title: useLatest 用法與示例
 sidebar_label: useLatest
-description: 跟蹤 React State 的最新值。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤 React State 的最新值。
 ---
 # useLatest
 
 跟蹤 React State 的最新值。
+
+`useLatest` 回傳一個 ref 物件，其 `.current` 屬性始終指向傳入的最新值。這解決了 React 閉包中常見的過時值問題，讓回呼和 effect 可以透過 ref 存取最新的 props 或 state，而無需將它們加入依賴陣列。
+
+### 使用場景
+
+- 在 `setTimeout`、`setInterval` 或事件處理器的回呼中存取最新的 state 值
+- 避免在 `useEffect` 中因閉包過時導致的 bug
+- 將最新值傳遞給不接受依賴陣列的第三方函式庫
+
+### 注意事項
+
+- **Ref 語義**：回傳的是 ref，而非 state。更新 ref 不會觸發重新渲染。
+- **始終最新**：ref 的 `.current` 在每次渲染時都會更新為最新值。
+- **相關 hooks**：另請參閱 `useEvent` 用於建立始終使用最新值的穩定回呼函式。
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useInterval 用法与示例
 sidebar_label: useInterval
-description: 计时器。你可以通过传递 `controls` 参数来手动控制计时器。 本文介绍其用法、最佳实践与代码示例。
+description: 计时器。你可以通过传递 `controls` 参数来手动控制计时器。
 ---
 # useInterval
 
 计时器。你可以通过传递 `controls` 参数来手动控制计时器。
+
+`useInterval` 以声明式的 React API 封装了 `setInterval`。它接受一个回调、一个以毫秒为单位的延迟（或 `null` 暂停）和一个可选的选项对象。它返回一个 `Pausable` 对象，包含 `isActive`、`pause` 和 `resume` 方法用于手动控制。回调始终引用最新的闭包而不重置定时器。
+
+### 使用场景
+
+- 构建倒计时定时器、时钟或以固定间隔轮询的机制
+- 以固定频率从 API 自动刷新数据
+- 以一致的步进间隔在时间上对值进行动画
+
+### 注意事项
+
+- **暂停/恢复**：将 `delay` 设为 `null` 暂停定时器，或使用返回的 `pause()`/`resume()` 方法进行命令式控制。
+- **立即选项**：传入 `{ immediate: true }` 可在启动时立即执行回调，然后在每个间隔后再执行。
+- 定时器在组件卸载时自动清除。参见 `useTimeout` 了解单次延迟执行，以及 `useRafFn` 了解基于帧的动画循环。
 
 ## Usage
 

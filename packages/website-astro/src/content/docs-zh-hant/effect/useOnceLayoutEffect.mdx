@@ -1,11 +1,25 @@
 ---
 title: useOnceLayoutEffect 用法與示例
 sidebar_label: useOnceLayoutEffect
-description: 避免 React18 useLayoutEffect 運行兩次。 本文介紹其用法、最佳實踐與代碼示例。
+description: 避免 React18 useLayoutEffect 運行兩次。
 ---
 # useOnceLayoutEffect
 
 避免 React18 useLayoutEffect 運行兩次
+
+`useOnceLayoutEffect` 確保一個佈局 effect 只執行一次，即使在 React 嚴格模式下也是如此。它是 `useOnceEffect` 的 `useLayoutEffect` 版本，在瀏覽器繪製前同步執行，適合需要在繪製前讀取或修改 DOM 的情況。
+
+### 使用場景
+
+- 在繪製前執行只應發生一次的 DOM 測量或修改
+- 在嚴格模式下初始化只能設定一次的第三方 DOM 函式庫
+- 執行在繪製前需要完成的不可冪等初始化
+
+### 注意事項
+
+- **佈局時序**：與 `useLayoutEffect` 相同，在 DOM 變更後、瀏覽器繪製前同步執行。
+- **React 嚴格模式**：專門設計用於繞過 React 18 嚴格模式的雙重呼叫行為。
+- **相關 hooks**：另請參閱 `useOnceEffect` 用於標準 effect 的同功能版本，以及 `useIsomorphicLayoutEffect` 用於 SSR 安全的佈局 effect。
 
 ## Usage
 

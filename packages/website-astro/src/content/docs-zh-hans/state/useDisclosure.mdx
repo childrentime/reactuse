@@ -1,11 +1,25 @@
 ---
 title: useDisclosure 用法与示例
 sidebar_label: useDisclosure
-description: '`useDisclosure` 是一个提供了创建披露小部件所需的所有工具的 hook。披露小部件用于显示或隐藏内容。此 hook 提供了控制内容可见性的状态和函数。 本文介绍其用法、最佳实践与代码示例。'
+description: '`useDisclosure` 是一个提供了创建披露小部件所需的所有工具的 hook。披露小部件用于显示或隐藏内容。此 hook 提供了控制内容可见性的状态和函数。'
 ---
 # useDisclosure
 
 `useDisclosure` 是一个提供了创建披露小部件所需的所有工具的 hook。披露小部件用于显示或隐藏内容。此 hook 提供了控制内容可见性的状态和函数。
+
+`useDisclosure` 返回一个包含 `isOpen`、`onOpen`、`onClose` 和 `onOpenChange` 以及 `isControlled` 标志的对象。它支持受控模式（通过 props 传入 `isOpen`）和非受控模式（使用内部状态和可选的 `defaultOpen`）。可以在 props 中提供 `onOpen`、`onClose` 和 `onChange` 回调，在状态转换时运行副作用。
+
+### 使用场景
+
+- 管理模态框、对话框或抽屉的打开/关闭状态及生命周期回调
+- 构建可折叠面板、手风琴或可展开部分
+- 任何需要同时支持受控和非受控以及打开/关闭事件钩子的展示模式
+
+### 注意事项
+
+- **受控和非受控**：在 props 中传入 `isOpen` 为受控模式。省略它（或保持 `undefined`）为非受控模式，可选 `defaultOpen`。
+- **回调支持**：与更简单的布尔 hook 不同，`useDisclosure` 接受 `onOpen`、`onClose` 和 `onChange` 回调，非常适合分析或焦点管理等副作用。
+- 参见 `useBoolean` 了解不带回调的更简单布尔状态 hook，以及 `useToggle` 了解最小化的基于元组的切换。
 
 ## Usage
 

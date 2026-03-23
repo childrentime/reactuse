@@ -1,11 +1,25 @@
 ---
 title: useOnline 用法与示例
 sidebar_label: useOnline
-description: '`useNetwork` 的包装，检测网络状况。 本文介绍其用法、最佳实践与代码示例。'
+description: '`useNetwork` 的包装，检测网络状况。'
 ---
 # useOnline
 
 `useNetwork` 的包装，检测网络状况
+
+`useOnline` 是 `useNetwork` 的轻量级封装，返回一个表示浏览器当前是否连接到网络的单一布尔值。它监听 `window` 上的 [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) 和 [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) 事件并响应式更新。当你只需要知道用户是否在线，而不需要 `useNetwork` 提供的详细连接信息时使用此 hook。
+
+### 使用场景
+
+- 显示简单的"您已离线"横幅或提示通知
+- 当用户断开连接时禁用表单提交或 API 调用
+- 在离线优先应用中在在线和离线模式之间切换
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `undefined`。服务端不会访问 `navigator.onLine` 或 `window` 事件。
+- **简单 vs 详细**：如需更多信息（连接类型、下行速度等），请使用 `useNetwork`。
+- **浏览器行为**：`navigator.onLine` 表示网络连接，而非互联网可达性。`true` 值不保证用户能访问你的服务器。
 
 ## Usage
 

@@ -10,6 +10,20 @@ description: >-
 `use` is a polyfill hook to resolve promises state for React v18 and below. Note that it only implements the ability to consume promises.
 For React v19 and above, you can use the built-in `use` hook: https://react.dev/reference/react/use
 
+`use` accepts a `Usable<T>` (a promise or React context) and resolves it within a Suspense boundary. It tracks the thenable's status internally (`pending`, `fulfilled`, `rejected`) and throws the promise while pending so that a parent `<Suspense>` fallback is displayed. Once resolved, it returns the unwrapped value directly. This brings the React 19 `use` semantics to older React versions.
+
+### When to Use
+
+- Loading asynchronous data inside a component tree that already uses `<Suspense>` boundaries
+- Migrating a codebase toward the React 19 `use` pattern while still supporting React 18
+- Reading from a React context without the `useContext` hook for API consistency with future React versions
+
+### Notes
+
+- **Suspense required**: The component calling `use` must be wrapped in a `<Suspense>` boundary; otherwise the thrown promise will be unhandled.
+- **Promise identity matters**: Pass a stable promise reference (e.g., created outside the render or memoized). Creating a new promise on every render will restart the loading cycle.
+- **Limited scope**: This polyfill only supports promises and contexts. Other usable types that React 19 may support in the future are not covered.
+
 ## Usage
 
 ```tsx live noInline

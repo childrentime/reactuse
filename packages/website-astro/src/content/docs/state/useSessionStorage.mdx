@@ -1,12 +1,26 @@
 ---
 title: useSessionStorage – State Hook Usage & Examples
 sidebar_label: useSessionStorage
-description: React side-effect hook that manages a single `sessionStorage` key. Learn usage patterns, best practices, and code examples for React developers.
+description: React side-effect hook that manages a single `sessionStorage` key.
 ---
 # useSessionStorage
 
 React side-effect hook that manages a single `sessionStorage` key
 
+`useSessionStorage` binds a React state to a `sessionStorage` key. It returns a `[value, setValue]` tuple that behaves like `useState`. The value is read from session storage on mount and written back on updates. Setting the value to `null` removes the key. Like `useLocalStorage`, it supports custom serializers and listens for cross-tab `storage` events by default.
+
+### When to Use
+
+- Storing temporary state that should persist across page navigations within the same tab but not across browser restarts
+- Keeping wizard or multi-step form progress that resets when the user closes the tab
+- Caching data that is sensitive or session-specific (e.g., one-time tokens, temporary filters)
+
+### Notes
+
+- **Session-scoped**: Unlike `localStorage`, data in `sessionStorage` is cleared when the tab or browser is closed. Use `useLocalStorage` for long-lived persistence.
+- **Cross-tab sync**: The hook listens for `storage` events by default. Disable with `listenToStorageChanges: false`.
+- **Custom serialization**: Provide `serializer.read` and `serializer.write` in the options for non-string data types.
+- See also `useLocalStorage` for persistent storage and `useCookie` for cookie-based persistence.
 
 ## Usage
 

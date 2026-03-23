@@ -2,13 +2,26 @@
 title: useUpdate – Effect Hook Usage & Examples
 sidebar_label: useUpdate
 description: >-
-  React utility hook that returns a function that forces component to re-render when called. Learn usage patterns, best practices, and code examples for React
+  React utility hook that returns a function that forces component to re-render when called. for React
   dev
 ---
 # useUpdate
 
 React utility hook that returns a function that forces component to re-render when called
 
+`useUpdate` returns a stable function that forces the component to re-render when invoked. Internally it uses `useReducer` with an incrementing counter, so each call produces a new state value that triggers React's reconciliation. The returned function identity is stable across renders, making it safe to pass as a prop or store in a ref.
+
+### When to Use
+
+- Forcing a re-render after mutating a ref or external mutable value that React does not track
+- Integrating with imperative APIs or third-party libraries that update state outside of React's awareness
+- Refreshing displayed values (e.g., `Date.now()`) on demand without managing explicit state
+
+### Notes
+
+- **Stable identity**: The returned update function never changes between renders, so it can safely be used in dependency arrays or passed to child components.
+- **Use sparingly**: Forcing re-renders bypasses React's declarative model. Prefer state or context updates when possible.
+- See also `useRafFn` for continuous re-rendering on every animation frame.
 
 ## Usage
 

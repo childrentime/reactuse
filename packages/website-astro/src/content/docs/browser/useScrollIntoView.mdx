@@ -1,12 +1,25 @@
 ---
 title: useScrollIntoView – Browser Hook Usage & Examples
 sidebar_label: useScrollIntoView
-description: React sensor hook works like `element.scrollIntoView(). Learn usage patterns, best practices, and code examples for React developers.
+description: React sensor hook works like `element.scrollIntoView().
 ---
 # useScrollIntoView
 
-React sensor hook works like `element.scrollIntoView()
+React sensor hook works like `element.scrollIntoView()`
 
+`useScrollIntoView` provides a smooth, animated scroll to a target element, similar to [`Element.scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) but with more control. It returns an object with `scrollIntoView` (accepting alignment options like `"start"`, `"end"`, `"center"`) and `cancel` functions. You can configure the scroll axis, duration, easing function, offset, and whether the user can interrupt the animation by scrolling.
+
+### When to Use
+
+- Scrolling to anchored sections with smooth, customizable animation (e.g., table of contents navigation)
+- Focusing on newly added content, error messages, or form fields after validation
+- Building scrollable lists where selecting an item scrolls it into the visible area
+
+### Notes
+
+- **SSR-safe**: Returns no-op functions during server-side rendering. No DOM scrolling occurs on the server.
+- **Cancelable**: Set `cancelable: true` (default) to allow the user to interrupt the scroll animation by manually scrolling. Set `isList: true` to prevent content jumping in lists.
+- **Related hooks**: See also `useScroll` for tracking scroll position and state, and `useScrollLock` for preventing scroll entirely.
 
 ## Usage
 

@@ -3,13 +3,29 @@ import '../styles/global.css'
 
 import type { Locale } from '../i18n/translations'
 
+interface BreadcrumbItem {
+  name: string
+  url: string
+}
+
+interface BlogPostMeta {
+  title: string
+  description: string
+  datePublished: string
+  dateModified?: string
+  author?: string
+  slug: string
+}
+
 interface Props {
   title: string
   description?: string
   locale?: Locale
+  breadcrumbs?: BreadcrumbItem[]
+  blogPost?: BlogPostMeta
 }
 
-const { title, description = '100+ Essential React Hooks - The React Equivalent of VueUse', locale = 'en' } = Astro.props
+const { title, description = '110+ Essential React Hooks - The React Equivalent of VueUse', locale = 'en', breadcrumbs, blogPost } = Astro.props
 const htmlLang = locale === 'zh-Hans' ? 'zh-Hans' : locale === 'zh-Hant' ? 'zh-Hant' : 'en'
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
@@ -28,41 +44,99 @@ const alternates = [
   { hreflang: 'zh-Hant', href: new URL(`/zh-Hant${basePath}`, Astro.site).href },
 ]
 
+// Detect homepage
+const isHomepage = basePath === '/' || basePath === ''
+
+// Determine og:type
+const ogType = isHomepage ? 'website' : blogPost ? 'article' : 'article'
+
+// Build structured data graph
+const graph: any[] = [
+  {
+    '@type': 'Organization',
+    '@id': 'https://reactuse.com/#org',
+    name: 'ReactUse',
+    url: 'https://reactuse.com',
+    logo: 'https://reactuse.com/favicon.svg',
+    sameAs: [
+      'https://github.com/childrentime/reactuse',
+      'https://www.npmjs.com/package/@reactuses/core',
+    ],
+  },
+  {
+    '@type': 'WebSite',
+    '@id': 'https://reactuse.com/#website',
+    url: 'https://reactuse.com',
+    name: 'ReactUse',
+    description: 'Collection of 110+ essential React Hooks',
+    publisher: { '@id': 'https://reactuse.com/#org' },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://reactuse.com/?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  },
+  {
+    '@type': 'SoftwareSourceCode',
+    name: '@reactuses/core',
+    description: 'Collection of 110+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility',
+    programmingLanguage: ['TypeScript', 'JavaScript'],
+    runtimePlatform: ['Node.js', 'Browser'],
+    codeRepository: 'https://github.com/childrentime/reactuse',
+    license: 'https://choosealicense.com/licenses/unlicense/',
+    url: 'https://reactuse.com',
+    author: { '@type': 'Person', name: 'childrentime', url: 'https://github.com/childrentime' },
+  },
+]
+
+// FAQPage only on homepage
+if (isHomepage) {
+  graph.push({
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: 'What is ReactUse?', acceptedAnswer: { '@type': 'Answer', text: 'ReactUse is a comprehensive collection of 110+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility.' } },
+      { '@type': 'Question', name: 'How do I install ReactUse?', acceptedAnswer: { '@type': 'Answer', text: 'Install via npm: npm i @reactuses/core. Then import any hook: import { useToggle } from "@reactuses/core".' } },
+      { '@type': 'Question', name: 'Is ReactUse compatible with Next.js and SSR?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, all ReactUse hooks are SSR-compatible and work seamlessly with Next.js, Remix, and other server-side rendering frameworks.' } },
+      { '@type': 'Question', name: 'What hooks does ReactUse provide?', acceptedAnswer: { '@type': 'Answer', text: 'ReactUse provides hooks across several categories: State Management (useToggle, useLocalStorage, useSessionStorage), Browser APIs (useClipboard, useFullscreen, useMediaQuery), Sensors (useMouse, useScroll, useGeolocation), UI (useDark, useTitle, useFavicon), Animation (useInterval, useTimeout, useRafFn), and Network (useFetch, useWebSocket, useEventSource).' } },
+    ],
+  })
+}
+
+// BreadcrumbList for documentation and blog pages
+if (breadcrumbs && breadcrumbs.length > 0) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  })
+}
+
+// BlogPosting for blog posts
+if (blogPost) {
+  graph.push({
+    '@type': 'BlogPosting',
+    headline: blogPost.title,
+    description: blogPost.description,
+    datePublished: blogPost.datePublished,
+    ...(blogPost.dateModified && { dateModified: blogPost.dateModified }),
+    author: {
+      '@type': 'Person',
+      name: blogPost.author || 'childrentime',
+      url: 'https://github.com/childrentime',
+    },
+    publisher: { '@id': 'https://reactuse.com/#org' },
+    mainEntityOfPage: canonicalURL.href,
+    url: canonicalURL.href,
+  })
+}
+
 const structuredData = {
   '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebSite',
-      url: 'https://reactuse.com',
-      name: 'ReactUse',
-      description: 'Collection of 100+ essential React Hooks',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: 'https://reactuse.com/?q={search_term_string}',
-        'query-input': 'required name=search_term_string',
-      },
-    },
-    {
-      '@type': 'SoftwareSourceCode',
-      name: '@reactuses/core',
-      description: 'Collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility',
-      programmingLanguage: ['TypeScript', 'React'],
-      runtimePlatform: ['Node.js', 'Browser'],
-      codeRepository: 'https://github.com/childrentime/reactuse',
-      license: 'https://choosealicense.com/licenses/unlicense/',
-      url: 'https://reactuse.com',
-      author: { '@type': 'Person', name: 'childrentime', url: 'https://github.com/childrentime' },
-    },
-    {
-      '@type': 'FAQPage',
-      mainEntity: [
-        { '@type': 'Question', name: 'What is ReactUse?', acceptedAnswer: { '@type': 'Answer', text: 'ReactUse is a comprehensive collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility.' } },
-        { '@type': 'Question', name: 'How do I install ReactUse?', acceptedAnswer: { '@type': 'Answer', text: 'Install via npm: npm i @reactuses/core. Then import any hook: import { useToggle } from "@reactuses/core".' } },
-        { '@type': 'Question', name: 'Is ReactUse compatible with Next.js and SSR?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, all ReactUse hooks are SSR-compatible and work seamlessly with Next.js, Remix, and other server-side rendering frameworks.' } },
-        { '@type': 'Question', name: 'What hooks does ReactUse provide?', acceptedAnswer: { '@type': 'Answer', text: 'ReactUse provides hooks across several categories: State Management (useToggle, useLocalStorage, useSessionStorage), Browser APIs (useClipboard, useFullscreen, useMediaQuery), Sensors (useMouse, useScroll, useGeolocation), UI (useDark, useTitle, useFavicon), Animation (useInterval, useTimeout, useRafFn), and Network (useFetch, useWebSocket, useEventSource).' } },
-      ],
-    },
-  ],
+  '@graph': graph,
 }
 ---
 
@@ -82,7 +156,7 @@ const structuredData = {
   <!-- Open Graph -->
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content={ogType} />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:site_name" content="ReactUse" />
   <meta property="og:image" content={new URL('/img/og.png', Astro.site)} />
@@ -95,22 +169,6 @@ const structuredData = {
   <meta name="msvalidate.01" content="FCAB31FC7E191890AC6C3BC3A945596A" />
   <meta name="baidu-site-verification" content="code-WMH1e8oKID" />
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3JKY4KFF7Y"></script>
-  <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-3JKY4KFF7Y');
-  </script>
-  <!-- Clarity -->
-  <script is:inline>
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "lyyaspthbt");
-  </script>
   <!-- Theme init (prevent flash) -->
   <script is:inline>
     (function(){
@@ -120,13 +178,15 @@ const structuredData = {
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <!-- Algolia DocSearch -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&family=Source+Sans+3:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Algolia DocSearch (async to avoid render-blocking) -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" /></noscript>
 </head>
 <body>
   <slot />
-  <script is:inline src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
   <script is:inline>
     (function() {
       var lang = 'en';
@@ -143,6 +203,21 @@ const structuredData = {
         },
       });
     })();
+  </script>
+  <!-- Analytics (moved to end of body) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3JKY4KFF7Y"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3JKY4KFF7Y');
+  </script>
+  <script is:inline>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "lyyaspthbt");
   </script>
 </body>
 </html>

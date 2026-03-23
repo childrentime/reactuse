@@ -1,12 +1,25 @@
 ---
 title: useSticky – Element Hook Usage & Examples
 sidebar_label: useSticky
-description: React Hook that tracks element sticky. Learn usage patterns, best practices, and code examples for React developers.
+description: React Hook that tracks element sticky.
 ---
 # useSticky
 
 React Hook that tracks element sticky
 
+`useSticky` detects whether an element has scrolled past a threshold and should become "sticky." It works by observing the scroll position of a container (or the window) relative to a guard element and returns a tuple of `[isSticky, setIsSticky]`. You configure it with a `nav` offset (e.g., a fixed header height) and optionally specify the scroll axis (`x` or `y`).
+
+### When to Use
+
+- Implementing sticky headers, navigation bars, or sidebars that pin after scrolling past a certain point
+- Building "back to top" buttons or floating action bars that appear after scrolling
+- Creating scroll-aware UI that changes style or behavior based on scroll position relative to a marker element
+
+### Notes
+
+- **Scroll container**: By default, the hook listens to the window scroll. Pass a third `scrollElement` ref to observe scrolling within a specific container.
+- **Axis support**: Set `axis: 'x'` in the params to track horizontal scrolling instead of the default vertical (`'y'`).
+- See also `useWindowScroll` for tracking the raw scroll position of the window.
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useWindowSize 用法與示例
 sidebar_label: useWindowSize
-description: 跟蹤視窗大小的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤視窗大小的 React Hook。
 ---
 # useWindowSize
 
 跟蹤視窗大小的 React Hook。
+
+`useWindowSize` 響應式追蹤瀏覽器視窗的 `width` 和 `height`。值在視窗調整大小時自動更新。它使用 `resize` 事件監聽器並回傳一個包含當前尺寸的物件。
+
+### 使用場景
+
+- 根據視窗尺寸有條件地渲染不同的佈局或元件
+- 計算依賴視窗尺寸的動態樣式值
+- 配合斷點邏輯建構響應式行為
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳初始值（可自訂）。伺服器上不會附加 `resize` 事件監聽器。
+- **節流**：對於頻繁調整大小的場景，請考慮搭配 `useThrottleFn` 使用以限制更新頻率。
+- **相關 hooks**：另請參閱 `useElementSize` 追蹤特定元素的尺寸，以及 `useMediaQuery` 用於斷點偵測。
 
 ## Usage
 

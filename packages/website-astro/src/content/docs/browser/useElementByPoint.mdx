@@ -9,6 +9,20 @@ description: >-
 
 `useElementByPoint` is a hook that returns the element at a given point. It is useful for implementing drag and drop, or for any other use case where you need to know what element is at a given point.
 
+`useElementByPoint` wraps [`document.elementFromPoint()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/elementFromPoint) (or `elementsFromPoint()` in multi mode) to reactively query the DOM element at given x/y coordinates. It supports polling on an interval or via `requestAnimationFrame`, and returns a pausable object with the matched element, an `isSupported` flag, and `pause`/`resume` controls.
+
+### When to Use
+
+- Building element-inspection tools or visual debuggers that highlight hovered elements
+- Implementing custom drag-and-drop logic that needs to detect drop targets at specific coordinates
+- Creating interactive tutorials or onboarding overlays that identify UI elements under the cursor
+
+### Notes
+
+- **SSR-safe**: Returns `isSupported: false` and `null` element during server-side rendering. No `document` access occurs on the server.
+- **Performance**: Use the `interval` option to control polling frequency. `requestAnimationFrame` provides the smoothest updates but uses more CPU.
+- **Related hooks**: Combine with `useMouse` to track cursor position, and `useElementBounding` to get dimensions of the detected element.
+
 ## Usage
 
 ```tsx live noInline

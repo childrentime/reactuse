@@ -1,11 +1,25 @@
 ---
 title: useFullscreen 用法与示例
 sidebar_label: useFullscreen
-description: 元素的全屏展示。 本文介绍其用法、最佳实践与代码示例。
+description: 元素的全屏展示。
 ---
 # useFullscreen
 
 元素的全屏展示
+
+`useFullscreen` 封装了 [Fullscreen API](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)，用于管理给定 DOM 元素的全屏模式进入和退出。它返回一个包含当前全屏状态（布尔值）和操作对象的元组，操作对象包含 `enterFullscreen`、`exitFullscreen`、`toggleFullscreen` 和表示浏览器支持的 `isEnabled` 标志。可通过选项提供进入/退出事件的回调。
+
+### 使用场景
+
+- 构建视频播放器、图片画廊或演示模式，这些场景受益于全屏显示
+- 创建使用整个屏幕的沉浸式阅读或游戏体验
+- 为数据仪表板或可视化工具添加全屏切换
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间全屏状态和 `isEnabled` 均返回 `false`。服务端不会访问 `document`。
+- **浏览器支持**：所有现代浏览器均支持 Fullscreen API。在显示全屏控件前请先检查 `isEnabled` 确认支持。
+- **用户手势**：浏览器需要用户发起的事件（例如点击）才能进入全屏。没有用户交互的程序化调用将被拒绝。
 
 ## Usage
 

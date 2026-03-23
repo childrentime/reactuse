@@ -1,11 +1,25 @@
 ---
 title: useBoolean 用法與示例
 sidebar_label: useBoolean
-description: 管理布爾值的 React hook。本文介紹其用法、最佳實踐與代碼示例。適用於 React 開發中需要管理布爾狀態的場景。
+description: 管理布爾值的 React hook。適用於 React 開發中需要管理布爾狀態的場景。
 ---
 # useBoolean
 
 管理布爾值的 React hook。
+
+`useBoolean` 管理一個布林值狀態，提供便捷的 `toggle`、`setTrue` 和 `setFalse` 操作函式。它是 `useState(false)` 加上常用切換操作的語義化封裝。
+
+### 使用場景
+
+- 管理開關狀態（例如模態框開啟/關閉、功能啟用/停用）
+- 控制 UI 元素的顯示/隱藏狀態
+- 實作簡單的開關邏輯而無需手動寫切換函式
+
+### 注意事項
+
+- **簡潔 API**：提供 `toggle()`、`setTrue()` 和 `setFalse()` 三個操作函式，比手動 `setState(prev => !prev)` 更加語義化。
+- **初始值**：接受一個可選的初始值參數（預設：`false`）。
+- **相關 hooks**：另請參閱 `useToggle` 用於更通用的雙值切換，以及 `useDisclosure` 用於管理帶有回呼的開啟/關閉狀態。
 
 ## Usage
 

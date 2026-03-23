@@ -1,11 +1,25 @@
 ---
 title: useLongPress 用法与示例
 sidebar_label: useLongPress
-description: 跟踪长按的 React Hook。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪长按的 React Hook。
 ---
 # useLongPress
 
 跟踪长按的 React Hook
+
+`useLongPress` 通过跟踪 `mousedown`/`mouseup` 和 `touchstart`/`touchend` 事件来检测任意元素上的长按手势。它返回一个事件处理器对象，你可以将其展开到目标元素上。当用户按住指定时间（默认 300ms）后，回调函数会被触发。该 hook 支持鼠标和触摸交互，并可选择阻止浏览器默认行为。
+
+### 使用场景
+
+- 在移动端和桌面端添加由长按触发的类似上下文菜单的操作
+- 实现"按住删除"或"按住确认"的交互
+- 构建具有长按手势作为次要操作的触摸友好界面
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回空操作事件处理器。服务端不会访问 `window` 或 `document`。
+- **触摸和鼠标**：同时处理两种指针类型。`isPreventDefault` 选项（默认 `true`）在按下期间阻止文本选择和上下文菜单。
+- **可自定义延迟**：设置 `delay` 选项（毫秒）控制用户需要按住多长时间才触发回调。
 
 ## Usage
 

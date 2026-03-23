@@ -1,11 +1,25 @@
 ---
 title: useElementSize 用法与示例
 sidebar_label: useElementSize
-description: 追踪 HTML 元素大小的React Hook. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)。 本文介绍其用法、最佳实践与代码示例。
+description: 追踪 HTML 元素大小的React Hook. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)。
 ---
 # useElementSize
 
 追踪 HTML 元素大小的React Hook. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)
+
+`useElementSize` 使用 [ResizeObserver API](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) 实时跟踪 DOM 元素的宽度和高度。它返回当前的 `width` 和 `height` 作为响应式元组，在元素调整大小时更新。传入目标元素的 ref 和可选的 `ResizeObserverOptions`（例如 `{ box: "border-box" }`）控制观察的盒模型。
+
+### 使用场景
+
+- 构建根据自身大小而非视口大小进行适配的响应式组件
+- 在不支持原生容器查询的旧浏览器中实现容器查询
+- 动态调整 canvas 元素、图表或虚拟列表的大小
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `[0, 0]`。观察在挂载后开始。
+- **性能**：使用 ResizeObserver，比轮询或监听窗口 resize 事件更高效。观察器在卸载时自动断开。
+- 参见 `useMeasure` 了解返回完整 `DOMRect` 的类似 hook，`useElementBounding` 了解通过 `getBoundingClientRect` 获取位置和大小，以及 `useWindowSize` 了解视口尺寸。
 
 ## Usage
 

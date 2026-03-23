@@ -2,13 +2,26 @@
 title: useWindowFocus – Element Hook Usage & Examples
 sidebar_label: useWindowFocus
 description: >-
-  React Element Hook that tracks window focus with `window.onfocus` and `window.onblur` events. Learn usage patterns, best practices, and code examples for
+  React Element Hook that tracks window focus with `window.onfocus` and `window.onblur` events. for
   React 
 ---
 # useWindowsFocus
 
 React Element Hook that tracks window focus with `window.onfocus` and `window.onblur` events
 
+`useWindowsFocus` reactively tracks whether the browser window currently has focus by listening to `window.onfocus` and `window.onblur` events. It returns a boolean that is `true` when the window is focused and `false` when it is not. You can optionally provide a default value for the initial state.
+
+### When to Use
+
+- Pausing real-time updates (e.g., WebSocket messages or polling) when the user switches to another application
+- Showing visual indicators like "you are away" or dimming the UI when the window loses focus
+- Resuming or refreshing data when the user returns to the application window
+
+### Notes
+
+- **SSR-safe**: Returns the provided `defaultValue` (or `true`) during server-side rendering since `window` is not available.
+- **Cleanup**: Event listeners are removed automatically when the component unmounts.
+- See also `useDocumentVisibility` for tracking tab visibility (which also covers minimized windows), and `useFocus` for tracking focus on individual elements.
 
 ## Usage
 

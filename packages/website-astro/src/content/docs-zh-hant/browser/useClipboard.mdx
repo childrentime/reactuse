@@ -1,12 +1,26 @@
 ---
 title: useClipboard 用法與示例
 sidebar_label: useClipboard
-description: 將文本複製到用戶的剪貼板。 本文介紹其用法、最佳實踐與代碼示例。
+description: 將文本複製到用戶的剪貼板。
 ---
 # useClipboard
 
 將文本複製到用戶的剪貼板
 
+
+`useClipboard` 使用 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) 提供了讀取和寫入系統剪貼簿的簡單介面。它回傳一個包含最近複製文字和 `copy` 函式的元組。此 hook 內部處理權限檢查，適用於所有支援 Clipboard API 的現代瀏覽器。
+
+### 使用場景
+
+- 為程式碼片段、URL 或分享連結新增「複製到剪貼簿」按鈕
+- 在表單或編輯器中建構從剪貼簿貼上的功能
+- 在資料表格或儀表板中實作複製功能
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳空字串和空操作函式。伺服器上不會存取 `navigator`。
+- **瀏覽器支援**：需要 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)（所有現代瀏覽器均支援）。在舊版瀏覽器中會優雅降級。
+- **權限**：某些瀏覽器需要使用者授權才能存取剪貼簿。可搭配 `usePermission` 檢查 `clipboard-read` 和 `clipboard-write` 狀態。
 
 ## Usage
 

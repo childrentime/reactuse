@@ -1,11 +1,25 @@
 ---
 title: useTextSelection 用法與示例
 sidebar_label: useTextSelection
-description: 跟蹤用户选中的文字。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤用户选中的文字。
 ---
 # useTextSelection
 
 跟蹤用户选中的文字
+
+`useTextSelection` 追蹤使用者在頁面上的文字選取狀態。它使用 [Selection API](https://developer.mozilla.org/en-US/docs/Web/API/Selection) 回傳當前選取的文字內容、選取範圍和位置資訊。在選取變更時自動更新。
+
+### 使用場景
+
+- 建構對選取文字進行操作的工具列（例如加粗、高亮、引用）
+- 追蹤使用者選取的文字以進行分析或搜尋
+- 實作基於文字選取的上下文選單或工具提示
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳空值。伺服器上不會存取 `window.getSelection()`。
+- **Selection API**：回傳的物件包含選取的文字、矩形位置和 Selection 物件本身。
+- **相關 hooks**：另請參閱 `useActiveElement` 追蹤焦點元素。
 
 ## Usage
 

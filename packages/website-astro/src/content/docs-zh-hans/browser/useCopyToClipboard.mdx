@@ -1,15 +1,29 @@
 ---
 title: useCopyToClipboard – Browser Hook 使用方法与示例 (useClipboard 的别名)
 sidebar_label: useCopyToClipboard
-description: 将文本复制到用户的剪贴板。useClipboard 的别名。学习使用模式、最佳实践和 React 开发者的代码示例。
+description: 将文本复制到用户的剪贴板。useClipboard 的别名。
 ---
 # useCopyToClipboard
 
 将文本复制到用户的剪贴板。
 
 :::info
-`useCopyToClipboard` 是 [`useClipboard`](/zh-Hans/browser/useClipboard) 的别名。它们具有相同的功能和 API。
+`useCopyToClipboard` 是 [`useClipboard`](/zh-Hans/browser/useClipboard) 的别名。它们具有完全相同的功能和 API。
 :::
+
+`useCopyToClipboard` 封装了 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)，提供一个方便的元组，包含最后复制的文本和 `copy` 函数。这是 `useClipboard` 的直接替代别名，你可以根据代码库的命名约定选择使用哪一个。更多细节请参见 `useClipboard`。
+
+### 使用场景
+
+- 当你偏好 `useCopyToClipboard` 命名约定时，添加"复制到剪贴板"功能
+- 从使用此命名模式的其他 hook 库迁移
+- 任何适用 `useClipboard` 的场景——两个 hook 可以互换使用
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回空字符串和空操作函数。服务端不会访问 `navigator`。
+- **浏览器支持**：需要 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)（所有现代浏览器均支持）。
+- **权限**：部分浏览器需要用户授权才能访问剪贴板。可配合 `usePermission` 检查 `clipboard-read` 和 `clipboard-write` 的状态。
 
 ## 用法
 

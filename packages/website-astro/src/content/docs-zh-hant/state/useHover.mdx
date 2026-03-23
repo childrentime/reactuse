@@ -1,11 +1,25 @@
 ---
 title: useHover 用法與示例
 sidebar_label: useHover
-description: 跟蹤滑鼠是否在元素上。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤滑鼠是否在元素上。
 ---
 # useHover
 
 跟蹤滑鼠是否在元素上。
+
+`useHover` 追蹤滑鼠是否懸停在目標元素上。它回傳一個布林值，在滑鼠進入元素時為 `true`，離開時為 `false`。支援可選的進入/離開延遲以實現防抖懸停效果。
+
+### 使用場景
+
+- 在滑鼠懸停時顯示工具提示或預覽內容
+- 實作懸停時高亮或展開的 UI 效果
+- 建構帶有延遲的懸停選單（防止意外觸發）
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `false`。伺服器上不會附加事件監聽器。
+- **延遲**：支援 `enterDelay` 和 `leaveDelay` 選項以防抖懸停狀態變更。
+- **相關 hooks**：另請參閱 `useMouse` 追蹤游標位置，以及 `useMousePressed` 追蹤按壓狀態。
 
 ## Usage
 

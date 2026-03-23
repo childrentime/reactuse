@@ -1,11 +1,25 @@
 ---
 title: useLocalStorage 用法與示例
 sidebar_label: useLocalStorage
-description: 輕鬆管理 `localStorage`。 本文介紹其用法、最佳實踐與代碼示例。
+description: 輕鬆管理 `localStorage`。
 ---
 # useLocalStorage
 
 輕鬆管理 `localStorage`
+
+`useLocalStorage` 提供響應式的 `localStorage` 讀寫。它回傳一個元組，包含當前儲存的值和一個更新函式。值在 `localStorage` 變更時自動同步（包括跨分頁）。支援自訂序列化/反序列化。
+
+### 使用場景
+
+- 持久化使用者偏好設定（如主題、語言、佈局）
+- 儲存表單草稿以在頁面重新載入後恢復
+- 實作跨分頁同步的狀態管理
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳預設值。伺服器上不會存取 `localStorage`。
+- **跨分頁同步**：透過 `storage` 事件監聽跨分頁的變更。
+- **相關 hooks**：另請參閱 `useSessionStorage` 用於工作階段層級的儲存，以及 `useCookie` 用於 cookie 儲存。
 
 ## Usage
 

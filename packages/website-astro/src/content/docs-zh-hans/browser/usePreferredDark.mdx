@@ -1,11 +1,25 @@
 ---
 title: usePreferredDark 用法与示例
 sidebar_label: usePreferredDark
-description: 跟踪是否偏好黑色主题。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪是否偏好黑色主题。
 ---
 # usePreferredDark
 
 跟踪是否偏好黑色主题
+
+`usePreferredDark` 使用 [`window.matchMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) 配合 `(prefers-color-scheme: dark)` 媒体查询，返回一个布尔值表示用户是否偏好深色方案。当用户切换系统深色模式设置时，值会自动更新。当你只需要一个布尔值时，这是 `usePreferredColorScheme` 的更简单替代。
+
+### 使用场景
+
+- 基于用户的操作系统偏好设置默认的深色/浅色主题
+- 在组件中有条件地应用深色模式样式或类名
+- 确定应用中主题切换的初始值
+
+### 注意事项
+
+- **SSR 安全**：接受一个 `defaultState` 参数（默认 `false`），在服务端渲染期间 `window.matchMedia` 不可用时返回该值。
+- **响应式**：当用户更改系统深色模式偏好时立即更新。
+- **相关 hooks**：参见 `usePreferredColorScheme` 了解 `"dark"`/`"light"`/`"no-preference"` 字符串值，`useDarkMode` 了解带 localStorage 持久化的切换，以及 `useColorMode` 了解多主题支持。
 
 ## Usage
 

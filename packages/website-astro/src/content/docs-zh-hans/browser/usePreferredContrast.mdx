@@ -1,11 +1,25 @@
 ---
 title: usePreferredContrast 用法与示例
 sidebar_label: usePreferredContrast
-description: '[prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) 媒体查询。 本文介绍其用法、最佳实践与代码示例。'
+description: '[prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) 媒体查询。'
 ---
 # usePreferredContrast
 
 [prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) 媒体查询
+
+`usePreferredContrast` 使用 [`window.matchMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) 响应式地跟踪用户的对比度偏好。它基于 [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) 媒体查询返回 `"more"`、`"less"`、`"custom"` 或 `"no-preference"`。当用户更改系统辅助功能设置时，值会自动更新。
+
+### 使用场景
+
+- 为偏好更高对比度的用户增加边框宽度、字体粗细或颜色对比度
+- 为偏好较低对比度的用户降低视觉强度
+- 构建适应系统级对比度偏好的无障碍界面
+
+### 注意事项
+
+- **SSR 安全**：接受一个 `defaultState` 参数（默认 `"no-preference"`），在服务端渲染期间 `window.matchMedia` 不可用时返回该值。
+- **浏览器支持**：`prefers-contrast` 媒体查询在现代浏览器中受支持，但可用性有所不同。详见 [MDN 兼容性](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast#browser_compatibility)。
+- **相关 hooks**：基于 `useMediaQuery` 构建。参见 `useReducedMotion` 和 `usePreferredColorScheme` 了解其他辅助功能相关的媒体查询 hook。
 
 ## Usage
 

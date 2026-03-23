@@ -1,11 +1,25 @@
 ---
 title: useToggle 用法與示例
 sidebar_label: useToggle
-description: 優雅管理 `Boolean` 值。 本文介紹其用法、最佳實踐與代碼示例。
+description: 優雅管理 `Boolean` 值。
 ---
 # useToggle
 
 優雅管理 `Boolean` 值。
+
+`useToggle` 在兩個值之間切換（預設為 `true` 和 `false`）。它回傳一個元組，包含當前值和切換函式。可以自訂切換的兩個值，不限於布林值。
+
+### 使用場景
+
+- 在兩個預定義值之間切換（例如 `"grid"` 和 `"list"` 視圖模式）
+- 實作簡單的開/關切換功能
+- 管理二元狀態，如排序方向（升序/降序）
+
+### 注意事項
+
+- **自訂值**：支援任何兩個值之間的切換，不僅限於布林值。
+- **直接設定**：切換函式也接受參數以直接設定特定值。
+- **相關 hooks**：另請參閱 `useBoolean` 用於帶有 `setTrue`/`setFalse` 的布林管理，以及 `useCycleList` 用於在多個值之間循環。
 
 ## Usage
 

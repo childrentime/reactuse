@@ -11,6 +11,19 @@ React Sensor Hooks that tracks [Geolocation](https://developer.mozilla.org/en-US
 
 It allows the user to provide their location to web applications if they so desire. For privacy reasons, the user is asked for permission to report location information
 
+`useGeolocation` wraps the [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) to reactively track the user's geographic position. It returns an object with `coordinates` (latitude, longitude, altitude, accuracy, etc.), a `locatedAt` timestamp, an `error` object, and an `isSupported` flag. The hook watches for position changes and updates automatically. Standard `PositionOptions` (like `enableHighAccuracy` and `timeout`) can be passed as options.
+
+### When to Use
+
+- Displaying the user's current location on a map or providing location-aware search results
+- Building geofencing features that trigger actions when users enter or leave a geographic area
+- Calculating distances or directions based on the user's real-time position
+
+### Notes
+
+- **SSR-safe**: Returns default coordinates and `null` values during server-side rendering. No `navigator.geolocation` access occurs on the server.
+- **Permissions**: The browser prompts the user for location permission. The `error` property captures any denial or timeout. Use alongside `usePermission` with `"geolocation"` to check permission status proactively.
+- **Privacy**: Location data is sensitive. Only request geolocation when genuinely needed and inform users why their location is being accessed.
 
 ## Usage
 

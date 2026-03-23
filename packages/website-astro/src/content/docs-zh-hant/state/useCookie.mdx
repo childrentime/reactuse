@@ -14,6 +14,20 @@ description: 有助於在 CookieStore 中存儲、更新和刪除值的 hook。
 :::
 
 
+`useCookie` 提供響應式的瀏覽器 cookie 讀寫。它回傳一個元組，包含當前 cookie 值（或 `null`）和一個更新 cookie 的函式。支援設定 cookie 的各種屬性（過期時間、路徑、域名、安全性等）。刪除 cookie 可透過將值設為 `null` 或 `undefined`。
+
+### 使用場景
+
+- 讀取和寫入使用者偏好設定到 cookie
+- 管理認證 token 或工作階段資訊
+- 建構需要 cookie 存取的同意管理或功能旗標系統
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `null`。伺服器上不會存取 `document.cookie`。
+- **Cookie 屬性**：支援所有標準 cookie 屬性，包括 `expires`、`path`、`domain`、`secure`、`sameSite` 和 `httpOnly`。
+- **相關 hooks**：另請參閱 `useLocalStorage` 和 `useSessionStorage` 用於 Web Storage API 的替代持久化方案。
+
 ## Usage
 
 ```tsx live

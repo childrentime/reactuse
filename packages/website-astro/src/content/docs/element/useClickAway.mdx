@@ -1,7 +1,7 @@
 ---
 title: useClickAway – Element Hook Usage & Examples (Alias for useClickOutside)
 sidebar_label: useClickAway
-description: Listen for clicks outside of an element. Alias for useClickOutside. Useful for modal or dropdown. Learn usage patterns, best practices, and code examples for React developers.
+description: Listen for clicks outside of an element. Alias for useClickOutside. Useful for modal or dropdown.
 ---
 # useClickAway
 
@@ -10,6 +10,20 @@ Listen for clicks outside of an element. Useful for modal or dropdown.
 :::info
 `useClickAway` is an alias for [`useClickOutside`](/element/useClickOutside). They have identical functionality and API.
 :::
+
+`useClickAway` detects clicks (mouse and touch events) that occur outside of a referenced DOM element and invokes a callback when they happen. Pass a ref to the element you want to protect and a handler function. You can also pass an `enabled` flag to conditionally activate or deactivate the listener.
+
+### When to Use
+
+- Closing dropdown menus, popovers, or modals when the user clicks outside of them
+- Deselecting or deactivating an inline editing component when focus moves away
+- Dismissing notification toasts or context menus on outside interaction
+
+### Notes
+
+- **Event types**: Listens for both `mousedown` and `touchstart` events, covering desktop and mobile interactions.
+- **Cleanup**: The event listeners are automatically removed when the component unmounts or when `enabled` is set to `false`.
+- This hook is an alias for `useClickOutside`. Use whichever name you prefer -- they share the same implementation.
 
 ## Usage
 

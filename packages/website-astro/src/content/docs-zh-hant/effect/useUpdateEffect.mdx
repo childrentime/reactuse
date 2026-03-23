@@ -1,11 +1,25 @@
 ---
 title: useUpdateEffect 用法與示例
 sidebar_label: useUpdateEffect
-description: 挂载完成后，在依赖更新的时候执行。 本文介紹其用法、最佳實踐與代碼示例。
+description: 挂载完成后，在依赖更新的时候执行。
 ---
 # useUpdateEffect
 
 挂载完成后，在依赖更新的时候执行
+
+`useUpdateEffect` 與 `useEffect` 類似，但跳過第一次渲染（掛載時）的執行。effect 只在依賴變更時觸發，不在初始渲染時觸發。這對於只關心值變更而非初始值的場景很有用。
+
+### 使用場景
+
+- 在依賴更新時執行副作用但跳過初始渲染（例如顯示「已更新」通知）
+- 在值變更後發送 API 請求但不在初始載入時發送
+- 對依賴變更做出反應而不在元件首次掛載時觸發
+
+### 注意事項
+
+- **跳過初始渲染**：effect 回呼在元件首次掛載時不會執行。僅在後續依賴變更時執行。
+- **清理**：支援清理函式，與標準 `useEffect` 相同。
+- **相關 hooks**：另請參閱 `useUpdateLayoutEffect` 用於跳過初始渲染的佈局 effect，以及 `useDeepCompareEffect` 用於深度比較依賴。
 
 ## Usage
 

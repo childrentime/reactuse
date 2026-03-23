@@ -11,6 +11,20 @@ description: '`useControlled` 是一個自定義 hook，幫助你管理受控組
 `useControlled` 組件不支持在受控和非受控之间切换，也不支持传递函數更新函數，可以参考这个讨论 https://github.com/adobe/react-spectrum/issues/2320
 :::
 
+`useControlled` 讓一個元件同時支援受控和非受控兩種模式。它接受 `value`（受控值）和 `defaultValue`（非受控預設值），回傳當前值和設定函式。當提供了 `value` 時為受控模式，否則使用內部 state。
+
+### 使用場景
+
+- 建構同時支援受控和非受控使用方式的表單元件
+- 開發可重用的 UI 元件函式庫，讓消費者選擇控制模式
+- 遷移非受控元件為受控元件時提供向後相容性
+
+### 注意事項
+
+- **模式偵測**：根據 `value` 是否為 `undefined` 來決定使用受控還是非受控模式。
+- **onChange 回呼**：在兩種模式下都會呼叫 `onChange` 回呼，讓父元件可以追蹤值的變更。
+- **相關 hooks**：另請參閱 `useBoolean` 和 `useToggle` 用於特定型別的狀態管理。
+
 ## Usage
 
 ```tsx live

@@ -1,12 +1,26 @@
 ---
 title: useKeyModifier 用法与示例
 sidebar_label: useKeyModifier
-description: 跟踪[按键](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#browser_compatibility)是否被按下。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪[按键](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#browser_compatibility)是否被按下。
 ---
 # useKeyModifier
 
 跟踪[按键](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#browser_compatibility)是否被按下
 
+
+`useKeyModifier` 使用 [`KeyboardEvent.getModifierState()`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState) 来响应式地跟踪特定修饰键（Shift、Control、Alt、CapsLock、Meta 等）是否正在被按下。它返回一个在 `keydown`、`keyup`、`mousedown` 和 `mouseup` 事件上更新的布尔值。你可以自定义触发更新的事件和设置初始值。
+
+### 使用场景
+
+- 构建键盘快捷键指示器，当修饰键被按住时进行视觉高亮
+- 根据活动的修饰键显示不同的工具提示或光标样式
+- 实现修饰键感知的交互（例如 Ctrl+点击进行多选）
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `initial` 值（默认 `false`）。服务端不会附加事件监听器。
+- **支持的修饰键**：支持 `Alt`、`AltGraph`、`CapsLock`、`Control`、`Fn`、`FnLock`、`Meta`、`NumLock`、`ScrollLock`、`Shift`、`Symbol` 和 `SymbolLock`。并非所有修饰键在所有浏览器中都可用——参见 [MDN 兼容性](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#browser_compatibility)。
+- **事件自定义**：默认事件（`mousedown`、`mouseup`、`keydown`、`keyup`）可通过 `events` 选项覆盖。
 
 ## Usage
 

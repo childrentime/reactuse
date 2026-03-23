@@ -1,13 +1,27 @@
 ---
 title: useGeolocation 用法与示例
 sidebar_label: useGeolocation
-description: 跟踪[地理位置](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)的 React Hook 如果用户愿意，它允许用户向网络应用程序提供他们的位置。 出于隐私原因，报告位置信息需要用户许可。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪[地理位置](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)的 React Hook 如果用户愿意，它允许用户向网络应用程序提供他们的位置。 出于隐私原因，报告位置信息需要用户许可。
 ---
 # useGeolocation
 
 跟踪[地理位置](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)的 React Hook
 
 如果用户愿意，它允许用户向网络应用程序提供他们的位置。 出于隐私原因，报告位置信息需要用户许可
+
+`useGeolocation` 封装了 [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)，用于响应式地跟踪用户的地理位置。它返回一个包含 `coordinates`（纬度、经度、海拔、精度等）、`locatedAt` 时间戳、`error` 对象和 `isSupported` 标志的对象。该 hook 监听位置变化并自动更新。可以传递标准 `PositionOptions`（如 `enableHighAccuracy` 和 `timeout`）作为选项。
+
+### 使用场景
+
+- 在地图上显示用户的当前位置或提供基于位置的搜索结果
+- 构建地理围栏功能，当用户进入或离开某个地理区域时触发操作
+- 基于用户的实时位置计算距离或方向
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回默认坐标和 `null` 值。服务端不会访问 `navigator.geolocation`。
+- **权限**：浏览器会提示用户授予位置权限。`error` 属性会捕获任何拒绝或超时。可配合 `usePermission`（使用 `"geolocation"`）主动检查权限状态。
+- **隐私**：位置数据是敏感的。仅在真正需要时请求地理位置，并告知用户为什么需要访问其位置。
 
 ## Usage
 

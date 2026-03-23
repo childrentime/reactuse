@@ -1,11 +1,25 @@
 ---
 title: useBroadcastChannel 用法與示例
 sidebar_label: useBroadcastChannel
-description: '`useBroadcastChannel` 是一個允許你在組件中使用 `BroadcastChannel API` 的 hook。 本文介紹其用法、最佳實踐與代碼示例。'
+description: '`useBroadcastChannel` 是一個允許你在組件中使用 `BroadcastChannel API` 的 hook。'
 ---
 # useBroadcastChannel
 
 `useBroadcastChannel` 是一個允許你在組件中使用 `BroadcastChannel API` 的 hook。
+
+`useBroadcastChannel` 封裝了 [BroadcastChannel API](https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel)，用於在同源的瀏覽上下文（分頁、視窗、iframe）之間實現簡單的訊息傳遞。它回傳一個物件，包含當前 `data`、用於傳送訊息的 `post` 函式、連線狀態、錯誤狀態和 `close` 函式。此 hook 會自動管理頻道的生命週期，並在元件卸載時進行清理。
+
+### 使用場景
+
+- 在同一應用程式的多個開啟分頁之間同步狀態（例如主題切換、登出事件）
+- 無需伺服器即可向所有開啟的應用實例廣播即時更新
+- 在同源的 iframe 或彈出視窗之間協調操作
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `isSupported: false` 和空操作函式。伺服器上不會呼叫 `BroadcastChannel` 建構函式。
+- **瀏覽器支援**：所有現代瀏覽器均支援。在依賴頻道功能之前，請先檢查 `isSupported`。
+- **僅限同源**：BroadcastChannel API 僅在同源的瀏覽上下文之間有效。
 
 ## Usage
 

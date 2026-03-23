@@ -1,12 +1,25 @@
 ---
 title: useScrollLock – Browser Hook Usage & Examples
 sidebar_label: useScrollLock
-description: Lock scrolling of the element while preserving scrolling within nested scrollable containers. Learn usage patterns, best practices, and code examples for React developers.
+description: Lock scrolling of the element while preserving scrolling within nested scrollable containers.
 ---
 # useScrollLock
 
 Lock scrolling of the element while preserving scrolling within nested scrollable containers.
 
+`useScrollLock` prevents scrolling on a target element by setting `overflow: hidden` on the element's style. It returns a tuple of the current lock state (boolean) and a setter function to toggle the lock. Crucially, it preserves scrolling within nested scrollable containers inside the locked element, so inner content remains interactive. The lock is automatically released when the component unmounts.
+
+### When to Use
+
+- Preventing background scroll when a modal, dialog, or drawer is open
+- Locking scroll on the body while displaying a fullscreen overlay or lightbox
+- Disabling scroll temporarily during drag-and-drop operations to prevent accidental scrolling
+
+### Notes
+
+- **SSR-safe**: Returns `false` for the lock state and a no-op setter during server-side rendering. No DOM style manipulation occurs on the server.
+- **Nested scrolling**: Unlike naive `overflow: hidden` approaches, this hook preserves scrolling within child scrollable containers, making it suitable for dialogs with scrollable content.
+- **Related hooks**: See also `useScroll` for tracking scroll position, `useScrollIntoView` for programmatic scrolling, and `useFullscreen` for immersive display modes.
 
 ## Usage
 

@@ -2,12 +2,28 @@
 title: useEventSource – Browser Hook Usage & Examples
 sidebar_label: useEventSource
 description: >-
-  `useEventSource` is a hook that allows you to subscribe to an EventSource and receive updates in real-time. Learn usage patterns, best practices, and code
+  `useEventSource` is a hook that allows you to subscribe to an EventSource and receive updates in real-time. practices, and code
   examp
 ---
 # useEventSource
 
 `useEventSource` is a hook that allows you to subscribe to an EventSource and receive updates in real-time.
+
+`useEventSource` wraps the [EventSource API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) (Server-Sent Events) to establish a one-way connection from a server to the browser. It returns an object with `status` (connection state), `data` (the latest message), `error`, `close` (to disconnect), and `open` (to reconnect). You can listen to named events and control whether the connection opens immediately or is deferred.
+
+### When to Use
+
+- Receiving real-time server updates such as live feeds, notifications, or progress events
+- Building dashboards that display streaming data from a server endpoint
+- Implementing server-push features where the client only needs to receive (not send) data
+
+### Notes
+
+- **SSR-safe**: Returns a default state with no active connection during server-side rendering. No `EventSource` constructor is called on the server.
+- **Reconnection**: The browser's native `EventSource` automatically reconnects on connection loss. Use the `status` field to track the current connection state.
+- **Related hooks**: See also `useFetchEventSource` for SSE connections that need custom HTTP methods (e.g., POST) or headers.
+
+## Usage
 
 ```tsx live
 function Demo() {

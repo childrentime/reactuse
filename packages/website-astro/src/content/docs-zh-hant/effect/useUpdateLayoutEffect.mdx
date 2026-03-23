@@ -1,11 +1,25 @@
 ---
 title: useUpdateLayoutEffect 用法與示例
 sidebar_label: useUpdateLayoutEffect
-description: 挂载完成后，在依赖更新的时候执行。 本文介紹其用法、最佳實踐與代碼示例。
+description: 挂载完成后，在依赖更新的时候执行。
 ---
 # useUpdateLayoutEffect
 
 挂载完成后，在依赖更新的时候执行
+
+`useUpdateLayoutEffect` 與 `useLayoutEffect` 類似，但跳過第一次渲染（掛載時）的執行。effect 在 DOM 變更後、瀏覽器繪製前同步執行，但只在依賴更新時觸發，不在初始渲染時觸發。
+
+### 使用場景
+
+- 在依賴更新時同步讀取或修改 DOM 但跳過初始渲染
+- 在值變更後進行佈局測量或調整但不在首次掛載時執行
+- 需要佈局 effect 的時序但不需要初始渲染執行的場景
+
+### 注意事項
+
+- **佈局時序**：與 `useLayoutEffect` 相同，在 DOM 變更後、瀏覽器繪製前同步執行。
+- **跳過初始渲染**：effect 回呼在元件首次掛載時不會執行。
+- **相關 hooks**：另請參閱 `useUpdateEffect` 用於跳過初始渲染的標準 effect，以及 `useIsomorphicLayoutEffect` 用於 SSR 安全的佈局 effect。
 
 ## Usage
 

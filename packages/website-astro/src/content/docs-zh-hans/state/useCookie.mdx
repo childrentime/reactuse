@@ -15,6 +15,20 @@ description: >-
 :::
 
 
+`useCookie` 按键管理单个浏览器 cookie。它返回一个 `[cookieValue, updateCookie, refreshCookie]` 元组。使用字符串调用 `updateCookie` 设置 cookie，使用 `undefined` 调用则删除它。`refreshCookie` 函数从存储中重新读取 cookie，这在 cookie 可能被外部修改时很有用。选项直接传递给 `js-cookie`，用于控制路径、域名、过期时间和其他 cookie 属性。
+
+### 使用场景
+
+- 将用户偏好（语言环境、主题、同意标志）持久化在 cookie 中，以便服务端访问
+- 读写存储在 cookie 中的认证或会话令牌
+- 当外部代码（分析、第三方脚本）也可能修改 cookie 时，在组件中同步 cookie 状态
+
+### 注意事项
+
+- **SSR 注意事项**：使用 SSR 时传入 `defaultValue`，这样在客户端 `document.cookie` 可用之前 hook 就有值。
+- **无跨组件同步**：在一个组件中更新 cookie 不会自动触发使用同一键的其他组件重新渲染。如果需要，请使用广播机制。
+- 参见 `useLocalStorage` 和 `useSessionStorage` 了解通过 `storage` 事件提供跨标签页同步的 Web Storage 替代方案。
+
 ## Usage
 
 ```tsx live

@@ -1,11 +1,25 @@
 ---
 title: useCounter 用法與示例
 sidebar_label: useCounter
-description: 跟蹤數值的 React hook。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤數值的 React hook。
 ---
 # useCounter
 
 跟蹤數值的 React hook。
+
+`useCounter` 管理一個數值計數器狀態，提供 `increment`、`decrement`、`set` 和 `reset` 操作。支援可選的最小值和最大值約束以限制計數範圍。
+
+### 使用場景
+
+- 建構數量選擇器或購物車中的數量控制
+- 實作分頁控制或步驟指示器
+- 管理任何需要遞增/遞減操作的數值狀態
+
+### 注意事項
+
+- **範圍約束**：設定 `min` 和 `max` 選項可防止計數器超出指定範圍。
+- **重置**：`reset` 函式將計數器恢復到初始值。
+- **相關 hooks**：另請參閱 `useBoolean` 用於布林切換，以及 `useCycleList` 用於在值清單中循環。
 
 ## Usage
 

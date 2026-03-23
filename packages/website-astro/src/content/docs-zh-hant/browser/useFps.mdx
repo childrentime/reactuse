@@ -1,11 +1,25 @@
 ---
 title: useFps 用法與示例
 sidebar_label: useFps
-description: 輕鬆跟蹤 FPS。 本文介紹其用法、最佳實踐與代碼示例。
+description: 輕鬆跟蹤 FPS。
 ---
 # useFps
 
 輕鬆跟蹤 FPS
+
+`useFps` 透過計算 [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame) 回呼來測量當前的每秒幀數。它回傳一個表示當前 FPS 的數字，在可設定的幀數上計算（預設：每 10 幀）。這對於效能監控和自適應渲染非常有用。
+
+### 使用場景
+
+- 在開發或除錯覆蓋層中顯示即時 FPS 計數器
+- 當幀率降到閾值以下時自適應地降低動畫複雜度
+- 對元件或頁面的渲染效能進行基準測試
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `0`。伺服器上不會發生 `requestAnimationFrame` 呼叫。
+- **效能**：此 hook 內部使用 `requestAnimationFrame`，開銷極小。調整 `every` 選項以平衡精確度和更新頻率。
+- **相關 hooks**：另請參閱 `useIdle` 用於偵測使用者閒置狀態，可與基於 FPS 的自適應渲染互補。
 
 ## Usage
 

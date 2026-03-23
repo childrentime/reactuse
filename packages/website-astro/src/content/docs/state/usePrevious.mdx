@@ -9,6 +9,19 @@ description: >-
 
 React state hook that returns the previous state as described in the [React Docs](https://react.dev/reference/react/useState#storing-information-from-previous-renders)
 
+`usePrevious` accepts a value and returns the value from the previous render. On the initial render it returns `undefined` since there is no prior value. The hook stores the previous value in a ref and updates it after each render, giving you a snapshot of what the value was before the most recent change.
+
+### When to Use
+
+- Comparing current and previous values to trigger animations, transitions, or conditional logic
+- Detecting direction of change (e.g., whether a counter increased or decreased)
+- Implementing undo functionality or displaying "changed from X to Y" indicators
+
+### Notes
+
+- **Initial value**: Returns `undefined` on the first render. Type the result as `T | undefined` accordingly.
+- **SSR-safe**: Uses only a React ref internally with no browser dependencies.
+- See also `useLatest` for accessing the *current* (most recent) value inside callbacks without stale closures.
 
 ## Usage
 

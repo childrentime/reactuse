@@ -11,6 +11,19 @@ The Web Notification interface of the Notifications API is used to configure and
 Attention: For users on the Mac system, it is necessary for them to have enabled notifications for Chrome in their system settings. Without enabling notifications for Chrome in the system, even if the front-end page requests permission, notifications will not be displayed.
 :::
 
+`useWebNotification` wraps the [Notifications API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API) to display native desktop/mobile notifications. It returns an object with `isSupported`, a `show` function (accepting a title and `NotificationOptions`), a `close` function, an `ensurePermissions` function, and a `permissionGranted` ref. Pass `true` to auto-request notification permission on mount.
+
+### When to Use
+
+- Alerting users about new messages, updates, or events even when the browser tab is not focused
+- Sending reminders for scheduled tasks, timers, or calendar events
+- Notifying users about completed background operations (uploads, downloads, builds)
+
+### Notes
+
+- **SSR-safe**: Returns `isSupported: false` and no-op functions during server-side rendering. No `Notification` constructor or permission requests occur on the server.
+- **Permissions**: Notifications require explicit user permission. Use `ensurePermissions()` or pass `requestPermissions: true` to prompt the user. The `permissionGranted` ref tracks the current permission state.
+- **Related hooks**: Use alongside `usePermission` with `"notifications"` to proactively check notification permission status without triggering a prompt.
 
 ## Usage
 

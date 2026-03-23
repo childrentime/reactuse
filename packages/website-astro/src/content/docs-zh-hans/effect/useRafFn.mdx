@@ -1,11 +1,25 @@
 ---
 title: useRafFn 用法与示例
 sidebar_label: useRafFn
-description: 在每一帧 `requestAnimationFrame` 上执行回调函数。 本文介绍其用法、最佳实践与代码示例。
+description: 在每一帧 `requestAnimationFrame` 上执行回调函数。
 ---
 # useRafFn
 
 在每一帧 `requestAnimationFrame` 上执行回调函数。
+
+`useRafFn` 将回调安排在每个 `requestAnimationFrame` 周期上运行，在每帧向回调提供高分辨率时间戳。它返回一个 `[stop, start, isActive]` 元组，用于对动画循环进行完全的命令式控制。回调引用通过 `useLatest` 保持最新，因此你始终可以访问最新的闭包值而无需重新启动循环。
+
+### 使用场景
+
+- 构建需要在每个浏览器绘制帧上更新的流畅动画（例如 canvas 绘图、CSS 变换）
+- 实现实时可视化，如 FPS 计数器、进度指示器或物理模拟
+- 运行应根据用户交互或可见性暂停和恢复的持续视觉更新
+
+### 注意事项
+
+- **自动启动**：默认在挂载时立即启动循环。传入 `false` 作为第二个参数可以在暂停状态下启动。
+- **清理**：动画帧在卸载时通过 effect 清理自动取消。
+- 参见 `useInterval` 了解固定间隔计时，以及 `useUpdate` 了解按需触发单次重新渲染。
 
 ## Usage
 

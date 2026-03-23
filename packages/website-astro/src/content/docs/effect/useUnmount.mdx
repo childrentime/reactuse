@@ -1,12 +1,25 @@
 ---
 title: useUnmount – Effect Hook Usage & Examples
 sidebar_label: useUnmount
-description: React lifecycle hook that calls a function when the component will unmount. Learn usage patterns, best practices, and code examples for React developers.
+description: React lifecycle hook that calls a function when the component will unmount.
 ---
 # useUnmount
 
 React lifecycle hook that calls a function when the component will unmount
 
+`useUnmount` runs a cleanup function exactly once when the component unmounts. It stores the callback in a ref via `useLatest`, ensuring the function always has access to the latest props and state at the time of unmount -- without needing to list them as dependencies. This avoids the stale closure problem common with plain `useEffect` cleanup.
+
+### When to Use
+
+- Cleaning up subscriptions, WebSocket connections, or event listeners when a component is removed from the tree
+- Cancelling in-flight network requests or aborting async operations on unmount
+- Logging or analytics tracking when a user navigates away from a page or closes a modal
+
+### Notes
+
+- **Latest closure**: Unlike a bare `useEffect` cleanup, the callback always sees the most recent state and props because it reads from a ref.
+- **Development validation**: In development mode, a console error is logged if the provided argument is not a function.
+- See also `useMount` for the corresponding mount lifecycle hook.
 
 ## Usage
 

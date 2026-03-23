@@ -220,6 +220,17 @@ a:hover {
   flex: 1;
   max-width: 48rem;
   padding: var(--sp-10) var(--sp-10) var(--sp-16);
+  overflow-x: hidden;
+}
+
+/* Responsive tables and code blocks */
+.doc-prose .table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: var(--sp-5);
+}
+.doc-prose .table-wrapper table {
+  margin-bottom: 0;
 }
 
 /* --- Doc prose --- */

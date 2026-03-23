@@ -1,11 +1,25 @@
 ---
 title: useDebounceFn 用法与示例
 sidebar_label: useDebounceFn
-description: 使用React hooks防抖（debounce）函数。 本文介绍其用法、最佳实践与代码示例。
+description: 使用React hooks防抖（debounce）函数。
 ---
 # useDebounceFn
 
 使用React hooks防抖（debounce）函数
+
+`useDebounceFn` 使用 `lodash.debounce` 为函数添加防抖行为。它返回一个包含 `run`、`cancel` 和 `flush` 方法的对象，让你完全控制防抖执行。防抖函数会延迟调用你的回调，直到自最后一次调用以来经过指定的等待时间。
+
+### 使用场景
+
+- 防抖搜索输入，仅在用户停止输入后发送 API 请求
+- 限制由快速变化的值触发的昂贵计算的频率（例如窗口大小调整计算）
+- 延迟表单验证直到用户暂停输入
+
+### 注意事项
+
+- **Lodash 选项**：第三个参数接受 `lodash.debounce` 选项，如 `leading`、`trailing` 和 `maxWait`，用于精细控制。
+- **清理**：调用 `cancel()` 丢弃任何待处理的防抖调用，或调用 `flush()` 立即执行。
+- 参见 `useThrottleFn` 了解保证定期执行而非等待不活动的节流限速。
 
 ## Usage
 

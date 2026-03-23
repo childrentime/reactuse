@@ -1,11 +1,25 @@
 ---
 title: useNetwork 用法與示例
 sidebar_label: useNetwork
-description: 跟蹤瀏覽器網路連接狀況。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤瀏覽器網路連接狀況。
 ---
 # useNetwork
 
 跟蹤瀏覽器網路連接狀況
+
+`useNetwork` 使用 [Network Information API](https://developer.mozilla.org/en-US/docs/Web/API/NetworkInformation) 和線上/離線事件提供有關使用者網路連線的詳細資訊。它回傳一個物件，包含 `online` 狀態、連線 `type`、`effectiveType`（2g/3g/4g）、`downlink` 速度、`rtt`（往返時間）以及是否正在使用行動數據等資訊。
+
+### 使用場景
+
+- 根據網路速度自適應調整內容品質（例如影像解析度、影片品質）
+- 在使用者離線或連線品質差時顯示警告
+- 實作離線優先策略，根據網路狀態決定資料同步行為
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時所有值回傳 `undefined`。伺服器上不會存取 `navigator` 或 `window` 事件。
+- **Network Information API**：詳細的連線屬性（`downlink`、`effectiveType`、`rtt`、`type`）僅在基於 Chromium 的瀏覽器中可用。`online` 狀態則普遍支援。
+- **相關 hooks**：另請參閱 `useOnline` 用於更簡單的網路連線狀態布林值封裝。
 
 ## Usage
 

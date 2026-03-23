@@ -1,11 +1,25 @@
 ---
 title: useMap – State Hook Usage & Examples
 sidebar_label: useMap
-description: React state hook that manages a Map. Learn usage patterns, best practices, and code examples for React developers.
+description: React state hook that manages a Map.
 ---
 # useMap
 
 React state hook that manages a Map
+
+`useMap` wraps a JavaScript `Map` in React state and exposes a rich set of methods: `set`, `get`, `remove`, `has`, `clear`, and `reset`, along with the current `map` instance and its `size`. Mutations through these methods trigger re-renders automatically. The initial value can be a `Map` instance, an array of key-value pairs, or a factory function.
+
+### When to Use
+
+- Managing key-value collections (e.g., selected items, tag mappings, lookup tables) that change frequently
+- Building dynamic forms or configuration editors where entries are added and removed at runtime
+- Any scenario where you need `Map` semantics (ordered keys, non-string keys) with reactive state updates
+
+### Notes
+
+- **Immutable updates**: Each mutation creates a new `Map` instance internally so React detects the state change and re-renders.
+- **Reset support**: The `reset` function restores the map to its initial value, which is useful for "undo" or "clear filters" actions.
+- **SSR-safe**: Uses only React state internally with no browser API dependencies.
 
 ## Usage
 

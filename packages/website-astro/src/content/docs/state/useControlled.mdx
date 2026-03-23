@@ -9,6 +9,20 @@ description: >-
 
 `useControlled` is a custom hook that helps you manage controlled components. It is a wrapper around `useState` that allows you to control the value of a component from the outside.
 
+`useControlled` returns a `[value, setValue]` tuple that behaves like `useState` when the first argument is `undefined` (uncontrolled mode), or mirrors the provided value when it is defined (controlled mode). An optional `onChange` callback is invoked whenever the value changes. This pattern is essential for building components that need to work both as controlled and uncontrolled inputs.
+
+### When to Use
+
+- Building reusable form components (inputs, selects, sliders) that must support both controlled and uncontrolled usage
+- Wrapping third-party components that require a controlled interface while still providing a sensible uncontrolled default
+- Implementing component libraries where consumers decide whether to own the state or let the component manage it
+
+### Notes
+
+- **No mode switching**: The hook does not support switching between controlled and uncontrolled modes after initial mount. Choose one mode at creation time.
+- **No function updater**: Unlike `useState`, the setter does not accept a `(prev) => next` function form. Pass values directly.
+- See also `useSetState` for a class-component-style partial state updater.
+
 :::note
 The `useControlled` component does not support switching between controlled and uncontrolled modes, nor does it support passing a function for state updates. You can refer to this discussion for more information: https://github.com/adobe/react-spectrum/issues/2320.
 :::

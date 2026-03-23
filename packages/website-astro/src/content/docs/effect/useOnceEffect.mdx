@@ -1,12 +1,25 @@
 ---
 title: useOnceEffect – Effect Hook Usage & Examples
 sidebar_label: useOnceEffect
-description: A Hook that avoids React18 useEffect run twice. Learn usage patterns, best practices, and code examples for React developers.
+description: A Hook that avoids React18 useEffect run twice.
 ---
 # useOnceEffect
 
 A Hook that avoids React18 useEffect run twice
 
+`useOnceEffect` is a variant of `useEffect` that guarantees the effect callback executes only once, even under React 18's Strict Mode which intentionally double-invokes effects during development. It uses a `WeakSet`-based tracking mechanism to detect and skip duplicate invocations. The API is identical to `useEffect` -- it accepts an effect callback and an optional dependency array.
+
+### When to Use
+
+- Performing side effects that must run exactly once (e.g., sending an analytics event, initializing a third-party library) and cannot tolerate React 18 Strict Mode double-firing
+- Protecting against duplicate API calls on mount in development mode with `<StrictMode>` enabled
+- Replacing manual `useRef`-based "already ran" guards with a cleaner API
+
+### Notes
+
+- **React 18 Strict Mode**: In development, React 18 mounts, unmounts, and re-mounts components to surface impure effects. `useOnceEffect` prevents the second invocation by tracking the effect reference in a `WeakSet`.
+- **Production behavior**: In production builds where Strict Mode double-invocation does not occur, `useOnceEffect` behaves identically to `useEffect`.
+- See also `useOnceLayoutEffect` for the same behavior using `useLayoutEffect` timing, and `useMount` for a simpler mount-only callback.
 
 ## Usage
 

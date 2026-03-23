@@ -1,11 +1,25 @@
 ---
 title: useUpdateEffect 用法与示例
 sidebar_label: useUpdateEffect
-description: 挂载完成后，在依赖更新的时候执行。 本文介绍其用法、最佳实践与代码示例。
+description: 挂载完成后，在依赖更新的时候执行。
 ---
 # useUpdateEffect
 
 挂载完成后，在依赖更新的时候执行
+
+`useUpdateEffect` 与 `useEffect` 功能完全相同，只是跳过挂载时的初始执行。effect 仅在后续依赖变化时触发，适用于你想要对更新做出反应但不想在初始渲染时执行的场景。它内部使用 `useFirstMountState` 检测并跳过首次调用。
+
+### 使用场景
+
+- 仅在值在初始渲染后变化时运行副作用（例如仅在更新时将表单字段同步到 API，不在挂载时）
+- 显示"值已更改"通知而不在组件首次出现时触发
+- 当组件已有默认或缓存数据时跳过初始数据获取
+
+### 注意事项
+
+- **相同签名**：接受 effect 回调和可选的依赖数组，与 `useEffect` 完全相同。通过返回值支持清理函数。
+- **首次挂载检测**：内部使用 `useFirstMountState`，通过 ref 跟踪挂载状态。
+- 参见 `useUpdateLayoutEffect` 了解使用 `useLayoutEffect` 时序的相同跳过首次运行行为，以及 `useDeepCompareEffect` 了解深度依赖比较。
 
 ## Usage
 

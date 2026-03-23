@@ -1,12 +1,25 @@
 ---
 title: useSupported – State Hook Usage & Examples
 sidebar_label: useSupported
-description: Check to see if your browser supports some feature. Learn usage patterns, best practices, and code examples for React developers.
+description: Check to see if your browser supports some feature.
 ---
 # useSupported
 
 Check to see if your browser supports some feature
 
+`useSupported` accepts a callback that performs a feature-detection check (e.g., `() => 'IntersectionObserver' in window`) and returns a boolean indicating whether the feature is available. The check runs after mount in a `useEffect` (or `useLayoutEffect` if the `sync` option is `true`), so it safely returns `false` during SSR and on the initial server render.
+
+### When to Use
+
+- Conditionally enabling browser features (e.g., EyeDropper API, Clipboard API, Web Bluetooth) based on runtime availability
+- Showing fallback UI or informational messages when a required API is not supported
+- Gating hook logic that depends on a specific browser capability to avoid runtime errors
+
+### Notes
+
+- **SSR-safe**: Always returns `false` on the server and during the initial render, then updates to the true value after mount.
+- **Sync mode**: Pass `sync: true` to run the check in `useLayoutEffect` instead of `useEffect`, which can prevent a flash of incorrect UI.
+- This hook is used internally by many other hooks in this library (e.g., `useEyeDropper`, `useClipboard`) to gate browser API access.
 
 ## Usage
 

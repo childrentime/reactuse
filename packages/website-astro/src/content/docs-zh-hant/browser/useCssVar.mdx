@@ -1,11 +1,25 @@
 ---
 title: useCssVar 用法與示例
 sidebar_label: useCssVar
-description: 管理 CSS 變量。 本文介紹其用法、最佳實踐與代碼示例。
+description: 管理 CSS 變量。
 ---
 # useCssVar
 
 管理 CSS 變量
+
+`useCssVar` 讀取和寫入目標 DOM 元素上的 [CSS 自訂屬性](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)（變數）。它回傳一個包含當前變數值和設定函式的元組。可選地，它可以透過 `MutationObserver` 觀察變更，使回傳值在外部程式碼修改變數時保持同步。
+
+### 使用場景
+
+- 在執行時動態讀取和更新 CSS 自訂屬性來為元件設定主題
+- 建構操作特定元素上 CSS 變數的色彩選擇器或樣式編輯器
+- 將 React 狀態與 CSS 變數同步以實現動畫或過渡效果
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳提供的預設值和空操作設定函式。伺服器上不會存取 DOM。
+- **MutationObserver**：在選項中設定 `observe: true` 可透過 [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) 自動追蹤 CSS 變數的外部變更。
+- **目標元素**：此 hook 需要指向特定 DOM 元素的 ref；變更範圍限定在該元素的行內樣式。
 
 ## Usage
 

@@ -2,13 +2,26 @@
 title: usePreferredColorScheme – Browser Hook Usage & Examples
 sidebar_label: usePreferredColorScheme
 description: >-
-  [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query. Learn usage patterns, best practices, and
+  [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query. practices, and
   code
 ---
 # usePreferredColorScheme
 
 [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query
 
+`usePreferredColorScheme` uses [`window.matchMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to reactively track the user's system color scheme preference. It returns `"dark"`, `"light"`, or `"no-preference"` based on the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query. The value updates automatically when the user changes their system theme settings.
+
+### When to Use
+
+- Detecting the user's system theme to set an initial application color scheme
+- Building theme-aware components that respect OS-level dark/light mode settings
+- Providing a "system" option in theme selectors that follows the OS preference
+
+### Notes
+
+- **SSR-safe**: Accepts a `defaultState` parameter (default: `"no-preference"`) that is returned during server-side rendering. No `window.matchMedia` access occurs on the server.
+- **Reactive**: Updates in real time when the user switches their system color scheme (e.g., enabling dark mode in OS settings).
+- **Related hooks**: See also `usePreferredDark` for a simpler boolean check, `useColorMode` for multi-theme management, and `useDarkMode` for dark/light toggle with persistence.
 
 ## Usage
 

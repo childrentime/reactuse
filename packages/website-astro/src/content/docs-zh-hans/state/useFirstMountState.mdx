@@ -1,11 +1,25 @@
 ---
 title: useFirstMountState 用法与示例
 sidebar_label: useFirstMountState
-description: 返回组件是否刚刚挂载的 React Hook。 本文介绍其用法、最佳实践与代码示例。
+description: 返回组件是否刚刚挂载的 React Hook。
 ---
 # useFirstMountState
 
 返回组件是否刚刚挂载的 React Hook
+
+`useFirstMountState` 在组件的初始渲染时返回 `true`，在所有后续渲染时返回 `false`。它内部使用 ref，因此检查是同步的，不会触发额外的重新渲染。这对于跳过仅应在首次绘制后运行的逻辑或区分初始挂载和更新非常有用。
+
+### 使用场景
+
+- 在第一次渲染时跳过动画或过渡效果，使组件立即出现
+- 通过与 `useEffect` 结合，有条件地仅在更新时运行 effect 逻辑（不在挂载时）
+- 显示"新建"或"刚加载"指示器，在首次重新渲染后消失
+
+### 注意事项
+
+- **同步检查**：返回的值在渲染期间立即可用，不延迟到 effect。
+- **SSR 安全**：在服务端和客户端的行为完全相同，因为它内部仅使用 React ref。
+- 参见 `useMountedState` 了解基于函数的方法，检查组件当前是否已挂载（与是否在*首次*渲染相对）。
 
 ## Usage
 

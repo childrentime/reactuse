@@ -1,11 +1,25 @@
 ---
 title: useMeasure 用法與示例
 sidebar_label: useMeasure
-description: 使用 `Resize Observer API` 跟蹤 HTML 元素的尺寸。 本文介紹其用法、最佳實踐與代碼示例。
+description: 使用 `Resize Observer API` 跟蹤 HTML 元素的尺寸。
 ---
 # useMeasure
 
 使用 `Resize Observer API` 跟蹤 HTML 元素的尺寸
+
+`useMeasure` 測量 DOM 元素的 content-box 尺寸，使用 [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)。它回傳一個 ref（綁定到目標元素）和一個包含 `width`、`height` 以及位置資訊的測量物件。尺寸在元素調整大小時自動更新。
+
+### 使用場景
+
+- 測量元素尺寸以進行動態佈局計算
+- 建構根據內容大小自動調整的容器或包裝器
+- 為 canvas 或 SVG 元素獲取精確的渲染尺寸
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時所有測量值回傳 `0`。伺服器上不會建立 `ResizeObserver`。
+- **Content-box**：測量的是 content-box 尺寸。如需 border-box 測量，請使用 `useElementSize` 搭配 `box: "border-box"` 選項。
+- **相關 hooks**：另請參閱 `useElementSize` 用於帶有盒模型選項的尺寸追蹤，`useElementBounding` 獲取完整的邊界資訊，以及 `useResizeObserver` 用於低階存取。
 
 ## Usage
 

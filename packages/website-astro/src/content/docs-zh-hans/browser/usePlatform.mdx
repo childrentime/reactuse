@@ -1,11 +1,25 @@
 ---
 title: usePlatform 用法与示例
 sidebar_label: usePlatform
-description: 跟踪用户当前平台的信息。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪用户当前平台的信息。
 ---
 # usePlatform
 
 跟踪用户当前平台的信息。
+
+`usePlatform` 通过解析 [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent) 中的用户代理字符串来检测用户的设备平台。它返回一个包含 `platform` 值（`"ios"`、`"android"` 或 `"unknown"`）和辅助方法 `isInMiniProgram()`、`isInWechat()` 和 `isiPhoneX()` 的对象。对于 SSR，你可以传递 `userAgent` 字符串以启用服务端检测。
+
+### 使用场景
+
+- 渲染平台特定的 UI 或行为（例如在 iOS 和 Android 上的不同滚动处理）
+- 检测微信或小程序环境，用于专门的集成
+- 在 iPhone X 及更新型号上调整安全区域内边距或刘海处理
+
+### 注意事项
+
+- **SSR 安全**：接受可选的 `userAgent` 属性用于服务端渲染。如果不提供，服务端平台返回 `"unknown"`。
+- **用户代理解析**：检测依赖 `navigator.userAgent`，可能被伪造。仅用于渐进增强，不用于安全关键决策。
+- **相关 hooks**：参见 `useScreenSafeArea` 了解安全区域内边距值，以及 `useMobileLandscape` 了解移动设备上的方向检测。
 
 ## Usage
 

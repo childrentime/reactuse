@@ -1,11 +1,25 @@
 ---
 title: usePageLeave 用法与示例
 sidebar_label: usePageLeave
-description: 跟踪鼠标是否离开页面。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪鼠标是否离开页面。
 ---
 # usePageLeave
 
 跟踪鼠标是否离开页面
+
+`usePageLeave` 通过监听 `document` 上的 [`mouseout`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event) 事件来检测用户的鼠标光标是否离开了页面视口。它返回一个布尔值，当光标在页面外时为 `true`，在页面内时为 `false`。这通常用于触发退出意图操作。
+
+### 使用场景
+
+- 当用户将光标移向浏览器的关闭按钮或地址栏时显示退出意图弹窗或特别优惠
+- 当用户注意力似乎要离开页面时暂停动画或媒体
+- 当用户似乎要导航离开时触发自动保存或状态保留
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `false`。服务端不会附加 `document` 事件监听器。
+- **仅鼠标**：此 hook 跟踪鼠标光标位置，因此不会在纯触摸设备上检测页面离开。如需检测用户切换标签页，参见 `document.visibilitychange` 事件。
+- **相关 hooks**：参见 `useIdle` 了解检测页面内用户不活动的方法。
 
 ## Usage
 

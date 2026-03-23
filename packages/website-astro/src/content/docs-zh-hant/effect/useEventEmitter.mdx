@@ -1,11 +1,25 @@
 ---
 title: useEventEmitter 用法與示例
 sidebar_label: useEventEmitter
-description: 基礎的事件觸發器。 本文介紹其用法、最佳實踐與代碼示例。
+description: 基礎的事件觸發器。
 ---
 # useEventEmitter
 
 基礎的事件觸發器
+
+`useEventEmitter` 提供了一個輕量級的事件發射器，用於在元件之間通訊。它回傳一個帶有 `emit`、`on` 和 `useSubscription` 方法的發射器物件。發射器可以跨元件共享以實現發布/訂閱模式。
+
+### 使用場景
+
+- 在沒有父子關係的元件之間傳遞訊息
+- 建構事件驅動的架構，元件透過事件解耦
+- 實作全域事件匯流排用於跨元件通訊
+
+### 注意事項
+
+- **自動清理**：使用 `useSubscription` 在元件中訂閱事件會在元件卸載時自動取消訂閱。
+- **型別安全**：支援 TypeScript 泛型以確保事件酬載的型別安全。
+- **相關 hooks**：另請參閱 `useEventListener` 用於訂閱 DOM 事件，以及 `useBroadcastChannel` 用於跨分頁通訊。
 
 ## Usage
 

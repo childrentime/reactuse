@@ -1,11 +1,25 @@
 ---
 title: useBoolean – State Hook Usage & Examples
 sidebar_label: useBoolean
-description: React state hook that manages a boolean value. Learn usage patterns, best practices, and code examples for React developers.
+description: React state hook that manages a boolean value.
 ---
 # useBoolean
 
 React state hook that manages a boolean value
+
+`useBoolean` wraps a boolean state and returns an object with the current `value` along with convenience methods: `setValue`, `setTrue`, `setFalse`, and `toggle`. This avoids the need to write inline arrow functions like `() => setState(true)` throughout your components. The hook accepts an optional initial value that defaults to `false`.
+
+### When to Use
+
+- Controlling visibility of modals, drawers, tooltips, or other disclosure UI with explicit `setTrue`/`setFalse` semantics
+- Managing feature flags or on/off states where named helpers improve readability over raw `useState`
+- Any scenario where you want a richer API than a plain `[boolean, setter]` tuple
+
+### Notes
+
+- **SSR-safe**: Uses only React state internally, so it works identically on server and client.
+- **Object return**: Unlike `useToggle` which returns a tuple, `useBoolean` returns a named object, making it easier to destructure only the methods you need.
+- See also `useToggle` for a minimal tuple-based boolean hook and `useDisclosure` for modal-oriented open/close patterns with callback support.
 
 ## Usage
 

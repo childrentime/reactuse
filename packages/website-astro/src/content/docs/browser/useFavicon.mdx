@@ -1,11 +1,25 @@
 ---
 title: useFavicon – Browser Hook Usage & Examples
 sidebar_label: useFavicon
-description: React side-effect hook sets the favicon of the page. Learn usage patterns, best practices, and code examples for React developers.
+description: React side-effect hook sets the favicon of the page.
 ---
 # useFavicon
 
 React side-effect hook sets the favicon of the page
+
+`useFavicon` dynamically updates the page's favicon by manipulating the `<link rel="icon">` element in the document head. Pass an icon URL (and optionally a base URL and `rel` attribute) and the hook will create or update the appropriate link element. This is useful for reflecting application state visually in the browser tab.
+
+### When to Use
+
+- Changing the favicon to indicate unread notifications or status changes
+- Switching favicons based on the current theme or branding context
+- Displaying user-uploaded or dynamically generated icons in the browser tab
+
+### Notes
+
+- **SSR-safe**: The hook is a no-op during server-side rendering. No `document` access occurs on the server.
+- **DOM manipulation**: The hook directly modifies the `<link>` element in `document.head`. Changes are reflected immediately in the browser tab.
+- **Related hooks**: See also `useTitle` for dynamically setting the document title.
 
 ## Usage
 

@@ -10,6 +10,20 @@ description: >-
 
 支持實時語音識別、可配置选项、跨瀏覽器兼容性和 TypeScript 支持。非常适合语音控制应用程序、听写功能和无障碍增强。
 
+`useSpeechRecognition` 封裝了 [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition) 的語音辨識功能，將使用者的語音輸入轉換為文字。它回傳一個物件，包含 `isSupported` 旗標、辨識結果（含臨時和最終結果）、`isListening` 狀態以及 `start`、`stop` 和 `toggle` 控制函式。支援設定語言、連續辨識和中間結果。
+
+### 使用場景
+
+- 為搜尋欄或表單新增語音輸入功能
+- 建構語音驅動的介面或無障礙工具
+- 實作語音命令控制的應用程式功能
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `isSupported: false` 和空操作函式。伺服器上不會呼叫 `SpeechRecognition` 建構函式。
+- **瀏覽器支援**：Web Speech API 主要在基於 Chromium 的瀏覽器中受支援。在顯示語音辨識 UI 之前，請始終檢查 `isSupported`。
+- **需要 HTTPS**：在生產環境中，語音辨識需要安全上下文（HTTPS）。首次使用時將請求麥克風權限。
+
 ## 基本用法
 
 ```tsx live

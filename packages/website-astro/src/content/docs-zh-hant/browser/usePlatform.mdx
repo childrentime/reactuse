@@ -1,11 +1,25 @@
 ---
 title: usePlatform 用法與示例
 sidebar_label: usePlatform
-description: 跟蹤用戶當前平台的信息。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤用戶當前平台的信息。
 ---
 # usePlatform
 
 跟蹤用戶當前平台的信息。
+
+`usePlatform` 偵測使用者的作業系統平台（iOS、Android、macOS、Windows、Linux），透過解析 `navigator.userAgent` 字串。它回傳一個平台識別字串。可在 SSR 時傳入 `userAgent` prop 以支援伺服器端偵測。
+
+### 使用場景
+
+- 根據使用者平台調整 UI（例如在 iOS 上顯示 App Store 連結，在 Android 上顯示 Google Play 連結）
+- 為不同平台提供特定的安裝或設定說明
+- 收集平台相關的分析資料以了解使用者基礎
+
+### 注意事項
+
+- **SSR 安全**：接受可選的 `userAgent` prop 用於伺服器端渲染。若未提供，在伺服器上回傳 `"unknown"` 作為平台。
+- **User agent 解析**：偵測依賴 `navigator.userAgent`，可能被偽造。用於漸進增強而非安全性關鍵決策。
+- **相關 hooks**：另請參閱 `useScreenSafeArea` 獲取安全區域內縮值，以及 `useMobileLandscape` 偵測行動裝置方向。
 
 ## Usage
 

@@ -1,12 +1,25 @@
 ---
 title: useOnline – Browser Hook Usage & Examples
 sidebar_label: useOnline
-description: A wrapper of `useNetwork`. Learn usage patterns, best practices, and code examples for React developers.
+description: A wrapper of `useNetwork`.
 ---
 # useOnline
 
 A wrapper of `useNetwork`
 
+`useOnline` is a lightweight wrapper around `useNetwork` that returns a single boolean indicating whether the browser is currently connected to the network. It listens to the [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) and [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) events on `window` and updates reactively. Use this when you only need to know if the user is online, without the detailed connection info that `useNetwork` provides.
+
+### When to Use
+
+- Showing a simple "You are offline" banner or toast notification
+- Disabling form submissions or API calls when the user is disconnected
+- Toggling between online and offline modes in an offline-first application
+
+### Notes
+
+- **SSR-safe**: Returns `undefined` during server-side rendering. No `navigator.onLine` or `window` event access occurs on the server.
+- **Simplicity vs. detail**: If you need more information (connection type, downlink speed, etc.), use `useNetwork` instead.
+- **Browser behavior**: `navigator.onLine` indicates network connection, not internet reachability. A `true` value does not guarantee the user can reach your server.
 
 ## Usage
 

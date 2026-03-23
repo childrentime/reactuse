@@ -1,11 +1,25 @@
 ---
 title: useMutationObserver 用法與示例
 sidebar_label: useMutationObserver
-description: 使用 [MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) 檢測 DOM 的更改。 本文介紹其用法、最佳實踐與代碼示例。
+description: 使用 [MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) 檢測 DOM 的更改。
 ---
 # useMutationObserver
 
 使用 [MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) 檢測 DOM 的更改
+
+`useMutationObserver` 封裝了 [MutationObserver API](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)，用於觀察 DOM 元素的變更。它在偵測到子節點、屬性或文字內容變更時觸發回呼。支援標準的 `MutationObserverInit` 選項。
+
+### 使用場景
+
+- 監控 DOM 變更以實現與第三方函式庫的整合
+- 偵測動態內容變更（例如廣告注入、內容修改）
+- 觀察元素屬性變更以同步 React 狀態
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時為空操作。伺服器上不會建立 `MutationObserver`。
+- **效能**：謹慎使用 `subtree: true`，因為觀察大型子樹可能影響效能。
+- **相關 hooks**：另請參閱 `useResizeObserver` 觀察尺寸變更，以及 `useIntersectionObserver` 觀察可見性變更。
 
 ## Usage
 

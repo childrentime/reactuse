@@ -1,12 +1,26 @@
 ---
 title: useKeyModifier 用法與示例
 sidebar_label: useKeyModifier
-description: 跟蹤[按鍵](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#browser_compatibility)是否被按下。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤[按鍵](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#browser_compatibility)是否被按下。
 ---
 # useKeyModifier
 
 跟蹤[按鍵](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#browser_compatibility)是否被按下
 
+
+`useKeyModifier` 響應式追蹤鍵盤修飾鍵（如 `Alt`、`Control`、`Shift` 等）的按下狀態。它回傳一個布林值，指示指定修飾鍵當前是否處於活動狀態。此 hook 監聽鍵盤和滑鼠事件，使用 [`KeyboardEvent.getModifierState()`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState) 來查詢狀態。
+
+### 使用場景
+
+- 在修飾鍵按下時啟用替代行為（例如，按住 Shift 多選，按住 Alt 進行替代拖曳）
+- 在 UI 中顯示鍵盤修飾鍵指示器（例如 Caps Lock 警告）
+- 建構依賴修飾鍵狀態的鍵盤快捷鍵系統
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `initial` 值（預設：`false`）。伺服器上不會附加事件監聽器。
+- **支援的修飾鍵**：支援 `Alt`、`AltGraph`、`CapsLock`、`Control`、`Fn`、`FnLock`、`Meta`、`NumLock`、`ScrollLock`、`Shift`、`Symbol` 和 `SymbolLock`。並非所有修飾鍵在所有瀏覽器中都可用——請參閱 [MDN 相容性](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState#browser_compatibility)。
+- **事件自訂**：預設事件（`mousedown`、`mouseup`、`keydown`、`keyup`）可透過 `events` 選項覆寫。
 
 ## Usage
 

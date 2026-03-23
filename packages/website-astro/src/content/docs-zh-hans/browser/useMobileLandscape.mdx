@@ -1,11 +1,25 @@
 ---
 title: useMobileLandscape 用法与示例
 sidebar_label: useMobileLandscape
-description: 跟踪移动设备是否处于横屏模式。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪移动设备是否处于横屏模式。
 ---
 # useMobileLandscape
 
 跟踪移动设备是否处于横屏模式。
+
+`useMobileLandscape` 内部使用媒体查询来检测当前设备是否为横屏方向的移动设备。它返回一个响应式更新的单一布尔值，当设备旋转时会更新。这对于在手机和平板上适配布局或显示横屏专用 UI 非常有用。
+
+### 使用场景
+
+- 显示或隐藏横屏专用的 UI 元素（例如旋转"请旋转设备"的提示）
+- 为移动端横屏方向调整布局或组件大小
+- 在横屏模式下为游戏或媒体播放器触发不同行为
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `false`。服务端不会访问 `window.matchMedia`。
+- **移动端专用**：专门检测移动设备上的横屏方向，不包括桌面端。如需通用的方向跟踪，参见 `useOrientation`。
+- **相关 hooks**：基于 `useMediaQuery` 构建。参见 `useOrientation` 了解更详细的方向信息，包括角度和锁定功能。
 
 ## Usage
 

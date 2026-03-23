@@ -1,11 +1,25 @@
 ---
 title: useScriptTag 用法與示例
 sidebar_label: useScriptTag
-description: Script 標籤注入。 本文介紹其用法、最佳實踐與代碼示例。
+description: Script 標籤注入。
 ---
 # useScriptTag
 
 Script 標籤注入。
+
+`useScriptTag` 動態載入外部 JavaScript 腳本，管理 `<script>` 元素的建立、載入和移除。它回傳腳本載入狀態（`"idle"`、`"loading"`、`"ready"`、`"error"`）和控制函式（`load`、`unload`）。當元件卸載時，腳本會自動從 DOM 中移除。
+
+### 使用場景
+
+- 按需載入第三方函式庫（如分析、地圖 SDK 或支付整合）
+- 在特定元件掛載時才載入外部腳本以優化效能
+- 根據條件動態載入不同版本的外部腳本
+
+### 注意事項
+
+- **SSR 安全**：此 hook 在伺服器端渲染時為空操作。伺服器上不會建立 `<script>` 元素。狀態在元件在瀏覽器中掛載之前為 `"idle"`。
+- **生命週期管理**：當元件卸載時，腳本會自動從 DOM 中移除（除非 `manual` 設為 `true`）。使用 `load` 和 `unload` 進行精細控制。
+- **去重複**：如果文件中已存在相同 `src` 的腳本，此 hook 會重複使用它而非建立重複項。
 
 ## Usage
 

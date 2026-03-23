@@ -9,6 +9,19 @@ description: >-
 
 React state hook that only updates state in the callback of [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
 
+`useRafState` has the same API as `useState` but defers state updates to the next animation frame via `requestAnimationFrame`. This batches rapid state changes (such as those from mouse or scroll events) into a single update per frame, reducing unnecessary re-renders and improving performance for high-frequency updates.
+
+### When to Use
+
+- Tracking mouse position, scroll offset, or window dimensions where events fire far more often than the screen refreshes
+- Smoothing out state updates from sensors or streams that produce data faster than 60fps
+- Reducing render overhead for any state that changes very rapidly and is used primarily for visual output
+
+### Notes
+
+- **Browser-only**: `requestAnimationFrame` is not available during SSR. The hook still works, but updates will not be batched on the server.
+- **Same API as useState**: The returned tuple is `[state, setState]` with the same `SetStateAction<S>` signature, so it is a drop-in replacement.
+- **Automatic cleanup**: Pending animation frame requests are cancelled on unmount to prevent memory leaks.
 
 ## Usage
 

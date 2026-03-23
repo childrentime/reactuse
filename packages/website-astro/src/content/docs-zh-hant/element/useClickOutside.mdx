@@ -1,12 +1,26 @@
 ---
 title: useClickOutside 用法與示例
 sidebar_label: useClickOutside
-description: 監聽元素外部的點擊。 對於模式或下拉選單很有用。 本文介紹其用法、最佳實踐與代碼示例。
+description: 監聽元素外部的點擊。 對於模式或下拉選單很有用。
 ---
 # useClickOutside
 
 監聽元素外部的點擊。 對於模式或下拉選單很有用。
 
+
+`useClickOutside` 偵測目標元素外部的點擊事件，是 `useClickAway` 的別名。當使用者在指定元素之外點擊時觸發回呼。兩個 hooks 具有完全相同的 API 和行為。
+
+### 使用場景
+
+- 點擊下拉選單或模態框外部時關閉它們
+- 當你的程式碼庫偏好 `useClickOutside` 命名慣例時使用
+- 任何適用 `useClickAway` 的場景——兩個 hooks 可互換使用
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時為空操作。伺服器上不會附加事件監聯器。
+- **別名**：此 hook 是 `useClickAway` 的直接別名，具有相同的功能和 API。
+- **相關 hooks**：另請參閱 `useClickAway` 獲取完整文件。
 
 ## Usage
 

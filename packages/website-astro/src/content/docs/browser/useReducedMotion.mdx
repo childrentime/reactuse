@@ -1,12 +1,25 @@
 ---
 title: useReducedMotion – Browser Hook Usage & Examples
 sidebar_label: useReducedMotion
-description: React Hook that tracks motion preference. Learn usage patterns, best practices, and code examples for React developers.
+description: React Hook that tracks motion preference.
 ---
 # useReducedMotion
 
 React Hook that tracks motion preference
 
+`useReducedMotion` uses [`window.matchMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) with the [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) media query to return a boolean indicating whether the user has requested reduced motion. The value updates automatically when the user changes their system accessibility settings. Use this to disable or simplify animations for users who are sensitive to motion.
+
+### When to Use
+
+- Disabling or reducing complex CSS/JS animations for users with vestibular disorders
+- Replacing animated transitions with instant state changes when reduced motion is preferred
+- Choosing between animated and static versions of UI elements (e.g., carousels, parallax effects)
+
+### Notes
+
+- **SSR-safe**: Accepts a `defaultState` parameter (default: `false`) that is returned during server-side rendering. No `window.matchMedia` access occurs on the server.
+- **Accessibility**: Respecting the `prefers-reduced-motion` preference is an important accessibility practice. Consider disabling auto-playing animations and reducing transition durations.
+- **Related hooks**: Built on `useMediaQuery`. See also `usePreferredContrast` and `usePreferredColorScheme` for other accessibility-related preference hooks.
 
 ## Usage
 

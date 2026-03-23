@@ -1,11 +1,25 @@
 ---
 title: useRafFn 用法與示例
 sidebar_label: useRafFn
-description: 在每一幀 `requestAnimationFrame` 上執行回調函數。 本文介紹其用法、最佳實踐與代碼示例。
+description: 在每一幀 `requestAnimationFrame` 上執行回調函數。
 ---
 # useRafFn
 
 在每一幀 `requestAnimationFrame` 上執行回調函數。
+
+`useRafFn` 使用 `requestAnimationFrame` 在每個動畫幀執行一個回呼函式。它回傳一個帶有 `pause` 和 `resume` 控制項的物件，以及當前的活動狀態。此 hook 適合建構流暢的動畫和需要在每幀更新的視覺效果。
+
+### 使用場景
+
+- 建構平滑的自訂動畫或視覺效果
+- 實作基於時間的遊戲迴圈或物理模擬
+- 在每個渲染幀更新 canvas 繪圖或 WebGL 場景
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時為空操作。伺服器上不會呼叫 `requestAnimationFrame`。
+- **效能**：回呼在每個動畫幀執行（通常每秒 60 次）。確保回呼是輕量的以避免效能問題。
+- **相關 hooks**：另請參閱 `useFps` 用於測量幀率，以及 `useInterval` 用於固定間隔的定時器。
 
 ## Usage
 

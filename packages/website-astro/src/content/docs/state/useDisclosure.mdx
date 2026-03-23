@@ -9,6 +9,20 @@ description: >-
 
 `useDisclosure` is a hook that provides all the tools you need to create a disclosure widget. Disclosure widgets are used to show or hide content. This hook provides the state and functions to control the visibility of the content.
 
+`useDisclosure` returns an object with `isOpen`, `onOpen`, `onClose`, and `onOpenChange` along with an `isControlled` flag. It supports both controlled mode (pass `isOpen` via props) and uncontrolled mode (uses internal state with an optional `defaultOpen`). Callbacks for `onOpen`, `onClose`, and `onChange` can be provided in the props to run side effects when the state transitions.
+
+### When to Use
+
+- Managing modal, dialog, or drawer open/close state with lifecycle callbacks
+- Building collapsible panels, accordions, or expandable sections
+- Any disclosure pattern where you need both controlled and uncontrolled support with open/close event hooks
+
+### Notes
+
+- **Controlled and uncontrolled**: Pass `isOpen` in props for controlled mode. Omit it (or leave it `undefined`) for uncontrolled mode with optional `defaultOpen`.
+- **Callback support**: Unlike simpler boolean hooks, `useDisclosure` accepts `onOpen`, `onClose`, and `onChange` callbacks, making it well-suited for side effects like analytics or focus management.
+- See also `useBoolean` for a simpler boolean state hook without callbacks, and `useToggle` for a minimal tuple-based toggle.
+
 ## Usage
 
 ```tsx live

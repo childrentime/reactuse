@@ -1,11 +1,25 @@
 ---
 title: use 用法與示例
 sidebar_label: use
-description: '`use` 是一個用於解析 React v18 及以下版本的 promise 狀態的 polyfill hook。請注意，它只實現了消費 promise 的能力。 本文介紹其用法、最佳實踐與代碼示例。'
+description: '`use` 是一個用於解析 React v18 及以下版本的 promise 狀態的 polyfill hook。請注意，它只實現了消費 promise 的能力。'
 ---
 # use
 
 `use` 是一個用於解析 React v18 及以下版本的 promise 狀態的 polyfill hook。請注意，它只實現了消費 promise 的能力。
+
+`use` 是 React 19 引入的內建 hook，用於在渲染期間讀取 Promise 或 Context 的值。此 hook 的 polyfill 版本讓你可以在尚未升級到 React 19 的專案中使用相同的 API。它接受一個 Promise 並在 Promise 解析前掛起元件。
+
+### 使用場景
+
+- 在 React 19 之前的版本中使用 `use` hook 的功能
+- 在渲染期間直接讀取非同步資料，搭配 Suspense 使用
+- 在不使用 state 或 effect 的情況下從 Promise 中解包值
+
+### 注意事項
+
+- **Suspense 整合**：`use` 與 React Suspense 配合使用。確保有 Suspense 邊界來處理載入狀態。
+- **Promise 穩定性**：傳入的 Promise 參考應在渲染之間保持穩定。避免在渲染中建立新的 Promise。
+- **相關 hooks**：另請參閱 `useAsyncEffect` 用於在 effect 中處理非同步操作。
 
 ## Usage
 

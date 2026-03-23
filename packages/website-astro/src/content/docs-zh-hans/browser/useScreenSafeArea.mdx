@@ -1,11 +1,25 @@
 ---
 title: useScreenSafeArea 用法与示例
 sidebar_label: useScreenSafeArea
-description: 跟踪 `env(safe-area-inset-*)` 值。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪 `env(safe-area-inset-*)` 值。
 ---
 # useScreenSafeArea
 
 跟踪 `env(safe-area-inset-*)` 值
+
+`useScreenSafeArea` 读取 CSS [`env(safe-area-inset-*)`](https://developer.mozilla.org/en-US/docs/Web/CSS/env) 值，以确定具有刘海、圆角或软件导航栏的设备上的安全区域内边距。它返回一个包含四个字符串（`top`、`right`、`bottom`、`left`）表示内边距值的元组，外加一个防抖的 `update` 函数用于手动刷新。这些值对于定位内容以避免被设备硬件或系统 UI 遮挡非常有用。
+
+### 使用场景
+
+- 定位固定或粘性元素（头部、底部、浮动按钮）以避免与设备刘海或主页指示器重叠
+- 在具有刘海的 iOS 设备或具有手势导航栏的 Android 设备上调整布局内边距
+- 构建需要考虑硬件遮挡的全视口体验（游戏、地图）
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间所有内边距返回 `"0px"`。服务端不会进行 DOM 或 CSS 计算。
+- **CSS `env()` 函数**：需要页面包含 `<meta name="viewport" content="viewport-fit=cover">` 才能使安全区域内边距为非零值。
+- **相关 hooks**：参见 `usePlatform` 了解检测设备平台，以及 `useMobileLandscape` 了解方向检测。
 
 ## Usage
 

@@ -8,6 +8,20 @@ description: Reactive color mode (theme) with auto data persistence and flexible
 
 Reactive color mode (theme) with auto data persistence and flexible configuration.
 
+`useColorMode` manages multi-theme color modes by applying CSS class names or HTML attributes to a target element (default: `<html>`) and persisting the selection to `localStorage`. It returns a tuple of the current mode string, a setter function, and a `cycle` function that rotates through the available modes. You can configure available modes, custom class name mappings, storage key, storage backend, and the DOM attribute used.
+
+### When to Use
+
+- Building applications with multiple themes beyond just light/dark (e.g., blue, green, sepia)
+- Creating a theme selector with cycle-through functionality
+- Persisting the user's color mode choice across sessions with automatic localStorage sync
+
+### Notes
+
+- **SSR-safe**: Returns the `defaultValue` (or `null`) during server-side rendering. No DOM or localStorage access occurs on the server. See the Tips section below for preventing flash of unstyled content.
+- **Persistence**: By default, persists to `localStorage` under the key `"reactuses-color-mode"`. You can customize the storage key and backend (e.g., `sessionStorage`).
+- **Related hooks**: For simple dark/light toggle, see `useDarkMode`. For detecting the system preference, see `usePreferredColorScheme`.
+
 ## New in v6.1.0
 
 **useColorMode is the more flexible successor to useDarkMode.** Key differences:

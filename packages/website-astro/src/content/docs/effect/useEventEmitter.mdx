@@ -1,12 +1,25 @@
 ---
 title: useEventEmitter – Effect Hook Usage & Examples
 sidebar_label: useEventEmitter
-description: A basic eventemitter. Learn usage patterns, best practices, and code examples for React developers.
+description: A basic eventemitter.
 ---
 # useEventEmitter
 
 A basic eventemitter
 
+`useEventEmitter` creates a lightweight publish/subscribe event system scoped to your component. It returns a tuple of three items: an `event` function to register listeners (each returning a disposable), a `fire` function to broadcast a value to all listeners, and a `dispose` function to remove all listeners at once. Listener references are stored in a ref, so the emitter identity is stable across renders.
+
+### When to Use
+
+- Coordinating communication between sibling components or decoupled modules without lifting state up
+- Building custom notification or messaging systems within a React tree
+- Implementing undo/redo or command patterns where multiple subscribers react to dispatched events
+
+### Notes
+
+- **Disposable pattern**: Each call to the `event` function returns an object with a `dispose()` method, allowing you to remove individual listeners without affecting others.
+- **No automatic cleanup**: Listeners are not removed on unmount automatically. Call `dispose()` in a `useEffect` cleanup or use `useUnmount` to prevent memory leaks.
+- The emitter supports generic typing for both the event payload and an optional second argument.
 
 ## Usage
 

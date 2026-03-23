@@ -7,6 +7,20 @@ description: 監聽元素外部的點擊事件。useClickOutside 的別名。適
 
 監聽元素外部的點擊事件。適用於模態框或下拉選單。
 
+`useClickAway` 偵測目標元素外部的點擊事件。當使用者在指定元素之外點擊時，觸發提供的回呼函式。支援設定監聽的事件類型（如 `mousedown`、`touchstart`），並可同時指定多個目標元素。
+
+### 使用場景
+
+- 點擊下拉選單或彈出框外部時關閉它們
+- 取消編輯模式（例如內聯編輯時點擊外部取消）
+- 關閉行動端的側邊欄或漢堡選單
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時為空操作。伺服器上不會附加事件監聽器。
+- **事件類型**：預設監聽 `mousedown` 事件。可透過選項自訂為 `click`、`touchstart` 或其他事件類型。
+- **相關 hooks**：另請參閱 `useClickOutside`，這是 `useClickAway` 的功能等價別名。
+
 :::info
 `useClickAway` 是 [`useClickOutside`](/zh-Hant/element/useClickOutside) 的別名。它们具有相同的功能和 API。
 :::

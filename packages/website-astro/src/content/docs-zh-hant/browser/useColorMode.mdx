@@ -1,12 +1,26 @@
 ---
 title: useColorMode 用法與示例
 sidebar_label: useColorMode
-description: 響應式顏色模式（主題）管理，具有自動數據持久化和靈活配置功能。本文介紹其用法、最佳實踐與示例。
+description: 響應式顏色模式（主題）管理，具有自動數據持久化和靈活配置功能。
 ---
 
 # useColorMode
 
 響應式顏色模式（主題）管理，具有自動數據持久化和靈活配置功能。
+
+`useColorMode` 透過將 CSS 類別名稱或 HTML 屬性套用到目標元素（預設為 `<html>`）並將選擇持久化到 `localStorage` 來管理多主題顏色模式。它回傳一個包含當前模式字串、設定函式和在可用模式之間循環的 `cycle` 函式的元組。你可以設定可用模式、自訂類別名稱對應、儲存鍵、儲存後端和使用的 DOM 屬性。
+
+### 使用場景
+
+- 建構超越單純明暗切換的多主題應用程式（例如藍色、綠色、復古色）
+- 建立具有循環切換功能的主題選擇器
+- 透過自動 localStorage 同步，跨工作階段持久化使用者的顏色模式選擇
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `defaultValue`（或 `null`）。伺服器上不會存取 DOM 或 localStorage。請參閱下方的 Tips 章節以防止未樣式化內容的閃爍。
+- **持久化**：預設持久化到 `localStorage`，鍵名為 `"reactuses-color-mode"`。你可以自訂儲存鍵和後端（例如 `sessionStorage`）。
+- **相關 hooks**：如需簡單的明暗切換，請參閱 `useDarkMode`。如需偵測系統偏好設定，請參閱 `usePreferredColorScheme`。
 
 ## 💡 v6.1.0 新功能
 

@@ -1,12 +1,25 @@
 ---
 title: useScriptTag – Browser Hook Usage & Examples
 sidebar_label: useScriptTag
-description: Script tag injecting. Learn usage patterns, best practices, and code examples for React developers.
+description: Script tag injecting.
 ---
 # useScriptTag
 
 Script tag injecting
 
+`useScriptTag` dynamically injects a `<script>` tag into the document and manages its lifecycle. It returns a tuple of the script element, a loading status (`"idle"`, `"loading"`, `"ready"`, or `"error"`), a `load` function, and an `unload` function. The hook supports options for `async`, `defer`, `type`, `crossOrigin`, `referrerPolicy`, custom attributes, and manual load/unload control.
+
+### When to Use
+
+- Loading third-party libraries (analytics, widgets, maps) on demand rather than at build time
+- Deferring heavy scripts until a component mounts or a user interaction occurs
+- Dynamically loading different script versions or configurations based on runtime conditions
+
+### Notes
+
+- **SSR-safe**: The hook is a no-op during server-side rendering. No `<script>` elements are created on the server. The status will be `"idle"` until the component mounts in the browser.
+- **Lifecycle management**: The script is automatically removed from the DOM when the component unmounts (unless `manual` is set to `true`). Use `load` and `unload` for fine-grained control.
+- **Deduplication**: If a script with the same `src` already exists in the document, the hook will reuse it rather than creating a duplicate.
 
 ## Usage
 

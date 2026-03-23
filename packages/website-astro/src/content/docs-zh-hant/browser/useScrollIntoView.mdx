@@ -1,11 +1,25 @@
 ---
 title: useScrollIntoView 用法與示例
 sidebar_label: useScrollIntoView
-description: 類似於 `element.scrollIntoView()` 的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。
+description: 類似於 `element.scrollIntoView()` 的 React Hook。
 ---
 # useScrollIntoView
 
 類似於 `element.scrollIntoView()` 的 React Hook
+
+`useScrollIntoView` 提供程式化的平滑捲動功能，將目標元素捲動到可視範圍內。它回傳一個物件，包含 `scrollIntoView` 函式和 `cancel` 函式。支援可設定的動畫時長、緩動函式和偏移量，並可在清單上下文中防止內容跳動。
+
+### 使用場景
+
+- 在表單驗證失敗時將使用者捲動到第一個錯誤欄位
+- 實作「跳轉到頂部」或「跳轉到章節」按鈕
+- 在清單中添加新項目後自動捲動以顯示新增內容
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳空操作函式。伺服器上不會進行 DOM 捲動。
+- **可取消**：設定 `cancelable: true`（預設）允許使用者透過手動捲動中斷捲動動畫。設定 `isList: true` 可防止清單中的內容跳動。
+- **相關 hooks**：另請參閱 `useScroll` 追蹤捲動位置和狀態，以及 `useScrollLock` 完全防止捲動。
 
 ## Usage
 

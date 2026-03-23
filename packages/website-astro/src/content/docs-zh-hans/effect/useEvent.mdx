@@ -1,11 +1,25 @@
 ---
 title: useEvent 用法与示例
 sidebar_label: useEvent
-description: 这是 [React RFC useEvent](https://github.com/reactjs/rfcs/pull/220) 的基础实现。它让你定义的事件处理器可以读取最新的 props/state，但总是保持稳定的函数引用。 本文介绍其用法、最佳实践与代码示例。
+description: 这是 [React RFC useEvent](https://github.com/reactjs/rfcs/pull/220) 的基础实现。它让你定义的事件处理器可以读取最新的 props/state，但总是保持稳定的函数引用。
 ---
 # useEvent
 
 这是 [React RFC useEvent](https://github.com/reactjs/rfcs/pull/220) 的基础实现。它让你定义的事件处理器可以读取最新的 props/state，但总是保持稳定的函数引用。
+
+`useEvent` 返回一个具有稳定引用的函数，在渲染之间永不改变，但始终调用回调的最新版本。这是通过将回调存储在每次渲染时通过 `useIsomorphicLayoutEffect` 更新的 ref 中实现的。返回的函数可以安全地作为 prop 或依赖传递，而不会导致不必要的重新渲染或 effect 重新运行。
+
+### 使用场景
+
+- 将事件处理器传递给记忆化的子组件（`React.memo`）而不破坏其记忆化
+- 在 `useEffect` 中使用回调作为依赖而不在每次渲染时触发 effect
+- 任何需要稳定函数标识且始终读取最新闭包值的场景
+
+### 注意事项
+
+- **稳定标识**：返回的函数引用通过 `useCallback([], ...)` 创建一次且永不改变，因此可以安全地从依赖数组中省略。
+- **布局阶段更新**：内部 ref 在布局阶段（`useIsomorphicLayoutEffect`）更新，确保最新的回调在任何布局后 effect 运行前可用。
+- 在开发模式下，如果参数不是函数，将记录控制台错误。
 
 ## Usage
 

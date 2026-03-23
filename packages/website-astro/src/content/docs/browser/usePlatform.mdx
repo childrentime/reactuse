@@ -1,11 +1,25 @@
 ---
 title: usePlatform – Browser Hook Usage & Examples
 sidebar_label: usePlatform
-description: React hook to tracked the platform of the user. Learn usage patterns, best practices, and code examples for React developers.
+description: React hook to tracked the platform of the user.
 ---
 # usePlatform
 
 React hook to tracked the platform of the user.
+
+`usePlatform` detects the user's device platform by parsing the user agent string via [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). It returns an object with a `platform` value (`"ios"`, `"android"`, or `"unknown"`) along with helper methods: `isInMiniProgram()`, `isInWechat()`, and `isiPhoneX()`. For SSR, you can pass a `userAgent` string to enable server-side detection.
+
+### When to Use
+
+- Rendering platform-specific UI or behavior (e.g., different scroll handling on iOS vs. Android)
+- Detecting WeChat or mini-program environments for specialized integrations
+- Adjusting safe-area insets or notch handling on iPhone X and newer models
+
+### Notes
+
+- **SSR-safe**: Accepts an optional `userAgent` prop for server-side rendering. Without it, returns `"unknown"` as the platform on the server.
+- **User agent parsing**: Detection relies on `navigator.userAgent`, which can be spoofed. Use for progressive enhancement, not security-critical decisions.
+- **Related hooks**: See also `useScreenSafeArea` for safe-area inset values and `useMobileLandscape` for orientation detection on mobile devices.
 
 ## Usage
 

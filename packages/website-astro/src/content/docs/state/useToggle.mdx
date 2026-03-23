@@ -1,11 +1,25 @@
 ---
 title: useToggle – State Hook Usage & Examples
 sidebar_label: useToggle
-description: React state hook that tracks value of a boolean. Learn usage patterns, best practices, and code examples for React developers.
+description: React state hook that tracks value of a boolean.
 ---
 # useToggle
 
 React state hook that tracks value of a boolean
+
+`useToggle` manages a boolean state value with a convenient toggle function. It returns a tuple containing the current boolean value and a toggle function. Calling `toggle()` with no arguments flips the value; calling `toggle(true)` or `toggle(false)` sets it directly. This provides a minimal API for the most common boolean state pattern.
+
+### When to Use
+
+- Toggling UI elements like modals, dropdowns, sidebars, or accordions
+- Managing on/off states for features, dark mode, or settings
+- Controlling show/hide visibility of components with a simple tuple API
+
+### Notes
+
+- **SSR-safe**: Works identically on server and client since it uses only React state.
+- **Flexible toggle**: The toggle function accepts an optional argument. Pass a boolean to set a specific value, or call with no arguments to flip.
+- See also `useBoolean` for a richer API with explicit `setTrue`/`setFalse` helpers, and `useDisclosure` for modal-style open/close patterns with callbacks.
 
 ## Usage
 

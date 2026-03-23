@@ -1,12 +1,25 @@
 ---
 title: useDoubleClick – Element Hook Usage & Examples
 sidebar_label: useDoubleClick
-description: React sensor hook that controls double click and single click. Learn usage patterns, best practices, and code examples for React developers.
+description: React sensor hook that controls double click and single click.
 ---
 # useDoubleClick
 
 React sensor hook that controls double click and single click
 
+`useDoubleClick` lets you distinguish between single-click and double-click interactions on a DOM element. It uses a configurable latency delay to determine whether a click is a single click or the first click of a double-click sequence. Pass a target ref and provide separate `onSingleClick` and `onDoubleClick` handlers to respond to each interaction.
+
+### When to Use
+
+- Implementing "click to select, double-click to edit" patterns on list items or table cells
+- Adding double-click-to-zoom on images or maps while preserving single-click for other actions
+- Any UI where single and double clicks must trigger distinct behaviors on the same element
+
+### Notes
+
+- **Latency**: The default delay between single and double click detection can be customized via the `latency` option (in milliseconds). A shorter latency makes single clicks feel faster but may miss slower double clicks.
+- **Event types**: Supports both mouse and touch events, making it suitable for desktop and mobile.
+- **Cleanup**: All event listeners are removed automatically when the component unmounts.
 
 ## Usage
 

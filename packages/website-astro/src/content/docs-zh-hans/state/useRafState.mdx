@@ -1,11 +1,25 @@
 ---
 title: useRafState 用法与示例
 sidebar_label: useRafState
-description: 在 [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) 更新状态。 本文介绍其用法、最佳实践与代码示例。
+description: 在 [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) 更新状态。
 ---
 # useRafState
 
 在 [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) 更新状态。
+
+`useRafState` 与 `useState` 具有相同的 API，但通过 `requestAnimationFrame` 将状态更新延迟到下一个动画帧。这将快速的状态变化（如来自鼠标或滚动事件的变化）批处理为每帧一次更新，减少不必要的重新渲染并提高高频更新的性能。
+
+### 使用场景
+
+- 跟踪鼠标位置、滚动偏移或窗口尺寸，这些事件触发频率远高于屏幕刷新率
+- 平滑来自传感器或数据流的状态更新，这些数据产生速度快于 60fps
+- 减少任何变化非常快且主要用于视觉输出的状态的渲染开销
+
+### 注意事项
+
+- **仅浏览器**：`requestAnimationFrame` 在 SSR 期间不可用。hook 仍然可以工作，但更新不会在服务端被批处理。
+- **与 useState 相同的 API**：返回的元组是 `[state, setState]`，具有相同的 `SetStateAction<S>` 签名，因此是直接替换。
+- **自动清理**：待处理的动画帧请求在卸载时被取消以防止内存泄漏。
 
 ## Usage
 

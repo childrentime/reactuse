@@ -1,11 +1,25 @@
 ---
 title: useElementByPoint 用法与示例
 sidebar_label: useElementByPoint
-description: '`useElementByPoint` 是一个用于获取指定坐标下的元素的 Hook。 本文介绍其用法、最佳实践与代码示例。'
+description: '`useElementByPoint` 是一个用于获取指定坐标下的元素的 Hook。'
 ---
 # useElementByPoint
 
 `useElementByPoint` 是一个用于获取指定坐标下的元素的 Hook。
+
+`useElementByPoint` 封装了 [`document.elementFromPoint()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/elementFromPoint)（在多元素模式下使用 `elementsFromPoint()`），用于响应式地查询给定 x/y 坐标处的 DOM 元素。它支持通过定时器或 `requestAnimationFrame` 进行轮询，并返回一个可暂停的对象，包含匹配的元素、`isSupported` 标志和 `pause`/`resume` 控件。
+
+### 使用场景
+
+- 构建元素检查工具或可视化调试器，高亮显示悬停的元素
+- 实现自定义拖放逻辑，需要检测特定坐标处的放置目标
+- 创建交互式教程或入门覆盖层，识别光标下的 UI 元素
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `isSupported: false` 和 `null` 元素。服务端不会访问 `document`。
+- **性能**：使用 `interval` 选项控制轮询频率。`requestAnimationFrame` 提供最流畅的更新，但 CPU 使用较高。
+- **相关 hooks**：可配合 `useMouse` 跟踪光标位置，以及 `useElementBounding` 获取检测到元素的尺寸。
 
 ## Usage
 

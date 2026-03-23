@@ -2,13 +2,26 @@
 title: usePreferredContrast – Browser Hook Usage & Examples
 sidebar_label: usePreferredContrast
 description: >-
-  [prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) media query. Learn usage patterns, best practices, and code
+  [prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) media query. practices, and code
   example
 ---
 # usePreferredContrast
 
 [prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) media query
 
+`usePreferredContrast` uses [`window.matchMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to reactively track the user's contrast preference. It returns `"more"`, `"less"`, `"custom"`, or `"no-preference"` based on the [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) media query. The value updates automatically when the user changes their system accessibility settings.
+
+### When to Use
+
+- Increasing border widths, font weights, or color contrast for users who prefer more contrast
+- Reducing visual intensity for users who prefer less contrast
+- Building accessible interfaces that adapt to system-level contrast preferences
+
+### Notes
+
+- **SSR-safe**: Accepts a `defaultState` parameter (default: `"no-preference"`) that is returned during server-side rendering. No `window.matchMedia` access occurs on the server.
+- **Browser support**: The `prefers-contrast` media query is supported in modern browsers, but availability varies. Check [MDN compatibility](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast#browser_compatibility) for details.
+- **Related hooks**: Built on `useMediaQuery`. See also `useReducedMotion` and `usePreferredColorScheme` for other accessibility-related media query hooks.
 
 ## Usage
 

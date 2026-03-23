@@ -3,6 +3,12 @@ base = "/"
 command = "pnpm i && pnpm --filter @reactuses/core run build && pnpm --filter website-astro run build"
 publish = "packages/website-astro/dist"
 
+# Redirect /sitemap.xml to sitemap index
+[[redirects]]
+from = "/sitemap.xml"
+to = "/sitemap-index.xml"
+status = 301
+
 [build.environment]
 NPM_FLAGS = "--version"
 NODE_OPTIONS = "--max_old_space_size=4096"
@@ -64,3 +70,4 @@ X-Content-Type-Options = "nosniff"
 Referrer-Policy = "strict-origin-when-cross-origin"
 Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
 Permissions-Policy = "camera=(self), microphone=(self), geolocation=(self)"
+Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://*.algolia.net https://*.algolianet.com https://www.clarity.ms"

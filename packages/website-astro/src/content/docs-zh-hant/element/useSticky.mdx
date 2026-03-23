@@ -1,11 +1,25 @@
 ---
 title: useSticky 用法與示例
 sidebar_label: useSticky
-description: 跟蹤元素是否粘滞。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤元素是否粘滞。
 ---
 # useSticky
 
 跟蹤元素是否粘滞
+
+`useSticky` 偵測一個 `position: sticky` 元素是否當前處於黏附（stuck）狀態。它使用 Intersection Observer 以零閾值觀察元素，確定元素是否已黏附到容器邊界。回傳一個布林值和一個需要綁定到目標元素的 ref。
+
+### 使用場景
+
+- 當黏附標題處於黏附狀態時新增陰影或邊框樣式
+- 在黏附導覽列啟動時更改其背景或外觀
+- 追蹤黏附元素的狀態以進行分析或條件渲染
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `false`。伺服器上不會建立 `IntersectionObserver`。
+- **CSS 要求**：目標元素必須設定 `position: sticky` CSS 屬性才能使此 hook 正常工作。
+- **相關 hooks**：另請參閱 `useIntersectionObserver` 用於一般的交集觀察，以及 `useScroll` 追蹤捲動位置。
 
 ## Usage
 

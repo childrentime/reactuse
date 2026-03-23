@@ -1,11 +1,25 @@
 ---
 title: useMutationObserver 用法与示例
 sidebar_label: useMutationObserver
-description: 使用 [MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) 检测 DOM 的更改。 本文介绍其用法、最佳实践与代码示例。
+description: 使用 [MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) 检测 DOM 的更改。
 ---
 # useMutationObserver
 
 使用 [MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) 检测 DOM 的更改
+
+`useMutationObserver` 封装了原生 [MutationObserver API](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)，用于监视目标元素 DOM 子树中的变化。当被观察的变更发生时，它触发带有 `MutationRecord` 条目列表的回调。该 hook 返回一个 `stop` 函数，可随时断开观察器。
+
+### 使用场景
+
+- 对第三方库控制的元素上的属性变化做出反应
+- 监控动态 DOM 变化，如内容可编辑区域中的子节点添加或删除
+- 构建实时跟踪 DOM 变更的开发工具或调试实用程序
+
+### 注意事项
+
+- **配置**：传入标准的 `MutationObserverInit` 选项（`attributes`、`childList`、`subtree`、`characterData` 等）控制观察哪些类型的变更。
+- **清理**：观察器在卸载时自动断开。使用返回的 `stop` 函数进行提前断开。
+- 参见 `useResizeObserver` 了解观察大小变化，以及 `useIntersectionObserver` 了解可见性变化。
 
 ## Usage
 

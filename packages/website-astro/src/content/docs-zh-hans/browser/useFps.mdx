@@ -1,11 +1,25 @@
 ---
 title: useFps 用法与示例
 sidebar_label: useFps
-description: 轻松跟踪 FPS。 本文介绍其用法、最佳实践与代码示例。
+description: 轻松跟踪 FPS。
 ---
 # useFps
 
 轻松跟踪 FPS
+
+`useFps` 通过计算 [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame) 回调来测量当前每秒帧数。它返回一个表示当前 FPS 的数字，在可配置的帧数（默认每 10 帧）内计算。这对于性能监控和自适应渲染非常有用。
+
+### 使用场景
+
+- 在开发或调试覆盖层中显示实时 FPS 计数器
+- 当帧率低于阈值时自适应降低动画复杂度
+- 对组件或页面的渲染性能进行基准测试
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `0`。服务端不会进行 `requestAnimationFrame` 调用。
+- **性能**：该 hook 内部使用 `requestAnimationFrame`，开销很小。调整 `every` 选项以平衡准确性和更新频率。
+- **相关 hooks**：参见 `useIdle` 了解用户不活动检测，可与基于 FPS 的自适应渲染互补使用。
 
 ## Usage
 

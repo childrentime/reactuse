@@ -1,12 +1,25 @@
 ---
 title: usePreferredDark – Browser Hook Usage & Examples
 sidebar_label: usePreferredDark
-description: React Hook that tracks dark theme preference. Learn usage patterns, best practices, and code examples for React developers.
+description: React Hook that tracks dark theme preference.
 ---
 # usePreferredDark
 
 React Hook that tracks dark theme preference
 
+`usePreferredDark` uses [`window.matchMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) with the `(prefers-color-scheme: dark)` media query to return a boolean indicating whether the user prefers a dark color scheme. The value updates automatically when the user toggles their system dark mode setting. This is a simpler alternative to `usePreferredColorScheme` when you only need a boolean.
+
+### When to Use
+
+- Setting a default dark/light theme based on the user's OS preference
+- Conditionally applying dark-mode styles or class names in your components
+- Determining the initial value for a theme toggle in your application
+
+### Notes
+
+- **SSR-safe**: Accepts a `defaultState` parameter (default: `false`) that is returned during server-side rendering. No `window.matchMedia` access occurs on the server.
+- **Reactive**: Updates immediately when the user changes their system dark mode preference.
+- **Related hooks**: See also `usePreferredColorScheme` for `"dark"`/`"light"`/`"no-preference"` string values, `useDarkMode` for a toggle with localStorage persistence, and `useColorMode` for multi-theme support.
 
 ## Usage
 

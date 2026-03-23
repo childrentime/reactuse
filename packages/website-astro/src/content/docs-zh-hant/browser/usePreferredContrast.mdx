@@ -1,11 +1,25 @@
 ---
 title: usePreferredContrast 用法與示例
 sidebar_label: usePreferredContrast
-description: '[prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) 媒體查詢。 本文介紹其用法、最佳實踐與代碼示例。'
+description: '[prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) 媒體查詢。'
 ---
 # usePreferredContrast
 
 [prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) 媒體查詢
+
+`usePreferredContrast` 使用 `prefers-contrast` 媒體查詢偵測使用者的系統對比度偏好。它回傳一個字串值：`"more"`、`"less"`、`"custom"` 或 `"no-preference"`，並在使用者更改系統設定時即時更新。
+
+### 使用場景
+
+- 根據使用者的對比度偏好調整 UI 色彩和邊框以提升無障礙性
+- 為高對比度需求使用者提供替代樣式表或主題
+- 記錄使用者的無障礙偏好以改進產品的無障礙支援
+
+### 注意事項
+
+- **SSR 安全**：接受一個 `defaultState` 參數（預設：`"no-preference"`），在 `window.matchMedia` 不可用的伺服器端渲染時回傳。
+- **瀏覽器支援**：`prefers-contrast` 媒體查詢在現代瀏覽器中受支援，但可用性有所不同。詳情請參閱 [MDN 相容性](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast#browser_compatibility)。
+- **相關 hooks**：基於 `useMediaQuery` 建構。另請參閱 `useReducedMotion` 和 `usePreferredColorScheme` 用於其他無障礙相關的媒體查詢 hooks。
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useScroll 用法與示例
 sidebar_label: useScroll
-description: 跟蹤滾動位置和統計數據。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤滾動位置和統計數據。
 ---
 # useScroll
 
 跟蹤滾動位置和統計數據
+
+`useScroll` 追蹤可捲動元素的捲動位置、方向和邊緣到達狀態。它回傳一個物件，包含 `x` 和 `y` 位置、`isScrolling` 狀態、每個方向的 `arrivedState`（是否到達邊緣）和 `directions`（捲動方向）。支援節流和偏移量設定。
+
+### 使用場景
+
+- 建構捲動進度指示器或基於捲動的動畫
+- 偵測使用者何時捲動到頂部或底部以顯示/隱藏元素
+- 實作根據捲動位置觸發的視差效果
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時位置回傳 `0`，`isScrolling` 回傳 `false`，到達和方向狀態為預設值。伺服器上不會附加捲動監聽器。
+- **節流**：使用 `throttle` 選項限制捲動處理器的觸發頻率，以提升複雜捲動式 UI 更新的效能。
+- **相關 hooks**：另請參閱 `useInfiniteScroll` 用於自動載入更多觸發，`useScrollLock` 用於停用捲動，以及 `useScrollIntoView` 用於程式化捲動。
 
 ## Usage
 

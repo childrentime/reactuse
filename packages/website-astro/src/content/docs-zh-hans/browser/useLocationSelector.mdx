@@ -2,13 +2,26 @@
 title: useLocationSelector 用法与示例
 sidebar_label: useLocationSelector
 description: >-
-  有选择地从 `location` 检索属性。 仅当您返回的值更改时，此 Hook 才会重新渲染。 有关更多信息，请参阅（https://thisweekinreact.com/articles/useSyncExternalStore-the-undererated-react-api）。
-  本文介绍其用法、最佳实践与代
+  有选择地从 `location` 检索属性。 仅当您返回的值更改时，此 Hook 才会重新渲染。
 ---
 # useLocationSelector
 
 有选择地从 `location` 检索属性。 仅当您返回的值更改时，此 Hook 才会重新渲染。
 有关更多信息，请参阅（https://thisweekinreact.com/articles/useSyncExternalStore-the-undererated-react-api）
+
+`useLocationSelector` 使用 [`useSyncExternalStore`](https://react.dev/reference/react/useSyncExternalStore) 订阅 `window.location` 的变化，让你通过选择器函数只提取你关心的 location 部分。组件仅在所选值实际变化时才重新渲染，防止其他 location 属性变化时的不必要更新（例如 hash 变化不会触发只选择 `pathname` 的组件重新渲染）。
+
+### 使用场景
+
+- 读取当前的 pathname、hash 或搜索参数，无需引入完整的路由库
+- 通过只订阅组件需要的特定 location 属性来优化性能
+- 构建响应 URL 变化的轻量级导航感知组件
+
+### 注意事项
+
+- **SSR 安全**：接受一个 `fallback` 参数，在服务端渲染期间 `window.location` 不可用时返回该值。
+- **选择性重新渲染**：与直接读取 `window.location` 不同，选择器模式确保组件仅在派生值变化时重新渲染。
+- **浏览器事件**：监听 `window` 上的 `popstate` 事件以检测前进/后退导航。Hash 变化和 `pushState`/`replaceState` 调用也会被跟踪。
 
 ## Usage
 

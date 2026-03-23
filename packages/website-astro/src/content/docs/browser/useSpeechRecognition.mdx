@@ -2,13 +2,27 @@
 title: useSpeechRecognition – Browser Hook Usage & Examples
 sidebar_label: useSpeechRecognition
 description: >-
-  Reactive SpeechRecognition API for React. Real-time speech recognition with configurable options, cross-browser compatibility, and TypeScript support. Learn usage patterns, best practices, and code examples.
+  Reactive SpeechRecognition API for React. Real-time speech recognition with configurable options, cross-browser compatibility, and TypeScript support.
 ---
 # useSpeechRecognition
 
 Reactive SpeechRecognition API for React
 
 Real-time speech recognition with configurable options, cross-browser compatibility, and TypeScript support. Perfect for voice-controlled applications, dictation features, and accessibility enhancements.
+
+`useSpeechRecognition` wraps the [Web Speech API's SpeechRecognition interface](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition) to provide real-time speech-to-text in React. It returns an object with `isSupported`, `isListening`, `isFinal`, the `result` text, `error` info, and `start`/`stop`/`toggle` functions. Options include language, continuous mode, interim results, and max alternatives. You can pass different options to each `start` call for dynamic configuration.
+
+### When to Use
+
+- Building voice command interfaces for hands-free application control
+- Adding dictation/speech-to-text input to forms, editors, or note-taking apps
+- Implementing accessibility features that allow voice input for users with mobility impairments
+
+### Notes
+
+- **SSR-safe**: Returns `isSupported: false` and no-op functions during server-side rendering. No `SpeechRecognition` constructor is called on the server.
+- **Browser support**: The Web Speech API is primarily supported in Chromium-based browsers. Always check `isSupported` before displaying speech recognition UI.
+- **HTTPS required**: In production, speech recognition requires a secure context (HTTPS). Microphone permission will be requested on first use.
 
 ## Usage
 

@@ -2,13 +2,26 @@
 title: useDocumentVisibility – Element Hook Usage & Examples
 sidebar_label: useDocumentVisibility
 description: >-
-  React Sensor Hook that tracks [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState). Learn usage patterns,
+  React Sensor Hook that tracks [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState).
   best 
 ---
 # useDocumentVisibility
 
 React Sensor Hook that tracks [document.visibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState)
 
+`useDocumentVisibility` reactively tracks whether the page is visible or hidden using the [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API). It returns the current `DocumentVisibilityState` (`"visible"` or `"hidden"`) and updates automatically when the user switches tabs or minimizes the browser. You can provide a default value for the initial state.
+
+### When to Use
+
+- Pausing animations, videos, or timers when the user navigates away from the tab
+- Showing a "welcome back" message or refreshing stale data when the user returns
+- Reducing network requests or resource consumption while the page is in the background
+
+### Notes
+
+- **SSR-safe**: Accepts a `defaultValue` parameter (e.g. `"hidden"`) that is used during server-side rendering when `document` is not available.
+- **Lightweight**: Listens to the `visibilitychange` event on `document` and cleans up the listener on unmount.
+- See also `useWindowFocus` for tracking whether the browser window itself has focus (vs. just tab visibility).
 
 ## Usage
 

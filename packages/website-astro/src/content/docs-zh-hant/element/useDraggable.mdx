@@ -1,11 +1,25 @@
 ---
 title: useDraggable 用法與示例
 sidebar_label: useDraggable
-description: 元素拖动。 本文介紹其用法、最佳實踐與代碼示例。
+description: 元素拖动。
 ---
 # useDraggable
 
 元素拖动
+
+`useDraggable` 使 DOM 元素可透過滑鼠或觸控拖曳。它回傳當前位置（`x`、`y`）、拖曳狀態（`isDragging`）和需要套用到目標元素的樣式物件。支援約束拖曳範圍、初始位置設定和拖曳事件回呼。
+
+### 使用場景
+
+- 建構可拖曳的 UI 元素（如浮動按鈕、可移動面板）
+- 實作拖放排序或位置調整功能
+- 建立可由使用者自由定位的彈出視窗或工具列
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳初始位置和 `isDragging: false`。伺服器上不會附加事件監聽器。
+- **觸控支援**：同時處理滑鼠和觸控事件以實現跨裝置相容性。
+- **相關 hooks**：另請參閱 `useDropZone` 用於放置區域偵測，以及 `useMouse` 用於一般游標追蹤。
 
 ## Usage
 

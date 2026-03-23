@@ -1,11 +1,25 @@
 ---
 title: useMountedState 用法与示例
 sidebar_label: useMountedState
-description: 检查组件的挂载状态。 本文介绍其用法、最佳实践与代码示例。
+description: 检查组件的挂载状态。
 ---
 # useMountedState
 
 检查组件的挂载状态
+
+`useMountedState` 返回一个函数（不是值），你可以随时调用它来检查组件是否仍然挂载。这在异步操作中特别有用，你需要防止在未挂载的组件上设置状态。该函数在重新渲染之间是稳定的，始终反映当前的挂载状态。
+
+### 使用场景
+
+- 在异步操作（`fetch`、`setTimeout`）中保护 `setState` 调用，防止"在未挂载组件上更新状态"的警告
+- 仅在组件仍在 DOM 中时有条件地执行清理或后续逻辑
+- 实现应在组件卸载时停止的安全轮询或订阅模式
+
+### 注意事项
+
+- **函数返回**：与返回布尔值的 `useFirstMountState` 不同，此 hook 返回一个*函数*，该函数返回布尔值。调用它（`isMounted()`）获取当前状态。
+- **SSR 安全**：函数在服务端渲染期间返回 `false`，在组件在客户端挂载后变为 `true`。
+- 参见 `useFirstMountState` 了解仅检测初始挂载而非持续挂载状态。
 
 ## Usage
 

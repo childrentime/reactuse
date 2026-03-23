@@ -1,7 +1,7 @@
 ---
 title: useColorMode 用法与示例
 sidebar_label: useColorMode
-description: 响应式颜色模式（主题）管理，具有自动数据持久化和灵活配置功能。本文介绍其用法、最佳实践与示例。
+description: 响应式颜色模式（主题）管理，具有自动数据持久化和灵活配置功能。
 ---
 
 # useColorMode
@@ -91,6 +91,20 @@ export function useTheme() {
 ```
 
 </details>
+
+`useColorMode` 通过在目标元素（默认为 `<html>`）上应用 CSS 类名或 HTML 属性来管理多主题颜色模式，并将选择持久化到 `localStorage`。它返回一个包含当前模式字符串、设置函数和 `cycle` 函数（用于循环切换可用模式）的元组。你可以配置可用模式、自定义类名映射、存储键、存储后端和使用的 DOM 属性。
+
+### 使用场景
+
+- 构建超越简单明暗模式的多主题应用（例如蓝色、绿色、棕褐色）
+- 创建带有循环切换功能的主题选择器
+- 通过自动 localStorage 同步在多个会话之间持久化用户的颜色模式选择
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `defaultValue`（或 `null`）。服务端不会访问 DOM 或 localStorage。参见下方"技巧"部分了解如何防止未样式化内容的闪烁。
+- **持久化**：默认将数据持久化到 `localStorage`，键名为 `"reactuses-color-mode"`。你可以自定义存储键和后端（例如 `sessionStorage`）。
+- **相关 hooks**：如需简单的明暗切换，参见 `useDarkMode`。如需检测系统偏好，参见 `usePreferredColorScheme`。
 
 ## Usage
 

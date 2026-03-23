@@ -1,11 +1,25 @@
 ---
 title: useWakeLock 用法與示例
 sidebar_label: useWakeLock
-description: 響應式螢幕喚醒鎖 API，防止螢幕變暗或鎖定。本文介紹其用法、最佳實踐與代碼示例。
+description: 響應式螢幕喚醒鎖 API，防止螢幕變暗或鎖定。
 ---
 # useWakeLock
 
 響應式螢幕喚醒鎖 API，防止螢幕變暗或鎖定。
+
+`useWakeLock` 封裝了 [Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API)，防止裝置螢幕在應用程式需要保持顯示時變暗或鎖定。它回傳一個物件，包含 `isSupported`、`isActive` 狀態以及 `request`、`forceRequest` 和 `release` 控制函式。
+
+### 使用場景
+
+- 在食譜應用程式、導航應用程式或簡報模式中保持螢幕常亮
+- 防止裝置在播放影片或音訊時進入睡眠模式
+- 在長時間表單填寫或考試期間保持螢幕活動
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `isSupported: false` 和 `isActive: false`，函式為空操作。伺服器上不會存取 `navigator.wakeLock`。
+- **頁面可見性**：標準的 `request` 方法會延遲到頁面變為可見時才取得喚醒鎖定。使用 `forceRequest` 可在需要時繞過此安全檢查。
+- **自動釋放**：當頁面變為隱藏（分頁切換、最小化）時，瀏覽器會自動釋放喚醒鎖定。如果之前處於活動狀態，此 hook 會在頁面重新可見時重新取得鎖定。
 
 ## Usage
 

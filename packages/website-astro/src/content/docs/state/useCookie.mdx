@@ -7,6 +7,20 @@ description: React hook that facilitates the storage, updating and deletion of v
 
 React hook that facilitates the storage, updating and deletion of values within the CookieStore
 
+`useCookie` manages a single browser cookie by key. It returns a tuple of `[cookieValue, updateCookie, refreshCookie]`. Call `updateCookie` with a string to set the cookie or with `undefined` to delete it. The `refreshCookie` function re-reads the cookie from the store, which is useful when the cookie may have been modified externally. Options are passed through to `js-cookie` for controlling path, domain, expiration, and other cookie attributes.
+
+### When to Use
+
+- Persisting user preferences (locale, theme, consent flags) in cookies for server-side access
+- Reading and writing authentication or session tokens stored in cookies
+- Synchronizing cookie state in a component when external code (analytics, third-party scripts) may also modify the cookie
+
+### Notes
+
+- **SSR considerations**: Pass a `defaultValue` when using SSR so the hook has a value before `document.cookie` is available on the client.
+- **No cross-component sync**: Updating a cookie in one component does not automatically trigger re-renders in other components using the same key. Use a broadcast mechanism if needed.
+- See also `useLocalStorage` and `useSessionStorage` for Web Storage alternatives that provide cross-tab synchronization via the `storage` event.
+
 :::note
 When you use setCookieValue with useCookie hook that shares the same key across multiple components,
 it does not trigger an update in the other components using this hook.

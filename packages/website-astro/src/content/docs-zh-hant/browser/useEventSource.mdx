@@ -1,11 +1,25 @@
 ---
 title: useEventSource 用法與示例
 sidebar_label: useEventSource
-description: '`useEventSource` 是一個 hook，允許您訂閱 EventSource 並實時接收更新。 本文介紹其用法、最佳實踐與代碼示例。'
+description: '`useEventSource` 是一個 hook，允許您訂閱 EventSource 並實時接收更新。'
 ---
 # useEventSource
 
 `useEventSource` 是一個 hook，允許您訂閱 EventSource 並實時接收更新。
+
+`useEventSource` 封裝了 [EventSource API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource)（Server-Sent Events），用於建立從伺服器到瀏覽器的單向連線。它回傳一個物件，包含 `status`（連線狀態）、`data`（最新訊息）、`error`、`close`（斷開連線）和 `open`（重新連線）。你可以監聽具名事件並控制連線是立即開啟還是延遲。
+
+### 使用場景
+
+- 接收伺服器的即時更新，例如即時動態、通知或進度事件
+- 建構顯示來自伺服器端點串流資料的儀表板
+- 實作用戶端只需接收（而非傳送）資料的伺服器推送功能
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳無活動連線的預設狀態。伺服器上不會呼叫 `EventSource` 建構函式。
+- **重新連線**：瀏覽器原生的 `EventSource` 會在連線中斷時自動重新連線。使用 `status` 欄位追蹤當前連線狀態。
+- **相關 hooks**：另請參閱 `useFetchEventSource`，用於需要自訂 HTTP 方法（例如 POST）或標頭的 SSE 連線。
 
 ```tsx live
 function Demo() {

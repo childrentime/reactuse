@@ -1,11 +1,25 @@
 ---
 title: usePrevious 用法与示例
 sidebar_label: usePrevious
-description: 跟踪更新前的值。 本文介绍其用法、最佳实践与代码示例。
+description: 跟踪更新前的值。
 ---
 # usePrevious
 
 跟踪更新前的值
+
+`usePrevious` 接受一个值，返回上一次渲染的值。在初始渲染时返回 `undefined`，因为没有先前的值。hook 在 ref 中存储先前的值，并在每次渲染后更新它，给你一个值在最近一次更改之前的快照。
+
+### 使用场景
+
+- 比较当前和先前的值以触发动画、过渡或条件逻辑
+- 检测变化的方向（例如计数器是增加还是减少）
+- 实现撤销功能或显示"从 X 变为 Y"的指示器
+
+### 注意事项
+
+- **初始值**：首次渲染时返回 `undefined`。相应地将结果类型化为 `T | undefined`。
+- **SSR 安全**：内部仅使用 React ref，无浏览器依赖。
+- 参见 `useLatest` 了解在回调中访问*当前*（最新）值而不产生过时闭包。
 
 ## Usage
 

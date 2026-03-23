@@ -1,11 +1,25 @@
 ---
 title: useDeepCompareEffect 用法與示例
 sidebar_label: useDeepCompareEffect
-description: 修改後的 useEffect ，對其依賴項使用深度比較而不是引用相等。 本文介紹其用法、最佳實踐與代碼示例。
+description: 修改後的 useEffect ，對其依賴項使用深度比較而不是引用相等。
 ---
 # useDeepCompareEffect
 
 修改後的 useEffect ，對其依賴項使用深度比較而不是引用相等
+
+`useDeepCompareEffect` 是 `useEffect` 的變體，使用深度比較而非參考相等性來比較依賴。這避免了在每次渲染中傳入新的物件或陣列參考但值未變更時不必要地重新執行 effect。
+
+### 使用場景
+
+- 當 effect 依賴於在每次渲染中重新建立的物件或陣列
+- 避免因參考變更（而非值變更）導致的不必要 effect 執行
+- 處理來自 API 回應或複雜計算結果的深層巢狀依賴
+
+### 注意事項
+
+- **效能**：深度比較比淺比較更耗效能。僅在標準 `useEffect` 的依賴比較不足以滿足需求時使用。
+- **參考穩定性**：如果可能，優先使用 `useMemo` 或 `useCallback` 穩定參考，而非使用深度比較。
+- **相關 hooks**：另請參閱 `useCustomCompareEffect` 提供自訂比較函式以獲得更多控制。
 
 ## Usage
 

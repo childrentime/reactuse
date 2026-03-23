@@ -1,11 +1,25 @@
 ---
 title: useInterval 用法與示例
 sidebar_label: useInterval
-description: 計時器。你可以通過傳遞 `controls` 參數來手動控制計時器。 本文介紹其用法、最佳實踐與代碼示例。
+description: 計時器。你可以通過傳遞 `controls` 參數來手動控制計時器。
 ---
 # useInterval
 
 計時器。你可以通過傳遞 `controls` 參數來手動控制計時器。
+
+`useInterval` 提供了一個宣告式的 `setInterval` 封裝。它接受一個回呼函式和間隔時間（毫秒），回傳可暫停和恢復計時器的控制項。當間隔時間變更時計時器會自動重置，卸載時自動清理。
+
+### 使用場景
+
+- 建構倒數計時器、時鐘或定期輪詢機制
+- 定期更新 UI 元素（例如即時時間顯示、動畫幀）
+- 實作可暫停和恢復的定時任務
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時為空操作。伺服器上不會設定計時器。
+- **動態間隔**：間隔時間可以在渲染之間變更，計時器會自動重置。傳入 `null` 可暫停計時器。
+- **相關 hooks**：另請參閱 `useTimeout` 和 `useTimeoutFn` 用於一次性延遲，以及 `useRafFn` 用於基於 `requestAnimationFrame` 的迴圈。
 
 ## Usage
 

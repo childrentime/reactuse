@@ -1,11 +1,25 @@
 ---
 title: useEventListener 用法与示例
 sidebar_label: useEventListener
-description: 轻松使用 EventListener。 本文介绍其用法、最佳实践与代码示例。
+description: 轻松使用 EventListener。
 ---
 # useEventListener
 
 轻松使用 EventListener。
+
+`useEventListener` 将 DOM 事件监听器附加到目标元素（或 `window`/`document`），并在卸载或依赖变化时自动移除。它接受事件名称、处理函数和可选的目标 ref 或元素。处理器始终保持最新，无需重新注册监听器，这得益于通过 `useLatest` 实现的内部 ref。
+
+### 使用场景
+
+- 监听特定元素上的键盘快捷键、鼠标点击或滚动事件
+- 将 `resize`、`visibilitychange` 或 `storage` 事件附加到 `window`/`document`
+- 任何需要将事件监听器的自动清理与组件生命周期绑定的场景
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间跳过监听器注册，因为 `window`/`document` 不可用。
+- **稳定处理器**：内部使用 `useLatest`，因此处理器始终指向最新的闭包而不需要重新附加监听器。
+- 第三个参数默认为 `window`，接受原始元素、ref 对象或返回元素的函数。参见 `useEvent` 了解稳定的回调 ref 模式，以及 `useDebounceFn`/`useThrottleFn` 了解限速的事件处理。
 
 ## Usage
 

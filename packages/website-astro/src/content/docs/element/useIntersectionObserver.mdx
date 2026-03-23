@@ -9,6 +9,20 @@ description: >-
 
 React sensor hook that tracks the changes in the intersection of a target element with an ancestor element or with a top-level document's viewport. Uses the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) and returns a [IntersectionObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry)
 
+`useIntersectionObserver` wraps the native [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) in a React-friendly interface. It observes a target element and fires a callback with the full `IntersectionObserverEntry` array whenever the element's intersection with a root container changes. The hook returns a `stop` function to disconnect the observer early.
+
+### When to Use
+
+- Implementing infinite scroll by detecting when a sentinel element enters the viewport
+- Lazy-loading images or heavy components only when they become visible
+- Triggering scroll-based animations or analytics events at specific intersection thresholds
+
+### Notes
+
+- **Configurable**: Supports all standard `IntersectionObserverInit` options (`root`, `rootMargin`, `threshold`) for precise control over when the callback fires.
+- **Cleanup**: The observer is automatically disconnected on unmount. Call the returned `stop` function to disconnect manually if needed.
+- See also `useElementVisibility` for a simplified boolean-only wrapper around this hook.
+
 ## Usage
 
 ```tsx live

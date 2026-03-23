@@ -1,11 +1,25 @@
 ---
 title: useWindowScroll 用法與示例
 sidebar_label: useWindowScroll
-description: useWindowScroll 是一个 React Hook，它用于獲取瀏覽器窗口的滾動位置。 本文介紹其用法、最佳實踐與代碼示例。
+description: useWindowScroll 是一个 React Hook，它用于獲取瀏覽器窗口的滾動位置。
 ---
 # useWindowScroll
 
 useWindowScroll 是一个 React Hook，它用于獲取瀏覽器窗口的滾動位置
+
+`useWindowScroll` 追蹤視窗的捲動位置，回傳 `x` 和 `y` 座標以及一個程式化捲動的 `scrollTo` 函式。座標在使用者捲動時自動更新。
+
+### 使用場景
+
+- 建構「回到頂部」按鈕，根據捲動位置顯示或隱藏
+- 根據視窗捲動位置觸發動畫或視差效果
+- 儲存和恢復使用者的捲動位置
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `x: 0, y: 0`。伺服器上不會附加捲動事件監聽器。
+- **程式化捲動**：使用回傳的 `scrollTo` 函式可平滑捲動到指定位置。
+- **相關 hooks**：另請參閱 `useScroll` 用於追蹤任何可捲動元素（不僅限於視窗），以及 `useWindowSize` 追蹤視窗尺寸。
 
 ## Usage
 

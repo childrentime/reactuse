@@ -2,13 +2,26 @@
 title: useResizeObserver – Element Hook Usage & Examples
 sidebar_label: useResizeObserver
 description: >-
-  Watch size of an HTML element. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver). Learn usage patterns, best practices,
+  Watch size of an HTML element. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver). practices,
   and 
 ---
 # useResizeObserver
 
 Watch size of an HTML element. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)
 
+`useResizeObserver` wraps the native [ResizeObserver API](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) to watch for size changes on a DOM element. It invokes a callback with the full `ResizeObserverEntry` array whenever the element's dimensions change. The hook returns a `stop` function to disconnect the observer. You can also pass `ResizeObserverOptions` to control which box model (`content-box`, `border-box`, or `device-pixel-content-box`) is observed.
+
+### When to Use
+
+- Executing custom logic (e.g., recalculating layouts or redrawing canvases) in response to element size changes
+- Building wrapper components that need raw ResizeObserver entries for advanced measurement logic
+- Observing size changes on elements that resize independently of the window (e.g., resizable panels, flex items)
+
+### Notes
+
+- **Performance**: ResizeObserver is much more efficient than polling element dimensions or listening to window resize events. The callback fires only when the observed element actually changes size.
+- **Cleanup**: The observer is automatically disconnected on unmount. Call the returned `stop` function to disconnect manually at any time.
+- See also `useElementSize` for a simple `[width, height]` return value, and `useMeasure` for a full `DOMRect` return value -- both built on top of ResizeObserver.
 
 ## Usage
 

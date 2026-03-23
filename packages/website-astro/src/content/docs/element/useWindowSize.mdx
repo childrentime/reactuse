@@ -1,12 +1,25 @@
 ---
 title: useWindowSize – Element Hook Usage & Examples
 sidebar_label: useWindowSize
-description: React Element Hooks that tracks window size. Learn usage patterns, best practices, and code examples for React developers.
+description: React Element Hooks that tracks window size.
 ---
 # useWindowSize
 
 React Element Hooks that tracks window size
 
+`useWindowSize` reactively tracks the browser window's `innerWidth` and `innerHeight`. It returns an object with `width` and `height` properties that update automatically whenever the window is resized. This is useful for any component logic that depends on viewport dimensions.
+
+### When to Use
+
+- Building responsive layouts that need to adapt logic (not just CSS) based on viewport size
+- Dynamically calculating how many items to render in a grid or virtual list
+- Adjusting canvas, chart, or map dimensions to fill the available viewport
+
+### Notes
+
+- **SSR-safe**: Returns `{ width: 0, height: 0 }` during server-side rendering since `window` is not available.
+- **Performance**: Listens to the window `resize` event. The observer is cleaned up automatically on unmount.
+- See also `useElementSize` for tracking the size of a specific element, and `useElementBounding` for full bounding-box data including position.
 
 ## Usage
 

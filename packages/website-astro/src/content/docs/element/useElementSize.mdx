@@ -9,6 +9,19 @@ description: >-
 
 React Sensor Hook that tracks size of an HTML element. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)
 
+`useElementSize` tracks the width and height of a DOM element in real time using the [ResizeObserver API](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver). It returns the current `width` and `height` as a reactive tuple that updates whenever the element is resized. Pass a ref to the target element and optional `ResizeObserverOptions` (e.g., `{ box: "border-box" }`) to control which box model is observed.
+
+### When to Use
+
+- Building responsive components that adapt based on their own size rather than viewport size
+- Implementing container queries in older browsers that lack native support
+- Dynamically sizing canvas elements, charts, or virtualized lists
+
+### Notes
+
+- **SSR-safe**: Returns `[0, 0]` during server-side rendering. Observation starts after mount.
+- **Performance**: Uses ResizeObserver which is more efficient than polling or listening to window resize events. The observer is disconnected automatically on unmount.
+- See also `useMeasure` for a similar hook that returns a full `DOMRect`, `useElementBounding` for position and size via `getBoundingClientRect`, and `useWindowSize` for viewport dimensions.
 
 ## Usage
 

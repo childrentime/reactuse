@@ -2,13 +2,27 @@
 title: useSpeechRecognition 用法与示例
 sidebar_label: useSpeechRecognition
 description: >-
-  用于 React 的响应式语音识别 API。支持实时语音识别、可配置选项、跨浏览器兼容性和 TypeScript 支持。了解用法模式、最佳实践和代码示例。
+  用于 React 的响应式语音识别 API。支持实时语音识别、可配置选项、跨浏览器兼容性和 TypeScript 支持。
 ---
 # useSpeechRecognition
 
 用于 React 的响应式语音识别 API
 
 支持实时语音识别、可配置选项、跨浏览器兼容性和 TypeScript 支持。非常适合语音控制应用程序、听写功能和无障碍增强。
+
+`useSpeechRecognition` 封装了 [Web Speech API 的 SpeechRecognition 接口](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition)，在 React 中提供实时语音转文字功能。它返回一个包含 `isSupported`、`isListening`、`isFinal`、`result` 文本、`error` 信息和 `start`/`stop`/`toggle` 函数的对象。选项包括语言、连续模式、临时结果和最大替代方案数。你可以向每次 `start` 调用传递不同的选项以实现动态配置。
+
+### 使用场景
+
+- 构建免提应用控制的语音命令界面
+- 为表单、编辑器或笔记应用添加听写/语音输入功能
+- 实现允许行动不便用户进行语音输入的辅助功能
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `isSupported: false` 和空操作函数。服务端不会调用 `SpeechRecognition` 构造函数。
+- **浏览器支持**：Web Speech API 主要在基于 Chromium 的浏览器中受支持。在显示语音识别 UI 之前请始终检查 `isSupported`。
+- **需要 HTTPS**：在生产环境中，语音识别需要安全上下文（HTTPS）。首次使用时将请求麦克风权限。
 
 ## 基本用法
 

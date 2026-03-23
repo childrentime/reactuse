@@ -1,12 +1,25 @@
 ---
 title: useFocus – Element Hook Usage & Examples
 sidebar_label: useFocus
-description: React Sensor Hooks that tracks element foucs state. Learn usage patterns, best practices, and code examples for React developers.
+description: React Sensor Hooks that tracks element foucs state.
 ---
 # useFocus
 
 React Sensor Hooks that tracks element foucs state
 
+`useFocus` tracks and controls the focus state of a specific DOM element. It returns a tuple of `[isFocused, setFocused]` -- a boolean indicating whether the element currently has focus, and a function to programmatically focus or blur it. You can optionally pass `true` as the second argument to auto-focus the element on mount.
+
+### When to Use
+
+- Building accessible form components that need to track and programmatically control focus
+- Implementing focus management in modal dialogs, wizards, or multi-step forms
+- Creating focus indicators or visual feedback that responds to focus state changes
+
+### Notes
+
+- **Two-way binding**: The returned setter calls `element.focus()` or `element.blur()` under the hood, so the DOM and React state stay in sync.
+- **Initial focus**: Pass `true` as the `initialValue` parameter to focus the element immediately after mount.
+- See also `useActiveElement` for tracking which element has focus globally across the entire document.
 
 ## Usage
 

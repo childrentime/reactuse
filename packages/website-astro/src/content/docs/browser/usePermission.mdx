@@ -1,12 +1,25 @@
 ---
 title: usePermission – Browser Hook Usage & Examples
 sidebar_label: usePermission
-description: React side-effect hook to query permission status of browser APIs. Learn usage patterns, best practices, and code examples for React developers.
+description: React side-effect hook to query permission status of browser APIs.
 ---
 # usePermission
 
 React side-effect hook to query permission status of browser APIs
 
+`usePermission` wraps the [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API) to reactively query and track the status of a browser permission. Pass a permission name (e.g., `"geolocation"`, `"camera"`, `"clipboard-read"`) and it returns the current state: `"granted"`, `"denied"`, `"prompt"`, or `""` (empty string when the API is unavailable). The value updates automatically if the user changes the permission.
+
+### When to Use
+
+- Checking permission status before attempting to use restricted APIs (clipboard, geolocation, camera, microphone)
+- Displaying appropriate UI based on whether a permission has been granted, denied, or not yet requested
+- Building settings pages that show the current state of all relevant permissions
+
+### Notes
+
+- **SSR-safe**: Returns an empty string (`""`) during server-side rendering. No `navigator.permissions` access occurs on the server.
+- **Reactive**: The hook subscribes to the permission's `change` event, so the returned state updates in real time if the user revokes or grants the permission through browser settings.
+- **Related hooks**: Often used alongside `useClipboard`, `useGeolocation`, `useMediaDevices`, and `useWebNotification` to check their respective permissions before use.
 
 ## Usage
 

@@ -1,11 +1,25 @@
 ---
 title: useMobileLandscape 用法與示例
 sidebar_label: useMobileLandscape
-description: 跟蹤移動設備是否處於橫屏模式。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤移動設備是否處於橫屏模式。
 ---
 # useMobileLandscape
 
 跟蹤移動設備是否處於橫屏模式。
+
+`useMobileLandscape` 偵測行動裝置是否處於橫向方向。它回傳一個布林值，在行動裝置處於橫向模式時為 `true`。此 hook 專門針對行動裝置，不會在桌面裝置上觸發。
+
+### 使用場景
+
+- 當行動裝置旋轉到橫向時調整 UI 佈局
+- 在行動橫向模式下顯示全螢幕媒體播放器或遊戲
+- 根據行動裝置方向隱藏或顯示特定 UI 元素
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `false`。伺服器上不會存取 `window.matchMedia`。
+- **行動端專屬**：專門偵測行動裝置上的橫向方向，而非桌面端。如需一般方向追蹤，請參閱 `useOrientation`。
+- **相關 hooks**：基於 `useMediaQuery` 建構。另請參閱 `useOrientation` 獲取更詳細的方向資訊，包括角度和鎖定功能。
 
 ## Usage
 

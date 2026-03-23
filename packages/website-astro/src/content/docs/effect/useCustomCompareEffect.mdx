@@ -2,13 +2,26 @@
 title: useCustomCompareEffect – Effect Hook Usage & Examples
 sidebar_label: useCustomCompareEffect
 description: >-
-  A modified useEffect hook that accepts a comparator which is used for comparison on dependencies instead of reference equality. Learn usage patterns, best
+  A modified useEffect hook that accepts a comparator which is used for comparison on dependencies instead of reference equality.
   pract
 ---
 # useCustomCompareEffect
 
 A modified useEffect hook that accepts a comparator which is used for comparison on dependencies instead of reference equality
 
+`useCustomCompareEffect` gives you full control over when an effect re-runs by letting you supply a custom comparison function for the dependency array. Instead of React's default reference equality check, the effect only fires when your comparator returns `false`. This is useful when dependencies are objects or arrays that are structurally equivalent but referentially different across renders.
+
+### When to Use
+
+- Running an effect only when a specific property of a dependency object changes (e.g., an `id` field) while ignoring other property changes
+- Integrating with external data sources that produce new object references on every read but rarely change in meaningful ways
+- When `useDeepCompareEffect` is too broad and you need fine-grained comparison logic
+
+### Notes
+
+- **Comparator signature**: The comparator receives `(prevDeps, nextDeps)` and should return `true` if they are considered equal (skip the effect), or `false` to re-run it.
+- **Return value**: Supports cleanup functions the same way as standard `useEffect`.
+- See also `useDeepCompareEffect` for automatic deep equality comparison without a custom comparator.
 
 ## Usage
 

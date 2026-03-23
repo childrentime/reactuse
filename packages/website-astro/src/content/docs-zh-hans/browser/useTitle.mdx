@@ -1,11 +1,25 @@
 ---
 title: useTitle 用法与示例
 sidebar_label: useTitle
-description: 设置文档标题。 本文介绍其用法、最佳实践与代码示例。
+description: 设置文档标题。
 ---
 # useTitle
 
 设置文档标题。
+
+`useTitle` 是一个副作用 hook，将 [`document.title`](https://developer.mozilla.org/en-US/docs/Web/API/Document/title) 设置为提供的字符串。当标题值改变时，文档标题会立即更新。这是保持浏览器标签页标题与组件状态同步的最简单方式，无需头部管理库。
+
+### 使用场景
+
+- 基于当前路由或页面内容设置页面标题
+- 在标签页中显示动态信息（例如未读消息数、当前文档名）
+- 响应用户操作或数据加载更新标题
+
+### 注意事项
+
+- **SSR 安全**：该 hook 在服务端渲染期间为空操作。服务端不会访问 `document.title`。对于 SSR，请在 HTML 模板中设置标题或使用头部管理方案。
+- **简单 API**：此 hook 是一个即发即忘的副作用——接收标题字符串并设置它。对于更复杂的场景（例如卸载时恢复之前的标题），请相应包装。
+- **相关 hooks**：参见 `useFavicon` 了解动态更改页面的 favicon 图标。
 
 ## Usage
 

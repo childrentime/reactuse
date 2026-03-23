@@ -9,6 +9,19 @@ description: >-
 
 React layoutEffect hook that ignores the first invocation (e.g. on mount). The signature is exactly the same as the `useLayoutEffect` hook
 
+`useUpdateLayoutEffect` works identically to `useLayoutEffect` except that it skips the initial execution on mount. The effect fires synchronously after DOM mutations but only on subsequent dependency changes, not on the first render. This is useful for DOM measurements or mutations that should only respond to updates.
+
+### When to Use
+
+- Adjusting layout or scroll position in response to state changes, but not on the initial render when the DOM is first painted
+- Synchronously updating DOM attributes or styles only when a dependency has actually changed after mount
+- Preventing initial flash-of-content issues when a layout effect would incorrectly run its update logic on mount
+
+### Notes
+
+- **Layout timing**: Runs synchronously after DOM mutations and before the browser repaints, the same as `useLayoutEffect`. Avoid slow operations to prevent blocking visual updates.
+- **Same signature**: Accepts an effect callback and optional dependency array, identical to `useLayoutEffect`. Supports cleanup functions via the return value.
+- See also `useUpdateEffect` for the `useEffect`-timed equivalent, and `useIsomorphicLayoutEffect` for SSR-safe layout effects.
 
 ## Usage
 

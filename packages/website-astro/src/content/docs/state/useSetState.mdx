@@ -1,12 +1,25 @@
 ---
 title: useSetState – State Hook Usage & Examples
 sidebar_label: useSetState
-description: useState wrapper to work with state like in class component. Learn usage patterns, best practices, and code examples for React developers.
+description: useState wrapper to work with state like in class component.
 ---
 # useSetState
 
 useState wrapper to work with state like in class component
 
+`useSetState` returns a `[state, setState]` tuple where `setState` accepts a *partial* object (or a function returning a partial object) and merges it into the current state, just like `this.setState` in React class components. This avoids the need to spread the previous state manually when updating a single field in an object.
+
+### When to Use
+
+- Managing complex form state with many fields where you want to update one field at a time without spreading the rest
+- Migrating class components to hooks while preserving the familiar `this.setState({ key: value })` pattern
+- Any scenario involving an object state where partial updates are more ergonomic than full replacements
+
+### Notes
+
+- **Shallow merge**: The partial object is merged one level deep via object spread. Nested objects are replaced, not deeply merged.
+- **Function updater**: You can pass a function `(currentState) => Partial<T>` for updates that depend on the current state.
+- **SSR-safe**: Uses only React state internally with no browser dependencies.
 
 ## Usage
 

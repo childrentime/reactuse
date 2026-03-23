@@ -1,11 +1,25 @@
 ---
 title: useCssVar 用法与示例
 sidebar_label: useCssVar
-description: 管理 CSS 变量。 本文介绍其用法、最佳实践与代码示例。
+description: 管理 CSS 变量。
 ---
 # useCssVar
 
 管理 CSS 变量
+
+`useCssVar` 用于读写目标 DOM 元素上的 [CSS 自定义属性](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)（变量）。它返回一个包含当前变量值和设置函数的元组。可选地，它可以通过 `MutationObserver` 监听变化，以便在外部代码修改变量时保持返回值同步。
+
+### 使用场景
+
+- 在运行时通过读写 CSS 自定义属性来动态设置组件主题
+- 构建颜色选择器或样式编辑器，操作特定元素上的 CSS 变量
+- 将 React 状态与 CSS 变量同步，用于动画或过渡效果
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回提供的默认值和空操作设置函数。服务端不会访问 DOM。
+- **MutationObserver**：在选项中设置 `observe: true` 可通过 [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) 自动跟踪 CSS 变量的外部变化。
+- **目标元素**：该 hook 需要一个指向特定 DOM 元素的 ref；变化范围限定在该元素的内联样式中。
 
 ## Usage
 

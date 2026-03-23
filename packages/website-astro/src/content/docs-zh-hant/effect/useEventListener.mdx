@@ -1,11 +1,25 @@
 ---
 title: useEventListener 用法與示例
 sidebar_label: useEventListener
-description: 輕鬆使用 EventListener。 本文介紹其用法、最佳實踐與代碼示例。
+description: 輕鬆使用 EventListener。
 ---
 # useEventListener
 
 輕鬆使用 EventListener。
+
+`useEventListener` 簡化了 DOM 事件監聽器的新增和移除。它接受事件名稱、處理函式和可選的目標元素（預設為 `window`），在元件掛載時自動附加監聽器，卸載時自動移除。支援所有標準 `AddEventListenerOptions`。
+
+### 使用場景
+
+- 監聽視窗事件如 `resize`、`scroll` 或 `keydown` 而無需手動清理
+- 為特定 DOM 元素新增事件監聽器並確保正確清理
+- 以宣告式方式管理事件監聽器的生命週期
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時為空操作。伺服器上不會附加事件監聽器。
+- **自動清理**：監聽器在元件卸載或依賴變更時自動移除，防止記憶體洩漏。
+- **相關 hooks**：另請參閱 `useEvent` 用於建立穩定的事件處理器參考，以及 `useEventEmitter` 用於自訂事件系統。
 
 ## Usage
 

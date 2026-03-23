@@ -1,11 +1,25 @@
 ---
 title: useWakeLock 用法与示例
 sidebar_label: useWakeLock
-description: 响应式屏幕唤醒锁 API，防止屏幕变暗或锁定。本文介绍其用法、最佳实践与代码示例。
+description: 响应式屏幕唤醒锁 API，防止屏幕变暗或锁定。
 ---
 # useWakeLock
 
 响应式屏幕唤醒锁 API，防止屏幕变暗或锁定。
+
+`useWakeLock` 封装了 [Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API)，防止应用活动期间设备屏幕变暗或锁定。它返回一个包含 `isSupported`、`isActive`（当前是否持有唤醒锁）、`request`（在页面可见时获取锁，页面隐藏时延迟）、`forceRequest`（无论可见性如何都获取锁）和 `release` 的对象。可通过选项提供请求、释放和错误事件的回调。
+
+### 使用场景
+
+- 在视频播放、演示或食谱展示期间保持屏幕常亮
+- 在长时间任务（如文件上传或实时监控仪表板）期间防止屏幕锁定
+- 构建必须始终保持显示开启的 Kiosk 模式应用
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `isSupported: false` 和 `isActive: false` 以及空操作函数。服务端不会访问 `navigator.wakeLock`。
+- **页面可见性**：标准的 `request` 方法会延迟唤醒锁获取直到页面变为可见。需要时使用 `forceRequest` 绕过此安全检查。
+- **自动释放**：当页面变为隐藏（切换标签页、最小化）时，浏览器会自动释放唤醒锁。如果之前处于活动状态，当页面重新变为可见时 hook 会重新获取锁。
 
 ## Usage
 

@@ -1,12 +1,25 @@
 ---
 title: useOnceLayoutEffect – Effect Hook Usage & Examples
 sidebar_label: useOnceLayoutEffect
-description: A Hook that avoids React18 useLayoutEffect run twice. Learn usage patterns, best practices, and code examples for React developers.
+description: A Hook that avoids React18 useLayoutEffect run twice.
 ---
 # useOnceLayoutEffect
 
 A Hook that avoids React18 useLayoutEffect run twice
 
+`useOnceLayoutEffect` is a variant of `useLayoutEffect` that guarantees the effect callback executes only once, even under React 18's Strict Mode which intentionally double-invokes effects during development. It uses the same `WeakSet`-based tracking mechanism as `useOnceEffect` but runs with `useLayoutEffect` timing -- synchronously after DOM mutations and before the browser paints.
+
+### When to Use
+
+- Performing DOM measurements or mutations that must happen exactly once before paint, without being duplicated by React 18 Strict Mode
+- Initializing layout-dependent third-party libraries (e.g., chart or animation libraries that manipulate the DOM directly) that break when initialized twice
+- Any case where you need `useLayoutEffect` semantics with guaranteed single-execution
+
+### Notes
+
+- **Layout timing**: Runs synchronously after all DOM mutations, before the browser repaints. This can block visual updates if the effect is slow.
+- **React 18 Strict Mode**: Prevents the double-invocation that React 18 performs in development to help detect side-effect issues.
+- See also `useOnceEffect` for the `useEffect`-timed equivalent, and `useIsomorphicLayoutEffect` for SSR-safe layout effects.
 
 ## Usage
 

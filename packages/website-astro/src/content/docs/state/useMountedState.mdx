@@ -10,6 +10,19 @@ description: >-
 Lifecycle hook providing ability to check component's mount state.
 Returns a function that will return `true` if component mounted and `false` otherwise
 
+`useMountedState` returns a function (not a value) that you can call at any time to check whether the component is still mounted. This is particularly useful inside asynchronous operations where you need to guard against setting state on an unmounted component. The function is stable across re-renders and always reflects the current mount status.
+
+### When to Use
+
+- Guarding `setState` calls inside async operations (`fetch`, `setTimeout`) to prevent "state update on unmounted component" warnings
+- Conditionally executing cleanup or follow-up logic only if the component is still in the DOM
+- Implementing safe polling or subscription patterns that should stop when the component unmounts
+
+### Notes
+
+- **Function return**: Unlike `useFirstMountState` which returns a boolean, this hook returns a *function* that returns a boolean. Call it (`isMounted()`) to get the current status.
+- **SSR-safe**: The function returns `false` during server-side rendering and becomes `true` after the component mounts on the client.
+- See also `useFirstMountState` for detecting only the initial mount rather than ongoing mount status.
 
 ## Usage
 

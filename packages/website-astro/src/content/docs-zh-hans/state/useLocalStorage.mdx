@@ -1,11 +1,26 @@
 ---
 title: useLocalStorage 用法与示例
 sidebar_label: useLocalStorage
-description: 轻松管理 `localStorage`。 本文介绍其用法、最佳实践与代码示例。
+description: 轻松管理 `localStorage`。
 ---
 # useLocalStorage
 
 轻松管理 `localStorage`
+
+`useLocalStorage` 将 React 状态绑定到一个 `localStorage` 键。它返回一个类似 `useState` 的 `[value, setValue]` 元组。值在挂载时从存储中读取，每次调用 `setValue` 时写回。将值设为 `null` 移除该键。可以为非字符串数据类型提供自定义序列化器，hook 默认监听跨标签页的 `storage` 事件，以便一个标签页的更改反映在其他标签页中。
+
+### 使用场景
+
+- 跨页面重载持久化用户偏好（主题、语言、布局）
+- 缓存表单草稿或应用状态，以便用户可以从中断处继续
+- 通过 `storage` 事件在浏览器标签页之间共享简单状态
+
+### 注意事项
+
+- **持久化**：数据在页面重载和浏览器重启后仍然存在。如果只需要当前会话的数据，请使用 `useSessionStorage`。
+- **跨标签页同步**：默认情况下，hook 监听 `storage` 事件，一个标签页的更改会更新其他标签页。通过 `listenToStorageChanges: false` 禁用。
+- **自定义序列化**：对于对象或非字符串值，在选项中提供 `serializer.read` 和 `serializer.write` 函数。默认行为对对象使用 JSON 序列化，对字符串值使用原始字符串。
+- 参见 `useSessionStorage` 了解会话作用域存储，以及 `useCookie` 了解基于 cookie 的持久化。
 
 ## Usage
 

@@ -1,12 +1,26 @@
 ---
 title: useLocalStorage – State Hook Usage & Examples
 sidebar_label: useLocalStorage
-description: React side-effect hook that manages a single `localStorage` key. Learn usage patterns, best practices, and code examples for React developers.
+description: React side-effect hook that manages a single `localStorage` key.
 ---
 # useLocalStorage
 
 React side-effect hook that manages a single `localStorage` key
 
+`useLocalStorage` binds a React state to a `localStorage` key. It returns a `[value, setValue]` tuple similar to `useState`. The value is read from storage on mount and written back whenever you call `setValue`. Setting the value to `null` removes the key. Custom serializers can be provided for non-string data types, and the hook listens for cross-tab `storage` events by default so that changes in one tab are reflected in others.
+
+### When to Use
+
+- Persisting user preferences (theme, language, layout) across page reloads
+- Caching form drafts or application state so users can resume where they left off
+- Sharing simple state between browser tabs via the `storage` event
+
+### Notes
+
+- **Persistence**: Data survives page reloads and browser restarts. Use `useSessionStorage` if you only need data for the current session.
+- **Cross-tab sync**: By default, the hook listens for `storage` events so changes in one tab update other tabs. Disable this with `listenToStorageChanges: false`.
+- **Custom serialization**: For objects or non-string values, provide `serializer.read` and `serializer.write` functions in the options. The default behavior uses JSON serialization for objects and raw strings for string values.
+- See also `useSessionStorage` for session-scoped storage and `useCookie` for cookie-based persistence.
 
 ## Usage
 

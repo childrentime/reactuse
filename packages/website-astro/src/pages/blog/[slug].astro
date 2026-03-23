@@ -20,14 +20,41 @@ const { Content } = await render(entry)
 const dateStr = entry.data.date
   ? new Date(entry.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
   : ''
+
+const postSlug = entry.data.slug || entry.id
+const rawAuthor = Array.isArray(entry.data.authors) && entry.data.authors.length > 0
+  ? entry.data.authors[0]
+  : 'childrentime'
+const authorName = typeof rawAuthor === 'string' ? rawAuthor : rawAuthor.name
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://reactuse.com/' },
+  { name: 'Blog', url: 'https://reactuse.com/blog/' },
+  { name: entry.data.title, url: `https://reactuse.com/blog/${postSlug}/` },
+]
+
+const blogPost = {
+  title: entry.data.title,
+  description: entry.data.description || '',
+  datePublished: entry.data.date ? new Date(entry.data.date).toISOString() : '',
+  author: authorName,
+  slug: postSlug,
+}
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description} locale={locale}>
+<BaseLayout title={entry.data.title} description={entry.data.description} locale={locale} breadcrumbs={breadcrumbs} blogPost={blogPost}>
   <Navbar locale={locale} />
   <div class="page-shell" style="justify-content:center;">
     <main class="main-content" style="margin-left:0;max-width:42rem;">
       <article class="doc-prose">
-        {dateStr && <p style="color:var(--text-3);font-size:0.85rem;margin-bottom:var(--sp-2);">{dateStr}</p>}
+        {dateStr && (
+          <p style="color:var(--text-3);font-size:0.85rem;margin-bottom:var(--sp-1);">{dateStr}</p>
+        )}
+        {authorName && (
+          <p style="color:var(--text-3);font-size:0.85rem;margin-bottom:var(--sp-4);">
+            By <a href="https://github.com/childrentime" target="_blank" rel="noopener" style="color:var(--text-2);">{authorName}</a>
+          </p>
+        )}
         <Content />
       </article>
     </main>

@@ -1,11 +1,25 @@
 ---
 title: useTitle – Browser Hook Usage & Examples
 sidebar_label: useTitle
-description: set document title. Learn usage patterns, best practices, and code examples for React developers.
+description: set document title.
 ---
 # useTitle
 
 set document title.
+
+`useTitle` is a side-effect hook that sets [`document.title`](https://developer.mozilla.org/en-US/docs/Web/API/Document/title) to the provided string. When the title value changes, the document title updates immediately. This is the simplest way to keep the browser tab title in sync with your component state, without needing a head management library.
+
+### When to Use
+
+- Setting the page title based on the current route or page content
+- Displaying dynamic information in the tab (e.g., unread message count, current document name)
+- Updating the title in response to user actions or data loading
+
+### Notes
+
+- **SSR-safe**: The hook is a no-op during server-side rendering. No `document.title` access occurs on the server. For SSR, set the title in your HTML template or use a head management solution.
+- **Simple API**: This hook is a fire-and-forget side effect -- it takes a title string and sets it. For more complex scenarios (e.g., restoring the previous title on unmount), wrap it accordingly.
+- **Related hooks**: See also `useFavicon` for dynamically changing the page's favicon icon.
 
 ## Usage
 

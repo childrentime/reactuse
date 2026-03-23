@@ -1,11 +1,25 @@
 ---
 title: useCssVar – Browser Hook Usage & Examples
 sidebar_label: useCssVar
-description: Manipulate CSS variables. Learn usage patterns, best practices, and code examples for React developers.
+description: Manipulate CSS variables.
 ---
 # useCssVar
 
 Manipulate CSS variables
+
+`useCssVar` reads and writes [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) (variables) on a target DOM element. It returns a tuple of the current variable value and a setter function. Optionally, it can observe changes via `MutationObserver` so the returned value stays in sync when external code modifies the variable.
+
+### When to Use
+
+- Dynamically theming components by reading and updating CSS custom properties at runtime
+- Building color pickers or style editors that manipulate CSS variables on specific elements
+- Synchronizing React state with CSS variables for animations or transitions
+
+### Notes
+
+- **SSR-safe**: Returns the provided default value and a no-op setter during server-side rendering. No DOM access occurs on the server.
+- **MutationObserver**: Set `observe: true` in options to automatically track external changes to the CSS variable via [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver).
+- **Target element**: The hook requires a ref to a specific DOM element; changes are scoped to that element's inline style.
 
 ## Usage
 

@@ -1,13 +1,25 @@
 ---
 title: useHover – State Hook Usage & Examples
 sidebar_label: useHover
-description: Detect if mouse is over given element. Learn usage patterns, best practices, and code examples for React developers.
+description: Detect if mouse is over given element.
 ---
 # useHover
 
 Detect if mouse is over given element.
 
+`useHover` accepts a ref to a DOM element and returns a boolean indicating whether the mouse is currently hovering over that element. It attaches `mouseenter` and `mouseleave` event listeners internally and cleans them up on unmount. The returned value updates reactively, triggering a re-render whenever the hover state changes.
 
+### When to Use
+
+- Showing tooltips, popovers, or contextual information when the user hovers over an element
+- Highlighting or enlarging UI elements on hover without CSS-only solutions (e.g., when you need to trigger side effects)
+- Conditionally rendering content or fetching data based on hover intent
+
+### Notes
+
+- **Ref-based target**: Pass a React ref object. The hook handles attaching and detaching event listeners automatically.
+- **Mouse only**: This hook tracks mouse events (`mouseenter`/`mouseleave`). It does not detect touch-based hover on mobile devices.
+- See also `useTextSelection` for tracking what the user has selected, or the browser-category hooks for other pointer-related utilities.
 
 ## Usage
 

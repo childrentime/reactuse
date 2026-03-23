@@ -1,11 +1,25 @@
 ---
 title: usePreferredColorScheme 用法与示例
 sidebar_label: usePreferredColorScheme
-description: '[prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) 媒体查询。 本文介绍其用法、最佳实践与代码示例。'
+description: '[prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) 媒体查询。'
 ---
 # usePreferredColorScheme
 
 [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) 媒体查询
+
+`usePreferredColorScheme` 使用 [`window.matchMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) 响应式地跟踪用户的系统颜色方案偏好。它基于 [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) 媒体查询返回 `"dark"`、`"light"` 或 `"no-preference"`。当用户更改系统主题设置时，值会自动更新。
+
+### 使用场景
+
+- 检测用户的系统主题以设置初始应用颜色方案
+- 构建遵循操作系统级深色/浅色模式设置的主题感知组件
+- 在主题选择器中提供跟随操作系统偏好的"系统"选项
+
+### 注意事项
+
+- **SSR 安全**：接受一个 `defaultState` 参数（默认 `"no-preference"`），在服务端渲染期间 `window.matchMedia` 不可用时返回该值。
+- **响应式**：当用户切换系统颜色方案（例如在操作系统设置中启用深色模式）时实时更新。
+- **相关 hooks**：参见 `usePreferredDark` 了解更简单的布尔值检查，`useColorMode` 了解多主题管理，以及 `useDarkMode` 了解带持久化的深色/浅色切换。
 
 ## Usage
 

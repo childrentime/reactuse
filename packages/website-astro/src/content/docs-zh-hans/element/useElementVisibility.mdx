@@ -1,11 +1,25 @@
 ---
 title: useElementVisibility 用法与示例
 sidebar_label: useElementVisibility
-description: 追踪视窗内元素可见性的 React Hook。这是 `useIntersectionObserver` 的一个封装器。 本文介绍其用法、最佳实践与代码示例。
+description: 追踪视窗内元素可见性的 React Hook。这是 `useIntersectionObserver` 的一个封装器。
 ---
 # useElementVisibility
 
 追踪视窗内元素可见性的 React Hook。这是 `useIntersectionObserver` 的一个封装器
+
+`useElementVisibility` 提供一个简单的布尔值，表示 DOM 元素当前是否在视口内可见。它基于 `useIntersectionObserver` 构建，抽象了 Intersection Observer API 的复杂性。它返回一个 `[isVisible, stop]` 元组，其中 `stop` 是断开观察器的函数。
+
+### 使用场景
+
+- 当元素滚动到视图中时触发动画或懒加载内容
+- 为信息流项目或通知实现"已读回执"或"已看"跟踪
+- 在元素不在屏幕上时有条件地渲染或暂停资源密集型组件
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `false`，因为没有可用的 DOM。
+- **可自定义**：接受标准的 `IntersectionObserverInit` 选项（`root`、`rootMargin`、`threshold`），精细控制可见性触发时机。
+- 参见 `useIntersectionObserver` 了解完整访问 `IntersectionObserverEntry` 数据，以及 `useDocumentVisibility` 了解页面级（标签页）可见性。
 
 ## Usage
 

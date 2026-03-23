@@ -1,12 +1,25 @@
 ---
 title: useDebounce – State Hook Usage & Examples
 sidebar_label: useDebounce
-description: React hooks that [debounce](https://lodash.com/docs/4.17.15#debounce) value. Learn usage patterns, best practices, and code examples for React developers.
+description: React hooks that [debounce](https://lodash.com/docs/4.17.15#debounce) value.
 ---
 # useDebounce
 
 React hooks that [debounce](https://lodash.com/docs/4.17.15#debounce) value
 
+`useDebounce` accepts a value and a wait time in milliseconds, and returns a debounced version of that value. The returned value only updates after the specified delay has elapsed since the last change to the input value. Under the hood it uses `lodash.debounce`, so you can pass the same options (`leading`, `trailing`, `maxWait`) for fine-grained control.
+
+### When to Use
+
+- Delaying search input to avoid firing API requests on every keystroke
+- Throttling expensive re-renders triggered by rapidly changing values (e.g., window resize dimensions)
+- Smoothing out form validation so error messages do not flicker while the user is still typing
+
+### Notes
+
+- **Value-level debounce**: This hook debounces the *value* itself, not a callback. If you need to debounce a function, use `useDebounceFn` instead.
+- **Options passthrough**: The third argument is forwarded directly to `lodash.debounce`, supporting `leading`, `trailing`, and `maxWait`.
+- See also `useThrottle` for rate-limiting value updates at a fixed interval rather than delaying until idle.
 
 ## Usage
 

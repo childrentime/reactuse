@@ -1,11 +1,25 @@
 ---
 title: useOnceEffect 用法與示例
 sidebar_label: useOnceEffect
-description: 避免 React18 useEffect 運行兩次。 本文介紹其用法、最佳實踐與代碼示例。
+description: 避免 React18 useEffect 運行兩次。
 ---
 # useOnceEffect
 
 避免 React18 useEffect 運行兩次
+
+`useOnceEffect` 確保一個 effect 只執行一次，即使在 React 嚴格模式下也是如此。在 React 18 的嚴格模式中，effect 會被故意雙重呼叫以幫助找出副作用問題。此 hook 使用 ref 追蹤來保證回呼只執行一次。
+
+### 使用場景
+
+- 發送只應觸發一次的分析事件（例如頁面瀏覽事件）
+- 與嚴格模式下重複初始化會出問題的外部函式庫進行整合
+- 執行不可冪等的初始化操作（例如建立 WebSocket 連線）
+
+### 注意事項
+
+- **React 嚴格模式**：專門設計用於繞過 React 18 嚴格模式的雙重呼叫行為。在生產模式中，標準 `useEffect` 已經只執行一次。
+- **謹慎使用**：大多數情況下，effect 應該是冪等的。僅在確實需要確保單次執行時才使用此 hook。
+- **相關 hooks**：另請參閱 `useOnceLayoutEffect` 用於佈局 effect 的同功能版本，以及 `useMount` 用於一般的掛載時回呼。
 
 ## Usage
 

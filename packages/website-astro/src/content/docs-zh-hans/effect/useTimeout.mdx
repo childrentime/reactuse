@@ -1,11 +1,25 @@
 ---
 title: useTimeout 用法与示例
 sidebar_label: useTimeout
-description: 在给定时间后更新值。 本文介绍其用法、最佳实践与代码示例。
+description: 在给定时间后更新值。
 ---
 # useTimeout
 
 在给定时间后更新值。
+
+`useTimeout` 提供一个响应式的待处理状态，在指定延迟后从 `true` 翻转为 `false`。它返回一个 `[isPending, start, cancel]` 元组，同时提供声明式状态值和命令式控件。默认情况下，定时器在挂载时立即启动，但你可以通过 `immediate` 选项配置为手动启动。
+
+### 使用场景
+
+- 在显示内容前显示加载指示器或启动画面持续最短时间
+- 为通知、提示或横幅在固定时间后实现自动消失行为
+- 创建定时的 UI 状态转换（例如按钮冷却期禁用）
+
+### 注意事项
+
+- **默认立即**：定时器在挂载时自动启动。传入 `{ immediate: false }` 需要显式调用 `start()`。
+- **可重启**：调用 `start()` 重置并重新启动定时器。调用 `cancel()` 停止它并保持 `isPending` 在当前值。
+- 参见 `useTimeoutFn` 了解延迟后执行回调而非切换布尔状态，以及 `useInterval` 了解重复执行。
 
 ## Usage
 

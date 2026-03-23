@@ -1,11 +1,25 @@
 ---
 title: useObjectUrl 用法与示例
 sidebar_label: useObjectUrl
-description: 轻松创建对象 URL。 本文介绍其用法、最佳实践与代码示例。
+description: 轻松创建对象 URL。
 ---
 # useObjectUrl
 
 轻松创建对象 URL。
+
+`useObjectUrl` 管理从 `Blob`、`File` 或 `MediaSource` 对象创建的对象 URL 的生命周期。它在提供源时调用 [`URL.createObjectURL()`](https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL)，并在源更改或组件卸载时自动通过 [`URL.revokeObjectURL()`](https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL) 撤销 URL，防止内存泄漏。
+
+### 使用场景
+
+- 在上传前预览用户选择的文件（图片、视频、PDF）
+- 将来自 API 响应的 Blob 数据显示为可下载链接或嵌入式媒体
+- 为动态生成的内容（例如 canvas 导出）创建临时 URL
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `undefined`。服务端不会访问 `URL` API。
+- **内存管理**：该 hook 在源更改或卸载时自动撤销旧的对象 URL，防止手动使用 `createObjectURL` 时常见的内存泄漏。
+- **相关 hooks**：参见 `useFileDialog` 了解从用户设备选择文件。
 
 ## Usage
 

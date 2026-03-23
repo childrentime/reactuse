@@ -7,6 +7,20 @@ description: useFetchEventSource is a hook that allows you to subscribe to an Ev
 
 `useFetchEventSource` is a hook that allows you to subscribe to an EventSource using HTTP methods like POST and receive updates in real-time.
 
+`useFetchEventSource` extends the standard Server-Sent Events pattern by using the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) instead of the native `EventSource` constructor. This enables custom HTTP methods (POST, PUT), request headers, and request bodies -- features not available with the standard `EventSource` API. It returns status, data, error, and control functions just like `useEventSource`, but with the flexibility of `fetch`.
+
+### When to Use
+
+- Streaming responses from AI/LLM APIs that require POST requests with JSON payloads
+- Connecting to SSE endpoints that require authentication headers or custom content types
+- Building chat interfaces, code generation UIs, or any feature that consumes server-sent events via non-GET requests
+
+### Notes
+
+- **SSR-safe**: Returns a default state with no active connection during server-side rendering. No fetch calls occur on the server.
+- **Custom requests**: Unlike `useEventSource`, you can specify any HTTP method, headers, and body. This is essential for endpoints that accept POST requests (e.g., OpenAI streaming API).
+- **Related hooks**: See also `useEventSource` for standard GET-based SSE connections that don't need custom request configuration.
+
 :::note
 This example don't work in the live editor because it requires a server to send events. You can try it in your local environment.
 :::

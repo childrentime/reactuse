@@ -1,11 +1,25 @@
 ---
 title: useIntersectionObserver 用法與示例
 sidebar_label: useIntersectionObserver
-description: 使用 [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) 跟蹤元素。 本文介紹其用法、最佳實踐與代碼示例。
+description: 使用 [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) 跟蹤元素。
 ---
 # useIntersectionObserver
 
 使用 [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) 跟蹤元素
+
+`useIntersectionObserver` 封裝了 [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)，用於觀察目標元素與祖先元素或視窗的交集變化。它回傳觀察器的 entry 和控制函式。支援設定 root、rootMargin 和 threshold 選項。
+
+### 使用場景
+
+- 實作無限捲動——當哨兵元素進入視窗時載入更多資料
+- 建構基於捲動的動畫和視差效果
+- 觀察多個元素的可見性以進行效能優化（如延遲渲染）
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時為空操作。伺服器上不會建立 `IntersectionObserver`。
+- **效能**：比捲動事件監聽更高效，因為觀察器使用瀏覽器的非同步交集偵測。
+- **相關 hooks**：另請參閱 `useElementVisibility` 用於簡單的可見性布林值，以及 `useInfiniteScroll` 用於自動載入更多功能。
 
 ## Usage
 

@@ -1,12 +1,26 @@
 ---
 title: useCustomCompareEffect 用法與示例
 sidebar_label: useCustomCompareEffect
-description: 修改後的 useEffect，它接受一個比較函數，用於比較依賴項而不是引用相等性。 本文介紹其用法、最佳實踐與代碼示例。
+description: 修改後的 useEffect，它接受一個比較函數，用於比較依賴項而不是引用相等性。
 ---
 # useCustomCompareEffect
 
 修改後的 useEffect，它接受一個比較函數，用於比較依賴項而不是引用相等性
 
+
+`useCustomCompareEffect` 是 `useEffect` 的變體，允許你提供自訂比較函式來決定何時重新執行 effect。當內建的淺比較不足以滿足需求時（例如比較複雜物件或使用特定的相等性邏輯），這個 hook 非常有用。
+
+### 使用場景
+
+- 當依賴是複雜物件但只需在特定屬性變更時重新執行 effect
+- 使用自訂相等性檢查來避免不必要的 effect 執行
+- 實作基於商業邏輯的依賴比較（例如僅比較 ID 而非整個物件）
+
+### 注意事項
+
+- **比較函式**：比較函式接收前一個和當前依賴陣列，回傳 `true` 表示相等（跳過 effect），`false` 表示不等（執行 effect）。
+- **效能**：確保比較函式本身是高效的，因為它在每次渲染時都會被呼叫。
+- **相關 hooks**：另請參閱 `useDeepCompareEffect` 用於自動深度比較，如果你只是需要深度相等性檢查的話。
 
 ## Usage
 

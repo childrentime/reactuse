@@ -1,12 +1,25 @@
 ---
 title: useFps – Browser Hook Usage & Examples
 sidebar_label: useFps
-description: React Sensor Hooks that tracks FPS (frames per second). Learn usage patterns, best practices, and code examples for React developers.
+description: React Sensor Hooks that tracks FPS (frames per second).
 ---
 # useFps
 
 React Sensor Hooks that tracks FPS (frames per second)
 
+`useFps` measures the current frames per second by counting [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame) callbacks. It returns a number representing the current FPS, calculated over a configurable number of frames (default: every 10 frames). This is useful for performance monitoring and adaptive rendering.
+
+### When to Use
+
+- Displaying a real-time FPS counter in development or debugging overlays
+- Adaptively reducing animation complexity when frame rate drops below a threshold
+- Benchmarking rendering performance of components or pages
+
+### Notes
+
+- **SSR-safe**: Returns `0` during server-side rendering. No `requestAnimationFrame` calls occur on the server.
+- **Performance**: The hook uses `requestAnimationFrame` internally, so it has minimal overhead. Adjust the `every` option to balance accuracy and update frequency.
+- **Related hooks**: See also `useIdle` for detecting user inactivity, which can complement FPS-based adaptive rendering.
 
 ## Usage
 

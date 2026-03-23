@@ -2,13 +2,26 @@
 title: useDeepCompareEffect – Effect Hook Usage & Examples
 sidebar_label: useDeepCompareEffect
 description: >-
-  A modified useEffect hook that is using deep comparison on its dependencies instead of reference equality. Learn usage patterns, best practices, and code
+  A modified useEffect hook that is using deep comparison on its dependencies instead of reference equality. practices, and code
   exampl
 ---
 # useDeepCompareEffect
 
 A modified useEffect hook that is using deep comparison on its dependencies instead of reference equality
 
+`useDeepCompareEffect` is a drop-in replacement for `useEffect` that performs deep structural comparison on the dependency array instead of shallow reference checks. This prevents unnecessary effect executions when dependencies are new object or array references that contain the same values. It has the same signature as `useEffect` and supports cleanup functions.
+
+### When to Use
+
+- When your effect depends on objects or arrays that are re-created on every render (e.g., inline objects, API response data)
+- Avoiding infinite effect loops caused by non-memoized dependency references
+- When `useMemo` or `useCallback` on every dependency would be overly verbose
+
+### Notes
+
+- **Performance**: Deep comparison has overhead proportional to the size of the dependency values. For large or deeply nested objects, consider `useCustomCompareEffect` with a targeted comparator instead.
+- **Cleanup support**: Supports return-based cleanup functions identically to `useEffect`.
+- See also `useCustomCompareEffect` when you need comparison logic beyond deep equality.
 
 ## Usage
 

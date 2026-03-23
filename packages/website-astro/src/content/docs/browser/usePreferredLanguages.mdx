@@ -2,12 +2,26 @@
 title: usePreferredLanguages – Browser Hook Usage & Examples
 sidebar_label: usePreferredLanguages
 description: >-
-  `usePreferredLanguages` is a hook that returns the user's preferred languages as an array of strings. It uses the `navigator.languages`. Learn usage patterns,
+  `usePreferredLanguages` is a hook that returns the user's preferred languages as an array of strings. It uses the `navigator.languages`.
   b
 ---
 # usePreferredLanguages
 
 `usePreferredLanguages` is a hook that returns the user's preferred languages as an array of strings. It uses the `navigator.languages`.
+
+`usePreferredLanguages` reactively tracks [`navigator.languages`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/languages), returning an array of BCP 47 language tags (e.g., `["en-US", "en", "fr"]`) ordered by user preference. The hook listens for the [`languagechange`](https://developer.mozilla.org/en-US/docs/Web/API/Window/languagechange_event) event and updates automatically when the user modifies their browser or system language settings.
+
+### When to Use
+
+- Selecting the best available locale for i18n/l10n based on the user's language preferences
+- Displaying language-appropriate content, date formats, or number formats
+- Building language selector UIs that highlight the user's preferred languages
+
+### Notes
+
+- **SSR-safe**: Accepts a `defaultLanguages` parameter that is returned during server-side rendering. No `navigator` access occurs on the server.
+- **Reactive**: Automatically updates when the user changes their browser language preferences via the `languagechange` event.
+- **Order matters**: The returned array is ordered by preference. The first element is the user's most preferred language.
 
 ## Usage
 

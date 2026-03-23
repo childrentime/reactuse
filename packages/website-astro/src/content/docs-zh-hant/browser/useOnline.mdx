@@ -1,11 +1,25 @@
 ---
 title: useOnline 用法與示例
 sidebar_label: useOnline
-description: '`useNetwork` 的包裝，檢測網路狀況。 本文介紹其用法、最佳實踐與代碼示例。'
+description: '`useNetwork` 的包裝，檢測網路狀況。'
 ---
 # useOnline
 
 `useNetwork` 的包裝，檢測網路狀況
+
+`useOnline` 回傳一個布林值（或 `undefined`），指示瀏覽器是否有網路連線。它監聽 `window` 上的 `online` 和 `offline` 事件，在連線狀態變更時即時更新。這是獲取基本網路連線資訊最簡單的方式。
+
+### 使用場景
+
+- 在應用程式中顯示線上/離線狀態指示器
+- 在離線時停用需要網路連線的功能
+- 當連線恢復時觸發資料同步或重新獲取
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `undefined`。伺服器上不會存取 `navigator.onLine` 或 `window` 事件。
+- **簡單 vs. 詳細**：如果你需要更多資訊（連線類型、下行速度等），請改用 `useNetwork`。
+- **瀏覽器行為**：`navigator.onLine` 表示網路連線，而非網際網路可達性。`true` 值不保證使用者能連到你的伺服器。
 
 ## Usage
 

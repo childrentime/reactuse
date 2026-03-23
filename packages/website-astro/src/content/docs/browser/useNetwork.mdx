@@ -11,6 +11,19 @@ Tracks the state of browser's network connection.
 
 As of the standard it is not guaranteed that browser connected to the Internet, it only guarantees the network connection
 
+`useNetwork` wraps the [Network Information API](https://developer.mozilla.org/en-US/docs/Web/API/NetworkInformation) and the `online`/`offline` events to provide a comprehensive view of network status. It returns an object with `online` (boolean), `previous` online state, `since` (timestamp of last change), and detailed connection info including `downlink`, `effectiveType` (2g/3g/4g), `rtt`, `type` (wifi/cellular/ethernet), and `saveData`. Values update reactively as network conditions change.
+
+### When to Use
+
+- Displaying online/offline status indicators and showing fallback UI when disconnected
+- Adapting content quality (image resolution, video bitrate) based on connection speed
+- Implementing offline-first features that queue actions and sync when connectivity returns
+
+### Notes
+
+- **SSR-safe**: Returns `undefined` for all values during server-side rendering. No `navigator` or `window` event access occurs on the server.
+- **Network Information API**: Detailed connection properties (`downlink`, `effectiveType`, `rtt`, `type`) are only available in Chromium-based browsers. The `online` status is universally supported.
+- **Related hooks**: See also `useOnline` for a simpler boolean wrapper around network connectivity status.
 
 ## Usage
 

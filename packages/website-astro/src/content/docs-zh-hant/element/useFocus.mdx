@@ -1,11 +1,25 @@
 ---
 title: useFocus 用法與示例
 sidebar_label: useFocus
-description: 跟蹤元素焦點狀態的 React Hook。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤元素焦點狀態的 React Hook。
 ---
 # useFocus
 
 跟蹤元素焦點狀態的 React Hook
+
+`useFocus` 提供程式化控制 DOM 元素焦點的能力。它回傳一個布林值指示元素是否聚焦，以及聚焦和取消聚焦的控制函式。支援初始焦點設定和焦點變更事件回呼。
+
+### 使用場景
+
+- 在模態框開啟時自動聚焦到輸入欄位
+- 程式化管理表單元素之間的焦點切換
+- 追蹤特定元素的焦點狀態以顯示視覺回饋
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳 `false` 和空操作函式。伺服器上不會存取 DOM。
+- **初始焦點**：設定 `focusOnMount: true` 可在元件掛載時自動聚焦元素。
+- **相關 hooks**：另請參閱 `useActiveElement` 追蹤當前聚焦的元素，以及 `useWindowFocus` 追蹤視窗焦點。
 
 ## Usage
 

@@ -10,6 +10,19 @@ description: >-
 Selectively retrieve properties from location. This hook will only re-render when the value you return is changed.
 For more information, [see](https://thisweekinreact.com/articles/useSyncExternalStore-the-underrated-react-api)
 
+`useLocationSelector` uses [`useSyncExternalStore`](https://react.dev/reference/react/useSyncExternalStore) to subscribe to `window.location` changes and lets you extract only the part of the location you care about via a selector function. The component re-renders only when the selected value actually changes, preventing unnecessary updates when other location properties change (e.g., hash changes won't re-render a component that only selects `pathname`).
+
+### When to Use
+
+- Reading the current pathname, hash, or search params without importing a full routing library
+- Optimizing performance by subscribing to only the specific location property your component needs
+- Building lightweight navigation-aware components that respond to URL changes
+
+### Notes
+
+- **SSR-safe**: Accepts a `fallback` parameter that is returned during server-side rendering when `window.location` is not available.
+- **Selective re-renders**: Unlike reading `window.location` directly, the selector pattern ensures your component only re-renders when the derived value changes.
+- **Browser events**: Listens to `popstate` events on `window` to detect back/forward navigation. Hash changes and `pushState`/`replaceState` calls are also tracked.
 
 ## Usage
 

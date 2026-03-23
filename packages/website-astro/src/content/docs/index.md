@@ -6,6 +6,8 @@ sidebar_label: Get Started
 description: "ReactUse (@reactuses/core) is a collection of 110+ production-ready React Hooks for browser APIs, state management, sensors, DOM elements, and effects. TypeScript-first, tree-shakable, and SSR-compatible with Next.js, Remix, and more."
 ---
 
+# ReactUse: 110+ Production-Ready React Hooks
+
 ## What is ReactUse?
 
 **ReactUse** (`@reactuses/core`) is an open-source library of **110+ custom React Hooks** for building production applications. It provides TypeScript-first, tree-shakable, and SSR-compatible hooks covering browser APIs, state management, DOM observation, side effects, and third-party integrations. ReactUse supports React 16.8 through React 19 and works with Next.js, Remix, and other server-side rendering frameworks.

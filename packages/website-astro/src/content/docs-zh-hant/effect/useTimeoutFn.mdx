@@ -1,11 +1,25 @@
 ---
 title: useTimeoutFn 用法與示例
 sidebar_label: useTimeoutFn
-description: 可取消的 `setTimeout`。 本文介紹其用法、最佳實踐與代碼示例。
+description: 可取消的 `setTimeout`。
 ---
 # useTimeoutFn
 
 可取消的 `setTimeout`
+
+`useTimeoutFn` 提供了一個可控制的延遲計時器。與 `useTimeout` 不同，它不會自動開始，而是回傳 `start` 和 `stop` 控制函式以及 `isPending` 狀態。這讓你可以手動觸發和取消延遲。
+
+### 使用場景
+
+- 手動觸發的延遲操作（例如延遲提交、延遲隱藏）
+- 建構可取消的定時邏輯
+- 實作帶有手動重試的延遲重試機制
+
+### 注意事項
+
+- **手動啟動**：與 `useTimeout` 不同，此 hook 預設不會自動開始。呼叫 `start` 來觸發計時器。
+- **自動清理**：計時器在元件卸載時自動清理。
+- **相關 hooks**：另請參閱 `useTimeout` 用於自動開始的延遲，以及 `useInterval` 用於重複執行。
 
 ## Usage
 

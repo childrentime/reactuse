@@ -1,11 +1,25 @@
 ---
 title: useEyeDropper 用法与示例
 sidebar_label: useEyeDropper
-description: 使用 [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) 来选择颜色。 本文介绍其用法、最佳实践与代码示例。
+description: 使用 [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) 来选择颜色。
 ---
 # useEyeDropper
 
 使用 [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) 来选择颜色。
+
+`useEyeDropper` 提供对 [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API) 的访问，允许用户从屏幕上的任意像素采样颜色。它返回一个包含表示浏览器支持的布尔值和启动原生颜色选择器的 `open` 函数的元组。`open` 函数返回一个 promise，解析为包含所选颜色（`sRGBHex` 格式）的对象。
+
+### 使用场景
+
+- 构建颜色选择工具，让用户从屏幕任意位置采样颜色
+- 创建设计或主题工具，用户需要匹配现有颜色
+- 实现辅助功能对比度检查器，采样页面颜色
+
+### 注意事项
+
+- **SSR 安全**：在服务端渲染期间返回 `false`（表示不支持）和空操作函数。服务端不会访问 `window` 或 `EyeDropper`。
+- **浏览器支持**：EyeDropper API 目前仅在基于 Chromium 的浏览器中支持。在提供该功能前，请始终检查元组的第一个元素（`isSupported`）。
+- **用户激活**：`open` 函数需要用户手势（例如按钮点击）才能启动选择器。你可以传递 `AbortSignal` 来取消操作。
 
 ## Usage
 

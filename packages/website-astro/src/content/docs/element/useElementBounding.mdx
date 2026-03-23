@@ -1,12 +1,25 @@
 ---
 title: useElementBounding – Element Hook Usage & Examples
 sidebar_label: useElementBounding
-description: React Element Hook that tracks bounding box of an HTML element. Learn usage patterns, best practices, and code examples for React developers.
+description: React Element Hook that tracks bounding box of an HTML element.
 ---
 # useElementBounding
 
 React Element Hook that tracks bounding box of an HTML element
 
+`useElementBounding` reactively tracks the bounding rectangle of a DOM element using [`getBoundingClientRect()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect). It returns an object containing `x`, `y`, `top`, `bottom`, `left`, `right`, `width`, `height`, and an `update()` function for manual re-measurement. By default it automatically recalculates on window scroll and resize.
+
+### When to Use
+
+- Positioning tooltips, popovers, or floating elements relative to a target element
+- Implementing collision detection or overlap checks between UI elements
+- Tracking element position for scroll-linked animations or parallax effects
+
+### Notes
+
+- **Reactivity**: Automatically updates on window `resize` and `scroll` events by default. Both behaviors can be disabled via `windowResize` and `windowScroll` options.
+- **SSR-safe**: Returns zero values during server-side rendering. Set `immediate: false` to defer the first measurement until you explicitly call `update()`.
+- See also `useElementSize` and `useMeasure` for tracking only width/height via ResizeObserver, and `useWindowSize` for viewport dimensions.
 
 ## Usage
 

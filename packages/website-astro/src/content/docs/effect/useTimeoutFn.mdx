@@ -1,12 +1,25 @@
 ---
 title: useTimeoutFn – Effect Hook Usage & Examples
 sidebar_label: useTimeoutFn
-description: Wrapper for setTimeout with controls. Learn usage patterns, best practices, and code examples for React developers.
+description: Wrapper for setTimeout with controls.
 ---
 # useTimeoutFn
 
 Wrapper for setTimeout with controls
 
+`useTimeoutFn` wraps `setTimeout` with a React-friendly API, executing a callback after a specified delay. It returns a tuple of `[isPending, start, cancel]` for full control over the timeout lifecycle. The callback reference stays current so you always execute the latest closure values when the timer fires.
+
+### When to Use
+
+- Delaying a side effect (e.g., showing a tooltip, triggering a redirect) by a fixed duration after a user action
+- Implementing retry logic with a delay between attempts
+- Deferring expensive operations to run after a brief pause (e.g., lazy-loading content after a transition)
+
+### Notes
+
+- **Immediate by default**: The timer starts on mount unless you pass `{ immediate: false }`, which requires calling `start()` manually.
+- **Restartable**: Calling `start()` cancels any in-flight timeout and starts a new one. Calling `cancel()` stops the pending timeout.
+- See also `useTimeout` for a simpler boolean-state variant, and `useDebounceFn` for delaying execution until input activity stops.
 
 ## Usage
 

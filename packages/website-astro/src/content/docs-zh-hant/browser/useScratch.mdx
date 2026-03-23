@@ -1,11 +1,25 @@
 ---
 title: useScratch 用法與示例
 sidebar_label: useScratch
-description: 跟蹤元素上的刮擦/拖動手勢，支持滑鼠和觸摸。 本文介紹其用法、最佳實踐與代碼示例。
+description: 跟蹤元素上的刮擦/拖動手勢，支持滑鼠和觸摸。
 ---
 # useScratch
 
 跟蹤元素上的刮擦/拖動手勢，支持滑鼠和觸摸。
+
+`useScratch` 追蹤元素上的刮擦/繪圖手勢，回傳一個物件，包含 `isScratching` 狀態、起始和當前座標以及距離和角度資訊。此 hook 同時處理滑鼠和觸控事件，適合建構塗鴉畫布、滑動手勢和繪圖互動。
+
+### 使用場景
+
+- 建構刮刮樂卡片或簽名板等塗鴉介面
+- 實作基於滑動方向和距離的手勢識別
+- 建立互動式繪圖或標註工具
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染時回傳預設狀態，`isScratching: false` 且座標為 undefined。伺服器上不會附加事件監聽器。
+- **滑鼠和觸控**：同時處理 `mousedown`/`mousemove`/`mouseup` 和 `touchstart`/`touchmove`/`touchend` 事件，實現跨裝置相容性。
+- **相關 hooks**：另請參閱 `useMouse` 用於一般游標追蹤，以及 `useLongPress` 用於按住偵測。
 
 ## Usage
 
