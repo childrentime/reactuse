@@ -2,8 +2,15 @@
 import BaseLayout from './BaseLayout.astro'
 import Navbar from '../components/Navbar.astro'
 import Sidebar from '../components/Sidebar.astro'
+import TableOfContents from '../components/TableOfContents.astro'
 import Footer from '../components/Footer.astro'
 import type { Locale } from '../i18n/translations'
+
+interface Heading {
+  depth: number
+  slug: string
+  text: string
+}
 
 interface Props {
   title: string
@@ -11,9 +18,10 @@ interface Props {
   category?: string
   slug?: string
   locale?: Locale
+  headings?: Heading[]
 }
 
-const { title, description, category, slug, locale = 'en' } = Astro.props
+const { title, description, category, slug, locale = 'en', headings = [] } = Astro.props
 
 // Build breadcrumbs for documentation pages (skip homepage)
 const isHomepage = !category && (!slug || slug === 'index' || slug === '/')
@@ -40,6 +48,7 @@ const breadcrumbs = isHomepage ? [] : (() => {
         <slot />
       </article>
     </main>
+    <TableOfContents headings={headings} />
   </div>
   <Footer locale={locale} />
 </BaseLayout>

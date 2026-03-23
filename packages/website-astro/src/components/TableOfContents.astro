@@ -1,0 +1,77 @@
+---
+interface Heading {
+  depth: number
+  slug: string
+  text: string
+}
+
+interface Props {
+  headings: Heading[]
+}
+
+const { headings } = Astro.props
+
+// Only show h2 and h3
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3)
+---
+
+{toc.length > 0 && (
+  <aside class="toc">
+    <nav>
+      <div class="toc-title">On this page</div>
+      <ul>
+        {toc.map((heading) => (
+          <li class={heading.depth === 3 ? 'toc-h3' : ''}>
+            <a href={`#${heading.slug}`}>{heading.text}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </aside>
+)}
+
+<script>
+  function initToc() {
+    const links = document.querySelectorAll<HTMLAnchorElement>('.toc a')
+    if (!links.length) return
+
+    const headingEls = Array.from(links).map((link) => {
+      const id = link.getAttribute('href')?.slice(1)
+      return id ? document.getElementById(id) : null
+    }).filter(Boolean) as HTMLElement[]
+
+    if (!headingEls.length) return
+
+    let current: HTMLAnchorElement | null = null
+
+    function update() {
+      const scrollY = window.scrollY + 80
+
+      let active: HTMLElement | null = null
+      for (const el of headingEls) {
+        if (el.offsetTop <= scrollY) {
+          active = el
+        } else {
+          break
+        }
+      }
+
+      const activeId = active?.id
+      const nextLink = activeId
+        ? document.querySelector<HTMLAnchorElement>(`.toc a[href="#${activeId}"]`)
+        : null
+
+      if (nextLink !== current) {
+        current?.classList.remove('active')
+        nextLink?.classList.add('active')
+        current = nextLink
+      }
+    }
+
+    window.addEventListener('scroll', update, { passive: true })
+    update()
+  }
+
+  initToc()
+  document.addEventListener('astro:after-swap', initToc)
+</script>

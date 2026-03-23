@@ -218,9 +218,61 @@ a:hover {
 .main-content {
   margin-left: var(--sidebar-w);
   flex: 1;
+  min-width: 0;
   max-width: 48rem;
   padding: var(--sp-10) var(--sp-10) var(--sp-16);
   overflow-x: hidden;
+}
+
+/* --- Table of Contents (right sidebar) --- */
+.toc {
+  position: fixed;
+  top: var(--navbar-h);
+  right: 0;
+  width: 220px;
+  height: calc(100dvh - var(--navbar-h));
+  overflow-y: auto;
+  padding: var(--sp-8) var(--sp-5) var(--sp-8) var(--sp-4);
+  font-size: 0.8rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hard) transparent;
+}
+.toc-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+  margin-bottom: var(--sp-3);
+}
+.toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 1px solid var(--border);
+}
+.toc li {
+  margin: 0;
+}
+.toc li.toc-h3 {
+  padding-left: var(--sp-3);
+}
+.toc a {
+  display: block;
+  padding: var(--sp-1) var(--sp-4);
+  color: var(--text-3);
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  line-height: 1.4;
+  transition: color 0.15s, border-color 0.15s;
+}
+.toc a:hover {
+  color: var(--text-1);
+  text-decoration: none;
+}
+.toc a.active {
+  color: var(--brand);
+  border-left-color: var(--brand);
 }
 
 /* Responsive tables and code blocks */
@@ -494,6 +546,9 @@ a:hover {
   .sidebar-mobile-extras {
     display: block;
   }
+  .toc {
+    display: none;
+  }
 }
 
 /* Tablet breakpoint */
@@ -504,6 +559,23 @@ a:hover {
   .main-content,
   .footer {
     margin-left: 220px;
+  }
+  .toc {
+    display: none;
+  }
+}
+
+/* Medium desktop: hide TOC */
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .toc {
+    display: none;
+  }
+}
+
+/* Wide desktop: show TOC, reserve space */
+@media (min-width: 1280px) {
+  .main-content {
+    margin-right: 220px;
   }
 }
 
