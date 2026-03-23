@@ -78,6 +78,8 @@ html {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--navbar-h) + 24px);
 }
 
 body {
@@ -226,9 +228,9 @@ a:hover {
 
 /* --- Table of Contents (right sidebar) --- */
 .toc {
-  position: fixed;
+  position: sticky;
   top: var(--navbar-h);
-  right: 0;
+  flex-shrink: 0;
   width: 220px;
   height: calc(100dvh - var(--navbar-h));
   overflow-y: auto;
@@ -572,12 +574,7 @@ a:hover {
   }
 }
 
-/* Wide desktop: show TOC, reserve space */
-@media (min-width: 1280px) {
-  .main-content {
-    margin-right: 220px;
-  }
-}
+/* Wide desktop: show TOC */
 
 /* --- Admonitions (:::note, :::tip, etc.) --- */
 .admonition {

@@ -45,7 +45,7 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3)
     let current: HTMLAnchorElement | null = null
 
     function update() {
-      const scrollY = window.scrollY + 80
+      const scrollY = window.scrollY + 100
 
       let active: HTMLElement | null = null
       for (const el of headingEls) {
