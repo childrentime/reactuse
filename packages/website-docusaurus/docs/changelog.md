@@ -7,15 +7,15 @@ description: >-
 ---
 # ChangeLog
 
-## 6.1.12(Mar 10, 2026)
-
-- fix(useGeolocation): make useSupported check more robust
-
 ## 6.3.0(Mar 24, 2026)
 
 - refactor(createStorage): replace `useState` + `useDeepCompareEffect` with `useSyncExternalStore`, eliminating CSR first-render flicker, SSR hydration mismatches, and stale cross-tab reads (#195)
 - fix(createStorage): fix stale closure in consecutive functional updates within the same synchronous batch — `updateState` now reads from `getSnapshot()` instead of the render-time `state`
 - test(useLocalStorage): add 12 new test cases covering cross-tab sync, `storage.clear()`, `listenToStorageChanges` toggle, three-state semantics, `onError`, `mountStorageValue`, and consecutive functional updates
+
+## 6.1.12(Mar 10, 2026)
+
+- fix(useGeolocation): make useSupported check more robust
 
 ## 6.1.11(Jan 20, 2026)
 
