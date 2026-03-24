@@ -237,7 +237,7 @@ export default function useStorage<
 
   const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
     valOrFunc => {
-      const currentState = isFunction(valOrFunc) ? valOrFunc(state) : valOrFunc
+      const currentState = isFunction(valOrFunc) ? valOrFunc(getSnapshot()) : valOrFunc
 
       if (currentState === null) {
         storage?.removeItem(key)

@@ -258,4 +258,257 @@ describe(useLocalStorage, () => {
     expect(result.current[0]).toEqual({ name: 'a', data: 123 })
     expect(localStorage.getItem('key')).toEqual('{"name":"a","data":123}')
   })
+
+  // --- Cross-tab storage event tests ---
+
+  it('updates state when a cross-tab storage event fires for the same key', () => {
+    const { result } = renderHook(() => useLocalStorage('foo', 'bar'))
+    expect(result.current[0]).toEqual('bar')
+
+    act(() => {
+      // Simulate another tab writing to the same key
+      localStorage.setItem('foo', 'from-other-tab')
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: 'foo',
+          newValue: 'from-other-tab',
+          oldValue: 'bar',
+          storageArea: localStorage,
+        }),
+      )
+    })
+
+    expect(result.current[0]).toEqual('from-other-tab')
+  })
+
+  it('ignores cross-tab storage events for a different key', () => {
+    const { result } = renderHook(() => useLocalStorage('foo', 'bar'))
+
+    act(() => {
+      localStorage.setItem('other', 'value')
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: 'other',
+          newValue: 'value',
+          oldValue: null,
+          storageArea: localStorage,
+        }),
+      )
+    })
+
+    expect(result.current[0]).toEqual('bar')
+  })
+
+  it('handles cross-tab key removal (newValue === null)', () => {
+    localStorage.setItem('foo', 'existing')
+    const { result } = renderHook(() => useLocalStorage('foo', 'default'))
+    expect(result.current[0]).toEqual('existing')
+
+    act(() => {
+      localStorage.removeItem('foo')
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: 'foo',
+          newValue: null,
+          oldValue: 'existing',
+          storageArea: localStorage,
+        }),
+      )
+    })
+
+    // After explicit removal, should return null (not defaultValue)
+    expect(result.current[0]).toBeNull()
+  })
+
+  it('handles cross-tab storage.clear() (key === null)', () => {
+    localStorage.setItem('foo', 'existing')
+    const { result } = renderHook(() => useLocalStorage('foo', 'default'))
+    expect(result.current[0]).toEqual('existing')
+
+    act(() => {
+      localStorage.clear()
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: null,
+          newValue: null,
+          oldValue: null,
+          storageArea: localStorage,
+        }),
+      )
+    })
+
+    // After clear(), should return null
+    expect(result.current[0]).toBeNull()
+  })
+
+  // --- listenToStorageChanges option tests ---
+
+  it('does not react to storage events when listenToStorageChanges is false', () => {
+    const { result } = renderHook(() =>
+      useLocalStorage('foo', 'bar', { listenToStorageChanges: false }),
+    )
+    expect(result.current[0]).toEqual('bar')
+
+    act(() => {
+      localStorage.setItem('foo', 'changed')
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: 'foo',
+          newValue: 'changed',
+          oldValue: 'bar',
+          storageArea: localStorage,
+        }),
+      )
+    })
+
+    // Should still see old value since listener is disabled
+    expect(result.current[0]).toEqual('bar')
+  })
+
+  it('picks up storage events after toggling listenToStorageChanges from false to true', () => {
+    let listen = false
+    const { result, rerender } = renderHook(() =>
+      useLocalStorage('foo', 'bar', { listenToStorageChanges: listen }),
+    )
+
+    // Initially not listening — event should be ignored
+    act(() => {
+      localStorage.setItem('foo', 'ignored')
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: 'foo',
+          newValue: 'ignored',
+          oldValue: 'bar',
+          storageArea: localStorage,
+        }),
+      )
+    })
+    expect(result.current[0]).toEqual('bar')
+
+    // Enable listening
+    listen = true
+    rerender()
+
+    act(() => {
+      localStorage.setItem('foo', 'heard')
+      window.dispatchEvent(
+        new StorageEvent('storage', {
+          key: 'foo',
+          newValue: 'heard',
+          oldValue: 'ignored',
+          storageArea: localStorage,
+        }),
+      )
+    })
+
+    expect(result.current[0]).toEqual('heard')
+  })
+
+  // --- Three-state semantics: setState(null) vs absent key ---
+
+  it('returns null after setState(null), not defaultValue', () => {
+    const { result } = renderHook(() => useLocalStorage('foo', 'default'))
+    expect(result.current[0]).toEqual('default')
+
+    act(() => result.current[1](null))
+
+    expect(result.current[0]).toBeNull()
+    expect(localStorage.getItem('foo')).toBeNull()
+  })
+
+  // --- onError callback ---
+
+  it('calls onError when storage.getItem throws', () => {
+    const onError = jest.fn()
+    const spy = jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new Error('storage read error')
+    })
+
+    const { result } = renderHook(() =>
+      useLocalStorage('foo', 'fallback', { onError }),
+    )
+
+    expect(result.current[0]).toEqual('fallback')
+    expect(onError).toHaveBeenCalled()
+
+    spy.mockRestore()
+  })
+
+  it('calls onError when storage.setItem throws on update', () => {
+    const onError = jest.fn()
+    const { result } = renderHook(() =>
+      useLocalStorage('foo', 'bar', { onError }),
+    )
+
+    const spy = jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new Error('quota exceeded')
+    })
+
+    act(() => result.current[1]('new-value'))
+
+    expect(onError).toHaveBeenCalledWith(expect.any(Error))
+    spy.mockRestore()
+  })
+
+  // --- mountStorageValue option ---
+
+  it('writes mountStorageValue to storage when key is absent', () => {
+    const { result } = renderHook(() =>
+      useLocalStorage('foo', 'default', { mountStorageValue: 'mounted' }),
+    )
+
+    expect(localStorage.getItem('foo')).toEqual('mounted')
+    // After mount effect, state should reflect the mounted value
+    expect(result.current[0]).toEqual('mounted')
+  })
+
+  it('does not overwrite existing storage with mountStorageValue', () => {
+    localStorage.setItem('foo', 'existing')
+    const { result } = renderHook(() =>
+      useLocalStorage('foo', 'default', { mountStorageValue: 'mounted' }),
+    )
+
+    expect(localStorage.getItem('foo')).toEqual('existing')
+    expect(result.current[0]).toEqual('existing')
+  })
+
+  // --- Consecutive functional updates ---
+
+  it('handles two sequential functional updates in separate act() calls', () => {
+    const { result, rerender } = renderHook(() =>
+      useLocalStorage('counter', 0),
+    )
+    expect(result.current[0]).toEqual(0)
+
+    act(() => {
+      result.current[1](prev => (prev ?? 0) + 1)
+    })
+    act(() => {
+      result.current[1](prev => (prev ?? 0) + 1)
+    })
+    rerender()
+
+    // Separate act() calls flush between each, so this works
+    expect(result.current[0]).toEqual(2)
+    expect(localStorage.getItem('counter')).toEqual('2')
+  })
+
+  it('two functional updates in the SAME act() both apply correctly', () => {
+    const { result, rerender } = renderHook(() =>
+      useLocalStorage('counter', 0),
+    )
+    expect(result.current[0]).toEqual(0)
+
+    act(() => {
+      // Both calls happen synchronously before React re-renders.
+      // getSnapshot() reads the latest value from storage each time,
+      // so the second call sees the result of the first.
+      result.current[1](prev => (prev ?? 0) + 1) // prev=0, writes 1
+      result.current[1](prev => (prev ?? 0) + 1) // prev=1 (fresh!), writes 2
+    })
+    rerender()
+
+    expect(result.current[0]).toEqual(2)
+    expect(localStorage.getItem('counter')).toEqual('2')
+  })
 })

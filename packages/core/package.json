@@ -1,6 +1,6 @@
 {
   "name": "@reactuses/core",
-  "version": "6.2.0",
+  "version": "6.3.0",
   "description": "Collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility. Sensors, browser APIs, state management, animations, and more.",
   "license": "Unlicense",
   "homepage": "https://www.reactuse.com/",
