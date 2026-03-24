@@ -1,10 +1,10 @@
 import type { Dispatch, SetStateAction } from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
+import { useSyncExternalStore } from 'use-sync-external-store/shim/index.js'
 import { isBrowser, isFunction } from '../utils/is'
 import { guessSerializerType } from '../utils/serializer'
 import { useEvent } from '../useEvent'
 import { defaultOnError, defaultOptions } from '../utils/defaults'
-import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { useLatest } from '../useLatest'
 
 export interface Serializer<T> {
@@ -81,40 +81,6 @@ export interface UseStorageOptions<T> {
    */
   listenToStorageChanges?: boolean
 }
-function getInitialState(
-  key: string,
-  defaultValue?: any,
-  storage?: Storage,
-  serializer?: Serializer<any>,
-  onError?: (error: unknown) => void,
-) {
-  // Prevent a React hydration mismatch when a default value is provided.
-  if (defaultValue !== undefined) {
-    return defaultValue
-  }
-
-  if (isBrowser) {
-    try {
-      const raw = storage?.getItem(key)
-      if (raw !== undefined && raw !== null) {
-        return serializer?.read(raw)
-      }
-      return null
-    }
-    catch (error) {
-      onError?.(error)
-    }
-  }
-
-  // A default value has not been provided, and you are rendering on the server, warn of a possible hydration mismatch when defaulting to false.
-  if (process.env.NODE_ENV !== 'production') {
-    console.warn(
-      '`createStorage` When server side rendering, defaultValue should be defined to prevent a hydration mismatches.',
-    )
-  }
-
-  return null
-}
 
 export default function useStorage<
   T extends string | number | boolean | object | null,
@@ -145,11 +111,107 @@ export default function useStorage<
   const type = guessSerializerType<T | undefined>(defaultValue)
   const serializerRef = useLatest(options.serializer ?? StorageSerializers[type])
 
-  const [state, setState] = useState<T | null>(
-    getInitialState(key, defaultValue, storage, serializerRef.current, onError),
-  )
+  // storageRef and defaultValueRef are updated synchronously each render so that
+  // the stable getSnapshot/getServerSnapshot closures always read current values.
+  const storageRef = useRef(storage)
+  storageRef.current = storage
+  const defaultValueRef = useRef(defaultValue)
+  defaultValueRef.current = defaultValue
 
-  useDeepCompareEffect(() => {
+  // Cache for referential stability of deserialized values.
+  // lastRawRef uses three-state semantics:
+  //   undefined → no cached value (initial state or after key change) — absent key yields defaultValue
+  //   null      → key was explicitly removed (setState(null) or cross-tab) — absent key yields null
+  //   string    → cached raw string — compared for referential stability
+  const lastRawRef = useRef<string | null | undefined>(undefined)
+  const lastKeyRef = useRef<string>(key)
+  const lastValueRef = useRef<T | null>(defaultValue ?? null)
+
+  // Reset per-key caches when the key changes (runs during render, before snapshot).
+  if (lastKeyRef.current !== key) {
+    lastKeyRef.current = key
+    lastRawRef.current = undefined
+    lastValueRef.current = defaultValue ?? null
+  }
+
+  // Internal per-instance subscriber callback stored so updateState can notify it.
+  const notifyRef = useRef<(() => void) | null>(null)
+
+  const getSnapshot = useRef((): T | null => {
+    const currentStorage = storageRef.current
+    const fallback = (defaultValueRef.current ?? null) as T | null
+    if (!currentStorage) {
+      // Storage unavailable — act as an in-memory state holder using the same
+      // three-state lastRawRef semantics so updateState() still works.
+      if (lastRawRef.current === undefined)
+        return fallback
+      return lastRawRef.current === null ? null : lastValueRef.current
+    }
+    try {
+      const raw = currentStorage.getItem(lastKeyRef.current)
+      if (raw === null) {
+        // lastRawRef === null means the key was explicitly removed; return null.
+        // lastRawRef !== null means the key is merely absent (e.g. after key change); return defaultValue.
+        return lastRawRef.current === null ? null : fallback
+      }
+      if (raw === lastRawRef.current)
+        return lastValueRef.current
+      const deserialized = serializerRef.current.read(raw) as T
+      lastRawRef.current = raw
+      lastValueRef.current = deserialized
+      return deserialized
+    }
+    catch (e) {
+      onErrorRef.current(e)
+      return fallback
+    }
+  }).current
+
+  const getServerSnapshot = useRef((): T | null => {
+    return (defaultValueRef.current ?? null) as T | null
+  }).current
+
+  // subscribe is stable: it only registers/clears the React-provided callback.
+  // Cross-tab listener management is handled separately in a useEffect so that
+  // changes to listenToStorageChanges are properly reflected after mount.
+  const subscribe = useRef((callback: () => void): (() => void) => {
+    notifyRef.current = callback
+    return () => {
+      notifyRef.current = null
+    }
+  }).current
+
+  const state = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+
+  // Manage the cross-tab storage listener independently so that toggling
+  // listenToStorageChanges after mount correctly adds or removes the listener.
+  useEffect(() => {
+    if (!listenToStorageChanges || !isBrowser)
+      return
+    const crossTabListener = (e: StorageEvent) => {
+      // e.key is null when storage.clear() is called from another tab (Web Storage
+      // spec). In that case all keys are affected, so always notify. Otherwise only
+      // notify when the event matches the current key.
+      // lastKeyRef is updated synchronously during render, so it always holds the
+      // latest key at the time this async event fires.
+      if (e.key !== null && e.key !== lastKeyRef.current)
+        return
+      // e.newValue is null when the key was removed (removeItem or clear).
+      // Update the in-memory caches now so getSnapshot returns null immediately
+      // rather than falling back to defaultValue, matching the old behavior where
+      // the cross-tab listener called updateState(null) for absent keys.
+      if (e.newValue === null) {
+        lastRawRef.current = null
+        lastValueRef.current = null
+      }
+      notifyRef.current?.()
+    }
+    window.addEventListener('storage', crossTabListener)
+    return () => window.removeEventListener('storage', crossTabListener)
+  }, [listenToStorageChanges])
+
+  // Write mountStorageValue / defaultValue to storage on mount when key is absent.
+  useEffect(() => {
     const serializer = serializerRef.current
     const storageValue = storageValueRef.current
     const data
@@ -159,66 +221,45 @@ export default function useStorage<
           : storageValue
         : defaultValue) ?? null
 
-    const getStoredValue = () => {
-      try {
-        const raw = storage?.getItem(key)
-        if (raw !== undefined && raw !== null) {
-          return serializer.read(raw)
-        }
-        else {
-          storage?.setItem(key, serializer.write(data))
-          return data
-        }
-      }
-      catch (e) {
-        onErrorRef.current(e)
-      }
-    }
-
-    setState(getStoredValue())
-  }, [key, storage])
-
-  const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
-    valOrFunc => {
-      const currentState = isFunction(valOrFunc) ? valOrFunc(state) : valOrFunc
-      setState(currentState)
-
-      if (currentState === null) {
-        storage?.removeItem(key)
-      }
-      else {
-        try {
-          storage?.setItem(key, serializerRef.current.write(currentState))
-        }
-        catch (e) {
-          onErrorRef.current(e)
-        }
-      }
-    },
-  )
-
-  const listener = useEvent(() => {
     try {
       const raw = storage?.getItem(key)
-      if (raw !== undefined && raw !== null) {
-        updateState(serializerRef.current.read(raw))
-      }
-      else {
-        updateState(null)
+      if ((raw === null || raw === undefined) && data !== null) {
+        storage?.setItem(key, serializer.write(data))
+        lastRawRef.current = undefined
+        notifyRef.current?.()
       }
     }
     catch (e) {
       onErrorRef.current(e)
     }
-  })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key, storage])
 
-  useEffect(() => {
-    if (listenToStorageChanges) {
-      window.addEventListener('storage', listener)
-      return () => window.removeEventListener('storage', listener)
-    }
-    return () => {}
-  }, [listenToStorageChanges, listener])
+  const updateState: Dispatch<SetStateAction<T | null>> = useEvent(
+    valOrFunc => {
+      const currentState = isFunction(valOrFunc) ? valOrFunc(state) : valOrFunc
+
+      if (currentState === null) {
+        storage?.removeItem(key)
+        lastRawRef.current = null
+        lastValueRef.current = null
+      }
+      else {
+        try {
+          const raw = serializerRef.current.write(currentState)
+          storage?.setItem(key, raw)
+          lastRawRef.current = raw
+          lastValueRef.current = currentState
+        }
+        catch (e) {
+          onErrorRef.current(e)
+          return
+        }
+      }
+
+      notifyRef.current?.()
+    },
+  )
 
   return [state, updateState] as const
 }

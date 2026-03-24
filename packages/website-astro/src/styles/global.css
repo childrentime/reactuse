@@ -266,7 +266,9 @@ a:hover {
   border-left: 2px solid transparent;
   margin-left: -1px;
   line-height: 1.4;
-  transition: color 0.15s, border-color 0.15s;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
 }
 .toc a:hover {
   color: var(--text-1);
