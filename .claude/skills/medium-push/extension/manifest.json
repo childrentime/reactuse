@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Medium Push - Markdown to Medium",
+  "version": "1.0.0",
+  "description": "Push local Markdown files into Medium's editor as rich text via a bridge server.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://medium.com/*",
+    "http://localhost:*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://medium.com/*"],
+      "js": ["markdown.js", "content.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://medium.com/*"],
+      "js": ["main-world.js"],
+      "world": "MAIN",
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Medium Push"
+  }
+}
