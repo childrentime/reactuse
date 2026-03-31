@@ -693,6 +693,9 @@ a:hover {
   border-radius: 3px !important;
   width: auto !important;
 }
+.DocSearch-Hit-content-wrapper {
+  overflow-x: visible !important;
+}
 @media (max-width: 768px) {
   .DocSearch-Button-Placeholder,
   .DocSearch-Button-Keys {
