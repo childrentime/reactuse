@@ -13,6 +13,7 @@ export default ririd(
       '**/*.test.ts',
       '**/*.md',
       '**/*.spec.ts',
+      '.claude/**',
     ],
   },
   {
