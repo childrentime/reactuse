@@ -40,3 +40,4 @@ TODO-MIGRATION.md
 bun.lock
 posts-ready/
 blog-external/
+.gstack/
