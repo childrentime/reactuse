@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useEventListener } from '../useEventListener'
+import { defaultWindow } from '../utils/browser'
 import type { UseClipboard } from './interface'
 
 export const useClipboard: UseClipboard = (): readonly [
@@ -28,7 +29,7 @@ export const useClipboard: UseClipboard = (): readonly [
   useEventListener('cut', updateText)
 
   // Also listen for focus events to update clipboard when window regains focus
-  useEventListener('focus', updateText, window)
+  useEventListener('focus', updateText, defaultWindow)
 
   const copy = useCallback(async (txt: string) => {
     setText(txt)
