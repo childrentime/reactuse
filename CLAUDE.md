@@ -44,3 +44,39 @@ After writing or editing a blog post, **you must verify all hook links**:
 2. For each URL, confirm the hook name and category exist in `scripts/hook-registry.json`.
 3. If a hook does not exist in the registry, either remove the link or replace it with an existing hook.
 4. Run this verification for all locale versions (en, zh-Hans, zh-Hant) of the post.
+
+## External Blog Publishing
+
+### Directory structure
+
+External platform copies are stored in `blog-external/` with sequential numbering:
+
+```
+blog-external/
+  post-N-{slug}/
+    medium.md   # English, no frontmatter (for Medium push skill)
+    devto.md    # English, with dev.to frontmatter (published: false)
+    juejin.md   # Chinese (simplified), no frontmatter (user copies manually)
+```
+
+### Publishing workflow
+
+After writing blog posts (3 locales in `packages/website-astro/src/content/`), always:
+
+1. Create `blog-external/post-N-{slug}/` with `medium.md`, `devto.md`, `juejin.md`
+2. **Only publish the first post** of each batch to all 3 platforms:
+   - **Medium**: Use the `medium-push` skill with the `medium.md` file
+   - **dev.to**: POST via API using `DEVTO_API_KEY` from `.env` (set `published: false` as draft)
+   - **Juejin (掘金)**: Tell user to copy from `juejin.md` (no API available)
+3. The remaining posts are saved in `blog-external/` for future publishing
+
+### dev.to API
+
+```bash
+curl -s -X POST https://dev.to/api/articles \
+  -H "api-key: $DEVTO_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"article": {"title": "...", "body_markdown": "...", "published": false, "tags": ["react","javascript","webdev","tutorial"]}}'
+```
+
+API key is in `.env` as `DEVTO_API_KEY`.
