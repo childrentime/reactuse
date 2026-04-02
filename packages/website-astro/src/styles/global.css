@@ -31,6 +31,7 @@
   /* Sidebar */
   --sidebar-w: 260px;
   --navbar-h: 56px;
+  --banner-h: 36px;
 
   /* Spacing (4pt grid) */
   --sp-1: 4px;
@@ -79,7 +80,7 @@ html {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--navbar-h) + 24px);
+  scroll-padding-top: calc(var(--navbar-h) + var(--banner-h) + 24px);
 }
 
 body {
@@ -98,7 +99,7 @@ a:hover {
 /* --- Navbar --- */
 .navbar {
   position: fixed;
-  top: 0;
+  top: var(--banner-h);
   left: 0;
   right: 0;
   height: var(--navbar-h);
@@ -140,7 +141,7 @@ a:hover {
 
 /* --- Layout --- */
 .page-shell {
-  padding-top: var(--navbar-h);
+  padding-top: calc(var(--navbar-h) + var(--banner-h));
   display: flex;
   min-height: 100dvh;
 }
@@ -148,7 +149,7 @@ a:hover {
 /* --- Sidebar --- */
 .sidebar {
   position: fixed;
-  top: var(--navbar-h);
+  top: calc(var(--navbar-h) + var(--banner-h));
   left: 0;
   bottom: 0;
   width: var(--sidebar-w);
@@ -229,10 +230,10 @@ a:hover {
 /* --- Table of Contents (right sidebar) --- */
 .toc {
   position: sticky;
-  top: var(--navbar-h);
+  top: calc(var(--navbar-h) + var(--banner-h));
   flex-shrink: 0;
   width: 220px;
-  height: calc(100dvh - var(--navbar-h));
+  height: calc(100dvh - var(--navbar-h) - var(--banner-h));
   overflow-y: auto;
   padding: var(--sp-8) var(--sp-5) var(--sp-8) var(--sp-4);
   font-size: 0.8rem;
