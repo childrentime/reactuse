@@ -48,6 +48,15 @@ const alternates = [
 // Detect homepage
 const isHomepage = basePath === '/' || basePath === ''
 
+// Markdown alternate URL — same path with `.md` (drop trailing slash)
+// Skip for homepage and pages without a Markdown source
+const mdAlternateHref = (() => {
+  if (isHomepage) return null
+  const trimmed = pathname.replace(/\/$/, '')
+  if (!trimmed) return null
+  return new URL(`${trimmed}.md`, Astro.site).href
+})()
+
 // Determine og:type
 const ogType = isHomepage ? 'website' : blogPost ? 'article' : 'article'
 
@@ -153,6 +162,9 @@ const structuredData = {
   {alternates.map(alt => (
     <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
   ))}
+  {mdAlternateHref && (
+    <link rel="alternate" type="text/markdown" href={mdAlternateHref} />
+  )}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <!-- Open Graph -->
   <meta property="og:title" content={title} />

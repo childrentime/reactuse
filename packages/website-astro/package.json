@@ -5,8 +5,10 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/generateLlmsTxt.mjs && node scripts/generateLlmsFullTxt.mjs",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "llms:gen": "node scripts/generateLlmsTxt.mjs && node scripts/generateLlmsFullTxt.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",

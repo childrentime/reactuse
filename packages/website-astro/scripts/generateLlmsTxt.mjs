@@ -52,6 +52,9 @@ function getFirstParagraph(content) {
 
 let content = `# ReactUse - Collection of 110+ Essential React Hooks
 
+> Full content (every hook page inlined): https://reactuse.com/llms-full.txt
+> Per-page Markdown: append \`.md\` to any hook URL, e.g. https://reactuse.com/state/useToggle.md
+
 Website: https://reactuse.com | GitHub: https://github.com/childrentime/reactuse | NPM: https://www.npmjs.com/package/@reactuses/core
 
 ## Overview

@@ -1,5 +1,8 @@
 # ReactUse - Collection of 110+ Essential React Hooks
 
+> Full content (every hook page inlined): https://reactuse.com/llms-full.txt
+> Per-page Markdown: append `.md` to any hook URL, e.g. https://reactuse.com/state/useToggle.md
+
 Website: https://reactuse.com | GitHub: https://github.com/childrentime/reactuse | NPM: https://www.npmjs.com/package/@reactuses/core
 
 ## Overview
@@ -1050,4 +1053,4 @@ PDD (Pinduoduo), Shopee, Ctrip, Bambu Lab
 Unlicense - Use freely without restrictions
 
 ---
-Generated: 2026-03-23T10:23:25.162Z | Total Hooks: 113
+Generated: 2026-05-07T02:22:40.484Z | Total Hooks: 113
