@@ -64,9 +64,10 @@ blog-external/
 After writing blog posts (3 locales in `packages/website-astro/src/content/`), always:
 
 1. Create `blog-external/post-N-{slug}/` with `medium.md`, `devto.md`, `juejin.md`
-2. **Only publish the first post** of each batch to all 3 platforms:
+2. **Only publish the first post** of each batch to all 4 platforms:
    - **Medium**: Use the `medium-push` skill with the `medium.md` file
    - **dev.to**: POST via API using `DEVTO_API_KEY` from `.env` (set `published: false` as draft)
+   - **Hashnode**: Run `node scripts/publishHashnode.mjs` (publishes the latest post by default; pass a slug to target a specific post)
    - **Juejin (掘金)**: Tell user to copy from `juejin.md` (no API available)
 3. The remaining posts are saved in `blog-external/` for future publishing
 
@@ -80,3 +81,17 @@ curl -s -X POST https://dev.to/api/articles \
 ```
 
 API key is in `.env` as `DEVTO_API_KEY`.
+
+### Hashnode API
+
+```bash
+node scripts/publishHashnode.mjs                         # latest blog post
+node scripts/publishHashnode.mjs <slug>                  # specific by slug
+node scripts/publishHashnode.mjs --dry-run [slug]        # preview only
+```
+
+The script reads frontmatter from `packages/website-astro/src/content/blog/`, strips the `<!-- truncate -->` marker, and calls the Hashnode `publishPost` GraphQL mutation. It sets `originalArticleURL` to `https://reactuse.com/blog/{slug}/` so search engines treat reactuse.com as canonical.
+
+Env vars (in `.env`):
+- `HASHNODE_PAT` — from hashnode.com/settings/developer
+- `HASHNODE_PUBLICATION_ID` — `69fdadfb6fb09594bd2c7700` (publication: reactuse.hashnode.dev)
