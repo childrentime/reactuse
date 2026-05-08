@@ -10,7 +10,6 @@
   <img alt="UnLicense" src="https://img.shields.io/npm/l/@reactuses/core?style=for-the-badge&labelColor=24292e">
   <img alt="Tree Shaking Friendly" src="https://img.shields.io/badge/Tree%20Shaking-Friendly-brightgreen?style=for-the-badge&labelColor=24292e">
   <img alt="TypeScript Support" src="https://img.shields.io/badge/TypeScript-Support-blue?style=for-the-badge&labelColor=24292e">
-  <a href="https://socket.dev/npm/package/@reactuses/core"><img alt="Socket Score" src="https://socket.dev/api/badge/npm/package/@reactuses/core"></a>
 </p>
 
 ## Introduction
