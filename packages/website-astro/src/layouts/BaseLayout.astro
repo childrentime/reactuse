@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css'
-import Banner from '../components/Banner.astro'
 
 import type { Locale } from '../i18n/translations'
 
@@ -187,11 +186,6 @@ const structuredData = {
     (function(){
       const t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', t);
-      var p = window.location.pathname;
-      var isCN = p.startsWith('/zh-Hans') || p.startsWith('/zh-Hant');
-      if (!isCN || sessionStorage.getItem('banner-closed')) {
-        document.documentElement.style.setProperty('--banner-h', '0px');
-      }
     })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -203,7 +197,6 @@ const structuredData = {
   <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" /></noscript>
 </head>
 <body>
-  <Banner locale={locale} />
   <slot />
   <script is:inline src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
   <script is:inline>
