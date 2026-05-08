@@ -15,6 +15,7 @@ Status legend: ✅ submitted · ⏳ pending review · ❌ rejected · 🚫 not p
 | 2026-05-08 | Hashnode | https://reactuse.hashnode.dev | Cross-post account `reactuse`; first article published |
 | 2026-05-08 | Launching Next | submission #133320 (`/thanks/?i=133320`) | Web form via OpenCLI; free tier, ~weeks queue |
 | 2026-05-08 | Made With React.js | "Thanks for submitting your project!" | Web form via OpenCLI; free tier, 6-8 weeks queue; e-mail notification on publish |
+| 2026-05-08 | dev.to | [draft #3633428](https://dev.to/childrentime/react-form-handling-debounced-validation-auto-save-drafts-and-controlled-inputs-gkm-temp-slug-7119433) | Cross-post of post-11 (form handling hooks); draft, canonical=reactuse.com |
 
 ## ⏳ Pending review
 
@@ -62,6 +63,7 @@ Status legend: ✅ submitted · ⏳ pending review · ❌ rejected · 🚫 not p
 | JoinUp (EU) | Public-sector OSS catalog only |
 | Startup Buffer | Cloudflare Turnstile + login wall |
 | JSer.info ping | Form still loads, but `jser/ping` repo bot-user has been dormant since Feb 2024 (27 mo). Submitted but not processed. |
+| ReactLibraries.com | reCAPTCHA-v3 returned `browser-error` against CDP-controlled session; pattern regex also rejects scoped npm `@org/pkg` URLs. Form filled successfully but submit blocked. |
 
 ## 📝 Email pitches (deferred — user opted not to do these)
 
