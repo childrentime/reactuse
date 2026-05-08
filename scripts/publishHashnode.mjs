@@ -25,29 +25,38 @@ const BLOG_DIR = path.join(ROOT, 'packages/website-astro/src/content/blog')
 
 function loadDotEnv() {
   const envPath = path.join(ROOT, '.env')
-  if (!fs.existsSync(envPath)) return
+  if (!fs.existsSync(envPath))
+    return
   for (const raw of fs.readFileSync(envPath, 'utf-8').split('\n')) {
     const line = raw.trim()
-    if (!line || line.startsWith('#')) continue
+    if (!line || line.startsWith('#'))
+      continue
     const i = line.indexOf('=')
-    if (i < 0) continue
+    if (i < 0)
+      continue
     const k = line.slice(0, i).trim()
     let v = line.slice(i + 1).trim()
-    if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) v = v.slice(1, -1)
-    if (!process.env[k]) process.env[k] = v
+    if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith('\'') && v.endsWith('\'')))
+      v = v.slice(1, -1)
+    if (!process.env[k])
+      process.env[k] = v
   }
 }
 
 function parseFrontmatter(src) {
   const m = src.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
-  if (!m) throw new Error('No frontmatter block found at top of file')
+  if (!m)
+    throw new Error('No frontmatter block found at top of file')
   const meta = {}
   for (const line of m[1].split('\n')) {
-    const kv = line.match(/^([\w-]+):\s*(.*)$/)
-    if (!kv) continue
+    const kv = /^([\w-]+):[ \t](.*)$/.exec(line)
+    if (!kv)
+      continue
     let v = kv[2].trim()
-    if (v.startsWith('"') && v.endsWith('"')) v = v.slice(1, -1)
-    else if (v.startsWith("'") && v.endsWith("'")) v = v.slice(1, -1)
+    if (v.startsWith('"') && v.endsWith('"'))
+      v = v.slice(1, -1)
+    else if (v.startsWith('\'') && v.endsWith('\''))
+      v = v.slice(1, -1)
     if (v.startsWith('[') && v.endsWith(']')) {
       v = v.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, '')).filter(Boolean)
     }
@@ -58,20 +67,24 @@ function parseFrontmatter(src) {
 
 function findLatestBlog() {
   const files = fs.readdirSync(BLOG_DIR).filter(f => f.endsWith('.md') || f.endsWith('.mdx')).sort().reverse()
-  if (!files.length) throw new Error(`No blog files in ${BLOG_DIR}`)
+  if (!files.length)
+    throw new Error(`No blog files in ${BLOG_DIR}`)
   return path.join(BLOG_DIR, files[0])
 }
 
 function resolveBlog(arg) {
-  if (!arg || arg.startsWith('--')) return findLatestBlog()
+  if (!arg || arg.startsWith('--'))
+    return findLatestBlog()
   if (arg.endsWith('.md') || arg.endsWith('.mdx')) {
     const abs = path.isAbsolute(arg) ? arg : path.resolve(arg)
-    if (!fs.existsSync(abs)) throw new Error(`File not found: ${abs}`)
+    if (!fs.existsSync(abs))
+      throw new Error(`File not found: ${abs}`)
     return abs
   }
   const files = fs.readdirSync(BLOG_DIR)
     .filter(f => (f.endsWith('.md') || f.endsWith('.mdx')) && (f.endsWith(`-${arg}.md`) || f.endsWith(`-${arg}.mdx`) || f === `${arg}.md`))
-  if (!files.length) throw new Error(`No blog matching slug "${arg}" in ${BLOG_DIR}`)
+  if (!files.length)
+    throw new Error(`No blog matching slug "${arg}" in ${BLOG_DIR}`)
   return path.join(BLOG_DIR, files[0])
 }
 
@@ -86,7 +99,7 @@ function toTagInputs(rawTags) {
 async function gql(query, variables) {
   const res = await fetch(ENDPOINT, {
     method: 'POST',
-    headers: { Authorization: process.env.HASHNODE_PAT, 'Content-Type': 'application/json' },
+    headers: { 'Authorization': process.env.HASHNODE_PAT, 'Content-Type': 'application/json' },
     body: JSON.stringify({ query, variables }),
   })
   const data = await res.json()
@@ -123,8 +136,10 @@ async function main() {
   const src = fs.readFileSync(mdPath, 'utf-8')
   const { meta, body } = parseFrontmatter(src)
 
-  if (!meta.title) throw new Error(`Frontmatter missing title in ${mdPath}`)
-  if (!meta.slug) throw new Error(`Frontmatter missing slug in ${mdPath}`)
+  if (!meta.title)
+    throw new Error(`Frontmatter missing title in ${mdPath}`)
+  if (!meta.slug)
+    throw new Error(`Frontmatter missing slug in ${mdPath}`)
 
   const cleanBody = body.replace(/<!--\s*truncate\s*-->/g, '').trim()
   const tags = toTagInputs(meta.tags)
@@ -166,11 +181,15 @@ async function main() {
   try {
     const result = await gql(mutation, { input })
     console.log(`\n✅ Published: ${result.publishPost.post.url}`)
-  } catch (e) {
+  }
+  catch (e) {
     console.error('\n❌ Publish failed:')
     console.error(JSON.stringify(e.detail || e.message, null, 2))
     process.exit(1)
   }
 }
 
-main().catch(e => { console.error(e); process.exit(1) })
+main().catch(e => {
+  console.error(e)
+  process.exit(1)
+})

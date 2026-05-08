@@ -2,20 +2,11 @@
   "name": "@reactuses/core",
   "version": "6.3.1",
   "description": "Collection of 100+ essential React Hooks with TypeScript support, tree-shaking, and SSR compatibility. Sensors, browser APIs, state management, animations, and more.",
-  "license": "Unlicense",
-  "homepage": "https://www.reactuse.com/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/childrentime/reactuse.git",
-    "directory": "packages/core"
-  },
-  "bugs": {
-    "url": "https://github.com/childrentime/reactuse/issues"
-  },
   "author": {
     "name": "lianwenwu",
     "url": "https://github.com/childrentime"
   },
+  "license": "Unlicense",
   "funding": [
     {
       "type": "github",
@@ -26,6 +17,15 @@
       "url": "https://opencollective.com/reactuse"
     }
   ],
+  "homepage": "https://www.reactuse.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/childrentime/reactuse.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/childrentime/reactuse/issues"
+  },
   "keywords": [
     "react",
     "react-hooks",
