@@ -12,6 +12,12 @@
   <img alt="TypeScript Support" src="https://img.shields.io/badge/TypeScript-Support-blue?style=for-the-badge&labelColor=24292e">
 </p>
 
+<p align="center">
+  <a href="https://context7.com/childrentime/reactuse"><img alt="Context7 indexed" src="https://img.shields.io/badge/Context7-Indexed-0078D4?style=for-the-badge&labelColor=24292e"></a>
+  <a href="https://deepwiki.com/childrentime/reactuse"><img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg"></a>
+  <a href="https://gitmcp.io/childrentime/reactuse"><img alt="GitMCP" src="https://img.shields.io/badge/GitMCP-Use%20with%20AI-22c55e?style=for-the-badge&labelColor=24292e"></a>
+</p>
+
 ## Introduction
 
 **ReactUse** is a comprehensive collection of **100+ essential React Hooks** for building modern React applications. Inspired by [VueUse](https://vueuse.org/), it provides production-ready hooks for browser APIs, state management, sensors, animations, DOM elements, and more.
