@@ -12,6 +12,20 @@
   "bugs": {
     "url": "https://github.com/childrentime/reactuse/issues"
   },
+  "author": {
+    "name": "lianwenwu",
+    "url": "https://github.com/childrentime"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/childrentime"
+    },
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/reactuse"
+    }
+  ],
   "keywords": [
     "react",
     "react-hooks",
@@ -28,6 +42,17 @@
     "state-hooks",
     "utility-hooks",
     "animation-hooks",
+    "nextjs",
+    "nextjs-hooks",
+    "remix",
+    "astro",
+    "vite",
+    "web-api",
+    "observer",
+    "react-mcp",
+    "mcp",
+    "react18",
+    "react19",
     "useToggle",
     "useDebounce",
     "useThrottle",
