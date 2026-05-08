@@ -15,7 +15,9 @@ Status legend: ✅ submitted · ⏳ pending review · ❌ rejected · 🚫 not p
 | 2026-05-08 | Hashnode | https://reactuse.hashnode.dev | Cross-post account `reactuse`; first article published |
 | 2026-05-08 | Launching Next | submission #133320 (`/thanks/?i=133320`) | Web form via OpenCLI; free tier, ~weeks queue |
 | 2026-05-08 | Made With React.js | "Thanks for submitting your project!" | Web form via OpenCLI; free tier, 6-8 weeks queue; e-mail notification on publish |
-| 2026-05-08 | dev.to | [draft #3633428](https://dev.to/childrentime/react-form-handling-debounced-validation-auto-save-drafts-and-controlled-inputs-gkm-temp-slug-7119433) | Cross-post of post-11 (form handling hooks); draft, canonical=reactuse.com |
+| 2026-05-08 | best-of-react | [PR #201](https://github.com/lukasmasuch/best-of-react/pull/201) | Single-row YAML PR (`projects.yaml`, category `others`) |
+| 2026-05-08 | punkpeye/awesome-mcp-servers | [PR #6065](https://github.com/punkpeye/awesome-mcp-servers/pull/6065) | 86k-star MCP awesome list, Developer Tools section |
+| 2026-05-08 | jamesmurdza/awesome-ai-devtools | [PR #507](https://github.com/jamesmurdza/awesome-ai-devtools/pull/507) | 3.8k stars, IDE Extensions section, MCP angle |
 
 ## ⏳ Pending review
 
