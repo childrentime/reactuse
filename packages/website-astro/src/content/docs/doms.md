@@ -1,9 +1,7 @@
 ---
 title: doms
 sidebar_label: doms
-description: >-
-  DOM-related hooks in @reactuses/core accept a `target` parameter to specify the DOM element to interact with. This guide explains how to properly use these
-  hook
+description: "Guide to the target parameter used by DOM-related hooks in @reactuses/core — pass a React ref, an HTMLElement, or a getter function to specify the element."
 ---
 # DOM Hooks
 

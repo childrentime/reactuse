@@ -1,9 +1,7 @@
 ---
 title: doms
 sidebar_label: doms
-description: >-
-  @reactuses/core 中的 DOM 類 Hooks 都接收 `target` 參數來指定要處理的 DOM 元素。本文檔將說明如何正確使用這些 Hooks。 `target` 參數支持以下三種類型： - `React.MutableRefObject` - `HTMLElement` - `() =>
-  HTML
+description: "@reactuses/core 中 DOM 類 hook 的 target 參數指南——如何傳入 React ref、HTMLElement 或 getter 函式來指定 hook 操作的元素。"
 ---
 # DOM 類 Hooks
 

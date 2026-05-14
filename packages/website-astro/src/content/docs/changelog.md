@@ -1,9 +1,7 @@
 ---
 title: changelog
 sidebar_label: changelog
-description: >-
-  - Initial public release - add useActiveElement - add useDraggable - add useElemenBounding hook - add useElementVisibility hook - add useWindowsFocus hook -
-  add
+description: "Changelog for @reactuses/core — release notes and version history for the ReactUse collection of 110+ React hooks."
 ---
 # ChangeLog
 
