@@ -19,7 +19,8 @@ export default async (request: Request, context: Context) => {
 
   for (let i = 0; i < segments.length; i++) {
     const seg = segments[i]
-    if (!seg || LOCALE_SEGMENTS.has(seg)) continue
+    if (!seg || LOCALE_SEGMENTS.has(seg))
+      continue
     const lower = seg.toLowerCase()
     if (lower !== seg) {
       segments[i] = lower
@@ -30,7 +31,8 @@ export default async (request: Request, context: Context) => {
   // Already all-lowercase (apart from the locale prefix) — nothing to do.
   // This guard also makes the redirect loop-safe: the redirected URL passes
   // straight through on the next request.
-  if (!changed) return context.next()
+  if (!changed)
+    return context.next()
 
   url.pathname = segments.join('/')
   return Response.redirect(url.toString(), 301)
