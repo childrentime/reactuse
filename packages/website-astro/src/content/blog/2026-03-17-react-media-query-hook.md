@@ -248,9 +248,9 @@ yarn add @reactuses/core
 
 ## Related Hooks
 
-- [useMediaQuery documentation](https://reactuse.com/browser/useMediaQuery/) -- full API reference and interactive demo
-- [useWindowSize](https://reactuse.com/element/useWindowSize/) -- get the actual pixel dimensions of the viewport
-- [useDarkMode](https://reactuse.com/browser/useDarkMode/) -- full dark mode management with persistence
+- [useMediaQuery documentation](https://reactuse.com/browser/usemediaquery/) -- full API reference and interactive demo
+- [useWindowSize](https://reactuse.com/element/usewindowsize/) -- get the actual pixel dimensions of the viewport
+- [useDarkMode](https://reactuse.com/browser/usedarkmode/) -- full dark mode management with persistence
 
 ---
 

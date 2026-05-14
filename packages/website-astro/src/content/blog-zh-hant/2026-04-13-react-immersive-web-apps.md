@@ -574,15 +574,15 @@ npm i @reactuses/core
 
 ## 相關 Hook
 
-- [`useFullscreen`](https://reactuse.com/browser/useFullscreen/) —— 在任何元素上進入、退出和切換全螢幕
-- [`useWakeLock`](https://reactuse.com/browser/useWakeLock/) —— 保持螢幕常亮,並在可見性變化時自動重新請求
-- [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) —— 發送系統級通知,權限流程已處理
-- [`useScreenSafeArea`](https://reactuse.com/browser/useScreenSafeArea/) —— 響應式地讀取安全區域內邊距
-- [`useTitle`](https://reactuse.com/browser/useTitle/) —— 宣告式地設定文件標題
-- [`useFavicon`](https://reactuse.com/browser/useFavicon/) —— 根據應用狀態更新 favicon
-- [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) —— 追蹤文件對使用者是否可見
-- [`usePageLeave`](https://reactuse.com/browser/usePageLeave/) —— 偵測游標何時離開頁面區域
-- [`useSupported`](https://reactuse.com/state/useSupported/) —— 響應式地檢查瀏覽器 API 是否可用
+- [`useFullscreen`](https://reactuse.com/browser/usefullscreen/) —— 在任何元素上進入、退出和切換全螢幕
+- [`useWakeLock`](https://reactuse.com/browser/usewakelock/) —— 保持螢幕常亮,並在可見性變化時自動重新請求
+- [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) —— 發送系統級通知,權限流程已處理
+- [`useScreenSafeArea`](https://reactuse.com/browser/usescreensafearea/) —— 響應式地讀取安全區域內邊距
+- [`useTitle`](https://reactuse.com/browser/usetitle/) —— 宣告式地設定文件標題
+- [`useFavicon`](https://reactuse.com/browser/usefavicon/) —— 根據應用狀態更新 favicon
+- [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) —— 追蹤文件對使用者是否可見
+- [`usePageLeave`](https://reactuse.com/browser/usepageleave/) —— 偵測游標何時離開頁面區域
+- [`useSupported`](https://reactuse.com/state/usesupported/) —— 響應式地檢查瀏覽器 API 是否可用
 
 ---
 

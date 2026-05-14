@@ -17,7 +17,7 @@ image: /img/og.png
 
 <!-- truncate -->
 
-如果只需一次 Hook 调用就能获得流畅、可用于生产的拖拽行为呢？本文将从原生浏览器 API 出发，分析它们为何难用，然后用 [ReactUse](https://reactuse.com) 中的两个轻量 Hook：[`useDraggable`](https://reactuse.com/element/useDraggable/) 和 [`useDropZone`](https://reactuse.com/element/useDropZone/) 来解决同样的问题。
+如果只需一次 Hook 调用就能获得流畅、可用于生产的拖拽行为呢？本文将从原生浏览器 API 出发，分析它们为何难用，然后用 [ReactUse](https://reactuse.com) 中的两个轻量 Hook：[`useDraggable`](https://reactuse.com/element/usedraggable/) 和 [`useDropZone`](https://reactuse.com/element/usedropzone/) 来解决同样的问题。
 
 ## 手动实现：自行处理指针事件
 
@@ -103,7 +103,7 @@ function ManualDraggable() {
 
 ## useDraggable：一个 Hook，完全掌控
 
-[`useDraggable`](https://reactuse.com/element/useDraggable/) 接受一个目标元素的 ref 和一个可选的配置对象。它返回当前的 `x` 和 `y` 位置、一个表示元素是否正在被拖拽的布尔值，以及一个 setter（用于程序化地移动元素）。
+[`useDraggable`](https://reactuse.com/element/usedraggable/) 接受一个目标元素的 ref 和一个可选的配置对象。它返回当前的 `x` 和 `y` 位置、一个表示元素是否正在被拖拽的布尔值，以及一个 setter（用于程序化地移动元素）。
 
 ```tsx
 import { useDraggable } from "@reactuses/core";
@@ -247,7 +247,7 @@ function DraggablePanel() {
 
 ## useDropZone：轻松实现文件拖放
 
-[`useDropZone`](https://reactuse.com/element/useDropZone/) 解决拖放的另一半：接收放置。它处理全部四个拖拽事件（`dragenter`、`dragover`、`dragleave`、`drop`），阻止浏览器默认打开文件的行为，并通过内部计数器解决了 `dragleave` 闪烁问题。
+[`useDropZone`](https://reactuse.com/element/usedropzone/) 解决拖放的另一半：接收放置。它处理全部四个拖拽事件（`dragenter`、`dragover`、`dragleave`、`drop`），阻止浏览器默认打开文件的行为，并通过内部计数器解决了 `dragleave` 闪烁问题。
 
 ```tsx
 import { useDropZone } from "@reactuses/core";
@@ -298,7 +298,7 @@ function FileUploader() {
 
 ## 构建看板风格的卡片拖动
 
-让我们在一个更贴近实际的例子中结合两个 Hook——一个可拖拽的卡片，松开时弹回原位，以及一个接受它的放置区域。我们还将使用 [`useElementBounding`](https://reactuse.com/element/useElementBounding/) 来读取区域位置以做视觉反馈。
+让我们在一个更贴近实际的例子中结合两个 Hook——一个可拖拽的卡片，松开时弹回原位，以及一个接受它的放置区域。我们还将使用 [`useElementBounding`](https://reactuse.com/element/useelementbounding/) 来读取区域位置以做视觉反馈。
 
 ```tsx
 import { useDraggable, useDropZone, useElementBounding } from "@reactuses/core";
@@ -454,9 +454,9 @@ function TaskCard({
 
 ReactUse 的 Hook 天然可组合。以下是扩展上述示例的几种方式：
 
-- **[`useMouse`](https://reactuse.com/browser/useMouse/)** ——全局追踪光标位置，在拖拽过程中显示自定义拖拽光标或跟随指针的浮动提示。
-- **[`useEventListener`](https://reactuse.com/effect/useEventListener/)** ——附加一个 `keydown` 监听器，在用户按下 Escape 时取消拖拽。
-- **[`useElementSize`](https://reactuse.com/element/useElementSize/)** ——动态读取容器的宽高以计算网格对齐位置（例如将 `x` 舍入到单元格宽度的最近倍数）。
+- **[`useMouse`](https://reactuse.com/browser/usemouse/)** ——全局追踪光标位置，在拖拽过程中显示自定义拖拽光标或跟随指针的浮动提示。
+- **[`useEventListener`](https://reactuse.com/effect/useeventlistener/)** ——附加一个 `keydown` 监听器，在用户按下 Escape 时取消拖拽。
+- **[`useElementSize`](https://reactuse.com/element/useelementsize/)** ——动态读取容器的宽高以计算网格对齐位置（例如将 `x` 舍入到单元格宽度的最近倍数）。
 
 例如，使用 `useEventListener` 添加 Escape 取消只需几行代码：
 
@@ -507,12 +507,12 @@ npm i @reactuses/core
 
 ## 相关 Hook
 
-- [`useDraggable`](https://reactuse.com/element/useDraggable/) ——使用指针事件让任意元素可拖拽
-- [`useDropZone`](https://reactuse.com/element/useDropZone/) ——为文件上传和拖放操作创建放置区域
-- [`useElementBounding`](https://reactuse.com/element/useElementBounding/) ——获取元素的实时边界矩形
-- [`useMouse`](https://reactuse.com/browser/useMouse/) ——全局追踪鼠标位置
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) ——声明式地附加事件监听器
-- [`useElementSize`](https://reactuse.com/element/useElementSize/) ——响应式追踪元素尺寸
+- [`useDraggable`](https://reactuse.com/element/usedraggable/) ——使用指针事件让任意元素可拖拽
+- [`useDropZone`](https://reactuse.com/element/usedropzone/) ——为文件上传和拖放操作创建放置区域
+- [`useElementBounding`](https://reactuse.com/element/useelementbounding/) ——获取元素的实时边界矩形
+- [`useMouse`](https://reactuse.com/browser/usemouse/) ——全局追踪鼠标位置
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) ——声明式地附加事件监听器
+- [`useElementSize`](https://reactuse.com/element/useelementsize/) ——响应式追踪元素尺寸
 
 ---
 

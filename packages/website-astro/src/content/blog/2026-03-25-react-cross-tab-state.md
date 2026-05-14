@@ -117,7 +117,7 @@ This is where well-designed hooks eliminate boilerplate without hiding the under
 
 ## useBroadcastChannel: Type-Safe Messaging Between Tabs
 
-The [`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) hook from ReactUse wraps the BroadcastChannel API in a clean, declarative interface. It handles channel creation, message listening, cleanup on unmount, and even SSR safety — all in a single call.
+The [`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) hook from ReactUse wraps the BroadcastChannel API in a clean, declarative interface. It handles channel creation, message listening, cleanup on unmount, and even SSR safety — all in a single call.
 
 ```tsx
 import { useBroadcastChannel } from "@reactuses/core";
@@ -150,7 +150,7 @@ The generic type parameter gives you full TypeScript safety for the message shap
 
 ## useLocalStorage: Automatic Cross-Tab Sync
 
-For state that should persist *and* sync across tabs, [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) is the right tool. It works like `useState`, but the value is backed by `localStorage` and automatically stays in sync across all tabs via storage events.
+For state that should persist *and* sync across tabs, [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) is the right tool. It works like `useState`, but the value is backed by `localStorage` and automatically stays in sync across all tabs via storage events.
 
 ```tsx
 import { useLocalStorage } from "@reactuses/core";
@@ -171,7 +171,7 @@ function ThemeToggle() {
 
 When `setTheme` is called in one tab, every other tab running this hook with the same key (`"app-theme"`) updates automatically. The hook handles JSON serialization, initial value fallback, SSR guards, and storage event subscription internally. You write one line of hook usage; the hook writes thirty lines of browser API code for you.
 
-Contrast this with [`useSessionStorage`](https://reactuse.com/state/useSessionStorage/), which provides the same API but scopes the value to the current tab. Session storage does not fire cross-tab events and does not persist after the tab closes. Choose `useLocalStorage` when you want cross-tab sync; choose `useSessionStorage` when you want tab-isolated persistence.
+Contrast this with [`useSessionStorage`](https://reactuse.com/state/usesessionstorage/), which provides the same API but scopes the value to the current tab. Session storage does not fire cross-tab events and does not persist after the tab closes. Choose `useLocalStorage` when you want cross-tab sync; choose `useSessionStorage` when you want tab-isolated persistence.
 
 ## Practical Patterns
 
@@ -279,7 +279,7 @@ Add an item in Tab A, and the cart badge updates in Tab B instantly. No WebSocke
 
 ### Pattern 4: Leader Election
 
-Sometimes you want only one tab to perform a task — polling an API, maintaining a WebSocket connection, or running a background sync. The [`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) hook provides the messaging layer for a simple leader election protocol.
+Sometimes you want only one tab to perform a task — polling an API, maintaining a WebSocket connection, or running a background sync. The [`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) hook provides the messaging layer for a simple leader election protocol.
 
 ```tsx
 import { useBroadcastChannel } from "@reactuses/core";
@@ -325,7 +325,7 @@ Cross-tab sync is only part of the picture. When a tab is in the background, you
 
 ### useDocumentVisibility
 
-[`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) returns the current visibility state of the document — `"visible"` or `"hidden"`. Use it to pause work when the tab is not visible.
+[`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) returns the current visibility state of the document — `"visible"` or `"hidden"`. Use it to pause work when the tab is not visible.
 
 ```tsx
 import { useDocumentVisibility } from "@reactuses/core";
@@ -356,7 +356,7 @@ When the user switches away from the tab, the interval is cleared. When they swi
 
 ### useWindowFocus
 
-[`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) tracks whether the browser window itself has focus. This is subtler than visibility — a tab can be visible but unfocused (for example, when the user is interacting with DevTools or another window overlapping the browser).
+[`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) tracks whether the browser window itself has focus. This is subtler than visibility — a tab can be visible but unfocused (for example, when the user is interacting with DevTools or another window overlapping the browser).
 
 ```tsx
 import { useWindowFocus } from "@reactuses/core";
@@ -475,7 +475,7 @@ This hook uses four ReactUse hooks working together:
 - **`useBroadcastChannel`** sends real-time signals between tabs when notifications arrive or are read.
 - **`useLocalStorage`** persists the notification list and unread count so new tabs pick up the current state.
 - **`useDocumentVisibility`** automatically marks notifications as read when the user returns to a background tab.
-- **`useOnline`** (via [`useOnline`](https://reactuse.com/browser/useOnline/)) exposes the network status so the UI can indicate when the app is offline and notifications may be delayed.
+- **`useOnline`** (via [`useOnline`](https://reactuse.com/browser/useonline/)) exposes the network status so the UI can indicate when the app is offline and notifications may be delayed.
 
 Each hook handles one concern. Composed together, they form a complete system with persistence, real-time sync, visibility awareness, and network status — in under 70 lines.
 
@@ -504,12 +504,12 @@ yarn add @reactuses/core
 
 ## Related Hooks
 
-- [`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) — type-safe cross-tab messaging via the BroadcastChannel API
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) — persistent state with automatic cross-tab synchronization
-- [`useSessionStorage`](https://reactuse.com/state/useSessionStorage/) — tab-scoped persistent state
-- [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) — track whether the current tab is visible
-- [`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) — track whether the browser window has focus
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) — declarative event listener management with automatic cleanup
-- [`useOnline`](https://reactuse.com/browser/useOnline/) — reactive network connectivity status
+- [`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) — type-safe cross-tab messaging via the BroadcastChannel API
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) — persistent state with automatic cross-tab synchronization
+- [`useSessionStorage`](https://reactuse.com/state/usesessionstorage/) — tab-scoped persistent state
+- [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) — track whether the current tab is visible
+- [`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) — track whether the browser window has focus
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) — declarative event listener management with automatic cleanup
+- [`useOnline`](https://reactuse.com/browser/useonline/) — reactive network connectivity status
 
 ReactUse provides 100+ hooks for React. [Explore them all →](https://reactuse.com)

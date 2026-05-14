@@ -113,7 +113,7 @@ function ManualMouseTracker() {
 
 ### 用 useMouse
 
-[`useMouse`](https://reactuse.com/browser/useMouse/) 回傳一個包含 `screenX`、`screenY`、`clientX`、`clientY`、`pageX`、`pageY` 以及元素相關的 `elementX`、`elementY`、`elementW`、`elementH`、`elementPosX`、`elementPosY` 的狀態物件，所有更新透過 `requestAnimationFrame` 自動批次處理。
+[`useMouse`](https://reactuse.com/browser/usemouse/) 回傳一個包含 `screenX`、`screenY`、`clientX`、`clientY`、`pageX`、`pageY` 以及元素相關的 `elementX`、`elementY`、`elementW`、`elementH`、`elementPosX`、`elementPosY` 的狀態物件，所有更新透過 `requestAnimationFrame` 自動批次處理。
 
 ```tsx
 import { useMouse } from "@reactuses/core";
@@ -289,7 +289,7 @@ function ManualPressDetector() {
 
 ### 用 useMousePressed
 
-[`useMousePressed`](https://reactuse.com/browser/useMousePressed/) 把所有這些封裝成一行呼叫。回傳 `[pressed, sourceType]` 元組，開箱即用支援滑鼠、觸控和拖曳事件，可透過 ref 將偵測範圍限定到特定元素。
+[`useMousePressed`](https://reactuse.com/browser/usemousepressed/) 把所有這些封裝成一行呼叫。回傳 `[pressed, sourceType]` 元組，開箱即用支援滑鼠、觸控和拖曳事件，可透過 ref 將偵測範圍限定到特定元素。
 
 ```tsx
 import { useMousePressed } from "@reactuses/core";
@@ -470,7 +470,7 @@ function ManualBounding() {
 
 ### 用 useElementBounding
 
-[`useElementBounding`](https://reactuse.com/element/useElementBounding/) 回傳一個即時更新的邊界矩形，當捲動、視窗大小變化或元素尺寸改變時自動重新整理。回傳 `{ x, y, width, height, top, right, bottom, left, update }`。
+[`useElementBounding`](https://reactuse.com/element/useelementbounding/) 回傳一個即時更新的邊界矩形，當捲動、視窗大小變化或元素尺寸改變時自動重新整理。回傳 `{ x, y, width, height, top, right, bottom, left, update }`。
 
 ```tsx
 import { useElementBounding } from "@reactuses/core";
@@ -724,7 +724,7 @@ function ManualScratchPad() {
 
 ### 用 useScratch
 
-[`useScratch`](https://reactuse.com/browser/useScratch/) 同時處理滑鼠和觸控事件，計算元素相對座標，追蹤時間戳，並透過 `requestAnimationFrame` 批次更新狀態。回傳包含 `isScratching`、`x`、`y`、`dx`、`dy`、`elW`、`elH` 和時間戳的狀態物件。
+[`useScratch`](https://reactuse.com/browser/usescratch/) 同時處理滑鼠和觸控事件，計算元素相對座標，追蹤時間戳，並透過 `requestAnimationFrame` 批次更新狀態。回傳包含 `isScratching`、`x`、`y`、`dx`、`dy`、`elW`、`elH` 和時間戳的狀態物件。
 
 ```tsx
 import { useScratch } from "@reactuses/core";
@@ -973,7 +973,7 @@ function ManualColorPicker() {
 
 ### 用 useEyeDropper
 
-[`useEyeDropper`](https://reactuse.com/browser/useEyeDropper/) 將 EyeDropper API 封裝為簡潔的 `[isSupported, open]` 元組。`open` 函式回傳一個 Promise，resolve 為 `{ sRGBHex: string }`。如果 API 不支援，`isSupported` 為 `false`，`open` 會 resolve 空字串。
+[`useEyeDropper`](https://reactuse.com/browser/useeyedropper/) 將 EyeDropper API 封裝為簡潔的 `[isSupported, open]` 元組。`open` 函式回傳一個 Promise，resolve 為 `{ sRGBHex: string }`。如果 API 不支援，`isSupported` 為 `false`，`open` 會 resolve 空字串。
 
 ```tsx
 import { useEyeDropper } from "@reactuses/core";
@@ -1394,15 +1394,15 @@ npm i @reactuses/core
 
 ## 相關 Hook
 
-- [`useMouse`](https://reactuse.com/browser/useMouse/) -- 追蹤多種座標系下的滑鼠位置
-- [`useMousePressed`](https://reactuse.com/browser/useMousePressed/) -- 偵測滑鼠/觸控/拖曳按壓狀態
-- [`useElementBounding`](https://reactuse.com/element/useElementBounding/) -- 取得元素的即時邊界矩形
-- [`useScratch`](https://reactuse.com/browser/useScratch/) -- 追蹤元素上的塗抹/拖曳手勢
-- [`useEyeDropper`](https://reactuse.com/browser/useEyeDropper/) -- 從螢幕任意位置拾取顏色
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) -- 宣告式地新增事件監聽器
-- [`useRafState`](https://reactuse.com/state/useRafState/) -- 透過 requestAnimationFrame 批次更新狀態
-- [`useElementSize`](https://reactuse.com/element/useElementSize/) -- 響應式追蹤元素尺寸
-- [`useSupported`](https://reactuse.com/browser/useSupported/) -- 響應式偵測瀏覽器 API 支援
+- [`useMouse`](https://reactuse.com/browser/usemouse/) -- 追蹤多種座標系下的滑鼠位置
+- [`useMousePressed`](https://reactuse.com/browser/usemousepressed/) -- 偵測滑鼠/觸控/拖曳按壓狀態
+- [`useElementBounding`](https://reactuse.com/element/useelementbounding/) -- 取得元素的即時邊界矩形
+- [`useScratch`](https://reactuse.com/browser/usescratch/) -- 追蹤元素上的塗抹/拖曳手勢
+- [`useEyeDropper`](https://reactuse.com/browser/useeyedropper/) -- 從螢幕任意位置拾取顏色
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) -- 宣告式地新增事件監聽器
+- [`useRafState`](https://reactuse.com/state/userafstate/) -- 透過 requestAnimationFrame 批次更新狀態
+- [`useElementSize`](https://reactuse.com/element/useelementsize/) -- 響應式追蹤元素尺寸
+- [`useSupported`](https://reactuse.com/browser/usesupported/) -- 響應式偵測瀏覽器 API 支援
 
 ---
 

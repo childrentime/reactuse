@@ -113,7 +113,7 @@ This works for a basic demo, but it fires on every pixel of movement without thr
 
 ### With useMouse
 
-[`useMouse`](https://reactuse.com/browser/useMouse/) returns a comprehensive state object with `screenX`, `screenY`, `clientX`, `clientY`, `pageX`, `pageY`, plus element-relative `elementX`, `elementY`, `elementW`, `elementH`, `elementPosX`, and `elementPosY`. Updates are batched through `requestAnimationFrame` automatically.
+[`useMouse`](https://reactuse.com/browser/usemouse/) returns a comprehensive state object with `screenX`, `screenY`, `clientX`, `clientY`, `pageX`, `pageY`, plus element-relative `elementX`, `elementY`, `elementW`, `elementH`, `elementPosX`, and `elementPosY`. Updates are batched through `requestAnimationFrame` automatically.
 
 ```tsx
 import { useMouse } from "@reactuses/core";
@@ -291,7 +291,7 @@ Five event listeners, five cleanup calls, and this still does not handle drag ev
 
 ### With useMousePressed
 
-[`useMousePressed`](https://reactuse.com/browser/useMousePressed/) wraps all of this into a single call. It returns a `[pressed, sourceType]` tuple, supports mouse, touch, and drag events out of the box, and can be scoped to a specific element via a ref.
+[`useMousePressed`](https://reactuse.com/browser/usemousepressed/) wraps all of this into a single call. It returns a `[pressed, sourceType]` tuple, supports mouse, touch, and drag events out of the box, and can be scoped to a specific element via a ref.
 
 ```tsx
 import { useMousePressed } from "@reactuses/core";
@@ -473,7 +473,7 @@ Three separate event sources (scroll, resize, ResizeObserver), three cleanup pat
 
 ### With useElementBounding
 
-[`useElementBounding`](https://reactuse.com/element/useElementBounding/) returns a live bounding rectangle that automatically updates on scroll, resize, and element dimension changes via `ResizeObserver`. It returns `{ x, y, width, height, top, right, bottom, left, update }`.
+[`useElementBounding`](https://reactuse.com/element/useelementbounding/) returns a live bounding rectangle that automatically updates on scroll, resize, and element dimension changes via `ResizeObserver`. It returns `{ x, y, width, height, top, right, bottom, left, update }`.
 
 ```tsx
 import { useElementBounding } from "@reactuses/core";
@@ -727,7 +727,7 @@ This is already quite verbose, and it only handles mouse events -- no touch supp
 
 ### With useScratch
 
-[`useScratch`](https://reactuse.com/browser/useScratch/) handles both mouse and touch events, computes element-relative coordinates, tracks timing, and batches state updates via `requestAnimationFrame`. It returns a state object with `isScratching`, `x`, `y`, `dx`, `dy`, `elW`, `elH`, and timestamps.
+[`useScratch`](https://reactuse.com/browser/usescratch/) handles both mouse and touch events, computes element-relative coordinates, tracks timing, and batches state updates via `requestAnimationFrame`. It returns a state object with `isScratching`, `x`, `y`, `dx`, `dy`, `elW`, `elH`, and timestamps.
 
 ```tsx
 import { useScratch } from "@reactuses/core";
@@ -981,7 +981,7 @@ The boilerplate around feature detection, async handling, and error management i
 
 ### With useEyeDropper
 
-[`useEyeDropper`](https://reactuse.com/browser/useEyeDropper/) abstracts the EyeDropper API into a simple `[isSupported, open]` tuple. The `open` function returns a promise that resolves to `{ sRGBHex: string }`. If the API is not supported, `isSupported` is `false` and `open` resolves with an empty string.
+[`useEyeDropper`](https://reactuse.com/browser/useeyedropper/) abstracts the EyeDropper API into a simple `[isSupported, open]` tuple. The `open` function returns a promise that resolves to `{ sRGBHex: string }`. If the API is not supported, `isSupported` is `false` and `open` resolves with an empty string.
 
 ```tsx
 import { useEyeDropper } from "@reactuses/core";
@@ -1406,15 +1406,15 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [`useMouse`](https://reactuse.com/browser/useMouse/) -- Track mouse position across multiple coordinate systems
-- [`useMousePressed`](https://reactuse.com/browser/useMousePressed/) -- Detect mouse/touch/drag press state
-- [`useElementBounding`](https://reactuse.com/element/useElementBounding/) -- Get live bounding rectangle of an element
-- [`useScratch`](https://reactuse.com/browser/useScratch/) -- Track scratch/drag gestures on an element
-- [`useEyeDropper`](https://reactuse.com/browser/useEyeDropper/) -- Pick colors from anywhere on screen
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) -- Attach event listeners declaratively
-- [`useRafState`](https://reactuse.com/state/useRafState/) -- State updates batched with requestAnimationFrame
-- [`useElementSize`](https://reactuse.com/element/useElementSize/) -- Track element dimensions reactively
-- [`useSupported`](https://reactuse.com/browser/useSupported/) -- Check browser API support reactively
+- [`useMouse`](https://reactuse.com/browser/usemouse/) -- Track mouse position across multiple coordinate systems
+- [`useMousePressed`](https://reactuse.com/browser/usemousepressed/) -- Detect mouse/touch/drag press state
+- [`useElementBounding`](https://reactuse.com/element/useelementbounding/) -- Get live bounding rectangle of an element
+- [`useScratch`](https://reactuse.com/browser/usescratch/) -- Track scratch/drag gestures on an element
+- [`useEyeDropper`](https://reactuse.com/browser/useeyedropper/) -- Pick colors from anywhere on screen
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) -- Attach event listeners declaratively
+- [`useRafState`](https://reactuse.com/state/userafstate/) -- State updates batched with requestAnimationFrame
+- [`useElementSize`](https://reactuse.com/element/useelementsize/) -- Track element dimensions reactively
+- [`useSupported`](https://reactuse.com/browser/usesupported/) -- Check browser API support reactively
 
 ---
 

@@ -155,8 +155,8 @@ import { useLocalStorage } from "@reactuses/core";
 
 ## 相關 Hooks
 
-- [useLocalStorage 文件](https://reactuse.com/state/useLocalStorage/) -- 完整 API 參考和即時範例
-- [useSessionStorage](https://reactuse.com/state/useSessionStorage/) -- 相同的 API，但資料在分頁關閉時清除
+- [useLocalStorage 文件](https://reactuse.com/state/uselocalstorage/) -- 完整 API 參考和即時範例
+- [useSessionStorage](https://reactuse.com/state/usesessionstorage/) -- 相同的 API，但資料在分頁關閉時清除
 
 ---
 

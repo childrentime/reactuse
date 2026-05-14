@@ -17,7 +17,7 @@ image: /img/og.png
 
 <!-- truncate -->
 
-本文介紹 [ReactUse](https://reactuse.com) 中五個封裝了裝置 API 的 hooks：[`useGeolocation`](https://reactuse.com/browser/useGeolocation/)、[`usePermission`](https://reactuse.com/browser/usePermission/)、[`useNetwork`](https://reactuse.com/browser/useNetwork/)、[`useOnline`](https://reactuse.com/browser/useOnline/) 和 [`usePlatform`](https://reactuse.com/browser/usePlatform/)。對於每個 hook，我們先看看手動實作有多麻煩，再看 hook 如何簡化程式碼。最後，我們會用這些 hook 搭建三個實戰案例。
+本文介紹 [ReactUse](https://reactuse.com) 中五個封裝了裝置 API 的 hooks：[`useGeolocation`](https://reactuse.com/browser/usegeolocation/)、[`usePermission`](https://reactuse.com/browser/usepermission/)、[`useNetwork`](https://reactuse.com/browser/usenetwork/)、[`useOnline`](https://reactuse.com/browser/useonline/) 和 [`usePlatform`](https://reactuse.com/browser/useplatform/)。對於每個 hook，我們先看看手動實作有多麻煩，再看 hook 如何簡化程式碼。最後，我們會用這些 hook 搭建三個實戰案例。
 
 ## 1. 地理定位：取得使用者位置
 
@@ -64,7 +64,7 @@ function useManualGeolocation() {
 
 ### Hook 方案：useGeolocation
 
-[`useGeolocation`](https://reactuse.com/browser/useGeolocation/) 把整個 Geolocation API 封裝成了一個響應式物件：
+[`useGeolocation`](https://reactuse.com/browser/usegeolocation/) 把整個 Geolocation API 封裝成了一個響應式物件：
 
 ```tsx
 import { useGeolocation } from "@reactuses/core";
@@ -130,7 +130,7 @@ function useManualPermission(name: PermissionName) {
 
 ### Hook 方案：usePermission
 
-[`usePermission`](https://reactuse.com/browser/usePermission/) 正確處理了所有這些細節：
+[`usePermission`](https://reactuse.com/browser/usepermission/) 正確處理了所有這些細節：
 
 ```tsx
 import { usePermission } from "@reactuses/core";
@@ -213,7 +213,7 @@ function useManualNetwork(): NetworkState {
 
 ### Hook 方案：useNetwork
 
-[`useNetwork`](https://reactuse.com/browser/useNetwork/) 提供完整的網路狀態視圖：
+[`useNetwork`](https://reactuse.com/browser/usenetwork/) 提供完整的網路狀態視圖：
 
 ```tsx
 import { useNetwork } from "@reactuses/core";
@@ -268,7 +268,7 @@ function useManualOnline() {
 
 ### Hook 方案：useOnline
 
-[`useOnline`](https://reactuse.com/browser/useOnline/) 把這一切簡化為一個布林值：
+[`useOnline`](https://reactuse.com/browser/useonline/) 把這一切簡化為一個布林值：
 
 ```tsx
 import { useOnline } from "@reactuses/core";
@@ -327,7 +327,7 @@ function useManualPlatform() {
 
 ### Hook 方案：usePlatform
 
-[`usePlatform`](https://reactuse.com/browser/usePlatform/) 提供結構化的平台資訊：
+[`usePlatform`](https://reactuse.com/browser/useplatform/) 提供結構化的平台資訊：
 
 ```tsx
 import { usePlatform } from "@reactuses/core";
@@ -349,7 +349,7 @@ function PlatformBanner() {
 
 ## 實戰案例 1：附近門市查找器
 
-我們來建構一個門市定位器，根據使用者的 GPS 位置顯示最近的門市。這裡結合使用 [`useGeolocation`](https://reactuse.com/browser/useGeolocation/) 和 [`usePermission`](https://reactuse.com/browser/usePermission/)，實現流暢的權限互動。
+我們來建構一個門市定位器，根據使用者的 GPS 位置顯示最近的門市。這裡結合使用 [`useGeolocation`](https://reactuse.com/browser/usegeolocation/) 和 [`usePermission`](https://reactuse.com/browser/usepermission/)，實現流暢的權限互動。
 
 ```tsx
 import { useGeolocation, usePermission } from "@reactuses/core";
@@ -451,7 +451,7 @@ function StoreLocator() {
 
 ## 實戰案例 2：離線感知的資料同步
 
-這個元件根據網路狀況自適應調整行為。離線時，將修改快取到本地；網路恢復後，自動同步。它使用 [`useOnline`](https://reactuse.com/browser/useOnline/) 做簡單的連線偵測，搭配 [`useNetwork`](https://reactuse.com/browser/useNetwork/) 根據連線品質決定同步策略。
+這個元件根據網路狀況自適應調整行為。離線時，將修改快取到本地；網路恢復後，自動同步。它使用 [`useOnline`](https://reactuse.com/browser/useonline/) 做簡單的連線偵測，搭配 [`useNetwork`](https://reactuse.com/browser/usenetwork/) 根據連線品質決定同步策略。
 
 ```tsx
 import { useState, useEffect, useCallback } from "react";
@@ -692,7 +692,7 @@ function NotificationSettings() {
 }
 ```
 
-注意 [`usePlatform`](https://reactuse.com/browser/usePlatform/) 在通知被拒絕時用來展示對應平台的操作指引。這種情境相關的輔助說明能顯著減少因為「權限被拒絕」而直接放棄的使用者。
+注意 [`usePlatform`](https://reactuse.com/browser/useplatform/) 在通知被拒絕時用來展示對應平台的操作指引。這種情境相關的輔助說明能顯著減少因為「權限被拒絕」而直接放棄的使用者。
 
 ## useOnline 和 useNetwork 的選擇
 
@@ -705,7 +705,7 @@ function NotificationSettings() {
 | 瀏覽器相容性 | 所有瀏覽器 | 基於 Chromium 的瀏覽器（Network Information API） |
 | 效能開銷 | 極小 | 極小 |
 
-只需要知道使用者是否聯網時用 [`useOnline`](https://reactuse.com/browser/useOnline/)。需要根據網路品質做差異化處理時用 [`useNetwork`](https://reactuse.com/browser/useNetwork/)——例如在弱網環境下載入低解析度圖片，或者延後非關鍵的網路請求。
+只需要知道使用者是否聯網時用 [`useOnline`](https://reactuse.com/browser/useonline/)。需要根據網路品質做差異化處理時用 [`useNetwork`](https://reactuse.com/browser/usenetwork/)——例如在弱網環境下載入低解析度圖片，或者延後非關鍵的網路請求。
 
 ## 錯誤處理與 SSR 相容
 
@@ -739,8 +739,8 @@ import {
 
 ## 相關 Hooks
 
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) —— 訂閱任意 DOM 事件，自動清理
-- [`useSupported`](https://reactuse.com/state/useSupported/) —— 在使用前偵測瀏覽器 API 是否可用
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) —— 將狀態持久化到 localStorage，支援 SSR
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) —— 訂閱任意 DOM 事件，自動清理
+- [`useSupported`](https://reactuse.com/state/usesupported/) —— 在使用前偵測瀏覽器 API 是否可用
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) —— 將狀態持久化到 localStorage，支援 SSR
 
 ReactUse 提供了 100 多個 React hooks。[查看全部 →](https://reactuse.com)

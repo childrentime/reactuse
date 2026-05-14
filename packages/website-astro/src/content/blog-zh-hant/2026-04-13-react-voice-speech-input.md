@@ -562,13 +562,13 @@ npm i @reactuses/core
 
 ## 相關 Hook
 
-- [`useSpeechRecognition`](https://reactuse.com/browser/useSpeechRecognition/) —— 即時語音轉文字,追蹤中間和最終結果
-- [`useMediaDevices`](https://reactuse.com/browser/useMediaDevices/) —— 列舉相機和麥克風,處理權限
-- [`usePermission`](https://reactuse.com/browser/usePermission/) —— 響應式地查詢任意權限的 Permissions API
-- [`useKeyModifier`](https://reactuse.com/browser/useKeyModifier/) —— 追蹤 OS 級別的修飾鍵狀態(Shift、Control 等)
-- [`useSupported`](https://reactuse.com/state/useSupported/) —— 響應式地檢查瀏覽器 API 是否可用
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) —— 宣告式地附加事件監聽器,可用於自訂語音流程
-- [`useObjectUrl`](https://reactuse.com/browser/useObjectUrl/) —— 為錄製的音訊 blob 建立臨時 URL 以預覽
+- [`useSpeechRecognition`](https://reactuse.com/browser/usespeechrecognition/) —— 即時語音轉文字,追蹤中間和最終結果
+- [`useMediaDevices`](https://reactuse.com/browser/usemediadevices/) —— 列舉相機和麥克風,處理權限
+- [`usePermission`](https://reactuse.com/browser/usepermission/) —— 響應式地查詢任意權限的 Permissions API
+- [`useKeyModifier`](https://reactuse.com/browser/usekeymodifier/) —— 追蹤 OS 級別的修飾鍵狀態(Shift、Control 等)
+- [`useSupported`](https://reactuse.com/state/usesupported/) —— 響應式地檢查瀏覽器 API 是否可用
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) —— 宣告式地附加事件監聽器,可用於自訂語音流程
+- [`useObjectUrl`](https://reactuse.com/browser/useobjecturl/) —— 為錄製的音訊 blob 建立臨時 URL 以預覽
 
 ---
 

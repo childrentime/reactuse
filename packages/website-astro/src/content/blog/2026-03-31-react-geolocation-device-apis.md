@@ -17,7 +17,7 @@ Modern web applications increasingly depend on device capabilities -- knowing wh
 
 <!-- truncate -->
 
-This article covers five hooks from [ReactUse](https://reactuse.com) that wrap these device APIs into clean, reactive interfaces: [`useGeolocation`](https://reactuse.com/browser/useGeolocation/), [`usePermission`](https://reactuse.com/browser/usePermission/), [`useNetwork`](https://reactuse.com/browser/useNetwork/), [`useOnline`](https://reactuse.com/browser/useOnline/), and [`usePlatform`](https://reactuse.com/browser/usePlatform/). For each hook, we will look at what the manual approach looks like, then see how the hook simplifies it. We will then build three practical examples that combine these hooks together.
+This article covers five hooks from [ReactUse](https://reactuse.com) that wrap these device APIs into clean, reactive interfaces: [`useGeolocation`](https://reactuse.com/browser/usegeolocation/), [`usePermission`](https://reactuse.com/browser/usepermission/), [`useNetwork`](https://reactuse.com/browser/usenetwork/), [`useOnline`](https://reactuse.com/browser/useonline/), and [`usePlatform`](https://reactuse.com/browser/useplatform/). For each hook, we will look at what the manual approach looks like, then see how the hook simplifies it. We will then build three practical examples that combine these hooks together.
 
 ## 1. Geolocation: Tracking the User's Position
 
@@ -64,7 +64,7 @@ This handles the basics, but it does not expose accuracy, altitude, heading, or 
 
 ### The Hook Solution: useGeolocation
 
-[`useGeolocation`](https://reactuse.com/browser/useGeolocation/) wraps the entire Geolocation API into a single reactive object:
+[`useGeolocation`](https://reactuse.com/browser/usegeolocation/) wraps the entire Geolocation API into a single reactive object:
 
 ```tsx
 import { useGeolocation } from "@reactuses/core";
@@ -130,7 +130,7 @@ There is a subtle bug here: the cleanup function creates a new anonymous functio
 
 ### The Hook Solution: usePermission
 
-[`usePermission`](https://reactuse.com/browser/usePermission/) handles all of this correctly:
+[`usePermission`](https://reactuse.com/browser/usepermission/) handles all of this correctly:
 
 ```tsx
 import { usePermission } from "@reactuses/core";
@@ -213,7 +213,7 @@ This is a lot of boilerplate for something that should be a simple read.
 
 ### The Hook Solution: useNetwork
 
-[`useNetwork`](https://reactuse.com/browser/useNetwork/) provides the full network picture:
+[`useNetwork`](https://reactuse.com/browser/usenetwork/) provides the full network picture:
 
 ```tsx
 import { useNetwork } from "@reactuses/core";
@@ -268,7 +268,7 @@ function useManualOnline() {
 
 ### The Hook Solution: useOnline
 
-[`useOnline`](https://reactuse.com/browser/useOnline/) reduces this to a single boolean:
+[`useOnline`](https://reactuse.com/browser/useonline/) reduces this to a single boolean:
 
 ```tsx
 import { useOnline } from "@reactuses/core";
@@ -328,7 +328,7 @@ function useManualPlatform() {
 
 ### The Hook Solution: usePlatform
 
-[`usePlatform`](https://reactuse.com/browser/usePlatform/) provides structured platform information:
+[`usePlatform`](https://reactuse.com/browser/useplatform/) provides structured platform information:
 
 ```tsx
 import { usePlatform } from "@reactuses/core";
@@ -350,7 +350,7 @@ This is useful for showing platform-specific instructions, keyboard shortcuts (C
 
 ## Practical Example 1: Store Locator with Distance Calculator
 
-Let's build a store locator that shows the nearest store based on the user's GPS position. This combines [`useGeolocation`](https://reactuse.com/browser/useGeolocation/) with [`usePermission`](https://reactuse.com/browser/usePermission/) for a smooth permission flow.
+Let's build a store locator that shows the nearest store based on the user's GPS position. This combines [`useGeolocation`](https://reactuse.com/browser/usegeolocation/) with [`usePermission`](https://reactuse.com/browser/usepermission/) for a smooth permission flow.
 
 ```tsx
 import { useGeolocation, usePermission } from "@reactuses/core";
@@ -453,7 +453,7 @@ The key detail here is the permission check. By reading `usePermission("geolocat
 
 ## Practical Example 2: Offline-Aware Data Sync
 
-This component adapts its behavior based on connectivity. When offline, it queues changes locally. When the connection returns, it syncs automatically. It uses [`useOnline`](https://reactuse.com/browser/useOnline/) for simple connectivity detection and [`useNetwork`](https://reactuse.com/browser/useNetwork/) to decide sync strategy based on connection quality.
+This component adapts its behavior based on connectivity. When offline, it queues changes locally. When the connection returns, it syncs automatically. It uses [`useOnline`](https://reactuse.com/browser/useonline/) for simple connectivity detection and [`useNetwork`](https://reactuse.com/browser/usenetwork/) to decide sync strategy based on connection quality.
 
 ```tsx
 import { useState, useEffect, useCallback } from "react";
@@ -694,7 +694,7 @@ function NotificationSettings() {
 }
 ```
 
-Notice how [`usePlatform`](https://reactuse.com/browser/usePlatform/) is used to show platform-specific instructions when notifications are blocked. This kind of contextual help dramatically reduces the number of users who give up when they see a "permission denied" state.
+Notice how [`usePlatform`](https://reactuse.com/browser/useplatform/) is used to show platform-specific instructions when notifications are blocked. This kind of contextual help dramatically reduces the number of users who give up when they see a "permission denied" state.
 
 ## When to Use useOnline vs useNetwork
 
@@ -707,7 +707,7 @@ Both hooks deal with connectivity, but they serve different purposes:
 | Browser support | All browsers | Chromium-based browsers (Network Information API) |
 | Overhead | Minimal | Minimal |
 
-Use [`useOnline`](https://reactuse.com/browser/useOnline/) when you only need to know if the user is connected. Use [`useNetwork`](https://reactuse.com/browser/useNetwork/) when you need to adapt behavior based on connection quality -- for example, loading lower-resolution images on slow connections, or deferring non-critical network requests.
+Use [`useOnline`](https://reactuse.com/browser/useonline/) when you only need to know if the user is connected. Use [`useNetwork`](https://reactuse.com/browser/usenetwork/) when you need to adapt behavior based on connection quality -- for example, loading lower-resolution images on slow connections, or deferring non-critical network requests.
 
 ## Error Handling and SSR
 
@@ -741,8 +741,8 @@ import {
 
 ## Related Hooks
 
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) -- subscribe to any DOM event with automatic cleanup
-- [`useSupported`](https://reactuse.com/state/useSupported/) -- check if a browser API is supported before using it
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) -- persist state to localStorage with SSR safety
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) -- subscribe to any DOM event with automatic cleanup
+- [`useSupported`](https://reactuse.com/state/usesupported/) -- check if a browser API is supported before using it
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) -- persist state to localStorage with SSR safety
 
 ReactUse provides 100+ hooks for React. [Explore them all →](https://reactuse.com)

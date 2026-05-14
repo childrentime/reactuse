@@ -76,7 +76,7 @@ function CustomInput({ value, defaultValue = "", onChange }: CustomInputProps) {
 
 ### 用 useControlled
 
-[`useControlled`](https://reactuse.com/state/useControlled/) 封裝了整套受控/非受控協調邏輯，回傳一個 `[value, setValue]` 元組，無論使用者選擇哪種模式都能正常運作。
+[`useControlled`](https://reactuse.com/state/usecontrolled/) 封裝了整套受控/非受控協調邏輯，回傳一個 `[value, setValue]` 元組，無論使用者選擇哪種模式都能正常運作。
 
 ```tsx
 import { useControlled } from "@reactuses/core";
@@ -175,7 +175,7 @@ ref 加 effect 的技巧能用，但容易出錯。如果把 effect 放在渲染
 
 ### 用 usePrevious
 
-[`usePrevious`](https://reactuse.com/state/usePrevious/) 回傳上一次渲染的值，時機精確——在當前渲染期間你始終看到的是舊值。
+[`usePrevious`](https://reactuse.com/state/useprevious/) 回傳上一次渲染的值，時機精確——在當前渲染期間你始終看到的是舊值。
 
 ```tsx
 import { usePrevious } from "@reactuses/core";
@@ -299,7 +299,7 @@ function ManualDebouncedSearch() {
 
 ### 用 useDebounce
 
-[`useDebounce`](https://reactuse.com/state/useDebounce/) 回傳任意值的防抖版本。你正常更新來源狀態，Hook 會產出一個滯後的副本，只在指定的靜默期之後才更新。
+[`useDebounce`](https://reactuse.com/state/usedebounce/) 回傳任意值的防抖版本。你正常更新來源狀態，Hook 會產出一個滯後的副本，只在指定的靜默期之後才更新。
 
 ```tsx
 import { useDebounce } from "@reactuses/core";
@@ -400,7 +400,7 @@ function ManualThrottledSlider() {
 
 ### 用 useThrottle
 
-[`useThrottle`](https://reactuse.com/state/useThrottle/) 回傳值的節流版本，在每個間隔內最多更新一次，同時確保最終值始終被捕獲。
+[`useThrottle`](https://reactuse.com/state/usethrottle/) 回傳值的節流版本，在每個間隔內最多更新一次，同時確保最終值始終被捕獲。
 
 ```tsx
 import { useThrottle } from "@reactuses/core";
@@ -500,7 +500,7 @@ function ManualViewToggle() {
 
 ### 用 useCycleList
 
-[`useCycleList`](https://reactuse.com/state/useCycleList/) 管理陣列值的循環，提供 `next`、`prev` 以及直接跳轉的 `go` 函式，連同當前值和索引。
+[`useCycleList`](https://reactuse.com/state/usecyclelist/) 管理陣列值的循環，提供 `next`、`prev` 以及直接跳轉的 `go` 函式，連同當前值和索引。
 
 ```tsx
 import { useCycleList } from "@reactuses/core";
@@ -622,7 +622,7 @@ function ManualQuantityPicker() {
 
 ### 用 useCounter
 
-[`useCounter`](https://reactuse.com/state/useCounter/) 開箱即用地提供 `count`、`inc`、`dec`、`set` 和 `reset`，並支援可選的最小/最大值邊界。
+[`useCounter`](https://reactuse.com/state/usecounter/) 開箱即用地提供 `count`、`inc`、`dec`、`set` 和 `reset`，並支援可選的最小/最大值邊界。
 
 ```tsx
 import { useCounter } from "@reactuses/core";
@@ -756,7 +756,7 @@ function ManualSettingsForm() {
 
 ### 用 useSetState
 
-[`useSetState`](https://reactuse.com/state/useSetState/) 的行為和類別元件的 `setState` 一樣——傳入部分物件，自動合併到已有狀態中。
+[`useSetState`](https://reactuse.com/state/usesetstate/) 的行為和類別元件的 `setState` 一樣——傳入部分物件，自動合併到已有狀態中。
 
 ```tsx
 import { useSetState } from "@reactuses/core";
@@ -1062,16 +1062,16 @@ npm i @reactuses/core
 
 ## 相關 Hook
 
-- [`useControlled`](https://reactuse.com/state/useControlled/) -- 建構同時支援受控和非受控的元件
-- [`usePrevious`](https://reactuse.com/state/usePrevious/) -- 取得上一次渲染的值
-- [`useDebounce`](https://reactuse.com/state/useDebounce/) -- 對任意值按指定延遲進行防抖
-- [`useThrottle`](https://reactuse.com/state/useThrottle/) -- 對任意值按間隔進行節流
-- [`useCycleList`](https://reactuse.com/state/useCycleList/) -- 在陣列值之間用 next/prev 循環切換
-- [`useCounter`](https://reactuse.com/state/useCounter/) -- 帶 inc/dec/reset 和可選 min/max 的數值狀態
-- [`useSetState`](https://reactuse.com/state/useSetState/) -- 像類別元件 setState 一樣合併部分物件到狀態中
-- [`useBoolean`](https://reactuse.com/state/useBoolean/) -- 帶 toggle、setTrue、setFalse 的布林狀態
-- [`useToggle`](https://reactuse.com/state/useToggle/) -- 在兩個值之間切換
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) -- 將狀態持久化到 localStorage 並自動序列化
+- [`useControlled`](https://reactuse.com/state/usecontrolled/) -- 建構同時支援受控和非受控的元件
+- [`usePrevious`](https://reactuse.com/state/useprevious/) -- 取得上一次渲染的值
+- [`useDebounce`](https://reactuse.com/state/usedebounce/) -- 對任意值按指定延遲進行防抖
+- [`useThrottle`](https://reactuse.com/state/usethrottle/) -- 對任意值按間隔進行節流
+- [`useCycleList`](https://reactuse.com/state/usecyclelist/) -- 在陣列值之間用 next/prev 循環切換
+- [`useCounter`](https://reactuse.com/state/usecounter/) -- 帶 inc/dec/reset 和可選 min/max 的數值狀態
+- [`useSetState`](https://reactuse.com/state/usesetstate/) -- 像類別元件 setState 一樣合併部分物件到狀態中
+- [`useBoolean`](https://reactuse.com/state/useboolean/) -- 帶 toggle、setTrue、setFalse 的布林狀態
+- [`useToggle`](https://reactuse.com/state/usetoggle/) -- 在兩個值之間切換
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) -- 將狀態持久化到 localStorage 並自動序列化
 
 ---
 

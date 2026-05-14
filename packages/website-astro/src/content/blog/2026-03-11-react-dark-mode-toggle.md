@@ -94,7 +94,7 @@ This respects the user's OS setting and reacts to changes in real time. But you 
 
 ## The Easy Way: useDarkMode
 
-The [useDarkMode](https://reactuse.com/browser/useDarkMode/) hook from ReactUse handles all of this in a single call. It detects system preferences, persists the user's choice to localStorage, applies CSS classes to the DOM, and works safely with SSR:
+The [useDarkMode](https://reactuse.com/browser/usedarkmode/) hook from ReactUse handles all of this in a single call. It detects system preferences, persists the user's choice to localStorage, applies CSS classes to the DOM, and works safely with SSR:
 
 ```tsx
 import { useDarkMode } from "@reactuses/core";
@@ -201,10 +201,10 @@ yarn add @reactuses/core
 
 ## Related Hooks
 
-- [useDarkMode documentation](https://reactuse.com/browser/useDarkMode/) — full API reference and interactive demo
-- [useColorMode](https://reactuse.com/browser/useColorMode/) — for multi-mode theming beyond light/dark
-- [useMediaQuery](https://reactuse.com/browser/useMediaQuery/) — for responding to any CSS media query
-- [useLocalStorage](https://reactuse.com/state/useLocalStorage/) — for general-purpose persistent state
+- [useDarkMode documentation](https://reactuse.com/browser/usedarkmode/) — full API reference and interactive demo
+- [useColorMode](https://reactuse.com/browser/usecolormode/) — for multi-mode theming beyond light/dark
+- [useMediaQuery](https://reactuse.com/browser/usemediaquery/) — for responding to any CSS media query
+- [useLocalStorage](https://reactuse.com/state/uselocalstorage/) — for general-purpose persistent state
 
 ---
 

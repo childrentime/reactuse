@@ -136,10 +136,10 @@ npm i @reactuses/core
 
 ## 相關 Hooks
 
-- [useDebounce 文件](https://reactuse.com/state/useDebounce/) -- 防抖一個響應式值
-- [useDebounceFn 文件](https://reactuse.com/effect/useDebounceFn/) -- 防抖一個函式
-- [useThrottle 文件](https://reactuse.com/state/useThrottle/) -- 節流一個響應式值
-- [useThrottleFn 文件](https://reactuse.com/effect/useThrottleFn/) -- 節流一個函式
+- [useDebounce 文件](https://reactuse.com/state/usedebounce/) -- 防抖一個響應式值
+- [useDebounceFn 文件](https://reactuse.com/effect/usedebouncefn/) -- 防抖一個函式
+- [useThrottle 文件](https://reactuse.com/state/usethrottle/) -- 節流一個響應式值
+- [useThrottleFn 文件](https://reactuse.com/effect/usethrottlefn/) -- 節流一個函式
 
 ---
 

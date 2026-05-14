@@ -155,8 +155,8 @@ import { useLocalStorage } from "@reactuses/core";
 
 ## 相关 Hooks
 
-- [useLocalStorage 文档](https://reactuse.com/state/useLocalStorage/) -- 完整 API 参考和在线演示
-- [useSessionStorage](https://reactuse.com/state/useSessionStorage/) -- 相同的 API，但数据在标签页关闭时清除
+- [useLocalStorage 文档](https://reactuse.com/state/uselocalstorage/) -- 完整 API 参考和在线演示
+- [useSessionStorage](https://reactuse.com/state/usesessionstorage/) -- 相同的 API，但数据在标签页关闭时清除
 
 ---
 

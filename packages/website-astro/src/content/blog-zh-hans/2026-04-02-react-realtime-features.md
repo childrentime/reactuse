@@ -104,7 +104,7 @@ function useManualEventSource(url: string) {
 
 ### 使用 useEventSource
 
-ReactUse 的 [`useEventSource`](https://reactuse.com/browser/useEventSource/) Hook 把这些问题全部解决了。
+ReactUse 的 [`useEventSource`](https://reactuse.com/browser/useeventsource/) Hook 把这些问题全部解决了。
 
 ```tsx
 import { useEventSource } from "@reactuses/core";
@@ -290,7 +290,7 @@ function useManualFetchSSE(url: string, token: string) {
 
 ### 使用 useFetchEventSource
 
-ReactUse 的 [`useFetchEventSource`](https://reactuse.com/browser/useFetchEventSource/) Hook 封装了 [@microsoft/fetch-event-source](https://github.com/Azure/fetch-event-source) 库，提供了 React 友好的 API。它支持自定义请求头、POST 请求体，以及你需要的所有重连逻辑。
+ReactUse 的 [`useFetchEventSource`](https://reactuse.com/browser/usefetcheventsource/) Hook 封装了 [@microsoft/fetch-event-source](https://github.com/Azure/fetch-event-source) 库，提供了 React 友好的 API。它支持自定义请求头、POST 请求体，以及你需要的所有重连逻辑。
 
 ```tsx
 import { useFetchEventSource } from "@reactuses/core";
@@ -479,7 +479,7 @@ function useManualNetworkStatus() {
 
 ### 使用 useNetwork
 
-[`useNetwork`](https://reactuse.com/browser/useNetwork/) Hook 返回完整的网络信息。
+[`useNetwork`](https://reactuse.com/browser/usenetwork/) Hook 返回完整的网络信息。
 
 ```tsx
 import { useNetwork } from "@reactuses/core";
@@ -522,7 +522,7 @@ Hook 处理了所有的厂商前缀、事件监听器和 SSR 安全问题。`pre
 
 ### 使用 useOnline
 
-如果你只需要布尔值，[`useOnline`](https://reactuse.com/browser/useOnline/) 更加简洁。它是 `useNetwork` 的轻量封装，只返回 `online` 值。
+如果你只需要布尔值，[`useOnline`](https://reactuse.com/browser/useonline/) 更加简洁。它是 `useNetwork` 的轻量封装，只返回 `online` 值。
 
 ```tsx
 import { useOnline } from "@reactuses/core";
@@ -638,7 +638,7 @@ function useManualBroadcastChannel<T>(channelName: string) {
 
 ### 使用 useBroadcastChannel
 
-[`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) Hook 提供了完整的、类型安全的封装。
+[`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) Hook 提供了完整的、类型安全的封装。
 
 ```tsx
 import { useBroadcastChannel } from "@reactuses/core";
@@ -979,12 +979,12 @@ yarn add @reactuses/core
 
 ## 相关 Hooks
 
-- [`useEventSource`](https://reactuse.com/browser/useEventSource/) -- 响应式 Server-Sent Events，支持命名事件和自动重连
-- [`useFetchEventSource`](https://reactuse.com/browser/useFetchEventSource/) -- 基于 fetch 的 SSE，支持自定义请求头、POST 请求和认证
-- [`useNetwork`](https://reactuse.com/browser/useNetwork/) -- 详细的网络状态，包括连接类型、下行速度和往返时间
-- [`useOnline`](https://reactuse.com/browser/useOnline/) -- 简单的在线/离线布尔值检测
-- [`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) -- 通过 BroadcastChannel API 实现类型安全的跨标签页消息传递
-- [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) -- 跟踪当前标签页是否可见
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) -- 具有自动跨标签页同步的持久化状态
+- [`useEventSource`](https://reactuse.com/browser/useeventsource/) -- 响应式 Server-Sent Events，支持命名事件和自动重连
+- [`useFetchEventSource`](https://reactuse.com/browser/usefetcheventsource/) -- 基于 fetch 的 SSE，支持自定义请求头、POST 请求和认证
+- [`useNetwork`](https://reactuse.com/browser/usenetwork/) -- 详细的网络状态，包括连接类型、下行速度和往返时间
+- [`useOnline`](https://reactuse.com/browser/useonline/) -- 简单的在线/离线布尔值检测
+- [`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) -- 通过 BroadcastChannel API 实现类型安全的跨标签页消息传递
+- [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) -- 跟踪当前标签页是否可见
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) -- 具有自动跨标签页同步的持久化状态
 
 ReactUse 提供了 100+ 个 React Hooks。[探索全部 →](https://reactuse.com)

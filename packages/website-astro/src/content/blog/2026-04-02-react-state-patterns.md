@@ -76,7 +76,7 @@ This works for a simple input. But the pattern gets more complicated when the co
 
 ### With useControlled
 
-[`useControlled`](https://reactuse.com/state/useControlled/) encapsulates the entire controlled/uncontrolled negotiation. It returns a `[value, setValue]` tuple that works regardless of which mode the consumer uses.
+[`useControlled`](https://reactuse.com/state/usecontrolled/) encapsulates the entire controlled/uncontrolled negotiation. It returns a `[value, setValue]` tuple that works regardless of which mode the consumer uses.
 
 ```tsx
 import { useControlled } from "@reactuses/core";
@@ -175,7 +175,7 @@ The ref-plus-effect trick works, but it is easy to get wrong. If you put the eff
 
 ### With usePrevious
 
-[`usePrevious`](https://reactuse.com/state/usePrevious/) returns the value from the previous render, correctly timed so that during the current render you always see the old value.
+[`usePrevious`](https://reactuse.com/state/useprevious/) returns the value from the previous render, correctly timed so that during the current render you always see the old value.
 
 ```tsx
 import { usePrevious } from "@reactuses/core";
@@ -299,7 +299,7 @@ Two state variables, a ref for the timer, an effect to schedule the debounce, an
 
 ### With useDebounce
 
-[`useDebounce`](https://reactuse.com/state/useDebounce/) gives you a debounced version of any value. You update the source state normally, and the hook produces a lagging copy that only updates after the specified quiet period.
+[`useDebounce`](https://reactuse.com/state/usedebounce/) gives you a debounced version of any value. You update the source state normally, and the hook produces a lagging copy that only updates after the specified quiet period.
 
 ```tsx
 import { useDebounce } from "@reactuses/core";
@@ -400,7 +400,7 @@ The throttle logic is tricky to get right. You need to track the last execution 
 
 ### With useThrottle
 
-[`useThrottle`](https://reactuse.com/state/useThrottle/) returns a throttled version of a value, updating at most once per interval while ensuring the final value is always captured.
+[`useThrottle`](https://reactuse.com/state/usethrottle/) returns a throttled version of a value, updating at most once per interval while ensuring the final value is always captured.
 
 ```tsx
 import { useThrottle } from "@reactuses/core";
@@ -500,7 +500,7 @@ Simple enough for one toggle, but the modular arithmetic for wrapping and the se
 
 ### With useCycleList
 
-[`useCycleList`](https://reactuse.com/state/useCycleList/) manages cycling through an array of values, providing `next`, `prev`, and direct `go` functions along with the current value and index.
+[`useCycleList`](https://reactuse.com/state/usecyclelist/) manages cycling through an array of values, providing `next`, `prev`, and direct `go` functions along with the current value and index.
 
 ```tsx
 import { useCycleList } from "@reactuses/core";
@@ -622,7 +622,7 @@ The clamping logic, the disabled states, the memoized callbacks -- all standard 
 
 ### With useCounter
 
-[`useCounter`](https://reactuse.com/state/useCounter/) provides `count`, `inc`, `dec`, `set`, and `reset` out of the box, with optional min/max bounds.
+[`useCounter`](https://reactuse.com/state/usecounter/) provides `count`, `inc`, `dec`, `set`, and `reset` out of the box, with optional min/max bounds.
 
 ```tsx
 import { useCounter } from "@reactuses/core";
@@ -756,7 +756,7 @@ You have to create the merging `setState` wrapper yourself. If another developer
 
 ### With useSetState
 
-[`useSetState`](https://reactuse.com/state/useSetState/) works like the class component `setState` -- pass a partial object and it merges into the existing state automatically.
+[`useSetState`](https://reactuse.com/state/usesetstate/) works like the class component `setState` -- pass a partial object and it merges into the existing state automatically.
 
 ```tsx
 import { useSetState } from "@reactuses/core";
@@ -1062,16 +1062,16 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [`useControlled`](https://reactuse.com/state/useControlled/) -- Build components that work both controlled and uncontrolled
-- [`usePrevious`](https://reactuse.com/state/usePrevious/) -- Access the value from the previous render
-- [`useDebounce`](https://reactuse.com/state/useDebounce/) -- Debounce any value by a specified delay
-- [`useThrottle`](https://reactuse.com/state/useThrottle/) -- Throttle any value to update at most once per interval
-- [`useCycleList`](https://reactuse.com/state/useCycleList/) -- Cycle through an array of values with next/prev
-- [`useCounter`](https://reactuse.com/state/useCounter/) -- Numeric state with inc/dec/reset and optional min/max
-- [`useSetState`](https://reactuse.com/state/useSetState/) -- Merge partial objects into state like class-component setState
-- [`useBoolean`](https://reactuse.com/state/useBoolean/) -- Boolean state with toggle, setTrue, setFalse
-- [`useToggle`](https://reactuse.com/state/useToggle/) -- Toggle between two values
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) -- Persist state to localStorage with automatic serialization
+- [`useControlled`](https://reactuse.com/state/usecontrolled/) -- Build components that work both controlled and uncontrolled
+- [`usePrevious`](https://reactuse.com/state/useprevious/) -- Access the value from the previous render
+- [`useDebounce`](https://reactuse.com/state/usedebounce/) -- Debounce any value by a specified delay
+- [`useThrottle`](https://reactuse.com/state/usethrottle/) -- Throttle any value to update at most once per interval
+- [`useCycleList`](https://reactuse.com/state/usecyclelist/) -- Cycle through an array of values with next/prev
+- [`useCounter`](https://reactuse.com/state/usecounter/) -- Numeric state with inc/dec/reset and optional min/max
+- [`useSetState`](https://reactuse.com/state/usesetstate/) -- Merge partial objects into state like class-component setState
+- [`useBoolean`](https://reactuse.com/state/useboolean/) -- Boolean state with toggle, setTrue, setFalse
+- [`useToggle`](https://reactuse.com/state/usetoggle/) -- Toggle between two values
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) -- Persist state to localStorage with automatic serialization
 
 ---
 

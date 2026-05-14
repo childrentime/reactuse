@@ -57,7 +57,7 @@ This works for a demo but falls apart in production. You are missing `mousedown`
 
 ### The Hook Solution: `useIdle`
 
-[`useIdle`](https://reactuse.com/browser/useIdle/) from ReactUse handles all of this in a single call:
+[`useIdle`](https://reactuse.com/browser/useidle/) from ReactUse handles all of this in a single call:
 
 ```tsx
 import { useIdle } from "@reactuses/core";
@@ -159,7 +159,7 @@ Simple enough for a single use, but you need to remember the SSR guard, and if y
 
 ### The Hook Solution: `useDocumentVisibility`
 
-[`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) wraps the Page Visibility API with SSR safety built in:
+[`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) wraps the Page Visibility API with SSR safety built in:
 
 ```tsx
 import { useDocumentVisibility } from "@reactuses/core";
@@ -290,7 +290,7 @@ The gotcha with the Wake Lock API is that the browser automatically releases the
 
 ### The Hook Solution: `useWakeLock`
 
-[`useWakeLock`](https://reactuse.com/browser/useWakeLock/) handles re-acquisition, error handling, and cleanup automatically:
+[`useWakeLock`](https://reactuse.com/browser/usewakelock/) handles re-acquisition, error handling, and cleanup automatically:
 
 ```tsx
 import { useWakeLock } from "@reactuses/core";
@@ -401,7 +401,7 @@ This misses edge cases: What if the user denied notification permission? What ha
 
 ### The Hook Solution: `useWindowFocus` + `useWebNotification`
 
-Combining [`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) and [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) gives you clean, declarative control:
+Combining [`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) and [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) gives you clean, declarative control:
 
 ```tsx
 import { useWindowFocus, useWebNotification } from "@reactuses/core";
@@ -572,11 +572,11 @@ Five hooks, each doing one thing well, composed together to create a presence-aw
 
 | Scenario | Hook | What It Detects |
 |----------|------|-----------------|
-| Session timeout | [`useIdle`](https://reactuse.com/browser/useIdle/) | No user input for N milliseconds |
-| Pause background work | [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) | Tab is hidden/visible |
-| Detect tab switch | [`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) | Window gained/lost focus |
-| Keep screen awake | [`useWakeLock`](https://reactuse.com/browser/useWakeLock/) | Screen Wake Lock API |
-| Browser notifications | [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) | Notification API |
+| Session timeout | [`useIdle`](https://reactuse.com/browser/useidle/) | No user input for N milliseconds |
+| Pause background work | [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) | Tab is hidden/visible |
+| Detect tab switch | [`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) | Window gained/lost focus |
+| Keep screen awake | [`useWakeLock`](https://reactuse.com/browser/usewakelock/) | Screen Wake Lock API |
+| Browser notifications | [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) | Notification API |
 
 ## Installation
 
@@ -590,13 +590,13 @@ yarn add @reactuses/core
 
 ## Related Hooks
 
-- [`useIdle`](https://reactuse.com/browser/useIdle/) -- detect user inactivity after a configurable timeout
-- [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) -- reactive `document.visibilityState`
-- [`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) -- track whether the window has focus
-- [`useWakeLock`](https://reactuse.com/browser/useWakeLock/) -- request and manage the Screen Wake Lock API
-- [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) -- declarative browser notifications
-- [`useInterval`](https://reactuse.com/effect/useInterval/) -- declarative `setInterval` with pause/resume
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) -- attach DOM event listeners with automatic cleanup
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) -- persist session state across page reloads
+- [`useIdle`](https://reactuse.com/browser/useidle/) -- detect user inactivity after a configurable timeout
+- [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) -- reactive `document.visibilityState`
+- [`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) -- track whether the window has focus
+- [`useWakeLock`](https://reactuse.com/browser/usewakelock/) -- request and manage the Screen Wake Lock API
+- [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) -- declarative browser notifications
+- [`useInterval`](https://reactuse.com/effect/useinterval/) -- declarative `setInterval` with pause/resume
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) -- attach DOM event listeners with automatic cleanup
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) -- persist session state across page reloads
 
 ReactUse provides 100+ hooks for React. [Explore them all →](https://reactuse.com)

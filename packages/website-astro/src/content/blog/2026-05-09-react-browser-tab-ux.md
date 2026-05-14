@@ -47,7 +47,7 @@ The visible bug is subtle: `previous` captures whatever the title was at the mom
 
 ### The ReactUse Way: useTitle
 
-[`useTitle`](https://reactuse.com/browser/useTitle/) takes a single string and reflects it onto `document.title` whenever the string changes:
+[`useTitle`](https://reactuse.com/browser/usetitle/) takes a single string and reflects it onto `document.title` whenever the string changes:
 
 ```tsx
 import { useTitle } from "@reactuses/core";
@@ -105,7 +105,7 @@ This works in the happy path and breaks in three: when there is no `<link rel="i
 
 ### The ReactUse Way: useFavicon
 
-[`useFavicon`](https://reactuse.com/browser/useFavicon/) handles all three cases. It updates every `link[rel*="icon"]` tag it finds, creates one if none exist, and supports a base URL prefix for assets served from a CDN.
+[`useFavicon`](https://reactuse.com/browser/usefavicon/) handles all three cases. It updates every `link[rel*="icon"]` tag it finds, creates one if none exist, and supports a base URL prefix for assets served from a CDN.
 
 ```tsx
 import { useFavicon } from "@reactuses/core";
@@ -163,7 +163,7 @@ Two problems. First, on the server `document` is undefined, so the initial state
 
 ### The ReactUse Way: useDocumentVisibility
 
-[`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) handles SSR via a `defaultValue` argument and re-syncs after mount.
+[`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) handles SSR via a `defaultValue` argument and re-syncs after mount.
 
 ```tsx
 import { useEffect } from "react";
@@ -222,7 +222,7 @@ Same story as before — three event listeners, an initial-state read, an SSR pi
 
 ### The ReactUse Way: useWindowsFocus
 
-[`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) (exported as `useWindowsFocus` — the legacy name is preserved) returns a boolean and re-syncs on mount.
+[`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) (exported as `useWindowsFocus` — the legacy name is preserved) returns a boolean and re-syncs on mount.
 
 ```tsx
 import { useEffect } from "react";
@@ -273,7 +273,7 @@ The two hooks that pair here are `usePermission` and `useWebNotification`.
 
 ### Check the State Before You Ask
 
-[`usePermission`](https://reactuse.com/browser/usePermission/) wraps the Permissions API and returns the current state for any permission name — `'granted'`, `'denied'`, `'prompt'`, or empty if the API is not supported. Use it to decide whether to render an "Enable notifications" button (state is `'prompt'`), a "You're all set" indicator (`'granted'`), or a "Notifications are blocked — fix in browser settings" link (`'denied'`).
+[`usePermission`](https://reactuse.com/browser/usepermission/) wraps the Permissions API and returns the current state for any permission name — `'granted'`, `'denied'`, `'prompt'`, or empty if the API is not supported. Use it to decide whether to render an "Enable notifications" button (state is `'prompt'`), a "You're all set" indicator (`'granted'`), or a "Notifications are blocked — fix in browser settings" link (`'denied'`).
 
 ```tsx
 import { usePermission } from "@reactuses/core";
@@ -288,7 +288,7 @@ function NotificationStatus() {
 
 ### Ask Only on User Intent
 
-[`useWebNotification`](https://reactuse.com/browser/useWebNotification/) returns `isSupported`, `show`, `close`, and `ensurePermissions`. The cardinal rule of the Notification API: never call `Notification.requestPermission()` on page load. Browsers display the permission prompt as a tab-level chrome popup, and a popup that fires before the user has interacted with your page is the textbook "deny by reflex" UX.
+[`useWebNotification`](https://reactuse.com/browser/usewebnotification/) returns `isSupported`, `show`, `close`, and `ensurePermissions`. The cardinal rule of the Notification API: never call `Notification.requestPermission()` on page load. Browsers display the permission prompt as a tab-level chrome popup, and a popup that fires before the user has interacted with your page is the textbook "deny by reflex" UX.
 
 Trigger the request from a button click instead:
 
@@ -398,12 +398,12 @@ Six hooks, one component, no manual event listeners, no SSR crashes, no leaked t
 
 | Hook | What it is for | When to reach for it |
 | --- | --- | --- |
-| [`useTitle`](https://reactuse.com/browser/useTitle/) | Reflect a string into `document.title` | Unread counts, build status, document name |
-| [`useFavicon`](https://reactuse.com/browser/useFavicon/) | Swap the favicon `href` reactively | Status badges, attention dots, branded states |
-| [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) | Track tab hidden vs visible | Pause polls, animations, video |
-| [`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) | Track window focus | Refresh on return, pause on blur |
-| [`usePageLeave`](https://reactuse.com/browser/usePageLeave/) | Detect cursor leaving viewport | Exit-intent hints, unsaved-draft warnings |
-| [`usePermission`](https://reactuse.com/browser/usePermission/) | Read Permissions API state | Conditional CTAs for notifications, geo, etc. |
-| [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) | Show native OS notifications | Background message alerts, build-done pings |
+| [`useTitle`](https://reactuse.com/browser/usetitle/) | Reflect a string into `document.title` | Unread counts, build status, document name |
+| [`useFavicon`](https://reactuse.com/browser/usefavicon/) | Swap the favicon `href` reactively | Status badges, attention dots, branded states |
+| [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) | Track tab hidden vs visible | Pause polls, animations, video |
+| [`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) | Track window focus | Refresh on return, pause on blur |
+| [`usePageLeave`](https://reactuse.com/browser/usepageleave/) | Detect cursor leaving viewport | Exit-intent hints, unsaved-draft warnings |
+| [`usePermission`](https://reactuse.com/browser/usepermission/) | Read Permissions API state | Conditional CTAs for notifications, geo, etc. |
+| [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) | Show native OS notifications | Background message alerts, build-done pings |
 
 Browser-tab UX is one of those areas where the gap between "good app" and "great app" is small in code and large in feel. Six hooks, twenty lines of glue, and your app starts to behave like the native ones it competes with for attention. Browse the rest of the catalog at [reactuse.com](https://reactuse.com) — and if you ship one of these tomorrow, drop us a screenshot.

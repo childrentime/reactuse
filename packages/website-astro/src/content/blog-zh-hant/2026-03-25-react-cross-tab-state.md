@@ -117,7 +117,7 @@ function useCrossTabTheme() {
 
 ## useBroadcastChannel：分頁之間的型別安全訊息傳遞
 
-ReactUse 的 [`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) hook 將 BroadcastChannel API 封裝在一個簡潔的宣告式介面中。它處理頻道建立、訊息監聽、卸載時的清理，甚至 SSR 安全——所有這些都在一次呼叫中完成。
+ReactUse 的 [`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) hook 將 BroadcastChannel API 封裝在一個簡潔的宣告式介面中。它處理頻道建立、訊息監聽、卸載時的清理，甚至 SSR 安全——所有這些都在一次呼叫中完成。
 
 ```tsx
 import { useBroadcastChannel } from "@reactuses/core";
@@ -150,7 +150,7 @@ function NotificationSync() {
 
 ## useLocalStorage：自動跨分頁同步
 
-對於需要持久化*並且*跨分頁同步的狀態，[`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) 是正確的工具。它的運作方式類似於 `useState`，但值由 `localStorage` 支援，並透過 storage 事件自動在所有分頁之間保持同步。
+對於需要持久化*並且*跨分頁同步的狀態，[`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) 是正確的工具。它的運作方式類似於 `useState`，但值由 `localStorage` 支援，並透過 storage 事件自動在所有分頁之間保持同步。
 
 ```tsx
 import { useLocalStorage } from "@reactuses/core";
@@ -171,7 +171,7 @@ function ThemeToggle() {
 
 當在一個分頁中呼叫 `setTheme` 時，所有使用相同鍵（`"app-theme"`）執行此 hook 的其他分頁會自動更新。Hook 內部處理 JSON 序列化、初始值回退、SSR 防護和 storage 事件訂閱。你只需寫一行 hook 呼叫；hook 為你撰寫三十行瀏覽器 API 程式碼。
 
-與 [`useSessionStorage`](https://reactuse.com/state/useSessionStorage/) 對比，後者提供相同的 API 但將值限定在目前的分頁。Session storage 不會觸發跨分頁事件，分頁關閉後也不會持久化。當你需要跨分頁同步時選擇 `useLocalStorage`；當你需要分頁隔離的持久化時選擇 `useSessionStorage`。
+與 [`useSessionStorage`](https://reactuse.com/state/usesessionstorage/) 對比，後者提供相同的 API 但將值限定在目前的分頁。Session storage 不會觸發跨分頁事件，分頁關閉後也不會持久化。當你需要跨分頁同步時選擇 `useLocalStorage`；當你需要分頁隔離的持久化時選擇 `useSessionStorage`。
 
 ## 實用模式
 
@@ -279,7 +279,7 @@ function useCart() {
 
 ### 模式四：領導者選舉
 
-有時你只想讓一個分頁執行任務——輪詢 API、維護 WebSocket 連線或執行後台同步。[`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) hook 為簡單的領導者選舉協定提供了訊息傳遞層。
+有時你只想讓一個分頁執行任務——輪詢 API、維護 WebSocket 連線或執行後台同步。[`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) hook 為簡單的領導者選舉協定提供了訊息傳遞層。
 
 ```tsx
 import { useBroadcastChannel } from "@reactuses/core";
@@ -325,7 +325,7 @@ function useLeaderElection(channelName: string) {
 
 ### useDocumentVisibility
 
-[`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) 回傳文件的目前可見性狀態——`"visible"` 或 `"hidden"`。用它在分頁不可見時暫停工作。
+[`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) 回傳文件的目前可見性狀態——`"visible"` 或 `"hidden"`。用它在分頁不可見時暫停工作。
 
 ```tsx
 import { useDocumentVisibility } from "@reactuses/core";
@@ -356,7 +356,7 @@ function usePolling(url: string, intervalMs: number) {
 
 ### useWindowFocus
 
-[`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) 追蹤瀏覽器視窗本身是否取得了焦點。這比可見性更細微——一個分頁可以是可見的但未取得焦點（例如，當使用者正在與 DevTools 或覆蓋瀏覽器的另一個視窗互動時）。
+[`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) 追蹤瀏覽器視窗本身是否取得了焦點。這比可見性更細微——一個分頁可以是可見的但未取得焦點（例如，當使用者正在與 DevTools 或覆蓋瀏覽器的另一個視窗互動時）。
 
 ```tsx
 import { useWindowFocus } from "@reactuses/core";
@@ -475,7 +475,7 @@ function useNotificationSync() {
 - **`useBroadcastChannel`** 在通知到達或被閱讀時在分頁之間傳送即時訊號。
 - **`useLocalStorage`** 持久化通知列表和未讀計數，使新分頁可以取得目前狀態。
 - **`useDocumentVisibility`** 在使用者返回後台分頁時自動將通知標記為已讀。
-- **`useOnline`**（透過 [`useOnline`](https://reactuse.com/browser/useOnline/)）暴露網路狀態，使 UI 可以在應用離線且通知可能延遲時顯示提示。
+- **`useOnline`**（透過 [`useOnline`](https://reactuse.com/browser/useonline/)）暴露網路狀態，使 UI 可以在應用離線且通知可能延遲時顯示提示。
 
 每個 hook 處理一個關注點。組合在一起，它們形成了一個完整的系統——具有持久化、即時同步、可見性感知和網路狀態——不到 70 行程式碼。
 
@@ -504,12 +504,12 @@ yarn add @reactuses/core
 
 ## 相關 Hooks
 
-- [`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) — 透過 BroadcastChannel API 實現型別安全的跨分頁訊息傳遞
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) — 具有自動跨分頁同步的持久化狀態
-- [`useSessionStorage`](https://reactuse.com/state/useSessionStorage/) — 分頁作用域的持久化狀態
-- [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) — 追蹤目前分頁是否可見
-- [`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) — 追蹤瀏覽器視窗是否取得焦點
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) — 宣告式事件監聽器管理，自動清理
-- [`useOnline`](https://reactuse.com/browser/useOnline/) — 響應式網路連線狀態
+- [`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) — 透過 BroadcastChannel API 實現型別安全的跨分頁訊息傳遞
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) — 具有自動跨分頁同步的持久化狀態
+- [`useSessionStorage`](https://reactuse.com/state/usesessionstorage/) — 分頁作用域的持久化狀態
+- [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) — 追蹤目前分頁是否可見
+- [`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) — 追蹤瀏覽器視窗是否取得焦點
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) — 宣告式事件監聽器管理，自動清理
+- [`useOnline`](https://reactuse.com/browser/useonline/) — 響應式網路連線狀態
 
 ReactUse 提供了 100+ 個 React hooks。[探索全部 →](https://reactuse.com)

@@ -574,15 +574,15 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [`useFullscreen`](https://reactuse.com/browser/useFullscreen/) -- Enter, exit, and toggle fullscreen mode on any element
-- [`useWakeLock`](https://reactuse.com/browser/useWakeLock/) -- Keep the screen awake with auto re-request on visibility change
-- [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) -- Send OS-level notifications with permission flow handled
-- [`useScreenSafeArea`](https://reactuse.com/browser/useScreenSafeArea/) -- Read safe area insets reactively
-- [`useTitle`](https://reactuse.com/browser/useTitle/) -- Set the document title declaratively
-- [`useFavicon`](https://reactuse.com/browser/useFavicon/) -- Update the favicon based on application state
-- [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) -- Track whether the document is visible to the user
-- [`usePageLeave`](https://reactuse.com/browser/usePageLeave/) -- Detect when the cursor leaves the page area
-- [`useSupported`](https://reactuse.com/state/useSupported/) -- Reactively check whether a browser API is available
+- [`useFullscreen`](https://reactuse.com/browser/usefullscreen/) -- Enter, exit, and toggle fullscreen mode on any element
+- [`useWakeLock`](https://reactuse.com/browser/usewakelock/) -- Keep the screen awake with auto re-request on visibility change
+- [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) -- Send OS-level notifications with permission flow handled
+- [`useScreenSafeArea`](https://reactuse.com/browser/usescreensafearea/) -- Read safe area insets reactively
+- [`useTitle`](https://reactuse.com/browser/usetitle/) -- Set the document title declaratively
+- [`useFavicon`](https://reactuse.com/browser/usefavicon/) -- Update the favicon based on application state
+- [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) -- Track whether the document is visible to the user
+- [`usePageLeave`](https://reactuse.com/browser/usepageleave/) -- Detect when the cursor leaves the page area
+- [`useSupported`](https://reactuse.com/state/usesupported/) -- Reactively check whether a browser API is available
 
 ---
 

@@ -197,8 +197,8 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [useInfiniteScroll documentation](https://reactuse.com/browser/useInfiniteScroll/) -- interactive demo and full API reference
-- [useScroll](https://reactuse.com/browser/useScroll/) -- reactive scroll position and direction tracking
+- [useInfiniteScroll documentation](https://reactuse.com/browser/useinfinitescroll/) -- interactive demo and full API reference
+- [useScroll](https://reactuse.com/browser/usescroll/) -- reactive scroll position and direction tracking
 
 ---
 

@@ -148,9 +148,9 @@ yarn add @reactuses/core
 
 ## Related Hooks
 
-- [useWindowSize documentation](https://reactuse.com/element/useWindowSize/) — full API reference and interactive demo
-- [useMediaQuery](https://reactuse.com/browser/useMediaQuery/) — reactive CSS media query matching
-- [useElementSize](https://reactuse.com/element/useElementSize/) — track the size of a specific DOM element
+- [useWindowSize documentation](https://reactuse.com/element/usewindowsize/) — full API reference and interactive demo
+- [useMediaQuery](https://reactuse.com/browser/usemediaquery/) — reactive CSS media query matching
+- [useElementSize](https://reactuse.com/element/useelementsize/) — track the size of a specific DOM element
 
 ---
 

@@ -82,7 +82,7 @@ This gets the job done for a simple progress bar. But it does not tell you wheth
 
 ### With useScroll
 
-[`useScroll`](https://reactuse.com/browser/useScroll/) returns the current `x` and `y` offsets, scroll direction on both axes, plus boolean `isScrolling` and `arrivedState` fields that tell you whether the user has reached the top, bottom, left, or right edge.
+[`useScroll`](https://reactuse.com/browser/usescroll/) returns the current `x` and `y` offsets, scroll direction on both axes, plus boolean `isScrolling` and `arrivedState` fields that tell you whether the user has reached the top, bottom, left, or right edge.
 
 ```tsx
 import { useScroll } from "@reactuses/core";
@@ -226,7 +226,7 @@ This works on desktop browsers, but the `position: fixed` trick causes the page 
 
 ### With useScrollLock
 
-[`useScrollLock`](https://reactuse.com/browser/useScrollLock/) handles all these edge cases. Pass it a ref to the element you want to lock -- typically `document.body` -- and a boolean to control the lock state.
+[`useScrollLock`](https://reactuse.com/browser/usescrolllock/) handles all these edge cases. Pass it a ref to the element you want to lock -- typically `document.body` -- and a boolean to control the lock state.
 
 ```tsx
 import { useScrollLock } from "@reactuses/core";
@@ -318,7 +318,7 @@ function ManualScrollTo() {
 
 ### With useScrollIntoView
 
-[`useScrollIntoView`](https://reactuse.com/browser/useScrollIntoView/) gives you fine-grained control over the scroll animation, including custom duration, easing, axis, offset, and an `onComplete` callback.
+[`useScrollIntoView`](https://reactuse.com/browser/usescrollintoview/) gives you fine-grained control over the scroll animation, including custom duration, easing, axis, offset, and an `onComplete` callback.
 
 ```tsx
 import { useScrollIntoView } from "@reactuses/core";
@@ -442,7 +442,7 @@ This sentinel-based approach works but is fragile. You need to position the sent
 
 ### With useSticky
 
-[`useSticky`](https://reactuse.com/element/useSticky/) handles sticky detection cleanly. It returns a boolean that flips to `true` when the element enters its stuck state.
+[`useSticky`](https://reactuse.com/element/usesticky/) handles sticky detection cleanly. It returns a boolean that flips to `true` when the element enters its stuck state.
 
 ```tsx
 import { useSticky } from "@reactuses/core";
@@ -536,7 +536,7 @@ Copy-pasting this observer logic into every component that needs a reveal animat
 
 ### With useElementVisibility
 
-[`useElementVisibility`](https://reactuse.com/element/useElementVisibility/) wraps `IntersectionObserver` into a single boolean return value. Pair it with a `useState` flag to create one-time reveal effects:
+[`useElementVisibility`](https://reactuse.com/element/useelementvisibility/) wraps `IntersectionObserver` into a single boolean return value. Pair it with a `useState` flag to create one-time reveal effects:
 
 ```tsx
 import { useElementVisibility } from "@reactuses/core";
@@ -657,7 +657,7 @@ Building 101 threshold steps and managing the observer manually is verbose. And 
 
 ### With useIntersectionObserver
 
-[`useIntersectionObserver`](https://reactuse.com/element/useIntersectionObserver/) exposes the full `IntersectionObserver` API in a declarative way. You get the `IntersectionObserverEntry` directly, including `intersectionRatio`, `isIntersecting`, and `boundingClientRect`.
+[`useIntersectionObserver`](https://reactuse.com/element/useintersectionobserver/) exposes the full `IntersectionObserver` API in a declarative way. You get the `IntersectionObserverEntry` directly, including `intersectionRatio`, `isIntersecting`, and `boundingClientRect`.
 
 ```tsx
 import { useIntersectionObserver } from "@reactuses/core";
@@ -859,15 +859,15 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [`useScroll`](https://reactuse.com/browser/useScroll/) -- Track scroll position, direction, and edge arrival
-- [`useScrollLock`](https://reactuse.com/browser/useScrollLock/) -- Lock scroll on any element
-- [`useScrollIntoView`](https://reactuse.com/browser/useScrollIntoView/) -- Smooth scroll to a target element with offset and easing
-- [`useSticky`](https://reactuse.com/element/useSticky/) -- Detect when an element enters its sticky state
-- [`useElementVisibility`](https://reactuse.com/element/useElementVisibility/) -- Check if an element is visible in the viewport
-- [`useIntersectionObserver`](https://reactuse.com/element/useIntersectionObserver/) -- Full-featured intersection observation
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) -- Attach event listeners declaratively
-- [`useElementSize`](https://reactuse.com/element/useElementSize/) -- Track element dimensions reactively
-- [`useElementBounding`](https://reactuse.com/element/useElementBounding/) -- Get live bounding rectangle of an element
+- [`useScroll`](https://reactuse.com/browser/usescroll/) -- Track scroll position, direction, and edge arrival
+- [`useScrollLock`](https://reactuse.com/browser/usescrolllock/) -- Lock scroll on any element
+- [`useScrollIntoView`](https://reactuse.com/browser/usescrollintoview/) -- Smooth scroll to a target element with offset and easing
+- [`useSticky`](https://reactuse.com/element/usesticky/) -- Detect when an element enters its sticky state
+- [`useElementVisibility`](https://reactuse.com/element/useelementvisibility/) -- Check if an element is visible in the viewport
+- [`useIntersectionObserver`](https://reactuse.com/element/useintersectionobserver/) -- Full-featured intersection observation
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) -- Attach event listeners declaratively
+- [`useElementSize`](https://reactuse.com/element/useelementsize/) -- Track element dimensions reactively
+- [`useElementBounding`](https://reactuse.com/element/useelementbounding/) -- Get live bounding rectangle of an element
 
 ---
 

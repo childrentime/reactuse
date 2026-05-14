@@ -111,7 +111,7 @@ function UsernameField() {
 
 第一个 effect——专管防抖的那个——消失了。`useDebounce` 自己接管了定时器和清理。剩下的代码才是真正属于你这个表单的部分：当防抖值变化时跑一次校验请求，并丢弃过期返回。
 
-这个 Hook 还和函数版的 [`useDebounceFn`](https://reactuse.com/effect/useDebounceFn/) 天然搭配——当你想给的是一个事件处理器（比如"失焦保存"）而不是一个值时，就用它。
+这个 Hook 还和函数版的 [`useDebounceFn`](https://reactuse.com/effect/usedebouncefn/) 天然搭配——当你想给的是一个事件处理器（比如"失焦保存"）而不是一个值时，就用它。
 
 ## 2. 受控还是非受控——选一种，两种都支持
 
@@ -330,7 +330,7 @@ function Popover({ children }: { children: React.ReactNode }) {
 
 支持 ref 数组的形式，正是它能搞定 portal 浮层的关键：把触发器和浮动面板都标成"内部"，点其它地方就触发处理器。Hook 也替你处理 `mousedown` 的选择，监听器只在 document 层挂一次（不会在每个组件里来回挂卸），并在卸载时清理干净。
 
-它还有一个相近的兄弟 [`useClickAway`](https://reactuse.com/element/useClickAway/)——API 略有不同，适合只有单个 ref 的场景，按你组件里读起来更顺的那个挑就行。
+它还有一个相近的兄弟 [`useClickAway`](https://reactuse.com/element/useclickaway/)——API 略有不同，适合只有单个 ref 的场景，按你组件里读起来更顺的那个挑就行。
 
 ## 组合在一起：账户设置表单
 
@@ -569,15 +569,15 @@ npm i @reactuses/core
 
 ## 相关 Hook
 
-- [`useDebounce`](https://reactuse.com/state/useDebounce/) — 让一个值按固定延迟落后于其输入
-- [`useDebounceFn`](https://reactuse.com/effect/useDebounceFn/) — 防抖一个回调而非一个值
-- [`useControlled`](https://reactuse.com/state/useControlled/) — 构建同时接受受控/非受控用法的组件
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) — 持久化到 localStorage 的 `useState`，自带 SSR 安全与跨标签页同步
-- [`useSessionStorage`](https://reactuse.com/state/useSessionStorage/) — 与 `useLocalStorage` 同形，但作用域为会话
-- [`useClickOutside`](https://reactuse.com/element/useClickOutside/) — 检测一个或多个元素之外的点击
-- [`useClickAway`](https://reactuse.com/element/useClickAway/) — 单 ref 版本的点击外部检测
-- [`useToggle`](https://reactuse.com/state/useToggle/) — 带显式 toggle setter 的布尔状态
-- [`usePrevious`](https://reactuse.com/state/usePrevious/) — 读取上一次的状态值，用于表单中的变更检测
+- [`useDebounce`](https://reactuse.com/state/usedebounce/) — 让一个值按固定延迟落后于其输入
+- [`useDebounceFn`](https://reactuse.com/effect/usedebouncefn/) — 防抖一个回调而非一个值
+- [`useControlled`](https://reactuse.com/state/usecontrolled/) — 构建同时接受受控/非受控用法的组件
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) — 持久化到 localStorage 的 `useState`，自带 SSR 安全与跨标签页同步
+- [`useSessionStorage`](https://reactuse.com/state/usesessionstorage/) — 与 `useLocalStorage` 同形，但作用域为会话
+- [`useClickOutside`](https://reactuse.com/element/useclickoutside/) — 检测一个或多个元素之外的点击
+- [`useClickAway`](https://reactuse.com/element/useclickaway/) — 单 ref 版本的点击外部检测
+- [`useToggle`](https://reactuse.com/state/usetoggle/) — 带显式 toggle setter 的布尔状态
+- [`usePrevious`](https://reactuse.com/state/useprevious/) — 读取上一次的状态值，用于表单中的变更检测
 
 ---
 

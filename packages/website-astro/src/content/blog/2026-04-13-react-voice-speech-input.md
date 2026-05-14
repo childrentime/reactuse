@@ -562,13 +562,13 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [`useSpeechRecognition`](https://reactuse.com/browser/useSpeechRecognition/) -- Live speech-to-text with interim and final result tracking
-- [`useMediaDevices`](https://reactuse.com/browser/useMediaDevices/) -- Enumerate cameras and microphones with permission handling
-- [`usePermission`](https://reactuse.com/browser/usePermission/) -- Reactively query the Permissions API for any permission name
-- [`useKeyModifier`](https://reactuse.com/browser/useKeyModifier/) -- Track OS-level modifier key state (Shift, Control, etc.)
-- [`useSupported`](https://reactuse.com/state/useSupported/) -- Reactively check whether a browser API is available
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) -- Attach event listeners declaratively for custom voice flows
-- [`useObjectUrl`](https://reactuse.com/browser/useObjectUrl/) -- Create temporary URLs for recorded audio blobs to preview them
+- [`useSpeechRecognition`](https://reactuse.com/browser/usespeechrecognition/) -- Live speech-to-text with interim and final result tracking
+- [`useMediaDevices`](https://reactuse.com/browser/usemediadevices/) -- Enumerate cameras and microphones with permission handling
+- [`usePermission`](https://reactuse.com/browser/usepermission/) -- Reactively query the Permissions API for any permission name
+- [`useKeyModifier`](https://reactuse.com/browser/usekeymodifier/) -- Track OS-level modifier key state (Shift, Control, etc.)
+- [`useSupported`](https://reactuse.com/state/usesupported/) -- Reactively check whether a browser API is available
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) -- Attach event listeners declaratively for custom voice flows
+- [`useObjectUrl`](https://reactuse.com/browser/useobjecturl/) -- Create temporary URLs for recorded audio blobs to preview them
 
 ---
 

@@ -104,7 +104,7 @@ function useManualEventSource(url: string) {
 
 ### 使用 useEventSource
 
-ReactUse 的 [`useEventSource`](https://reactuse.com/browser/useEventSource/) Hook 把這些問題全部解決了。
+ReactUse 的 [`useEventSource`](https://reactuse.com/browser/useeventsource/) Hook 把這些問題全部解決了。
 
 ```tsx
 import { useEventSource } from "@reactuses/core";
@@ -290,7 +290,7 @@ function useManualFetchSSE(url: string, token: string) {
 
 ### 使用 useFetchEventSource
 
-ReactUse 的 [`useFetchEventSource`](https://reactuse.com/browser/useFetchEventSource/) Hook 封裝了 [@microsoft/fetch-event-source](https://github.com/Azure/fetch-event-source) 函式庫，提供了 React 友善的 API。它支援自訂請求標頭、POST 請求體，以及你需要的所有重連邏輯。
+ReactUse 的 [`useFetchEventSource`](https://reactuse.com/browser/usefetcheventsource/) Hook 封裝了 [@microsoft/fetch-event-source](https://github.com/Azure/fetch-event-source) 函式庫，提供了 React 友善的 API。它支援自訂請求標頭、POST 請求體，以及你需要的所有重連邏輯。
 
 ```tsx
 import { useFetchEventSource } from "@reactuses/core";
@@ -479,7 +479,7 @@ function useManualNetworkStatus() {
 
 ### 使用 useNetwork
 
-[`useNetwork`](https://reactuse.com/browser/useNetwork/) Hook 回傳完整的網路資訊。
+[`useNetwork`](https://reactuse.com/browser/usenetwork/) Hook 回傳完整的網路資訊。
 
 ```tsx
 import { useNetwork } from "@reactuses/core";
@@ -522,7 +522,7 @@ Hook 處理了所有的廠商前綴、事件監聽器和 SSR 安全問題。`pre
 
 ### 使用 useOnline
 
-如果你只需要布林值，[`useOnline`](https://reactuse.com/browser/useOnline/) 更加簡潔。它是 `useNetwork` 的輕量封裝，只回傳 `online` 值。
+如果你只需要布林值，[`useOnline`](https://reactuse.com/browser/useonline/) 更加簡潔。它是 `useNetwork` 的輕量封裝，只回傳 `online` 值。
 
 ```tsx
 import { useOnline } from "@reactuses/core";
@@ -638,7 +638,7 @@ function useManualBroadcastChannel<T>(channelName: string) {
 
 ### 使用 useBroadcastChannel
 
-[`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) Hook 提供了完整的、型別安全的封裝。
+[`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) Hook 提供了完整的、型別安全的封裝。
 
 ```tsx
 import { useBroadcastChannel } from "@reactuses/core";
@@ -979,12 +979,12 @@ yarn add @reactuses/core
 
 ## 相關 Hooks
 
-- [`useEventSource`](https://reactuse.com/browser/useEventSource/) -- 響應式 Server-Sent Events，支援具名事件和自動重連
-- [`useFetchEventSource`](https://reactuse.com/browser/useFetchEventSource/) -- 基於 fetch 的 SSE，支援自訂請求標頭、POST 請求和驗證
-- [`useNetwork`](https://reactuse.com/browser/useNetwork/) -- 詳細的網路狀態，包括連線類型、下行速度和往返時間
-- [`useOnline`](https://reactuse.com/browser/useOnline/) -- 簡單的線上/離線布林值偵測
-- [`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) -- 透過 BroadcastChannel API 實現型別安全的跨分頁訊息傳遞
-- [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) -- 追蹤目前分頁是否可見
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) -- 具有自動跨分頁同步的持久化狀態
+- [`useEventSource`](https://reactuse.com/browser/useeventsource/) -- 響應式 Server-Sent Events，支援具名事件和自動重連
+- [`useFetchEventSource`](https://reactuse.com/browser/usefetcheventsource/) -- 基於 fetch 的 SSE，支援自訂請求標頭、POST 請求和驗證
+- [`useNetwork`](https://reactuse.com/browser/usenetwork/) -- 詳細的網路狀態，包括連線類型、下行速度和往返時間
+- [`useOnline`](https://reactuse.com/browser/useonline/) -- 簡單的線上/離線布林值偵測
+- [`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) -- 透過 BroadcastChannel API 實現型別安全的跨分頁訊息傳遞
+- [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) -- 追蹤目前分頁是否可見
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) -- 具有自動跨分頁同步的持久化狀態
 
 ReactUse 提供了 100+ 個 React Hooks。[探索全部 →](https://reactuse.com)

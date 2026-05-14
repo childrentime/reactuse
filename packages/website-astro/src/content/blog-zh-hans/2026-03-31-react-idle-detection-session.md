@@ -57,7 +57,7 @@ function useManualIdle(timeoutMs: number) {
 
 ### Hook 方案：`useIdle`
 
-[`useIdle`](https://reactuse.com/browser/useIdle/) 一行搞定：
+[`useIdle`](https://reactuse.com/browser/useidle/) 一行搞定：
 
 ```tsx
 import { useIdle } from "@reactuses/core";
@@ -158,7 +158,7 @@ function useManualDocumentVisibility() {
 
 ### Hook 方案：`useDocumentVisibility`
 
-[`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) 封装了 Page Visibility API，并内置了 SSR 安全检查：
+[`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) 封装了 Page Visibility API，并内置了 SSR 安全检查：
 
 ```tsx
 import { useDocumentVisibility } from "@reactuses/core";
@@ -289,7 +289,7 @@ Wake Lock API 有个坑：浏览器会在标签页隐藏时自动释放锁。你
 
 ### Hook 方案：`useWakeLock`
 
-[`useWakeLock`](https://reactuse.com/browser/useWakeLock/) 自动处理重新获取、错误处理和清理工作：
+[`useWakeLock`](https://reactuse.com/browser/usewakelock/) 自动处理重新获取、错误处理和清理工作：
 
 ```tsx
 import { useWakeLock } from "@reactuses/core";
@@ -400,7 +400,7 @@ function useManualNotifyOnReturn() {
 
 ### Hook 方案：`useWindowFocus` + `useWebNotification`
 
-[`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) 和 [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) 组合使用，代码清晰且声明式：
+[`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) 和 [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) 组合使用，代码清晰且声明式：
 
 ```tsx
 import { useWindowFocus, useWebNotification } from "@reactuses/core";
@@ -571,11 +571,11 @@ function AppShell({ children }: { children: React.ReactNode }) {
 
 | 场景 | Hook | 检测目标 |
 |------|------|----------|
-| 会话超时 | [`useIdle`](https://reactuse.com/browser/useIdle/) | 用户无操作达 N 毫秒 |
-| 暂停后台任务 | [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) | 标签页隐藏/可见 |
-| 检测标签页切换 | [`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) | 窗口获得/失去焦点 |
-| 保持屏幕常亮 | [`useWakeLock`](https://reactuse.com/browser/useWakeLock/) | Screen Wake Lock API |
-| 浏览器通知 | [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) | Notification API |
+| 会话超时 | [`useIdle`](https://reactuse.com/browser/useidle/) | 用户无操作达 N 毫秒 |
+| 暂停后台任务 | [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) | 标签页隐藏/可见 |
+| 检测标签页切换 | [`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) | 窗口获得/失去焦点 |
+| 保持屏幕常亮 | [`useWakeLock`](https://reactuse.com/browser/usewakelock/) | Screen Wake Lock API |
+| 浏览器通知 | [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) | Notification API |
 
 ## 安装
 
@@ -589,13 +589,13 @@ yarn add @reactuses/core
 
 ## 相关 Hook
 
-- [`useIdle`](https://reactuse.com/browser/useIdle/) -- 检测用户空闲，超时时长可配置
-- [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) -- 响应式 `document.visibilityState`
-- [`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) -- 追踪窗口是否拥有焦点
-- [`useWakeLock`](https://reactuse.com/browser/useWakeLock/) -- 请求和管理 Screen Wake Lock API
-- [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) -- 声明式浏览器通知
-- [`useInterval`](https://reactuse.com/effect/useInterval/) -- 声明式 `setInterval`，支持暂停/恢复
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) -- 绑定 DOM 事件监听器，自动清理
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) -- 跨页面刷新持久化会话状态
+- [`useIdle`](https://reactuse.com/browser/useidle/) -- 检测用户空闲，超时时长可配置
+- [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) -- 响应式 `document.visibilityState`
+- [`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) -- 追踪窗口是否拥有焦点
+- [`useWakeLock`](https://reactuse.com/browser/usewakelock/) -- 请求和管理 Screen Wake Lock API
+- [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) -- 声明式浏览器通知
+- [`useInterval`](https://reactuse.com/effect/useinterval/) -- 声明式 `setInterval`，支持暂停/恢复
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) -- 绑定 DOM 事件监听器，自动清理
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) -- 跨页面刷新持久化会话状态
 
 ReactUse 提供了 100+ 个 React Hook。[去看看完整列表 →](https://reactuse.com)

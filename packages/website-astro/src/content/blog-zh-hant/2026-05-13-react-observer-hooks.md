@@ -55,7 +55,7 @@ function ManualOnScreen({ children }: { children: React.ReactNode }) {
 
 ### ReactUse 版
 
-[`useIntersectionObserver`](https://reactuse.com/element/useIntersectionObserver/) 接收 ref 和選項,回傳元素當前是否相交:
+[`useIntersectionObserver`](https://reactuse.com/element/useintersectionobserver/) 接收 ref 和選項,回傳元素當前是否相交:
 
 ```tsx
 import { useRef } from "react";
@@ -73,11 +73,11 @@ function OnScreen({ children }: { children: React.ReactNode }) {
 
 Hook 自己管理 observer 的生命週期:卸載時 disconnect、選項變化時重建、SSR 安全。延遲載入圖片、第一次進入視口時埋點、把一個重量級圖表延遲到捲動進來再掛載——都是同一個 hook,不同的布林值。
 
-一個常見模式是無限捲動的「載入更多」觸發器:在列表底部放一個哨兵 `<div>`,它進入視口時發起 fetch。這其實正是 [`useInfiniteScroll`](https://reactuse.com/browser/useInfiniteScroll/) 的實作方式,它就建在這個原語之上。
+一個常見模式是無限捲動的「載入更多」觸發器:在列表底部放一個哨兵 `<div>`,它進入視口時發起 fetch。這其實正是 [`useInfiniteScroll`](https://reactuse.com/browser/useinfinitescroll/) 的實作方式,它就建在這個原語之上。
 
 ## 2. useElementVisibility——通常你想要的那個布林值
 
-很多時候你根本不在乎 `IntersectionObserverEntry`——你只要一個布林值,而且是相對於整個視口的,不是某個捲動容器。[`useElementVisibility`](https://reactuse.com/element/useElementVisibility/) 就是做這個的。
+很多時候你根本不在乎 `IntersectionObserverEntry`——你只要一個布林值,而且是相對於整個視口的,不是某個捲動容器。[`useElementVisibility`](https://reactuse.com/element/useelementvisibility/) 就是做這個的。
 
 ```tsx
 import { useRef } from "react";
@@ -136,7 +136,7 @@ function ManualSize() {
 
 ### ReactUse 版
 
-[`useResizeObserver`](https://reactuse.com/element/useResizeObserver/) 接收 ref 和一個對每個 entry 觸發的回呼:
+[`useResizeObserver`](https://reactuse.com/element/useresizeobserver/) 接收 ref 和一個對每個 entry 觸發的回呼:
 
 ```tsx
 import { useRef, useState } from "react";
@@ -160,7 +160,7 @@ function ResponsiveCard() {
 
 如果你只需要寬高,回呼形式有點過度。ReactUse 提供了兩個包裝 `ResizeObserver` 並直接回傳 state 的便利 hook。
 
-[`useElementSize`](https://reactuse.com/element/useElementSize/) 回傳被觀察元素的 `{ width, height }`:
+[`useElementSize`](https://reactuse.com/element/useelementsize/) 回傳被觀察元素的 `{ width, height }`:
 
 ```tsx
 import { useRef } from "react";
@@ -188,7 +188,7 @@ function AutoFitGrid({ items }: { items: Item[] }) {
 
 容器每次 resize,grid 重新計算欄數——不需要媒體查詢、不需要猜視口、也不需要 JS 控制的 CSS 變數。
 
-[`useMeasure`](https://reactuse.com/element/useMeasure/) 回傳完整的 `ResizeObserverEntry.contentRect`(`width`、`height`、`top`、`left` 等),外加一個 ref 用來附著。當你一次呼叫就想拿到尺寸和局部座標時用它:
+[`useMeasure`](https://reactuse.com/element/usemeasure/) 回傳完整的 `ResizeObserverEntry.contentRect`(`width`、`height`、`top`、`left` 等),外加一個 ref 用來附著。當你一次呼叫就想拿到尺寸和局部座標時用它:
 
 ```tsx
 import { useMeasure } from "@reactuses/core";
@@ -279,13 +279,13 @@ Skeleton 一直渲染,直到第三方腳本把內容放進槽位,然後消失。
 
 | 你想要…… | Hook |
 | --- | --- |
-| 表示「在不在螢幕上」的布林值 | [`useElementVisibility`](https://reactuse.com/element/useElementVisibility/) |
-| 自訂 root 或閾值的可見性 | [`useIntersectionObserver`](https://reactuse.com/element/useIntersectionObserver/) |
-| 以 state 形式拿到寬高 | [`useElementSize`](https://reactuse.com/element/useElementSize/) |
-| 以 state 形式拿到完整內容矩形 | [`useMeasure`](https://reactuse.com/element/useMeasure/) |
-| 相對視口的矩形(捲動會變) | [`useElementBounding`](https://reactuse.com/element/useElementBounding/) |
-| 每次 resize entry 的回呼 | [`useResizeObserver`](https://reactuse.com/element/useResizeObserver/) |
-| 回應 React 以外的 DOM 變化 | [`useMutationObserver`](https://reactuse.com/element/useMutationObserver/) |
+| 表示「在不在螢幕上」的布林值 | [`useElementVisibility`](https://reactuse.com/element/useelementvisibility/) |
+| 自訂 root 或閾值的可見性 | [`useIntersectionObserver`](https://reactuse.com/element/useintersectionobserver/) |
+| 以 state 形式拿到寬高 | [`useElementSize`](https://reactuse.com/element/useelementsize/) |
+| 以 state 形式拿到完整內容矩形 | [`useMeasure`](https://reactuse.com/element/usemeasure/) |
+| 相對視口的矩形(捲動會變) | [`useElementBounding`](https://reactuse.com/element/useelementbounding/) |
+| 每次 resize entry 的回呼 | [`useResizeObserver`](https://reactuse.com/element/useresizeobserver/) |
+| 回應 React 以外的 DOM 變化 | [`useMutationObserver`](https://reactuse.com/element/usemutationobserver/) |
 
 一個有用的心智模型:visibility 類 hook 告訴你元素**相對使用者在哪**;size 和 bounding 類告訴你元素**有多大**、**在版面裡的什麼位置**;mutation 告訴你元素**裡面發生了什麼**。
 
@@ -347,9 +347,9 @@ Observer 不是免費的,但開銷集中且可控:
 
 Observer API 是連接「React 知道什麼」和「DOM 實際在做什麼」的橋樑。用裸 `useEffect` 接它們會累積很多膠水和一長串微妙 bug。用這 7 個 hook 接它們,它們就變成可以自由組合的一行呼叫。
 
-- 用 [`useIntersectionObserver`](https://reactuse.com/element/useIntersectionObserver/) 和 [`useElementVisibility`](https://reactuse.com/element/useElementVisibility/) 回答「是否在螢幕上」。
-- 用 [`useResizeObserver`](https://reactuse.com/element/useResizeObserver/)、[`useElementSize`](https://reactuse.com/element/useElementSize/) 和 [`useMeasure`](https://reactuse.com/element/useMeasure/) 回答「它有多大」。
-- 用 [`useElementBounding`](https://reactuse.com/element/useElementBounding/) 回答「它在視口的什麼位置」。
-- 用 [`useMutationObserver`](https://reactuse.com/element/useMutationObserver/) 回答「DOM 在我背後做了什麼」。
+- 用 [`useIntersectionObserver`](https://reactuse.com/element/useintersectionobserver/) 和 [`useElementVisibility`](https://reactuse.com/element/useelementvisibility/) 回答「是否在螢幕上」。
+- 用 [`useResizeObserver`](https://reactuse.com/element/useresizeobserver/)、[`useElementSize`](https://reactuse.com/element/useelementsize/) 和 [`useMeasure`](https://reactuse.com/element/usemeasure/) 回答「它有多大」。
+- 用 [`useElementBounding`](https://reactuse.com/element/useelementbounding/) 回答「它在視口的什麼位置」。
+- 用 [`useMutationObserver`](https://reactuse.com/element/usemutationobserver/) 回答「DOM 在我背後做了什麼」。
 
 更多 hook 在 [reactuse.com](https://reactuse.com)——如果你用其中一個取代掉一段笨重的 `useEffect` 加 observer 舞蹈,那今天鍵盤沒白敲。

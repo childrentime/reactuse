@@ -22,9 +22,13 @@ for root, dirs, files in os.walk(docs_dir):
         parts = rel.replace('.mdx', '').split(os.sep)
         if len(parts) == 2:
             category, name = parts
+            # Site URLs are lowercase (the canonical form). Keep the original
+            # casing as the lookup key, but lowercase the url so links built
+            # from the registry match the canonical URL and don't create
+            # duplicate camelCase/lowercase pages in Google's index.
             hooks[name] = {
                 'category': category,
-                'url': f'https://reactuse.com/{category}/{name}/'
+                'url': f'https://reactuse.com/{category}/{name.lower()}/'
             }
 
 print(json.dumps(dict(sorted(hooks.items())), indent=2))

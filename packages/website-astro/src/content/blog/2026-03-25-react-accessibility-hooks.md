@@ -53,7 +53,7 @@ ReactUse provides hooks that encapsulate this pattern with correct SSR handling,
 
 ## useReducedMotion: Respecting Motion Preferences
 
-The [`useReducedMotion`](https://reactuse.com/browser/useReducedMotion/) hook detects whether the user has enabled the "reduce motion" setting on their device. This is one of the most impactful accessibility hooks you can use, because motion can cause real physical discomfort for users with vestibular disorders.
+The [`useReducedMotion`](https://reactuse.com/browser/usereducedmotion/) hook detects whether the user has enabled the "reduce motion" setting on their device. This is one of the most impactful accessibility hooks you can use, because motion can cause real physical discomfort for users with vestibular disorders.
 
 ```tsx
 import { useReducedMotion } from "@reactuses/core";
@@ -106,7 +106,7 @@ function PageTransition({ children }: { children: React.ReactNode }) {
 
 ## usePreferredContrast: Adapting to Contrast Needs
 
-The [`usePreferredContrast`](https://reactuse.com/browser/usePreferredContrast/) hook reads the `prefers-contrast` media query, which tells you whether the user wants more contrast, less contrast, or has no preference. This is critical for users with low vision.
+The [`usePreferredContrast`](https://reactuse.com/browser/usepreferredcontrast/) hook reads the `prefers-contrast` media query, which tells you whether the user wants more contrast, less contrast, or has no preference. This is critical for users with low vision.
 
 ```tsx
 import { usePreferredContrast } from "@reactuses/core";
@@ -155,7 +155,7 @@ When the user has requested higher contrast, you should increase the difference 
 
 ## usePreferredColorScheme: System Theme Detection
 
-The [`usePreferredColorScheme`](https://reactuse.com/browser/usePreferredColorScheme/) hook tells you whether the user's operating system is set to light mode, dark mode, or has no preference. This is the foundation for building theme-aware components.
+The [`usePreferredColorScheme`](https://reactuse.com/browser/usepreferredcolorscheme/) hook tells you whether the user's operating system is set to light mode, dark mode, or has no preference. This is the foundation for building theme-aware components.
 
 ```tsx
 import { usePreferredColorScheme } from "@reactuses/core";
@@ -182,13 +182,13 @@ function AdaptiveCard({ title, body }: { title: string; body: string }) {
 }
 ```
 
-For a simpler boolean check, ReactUse also provides [`usePreferredDark`](https://reactuse.com/browser/usePreferredDark/), which returns `true` when the user prefers a dark color scheme. And if you need a full dark mode toggle that persists the user's choice, [`useDarkMode`](https://reactuse.com/browser/useDarkMode/) provides that out of the box.
+For a simpler boolean check, ReactUse also provides [`usePreferredDark`](https://reactuse.com/browser/usepreferreddark/), which returns `true` when the user prefers a dark color scheme. And if you need a full dark mode toggle that persists the user's choice, [`useDarkMode`](https://reactuse.com/browser/usedarkmode/) provides that out of the box.
 
-For even more granular control over media queries, [`useMediaQuery`](https://reactuse.com/browser/useMediaQuery/) lets you subscribe to any CSS media query string and get live updates.
+For even more granular control over media queries, [`useMediaQuery`](https://reactuse.com/browser/usemediaquery/) lets you subscribe to any CSS media query string and get live updates.
 
 ## useFocus: Keyboard Navigation and Focus Management
 
-Keyboard navigation is a core accessibility requirement. Users who cannot use a mouse rely on the Tab key to move between interactive elements. The [`useFocus`](https://reactuse.com/element/useFocus/) hook gives you programmatic control over focus, which is essential for modal dialogs, dropdown menus, and dynamic content.
+Keyboard navigation is a core accessibility requirement. Users who cannot use a mouse rely on the Tab key to move between interactive elements. The [`useFocus`](https://reactuse.com/element/usefocus/) hook gives you programmatic control over focus, which is essential for modal dialogs, dropdown menus, and dynamic content.
 
 ```tsx
 import { useRef } from "react";
@@ -221,11 +221,11 @@ function SearchBar() {
 
 The hook returns both the current focus state and a setter function. You can use the focus state to apply visual indicators (beyond the browser default) and use the setter to programmatically move focus — for example, when a modal opens or when a keyboard shortcut is triggered.
 
-Pairing this with [`useActiveElement`](https://reactuse.com/element/useActiveElement/) lets you track which element currently has focus across your entire application, which is useful for building focus traps and skip-navigation links.
+Pairing this with [`useActiveElement`](https://reactuse.com/element/useactiveelement/) lets you track which element currently has focus across your entire application, which is useful for building focus traps and skip-navigation links.
 
 ## useTextDirection: RTL and LTR Support
 
-Internationalization and accessibility overlap heavily. The [`useTextDirection`](https://reactuse.com/browser/useTextDirection/) hook detects and manages the text direction of your document, supporting both left-to-right (LTR) and right-to-left (RTL) layouts.
+Internationalization and accessibility overlap heavily. The [`useTextDirection`](https://reactuse.com/browser/usetextdirection/) hook detects and manages the text direction of your document, supporting both left-to-right (LTR) and right-to-left (RTL) layouts.
 
 ```tsx
 import { useTextDirection } from "@reactuses/core";
@@ -400,14 +400,14 @@ import {
 
 ## Related Hooks
 
-- [`useReducedMotion`](https://reactuse.com/browser/useReducedMotion/) — detect the `prefers-reduced-motion` preference
-- [`usePreferredContrast`](https://reactuse.com/browser/usePreferredContrast/) — detect the `prefers-contrast` preference
-- [`usePreferredColorScheme`](https://reactuse.com/browser/usePreferredColorScheme/) — detect `prefers-color-scheme` (light, dark, or no preference)
-- [`usePreferredDark`](https://reactuse.com/browser/usePreferredDark/) — boolean shorthand for dark mode detection
-- [`useDarkMode`](https://reactuse.com/browser/useDarkMode/) — full dark mode toggle with persistence
-- [`useMediaQuery`](https://reactuse.com/browser/useMediaQuery/) — subscribe to any CSS media query
-- [`useFocus`](https://reactuse.com/element/useFocus/) — programmatic focus management
-- [`useActiveElement`](https://reactuse.com/element/useActiveElement/) — track the currently focused element
-- [`useTextDirection`](https://reactuse.com/browser/useTextDirection/) — detect and control LTR/RTL text direction
+- [`useReducedMotion`](https://reactuse.com/browser/usereducedmotion/) — detect the `prefers-reduced-motion` preference
+- [`usePreferredContrast`](https://reactuse.com/browser/usepreferredcontrast/) — detect the `prefers-contrast` preference
+- [`usePreferredColorScheme`](https://reactuse.com/browser/usepreferredcolorscheme/) — detect `prefers-color-scheme` (light, dark, or no preference)
+- [`usePreferredDark`](https://reactuse.com/browser/usepreferreddark/) — boolean shorthand for dark mode detection
+- [`useDarkMode`](https://reactuse.com/browser/usedarkmode/) — full dark mode toggle with persistence
+- [`useMediaQuery`](https://reactuse.com/browser/usemediaquery/) — subscribe to any CSS media query
+- [`useFocus`](https://reactuse.com/element/usefocus/) — programmatic focus management
+- [`useActiveElement`](https://reactuse.com/element/useactiveelement/) — track the currently focused element
+- [`useTextDirection`](https://reactuse.com/browser/usetextdirection/) — detect and control LTR/RTL text direction
 
 ReactUse provides 100+ hooks for React. [Explore them all &rarr;](https://reactuse.com)

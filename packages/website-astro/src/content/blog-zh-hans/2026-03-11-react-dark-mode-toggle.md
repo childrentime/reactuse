@@ -94,7 +94,7 @@ function useSystemDarkMode() {
 
 ## 简单方式：useDarkMode
 
-ReactUse 的 [useDarkMode](https://reactuse.com/browser/useDarkMode/) Hook 只需一次调用就能处理所有这些。它检测系统偏好，将用户选择持久化到 localStorage，将 CSS 类应用到 DOM，并且安全支持 SSR：
+ReactUse 的 [useDarkMode](https://reactuse.com/browser/usedarkmode/) Hook 只需一次调用就能处理所有这些。它检测系统偏好，将用户选择持久化到 localStorage，将 CSS 类应用到 DOM，并且安全支持 SSR：
 
 ```tsx
 import { useDarkMode } from "@reactuses/core";
@@ -201,10 +201,10 @@ yarn add @reactuses/core
 
 ## 相关 Hooks
 
-- [useDarkMode 文档](https://reactuse.com/browser/useDarkMode/) — 完整 API 参考和交互式演示
-- [useColorMode](https://reactuse.com/browser/useColorMode/) — 用于超越浅色/深色的多模式主题
-- [useMediaQuery](https://reactuse.com/browser/useMediaQuery/) — 用于响应任何 CSS 媒体查询
-- [useLocalStorage](https://reactuse.com/state/useLocalStorage/) — 用于通用的持久化状态
+- [useDarkMode 文档](https://reactuse.com/browser/usedarkmode/) — 完整 API 参考和交互式演示
+- [useColorMode](https://reactuse.com/browser/usecolormode/) — 用于超越浅色/深色的多模式主题
+- [useMediaQuery](https://reactuse.com/browser/usemediaquery/) — 用于响应任何 CSS 媒体查询
+- [useLocalStorage](https://reactuse.com/state/uselocalstorage/) — 用于通用的持久化状态
 
 ---
 

@@ -91,7 +91,7 @@ function Dropdown() {
 
 ## Try It Live
 
-Check out the [interactive demo](https://reactuse.com/element/useClickOutside/) on our documentation site, where you can edit the code and see results in real-time.
+Check out the [interactive demo](https://reactuse.com/element/useclickoutside/) on our documentation site, where you can edit the code and see results in real-time.
 
 ## Installation
 
@@ -101,9 +101,9 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [useClickOutside documentation](https://reactuse.com/element/useClickOutside/)
-- [useEventListener](https://reactuse.com/effect/useEventListener/) — for custom event handling
-- [useFocus](https://reactuse.com/element/useFocus/) — for tracking focus state
+- [useClickOutside documentation](https://reactuse.com/element/useclickoutside/)
+- [useEventListener](https://reactuse.com/effect/useeventlistener/) — for custom event handling
+- [useFocus](https://reactuse.com/element/usefocus/) — for tracking focus state
 
 ---
 

@@ -82,7 +82,7 @@ function ManualScrollTracker() {
 
 ### 用 useScroll
 
-[`useScroll`](https://reactuse.com/browser/useScroll/) 返回当前的 `x` 和 `y` 偏移量、双轴滚动方向，以及 `isScrolling` 和 `arrivedState` 布尔值，后者会告诉你用户是否到达了上、下、左、右边缘。
+[`useScroll`](https://reactuse.com/browser/usescroll/) 返回当前的 `x` 和 `y` 偏移量、双轴滚动方向，以及 `isScrolling` 和 `arrivedState` 布尔值，后者会告诉你用户是否到达了上、下、左、右边缘。
 
 ```tsx
 import { useScroll } from "@reactuses/core";
@@ -226,7 +226,7 @@ function ManualModal() {
 
 ### 用 useScrollLock
 
-[`useScrollLock`](https://reactuse.com/browser/useScrollLock/) 帮你处理了所有这些边界情况。传入要锁定的元素引用（通常是 `document.body`）和一个控制锁定状态的布尔值。
+[`useScrollLock`](https://reactuse.com/browser/usescrolllock/) 帮你处理了所有这些边界情况。传入要锁定的元素引用（通常是 `document.body`）和一个控制锁定状态的布尔值。
 
 ```tsx
 import { useScrollLock } from "@reactuses/core";
@@ -318,7 +318,7 @@ function ManualScrollTo() {
 
 ### 用 useScrollIntoView
 
-[`useScrollIntoView`](https://reactuse.com/browser/useScrollIntoView/) 提供了对滚动动画的精细控制，包括自定义时长、缓动函数、滚动轴、偏移量和完成回调。
+[`useScrollIntoView`](https://reactuse.com/browser/usescrollintoview/) 提供了对滚动动画的精细控制，包括自定义时长、缓动函数、滚动轴、偏移量和完成回调。
 
 ```tsx
 import { useScrollIntoView } from "@reactuses/core";
@@ -442,7 +442,7 @@ function ManualStickyHeader() {
 
 ### 用 useSticky
 
-[`useSticky`](https://reactuse.com/element/useSticky/) 干净利落地解决了吸顶检测问题，返回一个布尔值，当元素进入吸顶状态时翻转为 `true`。
+[`useSticky`](https://reactuse.com/element/usesticky/) 干净利落地解决了吸顶检测问题，返回一个布尔值，当元素进入吸顶状态时翻转为 `true`。
 
 ```tsx
 import { useSticky } from "@reactuses/core";
@@ -536,7 +536,7 @@ function ManualReveal({ children }: { children: React.ReactNode }) {
 
 ### 用 useElementVisibility
 
-[`useElementVisibility`](https://reactuse.com/element/useElementVisibility/) 将 `IntersectionObserver` 封装成一个布尔值返回。搭配 `useState` 标记位即可实现单次渐显效果：
+[`useElementVisibility`](https://reactuse.com/element/useelementvisibility/) 将 `IntersectionObserver` 封装成一个布尔值返回。搭配 `useState` 标记位即可实现单次渐显效果：
 
 ```tsx
 import { useElementVisibility } from "@reactuses/core";
@@ -657,7 +657,7 @@ function ManualSectionProgress() {
 
 ### 用 useIntersectionObserver
 
-[`useIntersectionObserver`](https://reactuse.com/element/useIntersectionObserver/) 以声明式的方式暴露完整的 `IntersectionObserver` API，让你直接获取 `IntersectionObserverEntry`，包括 `intersectionRatio`、`isIntersecting` 和 `boundingClientRect`。
+[`useIntersectionObserver`](https://reactuse.com/element/useintersectionobserver/) 以声明式的方式暴露完整的 `IntersectionObserver` API，让你直接获取 `IntersectionObserverEntry`，包括 `intersectionRatio`、`isIntersecting` 和 `boundingClientRect`。
 
 ```tsx
 import { useIntersectionObserver } from "@reactuses/core";
@@ -859,15 +859,15 @@ npm i @reactuses/core
 
 ## 相关 Hook
 
-- [`useScroll`](https://reactuse.com/browser/useScroll/) -- 追踪滚动位置、方向和边缘到达状态
-- [`useScrollLock`](https://reactuse.com/browser/useScrollLock/) -- 锁定任意元素的滚动
-- [`useScrollIntoView`](https://reactuse.com/browser/useScrollIntoView/) -- 带偏移量和缓动的平滑滚动
-- [`useSticky`](https://reactuse.com/element/useSticky/) -- 检测元素是否进入吸顶状态
-- [`useElementVisibility`](https://reactuse.com/element/useElementVisibility/) -- 检测元素是否在视口中可见
-- [`useIntersectionObserver`](https://reactuse.com/element/useIntersectionObserver/) -- 功能完整的交叉观察
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) -- 声明式绑定事件监听器
-- [`useElementSize`](https://reactuse.com/element/useElementSize/) -- 响应式追踪元素尺寸
-- [`useElementBounding`](https://reactuse.com/element/useElementBounding/) -- 获取元素的实时边界矩形
+- [`useScroll`](https://reactuse.com/browser/usescroll/) -- 追踪滚动位置、方向和边缘到达状态
+- [`useScrollLock`](https://reactuse.com/browser/usescrolllock/) -- 锁定任意元素的滚动
+- [`useScrollIntoView`](https://reactuse.com/browser/usescrollintoview/) -- 带偏移量和缓动的平滑滚动
+- [`useSticky`](https://reactuse.com/element/usesticky/) -- 检测元素是否进入吸顶状态
+- [`useElementVisibility`](https://reactuse.com/element/useelementvisibility/) -- 检测元素是否在视口中可见
+- [`useIntersectionObserver`](https://reactuse.com/element/useintersectionobserver/) -- 功能完整的交叉观察
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) -- 声明式绑定事件监听器
+- [`useElementSize`](https://reactuse.com/element/useelementsize/) -- 响应式追踪元素尺寸
+- [`useElementBounding`](https://reactuse.com/element/useelementbounding/) -- 获取元素的实时边界矩形
 
 ---
 

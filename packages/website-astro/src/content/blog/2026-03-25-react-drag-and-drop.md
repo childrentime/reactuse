@@ -17,7 +17,7 @@ Drag-and-drop is one of those interactions users expect to "just work." Whether 
 
 <!-- truncate -->
 
-What if you could get smooth, production-ready drag-and-drop behavior with a single hook call? In this post we will start from raw browser APIs, see why they are painful, and then solve the same problems with two lightweight hooks from [ReactUse](https://reactuse.com): [`useDraggable`](https://reactuse.com/element/useDraggable/) and [`useDropZone`](https://reactuse.com/element/useDropZone/).
+What if you could get smooth, production-ready drag-and-drop behavior with a single hook call? In this post we will start from raw browser APIs, see why they are painful, and then solve the same problems with two lightweight hooks from [ReactUse](https://reactuse.com): [`useDraggable`](https://reactuse.com/element/usedraggable/) and [`useDropZone`](https://reactuse.com/element/usedropzone/).
 
 ## The Manual Approach: Pointer Events by Hand
 
@@ -103,7 +103,7 @@ These are exactly the problems that `useDraggable` and `useDropZone` solve out o
 
 ## useDraggable: One Hook, Full Control
 
-[`useDraggable`](https://reactuse.com/element/useDraggable/) takes a ref to your target element and an optional configuration object. It returns the current `x` and `y` position, a boolean indicating whether the element is being dragged, and a setter in case you need to move the element programmatically.
+[`useDraggable`](https://reactuse.com/element/usedraggable/) takes a ref to your target element and an optional configuration object. It returns the current `x` and `y` position, a boolean indicating whether the element is being dragged, and a setter in case you need to move the element programmatically.
 
 ```tsx
 import { useDraggable } from "@reactuses/core";
@@ -247,7 +247,7 @@ The body of the panel remains interactive -- you can select text, click buttons,
 
 ## useDropZone: File Drops Made Easy
 
-[`useDropZone`](https://reactuse.com/element/useDropZone/) tackles the other half of the drag-and-drop story: receiving drops. It handles all four drag events (`dragenter`, `dragover`, `dragleave`, `drop`), suppresses the browser's default file-opening behavior, and solves the flickering `dragleave` problem using an internal counter.
+[`useDropZone`](https://reactuse.com/element/usedropzone/) tackles the other half of the drag-and-drop story: receiving drops. It handles all four drag events (`dragenter`, `dragover`, `dragleave`, `drop`), suppresses the browser's default file-opening behavior, and solves the flickering `dragleave` problem using an internal counter.
 
 ```tsx
 import { useDropZone } from "@reactuses/core";
@@ -298,7 +298,7 @@ The `isOver` boolean lets you restyle the zone the instant a file enters, giving
 
 ## Building a Kanban-Style Card Mover
 
-Let's combine both hooks in a more realistic example -- a draggable card that snaps back when released and a drop zone that accepts it. We will also use [`useElementBounding`](https://reactuse.com/element/useElementBounding/) to read zone positions for visual feedback.
+Let's combine both hooks in a more realistic example -- a draggable card that snaps back when released and a drop zone that accepts it. We will also use [`useElementBounding`](https://reactuse.com/element/useelementbounding/) to read zone positions for visual feedback.
 
 ```tsx
 import { useDraggable, useDropZone, useElementBounding } from "@reactuses/core";
@@ -454,9 +454,9 @@ Key details worth noting:
 
 ReactUse's hooks compose naturally. Here are a few ways to extend the examples above:
 
-- **[`useMouse`](https://reactuse.com/browser/useMouse/)** -- Track the cursor globally to show a custom drag cursor or a floating tooltip that follows the pointer during a drag operation.
-- **[`useEventListener`](https://reactuse.com/effect/useEventListener/)** -- Attach a one-off `keydown` listener to cancel a drag when the user presses Escape.
-- **[`useElementSize`](https://reactuse.com/element/useElementSize/)** -- Dynamically read the width and height of a container to calculate snap-to-grid positions (e.g., round `x` to the nearest multiple of the cell width).
+- **[`useMouse`](https://reactuse.com/browser/usemouse/)** -- Track the cursor globally to show a custom drag cursor or a floating tooltip that follows the pointer during a drag operation.
+- **[`useEventListener`](https://reactuse.com/effect/useeventlistener/)** -- Attach a one-off `keydown` listener to cancel a drag when the user presses Escape.
+- **[`useElementSize`](https://reactuse.com/element/useelementsize/)** -- Dynamically read the width and height of a container to calculate snap-to-grid positions (e.g., round `x` to the nearest multiple of the cell width).
 
 For example, adding Escape-to-cancel is just a few lines with `useEventListener`:
 
@@ -507,12 +507,12 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [`useDraggable`](https://reactuse.com/element/useDraggable/) -- Make any element draggable with pointer events
-- [`useDropZone`](https://reactuse.com/element/useDropZone/) -- Create drop zones for file uploads and drag operations
-- [`useElementBounding`](https://reactuse.com/element/useElementBounding/) -- Get live bounding rectangle of an element
-- [`useMouse`](https://reactuse.com/browser/useMouse/) -- Track mouse position globally
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) -- Attach event listeners declaratively
-- [`useElementSize`](https://reactuse.com/element/useElementSize/) -- Track element dimensions reactively
+- [`useDraggable`](https://reactuse.com/element/usedraggable/) -- Make any element draggable with pointer events
+- [`useDropZone`](https://reactuse.com/element/usedropzone/) -- Create drop zones for file uploads and drag operations
+- [`useElementBounding`](https://reactuse.com/element/useelementbounding/) -- Get live bounding rectangle of an element
+- [`useMouse`](https://reactuse.com/browser/usemouse/) -- Track mouse position globally
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) -- Attach event listeners declaratively
+- [`useElementSize`](https://reactuse.com/element/useelementsize/) -- Track element dimensions reactively
 
 ---
 

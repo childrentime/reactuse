@@ -66,7 +66,7 @@ Clipboard API 需要用户明确授权。浏览器可能会在允许读取访问
 
 ## useClipboard 来拯救
 
-ReactUse 的 [useClipboard](https://reactuse.com/browser/useClipboard/) Hook 将所有这些复杂性封装在一个简单的二元组中：
+ReactUse 的 [useClipboard](https://reactuse.com/browser/useclipboard/) Hook 将所有这些复杂性封装在一个简单的二元组中：
 
 ```tsx
 import { useClipboard } from "@reactuses/core";
@@ -176,10 +176,10 @@ import { useClipboard } from "@reactuses/core";
 
 ## 相关 Hooks
 
-- [useClipboard 文档](https://reactuse.com/browser/useClipboard/) — 完整 API 参考和在线演示
-- [usePermission](https://reactuse.com/browser/usePermission/) — 检查剪贴板读取权限是否已被授予
-- [useEventListener](https://reactuse.com/effect/useEventListener/) — useClipboard 内部使用的底层 Hook
-- [useSupported](https://reactuse.com/state/useSupported/) — 检测当前环境中 Clipboard API 是否可用
+- [useClipboard 文档](https://reactuse.com/browser/useclipboard/) — 完整 API 参考和在线演示
+- [usePermission](https://reactuse.com/browser/usepermission/) — 检查剪贴板读取权限是否已被授予
+- [useEventListener](https://reactuse.com/effect/useeventlistener/) — useClipboard 内部使用的底层 Hook
+- [useSupported](https://reactuse.com/state/usesupported/) — 检测当前环境中 Clipboard API 是否可用
 
 ---
 

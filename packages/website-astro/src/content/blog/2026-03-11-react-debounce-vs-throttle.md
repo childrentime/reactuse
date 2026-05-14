@@ -136,10 +136,10 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [useDebounce documentation](https://reactuse.com/state/useDebounce/) -- Debounce a reactive value
-- [useDebounceFn documentation](https://reactuse.com/effect/useDebounceFn/) -- Debounce a function
-- [useThrottle documentation](https://reactuse.com/state/useThrottle/) -- Throttle a reactive value
-- [useThrottleFn documentation](https://reactuse.com/effect/useThrottleFn/) -- Throttle a function
+- [useDebounce documentation](https://reactuse.com/state/usedebounce/) -- Debounce a reactive value
+- [useDebounceFn documentation](https://reactuse.com/effect/usedebouncefn/) -- Debounce a function
+- [useThrottle documentation](https://reactuse.com/state/usethrottle/) -- Throttle a reactive value
+- [useThrottleFn documentation](https://reactuse.com/effect/usethrottlefn/) -- Throttle a function
 
 ---
 

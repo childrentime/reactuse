@@ -57,7 +57,7 @@ function useManualIdle(timeoutMs: number) {
 
 ### Hook 方案：`useIdle`
 
-[`useIdle`](https://reactuse.com/browser/useIdle/) 一行搞定：
+[`useIdle`](https://reactuse.com/browser/useidle/) 一行搞定：
 
 ```tsx
 import { useIdle } from "@reactuses/core";
@@ -158,7 +158,7 @@ function useManualDocumentVisibility() {
 
 ### Hook 方案：`useDocumentVisibility`
 
-[`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) 封裝了 Page Visibility API，並內建了 SSR 安全檢查：
+[`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) 封裝了 Page Visibility API，並內建了 SSR 安全檢查：
 
 ```tsx
 import { useDocumentVisibility } from "@reactuses/core";
@@ -289,7 +289,7 @@ Wake Lock API 有個坑：瀏覽器會在分頁隱藏時自動釋放鎖。你必
 
 ### Hook 方案：`useWakeLock`
 
-[`useWakeLock`](https://reactuse.com/browser/useWakeLock/) 自動處理重新取得、錯誤處理和清理工作：
+[`useWakeLock`](https://reactuse.com/browser/usewakelock/) 自動處理重新取得、錯誤處理和清理工作：
 
 ```tsx
 import { useWakeLock } from "@reactuses/core";
@@ -400,7 +400,7 @@ function useManualNotifyOnReturn() {
 
 ### Hook 方案：`useWindowFocus` + `useWebNotification`
 
-[`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) 和 [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) 組合使用，程式碼清晰且宣告式：
+[`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) 和 [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) 組合使用，程式碼清晰且宣告式：
 
 ```tsx
 import { useWindowFocus, useWebNotification } from "@reactuses/core";
@@ -571,11 +571,11 @@ function AppShell({ children }: { children: React.ReactNode }) {
 
 | 場景 | Hook | 偵測目標 |
 |------|------|----------|
-| 工作階段逾時 | [`useIdle`](https://reactuse.com/browser/useIdle/) | 使用者無操作達 N 毫秒 |
-| 暫停背景工作 | [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) | 分頁隱藏/可見 |
-| 偵測分頁切換 | [`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) | 視窗取得/失去焦點 |
-| 保持螢幕常亮 | [`useWakeLock`](https://reactuse.com/browser/useWakeLock/) | Screen Wake Lock API |
-| 瀏覽器通知 | [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) | Notification API |
+| 工作階段逾時 | [`useIdle`](https://reactuse.com/browser/useidle/) | 使用者無操作達 N 毫秒 |
+| 暫停背景工作 | [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) | 分頁隱藏/可見 |
+| 偵測分頁切換 | [`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) | 視窗取得/失去焦點 |
+| 保持螢幕常亮 | [`useWakeLock`](https://reactuse.com/browser/usewakelock/) | Screen Wake Lock API |
+| 瀏覽器通知 | [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) | Notification API |
 
 ## 安裝
 
@@ -589,13 +589,13 @@ yarn add @reactuses/core
 
 ## 相關 Hook
 
-- [`useIdle`](https://reactuse.com/browser/useIdle/) -- 偵測使用者閒置，逾時時長可設定
-- [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) -- 響應式 `document.visibilityState`
-- [`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) -- 追蹤視窗是否擁有焦點
-- [`useWakeLock`](https://reactuse.com/browser/useWakeLock/) -- 請求和管理 Screen Wake Lock API
-- [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) -- 宣告式瀏覽器通知
-- [`useInterval`](https://reactuse.com/effect/useInterval/) -- 宣告式 `setInterval`，支援暫停/恢復
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) -- 繫結 DOM 事件監聽器，自動清理
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) -- 跨頁面重新整理持久化工作階段狀態
+- [`useIdle`](https://reactuse.com/browser/useidle/) -- 偵測使用者閒置，逾時時長可設定
+- [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) -- 響應式 `document.visibilityState`
+- [`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) -- 追蹤視窗是否擁有焦點
+- [`useWakeLock`](https://reactuse.com/browser/usewakelock/) -- 請求和管理 Screen Wake Lock API
+- [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) -- 宣告式瀏覽器通知
+- [`useInterval`](https://reactuse.com/effect/useinterval/) -- 宣告式 `setInterval`，支援暫停/恢復
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) -- 繫結 DOM 事件監聽器，自動清理
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) -- 跨頁面重新整理持久化工作階段狀態
 
 ReactUse 提供了 100+ 個 React Hook。[去看看完整列表 →](https://reactuse.com)

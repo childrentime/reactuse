@@ -496,12 +496,12 @@ npm i @reactuses/core
 
 ## 相关 Hook
 
-- [`useFileDialog`](https://reactuse.com/browser/useFileDialog/) —— 打开文件选择器，无需在 DOM 中渲染隐藏的 input
-- [`useDropZone`](https://reactuse.com/element/useDropZone/) —— 跟踪文件拖入元素的状态，正确处理子元素事件
-- [`useObjectUrl`](https://reactuse.com/browser/useObjectUrl/) —— 为 File 和 Blob 创建并自动回收 URL
-- [`useScriptTag`](https://reactuse.com/browser/useScriptTag/) —— 动态加载外部脚本，带状态跟踪和卸载支持
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) —— 声明式地附加事件监听器，可用于自定义上传进度事件
-- [`useSupported`](https://reactuse.com/state/useSupported/) —— 响应式地检查浏览器是否支持某个 API
+- [`useFileDialog`](https://reactuse.com/browser/usefiledialog/) —— 打开文件选择器，无需在 DOM 中渲染隐藏的 input
+- [`useDropZone`](https://reactuse.com/element/usedropzone/) —— 跟踪文件拖入元素的状态，正确处理子元素事件
+- [`useObjectUrl`](https://reactuse.com/browser/useobjecturl/) —— 为 File 和 Blob 创建并自动回收 URL
+- [`useScriptTag`](https://reactuse.com/browser/usescripttag/) —— 动态加载外部脚本，带状态跟踪和卸载支持
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) —— 声明式地附加事件监听器，可用于自定义上传进度事件
+- [`useSupported`](https://reactuse.com/state/usesupported/) —— 响应式地检查浏览器是否支持某个 API
 
 ---
 

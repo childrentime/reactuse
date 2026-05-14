@@ -111,7 +111,7 @@ function UsernameField() {
 
 The first effect — the debouncing one — is gone. `useDebounce` owns the timer and its cleanup. What remains is the part that is genuinely about your form: when the debounced value changes, run a validation request and discard stale responses.
 
-The hook also pairs naturally with the equivalent function-debouncer, [`useDebounceFn`](https://reactuse.com/effect/useDebounceFn/), when you want to debounce an event handler instead of a value — useful for "save on blur" and similar patterns where the trigger is a callback rather than a state change.
+The hook also pairs naturally with the equivalent function-debouncer, [`useDebounceFn`](https://reactuse.com/effect/usedebouncefn/), when you want to debounce an event handler instead of a value — useful for "save on blur" and similar patterns where the trigger is a callback rather than a state change.
 
 ## 2. Controlled or Uncontrolled — Pick One, Support Both
 
@@ -330,7 +330,7 @@ function Popover({ children }: { children: React.ReactNode }) {
 
 The list-of-refs form is what makes this work for portaled popovers: you mark both the trigger and the floating panel as "inside," and clicks anywhere else fire the handler. The hook also handles the `mousedown` choice for you, attaches the listener once at the document level (no per-component churn), and cleans up on unmount.
 
-There is a closely related hook, [`useClickAway`](https://reactuse.com/element/useClickAway/), with a slightly different API for cases where you only need a single target ref — pick whichever reads better in your component.
+There is a closely related hook, [`useClickAway`](https://reactuse.com/element/useclickaway/), with a slightly different API for cases where you only need a single target ref — pick whichever reads better in your component.
 
 ## Putting It All Together: A Settings Form
 
@@ -571,15 +571,15 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [`useDebounce`](https://reactuse.com/state/useDebounce/) — Lag a value behind its input by a fixed delay
-- [`useDebounceFn`](https://reactuse.com/effect/useDebounceFn/) — Debounce a callback rather than a value
-- [`useControlled`](https://reactuse.com/state/useControlled/) — Build components that accept either controlled or uncontrolled props
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) — `useState` that persists to localStorage with SSR safety and cross-tab sync
-- [`useSessionStorage`](https://reactuse.com/state/useSessionStorage/) — Same shape as `useLocalStorage`, scoped to the session
-- [`useClickOutside`](https://reactuse.com/element/useClickOutside/) — Detect clicks outside one or more elements
-- [`useClickAway`](https://reactuse.com/element/useClickAway/) — Single-ref variant of click-outside detection
-- [`useToggle`](https://reactuse.com/state/useToggle/) — Boolean state with an explicit toggle setter
-- [`usePrevious`](https://reactuse.com/state/usePrevious/) — Read the previous value of a piece of state, useful for change detection in forms
+- [`useDebounce`](https://reactuse.com/state/usedebounce/) — Lag a value behind its input by a fixed delay
+- [`useDebounceFn`](https://reactuse.com/effect/usedebouncefn/) — Debounce a callback rather than a value
+- [`useControlled`](https://reactuse.com/state/usecontrolled/) — Build components that accept either controlled or uncontrolled props
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) — `useState` that persists to localStorage with SSR safety and cross-tab sync
+- [`useSessionStorage`](https://reactuse.com/state/usesessionstorage/) — Same shape as `useLocalStorage`, scoped to the session
+- [`useClickOutside`](https://reactuse.com/element/useclickoutside/) — Detect clicks outside one or more elements
+- [`useClickAway`](https://reactuse.com/element/useclickaway/) — Single-ref variant of click-outside detection
+- [`useToggle`](https://reactuse.com/state/usetoggle/) — Boolean state with an explicit toggle setter
+- [`usePrevious`](https://reactuse.com/state/useprevious/) — Read the previous value of a piece of state, useful for change detection in forms
 
 ---
 

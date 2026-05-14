@@ -91,7 +91,7 @@ function Dropdown() {
 
 ## 線上體驗
 
-查看我們文件網站上的[互動式範例](https://reactuse.com/element/useClickOutside/)，你可以編輯程式碼並即時查看結果。
+查看我們文件網站上的[互動式範例](https://reactuse.com/element/useclickoutside/)，你可以編輯程式碼並即時查看結果。
 
 ## 安裝
 
@@ -101,9 +101,9 @@ npm i @reactuses/core
 
 ## 相關 Hooks
 
-- [useClickOutside 文件](https://reactuse.com/element/useClickOutside/)
-- [useEventListener](https://reactuse.com/effect/useEventListener/) — 用於自訂事件處理
-- [useFocus](https://reactuse.com/element/useFocus/) — 用於追蹤焦點狀態
+- [useClickOutside 文件](https://reactuse.com/element/useclickoutside/)
+- [useEventListener](https://reactuse.com/effect/useeventlistener/) — 用於自訂事件處理
+- [useFocus](https://reactuse.com/element/usefocus/) — 用於追蹤焦點狀態
 
 ---
 

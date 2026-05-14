@@ -117,7 +117,7 @@ function useCrossTabTheme() {
 
 ## useBroadcastChannel：标签页之间的类型安全消息传递
 
-ReactUse 的 [`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) Hook 将 BroadcastChannel API 封装在一个简洁的声明式接口中。它处理频道创建、消息监听、卸载时的清理，甚至 SSR 安全——所有这些都在一次调用中完成。
+ReactUse 的 [`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) Hook 将 BroadcastChannel API 封装在一个简洁的声明式接口中。它处理频道创建、消息监听、卸载时的清理，甚至 SSR 安全——所有这些都在一次调用中完成。
 
 ```tsx
 import { useBroadcastChannel } from "@reactuses/core";
@@ -150,7 +150,7 @@ function NotificationSync() {
 
 ## useLocalStorage：自动跨标签页同步
 
-对于需要持久化*并且*跨标签页同步的状态，[`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) 是正确的工具。它的工作方式类似于 `useState`，但值由 `localStorage` 支持，并通过 storage 事件自动在所有标签页之间保持同步。
+对于需要持久化*并且*跨标签页同步的状态，[`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) 是正确的工具。它的工作方式类似于 `useState`，但值由 `localStorage` 支持，并通过 storage 事件自动在所有标签页之间保持同步。
 
 ```tsx
 import { useLocalStorage } from "@reactuses/core";
@@ -171,7 +171,7 @@ function ThemeToggle() {
 
 当在一个标签页中调用 `setTheme` 时，所有使用相同键（`"app-theme"`）运行此 Hook 的其他标签页会自动更新。Hook 内部处理 JSON 序列化、初始值回退、SSR 保护和 storage 事件订阅。你只需写一行 Hook 调用；Hook 为你编写三十行浏览器 API 代码。
 
-与 [`useSessionStorage`](https://reactuse.com/state/useSessionStorage/) 对比，后者提供相同的 API 但将值限定在当前标签页。Session storage 不会触发跨标签页事件，标签页关闭后也不会持久化。当你需要跨标签页同步时选择 `useLocalStorage`；当你需要标签页隔离的持久化时选择 `useSessionStorage`。
+与 [`useSessionStorage`](https://reactuse.com/state/usesessionstorage/) 对比，后者提供相同的 API 但将值限定在当前标签页。Session storage 不会触发跨标签页事件，标签页关闭后也不会持久化。当你需要跨标签页同步时选择 `useLocalStorage`；当你需要标签页隔离的持久化时选择 `useSessionStorage`。
 
 ## 实用模式
 
@@ -279,7 +279,7 @@ function useCart() {
 
 ### 模式四：领导者选举
 
-有时你只想让一个标签页执行任务——轮询 API、维护 WebSocket 连接或运行后台同步。[`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) Hook 为简单的领导者选举协议提供了消息传递层。
+有时你只想让一个标签页执行任务——轮询 API、维护 WebSocket 连接或运行后台同步。[`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) Hook 为简单的领导者选举协议提供了消息传递层。
 
 ```tsx
 import { useBroadcastChannel } from "@reactuses/core";
@@ -325,7 +325,7 @@ function useLeaderElection(channelName: string) {
 
 ### useDocumentVisibility
 
-[`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) 返回文档的当前可见性状态——`"visible"` 或 `"hidden"`。用它在标签页不可见时暂停工作。
+[`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) 返回文档的当前可见性状态——`"visible"` 或 `"hidden"`。用它在标签页不可见时暂停工作。
 
 ```tsx
 import { useDocumentVisibility } from "@reactuses/core";
@@ -356,7 +356,7 @@ function usePolling(url: string, intervalMs: number) {
 
 ### useWindowFocus
 
-[`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) 跟踪浏览器窗口本身是否获得了焦点。这比可见性更细微——一个标签页可以是可见的但未获得焦点（例如，当用户正在与 DevTools 或覆盖浏览器的另一个窗口交互时）。
+[`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) 跟踪浏览器窗口本身是否获得了焦点。这比可见性更细微——一个标签页可以是可见的但未获得焦点（例如，当用户正在与 DevTools 或覆盖浏览器的另一个窗口交互时）。
 
 ```tsx
 import { useWindowFocus } from "@reactuses/core";
@@ -475,7 +475,7 @@ function useNotificationSync() {
 - **`useBroadcastChannel`** 在通知到达或被阅读时在标签页之间发送实时信号。
 - **`useLocalStorage`** 持久化通知列表和未读计数，使新标签页可以获取当前状态。
 - **`useDocumentVisibility`** 在用户返回后台标签页时自动将通知标记为已读。
-- **`useOnline`**（通过 [`useOnline`](https://reactuse.com/browser/useOnline/)）暴露网络状态，使 UI 可以在应用离线且通知可能延迟时显示提示。
+- **`useOnline`**（通过 [`useOnline`](https://reactuse.com/browser/useonline/)）暴露网络状态，使 UI 可以在应用离线且通知可能延迟时显示提示。
 
 每个 Hook 处理一个关注点。组合在一起，它们形成了一个完整的系统——具有持久化、实时同步、可见性感知和网络状态——不到 70 行代码。
 
@@ -504,12 +504,12 @@ yarn add @reactuses/core
 
 ## 相关 Hooks
 
-- [`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) — 通过 BroadcastChannel API 实现类型安全的跨标签页消息传递
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) — 具有自动跨标签页同步的持久化状态
-- [`useSessionStorage`](https://reactuse.com/state/useSessionStorage/) — 标签页作用域的持久化状态
-- [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) — 跟踪当前标签页是否可见
-- [`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) — 跟踪浏览器窗口是否获得焦点
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) — 声明式事件监听器管理，自动清理
-- [`useOnline`](https://reactuse.com/browser/useOnline/) — 响应式网络连接状态
+- [`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) — 通过 BroadcastChannel API 实现类型安全的跨标签页消息传递
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) — 具有自动跨标签页同步的持久化状态
+- [`useSessionStorage`](https://reactuse.com/state/usesessionstorage/) — 标签页作用域的持久化状态
+- [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) — 跟踪当前标签页是否可见
+- [`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) — 跟踪浏览器窗口是否获得焦点
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) — 声明式事件监听器管理，自动清理
+- [`useOnline`](https://reactuse.com/browser/useonline/) — 响应式网络连接状态
 
 ReactUse 提供了 100+ 个 React Hooks。[探索全部 →](https://reactuse.com)

@@ -104,7 +104,7 @@ That is about 45 lines, and it already has problems:
 
 ### With useEventSource
 
-The [`useEventSource`](https://reactuse.com/browser/useEventSource/) hook from ReactUse handles all of this.
+The [`useEventSource`](https://reactuse.com/browser/useeventsource/) hook from ReactUse handles all of this.
 
 ```tsx
 import { useEventSource } from "@reactuses/core";
@@ -290,7 +290,7 @@ This is already 55+ lines, and it is incomplete. It does not handle named events
 
 ### With useFetchEventSource
 
-The [`useFetchEventSource`](https://reactuse.com/browser/useFetchEventSource/) hook wraps the [@microsoft/fetch-event-source](https://github.com/Azure/fetch-event-source) library in a React-friendly API. It supports custom headers, POST requests with bodies, and all the reconnection logic you need.
+The [`useFetchEventSource`](https://reactuse.com/browser/usefetcheventsource/) hook wraps the [@microsoft/fetch-event-source](https://github.com/Azure/fetch-event-source) library in a React-friendly API. It supports custom headers, POST requests with bodies, and all the reconnection logic you need.
 
 ```tsx
 import { useFetchEventSource } from "@reactuses/core";
@@ -479,7 +479,7 @@ That is around 35 lines for just two pieces of information, and it does not trac
 
 ### With useNetwork
 
-The [`useNetwork`](https://reactuse.com/browser/useNetwork/) hook returns the full picture.
+The [`useNetwork`](https://reactuse.com/browser/usenetwork/) hook returns the full picture.
 
 ```tsx
 import { useNetwork } from "@reactuses/core";
@@ -522,7 +522,7 @@ The hook handles all the vendor prefixes, event listeners, and SSR safety. The `
 
 ### With useOnline
 
-If you only need the boolean, [`useOnline`](https://reactuse.com/browser/useOnline/) is even simpler. It is a thin wrapper around `useNetwork` that returns just the `online` value.
+If you only need the boolean, [`useOnline`](https://reactuse.com/browser/useonline/) is even simpler. It is a thin wrapper around `useNetwork` that returns just the `online` value.
 
 ```tsx
 import { useOnline } from "@reactuses/core";
@@ -638,7 +638,7 @@ This works for simple cases, but it does not track whether BroadcastChannel is s
 
 ### With useBroadcastChannel
 
-The [`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) hook provides a complete, type-safe wrapper.
+The [`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) hook provides a complete, type-safe wrapper.
 
 ```tsx
 import { useBroadcastChannel } from "@reactuses/core";
@@ -979,12 +979,12 @@ yarn add @reactuses/core
 
 ## Related Hooks
 
-- [`useEventSource`](https://reactuse.com/browser/useEventSource/) -- reactive Server-Sent Events with named event support and auto-reconnect
-- [`useFetchEventSource`](https://reactuse.com/browser/useFetchEventSource/) -- SSE via fetch, supporting custom headers, POST requests, and authentication
-- [`useNetwork`](https://reactuse.com/browser/useNetwork/) -- detailed network status including connection type, downlink speed, and RTT
-- [`useOnline`](https://reactuse.com/browser/useOnline/) -- simple boolean for online/offline detection
-- [`useBroadcastChannel`](https://reactuse.com/browser/useBroadcastChannel/) -- type-safe cross-tab messaging via the BroadcastChannel API
-- [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) -- track whether the current tab is visible
-- [`useLocalStorage`](https://reactuse.com/state/useLocalStorage/) -- persistent state with automatic cross-tab synchronization
+- [`useEventSource`](https://reactuse.com/browser/useeventsource/) -- reactive Server-Sent Events with named event support and auto-reconnect
+- [`useFetchEventSource`](https://reactuse.com/browser/usefetcheventsource/) -- SSE via fetch, supporting custom headers, POST requests, and authentication
+- [`useNetwork`](https://reactuse.com/browser/usenetwork/) -- detailed network status including connection type, downlink speed, and RTT
+- [`useOnline`](https://reactuse.com/browser/useonline/) -- simple boolean for online/offline detection
+- [`useBroadcastChannel`](https://reactuse.com/browser/usebroadcastchannel/) -- type-safe cross-tab messaging via the BroadcastChannel API
+- [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) -- track whether the current tab is visible
+- [`useLocalStorage`](https://reactuse.com/state/uselocalstorage/) -- persistent state with automatic cross-tab synchronization
 
 ReactUse provides 100+ hooks for React. [Explore them all →](https://reactuse.com)

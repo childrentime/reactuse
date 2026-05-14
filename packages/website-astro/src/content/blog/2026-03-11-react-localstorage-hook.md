@@ -155,8 +155,8 @@ import { useLocalStorage } from "@reactuses/core";
 
 ## Related Hooks
 
-- [useLocalStorage documentation](https://reactuse.com/state/useLocalStorage/) -- full API reference and live demo
-- [useSessionStorage](https://reactuse.com/state/useSessionStorage/) -- same API, but data clears when the tab is closed
+- [useLocalStorage documentation](https://reactuse.com/state/uselocalstorage/) -- full API reference and live demo
+- [useSessionStorage](https://reactuse.com/state/usesessionstorage/) -- same API, but data clears when the tab is closed
 
 ---
 

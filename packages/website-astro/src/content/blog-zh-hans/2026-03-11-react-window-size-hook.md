@@ -148,9 +148,9 @@ yarn add @reactuses/core
 
 ## 相关 Hooks
 
-- [useWindowSize 文档](https://reactuse.com/element/useWindowSize/) — 完整 API 参考和交互式演示
-- [useMediaQuery](https://reactuse.com/browser/useMediaQuery/) — 响应式 CSS 媒体查询匹配
-- [useElementSize](https://reactuse.com/element/useElementSize/) — 追踪特定 DOM 元素的尺寸
+- [useWindowSize 文档](https://reactuse.com/element/usewindowsize/) — 完整 API 参考和交互式演示
+- [useMediaQuery](https://reactuse.com/browser/usemediaquery/) — 响应式 CSS 媒体查询匹配
+- [useElementSize](https://reactuse.com/element/useelementsize/) — 追踪特定 DOM 元素的尺寸
 
 ---
 

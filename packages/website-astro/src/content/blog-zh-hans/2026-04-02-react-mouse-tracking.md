@@ -113,7 +113,7 @@ function ManualMouseTracker() {
 
 ### 用 useMouse
 
-[`useMouse`](https://reactuse.com/browser/useMouse/) 返回一个包含 `screenX`、`screenY`、`clientX`、`clientY`、`pageX`、`pageY` 以及元素相关的 `elementX`、`elementY`、`elementW`、`elementH`、`elementPosX`、`elementPosY` 的状态对象，所有更新通过 `requestAnimationFrame` 自动批处理。
+[`useMouse`](https://reactuse.com/browser/usemouse/) 返回一个包含 `screenX`、`screenY`、`clientX`、`clientY`、`pageX`、`pageY` 以及元素相关的 `elementX`、`elementY`、`elementW`、`elementH`、`elementPosX`、`elementPosY` 的状态对象，所有更新通过 `requestAnimationFrame` 自动批处理。
 
 ```tsx
 import { useMouse } from "@reactuses/core";
@@ -289,7 +289,7 @@ function ManualPressDetector() {
 
 ### 用 useMousePressed
 
-[`useMousePressed`](https://reactuse.com/browser/useMousePressed/) 把所有这些封装成一行调用。返回 `[pressed, sourceType]` 元组，开箱即用支持鼠标、触摸和拖拽事件，可通过 ref 将检测范围限定到特定元素。
+[`useMousePressed`](https://reactuse.com/browser/usemousepressed/) 把所有这些封装成一行调用。返回 `[pressed, sourceType]` 元组，开箱即用支持鼠标、触摸和拖拽事件，可通过 ref 将检测范围限定到特定元素。
 
 ```tsx
 import { useMousePressed } from "@reactuses/core";
@@ -470,7 +470,7 @@ function ManualBounding() {
 
 ### 用 useElementBounding
 
-[`useElementBounding`](https://reactuse.com/element/useElementBounding/) 返回一个实时更新的边界矩形，当滚动、窗口大小变化或元素尺寸改变时自动刷新。返回 `{ x, y, width, height, top, right, bottom, left, update }`。
+[`useElementBounding`](https://reactuse.com/element/useelementbounding/) 返回一个实时更新的边界矩形，当滚动、窗口大小变化或元素尺寸改变时自动刷新。返回 `{ x, y, width, height, top, right, bottom, left, update }`。
 
 ```tsx
 import { useElementBounding } from "@reactuses/core";
@@ -724,7 +724,7 @@ function ManualScratchPad() {
 
 ### 用 useScratch
 
-[`useScratch`](https://reactuse.com/browser/useScratch/) 同时处理鼠标和触摸事件，计算元素相对坐标，追踪时间戳，并通过 `requestAnimationFrame` 批量更新状态。返回包含 `isScratching`、`x`、`y`、`dx`、`dy`、`elW`、`elH` 和时间戳的状态对象。
+[`useScratch`](https://reactuse.com/browser/usescratch/) 同时处理鼠标和触摸事件，计算元素相对坐标，追踪时间戳，并通过 `requestAnimationFrame` 批量更新状态。返回包含 `isScratching`、`x`、`y`、`dx`、`dy`、`elW`、`elH` 和时间戳的状态对象。
 
 ```tsx
 import { useScratch } from "@reactuses/core";
@@ -973,7 +973,7 @@ function ManualColorPicker() {
 
 ### 用 useEyeDropper
 
-[`useEyeDropper`](https://reactuse.com/browser/useEyeDropper/) 将 EyeDropper API 封装为简洁的 `[isSupported, open]` 元组。`open` 函数返回一个 Promise，resolve 为 `{ sRGBHex: string }`。如果 API 不支持，`isSupported` 为 `false`，`open` 会 resolve 空字符串。
+[`useEyeDropper`](https://reactuse.com/browser/useeyedropper/) 将 EyeDropper API 封装为简洁的 `[isSupported, open]` 元组。`open` 函数返回一个 Promise，resolve 为 `{ sRGBHex: string }`。如果 API 不支持，`isSupported` 为 `false`，`open` 会 resolve 空字符串。
 
 ```tsx
 import { useEyeDropper } from "@reactuses/core";
@@ -1394,15 +1394,15 @@ npm i @reactuses/core
 
 ## 相关 Hook
 
-- [`useMouse`](https://reactuse.com/browser/useMouse/) -- 追踪多种坐标系下的鼠标位置
-- [`useMousePressed`](https://reactuse.com/browser/useMousePressed/) -- 检测鼠标/触摸/拖拽按压状态
-- [`useElementBounding`](https://reactuse.com/element/useElementBounding/) -- 获取元素的实时边界矩形
-- [`useScratch`](https://reactuse.com/browser/useScratch/) -- 追踪元素上的涂抹/拖拽手势
-- [`useEyeDropper`](https://reactuse.com/browser/useEyeDropper/) -- 从屏幕任意位置拾取颜色
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) -- 声明式地添加事件监听器
-- [`useRafState`](https://reactuse.com/state/useRafState/) -- 通过 requestAnimationFrame 批量更新状态
-- [`useElementSize`](https://reactuse.com/element/useElementSize/) -- 响应式追踪元素尺寸
-- [`useSupported`](https://reactuse.com/browser/useSupported/) -- 响应式检测浏览器 API 支持
+- [`useMouse`](https://reactuse.com/browser/usemouse/) -- 追踪多种坐标系下的鼠标位置
+- [`useMousePressed`](https://reactuse.com/browser/usemousepressed/) -- 检测鼠标/触摸/拖拽按压状态
+- [`useElementBounding`](https://reactuse.com/element/useelementbounding/) -- 获取元素的实时边界矩形
+- [`useScratch`](https://reactuse.com/browser/usescratch/) -- 追踪元素上的涂抹/拖拽手势
+- [`useEyeDropper`](https://reactuse.com/browser/useeyedropper/) -- 从屏幕任意位置拾取颜色
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) -- 声明式地添加事件监听器
+- [`useRafState`](https://reactuse.com/state/userafstate/) -- 通过 requestAnimationFrame 批量更新状态
+- [`useElementSize`](https://reactuse.com/element/useelementsize/) -- 响应式追踪元素尺寸
+- [`useSupported`](https://reactuse.com/browser/usesupported/) -- 响应式检测浏览器 API 支持
 
 ---
 

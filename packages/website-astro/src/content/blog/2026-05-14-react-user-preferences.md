@@ -58,11 +58,11 @@ function Component() {
 }
 ```
 
-[`usePreferredDark`](https://reactuse.com/browser/usePreferredDark/) is `boolean` in, `boolean` out — drop it anywhere in the tree, no setup. The first render returns the SSR-safe default; once the client mounts the real `matchMedia` value flows in and stays in sync as the user toggles.
+[`usePreferredDark`](https://reactuse.com/browser/usepreferreddark/) is `boolean` in, `boolean` out — drop it anywhere in the tree, no setup. The first render returns the SSR-safe default; once the client mounts the real `matchMedia` value flows in and stays in sync as the user toggles.
 
 ## 2. usePreferredColorScheme — When "Dark" Is Not Enough
 
-`prefers-color-scheme` has three values, not two: `'light'`, `'dark'`, and `'no-preference'`. Most apps collapse the third into one of the first two, which is fine — until you ship a "follow system" mode and discover that some users explicitly set "no preference" and now your app picks the wrong default. [`usePreferredColorScheme`](https://reactuse.com/browser/usePreferredColorScheme/) returns the full string.
+`prefers-color-scheme` has three values, not two: `'light'`, `'dark'`, and `'no-preference'`. Most apps collapse the third into one of the first two, which is fine — until you ship a "follow system" mode and discover that some users explicitly set "no preference" and now your app picks the wrong default. [`usePreferredColorScheme`](https://reactuse.com/browser/usepreferredcolorscheme/) returns the full string.
 
 ```tsx
 import { usePreferredColorScheme } from "@reactuses/core";
@@ -113,7 +113,7 @@ The visible label tells the user what "System" actually means right now — a ti
 
 `usePreferredDark` reports the OS preference. `useColorMode` goes a step further: it owns the application's *applied* theme. It reads the OS preference as a default, lets the user override it, persists the override to `localStorage`, and writes the chosen mode onto a class or attribute on `<html>` so your CSS can switch.
 
-[`useColorMode`](https://reactuse.com/browser/useColorMode/) is what you want for a real theme toggle:
+[`useColorMode`](https://reactuse.com/browser/usecolormode/) is what you want for a real theme toggle:
 
 ```tsx
 import { useColorMode } from "@reactuses/core";
@@ -164,7 +164,7 @@ function FadeIn({ children }: { children: React.ReactNode }) {
 
 When reduced motion is on, the component skips the y-translate and uses a 0ms transition — the content still appears, just without the animation. This is the right pattern: do not remove the visual change, remove the *motion*. A toast that fades in is still useful with no movement; a toast that does not appear at all is a bug.
 
-[`useReducedMotion`](https://reactuse.com/browser/useReducedMotion/) returns a boolean and is reactive to the OS setting, so a user who flips the preference mid-session sees animations stop immediately.
+[`useReducedMotion`](https://reactuse.com/browser/usereducedmotion/) returns a boolean and is reactive to the OS setting, so a user who flips the preference mid-session sees animations stop immediately.
 
 Common places to wire it up:
 - Page transitions
@@ -204,13 +204,13 @@ The high-contrast variant typically does three things: thicker borders, stronger
 }
 ```
 
-[`usePreferredContrast`](https://reactuse.com/browser/usePreferredContrast/) returns the raw string, so you can branch on `'more'` vs `'less'` independently if you have something useful to do for low-contrast users (most apps just match `'more'` and ignore the rest).
+[`usePreferredContrast`](https://reactuse.com/browser/usepreferredcontrast/) returns the raw string, so you can branch on `'more'` vs `'less'` independently if you have something useful to do for low-contrast users (most apps just match `'more'` and ignore the rest).
 
 ## 6. usePreferredLanguages — Beyond `navigator.language`
 
 The browser exposes `navigator.languages` — an ordered array of the user's preferred locales, e.g. `["en-US", "zh-CN", "ja-JP"]`. Most apps read only `navigator.language` (the first entry), which throws away signal: a user with `["zh-CN", "en-US"]` set wants Chinese first and English as a fallback, not whatever you guessed.
 
-[`usePreferredLanguages`](https://reactuse.com/browser/usePreferredLanguages/) returns the full array and stays in sync as the user changes browser language preferences:
+[`usePreferredLanguages`](https://reactuse.com/browser/usepreferredlanguages/) returns the full array and stays in sync as the user changes browser language preferences:
 
 ```tsx
 import { usePreferredLanguages } from "@reactuses/core";
@@ -241,7 +241,7 @@ The negotiation logic does what `Accept-Language` content negotiation has done o
 
 Right-to-left languages (Arabic, Hebrew, Persian) flip the entire reading direction of the page. CSS handles most of this through logical properties (`margin-inline-start` instead of `margin-left`), but a real RTL implementation also needs JavaScript-driven behavior to flip: keyboard arrow handling, scroll snapping in carousels, animation directions, drag-to-dismiss directions.
 
-[`useTextDirection`](https://reactuse.com/browser/useTextDirection/) reads (and optionally writes) the `dir` attribute on a target element:
+[`useTextDirection`](https://reactuse.com/browser/usetextdirection/) reads (and optionally writes) the `dir` attribute on a target element:
 
 ```tsx
 import { useEffect } from "react";
@@ -356,12 +356,12 @@ The rule of thumb: handle the static stuff in CSS, reach for these hooks when Ja
 
 | Hook | Signal | Reach for it when… |
 | --- | --- | --- |
-| [`usePreferredDark`](https://reactuse.com/browser/usePreferredDark/) | OS dark mode preference | You need a boolean for theme picking |
-| [`usePreferredColorScheme`](https://reactuse.com/browser/usePreferredColorScheme/) | Full `light`/`dark`/`no-preference` | You need the third value for "System" mode UX |
-| [`useColorMode`](https://reactuse.com/browser/useColorMode/) | Applied theme with persistence | You are building the theme system itself |
-| [`useReducedMotion`](https://reactuse.com/browser/useReducedMotion/) | `prefers-reduced-motion` | You pass duration to an animation lib, or gate motion-heavy components |
-| [`usePreferredContrast`](https://reactuse.com/browser/usePreferredContrast/) | `prefers-contrast` | You ship a high-contrast variant |
-| [`usePreferredLanguages`](https://reactuse.com/browser/usePreferredLanguages/) | Full `navigator.languages` | You do locale negotiation, not just first-language detection |
-| [`useTextDirection`](https://reactuse.com/browser/useTextDirection/) | `dir` attribute | You support RTL languages and need JS-driven flips |
+| [`usePreferredDark`](https://reactuse.com/browser/usepreferreddark/) | OS dark mode preference | You need a boolean for theme picking |
+| [`usePreferredColorScheme`](https://reactuse.com/browser/usepreferredcolorscheme/) | Full `light`/`dark`/`no-preference` | You need the third value for "System" mode UX |
+| [`useColorMode`](https://reactuse.com/browser/usecolormode/) | Applied theme with persistence | You are building the theme system itself |
+| [`useReducedMotion`](https://reactuse.com/browser/usereducedmotion/) | `prefers-reduced-motion` | You pass duration to an animation lib, or gate motion-heavy components |
+| [`usePreferredContrast`](https://reactuse.com/browser/usepreferredcontrast/) | `prefers-contrast` | You ship a high-contrast variant |
+| [`usePreferredLanguages`](https://reactuse.com/browser/usepreferredlanguages/) | Full `navigator.languages` | You do locale negotiation, not just first-language detection |
+| [`useTextDirection`](https://reactuse.com/browser/usetextdirection/) | `dir` attribute | You support RTL languages and need JS-driven flips |
 
 Respecting the OS preferences your users already picked is the cheapest accessibility upgrade you will ever ship. The bar is low — return a boolean, branch a className, pass a duration — and the win is high. Browse the rest of the catalog at [reactuse.com](https://reactuse.com), and if you flip `prefers-reduced-motion` on tomorrow and your app stops flinging cards across the screen, that is a good day.

@@ -58,11 +58,11 @@ function Component() {
 }
 ```
 
-[`usePreferredDark`](https://reactuse.com/browser/usePreferredDark/) 是布林進、布林出——丟哪都行,零設定。首次渲染回傳 SSR 安全的預設值;客戶端掛載後,真實的 `matchMedia` 值流進來,並隨著使用者切換保持同步。
+[`usePreferredDark`](https://reactuse.com/browser/usepreferreddark/) 是布林進、布林出——丟哪都行,零設定。首次渲染回傳 SSR 安全的預設值;客戶端掛載後,真實的 `matchMedia` 值流進來,並隨著使用者切換保持同步。
 
 ## 2. usePreferredColorScheme——當「深色」不夠用時
 
-`prefers-color-scheme` 有 3 個值,不是 2 個:`'light'`、`'dark'`、`'no-preference'`。大多數應用把第三個塌縮到前兩個裡的一個——這沒問題,直到你上線「跟隨系統」模式,然後發現有使用者顯式設了「無偏好」,而你的應用現在選錯了預設值。[`usePreferredColorScheme`](https://reactuse.com/browser/usePreferredColorScheme/) 回傳完整的字串。
+`prefers-color-scheme` 有 3 個值,不是 2 個:`'light'`、`'dark'`、`'no-preference'`。大多數應用把第三個塌縮到前兩個裡的一個——這沒問題,直到你上線「跟隨系統」模式,然後發現有使用者顯式設了「無偏好」,而你的應用現在選錯了預設值。[`usePreferredColorScheme`](https://reactuse.com/browser/usepreferredcolorscheme/) 回傳完整的字串。
 
 ```tsx
 import { usePreferredColorScheme } from "@reactuses/core";
@@ -113,7 +113,7 @@ function ThemePicker({ choice, onChange }: { choice: Choice; onChange: (c: Choic
 
 `usePreferredDark` 回報 OS 偏好。`useColorMode` 更進一步:它持有應用**實際套用的**主題。它把 OS 偏好作為預設值,允許使用者覆寫,把覆寫持久化到 `localStorage`,並把選中的模式寫到 `<html>` 的 class 或屬性上,這樣你的 CSS 就能切換。
 
-[`useColorMode`](https://reactuse.com/browser/useColorMode/) 才是你要的真實主題切換器:
+[`useColorMode`](https://reactuse.com/browser/usecolormode/) 才是你要的真實主題切換器:
 
 ```tsx
 import { useColorMode } from "@reactuses/core";
@@ -164,7 +164,7 @@ function FadeIn({ children }: { children: React.ReactNode }) {
 
 減弱動效開啟時,元件跳過 y 軸位移並用 0ms 過渡——內容仍然出現,只是沒了動畫。這是正確的模式:不要移除視覺變化,移除**運動**本身。一個不帶動畫的 toast 仍然有用;一個根本不出現的 toast 是 bug。
 
-[`useReducedMotion`](https://reactuse.com/browser/useReducedMotion/) 回傳布林且回應 OS 設定,使用者中途切換偏好時動畫會立刻停下。
+[`useReducedMotion`](https://reactuse.com/browser/usereducedmotion/) 回傳布林且回應 OS 設定,使用者中途切換偏好時動畫會立刻停下。
 
 常見接入位置:
 - 頁面過渡
@@ -204,13 +204,13 @@ function Card({ children }: { children: React.ReactNode }) {
 }
 ```
 
-[`usePreferredContrast`](https://reactuse.com/browser/usePreferredContrast/) 回傳原始字串,所以如果你對低對比使用者有事可做,可以獨立分支 `'more'` 和 `'less'`(大多數應用只匹配 `'more'`,忽略其餘)。
+[`usePreferredContrast`](https://reactuse.com/browser/usepreferredcontrast/) 回傳原始字串,所以如果你對低對比使用者有事可做,可以獨立分支 `'more'` 和 `'less'`(大多數應用只匹配 `'more'`,忽略其餘)。
 
 ## 6. usePreferredLanguages——超越 `navigator.language`
 
 瀏覽器暴露 `navigator.languages`——使用者首選區域的有序陣列,例如 `["en-US", "zh-CN", "ja-JP"]`。大多數應用只讀 `navigator.language`(第一項),丟掉了訊號:一個設了 `["zh-CN", "en-US"]` 的使用者想要中文優先、英文兜底,而不是你猜的隨便什麼。
 
-[`usePreferredLanguages`](https://reactuse.com/browser/usePreferredLanguages/) 回傳完整陣列,並在使用者改瀏覽器語言偏好時保持同步:
+[`usePreferredLanguages`](https://reactuse.com/browser/usepreferredlanguages/) 回傳完整陣列,並在使用者改瀏覽器語言偏好時保持同步:
 
 ```tsx
 import { usePreferredLanguages } from "@reactuses/core";
@@ -241,7 +241,7 @@ function LocaleAuto() {
 
 從右到左的語言(阿拉伯語、希伯來語、波斯語)把整個頁面的閱讀方向翻轉。CSS 透過邏輯屬性(`margin-inline-start` 而不是 `margin-left`)處理大部分,但真正的 RTL 實作還需要 JS 驅動的行為翻轉:鍵盤方向鍵、輪播的捲動吸附、動畫方向、拖拽消除方向。
 
-[`useTextDirection`](https://reactuse.com/browser/useTextDirection/) 讀取(也可寫入)目標元素的 `dir` 屬性:
+[`useTextDirection`](https://reactuse.com/browser/usetextdirection/) 讀取(也可寫入)目標元素的 `dir` 屬性:
 
 ```tsx
 import { useEffect } from "react";
@@ -356,12 +356,12 @@ function App() {
 
 | Hook | 訊號 | 什麼時候用…… |
 | --- | --- | --- |
-| [`usePreferredDark`](https://reactuse.com/browser/usePreferredDark/) | OS 深色模式偏好 | 選主題要一個布林值 |
-| [`usePreferredColorScheme`](https://reactuse.com/browser/usePreferredColorScheme/) | 完整 `light`/`dark`/`no-preference` | 「跟隨系統」模式 UX 需要第三個值 |
-| [`useColorMode`](https://reactuse.com/browser/useColorMode/) | 帶持久化的實際套用主題 | 你在搭主題系統本身 |
-| [`useReducedMotion`](https://reactuse.com/browser/useReducedMotion/) | `prefers-reduced-motion` | 你把時長傳給動畫函式庫,或要擋下動效繁重的元件 |
-| [`usePreferredContrast`](https://reactuse.com/browser/usePreferredContrast/) | `prefers-contrast` | 你要出一個高對比變體 |
-| [`usePreferredLanguages`](https://reactuse.com/browser/usePreferredLanguages/) | 完整 `navigator.languages` | 你要做區域協商,不只是偵測首選語言 |
-| [`useTextDirection`](https://reactuse.com/browser/useTextDirection/) | `dir` 屬性 | 你支援 RTL 語言並需要 JS 驅動翻轉 |
+| [`usePreferredDark`](https://reactuse.com/browser/usepreferreddark/) | OS 深色模式偏好 | 選主題要一個布林值 |
+| [`usePreferredColorScheme`](https://reactuse.com/browser/usepreferredcolorscheme/) | 完整 `light`/`dark`/`no-preference` | 「跟隨系統」模式 UX 需要第三個值 |
+| [`useColorMode`](https://reactuse.com/browser/usecolormode/) | 帶持久化的實際套用主題 | 你在搭主題系統本身 |
+| [`useReducedMotion`](https://reactuse.com/browser/usereducedmotion/) | `prefers-reduced-motion` | 你把時長傳給動畫函式庫,或要擋下動效繁重的元件 |
+| [`usePreferredContrast`](https://reactuse.com/browser/usepreferredcontrast/) | `prefers-contrast` | 你要出一個高對比變體 |
+| [`usePreferredLanguages`](https://reactuse.com/browser/usepreferredlanguages/) | 完整 `navigator.languages` | 你要做區域協商,不只是偵測首選語言 |
+| [`useTextDirection`](https://reactuse.com/browser/usetextdirection/) | `dir` 屬性 | 你支援 RTL 語言並需要 JS 驅動翻轉 |
 
 尊重使用者已經在 OS 裡設過的偏好,是你能上線的最便宜的可存取性升級。門檻低——回傳布林、切 className、傳時長——收益高。更多 hook 在 [reactuse.com](https://reactuse.com),如果你明天打開 `prefers-reduced-motion`,你的 App 不再把卡片到處甩,那今天鍵盤沒白敲。

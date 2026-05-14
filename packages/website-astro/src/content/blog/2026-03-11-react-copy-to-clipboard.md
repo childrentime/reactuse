@@ -66,7 +66,7 @@ You need to handle cases where the API is unavailable, the user denies permissio
 
 ## useClipboard to the Rescue
 
-The [useClipboard](https://reactuse.com/browser/useClipboard/) hook from ReactUse wraps all of this complexity into a simple, two-value tuple:
+The [useClipboard](https://reactuse.com/browser/useclipboard/) hook from ReactUse wraps all of this complexity into a simple, two-value tuple:
 
 ```tsx
 import { useClipboard } from "@reactuses/core";
@@ -176,10 +176,10 @@ import { useClipboard } from "@reactuses/core";
 
 ## Related Hooks
 
-- [useClipboard documentation](https://reactuse.com/browser/useClipboard/) — full API reference and live demo
-- [usePermission](https://reactuse.com/browser/usePermission/) — check whether the clipboard-read permission has been granted
-- [useEventListener](https://reactuse.com/effect/useEventListener/) — the lower-level hook used internally by useClipboard
-- [useSupported](https://reactuse.com/state/useSupported/) — detect whether the Clipboard API is available in the current environment
+- [useClipboard documentation](https://reactuse.com/browser/useclipboard/) — full API reference and live demo
+- [usePermission](https://reactuse.com/browser/usepermission/) — check whether the clipboard-read permission has been granted
+- [useEventListener](https://reactuse.com/effect/useeventlistener/) — the lower-level hook used internally by useClipboard
+- [useSupported](https://reactuse.com/state/usesupported/) — detect whether the Clipboard API is available in the current environment
 
 ---
 

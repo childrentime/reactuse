@@ -562,13 +562,13 @@ npm i @reactuses/core
 
 ## 相关 Hook
 
-- [`useSpeechRecognition`](https://reactuse.com/browser/useSpeechRecognition/) —— 实时语音转文字，跟踪中间和最终结果
-- [`useMediaDevices`](https://reactuse.com/browser/useMediaDevices/) —— 枚举摄像头和麦克风，处理权限
-- [`usePermission`](https://reactuse.com/browser/usePermission/) —— 响应式地查询任意权限的 Permissions API
-- [`useKeyModifier`](https://reactuse.com/browser/useKeyModifier/) —— 跟踪 OS 级别的修饰键状态（Shift、Control 等）
-- [`useSupported`](https://reactuse.com/state/useSupported/) —— 响应式地检查浏览器 API 是否可用
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) —— 声明式地附加事件监听器，可用于自定义语音流程
-- [`useObjectUrl`](https://reactuse.com/browser/useObjectUrl/) —— 为录制的音频 blob 创建临时 URL 以预览
+- [`useSpeechRecognition`](https://reactuse.com/browser/usespeechrecognition/) —— 实时语音转文字，跟踪中间和最终结果
+- [`useMediaDevices`](https://reactuse.com/browser/usemediadevices/) —— 枚举摄像头和麦克风，处理权限
+- [`usePermission`](https://reactuse.com/browser/usepermission/) —— 响应式地查询任意权限的 Permissions API
+- [`useKeyModifier`](https://reactuse.com/browser/usekeymodifier/) —— 跟踪 OS 级别的修饰键状态（Shift、Control 等）
+- [`useSupported`](https://reactuse.com/state/usesupported/) —— 响应式地检查浏览器 API 是否可用
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) —— 声明式地附加事件监听器，可用于自定义语音流程
+- [`useObjectUrl`](https://reactuse.com/browser/useobjecturl/) —— 为录制的音频 blob 创建临时 URL 以预览
 
 ---
 

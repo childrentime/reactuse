@@ -20,11 +20,13 @@ pnpm test         # vitest
 
 ## Website URL Structure
 
-Hook documentation pages follow the pattern: `https://reactuse.com/{category}/{hookName}/`
+Hook documentation pages follow the pattern: `https://reactuse.com/{category}/{hookname}/`
 
 Categories: `browser`, `effect`, `element`, `state`, `integrations`
 
-**There is NO `/docs/` or `/hooks/` prefix.** The URL is derived directly from the file path under `packages/website-astro/src/content/docs/`.
+**There is NO `/docs/` or `/hooks/` prefix.** The URL is derived from the file path under `packages/website-astro/src/content/docs/`.
+
+**URLs are all lowercase.** The file is `useGeolocation.mdx` but the canonical URL is `https://reactuse.com/browser/usegeolocation/` (lowercase). Never link to the camelCase form — it creates duplicate pages in Google's index. A Netlify edge function 301-redirects any camelCase path to lowercase as a safety net, but links should be lowercase at the source.
 
 ## Blog Post Guidelines
 
@@ -39,7 +41,7 @@ When linking to hook documentation in blog posts, **always** use the hook regist
 
 **Rules:**
 1. Only link to hooks that exist in `hook-registry.json`. Never invent hook names or guess URLs.
-2. The URL format is `https://reactuse.com/{category}/{hookName}/` — no `/docs/` or `/hooks/` prefix.
+2. Use the `url` field from the registry verbatim — it is already lowercase (`https://reactuse.com/{category}/{hookname}/`, no `/docs/` or `/hooks/` prefix). Never hand-build a camelCase URL.
 3. Each hook belongs to exactly one category. Do not guess categories — look them up.
 
 ### Verification checklist (REQUIRED before committing blog posts)

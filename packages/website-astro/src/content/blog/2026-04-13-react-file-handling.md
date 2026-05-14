@@ -496,12 +496,12 @@ npm i @reactuses/core
 
 ## Related Hooks
 
-- [`useFileDialog`](https://reactuse.com/browser/useFileDialog/) -- Open a file picker dialog without rendering a hidden input
-- [`useDropZone`](https://reactuse.com/element/useDropZone/) -- Track files being dragged over an element with proper child-aware highlighting
-- [`useObjectUrl`](https://reactuse.com/browser/useObjectUrl/) -- Create and auto-revoke URLs for File and Blob objects
-- [`useScriptTag`](https://reactuse.com/browser/useScriptTag/) -- Dynamically load external scripts with status tracking and unload support
-- [`useEventListener`](https://reactuse.com/effect/useEventListener/) -- Attach event listeners declaratively for custom upload progress events
-- [`useSupported`](https://reactuse.com/state/useSupported/) -- Check whether the browser supports a given API reactively
+- [`useFileDialog`](https://reactuse.com/browser/usefiledialog/) -- Open a file picker dialog without rendering a hidden input
+- [`useDropZone`](https://reactuse.com/element/usedropzone/) -- Track files being dragged over an element with proper child-aware highlighting
+- [`useObjectUrl`](https://reactuse.com/browser/useobjecturl/) -- Create and auto-revoke URLs for File and Blob objects
+- [`useScriptTag`](https://reactuse.com/browser/usescripttag/) -- Dynamically load external scripts with status tracking and unload support
+- [`useEventListener`](https://reactuse.com/effect/useeventlistener/) -- Attach event listeners declaratively for custom upload progress events
+- [`useSupported`](https://reactuse.com/state/usesupported/) -- Check whether the browser supports a given API reactively
 
 ---
 

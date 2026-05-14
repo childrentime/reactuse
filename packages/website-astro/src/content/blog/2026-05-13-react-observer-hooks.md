@@ -55,7 +55,7 @@ This works, and the moment you need a second lazy section you copy it. By compon
 
 ### The ReactUse Way
 
-[`useIntersectionObserver`](https://reactuse.com/element/useIntersectionObserver/) takes the ref and the options, and returns whether the element is currently intersecting:
+[`useIntersectionObserver`](https://reactuse.com/element/useintersectionobserver/) takes the ref and the options, and returns whether the element is currently intersecting:
 
 ```tsx
 import { useRef } from "react";
@@ -73,11 +73,11 @@ function OnScreen({ children }: { children: React.ReactNode }) {
 
 The hook owns the observer's lifecycle: it disconnects on unmount, recreates the observer when the options change, and is SSR-safe. Lazy-load an image, fire an analytics event the first time a card enters the viewport, or defer mounting a heavy chart until it scrolls in — same hook, different boolean.
 
-A common pattern is the "load more" trigger for infinite scroll: place a sentinel `<div>` at the bottom of a list and fire the fetch when it becomes visible. That is essentially the implementation of [`useInfiniteScroll`](https://reactuse.com/browser/useInfiniteScroll/), which builds on this primitive.
+A common pattern is the "load more" trigger for infinite scroll: place a sentinel `<div>` at the bottom of a list and fire the fetch when it becomes visible. That is essentially the implementation of [`useInfiniteScroll`](https://reactuse.com/browser/useinfinitescroll/), which builds on this primitive.
 
 ## 2. useElementVisibility — The Boolean You Usually Want
 
-A surprising amount of the time you do not care about `IntersectionObserverEntry` at all — you just want a boolean, and you want it for the whole viewport, not a scroll container. [`useElementVisibility`](https://reactuse.com/element/useElementVisibility/) is exactly that.
+A surprising amount of the time you do not care about `IntersectionObserverEntry` at all — you just want a boolean, and you want it for the whole viewport, not a scroll container. [`useElementVisibility`](https://reactuse.com/element/useelementvisibility/) is exactly that.
 
 ```tsx
 import { useRef } from "react";
@@ -136,7 +136,7 @@ The hidden cost: every entry update calls `setState`, which schedules a render. 
 
 ### The ReactUse Way
 
-[`useResizeObserver`](https://reactuse.com/element/useResizeObserver/) accepts the ref and a callback that fires on each entry:
+[`useResizeObserver`](https://reactuse.com/element/useresizeobserver/) accepts the ref and a callback that fires on each entry:
 
 ```tsx
 import { useRef, useState } from "react";
@@ -160,7 +160,7 @@ This is the container-query pattern in fifteen lines: the card swaps between a n
 
 If you only need width and height, the callback form is overkill. ReactUse ships two convenience hooks that wrap `ResizeObserver` and return state directly.
 
-[`useElementSize`](https://reactuse.com/element/useElementSize/) returns `{ width, height }` for the observed element:
+[`useElementSize`](https://reactuse.com/element/useelementsize/) returns `{ width, height }` for the observed element:
 
 ```tsx
 import { useRef } from "react";
@@ -188,7 +188,7 @@ function AutoFitGrid({ items }: { items: Item[] }) {
 
 The grid recomputes its column count whenever the container resizes — no media queries, no viewport guess, no JavaScript-controlled CSS variables.
 
-[`useMeasure`](https://reactuse.com/element/useMeasure/) returns the full `ResizeObserverEntry.contentRect` (`width`, `height`, `top`, `left`, etc.) plus a ref to attach. Use it when you want size and the local coordinates in one call:
+[`useMeasure`](https://reactuse.com/element/usemeasure/) returns the full `ResizeObserverEntry.contentRect` (`width`, `height`, `top`, `left`, etc.) plus a ref to attach. Use it when you want size and the local coordinates in one call:
 
 ```tsx
 import { useMeasure } from "@reactuses/core";
@@ -279,13 +279,13 @@ The seven hooks overlap, and the overlap is intentional — different shapes wor
 
 | You want… | Hook |
 | --- | --- |
-| A boolean for "is this on screen?" | [`useElementVisibility`](https://reactuse.com/element/useElementVisibility/) |
-| Visibility with a custom root or threshold | [`useIntersectionObserver`](https://reactuse.com/element/useIntersectionObserver/) |
-| Width and height as state | [`useElementSize`](https://reactuse.com/element/useElementSize/) |
-| The full content rect as state | [`useMeasure`](https://reactuse.com/element/useMeasure/) |
-| The viewport-relative rect (changes on scroll) | [`useElementBounding`](https://reactuse.com/element/useElementBounding/) |
-| A callback on every resize entry | [`useResizeObserver`](https://reactuse.com/element/useResizeObserver/) |
-| To react to DOM changes from outside React | [`useMutationObserver`](https://reactuse.com/element/useMutationObserver/) |
+| A boolean for "is this on screen?" | [`useElementVisibility`](https://reactuse.com/element/useelementvisibility/) |
+| Visibility with a custom root or threshold | [`useIntersectionObserver`](https://reactuse.com/element/useintersectionobserver/) |
+| Width and height as state | [`useElementSize`](https://reactuse.com/element/useelementsize/) |
+| The full content rect as state | [`useMeasure`](https://reactuse.com/element/usemeasure/) |
+| The viewport-relative rect (changes on scroll) | [`useElementBounding`](https://reactuse.com/element/useelementbounding/) |
+| A callback on every resize entry | [`useResizeObserver`](https://reactuse.com/element/useresizeobserver/) |
+| To react to DOM changes from outside React | [`useMutationObserver`](https://reactuse.com/element/usemutationobserver/) |
 
 A useful mental model: visibility hooks tell you *where* an element is relative to the user; size and bounding hooks tell you *how big* it is and *where* in the layout; mutation tells you *what* changed inside it.
 
@@ -347,9 +347,9 @@ Observers are not free, but the cost is concentrated and well-understood:
 
 The observer APIs are the bridge between "what React knows" and "what the DOM actually does." Wired with raw `useEffect` they accumulate a lot of glue and a long tail of subtle bugs. Wired with these seven hooks they become one-liners that compose freely.
 
-- Use [`useIntersectionObserver`](https://reactuse.com/element/useIntersectionObserver/) and [`useElementVisibility`](https://reactuse.com/element/useElementVisibility/) for "is this on screen."
-- Use [`useResizeObserver`](https://reactuse.com/element/useResizeObserver/), [`useElementSize`](https://reactuse.com/element/useElementSize/), and [`useMeasure`](https://reactuse.com/element/useMeasure/) for "how big is this."
-- Use [`useElementBounding`](https://reactuse.com/element/useElementBounding/) for "where is this in the viewport."
-- Use [`useMutationObserver`](https://reactuse.com/element/useMutationObserver/) for "what did the DOM do behind my back."
+- Use [`useIntersectionObserver`](https://reactuse.com/element/useintersectionobserver/) and [`useElementVisibility`](https://reactuse.com/element/useelementvisibility/) for "is this on screen."
+- Use [`useResizeObserver`](https://reactuse.com/element/useresizeobserver/), [`useElementSize`](https://reactuse.com/element/useelementsize/), and [`useMeasure`](https://reactuse.com/element/usemeasure/) for "how big is this."
+- Use [`useElementBounding`](https://reactuse.com/element/useelementbounding/) for "where is this in the viewport."
+- Use [`useMutationObserver`](https://reactuse.com/element/usemutationobserver/) for "what did the DOM do behind my back."
 
 Browse the rest at [reactuse.com](https://reactuse.com) — and if you replace a chunky `useEffect`-plus-observer dance with one of these, that is a good day at the keyboard.

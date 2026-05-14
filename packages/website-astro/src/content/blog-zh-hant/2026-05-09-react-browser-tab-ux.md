@@ -47,7 +47,7 @@ function ManualUnreadTitle({ count }: { count: number }) {
 
 ### ReactUse 寫法：useTitle
 
-[`useTitle`](https://reactuse.com/browser/useTitle/) 接受一個字符串，每當字符串變化就同步到 `document.title`：
+[`useTitle`](https://reactuse.com/browser/usetitle/) 接受一個字符串，每當字符串變化就同步到 `document.title`：
 
 ```tsx
 import { useTitle } from "@reactuses/core";
@@ -105,7 +105,7 @@ function ManualFavicon({ status }: { status: "idle" | "alert" | "error" }) {
 
 ### ReactUse 寫法：useFavicon
 
-[`useFavicon`](https://reactuse.com/browser/useFavicon/) 把這三種情況都照顧了。它會更新所有匹配 `link[rel*="icon"]` 的標籤，找不到就自己創建一個，同時支持 base URL 前綴（用於 CDN 資源）。
+[`useFavicon`](https://reactuse.com/browser/usefavicon/) 把這三種情況都照顧了。它會更新所有匹配 `link[rel*="icon"]` 的標籤，找不到就自己創建一個，同時支持 base URL 前綴（用於 CDN 資源）。
 
 ```tsx
 import { useFavicon } from "@reactuses/core";
@@ -163,7 +163,7 @@ function ManualVisibility() {
 
 ### ReactUse 寫法：useDocumentVisibility
 
-[`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) 用一個 `defaultValue` 參數處理 SSR，並在掛載之後再同步一次。
+[`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) 用一個 `defaultValue` 參數處理 SSR，並在掛載之後再同步一次。
 
 ```tsx
 import { useEffect } from "react";
@@ -222,7 +222,7 @@ function ManualFocus() {
 
 ### ReactUse 寫法：useWindowsFocus
 
-[`useWindowFocus`](https://reactuse.com/element/useWindowFocus/)（導出名是 `useWindowsFocus`，遺留命名保留了下來）返回一個布爾值，並在掛載時再同步一次。
+[`useWindowFocus`](https://reactuse.com/element/usewindowfocus/)（導出名是 `useWindowsFocus`，遺留命名保留了下來）返回一個布爾值，並在掛載時再同步一次。
 
 ```tsx
 import { useEffect } from "react";
@@ -273,7 +273,7 @@ Notification API 是這一切表面裡唯一徹底逃出瀏覽器的：原生 OS
 
 ### 在請求之前先看狀態
 
-[`usePermission`](https://reactuse.com/browser/usePermission/) 包裝了 Permissions API，針對任意權限名返回當前狀態——`'granted'`、`'denied'`、`'prompt'`，或者 API 不支持時返回空。用它來決定是渲染"開啟通知"按鈕（狀態是 `'prompt'`）、"已開啟"指示（`'granted'`），還是"通知被禁用——去瀏覽器設置修復"鏈接（`'denied'`）。
+[`usePermission`](https://reactuse.com/browser/usepermission/) 包裝了 Permissions API，針對任意權限名返回當前狀態——`'granted'`、`'denied'`、`'prompt'`，或者 API 不支持時返回空。用它來決定是渲染"開啟通知"按鈕（狀態是 `'prompt'`）、"已開啟"指示（`'granted'`），還是"通知被禁用——去瀏覽器設置修復"鏈接（`'denied'`）。
 
 ```tsx
 import { usePermission } from "@reactuses/core";
@@ -288,7 +288,7 @@ function NotificationStatus() {
 
 ### 僅在用戶主動操作時再請求
 
-[`useWebNotification`](https://reactuse.com/browser/useWebNotification/) 返回 `isSupported`、`show`、`close` 和 `ensurePermissions`。Notification API 的鐵律：**不要**在頁面加載時就調 `Notification.requestPermission()`。瀏覽器把權限提示作為標籤級 chrome 彈窗顯示，在用戶跟你的頁面發生交互之前就彈出來，是教科書級的"反射性拒絕"UX。
+[`useWebNotification`](https://reactuse.com/browser/usewebnotification/) 返回 `isSupported`、`show`、`close` 和 `ensurePermissions`。Notification API 的鐵律：**不要**在頁面加載時就調 `Notification.requestPermission()`。瀏覽器把權限提示作為標籤級 chrome 彈窗顯示，在用戶跟你的頁面發生交互之前就彈出來，是教科書級的"反射性拒絕"UX。
 
 放到一個按鈕點擊裡再觸發：
 
@@ -398,12 +398,12 @@ export function AttentionAwareChat() {
 
 | Hook | 用途 | 何時需要 |
 | --- | --- | --- |
-| [`useTitle`](https://reactuse.com/browser/useTitle/) | 把字符串同步到 `document.title` | 未讀數、構建狀態、文檔名 |
-| [`useFavicon`](https://reactuse.com/browser/useFavicon/) | 響應式切換 favicon `href` | 狀態徽標、提醒紅點、品牌化狀態 |
-| [`useDocumentVisibility`](https://reactuse.com/element/useDocumentVisibility/) | 跟蹤標籤隱藏/可見 | 暫停輪詢、動畫、視頻 |
-| [`useWindowFocus`](https://reactuse.com/element/useWindowFocus/) | 跟蹤窗口焦點 | 回來時刷新、失焦時暫停 |
-| [`usePageLeave`](https://reactuse.com/browser/usePageLeave/) | 檢測光標離開視口 | 離開意圖提示、未保存草稿警告 |
-| [`usePermission`](https://reactuse.com/browser/usePermission/) | 讀取 Permissions API 狀態 | 通知/定位等條件化 CTA |
-| [`useWebNotification`](https://reactuse.com/browser/useWebNotification/) | 顯示原生 OS 通知 | 後臺消息提醒、構建完成提示 |
+| [`useTitle`](https://reactuse.com/browser/usetitle/) | 把字符串同步到 `document.title` | 未讀數、構建狀態、文檔名 |
+| [`useFavicon`](https://reactuse.com/browser/usefavicon/) | 響應式切換 favicon `href` | 狀態徽標、提醒紅點、品牌化狀態 |
+| [`useDocumentVisibility`](https://reactuse.com/element/usedocumentvisibility/) | 跟蹤標籤隱藏/可見 | 暫停輪詢、動畫、視頻 |
+| [`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) | 跟蹤窗口焦點 | 回來時刷新、失焦時暫停 |
+| [`usePageLeave`](https://reactuse.com/browser/usepageleave/) | 檢測光標離開視口 | 離開意圖提示、未保存草稿警告 |
+| [`usePermission`](https://reactuse.com/browser/usepermission/) | 讀取 Permissions API 狀態 | 通知/定位等條件化 CTA |
+| [`useWebNotification`](https://reactuse.com/browser/usewebnotification/) | 顯示原生 OS 通知 | 後臺消息提醒、構建完成提示 |
 
 瀏覽器標籤頁 UX 是那種"好應用"和"出色應用"之間差距很小、感受差距很大的領域。六個 Hook、二十行膠水代碼，你的應用就開始有了那些跟它爭奪注意力的原生應用的"行為感"。在 [reactuse.com](https://reactuse.com) 瀏覽完整目錄——明天上線了哪一個，給我們扔張截圖。
