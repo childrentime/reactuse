@@ -39,7 +39,7 @@ NPM: https://www.npmjs.com/package/@reactuses/core
 
 ReactUse (@reactuses/core) is an open-source library of 110+ custom React Hooks for production applications. Hooks are TypeScript-first, tree-shakable, and SSR-compatible. Supports React 16.8 through React 19, Next.js, Remix, and other SSR frameworks.
 
-This file inlines the full Markdown for every hook documentation page. Each hook section starts with the line "URL: https://reactuse.com/{category}/{hookName}/" so passages can be cited individually.
+This file inlines the full Markdown for every hook documentation page. Each hook section starts with the line "URL: https://reactuse.com/{category}/{hookname}/" so passages can be cited individually.
 
 ---
 
@@ -63,7 +63,7 @@ for (const category of categories) {
     const raw = fs.readFileSync(filePath, 'utf-8')
     const { fm, body } = extractFrontmatter(raw)
     const hookName = fm.sidebar_label || path.basename(file, path.extname(file))
-    const url = `https://reactuse.com/${category}/${hookName}/`
+    const url = `https://reactuse.com/${category}/${hookName.toLowerCase()}/`
     const cleaned = stripApiPlaceholder(stripImports(body)).trim()
 
     out += `## ${hookName}\n\n`

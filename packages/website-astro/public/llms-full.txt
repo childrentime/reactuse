@@ -6,7 +6,7 @@ NPM: https://www.npmjs.com/package/@reactuses/core
 
 ReactUse (@reactuses/core) is an open-source library of 110+ custom React Hooks for production applications. Hooks are TypeScript-first, tree-shakable, and SSR-compatible. Supports React 16.8 through React 19, Next.js, Remix, and other SSR frameworks.
 
-This file inlines the full Markdown for every hook documentation page. Each hook section starts with the line "URL: https://reactuse.com/{category}/{hookName}/" so passages can be cited individually.
+This file inlines the full Markdown for every hook documentation page. Each hook section starts with the line "URL: https://reactuse.com/{category}/{hookname}/" so passages can be cited individually.
 
 ---
 
@@ -16,7 +16,7 @@ This file inlines the full Markdown for every hook documentation page. Each hook
 
 URL: https://reactuse.com/state/use/
 Category: state
-Description: >-
+Description: use is a React hook that polyfills React 19's use() for v18 and below — resolve and consume promise state. For React 19 and above, use the built-in use hook.
 Import: `import { use } from '@reactuses/core'`
 
 # use
@@ -65,9 +65,9 @@ render(
 
 ## useBoolean
 
-URL: https://reactuse.com/state/useBoolean/
+URL: https://reactuse.com/state/useboolean/
 Category: state
-Description: React state hook that manages a boolean value.
+Description: useBoolean is a React hook to manage a boolean state with convenient setTrue, setFalse, and toggle helpers — no inline arrow functions needed.
 Import: `import { useBoolean } from '@reactuses/core'`
 
 # useBoolean
@@ -150,9 +150,9 @@ function Demo() {
 
 ## useControlled
 
-URL: https://reactuse.com/state/useControlled/
+URL: https://reactuse.com/state/usecontrolled/
 Category: state
-Description: >-
+Description: useControlled is a React hook for components that work as both controlled and uncontrolled — returns a useState-like tuple that mirrors props or internal state.
 Import: `import { useControlled } from '@reactuses/core'`
 
 # useControlled
@@ -208,9 +208,9 @@ function Demo() {
 
 ## useCookie
 
-URL: https://reactuse.com/state/useCookie/
+URL: https://reactuse.com/state/usecookie/
 Category: state
-Description: React hook that facilitates the storage, updating and deletion of values within the CookieStore.
+Description: useCookie is a React hook to store, update, and delete a browser cookie by key — returns the value plus update and refresh functions, with js-cookie options.
 Import: `import { useCookie } from '@reactuses/core'`
 
 # useCookie
@@ -290,9 +290,9 @@ function Demo() {
 
 ## useCountDown
 
-URL: https://reactuse.com/state/useCountDown/
+URL: https://reactuse.com/state/usecountdown/
 Category: state
-Description: React State Hooks that return the minutes gracefull.
+Description: useCountDown is a React hook that counts down from a duration in seconds — returns formatted hour, minute, and second strings and fires a callback at zero.
 Import: `import { useCountDown } from '@reactuses/core'`
 
 # useCountDown
@@ -337,9 +337,9 @@ function Demo() {
 
 ## useCounter
 
-URL: https://reactuse.com/state/useCounter/
+URL: https://reactuse.com/state/usecounter/
 Category: state
-Description: React state hook that tracks a numeric value.
+Description: useCounter is a React hook to manage a numeric counter with inc, dec, set, and reset helpers and optional min and max clamping.
 Import: `import { useCounter } from '@reactuses/core'`
 
 # useCounter
@@ -411,9 +411,9 @@ function Demo() {
 
 ## useCycleList
 
-URL: https://reactuse.com/state/useCycleList/
+URL: https://reactuse.com/state/usecyclelist/
 Category: state
-Description: Cycle through a list of items.
+Description: useCycleList is a React hook to cycle through a list of items — returns the current item plus next and prev functions with wraparound behavior.
 Import: `import { useCycleList } from '@reactuses/core'`
 
 # useCycleList
@@ -466,9 +466,9 @@ function Demo() {
 
 ## useDebounce
 
-URL: https://reactuse.com/state/useDebounce/
+URL: https://reactuse.com/state/usedebounce/
 Category: state
-Description: React hooks that [debounce](https://lodash.com/docs/4.17.15#debounce) value.
+Description: useDebounce is a React hook that returns a debounced copy of a value — updates only after the input stops changing for the given delay.
 Import: `import { useDebounce } from '@reactuses/core'`
 
 # useDebounce
@@ -515,9 +515,9 @@ function Demo() {
 
 ## useDisclosure
 
-URL: https://reactuse.com/state/useDisclosure/
+URL: https://reactuse.com/state/usedisclosure/
 Category: state
-Description: >-
+Description: useDisclosure is a React hook for disclosure widgets like modals and dropdowns — manages open and close state with controlled and uncontrolled modes.
 Import: `import { useDisclosure } from '@reactuses/core'`
 
 # useDisclosure
@@ -559,9 +559,9 @@ function Demo() {
 
 ## useFirstMountState
 
-URL: https://reactuse.com/state/useFirstMountState/
+URL: https://reactuse.com/state/usefirstmountstate/
 Category: state
-Description: React state hook that returns true if component is just mounted.
+Description: useFirstMountState is a React hook that returns true on the initial render and false on every render after — synchronous, with no extra re-render.
 Import: `import { useFirstMountState } from '@reactuses/core'`
 
 # useFirstMountState
@@ -604,9 +604,9 @@ function Demo() {
 
 ## useHover
 
-URL: https://reactuse.com/state/useHover/
+URL: https://reactuse.com/state/usehover/
 Category: state
-Description: Detect if mouse is over given element.
+Description: useHover is a React hook that returns whether the mouse is hovering over a referenced element, via mouseenter and mouseleave listeners.
 Import: `import { useHover } from '@reactuses/core'`
 
 # useHover
@@ -642,9 +642,9 @@ function Demo() {
 
 ## useLatest
 
-URL: https://reactuse.com/state/useLatest/
+URL: https://reactuse.com/state/uselatest/
 Category: state
-Description: >-
+Description: useLatest is a React hook that returns a ref to the latest value — access current props or state inside async callbacks without stale closures.
 Import: `import { useLatest } from '@reactuses/core'`
 
 # useLatest
@@ -694,9 +694,9 @@ function Demo() {
 
 ## useLocalStorage
 
-URL: https://reactuse.com/state/useLocalStorage/
+URL: https://reactuse.com/state/uselocalstorage/
 Category: state
-Description: React side-effect hook that manages a single `localStorage` key.
+Description: useLocalStorage is a React hook that binds state to a localStorage key — a useState-like tuple with SSR safety, custom serializers, and cross-tab sync.
 Import: `import { useLocalStorage } from '@reactuses/core'`
 
 # useLocalStorage
@@ -776,9 +776,9 @@ function Demo() {
 
 ## useMap
 
-URL: https://reactuse.com/state/useMap/
+URL: https://reactuse.com/state/usemap/
 Category: state
-Description: React state hook that manages a Map.
+Description: useMap is a React hook to manage a JavaScript Map in state — exposes set, get, remove, has, clear, and reset methods that trigger re-renders automatically.
 Import: `import { useMap } from '@reactuses/core'`
 
 # useMap
@@ -871,9 +871,9 @@ function Demo() {
 
 ## useMergedRefs
 
-URL: https://reactuse.com/state/useMergedRefs/
+URL: https://reactuse.com/state/usemergedrefs/
 Category: state
-Description: >-
+Description: useMergedRefs is a React hook that merges multiple refs into a single callback ref — attach more than one ref to the same DOM node with a stable ref.
 Import: `import { useMergedRefs } from '@reactuses/core'`
 
 # useMergedRefs
@@ -951,9 +951,9 @@ render(<Demo/>);
 
 ## useMountedState
 
-URL: https://reactuse.com/state/useMountedState/
+URL: https://reactuse.com/state/usemountedstate/
 Category: state
-Description: >-
+Description: useMountedState is a React hook that returns a function to check whether the component is still mounted — guard against state updates after unmount.
 Import: `import { useMountedState } from '@reactuses/core'`
 
 # useMountedState
@@ -994,9 +994,9 @@ function Demo() {
 
 ## usePrevious
 
-URL: https://reactuse.com/state/usePrevious/
+URL: https://reactuse.com/state/useprevious/
 Category: state
-Description: >-
+Description: usePrevious is a React hook that returns a value from the previous render — useful for comparing the current and prior state or props.
 Import: `import { usePrevious } from '@reactuses/core'`
 
 # usePrevious
@@ -1041,9 +1041,9 @@ function Demo() {
 
 ## useRafState
 
-URL: https://reactuse.com/state/useRafState/
+URL: https://reactuse.com/state/userafstate/
 Category: state
-Description: >-
+Description: useRafState is a React hook with the same API as useState that defers updates to the next animation frame — batches high-frequency changes.
 Import: `import { useRafState } from '@reactuses/core'`
 
 # useRafState
@@ -1099,9 +1099,9 @@ function Demo() {
 
 ## useSessionStorage
 
-URL: https://reactuse.com/state/useSessionStorage/
+URL: https://reactuse.com/state/usesessionstorage/
 Category: state
-Description: React side-effect hook that manages a single `sessionStorage` key.
+Description: useSessionStorage is a React hook that binds state to a sessionStorage key — a useState-like tuple with SSR safety, custom serializers, and cross-tab sync.
 Import: `import { useSessionStorage } from '@reactuses/core'`
 
 # useSessionStorage
@@ -1147,9 +1147,9 @@ function Demo() {
 
 ## useSetState
 
-URL: https://reactuse.com/state/useSetState/
+URL: https://reactuse.com/state/usesetstate/
 Category: state
-Description: useState wrapper to work with state like in class component.
+Description: useSetState is a React hook that returns a useState tuple where the setter merges a partial object into state — like this.setState in class components.
 Import: `import { useSetState } from '@reactuses/core'`
 
 # useSetState
@@ -1199,9 +1199,9 @@ function Demo() {
 
 ## useSupported
 
-URL: https://reactuse.com/state/useSupported/
+URL: https://reactuse.com/state/usesupported/
 Category: state
-Description: Check to see if your browser supports some feature.
+Description: useSupported is a React hook for browser feature detection — runs a check after mount and returns a boolean, safely returning false during SSR.
 Import: `import { useSupported } from '@reactuses/core'`
 
 # useSupported
@@ -1243,9 +1243,9 @@ function Demo() {
 
 ## useTextSelection
 
-URL: https://reactuse.com/state/useTextSelection/
+URL: https://reactuse.com/state/usetextselection/
 Category: state
-Description: >-
+Description: useTextSelection is a React hook that reactively tracks the user's text selection via the selectionchange event — returns the current Selection object, or null.
 Import: `import { useTextSelection } from '@reactuses/core'`
 
 # useTextSelection
@@ -1290,9 +1290,9 @@ function Demo() {
 
 ## useThrottle
 
-URL: https://reactuse.com/state/useThrottle/
+URL: https://reactuse.com/state/usethrottle/
 Category: state
-Description: React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) value.
+Description: useThrottle is a React hook that returns a throttled copy of a value — updates at most once per interval for a steady stream of changes.
 Import: `import { useThrottle } from '@reactuses/core'`
 
 # useThrottle
@@ -1341,9 +1341,9 @@ render(<Demo/>);
 
 ## useToggle
 
-URL: https://reactuse.com/state/useToggle/
+URL: https://reactuse.com/state/usetoggle/
 Category: state
-Description: React state hook that tracks value of a boolean.
+Description: useToggle is a React hook to manage a boolean state with a toggle function — flip the value with no arguments or set it directly with true or false.
 Import: `import { useToggle } from '@reactuses/core'`
 
 # useToggle
@@ -1388,9 +1388,9 @@ function Demo() {
 
 ## useAsyncEffect
 
-URL: https://reactuse.com/effect/useAsyncEffect/
+URL: https://reactuse.com/effect/useasynceffect/
 Category: effect
-Description: >-
+Description: useAsyncEffect is a React hook that brings async and await support to useEffect — run async effects with an optional async cleanup, safe against unmount.
 Import: `import { useAsyncEffect } from '@reactuses/core'`
 
 # useAsyncEffect
@@ -1438,9 +1438,9 @@ function Demo() {
 
 ## useCustomCompareEffect
 
-URL: https://reactuse.com/effect/useCustomCompareEffect/
+URL: https://reactuse.com/effect/usecustomcompareeffect/
 Category: effect
-Description: >-
+Description: useCustomCompareEffect is a React useEffect variant that re-runs based on a custom comparator instead of reference equality.
 Import: `import { useCustomCompareEffect } from '@reactuses/core'`
 
 # useCustomCompareEffect
@@ -1502,9 +1502,9 @@ function Demo() {
 
 ## useDebounceFn
 
-URL: https://reactuse.com/effect/useDebounceFn/
+URL: https://reactuse.com/effect/usedebouncefn/
 Category: effect
-Description: React hooks that [debounce](https://lodash.com/docs/4.17.15#debounce) function.
+Description: useDebounceFn is a React hook that wraps a function with debounce behavior — returns run, cancel, and flush controls, powered by lodash.debounce.
 Import: `import { useDebounceFn } from '@reactuses/core'`
 
 # useDebounceFn
@@ -1550,9 +1550,9 @@ function Demo() {
 
 ## useDeepCompareEffect
 
-URL: https://reactuse.com/effect/useDeepCompareEffect/
+URL: https://reactuse.com/effect/usedeepcompareeffect/
 Category: effect
-Description: >-
+Description: useDeepCompareEffect is a React useEffect drop-in that deep-compares dependencies instead of reference equality — avoids needless effect runs on equal deps.
 Import: `import { useDeepCompareEffect } from '@reactuses/core'`
 
 # useDeepCompareEffect
@@ -1612,9 +1612,9 @@ function Demo() {
 
 ## useEvent
 
-URL: https://reactuse.com/effect/useEvent/
+URL: https://reactuse.com/effect/useevent/
 Category: effect
-Description: >-
+Description: useEvent is a React hook implementing the useEvent RFC — get an event handler with a stable identity that always calls the latest props and state.
 Import: `import { useEvent } from '@reactuses/core'`
 
 # useEvent
@@ -1678,9 +1678,9 @@ function Demo() {
 
 ## useEventEmitter
 
-URL: https://reactuse.com/effect/useEventEmitter/
+URL: https://reactuse.com/effect/useeventemitter/
 Category: effect
-Description: A basic eventemitter.
+Description: useEventEmitter is a React hook that creates a lightweight publish and subscribe event system scoped to your component, stable across renders.
 Import: `import { useEventEmitter } from '@reactuses/core'`
 
 # useEventEmitter
@@ -1734,9 +1734,9 @@ render(<Demo/>);
 
 ## useEventListener
 
-URL: https://reactuse.com/effect/useEventListener/
+URL: https://reactuse.com/effect/useeventlistener/
 Category: effect
-Description: Use EventListener with ease.
+Description: useEventListener is a React hook to attach a DOM event listener to an element, window, or document with automatic cleanup and an always-current handler.
 Import: `import { useEventListener } from '@reactuses/core'`
 
 # useEventListener
@@ -1802,9 +1802,9 @@ function Demo() {
 
 ## useInterval
 
-URL: https://reactuse.com/effect/useInterval/
+URL: https://reactuse.com/effect/useinterval/
 Category: effect
-Description: >-
+Description: useInterval is a React hook for a declarative setInterval — pass a callback and a delay (or null to pause), with isActive, pause, and resume controls.
 Import: `import { useInterval } from '@reactuses/core'`
 
 # useInterval
@@ -1846,9 +1846,9 @@ function Demo() {
 
 ## useIsomorphicLayoutEffect
 
-URL: https://reactuse.com/effect/useIsomorphicLayoutEffect/
+URL: https://reactuse.com/effect/useisomorphiclayouteffect/
 Category: effect
-Description: >-
+Description: useIsomorphicLayoutEffect is a React hook that uses useLayoutEffect in the browser and useEffect on the server — avoids the SSR useLayoutEffect warning.
 Import: `import { useIsomorphicLayoutEffect } from '@reactuses/core'`
 
 # useIsomorphicLayoutEffect
@@ -1887,9 +1887,9 @@ function Demo() {
 
 ## useMount
 
-URL: https://reactuse.com/effect/useMount/
+URL: https://reactuse.com/effect/usemount/
 Category: effect
-Description: React lifecycle hook that executes a function after the component is mounted.
+Description: useMount is a React lifecycle hook that runs a callback exactly once after the component mounts — a clear alternative to useEffect with empty deps.
 Import: `import { useMount } from '@reactuses/core'`
 
 # useMount
@@ -1927,9 +1927,9 @@ function Demo() {
 
 ## useOnceEffect
 
-URL: https://reactuse.com/effect/useOnceEffect/
+URL: https://reactuse.com/effect/useonceeffect/
 Category: effect
-Description: A Hook that avoids React18 useEffect run twice.
+Description: useOnceEffect is a React useEffect variant that runs the effect only once, even under React 18 Strict Mode's double-invocation in development.
 Import: `import { useOnceEffect } from '@reactuses/core'`
 
 # useOnceEffect
@@ -1980,9 +1980,9 @@ function Demo() {
 
 ## useOnceLayoutEffect
 
-URL: https://reactuse.com/effect/useOnceLayoutEffect/
+URL: https://reactuse.com/effect/useoncelayouteffect/
 Category: effect
-Description: A Hook that avoids React18 useLayoutEffect run twice.
+Description: useOnceLayoutEffect is a React useLayoutEffect variant that runs only once, even under React 18 Strict Mode's double-invocation — synchronous before paint.
 Import: `import { useOnceLayoutEffect } from '@reactuses/core'`
 
 # useOnceLayoutEffect
@@ -2033,9 +2033,9 @@ function Demo() {
 
 ## useRafFn
 
-URL: https://reactuse.com/effect/useRafFn/
+URL: https://reactuse.com/effect/useraffn/
 Category: effect
-Description: >-
+Description: useRafFn is a React hook that runs a callback on every requestAnimationFrame tick with a timestamp, plus stop, start, and isActive controls.
 Import: `import { useRafFn } from '@reactuses/core'`
 
 # useRafFn
@@ -2092,9 +2092,9 @@ function Demo() {
 
 ## useThrottleFn
 
-URL: https://reactuse.com/effect/useThrottleFn/
+URL: https://reactuse.com/effect/usethrottlefn/
 Category: effect
-Description: React hooks that [throttle](https://lodash.com/docs/4.17.15#throttle) function.
+Description: useThrottleFn is a React hook that wraps a function with throttle behavior — runs at most once per interval, with run, cancel, and flush controls.
 Import: `import { useThrottleFn } from '@reactuses/core'`
 
 # useThrottleFn
@@ -2140,9 +2140,9 @@ function Demo() {
 
 ## useTimeout
 
-URL: https://reactuse.com/effect/useTimeout/
+URL: https://reactuse.com/effect/usetimeout/
 Category: effect
-Description: Update value after a given time.
+Description: useTimeout is a React hook that provides a pending state which flips to false after a delay — returns isPending plus start and cancel controls.
 Import: `import { useTimeout } from '@reactuses/core'`
 
 # useTimeout
@@ -2196,9 +2196,9 @@ function Demo() {
 
 ## useTimeoutFn
 
-URL: https://reactuse.com/effect/useTimeoutFn/
+URL: https://reactuse.com/effect/usetimeoutfn/
 Category: effect
-Description: Wrapper for setTimeout with controls.
+Description: useTimeoutFn is a React hook that wraps setTimeout with a React-friendly API — runs a callback after a delay, with isPending, start, and cancel controls.
 Import: `import { useTimeoutFn } from '@reactuses/core'`
 
 # useTimeoutFn
@@ -2253,9 +2253,9 @@ function Demo() {
 
 ## useUnmount
 
-URL: https://reactuse.com/effect/useUnmount/
+URL: https://reactuse.com/effect/useunmount/
 Category: effect
-Description: React lifecycle hook that calls a function when the component will unmount.
+Description: useUnmount is a React lifecycle hook that runs a cleanup function once when the component unmounts, with access to the latest props and state.
 Import: `import { useUnmount } from '@reactuses/core'`
 
 # useUnmount
@@ -2293,9 +2293,9 @@ function Demo() {
 
 ## useUpdate
 
-URL: https://reactuse.com/effect/useUpdate/
+URL: https://reactuse.com/effect/useupdate/
 Category: effect
-Description: >-
+Description: useUpdate is a React hook that returns a stable function to force a component re-render when called — useful for imperative refresh scenarios.
 Import: `import { useUpdate } from '@reactuses/core'`
 
 # useUpdate
@@ -2337,9 +2337,9 @@ function Demo() {
 
 ## useUpdateEffect
 
-URL: https://reactuse.com/effect/useUpdateEffect/
+URL: https://reactuse.com/effect/useupdateeffect/
 Category: effect
-Description: >-
+Description: useUpdateEffect is a React useEffect variant that skips the initial mount run — the effect fires only on subsequent dependency changes.
 Import: `import { useUpdateEffect } from '@reactuses/core'`
 
 # useUpdateEffect
@@ -2398,9 +2398,9 @@ function Demo() {
 
 ## useUpdateLayoutEffect
 
-URL: https://reactuse.com/effect/useUpdateLayoutEffect/
+URL: https://reactuse.com/effect/useupdatelayouteffect/
 Category: effect
-Description: >-
+Description: useUpdateLayoutEffect is a React useLayoutEffect variant that skips the initial mount run — fires synchronously after DOM mutations on later changes.
 Import: `import { useUpdateLayoutEffect } from '@reactuses/core'`
 
 # useUpdateLayoutEffect
@@ -2461,9 +2461,9 @@ function Demo() {
 
 ## useActiveElement
 
-URL: https://reactuse.com/element/useActiveElement/
+URL: https://reactuse.com/element/useactiveelement/
 Category: element
-Description: React Sensor Hooks that tracks document.activeElement.
+Description: useActiveElement is a React hook that reactively tracks document.activeElement — returns the focused DOM element, or null, updating on focus and blur.
 Import: `import { useActiveElement } from '@reactuses/core'`
 
 # useActiveElement
@@ -2525,9 +2525,9 @@ render(<Demo/>);
 
 ## useClickAway
 
-URL: https://reactuse.com/element/useClickAway/
+URL: https://reactuse.com/element/useclickaway/
 Category: element
-Description: Listen for clicks outside of an element. Alias for useClickOutside. Useful for modal or dropdown.
+Description: useClickAway is a React hook to detect clicks outside an element — an alias for useClickOutside. Ideal for closing modals, dropdowns, and popovers.
 Import: `import { useClickAway } from '@reactuses/core'`
 
 # useClickAway
@@ -2535,7 +2535,7 @@ Import: `import { useClickAway } from '@reactuses/core'`
 Listen for clicks outside of an element. Useful for modal or dropdown.
 
 :::info
-`useClickAway` is an alias for [`useClickOutside`](/element/useClickOutside). They have identical functionality and API.
+`useClickAway` is an alias for [`useClickOutside`](/element/useclickoutside). They have identical functionality and API.
 :::
 
 `useClickAway` detects clicks (mouse and touch events) that occur outside of a referenced DOM element and invokes a callback when they happen. Pass a ref to the element you want to protect and a handler function. You can also pass an `enabled` flag to conditionally activate or deactivate the listener.
@@ -2611,9 +2611,9 @@ function Demo() {
 
 ## useClickOutside
 
-URL: https://reactuse.com/element/useClickOutside/
+URL: https://reactuse.com/element/useclickoutside/
 Category: element
-Description: Listen for clicks outside of an element. Useful for modal or dropdown.
+Description: useClickOutside is a React hook that detects mouse and touch clicks outside a referenced element and fires a callback — ideal for modals and dropdowns.
 Import: `import { useClickOutside } from '@reactuses/core'`
 
 # useClickOutside
@@ -2693,9 +2693,9 @@ function Demo() {
 
 ## useDocumentVisibility
 
-URL: https://reactuse.com/element/useDocumentVisibility/
+URL: https://reactuse.com/element/usedocumentvisibility/
 Category: element
-Description: >-
+Description: useDocumentVisibility is a React hook that reactively tracks page visibility via the Page Visibility API — returns visible or hidden as the user switches tabs.
 Import: `import { useDocumentVisibility } from '@reactuses/core'`
 
 # useDocumentVisibility
@@ -2747,9 +2747,9 @@ function Demo() {
 
 ## useDoubleClick
 
-URL: https://reactuse.com/element/useDoubleClick/
+URL: https://reactuse.com/element/usedoubleclick/
 Category: element
-Description: React sensor hook that controls double click and single click.
+Description: useDoubleClick is a React hook that distinguishes single-click from double-click on an element using a configurable latency, with separate handlers.
 Import: `import { useDoubleClick } from '@reactuses/core'`
 
 # useDoubleClick
@@ -2800,9 +2800,9 @@ function Demo() {
 
 ## useDraggable
 
-URL: https://reactuse.com/element/useDraggable/
+URL: https://reactuse.com/element/usedraggable/
 Category: element
-Description: Make elements draggable.
+Description: useDraggable is a React hook that makes any HTML or SVG element draggable — tracks pointer, mouse, and touch input, returning x and y position.
 Import: `import { useDraggable } from '@reactuses/core'`
 
 # useDraggable
@@ -2935,9 +2935,9 @@ function Demo() {
 
 ## useDropZone
 
-URL: https://reactuse.com/element/useDropZone/
+URL: https://reactuse.com/element/usedropzone/
 Category: element
-Description: Create an zone where files can be dropped.
+Description: useDropZone is a React hook that turns an element into a file drop zone — handles drag events and returns an over-zone boolean, with a dropped-files callback.
 Import: `import { useDropZone } from '@reactuses/core'`
 
 # useDropZone
@@ -2992,9 +2992,9 @@ function Demo() {
 
 ## useElementBounding
 
-URL: https://reactuse.com/element/useElementBounding/
+URL: https://reactuse.com/element/useelementbounding/
 Category: element
-Description: React Element Hook that tracks bounding box of an HTML element.
+Description: useElementBounding is a React hook that reactively tracks an element's getBoundingClientRect — x, y, width, height, and edges, updating on scroll and resize.
 Import: `import { useElementBounding } from '@reactuses/core'`
 
 # useElementBounding
@@ -3035,9 +3035,9 @@ function Demo() {
 
 ## useElementSize
 
-URL: https://reactuse.com/element/useElementSize/
+URL: https://reactuse.com/element/useelementsize/
 Category: element
-Description: >-
+Description: useElementSize is a React hook that tracks an element's width and height in real time using the ResizeObserver API, updating whenever the element resizes.
 Import: `import { useElementSize } from '@reactuses/core'`
 
 # useElementSize
@@ -3086,9 +3086,9 @@ function Demo() {
 
 ## useElementVisibility
 
-URL: https://reactuse.com/element/useElementVisibility/
+URL: https://reactuse.com/element/useelementvisibility/
 Category: element
-Description: >-
+Description: useElementVisibility is a React hook that returns whether an element is visible within the viewport — built on useIntersectionObserver, with a stop control.
 Import: `import { useElementVisibility } from '@reactuses/core'`
 
 # useElementVisibility
@@ -3159,9 +3159,9 @@ function Demo() {
 
 ## useFocus
 
-URL: https://reactuse.com/element/useFocus/
+URL: https://reactuse.com/element/usefocus/
 Category: element
-Description: React Sensor Hooks that tracks element foucs state.
+Description: useFocus is a React hook that tracks and controls an element's focus state — returns an isFocused boolean and a setter to focus or blur it.
 Import: `import { useFocus } from '@reactuses/core'`
 
 # useFocus
@@ -3245,9 +3245,9 @@ function Demo() {
 
 ## useIntersectionObserver
 
-URL: https://reactuse.com/element/useIntersectionObserver/
+URL: https://reactuse.com/element/useintersectionobserver/
 Category: element
-Description: >-
+Description: useIntersectionObserver is a React hook for the Intersection Observer API — observe an element and get entry updates when its viewport intersection changes.
 Import: `import { useIntersectionObserver } from '@reactuses/core'`
 
 # useIntersectionObserver
@@ -3338,9 +3338,9 @@ function Demo() {
 
 ## useMeasure
 
-URL: https://reactuse.com/element/useMeasure/
+URL: https://reactuse.com/element/usemeasure/
 Category: element
-Description: >-
+Description: useMeasure is a React hook that tracks an element's full dimensions (a DOMRect) using the ResizeObserver API — returns the rect and a stop control.
 Import: `import { useMeasure } from '@reactuses/core'`
 
 # useMeasure
@@ -3391,9 +3391,9 @@ function Demo() {
 
 ## useMutationObserver
 
-URL: https://reactuse.com/element/useMutationObserver/
+URL: https://reactuse.com/element/usemutationobserver/
 Category: element
-Description: >-
+Description: useMutationObserver is a React hook for the MutationObserver API — watch for DOM changes in an element's subtree and receive MutationRecord updates.
 Import: `import { useMutationObserver } from '@reactuses/core'`
 
 # useMutationObserver
@@ -3462,9 +3462,9 @@ function Demo() {
 
 ## useResizeObserver
 
-URL: https://reactuse.com/element/useResizeObserver/
+URL: https://reactuse.com/element/useresizeobserver/
 Category: element
-Description: >-
+Description: useResizeObserver is a React hook for the ResizeObserver API — watch an element for size changes and receive entry updates, with box-model options.
 Import: `import { useResizeObserver } from '@reactuses/core'`
 
 # useResizeObserver
@@ -3522,9 +3522,9 @@ function Demo() {
 
 ## useSticky
 
-URL: https://reactuse.com/element/useSticky/
+URL: https://reactuse.com/element/usesticky/
 Category: element
-Description: React Hook that tracks element sticky.
+Description: useSticky is a React hook that detects when an element scrolls past a threshold and should become sticky — returns an isSticky state with offset and axis config.
 Import: `import { useSticky } from '@reactuses/core'`
 
 # useSticky
@@ -3588,9 +3588,9 @@ function Demo() {
 
 ## useWindowFocus
 
-URL: https://reactuse.com/element/useWindowFocus/
+URL: https://reactuse.com/element/usewindowfocus/
 Category: element
-Description: >-
+Description: useWindowFocus is a React hook that reactively tracks whether the browser window has focus, updating via the window focus and blur events.
 Import: `import { useWindowFocus } from '@reactuses/core'`
 
 # useWindowsFocus
@@ -3633,9 +3633,9 @@ function Demo() {
 
 ## useWindowScroll
 
-URL: https://reactuse.com/element/useWindowScroll/
+URL: https://reactuse.com/element/usewindowscroll/
 Category: element
-Description: >-
+Description: useWindowScroll is a React hook that returns the browser window's current x and y scroll position as reactive state, updating on every scroll.
 Import: `import { useWindowScroll } from '@reactuses/core'`
 
 # useWindowScroll
@@ -3688,9 +3688,9 @@ function Demo() {
 
 ## useWindowSize
 
-URL: https://reactuse.com/element/useWindowSize/
+URL: https://reactuse.com/element/usewindowsize/
 Category: element
-Description: React Element Hooks that tracks window size.
+Description: useWindowSize is a React hook that reactively tracks the browser window's inner width and height, updating automatically whenever the window is resized.
 Import: `import { useWindowSize } from '@reactuses/core'`
 
 # useWindowSize
@@ -3734,9 +3734,9 @@ function Demo() {
 
 ## useBroadcastChannel
 
-URL: https://reactuse.com/browser/useBroadcastChannel/
+URL: https://reactuse.com/browser/usebroadcastchannel/
 Category: browser
-Description: >-
+Description: useBroadcastChannel is a React hook for the BroadcastChannel API — send and receive messages between browser tabs, windows, and iframes on the same origin.
 Import: `import { useBroadcastChannel } from '@reactuses/core'`
 
 # useBroadcastChannel
@@ -3809,9 +3809,9 @@ function Demo() {
 
 ## useClipboard
 
-URL: https://reactuse.com/browser/useClipboard/
+URL: https://reactuse.com/browser/useclipboard/
 Category: browser
-Description: Copy text to a user's clipboard.
+Description: useClipboard is a React hook to read from and write to the system clipboard via the Clipboard API, returning the copied text and a copy function.
 Import: `import { useClipboard } from '@reactuses/core'`
 
 # useClipboard
@@ -3866,9 +3866,9 @@ function Demo() {
 
 ## useColorMode
 
-URL: https://reactuse.com/browser/useColorMode/
+URL: https://reactuse.com/browser/usecolormode/
 Category: browser
-Description: Reactive color mode (theme) with auto data persistence and flexible configuration.
+Description: useColorMode is a React hook for reactive color mode (theme) switching, with automatic localStorage persistence, CSS class control, and a cycle helper.
 Import: `import { useColorMode } from '@reactuses/core'`
 
 # useColorMode
@@ -4099,9 +4099,9 @@ function Demo() {
 
 ## useCopyToClipboard
 
-URL: https://reactuse.com/browser/useCopyToClipboard/
+URL: https://reactuse.com/browser/usecopytoclipboard/
 Category: browser
-Description: Copy text to a user's clipboard. Alias for useClipboard.
+Description: useCopyToClipboard is a React hook to copy text to the clipboard — an alias for useClipboard, returning the copied value and a copy function.
 Import: `import { useCopyToClipboard } from '@reactuses/core'`
 
 # useCopyToClipboard
@@ -4109,7 +4109,7 @@ Import: `import { useCopyToClipboard } from '@reactuses/core'`
 Copy text to a user's clipboard.
 
 :::info
-`useCopyToClipboard` is an alias for [`useClipboard`](/browser/useClipboard). They have identical functionality and API.
+`useCopyToClipboard` is an alias for [`useClipboard`](/browser/useclipboard). They have identical functionality and API.
 :::
 
 `useCopyToClipboard` wraps the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) to provide a convenient tuple of the last copied text and a `copy` function. This is a drop-in alias for `useClipboard`, so you can use whichever name fits your codebase conventions. See also `useClipboard` for full details.
@@ -4160,9 +4160,9 @@ function Demo() {
 
 ## useCssVar
 
-URL: https://reactuse.com/browser/useCssVar/
+URL: https://reactuse.com/browser/usecssvar/
 Category: browser
-Description: Manipulate CSS variables.
+Description: useCssVar is a React hook to read and write CSS custom properties (variables) on a DOM element, optionally observing external changes via MutationObserver.
 Import: `import { useCssVar } from '@reactuses/core'`
 
 # useCssVar
@@ -4220,9 +4220,9 @@ function Demo() {
 
 ## useDarkMode
 
-URL: https://reactuse.com/browser/useDarkMode/
+URL: https://reactuse.com/browser/usedarkmode/
 Category: browser
-Description: Dark mode with auto data persistence.
+Description: useDarkMode is a React hook for a dark and light mode toggle, with automatic localStorage persistence and prefers-color-scheme system preference syncing.
 Import: `import { useDarkMode } from '@reactuses/core'`
 
 # useDarkMode
@@ -4358,9 +4358,9 @@ function Demo() {
 
 ## useDevicePixelRatio
 
-URL: https://reactuse.com/browser/useDevicePixelRatio/
+URL: https://reactuse.com/browser/usedevicepixelratio/
 Category: browser
-Description: >-
+Description: useDevicePixelRatio is a React hook that reactively tracks window.devicePixelRatio, updating on display, zoom level, or monitor changes.
 Import: `import { useDevicePixelRatio } from '@reactuses/core'`
 
 # useDevicePixelRatio
@@ -4396,9 +4396,9 @@ function Demo() {
 
 ## useElementByPoint
 
-URL: https://reactuse.com/browser/useElementByPoint/
+URL: https://reactuse.com/browser/useelementbypoint/
 Category: browser
-Description: >-
+Description: useElementByPoint is a React hook that returns the DOM element at given x and y coordinates via elementFromPoint, with interval or rAF polling.
 Import: `import { useElementByPoint } from '@reactuses/core'`
 
 # useElementByPoint
@@ -4488,9 +4488,9 @@ render(<Demo />);
 
 ## useEventSource
 
-URL: https://reactuse.com/browser/useEventSource/
+URL: https://reactuse.com/browser/useeventsource/
 Category: browser
-Description: >-
+Description: useEventSource is a React hook for Server-Sent Events (SSE) via the EventSource API — subscribe to a real-time server stream with status, data, and controls.
 Import: `import { useEventSource } from '@reactuses/core'`
 
 # useEventSource
@@ -4540,9 +4540,9 @@ function Demo() {
 
 ## useEyeDropper
 
-URL: https://reactuse.com/browser/useEyeDropper/
+URL: https://reactuse.com/browser/useeyedropper/
 Category: browser
-Description: >-
+Description: useEyeDropper is a React hook for the EyeDropper API — let users sample any pixel color on screen, with a support flag and an open function.
 Import: `import { useEyeDropper } from '@reactuses/core'`
 
 # useEyeDropper
@@ -4595,9 +4595,9 @@ function Demo() {
 
 ## useFavicon
 
-URL: https://reactuse.com/browser/useFavicon/
+URL: https://reactuse.com/browser/usefavicon/
 Category: browser
-Description: React side-effect hook sets the favicon of the page.
+Description: useFavicon is a React hook to dynamically set the page favicon by updating the document's link rel=icon element — reflect app state in the browser tab.
 Import: `import { useFavicon } from '@reactuses/core'`
 
 # useFavicon
@@ -4653,9 +4653,9 @@ function Demo() {
 
 ## useFetchEventSource
 
-URL: https://reactuse.com/browser/useFetchEventSource/
+URL: https://reactuse.com/browser/usefetcheventsource/
 Category: browser
-Description: useFetchEventSource is a hook that allows you to subscribe to an EventSource using HTTP methods like POST and receive updates in real-time.
+Description: useFetchEventSource is a React hook for Server-Sent Events (SSE) over fetch — subscribe to a stream with POST, custom headers, and request bodies.
 Import: `import { useFetchEventSource } from '@reactuses/core'`
 
 # useFetchEventSource
@@ -5162,9 +5162,9 @@ function Demo() {
 
 ## useFileDialog
 
-URL: https://reactuse.com/browser/useFileDialog/
+URL: https://reactuse.com/browser/usefiledialog/
 Category: browser
-Description: Open file dialog with ease.
+Description: useFileDialog is a React hook to open the browser's native file picker programmatically, with no hidden input element — returns selected files, open, and reset.
 Import: `import { useFileDialog } from '@reactuses/core'`
 
 # useFileDialog
@@ -5223,9 +5223,9 @@ function Demo() {
 
 ## useFps
 
-URL: https://reactuse.com/browser/useFps/
+URL: https://reactuse.com/browser/usefps/
 Category: browser
-Description: React Sensor Hooks that tracks FPS (frames per second).
+Description: useFps is a React hook that measures the current frames per second by counting requestAnimationFrame callbacks — useful for performance monitoring.
 Import: `import { useFps } from '@reactuses/core'`
 
 # useFps
@@ -5261,9 +5261,9 @@ function Demo() {
 
 ## useFullscreen
 
-URL: https://reactuse.com/browser/useFullscreen/
+URL: https://reactuse.com/browser/usefullscreen/
 Category: browser
-Description: Display an element full-screen.
+Description: useFullscreen is a React hook for the Fullscreen API — enter, exit, and toggle fullscreen for any element, with state and a browser support flag.
 Import: `import { useFullscreen } from '@reactuses/core'`
 
 # useFullscreen
@@ -5321,9 +5321,9 @@ function Demo() {
 
 ## useGeolocation
 
-URL: https://reactuse.com/browser/useGeolocation/
+URL: https://reactuse.com/browser/usegeolocation/
 Category: browser
-Description: >-
+Description: useGeolocation is a React hook for the Geolocation API — reactively track the user's position with coordinates, a timestamp, error state, and SSR-safe defaults.
 Import: `import { useGeolocation } from '@reactuses/core'`
 
 # useGeolocation
@@ -5383,9 +5383,9 @@ function Demo() {
 
 ## useIdle
 
-URL: https://reactuse.com/browser/useIdle/
+URL: https://reactuse.com/browser/useidle/
 Category: browser
-Description: React sensor hook that tracks if user on the page is idle.
+Description: useIdle is a React hook that detects user inactivity via mouse, keyboard, touch, and scroll events, returning a boolean once the user is idle past a timeout.
 Import: `import { useIdle } from '@reactuses/core'`
 
 # useIdle
@@ -5425,9 +5425,9 @@ function Demo() {
 
 ## useInfiniteScroll
 
-URL: https://reactuse.com/browser/useInfiniteScroll/
+URL: https://reactuse.com/browser/useinfinitescroll/
 Category: browser
-Description: Infinite scrolling of the element.
+Description: useInfiniteScroll is a React hook for infinite scrolling — triggers a load-more callback when the user scrolls near a container edge, with throttling.
 Import: `import { useInfiniteScroll } from '@reactuses/core'`
 
 # useInfiniteScroll
@@ -5488,9 +5488,9 @@ function Demo() {
 
 ## useKeyModifier
 
-URL: https://reactuse.com/browser/useKeyModifier/
+URL: https://reactuse.com/browser/usekeymodifier/
 Category: browser
-Description: >-
+Description: useKeyModifier is a React hook that reactively tracks whether a modifier key (Shift, Control, Alt, Meta, CapsLock) is currently pressed.
 Import: `import { useKeyModifier } from '@reactuses/core'`
 
 # useKeyModifier
@@ -5553,9 +5553,9 @@ function Demo() {
 
 ## useLocationSelector
 
-URL: https://reactuse.com/browser/useLocationSelector/
+URL: https://reactuse.com/browser/uselocationselector/
 Category: browser
-Description: >-
+Description: useLocationSelector is a React hook to subscribe to window.location changes and select only the part you need — re-renders only when that value changes.
 Import: `import { useLocationSelector } from '@reactuses/core'`
 
 # useLocationSelector
@@ -5638,9 +5638,9 @@ render(<Demo/>);
 
 ## useLongPress
 
-URL: https://reactuse.com/browser/useLongPress/
+URL: https://reactuse.com/browser/uselongpress/
 Category: browser
-Description: React sensor hook that fires a callback after long pressing.
+Description: useLongPress is a React hook that detects long-press gestures on any element across mouse and touch, firing a callback after a configurable hold delay.
 Import: `import { useLongPress } from '@reactuses/core'`
 
 # useLongPress
@@ -5691,9 +5691,9 @@ function Demo() {
 
 ## useMediaDevices
 
-URL: https://reactuse.com/browser/useMediaDevices/
+URL: https://reactuse.com/browser/usemediadevices/
 Category: browser
-Description: React sensor hook that tracks connected hardware devices.
+Description: useMediaDevices is a React hook for the MediaDevices API — enumerate connected cameras, microphones, and speakers, with permission requests.
 Import: `import { useMediaDevices } from '@reactuses/core'`
 
 # useMediaDevices
@@ -5731,9 +5731,9 @@ function Demo() {
 
 ## useMediaQuery
 
-URL: https://reactuse.com/browser/useMediaQuery/
+URL: https://reactuse.com/browser/usemediaquery/
 Category: browser
-Description: Ease with media query.
+Description: useMediaQuery is a React hook that reactively evaluates a CSS media query via matchMedia, returning a boolean that updates when the match state changes.
 Import: `import { useMediaQuery } from '@reactuses/core'`
 
 # useMediaQuery
@@ -5769,9 +5769,9 @@ function Demo() {
 
 ## useMobileLandscape
 
-URL: https://reactuse.com/browser/useMobileLandscape/
+URL: https://reactuse.com/browser/usemobilelandscape/
 Category: browser
-Description: >-
+Description: useMobileLandscape is a React hook that returns true when the device is a mobile in landscape orientation, updating reactively on rotation.
 Import: `import { useMobileLandscape } from '@reactuses/core'`
 
 # useMobileLandscape
@@ -5806,9 +5806,9 @@ function Demo() {
 
 ## useMouse
 
-URL: https://reactuse.com/browser/useMouse/
+URL: https://reactuse.com/browser/usemouse/
 Category: browser
-Description: React sensor hooks that track cursor positio.
+Description: useMouse is a React hook that tracks the mouse cursor position across screen, viewport, page, and element coordinate systems, updating in real time.
 Import: `import { useMouse } from '@reactuses/core'`
 
 # useMouse
@@ -5856,9 +5856,9 @@ function Demo() {
 
 ## useMousePressed
 
-URL: https://reactuse.com/browser/useMousePressed/
+URL: https://reactuse.com/browser/usemousepressed/
 Category: browser
-Description: >-
+Description: useMousePressed is a React hook that tracks whether the mouse or touch is currently pressed on a target element, with the input source type.
 Import: `import { useMousePressed } from '@reactuses/core'`
 
 # useMousePressed
@@ -5901,9 +5901,9 @@ function Demo() {
 
 ## useNetwork
 
-URL: https://reactuse.com/browser/useNetwork/
+URL: https://reactuse.com/browser/usenetwork/
 Category: browser
-Description: >-
+Description: useNetwork is a React hook that tracks the browser's network connection — online status, effective type, downlink, RTT, and save-data, updating reactively.
 Import: `import { useNetwork } from '@reactuses/core'`
 
 # useNetwork
@@ -5941,9 +5941,9 @@ function Demo() {
 
 ## useObjectUrl
 
-URL: https://reactuse.com/browser/useObjectUrl/
+URL: https://reactuse.com/browser/useobjecturl/
 Category: browser
-Description: >-
+Description: useObjectUrl is a React hook that creates an object URL for a File, Blob, or MediaSource and automatically calls revokeObjectURL to prevent memory leaks.
 Import: `import { useObjectUrl } from '@reactuses/core'`
 
 # useObjectUrl
@@ -5992,9 +5992,9 @@ function Demo() {
 
 ## useOnline
 
-URL: https://reactuse.com/browser/useOnline/
+URL: https://reactuse.com/browser/useonline/
 Category: browser
-Description: A wrapper of `useNetwork`.
+Description: useOnline is a React hook that returns a boolean for whether the browser is currently online, updating via the window online and offline events.
 Import: `import { useOnline } from '@reactuses/core'`
 
 # useOnline
@@ -6029,9 +6029,9 @@ function Demo() {
 
 ## useOrientation
 
-URL: https://reactuse.com/browser/useOrientation/
+URL: https://reactuse.com/browser/useorientation/
 Category: browser
-Description: React sensor hook that tracks screen orientation of user's device.
+Description: useOrientation is a React hook for the Screen Orientation API — track the device orientation angle and type, with lock and unlock controls.
 Import: `import { useOrientation } from '@reactuses/core'`
 
 # useOrientation
@@ -6067,9 +6067,9 @@ function Demo() {
 
 ## usePageLeave
 
-URL: https://reactuse.com/browser/usePageLeave/
+URL: https://reactuse.com/browser/usepageleave/
 Category: browser
-Description: React sensor hook that tracks when mouse leaves the page.
+Description: usePageLeave is a React hook that detects when the mouse cursor leaves the page viewport — commonly used to trigger exit-intent actions.
 Import: `import { usePageLeave } from '@reactuses/core'`
 
 # usePageLeave
@@ -6105,9 +6105,9 @@ function Demo() {
 
 ## usePermission
 
-URL: https://reactuse.com/browser/usePermission/
+URL: https://reactuse.com/browser/usepermission/
 Category: browser
-Description: React side-effect hook to query permission status of browser APIs.
+Description: usePermission is a React hook for the Permissions API — reactively query and track the status (granted, denied, prompt) of a browser permission.
 Import: `import { usePermission } from '@reactuses/core'`
 
 # usePermission
@@ -6143,9 +6143,9 @@ function Demo() {
 
 ## usePlatform
 
-URL: https://reactuse.com/browser/usePlatform/
+URL: https://reactuse.com/browser/useplatform/
 Category: browser
-Description: React hook to tracked the platform of the user.
+Description: usePlatform is a React hook that detects the user's device platform (iOS, Android) from the user agent, with WeChat and mini-program helpers and SSR support.
 Import: `import { usePlatform } from '@reactuses/core'`
 
 # usePlatform
@@ -6181,9 +6181,9 @@ function Demo() {
 
 ## usePreferredColorScheme
 
-URL: https://reactuse.com/browser/usePreferredColorScheme/
+URL: https://reactuse.com/browser/usepreferredcolorscheme/
 Category: browser
-Description: >-
+Description: usePreferredColorScheme is a React hook that reactively tracks the system color scheme preference — returns dark, light, or no-preference.
 Import: `import { usePreferredColorScheme } from '@reactuses/core'`
 
 # usePreferredColorScheme
@@ -6219,9 +6219,9 @@ function Demo() {
 
 ## usePreferredContrast
 
-URL: https://reactuse.com/browser/usePreferredContrast/
+URL: https://reactuse.com/browser/usepreferredcontrast/
 Category: browser
-Description: >-
+Description: usePreferredContrast is a React hook that reactively tracks the system contrast preference — returns more, less, custom, or no-preference.
 Import: `import { usePreferredContrast } from '@reactuses/core'`
 
 # usePreferredContrast
@@ -6257,9 +6257,9 @@ function Demo() {
 
 ## usePreferredDark
 
-URL: https://reactuse.com/browser/usePreferredDark/
+URL: https://reactuse.com/browser/usepreferreddark/
 Category: browser
-Description: React Hook that tracks dark theme preference.
+Description: usePreferredDark is a React hook that returns a boolean for whether the user prefers a dark color scheme, updating when system dark mode is toggled.
 Import: `import { usePreferredDark } from '@reactuses/core'`
 
 # usePreferredDark
@@ -6295,9 +6295,9 @@ function Demo() {
 
 ## usePreferredLanguages
 
-URL: https://reactuse.com/browser/usePreferredLanguages/
+URL: https://reactuse.com/browser/usepreferredlanguages/
 Category: browser
-Description: >-
+Description: usePreferredLanguages is a React hook that reactively tracks navigator.languages, returning the user's preferred language tags as they change.
 Import: `import { usePreferredLanguages } from '@reactuses/core'`
 
 # usePreferredLanguages
@@ -6332,9 +6332,9 @@ function Demo() {
 
 ## useReducedMotion
 
-URL: https://reactuse.com/browser/useReducedMotion/
+URL: https://reactuse.com/browser/usereducedmotion/
 Category: browser
-Description: React Hook that tracks motion preference.
+Description: useReducedMotion is a React hook that returns whether the user has requested reduced motion — use it to disable or simplify animations.
 Import: `import { useReducedMotion } from '@reactuses/core'`
 
 # useReducedMotion
@@ -6370,9 +6370,9 @@ function Demo() {
 
 ## useScratch
 
-URL: https://reactuse.com/browser/useScratch/
+URL: https://reactuse.com/browser/usescratch/
 Category: browser
-Description: React sensor hook that tracks scratching/dragging gestures on an element with mouse and touch support.
+Description: useScratch is a React hook that tracks scratch and drag gestures on an element across mouse and touch — returns position, deltas, and timing.
 Import: `import { useScratch } from '@reactuses/core'`
 
 # useScratch
@@ -6447,9 +6447,9 @@ function Demo() {
 
 ## useScreenSafeArea
 
-URL: https://reactuse.com/browser/useScreenSafeArea/
+URL: https://reactuse.com/browser/usescreensafearea/
 Category: browser
-Description: React sensor hook that tracks `env(safe-area-inset-*)`.
+Description: useScreenSafeArea is a React hook that reads CSS env(safe-area-inset-*) values — get the safe area insets for devices with notches or system bars.
 Import: `import { useScreenSafeArea } from '@reactuses/core'`
 
 # useScreenSafeArea
@@ -6499,9 +6499,9 @@ function Demo() {
 
 ## useScriptTag
 
-URL: https://reactuse.com/browser/useScriptTag/
+URL: https://reactuse.com/browser/usescripttag/
 Category: browser
-Description: Script tag injecting.
+Description: useScriptTag is a React hook that dynamically injects a script tag and manages its lifecycle — returns load status plus load and unload controls.
 Import: `import { useScriptTag } from '@reactuses/core'`
 
 # useScriptTag
@@ -6550,9 +6550,9 @@ function Demo() {
 
 ## useScroll
 
-URL: https://reactuse.com/browser/useScroll/
+URL: https://reactuse.com/browser/usescroll/
 Category: browser
-Description: React Sensor Hook that tracks scroll position and stat.
+Description: useScroll is a React hook that reactively tracks an element or window's scroll position and state — x, y, isScrolling, arrived edges, and direction.
 Import: `import { useScroll } from '@reactuses/core'`
 
 # useScroll
@@ -6690,9 +6690,9 @@ function Demo() {
 
 ## useScrollIntoView
 
-URL: https://reactuse.com/browser/useScrollIntoView/
+URL: https://reactuse.com/browser/usescrollintoview/
 Category: browser
-Description: React sensor hook works like `element.scrollIntoView().
+Description: useScrollIntoView is a React hook for smooth animated scrolling to a target element ref — like Element.scrollIntoView but with axis, duration, and easing control.
 Import: `import { useScrollIntoView } from '@reactuses/core'`
 
 # useScrollIntoView
@@ -6739,9 +6739,9 @@ function Demo() {
 
 ## useScrollLock
 
-URL: https://reactuse.com/browser/useScrollLock/
+URL: https://reactuse.com/browser/usescrolllock/
 Category: browser
-Description: Lock scrolling of the element while preserving scrolling within nested scrollable containers.
+Description: useScrollLock is a React hook that locks scrolling on an element while preserving scroll inside nested containers — ideal for modals and overlays.
 Import: `import { useScrollLock } from '@reactuses/core'`
 
 # useScrollLock
@@ -7017,9 +7017,9 @@ function DialogDemo() {
 
 ## useSpeechRecognition
 
-URL: https://reactuse.com/browser/useSpeechRecognition/
+URL: https://reactuse.com/browser/usespeechrecognition/
 Category: browser
-Description: >-
+Description: useSpeechRecognition is a React hook for the Web Speech API — real-time speech-to-text with language options, interim results, and start/stop controls.
 Import: `import { useSpeechRecognition } from '@reactuses/core'`
 
 # useSpeechRecognition
@@ -7389,9 +7389,9 @@ function DynamicOptionsDemo() {
 
 ## useTextDirection
 
-URL: https://reactuse.com/browser/useTextDirection/
+URL: https://reactuse.com/browser/usetextdirection/
 Category: browser
-Description: >-
+Description: useTextDirection is a React hook that reads and updates the dir attribute on an element — control ltr and rtl text direction for right-to-left layouts.
 Import: `import { useTextDirection } from '@reactuses/core'`
 
 # useTextDirection
@@ -7452,9 +7452,9 @@ render(<Demo/>);
 
 ## useTitle
 
-URL: https://reactuse.com/browser/useTitle/
+URL: https://reactuse.com/browser/usetitle/
 Category: browser
-Description: set document title.
+Description: useTitle is a React hook that sets document.title reactively — keep the browser tab title in sync with component state, with no head library needed.
 Import: `import { useTitle } from '@reactuses/core'`
 
 # useTitle
@@ -7496,9 +7496,9 @@ function Demo() {
 
 ## useWakeLock
 
-URL: https://reactuse.com/browser/useWakeLock/
+URL: https://reactuse.com/browser/usewakelock/
 Category: browser
-Description: Reactive Screen Wake Lock API. Prevent the screen from dimming or locking.
+Description: useWakeLock is a React hook for the Screen Wake Lock API — prevent the device screen from dimming or locking while your app is active.
 Import: `import { useWakeLock } from '@reactuses/core'`
 
 # useWakeLock
@@ -7563,9 +7563,9 @@ function Demo() {
 
 ## useWebNotification
 
-URL: https://reactuse.com/browser/useWebNotification/
+URL: https://reactuse.com/browser/usewebnotification/
 Category: browser
-Description: The Web Notification interface of the Notifications API is used to configure and display desktop notifications to the user.
+Description: useWebNotification is a React hook for the Notifications API — configure and display desktop notifications, with permission handling and event callbacks.
 Import: `import { useWebNotification } from '@reactuses/core'`
 
 # useWebNotification
@@ -7627,9 +7627,9 @@ function Demo() {
 
 ## useQRCode
 
-URL: https://reactuse.com/integrations/useQRCode/
+URL: https://reactuse.com/integrations/useqrcode/
 Category: integrations
-Description: >-
+Description: useQRCode is a React hook that generates a QR code data URL from a string — reactively regenerates on input change, with error state.
 Import: `import { useQRCode } from '@reactuses/core'`
 
 # useQRCode
@@ -7685,4 +7685,4 @@ function Demo() {
 ---
 
 
-Generated: 2026-05-07T02:22:40.561Z | Total hooks: 113
+Generated: 2026-05-14T09:08:21.446Z | Total hooks: 113

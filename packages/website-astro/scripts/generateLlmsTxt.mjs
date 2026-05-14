@@ -53,7 +53,7 @@ function getFirstParagraph(content) {
 let content = `# ReactUse - Collection of 110+ Essential React Hooks
 
 > Full content (every hook page inlined): https://reactuse.com/llms-full.txt
-> Per-page Markdown: append \`.md\` to any hook URL, e.g. https://reactuse.com/state/useToggle.md
+> Per-page Markdown: append \`.md\` to any hook URL, e.g. https://reactuse.com/state/usetoggle.md
 
 Website: https://reactuse.com | GitHub: https://github.com/childrentime/reactuse | NPM: https://www.npmjs.com/package/@reactuses/core
 
@@ -125,7 +125,7 @@ for (const category of categories) {
       content += `${description}\n\n`
     if (expanded && expanded !== description)
       content += `${expanded}\n\n`
-    content += `Documentation: https://reactuse.com/${category}/${hookName}/\n`
+    content += `Documentation: https://reactuse.com/${category}/${hookName.toLowerCase()}/\n`
     content += `Import: \`import { ${hookName} } from '@reactuses/core'\`\n\n`
     totalHooks++
   }
