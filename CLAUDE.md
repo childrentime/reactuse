@@ -12,6 +12,12 @@ pnpm lint         # eslint
 pnpm test         # vitest
 ```
 
+## SEO / 搜索数据分析
+
+用 Google Search Console 数据做优化分析：`python3 scripts/gsc-report.py [天数]`。
+输出概览、趋势、Top 关键词/页面，以及「临门一脚关键词」「高曝光低点击页面」两类优化机会。
+配置、用法、优化打法见 `GSC.md`。
+
 ## Website URL Structure
 
 Hook documentation pages follow the pattern: `https://reactuse.com/{category}/{hookName}/`
