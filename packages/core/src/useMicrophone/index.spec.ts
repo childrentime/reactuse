@@ -81,6 +81,45 @@ function patchRaf() {
   }
 }
 
+class FakeMediaRecorder {
+  static isTypeSupported = jest.fn((t: string) => t === 'audio/webm;codecs=opus')
+  state: 'inactive' | 'recording' | 'paused' = 'inactive'
+  mimeType: string
+  ondataavailable: ((e: { data: Blob }) => void) | null = null
+  onstop: (() => void) | null = null
+  constructor(public stream: any, opts?: { mimeType?: string }) {
+    this.mimeType = opts?.mimeType || ''
+  }
+
+  start = jest.fn(() => { this.state = 'recording' })
+  stop = jest.fn(() => {
+    this.state = 'inactive'
+    this.ondataavailable?.({ data: new Blob(['chunk'], { type: this.mimeType || 'audio/webm' }) })
+    this.onstop?.()
+  })
+
+  pause = jest.fn(() => { this.state = 'paused' })
+  resume = jest.fn(() => { this.state = 'recording' })
+}
+
+function installMediaRecorderMock() {
+  ;(global as any).MediaRecorder = FakeMediaRecorder
+  FakeMediaRecorder.isTypeSupported = jest.fn((t: string) => t === 'audio/webm;codecs=opus')
+}
+
+function installUrlMock() {
+  let counter = 0
+  const created: string[] = []
+  const revoked: string[] = []
+  ;(global as any).URL.createObjectURL = jest.fn(() => {
+    const u = `blob:test/${++counter}`
+    created.push(u)
+    return u
+  })
+  ;(global as any).URL.revokeObjectURL = jest.fn((u: string) => { revoked.push(u) })
+  return { created, revoked }
+}
+
 describe('useMicrophone', () => {
   describe('capability detection', () => {
     const originalMediaDevices = (global.navigator as any).mediaDevices
@@ -230,6 +269,36 @@ describe('useMicrophone', () => {
       const secondCallConstraints = getUserMedia.mock.calls[1][0].audio
       expect(secondCallConstraints.deviceId).toEqual({ exact: 'mic-b' })
       expect(result.current.stream).toBe(newStream)
+    })
+  })
+
+  describe('recording', () => {
+    it('startRecording + stopRecording yields a Blob and a hook-managed audioUrl', async () => {
+      patchRaf()
+      installAudioContextMock()
+      installMediaRecorderMock()
+      const urlSpy = installUrlMock()
+      const getUserMedia = jest.fn().mockResolvedValue(makeMockStream())
+      installMediaDevicesMock(getUserMedia)
+
+      const { result } = renderHook(() => useMicrophone())
+
+      await act(async () => { await result.current.start() })
+
+      act(() => { result.current.startRecording() })
+      expect(result.current.isRecording).toBe(true)
+      expect(result.current.mimeType).toBe('audio/webm;codecs=opus')
+
+      let returned: Blob | null = null
+      await act(async () => {
+        returned = await result.current.stopRecording()
+      })
+
+      expect(returned).toBeInstanceOf(Blob)
+      expect(result.current.blob).toBeInstanceOf(Blob)
+      expect(result.current.audioUrl).toBe('blob:test/1')
+      expect(urlSpy.created).toEqual(['blob:test/1'])
+      expect(result.current.isRecording).toBe(false)
     })
   })
 })

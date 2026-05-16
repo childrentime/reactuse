@@ -34,6 +34,26 @@ function computeRms(buf: Uint8Array): number {
   return Math.min(1, Math.sqrt(sumSquares / buf.length))
 }
 
+const MIME_CANDIDATES = [
+  'audio/webm;codecs=opus',
+  'audio/webm',
+  'audio/mp4',
+  'audio/ogg;codecs=opus',
+]
+
+function resolveMimeType(preferred: string | undefined): string | undefined {
+  const MR = (typeof window !== 'undefined' ? (window as any).MediaRecorder : undefined)
+    || (typeof globalThis !== 'undefined' ? (globalThis as any).MediaRecorder : undefined)
+  if (!MR) return undefined
+  if (preferred && typeof MR.isTypeSupported === 'function' && MR.isTypeSupported(preferred)) {
+    return preferred
+  }
+  for (const c of MIME_CANDIDATES) {
+    if (typeof MR.isTypeSupported === 'function' && MR.isTypeSupported(c)) return c
+  }
+  return undefined
+}
+
 export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {}) => {
   const {
     deviceId,
@@ -53,6 +73,18 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
   const [level, setLevel] = useState(0)
   const [analyser, setAnalyser] = useState<AnalyserNode | null>(null)
 
+  const [isRecording, setIsRecording] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
+  const [blob, setBlob] = useState<Blob | null>(null)
+  const [audioUrl, setAudioUrl] = useState<string | null>(null)
+  const [recorderState, setRecorderState] = useState<MediaRecorder | null>(null)
+  const [resolvedMime, setResolvedMime] = useState<string | null>(null)
+
+  const recorderRef = useRef<MediaRecorder | null>(null)
+  const chunksRef = useRef<Blob[]>([])
+  const audioUrlRef = useRef<string | null>(null)
+  const stopResolverRef = useRef<((b: Blob | null) => void) | null>(null)
+
   const streamRef = useRef<MediaStream | null>(null)
   const audioContextRef = useRef<AudioContext | null>(null)
   const sourceRef = useRef<MediaStreamAudioSourceNode | null>(null)
@@ -69,6 +101,13 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     if (rafRef.current != null) {
       cancelAnimationFrame(rafRef.current)
       rafRef.current = null
+    }
+  }, [])
+
+  const revokeAudioUrl = useCallback(() => {
+    if (audioUrlRef.current) {
+      URL.revokeObjectURL(audioUrlRef.current)
+      audioUrlRef.current = null
     }
   }, [])
 
@@ -181,7 +220,59 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
   })
 
   const noop = useCallback(() => {}, [])
-  const asyncNullResult = useCallback(async () => null, [])
+
+  const startRecording = useEvent(() => {
+    if (!streamRef.current) return
+    if (recorderRef.current && recorderRef.current.state !== 'inactive') return
+
+    revokeAudioUrl()
+    setBlob(null)
+    setAudioUrl(null)
+    chunksRef.current = []
+
+    const mime = resolveMimeType(options.mimeType)
+    const MR = (window as any).MediaRecorder as typeof MediaRecorder
+    if (!MR) {
+      setError(new Error('MediaRecorder is not supported'))
+      return
+    }
+    const recorder = new MR(streamRef.current, mime ? { mimeType: mime } : undefined)
+    recorderRef.current = recorder
+    setRecorderState(recorder)
+    setResolvedMime(mime || null)
+
+    recorder.ondataavailable = (e: BlobEvent) => {
+      if (e.data && e.data.size > 0) chunksRef.current.push(e.data)
+    }
+    recorder.onstop = () => {
+      const finalBlob = chunksRef.current.length
+        ? new Blob(chunksRef.current, { type: mime || chunksRef.current[0].type })
+        : null
+      if (finalBlob) {
+        const url = URL.createObjectURL(finalBlob)
+        audioUrlRef.current = url
+        setBlob(finalBlob)
+        setAudioUrl(url)
+      }
+      setIsRecording(false)
+      setIsPaused(false)
+      stopResolverRef.current?.(finalBlob)
+      stopResolverRef.current = null
+    }
+
+    recorder.start()
+    setIsRecording(true)
+    setIsPaused(false)
+  })
+
+  const stopRecording = useEvent((): Promise<Blob | null> => {
+    const r = recorderRef.current
+    if (!r || r.state === 'inactive') return Promise.resolve(null)
+    return new Promise<Blob | null>((resolve) => {
+      stopResolverRef.current = resolve
+      r.stop()
+    })
+  })
 
   return {
     isSupported,
@@ -191,17 +282,17 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     analyser,
     error,
 
-    isRecording: false,
-    isPaused: false,
-    blob: null,
-    audioUrl: null,
-    mimeType: null,
-    recorder: null,
+    isRecording,
+    isPaused,
+    blob,
+    audioUrl,
+    mimeType: resolvedMime,
+    recorder: recorderState,
 
     start,
     stop,
-    startRecording: noop,
-    stopRecording: asyncNullResult,
+    startRecording,
+    stopRecording,
     pauseRecording: noop,
     resumeRecording: noop,
   } as const
