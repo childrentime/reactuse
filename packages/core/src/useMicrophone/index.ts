@@ -16,12 +16,14 @@ function buildAudioConstraints(
   extra: MediaTrackConstraints | undefined,
 ): MediaTrackConstraints {
   const merged: MediaTrackConstraints = { ...DEFAULT_AUDIO_CONSTRAINTS, ...(extra || {}) }
-  if (deviceId) merged.deviceId = { exact: deviceId }
+  if (deviceId)
+    merged.deviceId = { exact: deviceId }
   return merged
 }
 
 function getAudioContextCtor(): typeof AudioContext | undefined {
-  if (typeof window === 'undefined') return undefined
+  if (typeof window === 'undefined')
+    return undefined
   return (window as any).AudioContext || (window as any).webkitAudioContext
 }
 
@@ -44,12 +46,14 @@ const MIME_CANDIDATES = [
 function resolveMimeType(preferred: string | undefined): string | undefined {
   const MR = (typeof window !== 'undefined' ? (window as any).MediaRecorder : undefined)
     || (typeof globalThis !== 'undefined' ? (globalThis as any).MediaRecorder : undefined)
-  if (!MR) return undefined
+  if (!MR)
+    return undefined
   if (preferred && typeof MR.isTypeSupported === 'function' && MR.isTypeSupported(preferred)) {
     return preferred
   }
   for (const c of MIME_CANDIDATES) {
-    if (typeof MR.isTypeSupported === 'function' && MR.isTypeSupported(c)) return c
+    if (typeof MR.isTypeSupported === 'function' && MR.isTypeSupported(c))
+      return c
   }
   return undefined
 }
@@ -114,7 +118,8 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
 
   const tick = useCallback(() => {
     const a = analyserRef.current
-    if (!a) return
+    if (!a)
+      return
     const buf = new Uint8Array(a.frequencyBinCount)
     a.getByteTimeDomainData(buf)
     const now = performance.now()
@@ -127,7 +132,8 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
 
   const buildAudioGraph = useCallback((s: MediaStream) => {
     const Ctx = getAudioContextCtor()
-    if (!Ctx) return
+    if (!Ctx)
+      return
     if (!audioContextRef.current) {
       audioContextRef.current = new Ctx()
     }
@@ -153,7 +159,8 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
   const stop = useEvent(() => {
     teardownAudioGraph()
     const s = streamRef.current
-    if (s) s.getTracks().forEach(t => t.stop())
+    if (s)
+      s.getTracks().forEach(t => t.stop())
     streamRef.current = null
     setStream(null)
     setIsActive(false)
@@ -165,7 +172,8 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
       setError(err)
       throw err
     }
-    if (streamRef.current) return
+    if (streamRef.current)
+      return
     try {
       const audio = buildAudioConstraints(deviceId, constraints)
       const s = await navigator.mediaDevices.getUserMedia({ audio })
@@ -188,11 +196,13 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
   }, [isActive])
 
   useEffect(() => {
-    if (!isActiveRef.current) return
+    if (!isActiveRef.current)
+      return
     // Tear down current stream + graph, then re-start
     teardownAudioGraph()
     const s = streamRef.current
-    if (s) s.getTracks().forEach(t => t.stop())
+    if (s)
+      s.getTracks().forEach(t => t.stop())
     streamRef.current = null
     // Acquire new stream
     ;(async () => {
@@ -230,8 +240,10 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
   }, [isSupported])
 
   const startRecording = useEvent(() => {
-    if (!streamRef.current) return
-    if (recorderRef.current && recorderRef.current.state !== 'inactive') return
+    if (!streamRef.current)
+      return
+    if (recorderRef.current && recorderRef.current.state !== 'inactive')
+      return
 
     revokeAudioUrl()
     setBlob(null)
@@ -250,7 +262,8 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     setResolvedMime(mime || null)
 
     recorder.ondataavailable = (e: BlobEvent) => {
-      if (e.data && e.data.size > 0) chunksRef.current.push(e.data)
+      if (e.data && e.data.size > 0)
+        chunksRef.current.push(e.data)
     }
     recorder.onstop = () => {
       const finalBlob = chunksRef.current.length
@@ -275,8 +288,9 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
 
   const stopRecording = useEvent((): Promise<Blob | null> => {
     const r = recorderRef.current
-    if (!r || r.state === 'inactive') return Promise.resolve(null)
-    return new Promise<Blob | null>((resolve) => {
+    if (!r || r.state === 'inactive')
+      return Promise.resolve(null)
+    return new Promise<Blob | null>(resolve => {
       stopResolverRef.current = resolve
       r.stop()
     })
