@@ -85,4 +85,22 @@ describe('useMicrophone', () => {
       expect(result.current.stream).toBeNull()
     })
   })
+
+  describe('permission denial', () => {
+    it('sets error and stays inactive when getUserMedia rejects', async () => {
+      const denial = Object.assign(new Error('Permission denied'), { name: 'NotAllowedError' })
+      const getUserMedia = jest.fn().mockRejectedValue(denial)
+      installMediaDevicesMock(getUserMedia)
+
+      const { result } = renderHook(() => useMicrophone())
+
+      await act(async () => {
+        await expect(result.current.start()).rejects.toBe(denial)
+      })
+
+      expect(result.current.isActive).toBe(false)
+      expect(result.current.stream).toBeNull()
+      expect(result.current.error).toBe(denial)
+    })
+  })
 })
