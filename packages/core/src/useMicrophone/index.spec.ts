@@ -194,4 +194,42 @@ describe('useMicrophone', () => {
       expect(result.current.level).toBe(0)
     })
   })
+
+  describe('deviceId reactivity', () => {
+    it('re-acquires the stream when deviceId changes while active', async () => {
+      patchRaf()
+      installAudioContextMock()
+
+      const oldTrack = makeMockTrack()
+      const newTrack = makeMockTrack()
+      const oldStream = makeMockStream([oldTrack])
+      const newStream = makeMockStream([newTrack])
+      const getUserMedia = jest
+        .fn()
+        .mockResolvedValueOnce(oldStream)
+        .mockResolvedValueOnce(newStream)
+      installMediaDevicesMock(getUserMedia)
+
+      const { result, rerender } = renderHook(
+        ({ deviceId }: { deviceId?: string }) => useMicrophone({ deviceId }),
+        { initialProps: { deviceId: 'mic-a' } },
+      )
+
+      await act(async () => { await result.current.start() })
+      expect(result.current.stream).toBe(oldStream)
+
+      await act(async () => {
+        rerender({ deviceId: 'mic-b' })
+        // Let the effect flush
+        await Promise.resolve()
+        await Promise.resolve()
+      })
+
+      expect(oldTrack.stop).toHaveBeenCalled()
+      expect(getUserMedia).toHaveBeenCalledTimes(2)
+      const secondCallConstraints = getUserMedia.mock.calls[1][0].audio
+      expect(secondCallConstraints.deviceId).toEqual({ exact: 'mic-b' })
+      expect(result.current.stream).toBe(newStream)
+    })
+  })
 })

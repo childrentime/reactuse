@@ -141,6 +141,37 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     }
   })
 
+  // Re-acquire stream when deviceId / constraints change while active
+  const isActiveRef = useRef(false)
+  useEffect(() => {
+    isActiveRef.current = isActive
+  }, [isActive])
+
+  useEffect(() => {
+    if (!isActiveRef.current) return
+    // Tear down current stream + graph, then re-start
+    teardownAudioGraph()
+    const s = streamRef.current
+    if (s) s.getTracks().forEach(t => t.stop())
+    streamRef.current = null
+    // Acquire new stream
+    ;(async () => {
+      try {
+        const audio = buildAudioConstraints(deviceId, constraints)
+        const ns = await navigator.mediaDevices.getUserMedia({ audio })
+        streamRef.current = ns
+        setStream(ns)
+        buildAudioGraph(ns)
+      }
+      catch (e) {
+        setError(e as Error)
+        setIsActive(false)
+        setStream(null)
+      }
+    })()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deviceId, JSON.stringify(constraints)])
+
   useUnmount(() => {
     stop()
     audioContextRef.current?.close().catch(() => {})
