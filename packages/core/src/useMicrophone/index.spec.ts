@@ -1,5 +1,29 @@
-import { renderHook } from '@testing-library/react'
+import { renderHook, act } from '@testing-library/react'
 import { useMicrophone } from '.'
+
+function makeMockTrack() {
+  return {
+    kind: 'audio',
+    stop: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+  }
+}
+
+function makeMockStream(tracks = [makeMockTrack()]) {
+  return {
+    getTracks: () => tracks,
+    getAudioTracks: () => tracks.filter(t => t.kind === 'audio'),
+    _tracks: tracks,
+  }
+}
+
+function installMediaDevicesMock(getUserMedia: jest.Mock) {
+  Object.defineProperty(global.navigator, 'mediaDevices', {
+    value: { getUserMedia },
+    configurable: true,
+  })
+}
 
 describe('useMicrophone', () => {
   describe('capability detection', () => {
@@ -30,6 +54,35 @@ describe('useMicrophone', () => {
 
       const { result } = renderHook(() => useMicrophone())
       expect(result.current.isSupported).toBe(true)
+    })
+  })
+
+  describe('start/stop lifecycle', () => {
+    it('start() acquires a stream and flips isActive; stop() releases it', async () => {
+      const track = makeMockTrack()
+      const stream = makeMockStream([track])
+      const getUserMedia = jest.fn().mockResolvedValue(stream)
+      installMediaDevicesMock(getUserMedia)
+
+      const { result } = renderHook(() => useMicrophone())
+
+      await act(async () => {
+        await result.current.start()
+      })
+
+      expect(getUserMedia).toHaveBeenCalledTimes(1)
+      const constraintsArg = getUserMedia.mock.calls[0][0]
+      expect(constraintsArg).toHaveProperty('audio')
+      expect(result.current.isActive).toBe(true)
+      expect(result.current.stream).toBe(stream)
+
+      act(() => {
+        result.current.stop()
+      })
+
+      expect(track.stop).toHaveBeenCalledTimes(1)
+      expect(result.current.isActive).toBe(false)
+      expect(result.current.stream).toBeNull()
     })
   })
 })
