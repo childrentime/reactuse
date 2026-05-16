@@ -332,4 +332,40 @@ describe('useMicrophone', () => {
       expect(result.current.mimeType).toBe('audio/ogg;codecs=opus')
     })
   })
+
+  describe('object URL lifecycle', () => {
+    it('revokes the previous audioUrl when a new recording starts', async () => {
+      patchRaf()
+      installAudioContextMock()
+      installMediaRecorderMock()
+      const urls = installUrlMock()
+      installMediaDevicesMock(jest.fn().mockResolvedValue(makeMockStream()))
+
+      const { result } = renderHook(() => useMicrophone())
+      await act(async () => { await result.current.start() })
+
+      act(() => { result.current.startRecording() })
+      await act(async () => { await result.current.stopRecording() })
+      expect(result.current.audioUrl).toBe('blob:test/1')
+
+      act(() => { result.current.startRecording() })
+      expect(urls.revoked).toContain('blob:test/1')
+    })
+
+    it('revokes the audioUrl on unmount', async () => {
+      patchRaf()
+      installAudioContextMock()
+      installMediaRecorderMock()
+      const urls = installUrlMock()
+      installMediaDevicesMock(jest.fn().mockResolvedValue(makeMockStream()))
+
+      const { result, unmount } = renderHook(() => useMicrophone())
+      await act(async () => { await result.current.start() })
+      act(() => { result.current.startRecording() })
+      await act(async () => { await result.current.stopRecording() })
+
+      unmount()
+      expect(urls.revoked).toContain('blob:test/1')
+    })
+  })
 })

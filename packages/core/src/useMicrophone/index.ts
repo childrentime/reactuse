@@ -217,6 +217,7 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     audioContextRef.current = null
     analyserRef.current = null
     setAnalyser(null)
+    revokeAudioUrl()
   })
 
   const noop = useCallback(() => {}, [])
