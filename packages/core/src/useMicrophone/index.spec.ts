@@ -420,4 +420,27 @@ describe('useMicrophone', () => {
       expect(getUserMedia).not.toHaveBeenCalled()
     })
   })
+
+  describe('track ended', () => {
+    it('flips isActive=false and sets error when the audio track ends', async () => {
+      patchRaf()
+      installAudioContextMock()
+      const track = makeMockTrack()
+      const stream = makeMockStream([track])
+      installMediaDevicesMock(jest.fn().mockResolvedValue(stream))
+
+      const { result } = renderHook(() => useMicrophone())
+      await act(async () => { await result.current.start() })
+
+      // Capture the ended listener registered by the hook
+      const endedCall = track.addEventListener.mock.calls.find(c => c[0] === 'ended')
+      expect(endedCall).toBeDefined()
+      const endedHandler = endedCall![1]
+
+      act(() => { endedHandler(new Event('ended')) })
+
+      expect(result.current.isActive).toBe(false)
+      expect(result.current.error?.message).toMatch(/disconnect/i)
+    })
+  })
 })

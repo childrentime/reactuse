@@ -182,6 +182,20 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
       setIsActive(true)
       setError(null)
       buildAudioGraph(s)
+      s.getAudioTracks().forEach(t => {
+        t.addEventListener('ended', () => {
+          setError(new Error('Microphone disconnected'))
+          if (recorderRef.current && recorderRef.current.state !== 'inactive') {
+            try {
+              recorderRef.current.stop()
+            }
+            catch {
+              // ignore
+            }
+          }
+          stop()
+        }, { once: true })
+      })
     }
     catch (e) {
       setError(e as Error)
