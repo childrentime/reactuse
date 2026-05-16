@@ -443,4 +443,27 @@ describe('useMicrophone', () => {
       expect(result.current.error?.message).toMatch(/disconnect/i)
     })
   })
+
+  describe('stop while recording', () => {
+    it('stop() halts an in-flight MediaRecorder before tearing down the stream', async () => {
+      patchRaf()
+      installAudioContextMock()
+      installMediaRecorderMock()
+      installUrlMock()
+      installMediaDevicesMock(jest.fn().mockResolvedValue(makeMockStream()))
+
+      const { result } = renderHook(() => useMicrophone())
+      await act(async () => { await result.current.start() })
+      act(() => { result.current.startRecording() })
+
+      const recorder = result.current.recorder as unknown as FakeMediaRecorder
+      expect(recorder.state).toBe('recording')
+
+      act(() => { result.current.stop() })
+
+      expect(recorder.stop).toHaveBeenCalled()
+      expect(result.current.isRecording).toBe(false)
+      expect(result.current.isActive).toBe(false)
+    })
+  })
 })

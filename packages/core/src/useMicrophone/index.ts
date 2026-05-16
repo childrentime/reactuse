@@ -156,7 +156,20 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     // Keep analyser + audioContext alive across start/stop cycles
   }, [cancelRaf])
 
+  const stopRecorderIfActive = useCallback(() => {
+    const r = recorderRef.current
+    if (r && r.state !== 'inactive') {
+      try {
+        r.stop()
+      }
+      catch {
+        /* ignore */
+      }
+    }
+  }, [])
+
   const stop = useEvent(() => {
+    stopRecorderIfActive()
     teardownAudioGraph()
     const s = streamRef.current
     if (s)
@@ -185,14 +198,7 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
       s.getAudioTracks().forEach(t => {
         t.addEventListener('ended', () => {
           setError(new Error('Microphone disconnected'))
-          if (recorderRef.current && recorderRef.current.state !== 'inactive') {
-            try {
-              recorderRef.current.stop()
-            }
-            catch {
-              // ignore
-            }
-          }
+          stopRecorderIfActive()
           stop()
         }, { once: true })
       })
@@ -213,6 +219,7 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     if (!isActiveRef.current)
       return
     // Tear down current stream + graph, then re-start
+    stopRecorderIfActive()
     teardownAudioGraph()
     const s = streamRef.current
     if (s)
