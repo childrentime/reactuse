@@ -25,6 +25,62 @@ function installMediaDevicesMock(getUserMedia: jest.Mock) {
   })
 }
 
+class FakeAnalyser {
+  fftSize = 2048
+  smoothingTimeConstant = 0.8
+  frequencyBinCount = 1024
+  connect = jest.fn()
+  disconnect = jest.fn()
+  // Test harness fills this; the hook will read it via getByteTimeDomainData
+  nextData: number[] = []
+  getByteTimeDomainData(out: Uint8Array) {
+    for (let i = 0; i < out.length; i++) out[i] = this.nextData[i] ?? 128
+  }
+}
+
+class FakeSourceNode {
+  connect = jest.fn()
+  disconnect = jest.fn()
+}
+
+class FakeAudioContext {
+  state = 'running'
+  close = jest.fn(async () => { this.state = 'closed' })
+  createMediaStreamSource = jest.fn(() => new FakeSourceNode())
+  createAnalyser = jest.fn(() => {
+    this.lastAnalyser = new FakeAnalyser()
+    return this.lastAnalyser
+  })
+  lastAnalyser: FakeAnalyser | null = null
+}
+
+function installAudioContextMock() {
+  const ctor = jest.fn(() => new FakeAudioContext())
+  ;(global as any).AudioContext = ctor
+  ;(global as any).webkitAudioContext = ctor
+  return ctor
+}
+
+function patchRaf() {
+  let callbacks: Array<(t: number) => void> = []
+  let now = 0
+  ;(global as any).requestAnimationFrame = (cb: (t: number) => void) => {
+    callbacks.push(cb)
+    return callbacks.length
+  }
+  ;(global as any).cancelAnimationFrame = jest.fn()
+  ;(global as any).performance = (global as any).performance || { now: () => now }
+  ;(global as any).performance.now = () => now
+  return {
+    flush(advanceMs: number) {
+      now += advanceMs
+      const cbs = callbacks
+      callbacks = []
+      cbs.forEach(cb => cb(now))
+    },
+  }
+}
+
 describe('useMicrophone', () => {
   describe('capability detection', () => {
     const originalMediaDevices = (global.navigator as any).mediaDevices
@@ -101,6 +157,41 @@ describe('useMicrophone', () => {
       expect(result.current.isActive).toBe(false)
       expect(result.current.stream).toBeNull()
       expect(result.current.error).toBe(denial)
+    })
+  })
+
+  describe('level meter', () => {
+    it('emits level via state at the configured throttle interval', async () => {
+      const raf = patchRaf()
+      installAudioContextMock()
+      const getUserMedia = jest.fn().mockResolvedValue(makeMockStream())
+      installMediaDevicesMock(getUserMedia)
+
+      const { result } = renderHook(() => useMicrophone({ levelInterval: 100 }))
+
+      await act(async () => {
+        await result.current.start()
+      })
+
+      expect(result.current.analyser).toBeTruthy()
+
+      // Feed loud audio: 255 = peak deviation from 128 midpoint, so RMS=1.0
+      const analyser = result.current.analyser as unknown as FakeAnalyser
+      analyser.nextData = new Array(analyser.frequencyBinCount).fill(255)
+
+      // First frame at t=0 should emit (lastEmit is initialized so the first tick fires)
+      act(() => { raf.flush(0) })
+      expect(result.current.level).toBeGreaterThan(0)
+      const firstLevel = result.current.level
+
+      // A frame at t=50ms should NOT emit (under the 100ms throttle)
+      analyser.nextData = new Array(analyser.frequencyBinCount).fill(128) // silence
+      act(() => { raf.flush(50) })
+      expect(result.current.level).toBe(firstLevel)
+
+      // A frame at t=150ms should emit (>=100ms since last)
+      act(() => { raf.flush(100) })
+      expect(result.current.level).toBe(0)
     })
   })
 })
