@@ -59,6 +59,7 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     deviceId,
     constraints,
     levelInterval = DEFAULT_LEVEL_INTERVAL,
+    autoStart,
   } = options
 
   const isSupported = useSupported(
@@ -219,6 +220,14 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     setAnalyser(null)
     revokeAudioUrl()
   })
+
+  const autoStartRef = useRef(autoStart)
+  useEffect(() => {
+    if (autoStartRef.current && isSupported) {
+      start().catch(() => {})
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSupported])
 
   const startRecording = useEvent(() => {
     if (!streamRef.current) return

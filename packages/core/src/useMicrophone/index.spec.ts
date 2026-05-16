@@ -391,4 +391,33 @@ describe('useMicrophone', () => {
       expect(result.current.isPaused).toBe(false)
     })
   })
+
+  describe('autoStart', () => {
+    it('opens the mic on mount when autoStart=true', async () => {
+      patchRaf()
+      installAudioContextMock()
+      const getUserMedia = jest.fn().mockResolvedValue(makeMockStream())
+      installMediaDevicesMock(getUserMedia)
+
+      let r: any
+      await act(async () => {
+        r = renderHook(() => useMicrophone({ autoStart: true }))
+        // Flush microtasks for the awaited getUserMedia
+        await Promise.resolve()
+        await Promise.resolve()
+      })
+      expect(getUserMedia).toHaveBeenCalledTimes(1)
+      expect(r.result.current.isActive).toBe(true)
+    })
+
+    it('does not open the mic on mount by default', () => {
+      patchRaf()
+      installAudioContextMock()
+      const getUserMedia = jest.fn().mockResolvedValue(makeMockStream())
+      installMediaDevicesMock(getUserMedia)
+
+      renderHook(() => useMicrophone())
+      expect(getUserMedia).not.toHaveBeenCalled()
+    })
+  })
 })
