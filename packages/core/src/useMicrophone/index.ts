@@ -220,8 +220,6 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     revokeAudioUrl()
   })
 
-  const noop = useCallback(() => {}, [])
-
   const startRecording = useEvent(() => {
     if (!streamRef.current) return
     if (recorderRef.current && recorderRef.current.state !== 'inactive') return
@@ -275,6 +273,22 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     })
   })
 
+  const pauseRecording = useEvent(() => {
+    const r = recorderRef.current
+    if (r && r.state === 'recording') {
+      r.pause()
+      setIsPaused(true)
+    }
+  })
+
+  const resumeRecording = useEvent(() => {
+    const r = recorderRef.current
+    if (r && r.state === 'paused') {
+      r.resume()
+      setIsPaused(false)
+    }
+  })
+
   return {
     isSupported,
     isActive,
@@ -294,8 +308,8 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     stop,
     startRecording,
     stopRecording,
-    pauseRecording: noop,
-    resumeRecording: noop,
+    pauseRecording,
+    resumeRecording,
   } as const
 }
 

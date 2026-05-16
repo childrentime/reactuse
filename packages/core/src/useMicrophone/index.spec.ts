@@ -368,4 +368,27 @@ describe('useMicrophone', () => {
       expect(urls.revoked).toContain('blob:test/1')
     })
   })
+
+  describe('pause / resume recording', () => {
+    it('toggles isPaused and forwards to MediaRecorder.pause/resume', async () => {
+      patchRaf()
+      installAudioContextMock()
+      installMediaRecorderMock()
+      installUrlMock()
+      installMediaDevicesMock(jest.fn().mockResolvedValue(makeMockStream()))
+
+      const { result } = renderHook(() => useMicrophone())
+      await act(async () => { await result.current.start() })
+      act(() => { result.current.startRecording() })
+
+      const recorder = result.current.recorder as unknown as FakeMediaRecorder
+      act(() => { result.current.pauseRecording() })
+      expect(recorder.pause).toHaveBeenCalledTimes(1)
+      expect(result.current.isPaused).toBe(true)
+
+      act(() => { result.current.resumeRecording() })
+      expect(recorder.resume).toHaveBeenCalledTimes(1)
+      expect(result.current.isPaused).toBe(false)
+    })
+  })
 })
