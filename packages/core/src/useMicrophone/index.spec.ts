@@ -301,4 +301,35 @@ describe('useMicrophone', () => {
       expect(result.current.isRecording).toBe(false)
     })
   })
+
+  describe('mime-type selection', () => {
+    it('falls back to audio/mp4 when webm is unsupported', async () => {
+      patchRaf()
+      installAudioContextMock()
+      installMediaRecorderMock()
+      // Override isTypeSupported: webm unsupported, mp4 supported
+      ;(FakeMediaRecorder as any).isTypeSupported = jest.fn((t: string) => t === 'audio/mp4')
+      installUrlMock()
+      installMediaDevicesMock(jest.fn().mockResolvedValue(makeMockStream()))
+
+      const { result } = renderHook(() => useMicrophone())
+      await act(async () => { await result.current.start() })
+      act(() => { result.current.startRecording() })
+      expect(result.current.mimeType).toBe('audio/mp4')
+    })
+
+    it('honors a supported preferred mimeType option', async () => {
+      patchRaf()
+      installAudioContextMock()
+      installMediaRecorderMock()
+      ;(FakeMediaRecorder as any).isTypeSupported = jest.fn(() => true)
+      installUrlMock()
+      installMediaDevicesMock(jest.fn().mockResolvedValue(makeMockStream()))
+
+      const { result } = renderHook(() => useMicrophone({ mimeType: 'audio/ogg;codecs=opus' }))
+      await act(async () => { await result.current.start() })
+      act(() => { result.current.startRecording() })
+      expect(result.current.mimeType).toBe('audio/ogg;codecs=opus')
+    })
+  })
 })
