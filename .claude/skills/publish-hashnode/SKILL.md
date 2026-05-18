@@ -11,12 +11,9 @@ reactuse.com 的博客在 Hashnode 有镜像 `reactuse.hashnode.dev`。每篇新
 - canonical URL 指回 reactuse.com（不抢 SEO 权重）
 - Hashnode 流量是真实增量（独立 RSS/订阅用户）
 
-## ⚠️ 2026-05-13 之后：API 已付费，默认走浏览器
+## ⚠️ 唯一路径：浏览器自动化
 
-Hashnode 在 2026-05-13 把 GraphQL API 转成了付费 + allow-list 制（参见 https://hashnode.com/announcements/graphql-api）。`scripts/publishHashnode.mjs` 在 `reactuse.hashnode.dev` 没被加白之前会失败，`gql.hashnode.com` 直接 301 重定向到公告页。
-
-**默认路径**：用 `opencli browser` 自动化网页编辑器。已经在 2026-05-13 验证过整条流程跑通。
-**降级路径**：如果哪天我们付了费拿到 allow-list，再走 `node scripts/publishHashnode.mjs`（流程见末尾"API 路径（暂不可用）"）。
+Hashnode 在 2026-05-13 把 GraphQL API 转成了付费 + allow-list 制（参见 https://hashnode.com/announcements/graphql-api），`reactuse.hashnode.dev` 没在白名单里。老的 `scripts/publishHashnode.mjs` 已经在 2026-05-18 删掉，**不要重写一个**；除非将来真的付费拿到 allow-list（届时再考虑），否则就老老实实走 `opencli` 浏览器路径。
 
 ## 触发场景
 
@@ -40,7 +37,7 @@ opencli doctor                       # 必须看到 Connectivity: connected
 
 如果 `Connectivity: failed (operation aborted)`：让用户把 Chrome 切到前台、点一下 opencli 扩展图标唤醒 service worker，再 `opencli doctor`。
 
-## 工作流程（opencli 路径）
+## 工作流程
 
 ### 步骤 1：确认目标文章 + 提取元数据
 
@@ -241,31 +238,6 @@ opencli browser --session default eval '
 - **正文 fill 不触发 React onChange，draft 不保存** —— 这是最隐蔽的坑。`opencli fill` 是同步 value 赋值，Hashnode auto-save 不会跑。fill 之后必须 eval 触发 input event（见步骤 4）。症状：publish 后访问公开 URL 是 Post Not Found，publication 首页也没有这篇。修复后能看到首页列表里有新文章
 - **弹窗里 Publish ref 漂走** —— click 时拿到的 ref 在 click 之间已经因为弹窗 re-render 变了。用 `eval` 选 `<button>Publish</button>` + `.closest("[role=dialog]")` 直接 click，不走 ref（见步骤 7）
 - **publish 后直接 URL 返回 Post Not Found，但 publication 首页有这篇** —— Hashnode 自己 CDN 缓存延迟（几分钟）。判断成功用 publication 首页文章列表，不要用直接 URL
-
-## API 路径（暂不可用）
-
-如果将来 `reactuse.hashnode.dev` 被 Hashnode 加白了，老脚本路径还在：
-
-```bash
-node scripts/publishHashnode.mjs --dry-run               # 预览最新一篇
-node scripts/publishHashnode.mjs                         # 发最新
-node scripts/publishHashnode.mjs <slug>                  # 发指定 slug
-node scripts/publishHashnode.mjs path/to/post.md         # 发指定路径
-```
-
-env：`.env` 里 `HASHNODE_PAT` + `HASHNODE_PUBLICATION_ID=69fdadfb6fb09594bd2c7700`。失败一般是：
-
-- `fetch failed` —— `gql.hashnode.com` 域名问题（DNS 污染或 API 还没加白）
-- `Unauthorized` —— PAT 过期，去 `https://hashnode.com/settings/developer` 重新生成
-- `slug already exists` —— 改 slug 或先删旧文章
-
-每次试 API 之前先：
-
-```bash
-curl -sI -m 5 --resolve gql.hashnode.com:443:104.26.12.250 https://gql.hashnode.com | head -3
-```
-
-如果还在 301 到 `/announcements/graphql-api`，就老老实实走浏览器。
 
 ## 注意事项
 

@@ -74,8 +74,8 @@ After writing blog posts (3 locales in `packages/website-astro/src/content/`), a
 1. Create `blog-external/post-N-{slug}/` with `medium.md`, `devto.md`, `juejin.md`
 2. **Only publish the first post** of each batch to all 4 platforms:
    - **Medium**: Use the `medium-push` skill with the `medium.md` file
-   - **dev.to**: POST via API using `DEVTO_API_KEY` from `.env` (set `published: false` as draft)
-   - **Hashnode**: Run `node scripts/publishHashnode.mjs` (publishes the latest post by default; pass a slug to target a specific post)
+   - **dev.to**: POST via API using `DEVTO_API_KEY` from `.env` (set `published: false` as draft); requires a `User-Agent` header — Forem's edge rejects requests without one
+   - **Hashnode**: Use the `publish-hashnode` skill (browser automation via `opencli`). The old GraphQL script was deleted on 2026-05-18 after Hashnode moved the API to a paid + allow-list plan
    - **Juejin (掘金)**: Tell user to copy from `juejin.md` (no API available)
 3. The remaining posts are saved in `blog-external/` for future publishing
 
@@ -85,21 +85,8 @@ After writing blog posts (3 locales in `packages/website-astro/src/content/`), a
 curl -s -X POST https://dev.to/api/articles \
   -H "api-key: $DEVTO_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"article": {"title": "...", "body_markdown": "...", "published": false, "tags": ["react","javascript","webdev","tutorial"]}}'
+  -H "User-Agent: reactuse-blog-publisher/1.0" \
+  -d '{"article": {"title": "...", "body_markdown": "...", "published": false, "tags": ["react","javascript","webdev","tutorial"], "canonical_url": "https://reactuse.com/blog/<slug>/"}}'
 ```
 
-API key is in `.env` as `DEVTO_API_KEY`.
-
-### Hashnode API
-
-```bash
-node scripts/publishHashnode.mjs                         # latest blog post
-node scripts/publishHashnode.mjs <slug>                  # specific by slug
-node scripts/publishHashnode.mjs --dry-run [slug]        # preview only
-```
-
-The script reads frontmatter from `packages/website-astro/src/content/blog/`, strips the `<!-- truncate -->` marker, and calls the Hashnode `publishPost` GraphQL mutation. It sets `originalArticleURL` to `https://reactuse.com/blog/{slug}/` so search engines treat reactuse.com as canonical.
-
-Env vars (in `.env`):
-- `HASHNODE_PAT` — from hashnode.com/settings/developer
-- `HASHNODE_PUBLICATION_ID` — `69fdadfb6fb09594bd2c7700` (publication: reactuse.hashnode.dev)
+API key is in `.env` as `DEVTO_API_KEY`. Without a `User-Agent` header, Forem's Varnish edge returns 403 with an empty body.
