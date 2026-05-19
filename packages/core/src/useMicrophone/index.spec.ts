@@ -442,6 +442,39 @@ describe('useMicrophone', () => {
       expect(result.current.isActive).toBe(false)
       expect(result.current.error?.message).toMatch(/disconnect/i)
     })
+
+    it('attaches the ended listener to tracks acquired via deviceId change', async () => {
+      patchRaf()
+      installAudioContextMock()
+      const oldTrack = makeMockTrack()
+      const newTrack = makeMockTrack()
+      const oldStream = makeMockStream([oldTrack])
+      const newStream = makeMockStream([newTrack])
+      installMediaDevicesMock(jest
+        .fn()
+        .mockResolvedValueOnce(oldStream)
+        .mockResolvedValueOnce(newStream))
+
+      const { result, rerender } = renderHook(
+        ({ deviceId }: { deviceId?: string }) => useMicrophone({ deviceId }),
+        { initialProps: { deviceId: 'mic-a' } },
+      )
+
+      await act(async () => { await result.current.start() })
+
+      await act(async () => {
+        rerender({ deviceId: 'mic-b' })
+        await Promise.resolve()
+        await Promise.resolve()
+      })
+
+      const endedCall = newTrack.addEventListener.mock.calls.find(c => c[0] === 'ended')
+      expect(endedCall).toBeDefined()
+
+      act(() => { endedCall![1](new Event('ended')) })
+      expect(result.current.isActive).toBe(false)
+      expect(result.current.error?.message).toMatch(/disconnect/i)
+    })
   })
 
   describe('stop while recording', () => {

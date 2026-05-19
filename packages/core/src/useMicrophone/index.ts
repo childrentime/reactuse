@@ -179,6 +179,16 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     setIsActive(false)
   })
 
+  const attachTrackEndedListeners = useEvent((s: MediaStream) => {
+    s.getAudioTracks().forEach(t => {
+      t.addEventListener('ended', () => {
+        setError(new Error('Microphone disconnected'))
+        stopRecorderIfActive()
+        stop()
+      }, { once: true })
+    })
+  })
+
   const start = useEvent(async () => {
     if (!isSupported) {
       const err = new Error('Microphone not supported in this environment')
@@ -195,13 +205,7 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
       setIsActive(true)
       setError(null)
       buildAudioGraph(s)
-      s.getAudioTracks().forEach(t => {
-        t.addEventListener('ended', () => {
-          setError(new Error('Microphone disconnected'))
-          stopRecorderIfActive()
-          stop()
-        }, { once: true })
-      })
+      attachTrackEndedListeners(s)
     }
     catch (e) {
       setError(e as Error)
@@ -233,6 +237,7 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
         streamRef.current = ns
         setStream(ns)
         buildAudioGraph(ns)
+        attachTrackEndedListeners(ns)
       }
       catch (e) {
         setError(e as Error)
