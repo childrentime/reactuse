@@ -232,6 +232,19 @@ describe('useMicrophone', () => {
       act(() => { raf.flush(100) })
       expect(result.current.level).toBe(0)
     })
+
+    it('clears the analyser when stop() is called', async () => {
+      patchRaf()
+      installAudioContextMock()
+      installMediaDevicesMock(jest.fn().mockResolvedValue(makeMockStream()))
+
+      const { result } = renderHook(() => useMicrophone())
+      await act(async () => { await result.current.start() })
+      expect(result.current.analyser).not.toBeNull()
+
+      act(() => { result.current.stop() })
+      expect(result.current.analyser).toBeNull()
+    })
   })
 
   describe('deviceId reactivity', () => {

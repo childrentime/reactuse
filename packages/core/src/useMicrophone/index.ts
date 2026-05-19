@@ -153,7 +153,9 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     cancelRaf()
     sourceRef.current?.disconnect()
     sourceRef.current = null
-    // Keep analyser + audioContext alive across start/stop cycles
+    analyserRef.current = null
+    setAnalyser(null)
+    // AudioContext stays alive across start/stop cycles (cheap to keep, expensive to recreate).
   }, [cancelRaf])
 
   const stopRecorderIfActive = useCallback(() => {
@@ -252,8 +254,6 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     stop()
     audioContextRef.current?.close().catch(() => {})
     audioContextRef.current = null
-    analyserRef.current = null
-    setAnalyser(null)
     revokeAudioUrl()
   })
 
