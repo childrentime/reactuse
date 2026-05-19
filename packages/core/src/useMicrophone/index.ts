@@ -303,6 +303,8 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
       }
       setIsRecording(false)
       setIsPaused(false)
+      recorderRef.current = null
+      setRecorderState(null)
       stopResolverRef.current?.(finalBlob)
       stopResolverRef.current = null
     }

@@ -300,6 +300,22 @@ describe('useMicrophone', () => {
       expect(urlSpy.created).toEqual(['blob:test/1'])
       expect(result.current.isRecording).toBe(false)
     })
+
+    it('clears the recorder reference after stopRecording', async () => {
+      patchRaf()
+      installAudioContextMock()
+      installMediaRecorderMock()
+      installUrlMock()
+      installMediaDevicesMock(jest.fn().mockResolvedValue(makeMockStream()))
+
+      const { result } = renderHook(() => useMicrophone())
+      await act(async () => { await result.current.start() })
+      act(() => { result.current.startRecording() })
+      expect(result.current.recorder).not.toBeNull()
+
+      await act(async () => { await result.current.stopRecording() })
+      expect(result.current.recorder).toBeNull()
+    })
   })
 
   describe('mime-type selection', () => {
