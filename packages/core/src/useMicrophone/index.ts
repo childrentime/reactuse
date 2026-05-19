@@ -363,7 +363,7 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     stopRecording,
     pauseRecording,
     resumeRecording,
-  } as const
+  }
 }
 
 export type { UseMicrophoneOptions, UseMicrophoneReturn } from './interface'
