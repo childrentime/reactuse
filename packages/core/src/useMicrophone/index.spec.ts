@@ -314,6 +314,18 @@ describe('useMicrophone', () => {
       expect(result.current.isRecording).toBe(false)
     })
 
+    it('sets an error when startRecording is called before start', () => {
+      installMediaRecorderMock()
+      installUrlMock()
+      installMediaDevicesMock(jest.fn().mockResolvedValue(makeMockStream()))
+
+      const { result } = renderHook(() => useMicrophone())
+      act(() => { result.current.startRecording() })
+
+      expect(result.current.isRecording).toBe(false)
+      expect(result.current.error?.message).toMatch(/call start\(\) before startRecording\(\)/)
+    })
+
     it('clears the recorder reference after stopRecording', async () => {
       patchRaf()
       installAudioContextMock()

@@ -266,8 +266,10 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
   }, [isSupported])
 
   const startRecording = useEvent(() => {
-    if (!streamRef.current)
+    if (!streamRef.current) {
+      setError(new Error('useMicrophone: call start() before startRecording()'))
       return
+    }
     if (recorderRef.current && recorderRef.current.state !== 'inactive')
       return
 
