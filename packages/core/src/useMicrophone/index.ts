@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useSupported } from '../useSupported'
+import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { useEvent } from '../useEvent'
 import { useUnmount } from '../useUnmount'
 import type { UseMicrophone, UseMicrophoneOptions } from './interface'
@@ -221,7 +222,7 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     isActiveRef.current = isActive
   }, [isActive])
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     if (!isActiveRef.current)
       return
     // Tear down current stream + graph, then re-start
@@ -247,8 +248,7 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
         setStream(null)
       }
     })()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deviceId, JSON.stringify(constraints)])
+  }, [deviceId, constraints])
 
   useUnmount(() => {
     stop()
