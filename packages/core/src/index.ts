@@ -43,6 +43,7 @@ import { useLongPress } from './useLongPress'
 import { useMeasure } from './useMeasure'
 import { useMediaDevices } from './useMediaDevices'
 import { useMediaQuery } from './useMediaQuery'
+import { useMicrophone } from './useMicrophone'
 import { useMount } from './useMount'
 import { useMountedState } from './useMountedState'
 import { useMouse } from './useMouse'
@@ -152,6 +153,7 @@ export {
   useObjectUrl,
   useIdle,
   useMediaDevices,
+  useMicrophone,
   useTextDirection,
   useMouse,
   useFps,
@@ -272,6 +274,7 @@ export * from './useLongPress/interface'
 export * from './useMeasure/interface'
 export * from './useMediaDevices/interface'
 export * from './useMediaQuery/interface'
+export * from './useMicrophone/interface'
 export * from './useMount/interface'
 export * from './useMountedState/interface'
 export * from './useMouse/interface'
