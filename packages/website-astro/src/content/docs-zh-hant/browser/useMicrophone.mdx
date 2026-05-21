@@ -1,0 +1,138 @@
+---
+title: useMicrophone 用法與示例
+sidebar_label: useMicrophone
+description: "useMicrophone 是一個用於麥克風的 React hook，可開啟音訊串流、讀取即時音量電平，並透過 MediaRecorder 將音訊錄製為 Blob。"
+---
+# useMicrophone
+
+用於擷取麥克風音訊的 React hook
+
+`useMicrophone` 將 [`getUserMedia`](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia)、[Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) 和 [`MediaRecorder`](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder) 封裝進同一個 hook。它負責開啟和關閉麥克風音訊串流，提供一個經過節流的音量 `level`（0–1，RMS），適合用於音量條，並可將目前的音訊串流錄製為 `Blob`，同時由 hook 管理物件 URL 的生命週期。
+
+即時音訊串流控制（`start` / `stop`）與錄音控制（`startRecording` / `stopRecording` / `pauseRecording` / `resumeRecording`）彼此獨立：你可以只顯示音量條而不錄音，也可以在不關閉麥克風的情況下開始或停止錄音。
+
+### 使用場景
+
+- 建構語音備忘錄或聽寫介面，讓使用者在錄音前和錄音中都能看到即時輸入電平
+- 加入「請說話」提示或麥克風校準介面 —— 需要音量條但不需要錄音
+- 將短音訊片段錄製為 `Blob` 用於上傳或本機播放
+
+### 注意事項
+
+- **SSR 安全**：在伺服器端渲染期間回傳 `isSupported: false` 和空操作的控制函式。伺服器端不會存取 `navigator.mediaDevices`。
+- **先 `start()` 再 `startRecording()`**：錄音擷取的是已開啟的音訊串流。請先呼叫 `start()`；在沒有活動串流時呼叫 `startRecording()` 會設定 `error` 而不會開始錄音。
+- **需要 HTTPS**：在生產環境中，麥克風需要安全內容（HTTPS）。瀏覽器會在首次 `start()` 時請求權限。
+- **物件 URL 生命週期**：`audioUrl` 由 hook 建立和釋放 —— 它會在下一次錄音時被取代，並在卸載時被釋放，因此使用方無需自行呼叫 `URL.revokeObjectURL`。
+- **Mime 類型**：錄音格式會從瀏覽器支援的格式中自動選擇（`audio/webm;codecs=opus`、`audio/webm`、`audio/mp4`、`audio/ogg;codecs=opus`）。最終解析出的值透過 `mimeType` 提供。
+- **相關 hooks**：使用 `useMediaDevices` 列舉麥克風並傳入 `deviceId`，或使用 `useSpeechRecognition` 進行語音轉文字。
+
+## 基本用法
+
+```tsx live
+function Demo() {
+  const {
+    isSupported,
+    isActive,
+    level,
+    isRecording,
+    isPaused,
+    audioUrl,
+    mimeType,
+    error,
+    start,
+    stop,
+    startRecording,
+    stopRecording,
+    pauseRecording,
+    resumeRecording,
+  } = useMicrophone();
+
+  if (!isSupported) {
+    return <div>此瀏覽器不支援麥克風</div>;
+  }
+
+  const levelPercent = Math.round(level * 100);
+
+  return (
+    <div>
+      <div style={{ marginBottom: '16px' }}>
+        <p>
+          <strong>麥克風:</strong> {isActive ? '已開啟' : '已關閉'}
+          {' · '}
+          <strong>錄音:</strong>{' '}
+          {isRecording ? (isPaused ? '已暫停' : '錄音中...') : '閒置'}
+        </p>
+
+        <div
+          style={{
+            height: '16px',
+            width: '100%',
+            borderRadius: '4px',
+            backgroundColor: 'var(--ifm-color-emphasis-200)',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              height: '100%',
+              width: `${levelPercent}%`,
+              backgroundColor:
+                levelPercent > 70
+                  ? 'var(--ifm-color-danger)'
+                  : 'var(--ifm-color-success)',
+              transition: 'width 80ms linear',
+            }}
+          />
+        </div>
+        <p style={{ fontSize: '13px', color: 'var(--ifm-color-content-secondary)' }}>
+          輸入電平: {levelPercent}%
+        </p>
+      </div>
+
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '12px' }}>
+        <button onClick={() => start()} disabled={isActive}>
+          開啟麥克風
+        </button>
+        <button onClick={() => stop()} disabled={!isActive}>
+          關閉麥克風
+        </button>
+        <button onClick={() => startRecording()} disabled={!isActive || isRecording}>
+          錄音
+        </button>
+        <button onClick={() => stopRecording()} disabled={!isRecording}>
+          停止錄音
+        </button>
+        <button onClick={() => pauseRecording()} disabled={!isRecording || isPaused}>
+          暫停
+        </button>
+        <button onClick={() => resumeRecording()} disabled={!isPaused}>
+          繼續
+        </button>
+      </div>
+
+      {audioUrl && (
+        <div style={{ marginBottom: '12px' }}>
+          <p style={{ fontSize: '13px', color: 'var(--ifm-color-content-secondary)' }}>
+            錄製的片段（{mimeType || '預設格式'}）：
+          </p>
+          <audio src={audioUrl} controls />
+        </div>
+      )}
+
+      {error && (
+        <p style={{ color: 'var(--ifm-color-danger)' }}>
+          <strong>錯誤:</strong> {error.message}
+        </p>
+      )}
+    </div>
+  );
+}
+```
+
+## 常見用例
+
+- **語音備忘錄**：開啟麥克風讓使用者看到即時電平，然後錄製為 `Blob` 並回放或上傳。
+- **音量監測**：用 `level` 驅動音量條或波形，而無需錄製任何內容。
+- **麥克風校準**：讓使用者在開始前確認擷取到的是正確的裝置。
+
+%%API%%

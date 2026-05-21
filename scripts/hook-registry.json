@@ -239,6 +239,10 @@
     "category": "state",
     "url": "https://reactuse.com/state/usemergedrefs/"
   },
+  "useMicrophone": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/usemicrophone/"
+  },
   "useMobileLandscape": {
     "category": "browser",
     "url": "https://reactuse.com/browser/usemobilelandscape/"
