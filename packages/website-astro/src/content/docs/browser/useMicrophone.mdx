@@ -1,0 +1,138 @@
+---
+title: useMicrophone – Browser Hook Usage & Examples
+sidebar_label: useMicrophone
+description: "useMicrophone is a React hook for the microphone — open a stream, read a real-time audio level, and record audio to a Blob with MediaRecorder."
+---
+# useMicrophone
+
+React hook for capturing microphone audio
+
+`useMicrophone` wraps [`getUserMedia`](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia), the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API), and [`MediaRecorder`](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder) into a single hook. It opens and closes the microphone stream, exposes a throttled audio `level` (0–1, RMS) suitable for a VU meter, and records the active stream to a `Blob` with a hook-managed object URL.
+
+The live-stream controls (`start` / `stop`) and the recording controls (`startRecording` / `stopRecording` / `pauseRecording` / `resumeRecording`) are independent: you can show a level meter without recording, and start or stop a recording without dropping the microphone.
+
+### When to Use
+
+- Building voice-note or dictation UIs where the user sees a live input level before and while recording
+- Adding "speak now" prompts or microphone calibration screens that need a VU meter but no capture
+- Recording short audio clips to a `Blob` for upload or local playback
+
+### Notes
+
+- **SSR-safe**: Returns `isSupported: false` and no-op controls during server-side rendering. No `navigator.mediaDevices` access occurs on the server.
+- **`start()` before `startRecording()`**: Recording captures an already-open stream. Call `start()` first; calling `startRecording()` without an active stream sets `error` instead of recording.
+- **HTTPS required**: In production the microphone requires a secure context (HTTPS). The browser prompts for permission on the first `start()`.
+- **Object URL lifecycle**: `audioUrl` is created and revoked by the hook — it is replaced on the next recording and revoked on unmount, so consumers do not need to call `URL.revokeObjectURL` themselves.
+- **Mime type**: The recording format is auto-selected from the formats the browser supports (`audio/webm;codecs=opus`, `audio/webm`, `audio/mp4`, `audio/ogg;codecs=opus`). The resolved value is exposed as `mimeType`.
+- **Related hooks**: Use `useMediaDevices` to enumerate microphones and pass a `deviceId`, or `useSpeechRecognition` for speech-to-text.
+
+## Usage
+
+```tsx live
+function Demo() {
+  const {
+    isSupported,
+    isActive,
+    level,
+    isRecording,
+    isPaused,
+    audioUrl,
+    mimeType,
+    error,
+    start,
+    stop,
+    startRecording,
+    stopRecording,
+    pauseRecording,
+    resumeRecording,
+  } = useMicrophone();
+
+  if (!isSupported) {
+    return <div>Microphone is not supported in this browser</div>;
+  }
+
+  const levelPercent = Math.round(level * 100);
+
+  return (
+    <div>
+      <div style={{ marginBottom: '16px' }}>
+        <p>
+          <strong>Microphone:</strong> {isActive ? 'Open' : 'Closed'}
+          {' · '}
+          <strong>Recording:</strong>{' '}
+          {isRecording ? (isPaused ? 'Paused' : 'Recording...') : 'Idle'}
+        </p>
+
+        <div
+          style={{
+            height: '16px',
+            width: '100%',
+            borderRadius: '4px',
+            backgroundColor: 'var(--ifm-color-emphasis-200)',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              height: '100%',
+              width: `${levelPercent}%`,
+              backgroundColor:
+                levelPercent > 70
+                  ? 'var(--ifm-color-danger)'
+                  : 'var(--ifm-color-success)',
+              transition: 'width 80ms linear',
+            }}
+          />
+        </div>
+        <p style={{ fontSize: '13px', color: 'var(--ifm-color-content-secondary)' }}>
+          Input level: {levelPercent}%
+        </p>
+      </div>
+
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '12px' }}>
+        <button onClick={() => start()} disabled={isActive}>
+          Open mic
+        </button>
+        <button onClick={() => stop()} disabled={!isActive}>
+          Close mic
+        </button>
+        <button onClick={() => startRecording()} disabled={!isActive || isRecording}>
+          Record
+        </button>
+        <button onClick={() => stopRecording()} disabled={!isRecording}>
+          Stop recording
+        </button>
+        <button onClick={() => pauseRecording()} disabled={!isRecording || isPaused}>
+          Pause
+        </button>
+        <button onClick={() => resumeRecording()} disabled={!isPaused}>
+          Resume
+        </button>
+      </div>
+
+      {audioUrl && (
+        <div style={{ marginBottom: '12px' }}>
+          <p style={{ fontSize: '13px', color: 'var(--ifm-color-content-secondary)' }}>
+            Recorded clip ({mimeType || 'default format'}):
+          </p>
+          <audio src={audioUrl} controls />
+        </div>
+      )}
+
+      {error && (
+        <p style={{ color: 'var(--ifm-color-danger)' }}>
+          <strong>Error:</strong> {error.message}
+        </p>
+      )}
+    </div>
+  );
+}
+```
+
+## Common Use Cases
+
+- **Voice notes**: Open the mic so the user sees a live level, then record to a `Blob` and play it back or upload it.
+- **Level metering**: Drive a VU meter or waveform from `level` without recording anything.
+- **Microphone calibration**: Let users confirm the right device is picked up before they start.
+
+%%API%%

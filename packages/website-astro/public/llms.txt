@@ -619,7 +619,7 @@ React Element Hooks that tracks window size
 Documentation: https://reactuse.com/element/usewindowsize/
 Import: `import { useWindowSize } from '@reactuses/core'`
 
-### Browser (49 hooks)
+### Browser (50 hooks)
 
 #### useBroadcastChannel
 
@@ -827,6 +827,15 @@ Ease with media query
 
 Documentation: https://reactuse.com/browser/usemediaquery/
 Import: `import { useMediaQuery } from '@reactuses/core'`
+
+#### useMicrophone
+
+useMicrophone is a React hook for the microphone — open a stream, read a real-time audio level, and record audio to a Blob with MediaRecorder.
+
+React hook for capturing microphone audio
+
+Documentation: https://reactuse.com/browser/usemicrophone/
+Import: `import { useMicrophone } from '@reactuses/core'`
 
 #### useMobileLandscape
 
@@ -1101,4 +1110,4 @@ PDD (Pinduoduo), Shopee, Ctrip, Bambu Lab
 Unlicense - Use freely without restrictions
 
 ---
-Generated: 2026-05-14T09:08:21.396Z | Total Hooks: 113
+Generated: 2026-05-20T20:21:53.426Z | Total Hooks: 114
