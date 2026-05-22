@@ -4,9 +4,9 @@
 |---|---|---|---|
 |deviceId|Specific microphone deviceId; re-acquires the stream when changed while active|string |`-`|
 |constraints|Extra MediaTrackConstraints merged with the defaults; deviceId above takes precedence|MediaTrackConstraints |`-`|
-|levelInterval|Throttle interval (ms) for level state updates|number |`-`|
+|levelInterval|Throttle interval (ms) for level state updates|number |`100`|
 |mimeType|Preferred MediaRecorder mime type; falls back to auto-selection if unsupported|string |`-`|
-|autoStart|Automatically open the microphone on mount|boolean |`-`|
+|autoStart|Automatically open the microphone on mount|boolean |`false`|
 
 ### useMicrophone
 

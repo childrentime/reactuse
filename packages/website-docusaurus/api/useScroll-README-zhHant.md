@@ -19,7 +19,7 @@
 |參數名|描述|類型|預設值|
 |---|---|---|---|
 |throttle|滚动事件的节流时间，默认关闭。|number |`0`|
-|idle|滚动结束时的检查时间。当配置 `throttle` 时，此配置将设置为 (throttle +idle)。|number |`-`|
+|idle|滚动结束时的检查时间。当配置 `throttle` 时，此配置将设置为 (throttle +idle)。|number |`200`|
 |offset|将到达状态偏移 x 像素|[UseScrollOffset](#usescrolloffset) |`-`|
 |onScroll|滚动的回调|(e: Event) => void |`-`|
 |onStop|滚动结束的回调|(e: Event) => void |`-`|

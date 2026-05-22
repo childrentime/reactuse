@@ -46,7 +46,7 @@ export interface UseElementBoundingOptions {
   /**
    * @en Immediately call update on component mounted
    * @zh 立即更新
-   * @default true
+   * @defaultValue true
    */
   immediate?: boolean
 }

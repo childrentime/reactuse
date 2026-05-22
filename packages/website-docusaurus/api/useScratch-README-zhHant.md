@@ -22,7 +22,7 @@
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|disabled|是否禁用|boolean |`-`|
+|disabled|是否禁用|boolean |`false`|
 |onScratch|刮擦时的回调|(state: [UseScratchState](#usescratchstate)) => void |`-`|
 |onScratchStart|开始刮擦时的回调|(state: [UseScratchState](#usescratchstate)) => void |`-`|
 |onScratchEnd|结束刮擦时的回调|(state: [UseScratchState](#usescratchstate)) => void |`-`|

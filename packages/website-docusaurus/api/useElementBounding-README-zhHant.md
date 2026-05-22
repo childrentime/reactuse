@@ -16,7 +16,7 @@
 |reset|将数值重置为0|boolean |`true`|
 |windowResize|是否监听 resize 事件|boolean |`true`|
 |windowScroll|是否监听 scroll 事件|boolean |`true`|
-|immediate|立即更新|boolean |`-`|
+|immediate|立即更新|boolean |`true`|
 
 ### UseElementBoundingReturn
 

@@ -61,7 +61,7 @@ export interface UseScrollOptions {
    * 当配置 `throttle` 时，此配置将设置为 (throttle +idle)。
    * @zh-Hant 滚動結束時的檢查時間。
    * 當配置 `throttle` 時，此配置將設置為 (throttle +idle)。
-   * @default 200
+   * @defaultValue 200
    */
   idle?: number
 

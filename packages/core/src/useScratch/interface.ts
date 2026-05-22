@@ -104,7 +104,7 @@ export interface UseScratchOptions {
    * @zh 是否禁用
    * @zh-Hant 是否禁用
    * @en Whether to disable
-   * @default false
+   * @defaultValue false
    */
   disabled?: boolean
   /**

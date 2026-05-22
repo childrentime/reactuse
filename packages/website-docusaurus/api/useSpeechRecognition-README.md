@@ -2,10 +2,10 @@
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
-|continuous|Controls whether continuous results are returned for each recognition, or only a single result|boolean |`-`|
-|interimResults|Controls whether interim results should be returned (true) or not (false.) Interim results are results that are not yet final|boolean |`-`|
-|lang|Language for SpeechRecognition|string |`-`|
-|maxAlternatives|A number representing the maximum returned alternatives for each result|number |`-`|
+|continuous|Controls whether continuous results are returned for each recognition, or only a single result|boolean |`true`|
+|interimResults|Controls whether interim results should be returned (true) or not (false.) Interim results are results that are not yet final|boolean |`true`|
+|lang|Language for SpeechRecognition|string |`'en-US'`|
+|maxAlternatives|A number representing the maximum returned alternatives for each result|number |`1`|
 
 ### useSpeechRecognition
 

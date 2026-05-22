@@ -2,10 +2,10 @@
 
 |参数名|描述|类型|默认值|
 |---|---|---|---|
-|continuous|控制是否为每次识别返回连续结果，或仅返回单个结果|boolean |`-`|
-|interimResults|控制是否应返回临时结果（true）或不返回（false）。临时结果是尚未最终确定的结果|boolean |`-`|
-|lang|语音识别的语言|string |`-`|
-|maxAlternatives|表示每个结果返回的最大备选项数量的数字|number |`-`|
+|continuous|控制是否为每次识别返回连续结果，或仅返回单个结果|boolean |`true`|
+|interimResults|控制是否应返回临时结果（true）或不返回（false）。临时结果是尚未最终确定的结果|boolean |`true`|
+|lang|语音识别的语言|string |`'en-US'`|
+|maxAlternatives|表示每个结果返回的最大备选项数量的数字|number |`1`|
 
 ### useSpeechRecognition
 

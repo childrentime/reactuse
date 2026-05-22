@@ -18,7 +18,7 @@ export interface UseMicrophoneOptions {
    * @zh 音量级别状态更新的节流间隔（毫秒）
    * @zh-Hant 音量等級狀態更新的節流間隔（毫秒）
    * @en Throttle interval (ms) for level state updates
-   * @default 100
+   * @defaultValue 100
    */
   levelInterval?: number
   /**
@@ -31,7 +31,7 @@ export interface UseMicrophoneOptions {
    * @zh 挂载时自动打开麦克风
    * @zh-Hant 掛載時自動開啟麥克風
    * @en Automatically open the microphone on mount
-   * @default false
+   * @defaultValue false
    */
   autoStart?: boolean
 }

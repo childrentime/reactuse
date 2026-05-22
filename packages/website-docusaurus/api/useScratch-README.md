@@ -22,7 +22,7 @@
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
-|disabled|Whether to disable|boolean |`-`|
+|disabled|Whether to disable|boolean |`false`|
 |onScratch|Callback during scratching|(state: [UseScratchState](#usescratchstate)) => void |`-`|
 |onScratchStart|Callback when scratching starts|(state: [UseScratchState](#usescratchstate)) => void |`-`|
 |onScratchEnd|Callback when scratching ends|(state: [UseScratchState](#usescratchstate)) => void |`-`|
