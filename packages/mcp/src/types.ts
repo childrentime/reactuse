@@ -1,26 +1,12 @@
-export interface HookInfo {
+export interface HookData {
   name: string
   category: string
-  description: string
-  usage?: string
-  example?: string
-  api?: {
-    returns?: string
-    arguments?: ApiArgument[]
-  }
   url: string
-}
-
-export interface ApiArgument {
-  name: string
   description: string
-  type: string
-  defaultValue?: string
-  required?: boolean
+  body: string
+  api: string
 }
 
-export interface HookMetadata {
-  name: string
-  category: string
-  path: string
-}
+export type HookCategory = 'browser' | 'effect' | 'element' | 'state' | 'integrations'
+
+export const CATEGORIES: HookCategory[] = ['browser', 'effect', 'element', 'state', 'integrations']

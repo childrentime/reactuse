@@ -1,182 +1,149 @@
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
+import { randomUUID } from 'node:crypto'
+import { createMcpExpressApp } from '@modelcontextprotocol/sdk/server/express.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
-import { z } from 'zod'
-import { HooksDataManager } from './hooks-data.js'
-import type { HookInfo } from './types.js'
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js'
+import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js'
+import { createServer } from './server.js'
 
-// Create server instance
-const server = new McpServer({
-  name: '@reactuses/mcp',
-  version: '1.0.0',
-  capabilities: {
-    resources: {},
-    tools: {},
-  },
-})
-
-// Initialize hooks manager
-const hooksManager = new HooksDataManager()
-
-// Helper function to format hook details
-function formatHookDetails(hookInfo: HookInfo): string {
-  let details = `# ${hookInfo.name}\n\n`
-  details += `**Category:** ${hookInfo.category}\n\n`
-
-  if (hookInfo.description) {
-    details += `**Description:** ${hookInfo.description}\n\n`
-  }
-
-  if (hookInfo.example) {
-    details += `**Example:**\n\`\`\`tsx\n${hookInfo.example}\n\`\`\`\n\n`
-  }
-
-  if (hookInfo.api) {
-    details += `**API:**\n\n`
-
-    if (hookInfo.api.returns) {
-      details += `**Returns:** ${hookInfo.api.returns}\n\n`
-    }
-
-    if (hookInfo.api.arguments && hookInfo.api.arguments.length > 0) {
-      details += `**Arguments:**\n`
-      hookInfo.api.arguments.forEach(arg => {
-        details += `- \`${arg.name}\` (\`${arg.type}\`)${arg.required ? ' *required*' : ''}: ${arg.description}`
-        if (arg.defaultValue && arg.defaultValue !== '-') {
-          details += ` (default: \`${arg.defaultValue}\`)`
-        }
-        details += '\n'
-      })
-      details += '\n'
-    }
-  }
-
-  details += `**Documentation:** ${hookInfo.url}\n`
-
-  return details
+interface CliOptions {
+  mode: 'stdio' | 'http'
+  port: number
+  host: string
 }
 
-// Register tools using the new server.tool() method
-server.tool(
-  'get-hook-details',
-  'Get detailed information about a specific @reactuse/core react hook',
-  {
-    hookName: z.string().describe('The name of the hook to get details for (e.g., useToggle, useBroadcastChannel)'),
-  },
-  async ({ hookName }) => {
-    const hookInfo = await hooksManager.fetchHookDoc(hookName)
-
-    if (!hookInfo) {
-      return {
-        content: [
-          {
-            type: 'text',
-            text: `Hook "${hookName}" not found. Please check the hook name and try again.`,
-          },
-        ],
+function parseArgs(argv: string[]): CliOptions {
+  const opts: CliOptions = {
+    mode: 'stdio',
+    port: Number(process.env.PORT ?? 3000),
+    host: process.env.HOST ?? '127.0.0.1',
+  }
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i]
+    if (arg === '--http') {
+      opts.mode = 'http'
+      const next = argv[i + 1]
+      if (next && /^\d+$/.test(next)) {
+        opts.port = Number(next)
+        i++
       }
     }
-
-    const detailsText = formatHookDetails(hookInfo)
-
-    return {
-      content: [
-        {
-          type: 'text',
-          text: detailsText,
-        },
-      ],
+    else if (arg === '--port') {
+      opts.port = Number(argv[++i])
     }
-  },
-)
-
-server.tool(
-  'list-hooks',
-  'List all available react hooks or hooks in a specific category',
-  {
-    category: z.string().optional().describe('Optional category to filter hooks (browser, effect, element, state, integrations)'),
-  },
-  async ({ category }) => {
-    if (category) {
-      const hooks = hooksManager.getHooksByCategory(category)
-      const hooksText = `ReactUse ${category} hooks:\n\n${hooks.map(hook => `- ${hook.name}`).join('\n')}`
-
-      return {
-        content: [
-          {
-            type: 'text',
-            text: hooksText,
-          },
-        ],
-      }
+    else if (arg === '--host') {
+      opts.host = argv[++i]
     }
-    else {
-      const categories = hooksManager.getAllCategories()
-      const allHooks = hooksManager.getAllHooks()
-
-      let result = `ReactUse hooks (${allHooks.length} total):\n\n`
-
-      categories.forEach(cat => {
-        const categoryHooks = hooksManager.getHooksByCategory(cat)
-        result += `**${cat}** (${categoryHooks.length}):\n`
-        result += categoryHooks.map(hook => `- ${hook.name}`).join('\n')
-        result += '\n\n'
-      })
-
-      return {
-        content: [
-          {
-            type: 'text',
-            text: result,
-          },
-        ],
-      }
+    else if (arg === '--help' || arg === '-h') {
+      printHelp()
+      process.exit(0)
     }
-  },
-)
-
-server.tool(
-  'search-hooks',
-  'Search for react hooks by name or category',
-  {
-    query: z.string().describe('Search query to find hooks'),
-  },
-  async ({ query }) => {
-    const results = hooksManager.searchHooks(query)
-
-    if (results.length === 0) {
-      return {
-        content: [
-          {
-            type: 'text',
-            text: `No hooks found matching "${query}".`,
-          },
-        ],
-      }
+    else if (arg === '--version' || arg === '-v') {
+      process.stdout.write(`@reactuses/mcp v${__PKG_VERSION__}\n`)
+      process.exit(0)
     }
+  }
+  return opts
+}
 
-    const resultText = `Found ${results.length} hooks matching "${query}":\n\n${
-      results.map(hook => `- ${hook.name} (${hook.category})`).join('\n')
-    }`
+function printHelp() {
+  process.stdout.write(`@reactuses/mcp v${__PKG_VERSION__}
 
-    return {
-      content: [
-        {
-          type: 'text',
-          text: resultText,
-        },
-      ],
-    }
-  },
-)
+MCP server for the ReactUse React Hooks library.
 
-// Main function to start the server
-async function main() {
+USAGE
+  reactuses-mcp                  # stdio (default)
+  reactuses-mcp --http [port]    # Streamable HTTP, default port 3000
+  reactuses-mcp --port 8080      # set HTTP port explicitly
+  reactuses-mcp --host 0.0.0.0   # bind HTTP host (default 127.0.0.1)
+
+ENV
+  PORT, HOST    same as --port, --host
+
+LINKS
+  Docs: https://reactuse.com
+  Repo: https://github.com/childrentime/reactuse
+`)
+}
+
+async function startStdio() {
+  const server = createServer()
   const transport = new StdioServerTransport()
   await server.connect(transport)
-  console.error('@reactuses/mcp MCP Server running on stdio')
+  process.stderr.write(`@reactuses/mcp v${__PKG_VERSION__} running on stdio\n`)
 }
 
-main().catch(error => {
-  console.error('Fatal error in main():', error)
+async function startHttp(opts: CliOptions) {
+  const app = createMcpExpressApp({ host: opts.host })
+  const transports = new Map<string, StreamableHTTPServerTransport>()
+
+  app.post('/mcp', async (req, res) => {
+    try {
+      const sessionId = req.headers['mcp-session-id'] as string | undefined
+      let transport: StreamableHTTPServerTransport | undefined = sessionId ? transports.get(sessionId) : undefined
+
+      if (!transport) {
+        if (!isInitializeRequest(req.body)) {
+          res.status(400).json({
+            jsonrpc: '2.0',
+            error: { code: -32000, message: 'Bad Request: missing session for non-initialize request' },
+            id: null,
+          })
+          return
+        }
+
+        transport = new StreamableHTTPServerTransport({
+          sessionIdGenerator: () => randomUUID(),
+          enableJsonResponse: true,
+          onsessioninitialized: id => {
+            transports.set(id, transport!)
+          },
+        })
+
+        transport.onclose = () => {
+          if (transport!.sessionId)
+            transports.delete(transport!.sessionId)
+        }
+
+        const server = createServer()
+        await server.connect(transport)
+      }
+
+      await transport.handleRequest(req, res, req.body)
+    }
+    catch (err) {
+      process.stderr.write(`HTTP error: ${err instanceof Error ? err.stack : String(err)}\n`)
+      if (!res.headersSent) {
+        res.status(500).json({
+          jsonrpc: '2.0',
+          error: { code: -32603, message: 'Internal server error' },
+          id: null,
+        })
+      }
+    }
+  })
+
+  app.get('/mcp', (_req, res) => {
+    res.status(405).set('Allow', 'POST').send('Method Not Allowed')
+  })
+
+  app.get('/healthz', (_req, res) => {
+    res.json({ ok: true, version: __PKG_VERSION__, hooks: __ALL_HOOKS__.length })
+  })
+
+  app.listen(opts.port, opts.host, () => {
+    process.stderr.write(`@reactuses/mcp v${__PKG_VERSION__} listening on http://${opts.host}:${opts.port}/mcp\n`)
+  })
+}
+
+async function main() {
+  const opts = parseArgs(process.argv.slice(2))
+  if (opts.mode === 'http')
+    await startHttp(opts)
+  else
+    await startStdio()
+}
+
+main().catch(err => {
+  process.stderr.write(`Fatal: ${err instanceof Error ? err.stack : String(err)}\n`)
   process.exit(1)
 })

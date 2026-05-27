@@ -1,36 +1,50 @@
 {
   "name": "@reactuses/mcp",
-  "version": "1.0.2",
-  "description": "MCP server for ReactUse library documentation",
+  "type": "module",
+  "version": "1.1.0",
+  "description": "MCP server for ReactUse — 110+ React Hooks with search, structured output, resources, and prompts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "bin": "dist/index.js",
+  "bin": {
+    "reactuses-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "NODE_ENV=development tsup --watch",
     "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "release:prepare": "bump",
     "publish:ci": "esno scripts/publish.ts"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.15.0",
-    "axios": "^1.6.0",
-    "cheerio": "^1.0.0-rc.12",
-    "zod": "^3.25.74"
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "express": "^4.21.2",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@jsdevtools/version-bump-prompt": "^6.1.0",
+    "@types/express": "^5.0.0",
     "@types/node": "^20.0.0",
     "ts-node": "^10.9.0",
     "tsup": "^8.5.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.7"
   }
 }
