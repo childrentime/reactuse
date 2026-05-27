@@ -9,7 +9,14 @@ export const useClipboard: UseClipboard = (options = { read: false }): readonly 
 ] => {
   const [text, setText] = useState('')
 
+  const read = options.read ?? false
+
   const updateText = useCallback(async () => {
+    // if read-only, do not run
+    if (read) {
+      return
+    }
+
     // Check if document is focused before attempting to read clipboard
     if (!document.hasFocus()) {
       return
@@ -23,7 +30,7 @@ export const useClipboard: UseClipboard = (options = { read: false }): readonly 
       // Handle cases where clipboard access is denied or unavailable
       console.warn('Failed to read clipboard:', error)
     }
-  }, [])
+  }, [read])
 
   useEventListener('copy', updateText)
   useEventListener('cut', updateText)
