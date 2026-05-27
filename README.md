@@ -19,6 +19,7 @@
   <a href="https://context7.com/childrentime/reactuse"><img alt="Context7 indexed" src="https://img.shields.io/badge/Context7-Indexed-0078D4?style=for-the-badge&labelColor=24292e"></a>
   <a href="https://deepwiki.com/childrentime/reactuse"><img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg"></a>
   <a href="https://gitmcp.io/childrentime/reactuse"><img alt="GitMCP" src="https://img.shields.io/badge/GitMCP-Use%20with%20AI-22c55e?style=for-the-badge&labelColor=24292e"></a>
+  <a href="https://glama.ai/mcp/servers/childrentime/reactuse"><img alt="ReactUse MCP server on Glama" src="https://glama.ai/mcp/servers/childrentime/reactuse/badges/score.svg"></a>
 </p>
 
 ## Introduction
