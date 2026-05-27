@@ -3,7 +3,7 @@ import { useEventListener } from '../useEventListener'
 import { defaultWindow } from '../utils/browser'
 import type { UseClipboard } from './interface'
 
-export const useClipboard: UseClipboard = (): readonly [
+export const useClipboard: UseClipboard = (options = { read: false }): readonly [
   string,
   (txt: string) => Promise<void>,
 ] => {
