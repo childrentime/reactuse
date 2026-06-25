@@ -91,13 +91,11 @@ export const useCookie: UseCookie = (
       setCookieValue(value)
       // Notify sibling instances in this tab. Our own listener also fires and
       // re-sets the same value, which React bails out on — no self-skip needed.
-      if (isBrowser) {
-        window.dispatchEvent(
-          new CustomEvent<SameTabCookieDetail>(SAME_TAB_COOKIE_EVENT, {
-            detail: { key, value },
-          }),
-        )
-      }
+      window.dispatchEvent(
+        new CustomEvent<SameTabCookieDetail>(SAME_TAB_COOKIE_EVENT, {
+          detail: { key, value },
+        }),
+      )
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [key, cookieValue, JSON.stringify(options)],

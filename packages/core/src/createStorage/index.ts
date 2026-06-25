@@ -24,8 +24,6 @@ interface SameTabStorageDetail {
 }
 
 function dispatchSameTabStorage(detail: SameTabStorageDetail): void {
-  if (!isBrowser)
-    return
   window.dispatchEvent(new CustomEvent(SAME_TAB_STORAGE_EVENT, { detail }))
 }
 
