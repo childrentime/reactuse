@@ -1,6 +1,6 @@
 ---
 title: "驯服 React 里的 DOM 事件:useEventListener、useEventEmitter、useKeyModifier、useTextSelection、useDebounceFn、useThrottleFn"
-description: "DOM 事件看上去简单,真上线就麻烦不断。监听器跨 remount 泄漏、回调拿到过期的 state、debounce 定时器在卸载后还在跑、修饰键在 alt-tab 后卡住、selectionchange 一秒触发六十次。本文梳理 ReactUse 中六个让事件接线变回"无聊"的 hook——useEventListener、useEventEmitter、useKeyModifier、useTextSelection、useDebounceFn、useThrottleFn,以及它们各自消除的 bug。"
+description: "DOM 事件看上去简单,真上线就麻烦不断。监听器跨 remount 泄漏、回调拿到过期的 state、debounce 定时器在卸载后还在跑、修饰键在 alt-tab 后卡住、selectionchange 一秒触发六十次。本文梳理 ReactUse 中六个让事件接线变回「无聊」的 hook——useEventListener、useEventEmitter、useKeyModifier、useTextSelection、useDebounceFn、useThrottleFn,以及它们各自消除的 bug。"
 slug: react-event-hooks
 authors:
   - name: ReactUse Team
