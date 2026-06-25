@@ -33,7 +33,8 @@ describe('useCookie', () => {
       anotherHook.result.current.setState('C')
     })
     expect(anotherHook.result.current.state).toBe('C')
-    expect(hook.result.current.state).toBe('B')
+    // same-tab sync: the first instance now reflects the update too
+    expect(hook.result.current.state).toBe('C')
     expect(Cookies.get(COOKIE)).toBe('C')
   })
 
@@ -74,7 +75,7 @@ describe('useCookie', () => {
     expect(hook.result.current.state).toBe('hello world, zhangsan')
   })
 
-  it('using the same cookie name', () => {
+  it('syncs sibling instances using the same cookie name in the same tab', () => {
     const COOKIE_NAME = 'test-same-cookie-name'
     const { result: result1 } = setUp(COOKIE_NAME, 'A')
     // already has cookie, use it.
@@ -84,15 +85,30 @@ describe('useCookie', () => {
     act(() => {
       result1.current.setState('C')
     })
+    // both instances stay in sync within the same tab
     expect(result1.current.state).toBe('C')
-    expect(result2.current.state).toBe('A')
+    expect(result2.current.state).toBe('C')
     expect(Cookies.get(COOKIE_NAME)).toBe('C')
     act(() => {
       result2.current.setState('D')
     })
-    expect(result1.current.state).toBe('C')
+    expect(result1.current.state).toBe('D')
     expect(result2.current.state).toBe('D')
     expect(Cookies.get(COOKIE_NAME)).toBe('D')
+  })
+
+  it('syncs removal across sibling instances in the same tab', () => {
+    const COOKIE_NAME = 'test-same-cookie-removal'
+    const { result: result1 } = setUp(COOKIE_NAME, 'A')
+    const { result: result2 } = setUp(COOKIE_NAME, 'A')
+    expect(result1.current.state).toBe('A')
+    expect(result2.current.state).toBe('A')
+    act(() => {
+      result1.current.setState(undefined)
+    })
+    expect(result1.current.state).toBeUndefined()
+    expect(result2.current.state).toBeUndefined()
+    expect(Cookies.get(COOKIE_NAME)).toBeUndefined()
   })
 
   it('test refresh', () => {

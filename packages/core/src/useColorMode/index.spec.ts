@@ -188,10 +188,27 @@ describe('useColorMode', () => {
     
     const { result } = renderHook(() => useColorMode(options))
     expect(result.current[0]).toBe('system')
-    
+
     act(() => {
       result.current[1]('high-contrast')
     })
     expect(result.current[0]).toBe('high-contrast')
+  })
+
+  it('syncs sibling instances sharing a storage key in the same tab', () => {
+    // Inherited for free from createStorage's same-tab bus: a theme toggle in a
+    // header and one in a footer stay in sync without a reload.
+    const a = renderHook(() => useColorMode(basicOptions))
+    const b = renderHook(() => useColorMode(basicOptions))
+    expect(a.result.current[0]).toBe('light')
+    expect(b.result.current[0]).toBe('light')
+
+    act(() => {
+      a.result.current[1]('dark')
+    })
+
+    expect(a.result.current[0]).toBe('dark')
+    expect(b.result.current[0]).toBe('dark')
+    expect(document.documentElement.classList.contains('dark')).toBe(true)
   })
 })

@@ -4,8 +4,30 @@ import { useSyncExternalStore } from 'use-sync-external-store/shim/index.js'
 import { isBrowser, isFunction } from '../utils/is'
 import { guessSerializerType } from '../utils/serializer'
 import { useEvent } from '../useEvent'
+import { useEventListener } from '../useEventListener'
 import { defaultOnError, defaultOptions } from '../utils/defaults'
 import { useLatest } from '../useLatest'
+
+// Custom DOM event used to keep sibling hook instances in the SAME tab in sync.
+// The native `storage` event only fires on OTHER tabs/windows (never on the
+// document that made the change), so each write is re-broadcast under this
+// custom name and every instance listens for it alongside the native event.
+// We deliberately do NOT reuse the native `'storage'` name, to avoid notifying
+// unrelated `storage` listeners in the host application. A `window` event (not a
+// module-level registry) survives the library being bundled more than once.
+const SAME_TAB_STORAGE_EVENT = 'reactuse:storage'
+
+interface SameTabStorageDetail {
+  key: string
+  newValue: string | null
+  storageArea: Storage
+}
+
+function dispatchSameTabStorage(detail: SameTabStorageDetail): void {
+  if (!isBrowser)
+    return
+  window.dispatchEvent(new CustomEvent(SAME_TAB_STORAGE_EVENT, { detail }))
+}
 
 export interface Serializer<T> {
   read: (raw: string) => T
@@ -75,8 +97,9 @@ export interface UseStorageOptions<T> {
    */
   mountStorageValue?: T | (() => T)
   /**
-   * @en listen to storage changes
-   * @zh 监听 storage 变化
+   * @en listen to cross-tab `storage` events. Same-tab sync between components is
+   * always on and is not affected by this option.
+   * @zh 监听跨标签页的 `storage` 事件。同标签页组件间的同步始终开启，不受此选项影响。
    * @defaultValue `true`
    */
   listenToStorageChanges?: boolean
@@ -183,32 +206,49 @@ export default function useStorage<
 
   const state = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 
-  // Manage the cross-tab storage listener independently so that toggling
-  // listenToStorageChanges after mount correctly adds or removes the listener.
-  useEffect(() => {
-    if (!listenToStorageChanges || !isBrowser)
+  // Shared core for an external change (cross-tab or same-tab). The two listeners
+  // below stay separate but funnel through here so the key/area filtering and the
+  // removal-reset rule live in exactly one place.
+  const applyExternalChange = (
+    evKey: string | null,
+    evNewValue: string | null,
+    evArea: Storage | null | undefined,
+  ) => {
+    // evKey === null ⇒ storage.clear() ⇒ all keys affected, so don't filter by
+    // key. lastKeyRef is updated synchronously during render, so it always holds
+    // the latest key when this async event fires.
+    if (evKey !== null && evKey !== lastKeyRef.current)
       return
-    const crossTabListener = (e: StorageEvent) => {
-      // e.key is null when storage.clear() is called from another tab (Web Storage
-      // spec). In that case all keys are affected, so always notify. Otherwise only
-      // notify when the event matches the current key.
-      // lastKeyRef is updated synchronously during render, so it always holds the
-      // latest key at the time this async event fires.
-      if (e.key !== null && e.key !== lastKeyRef.current)
-        return
-      // e.newValue is null when the key was removed (removeItem or clear).
-      // Update the in-memory caches now so getSnapshot returns null immediately
-      // rather than falling back to defaultValue, matching the old behavior where
-      // the cross-tab listener called updateState(null) for absent keys.
-      if (e.newValue === null) {
-        lastRawRef.current = null
-        lastValueRef.current = null
-      }
-      notifyRef.current?.()
+    // Identity-scope by storage area so localStorage / sessionStorage / custom
+    // Storage objects never cross-notify (only when the event provides it).
+    if (evArea && evArea !== storageRef.current)
+      return
+    // newValue === null means the key was removed (removeItem or clear). Reset
+    // the caches so getSnapshot returns null immediately rather than falling back
+    // to defaultValue.
+    if (evNewValue === null) {
+      lastRawRef.current = null
+      lastValueRef.current = null
     }
-    window.addEventListener('storage', crossTabListener)
-    return () => window.removeEventListener('storage', crossTabListener)
-  }, [listenToStorageChanges])
+    notifyRef.current?.()
+  }
+
+  // Cross-tab: the native `storage` event fires when ANOTHER tab changes Web
+  // Storage (it never fires in the tab that made the change). This is the ONLY
+  // path gated by listenToStorageChanges — that option is specifically about
+  // cross-tab events. useEventListener keeps the latest handler in a ref, so
+  // toggling the option after mount is reflected without re-binding.
+  useEventListener('storage', (e: StorageEvent) => {
+    if (!listenToStorageChanges)
+      return
+    applyExternalChange(e.key, e.newValue, e.storageArea)
+  })
+  // Same-tab: our custom event fires when a SIBLING instance changes the key in
+  // THIS tab. ALWAYS on (NOT gated by listenToStorageChanges) — keeping components
+  // in one tab consistent is core behavior, not an opt-in. SSR-safe via useEventListener.
+  useEventListener(SAME_TAB_STORAGE_EVENT, (e: CustomEvent<SameTabStorageDetail>) => {
+    applyExternalChange(e.detail.key, e.detail.newValue, e.detail.storageArea)
+  })
 
   // Write mountStorageValue / defaultValue to storage on mount when key is absent.
   useEffect(() => {
@@ -224,9 +264,14 @@ export default function useStorage<
     try {
       const raw = storage?.getItem(key)
       if ((raw === null || raw === undefined) && data !== null) {
-        storage?.setItem(key, serializer.write(data))
+        const written = serializer.write(data)
+        storage?.setItem(key, written)
         lastRawRef.current = undefined
         notifyRef.current?.()
+        // Let sibling instances that mounted alongside us (e.g. two useColorMode
+        // in a header and footer) pick up the freshly-written default.
+        if (storage)
+          dispatchSameTabStorage({ key, newValue: written, storageArea: storage })
       }
     }
     catch (e) {
@@ -239,10 +284,14 @@ export default function useStorage<
     valOrFunc => {
       const currentState = isFunction(valOrFunc) ? valOrFunc(getSnapshot()) : valOrFunc
 
+      // Payload broadcast to sibling instances: the raw written string, or null
+      // when the key is removed (mirrors StorageEvent.newValue semantics).
+      let payload: string | null
       if (currentState === null) {
         storage?.removeItem(key)
         lastRawRef.current = null
         lastValueRef.current = null
+        payload = null
       }
       else {
         try {
@@ -250,6 +299,7 @@ export default function useStorage<
           storage?.setItem(key, raw)
           lastRawRef.current = raw
           lastValueRef.current = currentState
+          payload = raw
         }
         catch (e) {
           onErrorRef.current(e)
@@ -258,6 +308,12 @@ export default function useStorage<
       }
 
       notifyRef.current?.()
+      // Propagate to sibling instances in this tab (the native `storage` event
+      // only reaches OTHER tabs). Our own listener also receives this, but
+      // getSnapshot returns the cached value so useSyncExternalStore bails out —
+      // no redundant render, hence no self-skip bookkeeping needed.
+      if (storage)
+        dispatchSameTabStorage({ key, newValue: payload, storageArea: storage })
     },
   )
 
