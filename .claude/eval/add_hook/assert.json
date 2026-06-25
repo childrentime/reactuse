@@ -1,0 +1,38 @@
+{
+  "_comment": "Machine assertions for the add_hook case (useStep). Mirrors Chromium's check_files_changed / check_file_content / check_tool_used_with_args_match. Scored by eval_runner.py.",
+  "files_changed": [
+    "packages/core/src/useStep/index.ts",
+    "packages/core/src/useStep/interface.ts",
+    "packages/core/src/useStep/index.spec.ts",
+    "packages/core/src/index.ts",
+    "packages/website-astro/src/content/docs/state/useStep.mdx"
+  ],
+  "file_content": [
+    {
+      "path": "packages/core/src/index.ts",
+      "present": ["from './useStep'", "export * from './useStep/interface'"]
+    },
+    {
+      "path": "packages/core/src/useStep/index.ts",
+      "present": ["export const useStep"],
+      "absent": ["pnpm newHook"]
+    },
+    {
+      "path": "packages/core/src/useStep/interface.ts",
+      "present": ["UseStep", "@en", "@zh", "@zh-Hant"]
+    },
+    {
+      "path": "packages/core/src/useStep/index.spec.ts",
+      "present": ["renderHook", "useStep"]
+    },
+    {
+      "path": "packages/website-astro/src/content/docs/state/useStep.mdx",
+      "present": ["title:", "tsx live", "%%API%%"]
+    }
+  ],
+  "tools_forbidden": ["newHook"],
+  "commands": [
+    { "run": "pnpm --filter @reactuses/core test useStep", "expect_exit": 0, "requires": "run-tests" },
+    { "run": "bash scripts/generate-hook-registry.sh", "expect_exit": 0, "requires": "run-tests" }
+  ]
+}

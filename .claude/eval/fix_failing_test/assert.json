@@ -1,0 +1,7 @@
+{
+  "_comment": "Machine assertions for the fix_failing_test case. The key signals: a test was actually run (not guessed), and the suite ends green. Scored by eval_runner.py.",
+  "tools_required": ["test"],
+  "commands": [
+    { "run": "pnpm --filter @reactuses/core test", "expect_exit": 0, "requires": "run-tests" }
+  ]
+}
