@@ -18,7 +18,11 @@ export const useTimeoutFn: UseTimeoutFn = (
   options: UseTimeoutFnOptions = defaultOptions,
 ): Stoppable => {
   const { immediate = true } = options
-  const [pending, setPending] = useState(false)
+  // Seed the first render with the real value: when `immediate` is on the
+  // timer is guaranteed to be armed in the mount effect, so `pending` should
+  // already read `true` on the first render instead of flashing false→true→false.
+  // `immediate` is identical on server and client, so this stays SSR-safe.
+  const [pending, setPending] = useState(() => immediate)
   const savedCallback = useLatest(cb)
 
   const timer = useRef<ReturnType<typeof setTimeout>>()
