@@ -19,6 +19,7 @@ description: "useSessionStorage 是一個將 state 綁定到 sessionStorage key 
 
 - **SSR 安全**：在伺服器端渲染時回傳預設值。伺服器上不會存取 `sessionStorage`。
 - **工作階段範圍**：資料僅在當前分頁的生命週期內持久化。不同分頁之間不共享。
+- **同分頁同步**：綁定到相同鍵的多個組件會在同一分頁內保持同步——更新一個會讓其他組件無需重新載入即可重新渲染。
 - **相關 hooks**：另請參閱 `useLocalStorage` 用於跨工作階段的持久化，以及 `useCookie` 用於 cookie 儲存。
 
 ## Usage

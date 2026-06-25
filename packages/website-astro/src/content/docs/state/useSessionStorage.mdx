@@ -18,7 +18,7 @@ React side-effect hook that manages a single `sessionStorage` key
 ### Notes
 
 - **Session-scoped**: Unlike `localStorage`, data in `sessionStorage` is cleared when the tab or browser is closed. Use `useLocalStorage` for long-lived persistence.
-- **Cross-tab sync**: The hook listens for `storage` events by default. Disable with `listenToStorageChanges: false`.
+- **Same-tab sync**: Components bound to the same key in one tab stay in sync — updating one re-renders the others without a reload. (`sessionStorage` is per-tab, so this does not cross tabs.) The cross-tab `storage` listener is on by default; disable it with `listenToStorageChanges: false`.
 - **Custom serialization**: Provide `serializer.read` and `serializer.write` in the options for non-string data types.
 - See also `useLocalStorage` for persistent storage and `useCookie` for cookie-based persistence.
 
