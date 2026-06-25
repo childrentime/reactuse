@@ -42,11 +42,14 @@ function getHook(ms = 5, options = { immediate: false }) {
 
 it('should re-render component after given amount of time', () => {
   const [spy] = getHook(5, { immediate: true })
-  expect(spy).toHaveBeenCalledTimes(2)
+  // Single render on mount: `pending` is seeded `true`, so the mount effect's
+  // setPending(true) bails out instead of causing a false→true flash render.
+  expect(spy).toHaveBeenCalledTimes(1)
   act(() => {
     jest.advanceTimersByTime(5)
   })
-  expect(spy).toHaveBeenCalledTimes(3)
+  // Timeout fires → setPending(false) + useUpdate → one more render.
+  expect(spy).toHaveBeenCalledTimes(2)
 })
 
 it('should cancel timeout on unmount', () => {
@@ -83,7 +86,8 @@ it('second function should cancel timeout', () => {
   const [spy, hook] = getHook(5, { immediate: true })
   const [isPending, , cancel] = hook.result.current
 
-  expect(spy).toHaveBeenCalledTimes(2)
+  // Seeded `true` on the first render — no false→true flash render.
+  expect(spy).toHaveBeenCalledTimes(1)
   expect(isPending).toBe(true)
 
   act(() => {
@@ -91,7 +95,8 @@ it('second function should cancel timeout', () => {
     jest.advanceTimersByTime(5)
   })
 
-  expect(spy).toHaveBeenCalledTimes(3)
+  // cancel() flips pending true→false (one render); the cleared timer never fires.
+  expect(spy).toHaveBeenCalledTimes(2)
   expect(hook.result.current[0]).toBe(false)
 })
 

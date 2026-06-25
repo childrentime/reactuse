@@ -1,9 +1,11 @@
 import { act, renderHook } from '@testing-library/react'
+import { useSessionStorage } from '../useSessionStorage'
 import { useLocalStorage } from '.'
 
 describe(useLocalStorage, () => {
   afterEach(() => {
     localStorage.clear()
+    sessionStorage.clear()
   })
 
   it('retrieves an existing value from localStorage', () => {
@@ -510,5 +512,83 @@ describe(useLocalStorage, () => {
 
     expect(result.current[0]).toEqual(2)
     expect(localStorage.getItem('counter')).toEqual('2')
+  })
+
+  // --- Same-tab sync across sibling instances ---
+
+  it('syncs sibling instances watching the same key in the same tab', () => {
+    const a = renderHook(() => useLocalStorage('shared', 'init'))
+    const b = renderHook(() => useLocalStorage('shared', 'init'))
+    expect(a.result.current[0]).toEqual('init')
+    expect(b.result.current[0]).toEqual('init')
+
+    act(() => a.result.current[1]('updated'))
+
+    expect(a.result.current[0]).toEqual('updated')
+    expect(b.result.current[0]).toEqual('updated')
+    expect(localStorage.getItem('shared')).toEqual('updated')
+  })
+
+  it('syncs functional updates across sibling instances in the same tab', () => {
+    const a = renderHook(() => useLocalStorage('shared-counter', 0))
+    const b = renderHook(() => useLocalStorage('shared-counter', 0))
+
+    act(() => a.result.current[1](prev => (prev ?? 0) + 1))
+
+    expect(a.result.current[0]).toEqual(1)
+    expect(b.result.current[0]).toEqual(1)
+  })
+
+  it('syncs key removal across sibling instances in the same tab', () => {
+    localStorage.setItem('shared', 'existing')
+    const a = renderHook(() => useLocalStorage('shared', 'default'))
+    const b = renderHook(() => useLocalStorage('shared', 'default'))
+    expect(a.result.current[0]).toEqual('existing')
+    expect(b.result.current[0]).toEqual('existing')
+
+    act(() => a.result.current[1](null))
+
+    // Removal must reset BOTH instances to null, not fall back to defaultValue.
+    expect(a.result.current[0]).toBeNull()
+    expect(b.result.current[0]).toBeNull()
+    expect(localStorage.getItem('shared')).toBeNull()
+  })
+
+  it('does not cross-notify instances watching a different key', () => {
+    const a = renderHook(() => useLocalStorage('key-a', 'a'))
+    const b = renderHook(() => useLocalStorage('key-b', 'b'))
+
+    act(() => a.result.current[1]('changed'))
+
+    expect(a.result.current[0]).toEqual('changed')
+    expect(b.result.current[0]).toEqual('b')
+  })
+
+  it('still syncs same-tab when listenToStorageChanges is false (it gates only cross-tab)', () => {
+    const a = renderHook(() => useLocalStorage('shared', 'init'))
+    const b = renderHook(() =>
+      useLocalStorage('shared', 'init', { listenToStorageChanges: false }),
+    )
+
+    act(() => a.result.current[1]('updated'))
+
+    expect(a.result.current[0]).toEqual('updated')
+    // listenToStorageChanges:false disables only the cross-tab `storage` listener;
+    // same-tab sync is always on, so b still updates.
+    expect(b.result.current[0]).toEqual('updated')
+  })
+
+  it('does not cross-notify between localStorage and sessionStorage sharing a key', () => {
+    const local = renderHook(() => useLocalStorage('dup', 'L'))
+    const session = renderHook(() => useSessionStorage('dup', 'S'))
+    expect(local.result.current[0]).toEqual('L')
+    expect(session.result.current[0]).toEqual('S')
+
+    act(() => local.result.current[1]('L2'))
+
+    expect(local.result.current[0]).toEqual('L2')
+    // sessionStorage instance is storageArea-scoped — must stay untouched
+    expect(session.result.current[0]).toEqual('S')
+    expect(sessionStorage.getItem('dup')).toEqual('S')
   })
 })

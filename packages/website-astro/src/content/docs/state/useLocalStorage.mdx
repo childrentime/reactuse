@@ -18,7 +18,7 @@ React side-effect hook that manages a single `localStorage` key
 ### Notes
 
 - **Persistence**: Data survives page reloads and browser restarts. Use `useSessionStorage` if you only need data for the current session.
-- **Cross-tab sync**: By default, the hook listens for `storage` events so changes in one tab update other tabs. Disable this with `listenToStorageChanges: false`.
+- **Cross-tab & same-tab sync**: Every component bound to the same key stays in sync — within the current tab (always on, no reload) and across other tabs (via the `storage` event). `listenToStorageChanges: false` disables only the cross-tab listener; same-tab sync stays active.
 - **Custom serialization**: For objects or non-string values, provide `serializer.read` and `serializer.write` functions in the options. The default behavior uses JSON serialization for objects and raw strings for string values.
 - See also `useSessionStorage` for session-scoped storage and `useCookie` for cookie-based persistence.
 
@@ -74,6 +74,45 @@ function Demo() {
   );
 };
 
+```
+
+## Same-tab sync
+
+Two components bound to the same key stay in sync within the tab — not just across tabs. Click a button in one panel and the other updates immediately, no reload:
+
+```tsx live noInline
+function StoragePanel({ label }) {
+  const [value, setValue] = useLocalStorage("shared-demo-key", "A");
+  return (
+    <div
+      style={{
+        border: "1px solid var(--sl-color-gray-5, #ccc)",
+        borderRadius: 6,
+        padding: 12,
+        marginBottom: 8,
+      }}
+    >
+      <strong>{label}</strong> reads: <code>{String(value ?? "(empty)")}</code>
+      <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+        <button onClick={() => setValue("A")}>Set A</button>
+        <button onClick={() => setValue("B")}>Set B</button>
+        <button onClick={() => setValue(null)}>Clear</button>
+      </div>
+    </div>
+  );
+}
+
+function Demo() {
+  return (
+    <div>
+      <p>Click a button in one panel — the other updates in the same tab:</p>
+      <StoragePanel label="Component A" />
+      <StoragePanel label="Component B" />
+    </div>
+  );
+}
+
+render(<Demo />);
 ```
 
 %%API%%

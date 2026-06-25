@@ -18,14 +18,13 @@ React hook that facilitates the storage, updating and deletion of values within 
 ### Notes
 
 - **SSR considerations**: Pass a `defaultValue` when using SSR so the hook has a value before `document.cookie` is available on the client.
-- **No cross-component sync**: Updating a cookie in one component does not automatically trigger re-renders in other components using the same key. Use a broadcast mechanism if needed.
-- See also `useLocalStorage` and `useSessionStorage` for Web Storage alternatives that provide cross-tab synchronization via the `storage` event.
+- **Same-tab sync**: Updating a cookie in one component automatically re-renders sibling `useCookie` instances using the same key in the same tab. Cookies fire no native cross-tab event, so this does **not** propagate across tabs (unlike `useLocalStorage`/`useSessionStorage`).
+- **`refreshCookie`**: Only needed to pick up changes made *outside* the hook — a server `Set-Cookie`, a direct `document.cookie` write, or the CookieStore API. Sibling hook instances no longer need it.
 
 :::note
-When you use setCookieValue with useCookie hook that shares the same key across multiple components,
-it does not trigger an update in the other components using this hook.
-
- If you want a broadcast effect, you can refer to the following https://github.com/childrentime/reactuse/issues/91
+`useCookie` instances that share the same key stay in sync within the same tab:
+calling `updateCookie` in one component re-renders the others automatically. (Earlier
+versions did not — a manual broadcast was required; that is no longer necessary.)
 :::
 
 ## Usage
@@ -74,6 +73,46 @@ function Demo() {
   );
 };
 
+```
+
+## Same-tab sync
+
+Two components using the same cookie key stay in sync within the tab — click a button in either panel and the other updates immediately, no manual broadcast and no reload:
+
+```tsx live noInline
+function CookiePanel({ label }) {
+  const [value, updateCookie] = useCookie("shared-demo-cookie", { path: "/" }, "A");
+  return (
+    <div
+      style={{
+        border: "1px solid var(--sl-color-gray-5, #ccc)",
+        borderRadius: 6,
+        padding: 12,
+        marginBottom: 8,
+      }}
+    >
+      <strong>{label}</strong> reads: <code>{value ?? "(empty)"}</code>
+      <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+        <button onClick={() => updateCookie("A")}>Set A</button>
+        <button onClick={() => updateCookie("B")}>Set B</button>
+        <button onClick={() => updateCookie("C")}>Set C</button>
+        <button onClick={() => updateCookie(undefined)}>Clear</button>
+      </div>
+    </div>
+  );
+}
+
+function Demo() {
+  return (
+    <div>
+      <p>Click a button in either panel — the other updates in the same tab:</p>
+      <CookiePanel label="Component A" />
+      <CookiePanel label="Component B" />
+    </div>
+  );
+}
+
+render(<Demo />);
 ```
 
 %%API%%

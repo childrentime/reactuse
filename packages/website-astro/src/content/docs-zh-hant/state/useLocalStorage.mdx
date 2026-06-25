@@ -18,7 +18,7 @@ description: "useLocalStorage 是一個 React hook，將 state 綁定到 localSt
 ### 注意事項
 
 - **SSR 安全**：在伺服器端渲染時回傳預設值。伺服器上不會存取 `localStorage`。
-- **跨分頁同步**：透過 `storage` 事件監聽跨分頁的變更。
+- **跨分頁 & 同分頁同步**：綁定到相同鍵的每個組件都會保持同步——既在當前分頁內（始終開啟、無需重新載入），也跨其他分頁（透過 `storage` 事件）。`listenToStorageChanges: false` 只會停用跨分頁監聽；同分頁同步始終生效。
 - **相關 hooks**：另請參閱 `useSessionStorage` 用於工作階段層級的儲存，以及 `useCookie` 用於 cookie 儲存。
 
 ## Usage
@@ -73,6 +73,45 @@ function Demo() {
   );
 };
 
+```
+
+## 同分頁同步
+
+綁定到相同鍵的兩個組件會在同一分頁內保持同步——不只是跨分頁。在一個面板點擊按鈕，另一個面板會立即更新，無需重新載入：
+
+```tsx live noInline
+function StoragePanel({ label }) {
+  const [value, setValue] = useLocalStorage("shared-demo-key", "A");
+  return (
+    <div
+      style={{
+        border: "1px solid var(--sl-color-gray-5, #ccc)",
+        borderRadius: 6,
+        padding: 12,
+        marginBottom: 8,
+      }}
+    >
+      <strong>{label}</strong> 目前值：<code>{String(value ?? "(空)")}</code>
+      <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+        <button onClick={() => setValue("A")}>Set A</button>
+        <button onClick={() => setValue("B")}>Set B</button>
+        <button onClick={() => setValue(null)}>Clear</button>
+      </div>
+    </div>
+  );
+}
+
+function Demo() {
+  return (
+    <div>
+      <p>在一個面板點擊按鈕——另一個面板會在同一分頁內同步更新：</p>
+      <StoragePanel label="組件 A" />
+      <StoragePanel label="組件 B" />
+    </div>
+  );
+}
+
+render(<Demo />);
 ```
 
 %%API%%
