@@ -122,9 +122,9 @@ External platform copies are stored in `blog-external/` with sequential numberin
 ```
 blog-external/
   post-N-{slug}/
-    medium.md   # English, no frontmatter (for Medium push skill)
+    medium.md   # English, no frontmatter (publish-medium skill — pandoc→HTML→paste)
     devto.md    # English, with dev.to frontmatter (published: false)
-    juejin.md   # Chinese (simplified), no frontmatter (user copies manually)
+    juejin.md   # Chinese (simplified), no frontmatter (publish-juejin skill)
 ```
 
 ### Publishing workflow
@@ -132,12 +132,21 @@ blog-external/
 After writing blog posts (3 locales in `packages/website-astro/src/content/`), always:
 
 1. Create `blog-external/post-N-{slug}/` with `medium.md`, `devto.md`, `juejin.md`
-2. **Only publish the first post** of each batch to all 4 platforms:
-   - **Medium**: Use the `medium-push` skill with the `medium.md` file
+2. **Push the blog to GitHub FIRST.** The English cross-posts (Medium/Hashnode/dev.to)
+   carry a `canonical_url` pointing at `reactuse.com/blog/<slug>/`. Commit + push the post so
+   Netlify deploys the original *before* cross-posting — otherwise the canonical points at a 404.
+   (Juejin is a zh-Hans translation on a standalone site, so it's not canonical-bound, but keep
+   the same push-then-publish order.)
+3. **Only publish the first post** of each batch to all 4 platforms — all three browser platforms
+   go through `opencli` (same as `publish-hashnode`); the user just needs to be logged in to each
+   in the opencli-controlled Chrome:
+   - **Medium**: Use the `publish-medium` skill (opencli — pandoc converts the body to HTML, then a
+     synthetic paste event injects it; Medium's editor doesn't parse raw markdown). Note: Medium's
+     native editor has **no canonical field**, so this copy doesn't return SEO weight — it's reach only.
    - **dev.to**: POST via API using `DEVTO_API_KEY` from `.env` (set `published: false` as draft); requires a `User-Agent` header — Forem's edge rejects requests without one
-   - **Hashnode**: Use the `publish-hashnode` skill (browser automation via `opencli`). The old GraphQL script was deleted on 2026-05-18 after Hashnode moved the API to a paid + allow-list plan
-   - **Juejin (掘金)**: Tell user to copy from `juejin.md` (no API available)
-3. The remaining posts are saved in `blog-external/` for future publishing
+   - **Hashnode**: Use the `publish-hashnode` skill (opencli browser automation). The old GraphQL script was deleted on 2026-05-18 after Hashnode moved the API to a paid + allow-list plan
+   - **Juejin (掘金)**: Use the `publish-juejin` skill (opencli — ByteMD/CodeMirror editor takes markdown directly). Replaces the old "copy manually" step; there's still no public API
+4. The remaining posts are saved in `blog-external/` for future publishing
 
 ### dev.to API
 

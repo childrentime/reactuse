@@ -28,7 +28,7 @@ referenced from `CLAUDE.md`, so treat it as always-in-context.
 | **Linking to a hook (blog/docs/PR)** | `scripts/hook-registry.json` is the source of truth. URLs are lowercase: `https://reactuse.com/{category}/{name.lower()}/`. Never hand-build a camelCase URL. (See `CLAUDE.md`.) |
 | **Writing a PR / commit message** | Conventional commits with scope (`feat(core):`, `docs(website):`, `fix(core):`, `chore:`). Use the **[pr-description](./skills/pr-description/SKILL.md)** skill. |
 | **SEO / search analysis** | `python3 scripts/gsc-report.py [days]`; playbook in `GSC.md`. |
-| **Publishing a blog post** | Existing skills: `medium-push`, `ping-indexnow`, `publish-hashnode`; full workflow in `CLAUDE.md`. |
+| **Publishing a blog post** | Skills: `publish-medium`, `publish-juejin`, `publish-hashnode` (all opencli), `ping-indexnow`; push to GitHub first, then cross-post. Full workflow in `CLAUDE.md`. |
 
 ## Reuse-first cheat-sheet (most-used internal utilities)
 

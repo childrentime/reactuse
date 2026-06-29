@@ -27,8 +27,8 @@ CI sharding, MCP extensions).
 | [`hook-docs`](./skills/hook-docs/SKILL.md)     | Write the `.mdx` docs (3 locales) + regenerate the registry |
 | [`pr-description`](./skills/pr-description/SKILL.md) | Generate a commit/PR description in this repo's style |
 
-(The existing `medium-push`, `ping-indexnow`, and `publish-hashnode` skills cover blog
-publishing — see `CLAUDE.md`.)
+(The `publish-medium`, `publish-juejin`, `publish-hashnode`, and `ping-indexnow` skills cover blog
+publishing — all three platform skills drive `opencli` browser automation; see `CLAUDE.md`.)
 
 ## Commands
 
