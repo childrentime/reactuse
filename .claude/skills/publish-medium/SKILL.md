@@ -57,16 +57,34 @@ opencli browser default get title          # 应是 "New story – Medium"（说
 
 如果跳到登录页：让用户先在该 Chrome 里登录 Medium，再重来。
 
-### 步骤 3：正文 markdown → HTML（pandoc）
+### 步骤 3：正文 markdown → HTML（pandoc）+ ⚠️ 代码块空行适配
 
-去掉正文的首个 H1（标题单独灌），其余转 HTML 片段：
+去掉正文的首个 H1（标题单独灌），**并把代码块内部的空行替换成零宽空格 U+200B**，其余转 HTML 片段：
 
 ```bash
 SCRATCH=<scratchpad>
-python3 -c "import re; s=open('blog-external/post-N-<slug>/medium.md').read(); s=re.sub(r'^#\s+.*\n+','',s,1); open('$SCRATCH/body.md','w').write(s.strip()+'\n')"
+python3 - <<'PY' > "$SCRATCH/body.md"
+import re
+s = open('blog-external/post-N-<slug>/medium.md').read()
+s = re.sub(r'^#\s+.*\n+', '', s, count=1).strip() + '\n'   # 去掉首个 H1
+# ⚠️ 关键适配：Medium 把代码块里的空行当段落分隔，会在空行处把一个代码块拆成两个。
+# 在 fenced code block 内部，把空行替换成只含 U+200B（零宽空格）的行——既保留视觉空行，
+# 又让 Medium 认为"这行非空"从而不拆块。这是老 medium-push 扩展里的 markdown.js 干的事。
+out, in_code = [], False
+for line in s.split('\n'):
+    if line.lstrip().startswith('```'):
+        in_code = not in_code; out.append(line); continue
+    out.append('​' if (in_code and line.strip() == '') else line)
+print('\n'.join(out), end='')
+PY
 pandoc -f gfm -t html --wrap=none "$SCRATCH/body.md" -o "$SCRATCH/body.html"
+
+# 自检：<pre> 块内应当 0 个空行（都被换成 U+200B 了）
+python3 -c "import re; h=open('$SCRATCH/body.html').read(); pres=re.findall(r'<pre[^>]*>.*?</pre>',h,re.DOTALL); print('pre blocks:',len(pres),'| empty lines in pre:',sum(1 for p in pres for l in p.split(chr(10)) if l.strip()==''))"
 ```
 
+> **为什么必须这么做**：直接把含空行的代码块粘进 Medium，Medium 会在每个空行处把代码块**拆成多个**（截图里 `function Search` 和 `function handleChange` 被劈成两块就是这个）。`<pre>` 内空行换成 U+200B 后，整块保持完整。自检里 `empty lines in pre` 必须是 0。
+>
 > Medium 不支持表格——pandoc 出来的 `<table>` 粘进去会被拍平成文本。正文里如果有关键表格，发前先在 medium.md 里改成列表。代码块 / 标题 / 列表 / 引用 / 行内代码 / 链接都没问题。
 
 ### 步骤 4：灌标题（execCommand insertText）
@@ -128,6 +146,19 @@ opencli browser default eval '(() => {
 
 `grafs` 是个位数 / `textLen` 几百，说明 paste 没被 Medium 接住——多半是焦点没落在 `.js-postField` 里。重新 focus + 设置 selection range 再 dispatch。
 
+**再验代码块没被拆**（验证步骤 3 的 U+200B 适配生效了）：找含空行的那个代码块（例如以 `function Search` 开头的），它应当是**一整块**，行数对得上、`handleChange` 和 `function Search` 在同一块里：
+
+```bash
+opencli browser default eval '(() => {
+  const pres = Array.from(document.querySelector(".js-postField").querySelectorAll(".graf--pre"));
+  const search = pres.find(p => /function Search/.test(p.innerText));
+  return JSON.stringify({lines: search ? search.innerText.split("\n").length : "n/a", merged: search ? /handleChange/.test(search.innerText) : false});
+})()'
+```
+
+`merged:false` 或行数明显偏少 = 代码块被拆了，回步骤 3 确认 U+200B 适配跑过了。
+（注：`.graf--pre` 计数里会混进几个 `Auto (TypeScript)` 的语言标签——那是 Medium 的语法高亮 UI，不是真代码块，别被吓到。）
+
 ### 步骤 6：Publish → 选 topics → 终发
 
 ```bash
@@ -188,6 +219,8 @@ opencli browser default eval '(() => (document.querySelector("link[rel=canonical
 
 ## 常见踩坑
 
+- **🔴 代码块在空行处被拆成两块** —— 这是最容易丢的适配。Medium 把代码块里的空行当段落分隔，会把一个 `<pre>` 劈成多个代码块。**修法：步骤 3 里把 fenced code block 内部的空行换成 U+200B（零宽空格）**。老 medium-push 扩展的 `markdown.js` 专门干这事，重写时极易漏掉。发完务必按步骤 5 的"再验代码块没被拆"自检
+- **🔴 别原地编辑已发布的文章去修 bug** —— 对已发布文章做 clear body + 重新 paste，点 Save and publish 会报 **"Something is wrong and we cannot save your story"**（合成事件把已发布文章的内部模型搞成不一致状态）。正确做法：**重新开一篇 new-story 发干净的版本，再删掉旧的那篇**（旧文 More options → Delete story；直接进旧文 URL 删，避免在列表里误删同名的新文）。fresh publish 不受这个限制
 - **裸 markdown 不解析** —— Medium 编辑器要 HTML。必须 pandoc 转 HTML + 模拟 paste 事件，不能直接 fill markdown 文本
 - **标题别用 fill / textContent** —— Medium 自有模型只认输入路径。标题用 `execCommand("insertText")`，正文用模拟 paste
 - **paste 没被接住** —— 焦点必须在 `.js-postField` 里、selection range 要落在最后一个 `.graf`。focus 后重设 range 再 dispatch
