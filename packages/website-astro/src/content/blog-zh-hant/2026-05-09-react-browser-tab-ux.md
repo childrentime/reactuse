@@ -220,16 +220,16 @@ function ManualFocus() {
 
 跟前面一樣的故事——三個事件監聽器、一次初始讀取、一個 SSR 的坑。
 
-### ReactUse 寫法：useWindowsFocus
+### ReactUse 寫法：useWindowFocus
 
-[`useWindowFocus`](https://reactuse.com/element/usewindowfocus/)（導出名是 `useWindowsFocus`，遺留命名保留了下來）返回一個布爾值，並在掛載時再同步一次。
+[`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) 返回一個布爾值，並在掛載時再同步一次。
 
 ```tsx
 import { useEffect } from "react";
-import { useWindowsFocus } from "@reactuses/core";
+import { useWindowFocus } from "@reactuses/core";
 
 function FreshFeed() {
-  const focused = useWindowsFocus();
+  const focused = useWindowFocus();
   const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
@@ -329,7 +329,7 @@ import {
   useTitle,
   useFavicon,
   useDocumentVisibility,
-  useWindowsFocus,
+  useWindowFocus,
   usePageLeave,
   useWebNotification,
 } from "@reactuses/core";
@@ -356,7 +356,7 @@ export function AttentionAwareChat() {
   }, [visibility, fetchFeed]);
 
   // 4: 聚焦時全量刷新
-  const focused = useWindowsFocus();
+  const focused = useWindowFocus();
   useEffect(() => {
     if (focused) fetchFeed();
   }, [focused, fetchFeed]);

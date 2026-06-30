@@ -16,6 +16,7 @@ referenced from `CLAUDE.md`, so treat it as always-in-context.
 | When the task involves…​ | Read / do this |
 |---|---|
 | **Adding or editing a hook** | Conventions live in `packages/core/src/utils/` + existing hooks. Use the **[new-hook](./skills/new-hook/SKILL.md)** skill. Every hook is a folder `packages/core/src/useX/` with `index.ts` + `interface.ts` (+ `index.spec.ts`). |
+| **Designing or changing a public signature** | Read **[api-design.md](./api-design.md)** — the contract for parameter order (`(subject, …, options?)`), naming (`default*` vs `initial*`, DOM target = `target`, no abbreviations/typos), return shape (tuple vs object), and SSR defaults. A shipped name is locked forever. |
 | **Touching `window` / `document` (SSR safety)** | This is the #1 source of bugs. Use `defaultWindow` / `defaultDocument` from `packages/core/src/utils/browser.ts`, or `isBrowser` / `isNavigator` from `packages/core/src/utils/is.ts`. For subscribed external state, prefer the `use-sync-external-store/shim` pattern with a server fallback (see `useLocationSelector`, `useColorMode`). Never read `window.x` at module top level without a guard. |
 | **Attaching event listeners** | Reuse the `useEventListener` hook — do **not** hand-roll `addEventListener`/`removeEventListener`. For non-hook contexts, `on()` / `off()` in `utils/browser.ts` already null-check the target. |
 | **Keeping a callback fresh without re-subscribing** | Use `useLatest` (store the latest fn in a ref) to avoid stale closures. |

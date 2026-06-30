@@ -88,7 +88,7 @@ import { useUpdate } from './useUpdate'
 import { useUpdateEffect } from './useUpdateEffect'
 import { useUpdateLayoutEffect } from './useUpdateLayoutEffect'
 import { useWebNotification } from './useWebNotification'
-import { useWindowsFocus } from './useWindowFocus'
+import { useWindowFocus } from './useWindowFocus'
 import { useWindowScroll } from './useWindowScroll'
 import { useWindowSize } from './useWindowSize'
 import { useClipboard } from './useClipboard'
@@ -178,7 +178,7 @@ export {
   useDraggable,
   useElementBounding,
   useElementVisibility,
-  useWindowsFocus,
+  useWindowFocus,
   useWindowSize,
   useWindowScroll,
   useClipboard,

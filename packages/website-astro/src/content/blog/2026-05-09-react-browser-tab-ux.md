@@ -220,16 +220,16 @@ function ManualFocus() {
 
 Same story as before — three event listeners, an initial-state read, an SSR pitfall.
 
-### The ReactUse Way: useWindowsFocus
+### The ReactUse Way: useWindowFocus
 
-[`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) (exported as `useWindowsFocus` — the legacy name is preserved) returns a boolean and re-syncs on mount.
+[`useWindowFocus`](https://reactuse.com/element/usewindowfocus/) returns a boolean and re-syncs on mount.
 
 ```tsx
 import { useEffect } from "react";
-import { useWindowsFocus } from "@reactuses/core";
+import { useWindowFocus } from "@reactuses/core";
 
 function FreshFeed() {
-  const focused = useWindowsFocus();
+  const focused = useWindowFocus();
   const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
@@ -329,7 +329,7 @@ import {
   useTitle,
   useFavicon,
   useDocumentVisibility,
-  useWindowsFocus,
+  useWindowFocus,
   usePageLeave,
   useWebNotification,
 } from "@reactuses/core";
@@ -356,7 +356,7 @@ export function AttentionAwareChat() {
   }, [visibility, fetchFeed]);
 
   // 4: full refresh on focus
-  const focused = useWindowsFocus();
+  const focused = useWindowFocus();
   useEffect(() => {
     if (focused) fetchFeed();
   }, [focused, fetchFeed]);

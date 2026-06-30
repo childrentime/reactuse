@@ -38,8 +38,8 @@ function Demo() {
   const cookieName = "cookie-key";
   const [cookieValue, updateCookie, refreshCookie] = useCookie(
     cookieName,
-    defaultOption,
-    "default-value"
+    "default-value",
+    defaultOption
   );
 
   const updateButtonClick = () => {
@@ -81,7 +81,7 @@ Two components using the same cookie key stay in sync within the tab — click a
 
 ```tsx live noInline
 function CookiePanel({ label }) {
-  const [value, updateCookie] = useCookie("shared-demo-cookie", { path: "/" }, "A");
+  const [value, updateCookie] = useCookie("shared-demo-cookie", "A", { path: "/" });
   return (
     <div
       style={{

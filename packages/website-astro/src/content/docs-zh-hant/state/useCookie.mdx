@@ -37,8 +37,8 @@ function Demo() {
   const cookieName = "cookie-key";
   const [cookieValue, updateCookie, refreshCookie] = useCookie(
     cookieName,
-    defaultOption,
     "default-value",
+    defaultOption,
   );
 
   const updateButtonClick = () => {
@@ -81,7 +81,7 @@ function Demo() {
 
 ```tsx live noInline
 function CookiePanel({ label }) {
-  const [value, updateCookie] = useCookie("shared-demo-cookie", { path: "/" }, "A");
+  const [value, updateCookie] = useCookie("shared-demo-cookie", "A", { path: "/" });
   return (
     <div
       style={{
