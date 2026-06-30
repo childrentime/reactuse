@@ -9,7 +9,7 @@ describe('useCookie', () => {
     options?: Cookies.CookieAttributes,
   ) =>
     renderHook(() => {
-      const [state, setState, refresh] = useCookie(key, options, defaultValue)
+      const [state, setState, refresh] = useCookie(key, defaultValue, options)
       return {
         state,
         setState,

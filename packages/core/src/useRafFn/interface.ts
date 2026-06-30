@@ -22,7 +22,7 @@ export type UseRafFn = (
   callback: FrameRequestCallback,
   /**
    * @zh 立即执行
-   * @en immediatly start
+   * @en immediately start
    */
   initiallyActive?: boolean
 ) => readonly [() => void, () => void, () => boolean]

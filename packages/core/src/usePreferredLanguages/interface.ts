@@ -8,6 +8,6 @@ export type UsePreferredLanguages = (
   /**
    * @zh 默认值
    * @zh-Hant 預設值
-   * @en defaule value
+   * @en default value
    */ defaultLanguages?: string[]
 ) => string[]

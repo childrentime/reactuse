@@ -1,5 +1,29 @@
 # ChangeLog
 
+## 7.0.0 (June 30, 2026)
+
+API-design consistency pass (see `.claude/api-design.md`). **Breaking changes** — all are
+renames/reorders with no behavior change; migration is mechanical.
+
+- **`useWindowsFocus` → `useWindowFocus`** — the published export had a stray `s`
+  (the concept is "window focus", not "windows focus"). Its `defauleValue` parameter is
+  also corrected to `defaultValue`.
+  ```diff
+  - import { useWindowsFocus } from '@reactuses/core'
+  + import { useWindowFocus } from '@reactuses/core'
+  ```
+- **`useCookie` argument order** — now `useCookie(key, defaultValue?, options?)`, aligning
+  with `useLocalStorage` / `useSessionStorage`. Previously `options` came before
+  `defaultValue`, which silently mis-typed a string passed in the `useLocalStorage` shape.
+  ```diff
+  - useCookie('token', { path: '/' }, 'guest')
+  + useCookie('token', 'guest', { path: '/' })
+  ```
+- **`useScrollIntoView` / `useSticky`** — first parameter renamed `targetElement` → `target`,
+  matching the 20 other DOM-target hooks. Positional callers are unaffected.
+- Fixed JSDoc typos surfaced in editor autocomplete (`usePreferredDark`,
+  `usePreferredLanguages`, `useRafFn`, `useCookie`).
+
 ## 1.0.0 (September 18 ,2022)
 
 - Initial public release

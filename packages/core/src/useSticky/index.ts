@@ -8,9 +8,9 @@ import { useStableTarget } from '../utils/useStableTarget'
 import { useLatest } from '../useLatest'
 import type { UseStickyParams } from './interface'
 
-export function useSticky(targetElement: BasicTarget<HTMLElement>, { axis = 'y', nav = 0 }: UseStickyParams, scrollElement?: BasicTarget<HTMLElement>): [boolean, React.Dispatch<React.SetStateAction<boolean>>] {
+export function useSticky(target: BasicTarget<HTMLElement>, { axis = 'y', nav = 0 }: UseStickyParams, scrollElement?: BasicTarget<HTMLElement>): [boolean, React.Dispatch<React.SetStateAction<boolean>>] {
   const [isSticky, setSticky] = useState<boolean>(false)
-  const { key: targetKey, ref: targetRef } = useStableTarget(targetElement)
+  const { key: targetKey, ref: targetRef } = useStableTarget(target)
   const { key: scrollKey, ref: scrollRef } = useStableTarget(scrollElement)
   const axisRef = useLatest(axis)
   const navRef = useLatest(nav)

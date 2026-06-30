@@ -8,7 +8,7 @@ export type UsePreferredDark = (
   /**
    * @zh 默认值
    * @zh-Hant 預設值
-   * @en defaule value
+   * @en default value
    */
   defaultState?: boolean
 ) => boolean

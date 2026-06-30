@@ -18,7 +18,7 @@ export type UseSticky = (
    * @zh-Hant dom元素
    * @en dom element
    */
-  targetElement: BasicTarget<HTMLElement>,
+  target: BasicTarget<HTMLElement>,
   /**
    * @zh 可选参数
    * @en optional params
