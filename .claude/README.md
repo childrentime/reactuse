@@ -12,6 +12,7 @@ CI sharding, MCP extensions).
 | Chromium piece          | Here                                   | Loaded when                          |
 |-------------------------|----------------------------------------|--------------------------------------|
 | `ai_policy.md`          | [`ai-policy.md`](./ai-policy.md)       | Read it before shipping AI-assisted code |
+| API style guide         | [`api-design.md`](./api-design.md)     | Before adding/changing a public hook signature |
 | `common.md` workflow    | `## AI Agent System` in root `CLAUDE.md` | Always (project memory)            |
 | `knowledge_base.md`     | [`knowledge-base.md`](./knowledge-base.md) | Always (it's the router)         |
 | Skills                  | [`skills/`](./skills)                  | Auto-activated by relevant requests  |

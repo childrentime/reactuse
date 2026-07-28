@@ -38,8 +38,8 @@ function getInitialState(key: string, defaultValue?: string) {
 
 export const useCookie: UseCookie = (
   key: string,
-  options: Cookies.CookieAttributes = defaultOptions,
   defaultValue?: string,
+  options: Cookies.CookieAttributes = defaultOptions,
 ) => {
   const [cookieValue, setCookieValue] = useState<UseCookieState>(
     getInitialState(key, defaultValue),

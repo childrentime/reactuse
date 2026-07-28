@@ -3,11 +3,11 @@ title: useWindowFocus – Element Hook Usage & Examples
 sidebar_label: useWindowFocus
 description: "useWindowFocus is a React hook that reactively tracks whether the browser window has focus, updating via the window focus and blur events."
 ---
-# useWindowsFocus
+# useWindowFocus
 
 React Element Hook that tracks window focus with `window.onfocus` and `window.onblur` events
 
-`useWindowsFocus` reactively tracks whether the browser window currently has focus by listening to `window.onfocus` and `window.onblur` events. It returns a boolean that is `true` when the window is focused and `false` when it is not. You can optionally provide a default value for the initial state.
+`useWindowFocus` reactively tracks whether the browser window currently has focus by listening to `window.onfocus` and `window.onblur` events. It returns a boolean that is `true` when the window is focused and `false` when it is not. You can optionally provide a default value for the initial state.
 
 ### When to Use
 
@@ -25,7 +25,7 @@ React Element Hook that tracks window focus with `window.onfocus` and `window.on
 
 ```tsx live
 function Demo() {
-  const focus = useWindowsFocus();
+  const focus = useWindowFocus();
   return (
     <div>
       <p>

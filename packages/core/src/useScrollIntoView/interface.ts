@@ -18,7 +18,7 @@ export type UseScrollIntoView = (
    * @zh-Hant dom對象
    * @en dom element
    */
-  targetElement: BasicTarget<HTMLElement>,
+  target: BasicTarget<HTMLElement>,
   /**
    * @zh 可选参数
    * @en optional params

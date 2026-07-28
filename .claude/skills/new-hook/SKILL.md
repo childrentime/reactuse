@@ -22,6 +22,10 @@ built in this repo today. Pair it with **hook-test** and **hook-docs** afterward
 3. Check the [knowledge base](../../knowledge-base.md) reuse cheat-sheet — much of what you
    need (`useLatest`, `useUnmount`, `useEventListener`, `defaultWindow`, `isBrowser`) is
    already written. Reuse before writing.
+4. Read **[api-design.md](../../api-design.md)** and apply it to the signature: subject first,
+   all config in a trailing optional `options` object, DOM target named `target`, `default*`
+   (SSR fallback) vs `initial*` (mutable seed) used correctly, the right return shape (tuple
+   vs object), and **no typos — a shipped name is locked forever**.
 
 ## Step 1 — Create the hook folder
 

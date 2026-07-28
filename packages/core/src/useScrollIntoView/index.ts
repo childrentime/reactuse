@@ -16,7 +16,7 @@ import type { UseScrollIntoView, UseScrollIntoViewAnimation, UseScrollIntoViewPa
 const listenerOptions = { passive: true }
 
 export const useScrollIntoView: UseScrollIntoView = (
-  targetElement: BasicTarget<HTMLElement>,
+  target: BasicTarget<HTMLElement>,
   {
     duration = 1250,
     axis = 'y',
@@ -40,7 +40,7 @@ export const useScrollIntoView: UseScrollIntoView = (
     }
   }
 
-  const element = getTargetElement(targetElement)
+  const element = getTargetElement(target)
 
   const scrollIntoView = ({
     alignment = 'start',

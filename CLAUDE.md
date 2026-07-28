@@ -29,6 +29,7 @@ hooks library, not a 35M-line codebase. Map: [`.claude/README.md`](.claude/READM
 **Where to look:**
 
 - [`.claude/knowledge-base.md`](.claude/knowledge-base.md) — task → file/utility router. **Start here**; it tells you which existing code already solves your task.
+- [`.claude/api-design.md`](.claude/api-design.md) — the public-signature contract (naming, options object, return shape, SSR defaults). **Read before adding or changing any hook signature.**
 - [`.claude/ai-policy.md`](.claude/ai-policy.md) — you own every line you ship; understand it before review.
 - Skills (auto-activate): `new-hook`, `hook-test`, `hook-docs`, `pr-description`.
 - Commands: `/new-hook`, `/pre-pr`, `/pr-desc`.
