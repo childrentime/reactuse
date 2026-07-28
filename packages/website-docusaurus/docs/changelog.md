@@ -7,6 +7,10 @@ description: >-
 ---
 # ChangeLog
 
+## 6.4.1(Jul 28, 2026)
+
+- fix(useScriptTag): handle the rejection from the `immediate` auto-load (#206). The auto-load called `load()` as a bare statement, so when a script failed to load — blocked by an ad blocker, offline, 404 — the rejected promise reached `window.onunhandledrejection` and got reported by error trackers. It now attaches a no-op catch; `status === 'error'` remains the reporting channel, and an explicit `load()` still rejects for callers that hold the promise themselves. Thanks @Faithfinder
+
 ## 6.3.0(Mar 24, 2026)
 
 - refactor(createStorage): replace `useState` + `useDeepCompareEffect` with `useSyncExternalStore`, eliminating CSR first-render flicker, SSR hydration mismatches, and stale cross-tab reads (#195)
