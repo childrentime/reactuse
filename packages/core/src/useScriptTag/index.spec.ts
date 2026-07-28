@@ -31,6 +31,38 @@ describe(useScriptTag, () => {
     expect(scriptTagElement()).toBeInstanceOf(HTMLScriptElement)
   })
 
+  // Drop the handler on the auto-load and jest fails this on the unhandled
+  // rejection, not on the assertion.
+  it('should report a failed auto-load through status, not an unhandled rejection', async () => {
+    const hook = renderHook(() => {
+      const [, status] = useScriptTag(src, () => {}, { immediate: true })
+
+      return { status }
+    })
+
+    await act(async () => {
+      scriptTagElement()!.dispatchEvent(new Event('error'))
+    })
+
+    expect(hook.result.current.status).toBe('error')
+  })
+
+  it('should still reject for callers that hold the load promise', async () => {
+    const hook = renderHook(() => {
+      const [, , load] = useScriptTag(src, () => {}, { immediate: true })
+
+      return { load }
+    })
+
+    const loading = hook.result.current.load()
+
+    await act(async () => {
+      scriptTagElement()!.dispatchEvent(new Event('error'))
+    })
+
+    await expect(loading).rejects.toThrow(`Failed to load script: ${src}`)
+  })
+
   it('should re-use the same src for multiple loads', async () => {
     const addChildListener = jest.spyOn(document.head, 'appendChild')
 

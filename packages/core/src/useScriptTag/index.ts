@@ -171,7 +171,8 @@ export const useScriptTag: UseScriptTag = (
 
   useMount(() => {
     if (immediate && !manual) {
-      load()
+      // Nothing awaits this promise; a failing script is reported via `status`.
+      load().catch(noop)
     }
   })
 
