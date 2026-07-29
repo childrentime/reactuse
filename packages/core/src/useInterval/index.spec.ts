@@ -125,4 +125,35 @@ describe('useInterval', () => {
     jest.advanceTimersByTime(70)
     expect(callback).toHaveBeenCalledTimes(1)
   })
+
+  it('should clear a manually resumed interval on unmount', () => {
+    const callback = jest.fn()
+    const { result, unmount } = renderHook(() =>
+      useInterval(callback, 50, { controls: true }),
+    )
+
+    result.current.resume()
+    jest.advanceTimersByTime(50)
+    expect(callback).toHaveBeenCalledTimes(1)
+
+    unmount()
+    callback.mockClear()
+
+    jest.advanceTimersByTime(500)
+    expect(callback).toHaveBeenCalledTimes(0)
+  })
+
+  it('should not leave an orphan interval when resume is called twice', () => {
+    const callback = jest.fn()
+    const { result } = renderHook(() =>
+      useInterval(callback, 50, { controls: true }),
+    )
+
+    result.current.resume()
+    result.current.resume()
+    result.current.pause()
+
+    jest.advanceTimersByTime(500)
+    expect(callback).toHaveBeenCalledTimes(0)
+  })
 })
