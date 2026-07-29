@@ -8,12 +8,6 @@ const defaultState: UseOrientationState = {
   type: 'landscape-primary',
 }
 
-// `ScreenOrientation.lock()` ships in browsers but is absent from lib.dom's
-// `ScreenOrientation` (which declares only `unlock()`).
-interface LockableScreenOrientation extends ScreenOrientation {
-  lock: (orientation: UseOrientationLockType) => Promise<void>
-}
-
 export const useOrientation: UseOrientation = (
   initialState: UseOrientationState = defaultState,
 ) => {
@@ -57,7 +51,7 @@ export const useOrientation: UseOrientation = (
     if (!(window && 'screen' in window && 'orientation' in window.screen)) {
       return Promise.reject(new Error('Not supported'))
     }
-    return (window.screen.orientation as LockableScreenOrientation).lock(type)
+    return window.screen.orientation.lock(type)
   }
 
   const unlockOrientation = () => {

@@ -1,0 +1,12 @@
+{
+  // Typecheck gate for CI. Scoped to the published library and its specs.
+  //
+  // `scripts/` is deliberately out: scripts/tsdoc.ts imports @reactuses/ts-document,
+  // whose `lib/` output is gitignored, so its types resolve locally (where the
+  // package has been built) but never on a fresh CI checkout.
+  //
+  // `global.d.ts` must stay in — it declares Window.testErrors and the
+  // toHaveErrorMatching jest matcher that the specs rely on.
+  "extends": "./tsconfig.json",
+  "include": ["src", "global.d.ts", "jest-setup.ts"]
+}
