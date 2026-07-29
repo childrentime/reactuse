@@ -75,4 +75,53 @@ describe('useOrientation', () => {
     expect(hook.result.current[0].type).toBe(void 0)
     expect(hook.result.current[0].angle).toBe(0)
   })
+
+  it('should lock orientation through screen.orientation.lock', () => {
+    const lockResult = Promise.resolve()
+    const lock = jest.fn().mockReturnValue(lockResult);
+    (window.screen.orientation as unknown) = {
+      type: 'landscape-primary',
+      angle: 0,
+      lock,
+      unlock: jest.fn(),
+    }
+
+    const hook = getHook()
+
+    expect(hook.result.current[1]('portrait')).toBe(lockResult)
+    expect(lock).toHaveBeenCalledWith('portrait')
+  })
+
+  it('should unlock orientation through screen.orientation.unlock', () => {
+    const unlock = jest.fn();
+    (window.screen.orientation as unknown) = {
+      type: 'landscape-primary',
+      angle: 0,
+      lock: jest.fn(),
+      unlock,
+    }
+
+    const hook = getHook()
+    hook.result.current[2]()
+
+    expect(unlock).toHaveBeenCalledTimes(1)
+  })
+
+  it('should reject the lock when screen.orientation is not available', async () => {
+    delete (window.screen as { orientation?: unknown }).orientation
+
+    const hook = getHook()
+
+    await expect(hook.result.current[1]('portrait')).rejects.toThrow(
+      'Not supported',
+    )
+  })
+
+  it('should not throw when unlocking without screen.orientation', () => {
+    delete (window.screen as { orientation?: unknown }).orientation
+
+    const hook = getHook()
+
+    expect(hook.result.current[2]()).toBeUndefined()
+  })
 })
