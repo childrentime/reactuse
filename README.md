@@ -1,3 +1,5 @@
+[![MCP Toplist](https://mcptoplist.com/badge/glama%2Fchildrentime%2Freactuse.svg)](https://mcptoplist.com/server/glama%2Fchildrentime%2Freactuse)
+
 <p align="center">
 <a href="https://github.com/childrentime/reactuse#gh-light-mode-only">
   <img src="https://reactuse.com/img/og.png#gh-light-mode-only" alt="ReactUse - Collection of essential React Hooks" width="300">
