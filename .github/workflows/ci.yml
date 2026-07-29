@@ -40,5 +40,8 @@ jobs:
       - name: Run lint
         run: pnpm run lint
 
+      - name: Run typecheck
+        run: cd packages/core && pnpm run typecheck
+
       - name: Run unit tests
         run: cd packages/core && pnpm run test

@@ -7,7 +7,7 @@ function createMockSentinel() {
   return {
     released: false,
     type: 'screen' as WakeLockType,
-    addEventListener: jest.fn((event: string, handler: Function, options?: { once?: boolean }) => {
+    addEventListener: jest.fn((event: string, handler: Function, _options?: { once?: boolean }) => {
       if (!listeners[event]) {
         listeners[event] = []
       }

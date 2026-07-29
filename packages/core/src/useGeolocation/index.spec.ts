@@ -10,7 +10,7 @@ describe("useGeolocation", () => {
   it("should return coordinates when geolocation is supported", () => {
     // @ts-ignore
     window.navigator.geolocation = {
-      getCurrentPosition: (success, error) => {
+      getCurrentPosition: (success, _error) => {
         success({
           coords: {
             latitude: 40.7128,

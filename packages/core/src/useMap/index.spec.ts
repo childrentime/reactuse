@@ -93,7 +93,8 @@ describe('useMap', () => {
 
   it('should reset work correctly', () => {
     const initialEntries = [['key1', 'value1'], ['key2', 'value2']] as const
-    const { result } = setUp(initialEntries)
+    // Widen past the `as const` literals — this case adds a third key.
+    const { result } = setUp<string, string>(initialEntries)
 
     // Modify the map
     act(() => {

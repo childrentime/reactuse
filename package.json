@@ -16,6 +16,7 @@
     "newHook": "ts-node scripts/newHook.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "typecheck": "pnpm --filter @reactuses/core run typecheck",
     "docs:dev": "pnpm --filter website-astro run dev",
     "build": "pnpm --filter @reactuses/core run build",
     "core:dev": "pnpm --filter core run dev",
@@ -58,7 +59,7 @@
     "prompts": "^2.4.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
-    "typescript": "^4.9.5"
+    "typescript": "^5.8.3"
   },
   "pnpm": {
     "peerDependencyRules": {
