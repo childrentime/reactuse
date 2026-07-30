@@ -113,6 +113,7 @@
     "build:bunchee": "bunchee",
     "dev": "bunchee --watch",
     "gend": "tsx scripts/tsdoc.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
     "publish:ci": "esno scripts/publish.ts",
     "release:prepare": "bump",
     "release": "esno scripts/release.ts",

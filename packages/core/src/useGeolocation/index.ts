@@ -3,7 +3,7 @@ import { useSupported } from '../useSupported'
 import { defaultOptions } from '../utils/defaults'
 import type { UseGeolocation } from './interface'
 
-export const initCoord = {
+export const initCoord: GeolocationCoordinates = {
   accuracy: 0,
   latitude: Number.POSITIVE_INFINITY,
   longitude: Number.POSITIVE_INFINITY,
@@ -11,6 +11,12 @@ export const initCoord = {
   altitudeAccuracy: null,
   heading: null,
   speed: null,
+  // `GeolocationCoordinates` carries a `toJSON` in lib.dom; a real reading
+  // serializes to its own fields, so the placeholder does the same.
+  toJSON() {
+    const { accuracy, latitude, longitude, altitude, altitudeAccuracy, heading, speed } = this
+    return { accuracy, latitude, longitude, altitude, altitudeAccuracy, heading, speed }
+  },
 }
 
 export const useGeolocation: UseGeolocation = (options: Partial<PositionOptions> = defaultOptions) => {

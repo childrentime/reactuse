@@ -1,5 +1,10 @@
 {
   "editor.tabSize": 2,
+  // Use the repo's TypeScript, not the one bundled with VS Code — otherwise the
+  // editor and `pnpm typecheck` disagree about lib.dom (e.g. whether
+  // GeolocationCoordinates has toJSON).
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
   "conventionalCommits.scopes": [
     "website",
     "core"
