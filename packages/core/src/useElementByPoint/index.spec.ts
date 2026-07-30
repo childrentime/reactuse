@@ -57,7 +57,7 @@ describe('useElementByPoint', () => {
     const raf = patchRaf()
     const first = document.createElement('div')
     const second = document.createElement('span')
-    let hit = [first]
+    let hit: Element[] = [first]
     const doc = { elementsFromPoint: () => [...hit] } as unknown as Document
 
     const { result } = renderHook(() =>

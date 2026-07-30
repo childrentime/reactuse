@@ -43,8 +43,8 @@ export const useElementByPoint: UseElementByPoint = options => {
     // pointer sits still. The single-element branch needs no such check —
     // elementFromPoint returns the same node and React bails out on its own.
     setElement((prev: any) =>
-      multiple
-      && Array.isArray(prev)
+      Array.isArray(prev)
+      && Array.isArray(next)
       && prev.length === next.length
       && prev.every((el: Element, i: number) => el === next[i])
         ? prev
