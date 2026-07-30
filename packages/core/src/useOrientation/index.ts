@@ -51,7 +51,7 @@ export const useOrientation: UseOrientation = (
   }, [])
 
   const lockOrientation = (type: UseOrientationLockType) => {
-    if (isBrowser) {
+    if (!isBrowser) {
       return
     }
     if (!(window && 'screen' in window && 'orientation' in window.screen)) {
@@ -61,7 +61,7 @@ export const useOrientation: UseOrientation = (
   }
 
   const unlockOrientation = () => {
-    if (isBrowser) {
+    if (!isBrowser) {
       return
     }
     if (!(window && 'screen' in window && 'orientation' in window.screen)) {
