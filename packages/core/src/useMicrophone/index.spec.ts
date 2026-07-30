@@ -245,6 +245,23 @@ describe('useMicrophone', () => {
       act(() => { result.current.stop() })
       expect(result.current.analyser).toBeNull()
     })
+
+    it('resets level to 0 when stop() is called', async () => {
+      const raf = patchRaf()
+      installAudioContextMock()
+      installMediaDevicesMock(jest.fn().mockResolvedValue(makeMockStream()))
+
+      const { result } = renderHook(() => useMicrophone({ levelInterval: 100 }))
+      await act(async () => { await result.current.start() })
+
+      const analyser = result.current.analyser as unknown as FakeAnalyser
+      analyser.nextData = new Array(analyser.frequencyBinCount).fill(255)
+      act(() => { raf.flush(0) })
+      expect(result.current.level).toBeGreaterThan(0)
+
+      act(() => { result.current.stop() })
+      expect(result.current.level).toBe(0)
+    })
   })
 
   describe('deviceId reactivity', () => {

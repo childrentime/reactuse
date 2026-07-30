@@ -156,6 +156,9 @@ export const useMicrophone: UseMicrophone = (options: UseMicrophoneOptions = {})
     sourceRef.current = null
     analyserRef.current = null
     setAnalyser(null)
+    // The rAF loop is the only thing that writes `level`, so without this the
+    // meter stays frozen at whatever it read on the last frame before teardown.
+    setLevel(0)
     // AudioContext stays alive across start/stop cycles (cheap to keep, expensive to recreate).
   }, [cancelRaf])
 
