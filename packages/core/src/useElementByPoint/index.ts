@@ -35,10 +35,20 @@ export const useElementByPoint: UseElementByPoint = options => {
 
   const cb = useCallback(() => {
     const { x: currentX, y: currentY } = getXY()
-    setElement(
+    const next = multiple
+      ? doc?.elementsFromPoint(currentX, currentY) ?? []
+      : doc?.elementFromPoint(currentX, currentY) ?? null
+    // elementsFromPoint allocates a fresh array on every call, so storing it
+    // as-is would re-render on every frame of the rAF loop even while the
+    // pointer sits still. The single-element branch needs no such check —
+    // elementFromPoint returns the same node and React bails out on its own.
+    setElement((prev: any) =>
       multiple
-        ? doc?.elementsFromPoint(currentX, currentY) ?? []
-        : doc?.elementFromPoint(currentX, currentY) ?? null,
+      && Array.isArray(prev)
+      && prev.length === next.length
+      && prev.every((el: Element, i: number) => el === next[i])
+        ? prev
+        : next,
     )
   }, [doc, multiple, getXY])
 
