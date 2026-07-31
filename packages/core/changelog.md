@@ -365,3 +365,10 @@ function Component() {
 ## 6.4.1(Jul 28, 2026)
 
 - fix(useScriptTag): handle the rejection from the `immediate` auto-load (#206). The auto-load called `load()` as a bare statement, so when a script failed to load — blocked by an ad blocker, offline, 404 — the rejected promise reached `window.onunhandledrejection` and got reported by error trackers. It now attaches a no-op catch; `status === 'error'` remains the reporting channel, and an explicit `load()` still rejects for callers that hold the promise themselves. Thanks @Faithfinder
+
+## 6.4.2(Jul 31, 2026)
+
+- fix(useOrientation): correct the inverted `isBrowser` guards in `lockOrientation`/`unlockOrientation` (#215). Both early-returned *in* the browser and only ran during SSR, making them no-ops everywhere it mattered; the guards now return when there is no browser. Thanks @ostapondo
+- fix(useInterval): clear a manually resumed interval on unmount (#212). With `controls: true` the effect registered no cleanup, so an interval started through `resume()` kept firing after the component unmounted; the cleanup now runs in its own mount-scoped effect. `resume()` also clears a running timer before starting a new one, so calling it twice no longer leaks an interval that `pause()` can't reach. Thanks @ostapondo
+- fix(useMicrophone): reset `level` to 0 on `stop()` (#213). The rAF loop is the only writer of `level`, so a meter bound to it stayed frozen at the last reading long after the microphone was released. Thanks @ostapondo
+- fix(useElementByPoint): avoid a re-render on every frame in `multiple` mode (#214). `elementsFromPoint` allocates a fresh array on every call, so the hit list is now compared element-by-element and the previous state is kept when nothing changed. Thanks @ostapondo
