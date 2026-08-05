@@ -83,22 +83,32 @@
         "default": "./dist/index.mjs"
       },
       "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
       }
     },
     "./useQRCode": {
       "import": {
-        "types": "./dist/useQRCode.d.mts",
-        "default": "./dist/useQRCode.mjs"
+        "types": "./dist/useQRCode/index.d.mts",
+        "default": "./dist/useQRCode/index.mjs"
       },
       "require": {
-        "types": "./dist/useQRCode.d.cts",
-        "default": "./dist/useQRCode.cjs"
+        "types": "./dist/useQRCode/index.d.ts",
+        "default": "./dist/useQRCode/index.js"
+      }
+    },
+    "./*": {
+      "import": {
+        "types": "./dist/*/index.d.mts",
+        "default": "./dist/*/index.mjs"
+      },
+      "require": {
+        "types": "./dist/*/index.d.ts",
+        "default": "./dist/*/index.js"
       }
     }
   },
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
@@ -110,8 +120,8 @@
   "scripts": {
     "lint": "eslint \"{hooks,tests}/**/*.{ts,tsx}\"",
     "build": "esno scripts/build.ts",
-    "build:bunchee": "bunchee",
-    "dev": "bunchee --watch",
+    "build:tsdown": "tsdown",
+    "dev": "tsdown --watch",
     "gend": "tsx scripts/tsdoc.ts",
     "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
     "publish:ci": "esno scripts/publish.ts",
@@ -158,6 +168,8 @@
     "qrcode": "^1.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "typescript": "^5.3.3"
+    "tsdown": "^0.22.14",
+    "typescript": "^5.3.3",
+    "unrun": "^0.3.1"
   }
 }

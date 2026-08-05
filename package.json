@@ -22,9 +22,6 @@
     "core:dev": "pnpm --filter core run dev",
     "size": "tsx scripts/exportSize.mts"
   },
-  "dependencies": {
-    "bunchee": "^4.4.8"
-  },
   "devDependencies": {
     "@babel/cli": "^7.28.0",
     "@babel/core": "^7.28.0",

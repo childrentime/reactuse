@@ -20,8 +20,8 @@ async function buildMetaFiles() {
 }
 
 async function build() {
-  consola.info('Bunchee')
-  exec(`pnpm run build:bunchee${watch ? ' -- --watch' : ''}`, {
+  consola.info('tsdown')
+  exec(`pnpm run build:tsdown${watch ? ' -- --watch' : ''}`, {
     stdio: 'inherit',
   })
 
