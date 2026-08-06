@@ -576,7 +576,24 @@ a:hover {
   }
 }
 
-/* Wide desktop: show TOC */
+/* Wide desktop (TOC visible): center content + TOC in the space right of the
+   fixed sidebar, so ultra-wide screens don't leave a huge empty right gutter */
+@media (min-width: 1280px) {
+  .page-shell.has-sidebar {
+    padding-left: var(--sidebar-w);
+    justify-content: center;
+  }
+  .page-shell.has-sidebar .main-content {
+    margin-left: 0;
+  }
+}
+
+/* Ultra-wide: let the reading column breathe a little wider */
+@media (min-width: 1680px) {
+  .page-shell.has-sidebar .main-content {
+    max-width: 52rem;
+  }
+}
 
 /* --- Admonitions (:::note, :::tip, etc.) --- */
 .admonition {

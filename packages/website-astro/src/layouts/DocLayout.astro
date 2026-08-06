@@ -41,7 +41,7 @@ const breadcrumbs = isHomepage ? [] : (() => {
 
 <BaseLayout title={title} description={description} locale={locale} breadcrumbs={breadcrumbs}>
   <Navbar locale={locale} />
-  <div class="page-shell">
+  <div class="page-shell has-sidebar">
     <Sidebar currentSlug={slug} locale={locale} />
     <main class="main-content">
       <article class="doc-prose">
