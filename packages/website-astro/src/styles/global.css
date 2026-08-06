@@ -576,20 +576,37 @@ a:hover {
   }
 }
 
-/* Wide desktop (TOC visible): center content + TOC in the space right of the
-   fixed sidebar, so ultra-wide screens don't leave a huge empty right gutter */
+/* Wide desktop (TOC visible): cap the whole frame (sidebar + content + TOC)
+   and center it in the viewport with symmetric gutters. The sidebar switches
+   from fixed to sticky so it travels with the centered frame instead of
+   pinning to the viewport edge. */
 @media (min-width: 1280px) {
   .page-shell.has-sidebar {
-    padding-left: var(--sidebar-w);
-    justify-content: center;
+    max-width: calc(var(--sidebar-w) + 48rem + 220px);
+    margin-inline: auto;
+  }
+  .page-shell.has-sidebar .sidebar {
+    position: sticky;
+    top: var(--navbar-h);
+    left: auto;
+    bottom: auto;
+    height: calc(100dvh - var(--navbar-h));
+    flex-shrink: 0;
   }
   .page-shell.has-sidebar .main-content {
     margin-left: 0;
+  }
+  .footer {
+    margin-left: 0;
+    text-align: center;
   }
 }
 
 /* Ultra-wide: let the reading column breathe a little wider */
 @media (min-width: 1680px) {
+  .page-shell.has-sidebar {
+    max-width: calc(var(--sidebar-w) + 52rem + 220px);
+  }
   .page-shell.has-sidebar .main-content {
     max-width: 52rem;
   }
