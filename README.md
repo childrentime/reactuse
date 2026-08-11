@@ -15,6 +15,7 @@
   <img alt="UnLicense" src="https://img.shields.io/npm/l/@reactuses/core?style=for-the-badge&labelColor=24292e">
   <img alt="Tree Shaking Friendly" src="https://img.shields.io/badge/Tree%20Shaking-Friendly-brightgreen?style=for-the-badge&labelColor=24292e">
   <img alt="TypeScript Support" src="https://img.shields.io/badge/TypeScript-Support-blue?style=for-the-badge&labelColor=24292e">
+  <a href="https://github.com/sponsors/childrentime"><img alt="Sponsor ReactUse" src="https://img.shields.io/badge/%E2%9D%A4-Sponsor-db61a2?style=for-the-badge&labelColor=24292e"></a>
 </p>
 
 <p align="center">
@@ -61,6 +62,25 @@ const Demo = () => {
 [![PDD](https://img.shields.io/badge/PDD-E_Commerce-orange?style=for-the-badge)](https://www.pinduoduo.com/)
 [![Shopee](https://img.shields.io/badge/Shopee-E_Commerce-red?style=for-the-badge)](https://shopee.com/)
 [![Ctrip](https://img.shields.io/badge/Ctrip-Travel-blue?style=for-the-badge)](https://www.ctrip.com/)
+
+---
+
+## Sponsors
+
+**`@reactuses/core` is installed 1.6M+ times every month.** Sponsoring ReactUse puts your product in front of the React developers who ship with it — your logo right here in the README, and on [reactuse.com/sponsor](https://reactuse.com/sponsor/).
+
+<p align="center">
+  <a href="https://github.com/sponsors/childrentime"><img alt="Gold Sponsor — this spot is open" src="https://img.shields.io/badge/%F0%9F%A5%87%20Gold-your%20logo%20here-FFD700?style=for-the-badge&labelColor=24292e"></a>
+  <a href="https://github.com/sponsors/childrentime"><img alt="Silver Sponsor — this spot is open" src="https://img.shields.io/badge/%F0%9F%A5%88%20Silver-your%20logo%20here-C0C0C0?style=for-the-badge&labelColor=24292e"></a>
+  <a href="https://github.com/sponsors/childrentime"><img alt="Bronze Sponsor — this spot is open" src="https://img.shields.io/badge/%F0%9F%A5%89%20Bronze-your%20logo%20here-CD7F32?style=for-the-badge&labelColor=24292e"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/sponsors/childrentime"><img alt="Sponsor on GitHub" src="https://img.shields.io/badge/%E2%9D%A4%20Sponsor%20on%20GitHub-db61a2?style=for-the-badge&labelColor=24292e"></a>
+  <a href="https://www.buymeacoffee.com/lianwenwu"><img alt="Buy me a coffee" src="https://img.shields.io/badge/%E2%98%95%20Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&labelColor=24292e"></a>
+</p>
+
+<p align="center"><sub>All sponsor slots are currently open — <a href="https://github.com/sponsors/childrentime">claim one</a> and your logo goes live within 48 hours. Tiers, benefits and company invoicing: <a href="https://reactuse.com/sponsor/">reactuse.com/sponsor</a>.</sub></p>
 
 ---
 
@@ -138,8 +158,6 @@ This project is heavily inspired by the following awesome projects.
 
 ---
 
-## Sponsor Me
+## Support ReactUse
 
-If my work has helped you, consider buying me a cup of coffee. Thank you very much🥰!.
-
-[Buy me a coffee](https://www.buymeacoffee.com/lianwenwu)
+ReactUse is free and MIT-licensed, maintained in spare time. If it saved you a day of work, consider [becoming a sponsor](https://github.com/sponsors/childrentime) (from $5/month) or [buying me a coffee](https://www.buymeacoffee.com/lianwenwu) — it keeps the hooks maintained and the docs interactive. 🥰

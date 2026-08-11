@@ -228,14 +228,13 @@ React hook that facilitates the storage, updating and deletion of values within 
 ### Notes
 
 - **SSR considerations**: Pass a `defaultValue` when using SSR so the hook has a value before `document.cookie` is available on the client.
-- **No cross-component sync**: Updating a cookie in one component does not automatically trigger re-renders in other components using the same key. Use a broadcast mechanism if needed.
-- See also `useLocalStorage` and `useSessionStorage` for Web Storage alternatives that provide cross-tab synchronization via the `storage` event.
+- **Same-tab sync**: Updating a cookie in one component automatically re-renders sibling `useCookie` instances using the same key in the same tab. Cookies fire no native cross-tab event, so this does **not** propagate across tabs (unlike `useLocalStorage`/`useSessionStorage`).
+- **`refreshCookie`**: Only needed to pick up changes made *outside* the hook — a server `Set-Cookie`, a direct `document.cookie` write, or the CookieStore API. Sibling hook instances no longer need it.
 
 :::note
-When you use setCookieValue with useCookie hook that shares the same key across multiple components,
-it does not trigger an update in the other components using this hook.
-
- If you want a broadcast effect, you can refer to the following https://github.com/childrentime/reactuse/issues/91
+`useCookie` instances that share the same key stay in sync within the same tab:
+calling `updateCookie` in one component re-renders the others automatically. (Earlier
+versions did not — a manual broadcast was required; that is no longer necessary.)
 :::
 
 ## Usage
@@ -284,6 +283,46 @@ function Demo() {
   );
 };
 
+```
+
+## Same-tab sync
+
+Two components using the same cookie key stay in sync within the tab — click a button in either panel and the other updates immediately, no manual broadcast and no reload:
+
+```tsx live noInline
+function CookiePanel({ label }) {
+  const [value, updateCookie] = useCookie("shared-demo-cookie", { path: "/" }, "A");
+  return (
+    <div
+      style={{
+        border: "1px solid var(--sl-color-gray-5, #ccc)",
+        borderRadius: 6,
+        padding: 12,
+        marginBottom: 8,
+      }}
+    >
+      <strong>{label}</strong> reads: <code>{value ?? "(empty)"}</code>
+      <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+        <button onClick={() => updateCookie("A")}>Set A</button>
+        <button onClick={() => updateCookie("B")}>Set B</button>
+        <button onClick={() => updateCookie("C")}>Set C</button>
+        <button onClick={() => updateCookie(undefined)}>Clear</button>
+      </div>
+    </div>
+  );
+}
+
+function Demo() {
+  return (
+    <div>
+      <p>Click a button in either panel — the other updates in the same tab:</p>
+      <CookiePanel label="Component A" />
+      <CookiePanel label="Component B" />
+    </div>
+  );
+}
+
+render(<Demo />);
 ```
 
 ---
@@ -714,7 +753,7 @@ React side-effect hook that manages a single `localStorage` key
 ### Notes
 
 - **Persistence**: Data survives page reloads and browser restarts. Use `useSessionStorage` if you only need data for the current session.
-- **Cross-tab sync**: By default, the hook listens for `storage` events so changes in one tab update other tabs. Disable this with `listenToStorageChanges: false`.
+- **Cross-tab & same-tab sync**: Every component bound to the same key stays in sync — within the current tab (always on, no reload) and across other tabs (via the `storage` event). `listenToStorageChanges: false` disables only the cross-tab listener; same-tab sync stays active.
 - **Custom serialization**: For objects or non-string values, provide `serializer.read` and `serializer.write` functions in the options. The default behavior uses JSON serialization for objects and raw strings for string values.
 - See also `useSessionStorage` for session-scoped storage and `useCookie` for cookie-based persistence.
 
@@ -770,6 +809,45 @@ function Demo() {
   );
 };
 
+```
+
+## Same-tab sync
+
+Two components bound to the same key stay in sync within the tab — not just across tabs. Click a button in one panel and the other updates immediately, no reload:
+
+```tsx live noInline
+function StoragePanel({ label }) {
+  const [value, setValue] = useLocalStorage("shared-demo-key", "A");
+  return (
+    <div
+      style={{
+        border: "1px solid var(--sl-color-gray-5, #ccc)",
+        borderRadius: 6,
+        padding: 12,
+        marginBottom: 8,
+      }}
+    >
+      <strong>{label}</strong> reads: <code>{String(value ?? "(empty)")}</code>
+      <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+        <button onClick={() => setValue("A")}>Set A</button>
+        <button onClick={() => setValue("B")}>Set B</button>
+        <button onClick={() => setValue(null)}>Clear</button>
+      </div>
+    </div>
+  );
+}
+
+function Demo() {
+  return (
+    <div>
+      <p>Click a button in one panel — the other updates in the same tab:</p>
+      <StoragePanel label="Component A" />
+      <StoragePanel label="Component B" />
+    </div>
+  );
+}
+
+render(<Demo />);
 ```
 
 ---
@@ -1119,7 +1197,7 @@ React side-effect hook that manages a single `sessionStorage` key
 ### Notes
 
 - **Session-scoped**: Unlike `localStorage`, data in `sessionStorage` is cleared when the tab or browser is closed. Use `useLocalStorage` for long-lived persistence.
-- **Cross-tab sync**: The hook listens for `storage` events by default. Disable with `listenToStorageChanges: false`.
+- **Same-tab sync**: Components bound to the same key in one tab stay in sync — updating one re-renders the others without a reload. (`sessionStorage` is per-tab, so this does not cross tabs.) The cross-tab `storage` listener is on by default; disable it with `listenToStorageChanges: false`.
 - **Custom serialization**: Provide `serializer.read` and `serializer.write` in the options for non-string data types.
 - See also `useLocalStorage` for persistent storage and `useCookie` for cookie-based persistence.
 
@@ -7826,4 +7904,4 @@ function Demo() {
 ---
 
 
-Generated: 2026-05-20T20:21:53.456Z | Total hooks: 114
+Generated: 2026-08-11T01:25:12.279Z | Total hooks: 114
