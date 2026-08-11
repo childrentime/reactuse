@@ -9,7 +9,7 @@ ReactUse 免費、MIT 授權開源，由維護者利用業餘時間維護。贊�
 
 ## 為什麼值得贊助
 
-- [`@reactuses/core`](https://www.npmjs.com/package/@reactuses/core) **每月 npm 安裝量超過 160 萬次**——你的 logo 會出現在開發者正在寫程式的那一刻
+- [`@reactuses/core`](https://www.npmjs.com/package/@reactuses/core) **每月 npm 安裝量超過 <span id="live-npm-dl">160 萬</span>次**——你的 logo 會出現在開發者正在寫程式的那一刻
 - **100+ 生產可用的 hooks**，拼多多、Shopee、攜程等公司在生產環境使用
 - **reactuse.com 每月出現在 10 萬+ 次 Google 搜尋中**——文件是開發者反覆查閱的日常參考，不是一次性流量
 - **純開發者受眾**：看到你 logo 的人，正是天天為團隊選型函式庫、工具和基礎設施的人
@@ -48,3 +48,14 @@ ReactUse 免費、MIT 授權開源，由維護者利用業餘時間維護。贊�
 贊助將直接用於維護工作：修復 bug 與審查 PR、保持每個 hook 相容新版 React 與瀏覽器、撰寫測試與互動式文件，以及支付基礎設施費用（CI、搜尋、託管）。沒有中間環節——100% 投入開發。
 
 感謝你讓開源永續。🥰
+
+<script>
+// 實時安裝量（API 不可達時回退到上文的靜態數字）
+fetch("https://api.npmjs.org/downloads/point/last-month/@reactuses/core")
+  .then(function (r) { return r.json(); })
+  .then(function (d) {
+    var el = document.getElementById("live-npm-dl");
+    if (el && d && d.downloads) el.textContent = Math.round(d.downloads / 10000) + " 萬";
+  })
+  .catch(function () {});
+</script>

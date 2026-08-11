@@ -27,7 +27,12 @@
 
 ## Sponsors
 
-**`@reactuses/core` is installed 1.6M+ times every month.** Sponsoring ReactUse puts your product in front of the React developers who ship with it — your logo right here at the top of the README, and on [reactuse.com/sponsor](https://reactuse.com/sponsor/).
+Sponsoring ReactUse puts your product in front of the React developers who install `@reactuses/core` every month — your logo right here at the top of the README, and on [reactuse.com/sponsor](https://reactuse.com/sponsor/). Live reach:
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@reactuses/core"><img alt="npm installs per month" src="https://img.shields.io/npm/dm/@reactuses/core?style=for-the-badge&labelColor=24292e&color=50a36f&label=npm%20installs%2Fmonth"></a>
+  <a href="https://github.com/childrentime/reactuse/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/childrentime/reactuse?style=for-the-badge&labelColor=24292e&color=70a5fd&label=github%20stars"></a>
+</p>
 
 <p align="center">
   <a href="https://github.com/sponsors/childrentime"><img alt="Gold Sponsor — this spot is open" src="https://img.shields.io/badge/%F0%9F%A5%87%20Gold-your%20logo%20here-FFD700?style=for-the-badge&labelColor=24292e"></a>

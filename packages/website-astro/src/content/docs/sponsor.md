@@ -9,7 +9,7 @@ ReactUse is free, MIT-licensed and maintained in spare time. Sponsorship is what
 
 ## Why sponsor
 
-- **1.6M+ npm installs per month** of [`@reactuses/core`](https://www.npmjs.com/package/@reactuses/core) — your logo reaches developers at the exact moment they're building
+- **<span id="live-npm-dl">1.6M+</span> npm installs per month** of [`@reactuses/core`](https://www.npmjs.com/package/@reactuses/core) — your logo reaches developers at the exact moment they're building
 - **100+ production-ready hooks**, used in production at PDD, Shopee and Ctrip
 - **reactuse.com appears in 100k+ Google searches every month** — the docs are a daily reference, not a one-time visit
 - A **developer-only audience**: the people who see your logo choose libraries, tools and infrastructure for a living
@@ -48,3 +48,14 @@ Every slot above is currently **open** — the first Gold sponsor gets the top o
 Sponsorship directly funds maintenance: fixing bugs and reviewing PRs, keeping every hook compatible with new React and browser releases, writing tests and interactive documentation, and covering infrastructure (CI, search, hosting). No middlemen — 100% goes to development.
 
 Thank you for keeping open source sustainable. 🥰
+
+<script>
+// Live install count (falls back to the static figure above if the API is unreachable)
+fetch("https://api.npmjs.org/downloads/point/last-month/@reactuses/core")
+  .then(function (r) { return r.json(); })
+  .then(function (d) {
+    var el = document.getElementById("live-npm-dl");
+    if (el && d && d.downloads) el.textContent = (d.downloads / 1e6).toFixed(1) + "M+";
+  })
+  .catch(function () {});
+</script>
