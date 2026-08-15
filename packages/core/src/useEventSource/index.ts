@@ -15,6 +15,7 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
   const [event, setEvent] = useState<string | null>(null)
   const [lastEventId, setLastEventId] = useState<string | null>(null)
   const retries = useRef(0)
+  const reconnectTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const explicitlyClosed = useRef(false)
   const eventSourceRef = useRef<EventSource | null>(null)
   const eventListenerRef = useRef<Map<string, ((event: MessageEvent<any>) => void)>>()
@@ -35,6 +36,10 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
 
   const close = useCallback((explicit: boolean = false) => {
     setStatus('DISCONNECTED')
+    if (reconnectTimer.current) {
+      clearTimeout(reconnectTimer.current)
+      reconnectTimer.current = null
+    }
     clean()
     eventSourceRef.current?.close()
     eventSourceRef.current = null
@@ -45,10 +50,11 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
     close(true)
   }, [close])
 
-  const open = useEvent(() => {
+  // internal (re)connect: does NOT reset the retry counter, so
+  // `autoReconnect.retries` actually caps consecutive failed attempts
+  const connect = useEvent(() => {
     close()
     setStatus('CONNECTING')
-    retries.current = 0
 
     if (!eventSourceRef.current) {
       eventSourceRef.current = new EventSource(url, {
@@ -61,6 +67,8 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
     es.onopen = () => {
       setStatus('CONNECTED')
       setError(null)
+      // a successful connection resets the consecutive-failure count
+      retries.current = 0
     }
 
     es.onmessage = ev => {
@@ -87,7 +95,7 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
             && (maxRetries < 0 || retries.current < maxRetries))
           || (typeof maxRetries === 'function' && maxRetries())
         ) {
-          setTimeout(open, delay)
+          reconnectTimer.current = setTimeout(connect, delay)
         }
         else {
           onFailed?.()
@@ -105,6 +113,12 @@ export const useEventSource: UseEventSource = <Events extends string[]>(
       es.addEventListener(name, handler)
       listeners?.set(name, handler)
     })
+  })
+
+  // public open: a fresh user-initiated connection starts the retry budget over
+  const open = useEvent(() => {
+    retries.current = 0
+    connect()
   })
 
   useEffect(() => {
