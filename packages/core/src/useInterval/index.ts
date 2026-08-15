@@ -39,7 +39,9 @@ export const useInterval: UseInterval = (
   })
 
   useEffect(() => {
-    if (immediate) {
+    // `delay === null` means "paused" — an immediate call while paused would
+    // fire the callback exactly when the caller asked for silence.
+    if (immediate && delay !== null) {
       savedCallback.current()
     }
     if (controls) {

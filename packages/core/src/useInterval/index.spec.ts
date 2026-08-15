@@ -46,6 +46,21 @@ describe('useInterval', () => {
     expect(callback).toHaveBeenCalledTimes(5)
   })
 
+  it('immediate should not fire while paused (delay === null)', () => {
+    const callback = jest.fn()
+    const { rerender } = renderHook(
+      ({ delay }: { delay: number | null }) => useInterval(callback, delay, { immediate: true }),
+      { initialProps: { delay: 20 as number | null } },
+    )
+    expect(callback).toHaveBeenCalledTimes(1)
+    rerender({ delay: null })
+    expect(callback).toHaveBeenCalledTimes(1)
+    jest.advanceTimersByTime(100)
+    expect(callback).toHaveBeenCalledTimes(1)
+    rerender({ delay: 20 })
+    expect(callback).toHaveBeenCalledTimes(2)
+  })
+
   it('should init hook with default delay', () => {
     const callback = jest.fn()
     renderHook(() => useInterval(callback))
