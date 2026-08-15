@@ -5,6 +5,33 @@ description: "Changelog for @reactuses/core — release notes and version histor
 ---
 # ChangeLog
 
+## 6.5.1(Aug 15, 2026)
+
+- fix(useInterval): don't run the `immediate` callback while paused (#128). `immediate: true` invoked the callback inside the effect unconditionally, so a `delay` flipping to `null` — the documented "stop the timer" value — still ran it once at the moment of pausing (e.g. a poll firing exactly when `visible && online ? 10_000 : null` went offline). The immediate call is now guarded on `delay !== null`; `controls: true` behaviour is unchanged. Thanks @vincerubinetti
+- fix(useEventSource): honor `autoReconnect.retries` and cancel a pending reconnect on unmount. `open()` reset the retry counter on every call, but the reconnect path was `setTimeout(open, delay)`, so each retry wiped the counter and `retries` could never be exceeded (a flapping server retried forever and `onFailed` never fired). Reconnects now go through an internal `connect()` that keeps the count; a successful `onopen` resets it; the public `open()` starts a fresh budget. The reconnect timer is tracked and cleared from `close()`, so unmounting (or an explicit `close()`) during the delay no longer spawns a fresh `EventSource` for a component that's gone
+- docs(useInterval): describe what `immediate` and `controls` actually do — `immediate` runs the callback once whenever the interval starts (mount and every `delay` change, never while `null`); `controls` switches to manual `resume()` / `pause()` instead of auto-starting from `delay` (#128)
+
+## 6.5.0(Aug 5, 2026)
+
+- build(core): ship per-module `dist` (bunchee → tsdown, `unbundle`) so barrel-file optimizers such as Next.js `optimizePackageImports` can unroll `@reactuses/core` imports (#216). A Next.js dev page importing only `useDebounce` previously pulled every hook into one 552 kB chunk; it now loads just `useDebounce` and its dependency chain (64 kB, −88%). Every hook is also importable as a subpath (`@reactuses/core/useDebounce`) via a new `./*` export; the CJS entry moves to `./dist/index.js` / `./dist/index.d.ts`
+
+## 6.4.2(Jul 31, 2026)
+
+- fix(useOrientation): correct the inverted `isBrowser` guards in `lockOrientation`/`unlockOrientation` (#215). Both early-returned *in* the browser and only ran during SSR, making them no-ops everywhere it mattered; the guards now return when there is no browser. Thanks @ostapondo
+- fix(useInterval): clear a manually resumed interval on unmount (#212). With `controls: true` the effect registered no cleanup, so an interval started through `resume()` kept firing after the component unmounted; the cleanup now runs in its own mount-scoped effect. `resume()` also clears a running timer before starting a new one, so calling it twice no longer leaks an interval that `pause()` can't reach. Thanks @ostapondo
+- fix(useMicrophone): reset `level` to 0 on `stop()` (#213). The rAF loop is the only writer of `level`, so a meter bound to it stayed frozen at the last reading long after the microphone was released. Thanks @ostapondo
+- fix(useElementByPoint): avoid a re-render on every frame in `multiple` mode (#214). `elementsFromPoint` allocates a fresh array on every call, so the hit list is now compared element-by-element and the previous state is kept when nothing changed. Thanks @ostapondo
+
+## 6.4.1(Jul 28, 2026)
+
+- fix(useScriptTag): handle the rejection from the `immediate` auto-load (#206). The auto-load called `load()` as a bare statement, so when a script failed to load — blocked by an ad blocker, offline, 404 — the rejected promise reached `window.onunhandledrejection` and got reported by error trackers. It now attaches a no-op catch; `status === 'error'` remains the reporting channel, and an explicit `load()` still rejects for callers that hold the promise themselves. Thanks @Faithfinder
+
+## 6.3.0(Mar 24, 2026)
+
+- refactor(createStorage): replace `useState` + `useDeepCompareEffect` with `useSyncExternalStore`, eliminating CSR first-render flicker, SSR hydration mismatches, and stale cross-tab reads (#195)
+- fix(createStorage): fix stale closure in consecutive functional updates within the same synchronous batch — `updateState` now reads from `getSnapshot()` instead of the render-time `state`
+- test(useLocalStorage): add 12 new test cases covering cross-tab sync, `storage.clear()`, `listenToStorageChanges` toggle, three-state semantics, `onError`, `mountStorageValue`, and consecutive functional updates
+
 ## 6.1.12(Mar 10, 2026)
 
 - fix(useGeolocation): make useSupported check more robust

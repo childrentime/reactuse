@@ -14,8 +14,8 @@
 
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
-|immediate|Whether to execute immediately.|boolean |`-`|
-|controls|Whether to control execution.|boolean |`-`|
+|immediate|Whether to run the callback once immediately when the interval starts (on mount and on every `delay` change). Not run while `delay` is `null` (paused).|boolean |`-`|
+|controls|Whether to control the interval manually with the returned `resume()` / `pause()` instead of starting it automatically from `delay`. It is still cleared on unmount.|boolean |`-`|
 
 ### Pausable
 

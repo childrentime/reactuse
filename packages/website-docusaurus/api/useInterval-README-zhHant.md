@@ -14,8 +14,8 @@
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|immediate|是否立即执行。|boolean |`-`|
-|controls|是否控制执行。|boolean |`-`|
+|immediate|是否在定时器启动时（挂载以及每次 `delay` 变化时）立即执行一次回调。`delay` 为 `null`（暂停）时不会执行。|boolean |`-`|
+|controls|是否改为手动控制：不再根据 `delay` 自动启动，而是通过返回的 `resume()` / `pause()` 启停。卸载时仍会自动清除。|boolean |`-`|
 
 ### Pausable
 

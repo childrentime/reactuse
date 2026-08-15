@@ -28,13 +28,15 @@ export type UseInterval = (
  */
 export interface UseIntervalOptions {
   /**
-   * @zh 是否立即执行。
-   * @en Whether to execute immediately.
+   * @zh 是否在定时器启动时（挂载以及每次 `delay` 变化时）立即执行一次回调。`delay` 为 `null`（暂停）时不会执行。
+   * @zh-Hant 是否在計時器啟動時（掛載以及每次 `delay` 變化時）立即執行一次回呼。`delay` 為 `null`（暫停）時不會執行。
+   * @en Whether to run the callback once immediately when the interval starts (on mount and on every `delay` change). Not run while `delay` is `null` (paused).
    */
   immediate?: boolean
   /**
-   * @zh 是否控制执行。
-   * @en Whether to control execution.
+   * @zh 是否改为手动控制：不再根据 `delay` 自动启动，而是通过返回的 `resume()` / `pause()` 启停。卸载时仍会自动清除。
+   * @zh-Hant 是否改為手動控制：不再根據 `delay` 自動啟動，而是透過回傳的 `resume()` / `pause()` 啟停。卸載時仍會自動清除。
+   * @en Whether to control the interval manually with the returned `resume()` / `pause()` instead of starting it automatically from `delay`. It is still cleared on unmount.
    */
   controls?: boolean
 }

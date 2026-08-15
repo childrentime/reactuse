@@ -7,6 +7,16 @@ description: >-
 ---
 # ChangeLog
 
+## 6.5.1(Aug 15, 2026)
+
+- fix(useInterval): don't run the `immediate` callback while paused (#128). `immediate: true` invoked the callback inside the effect unconditionally, so a `delay` flipping to `null` — the documented "stop the timer" value — still ran it once at the moment of pausing (e.g. a poll firing exactly when `visible && online ? 10_000 : null` went offline). The immediate call is now guarded on `delay !== null`; `controls: true` behaviour is unchanged. Thanks @vincerubinetti
+- fix(useEventSource): honor `autoReconnect.retries` and cancel a pending reconnect on unmount. `open()` reset the retry counter on every call, but the reconnect path was `setTimeout(open, delay)`, so each retry wiped the counter and `retries` could never be exceeded (a flapping server retried forever and `onFailed` never fired). Reconnects now go through an internal `connect()` that keeps the count; a successful `onopen` resets it; the public `open()` starts a fresh budget. The reconnect timer is tracked and cleared from `close()`, so unmounting (or an explicit `close()`) during the delay no longer spawns a fresh `EventSource` for a component that's gone
+- docs(useInterval): describe what `immediate` and `controls` actually do — `immediate` runs the callback once whenever the interval starts (mount and every `delay` change, never while `null`); `controls` switches to manual `resume()` / `pause()` instead of auto-starting from `delay` (#128)
+
+## 6.5.0(Aug 5, 2026)
+
+- build(core): ship per-module `dist` (bunchee → tsdown, `unbundle`) so barrel-file optimizers such as Next.js `optimizePackageImports` can unroll `@reactuses/core` imports (#216). A Next.js dev page importing only `useDebounce` previously pulled every hook into one 552 kB chunk; it now loads just `useDebounce` and its dependency chain (64 kB, −88%). Every hook is also importable as a subpath (`@reactuses/core/useDebounce`) via a new `./*` export; the CJS entry moves to `./dist/index.js` / `./dist/index.d.ts`
+
 ## 6.4.2(Jul 31, 2026)
 
 - fix(useOrientation): correct the inverted `isBrowser` guards in `lockOrientation`/`unlockOrientation` (#215). Both early-returned *in* the browser and only ran during SSR, making them no-ops everywhere it mattered; the guards now return when there is no browser. Thanks @ostapondo
