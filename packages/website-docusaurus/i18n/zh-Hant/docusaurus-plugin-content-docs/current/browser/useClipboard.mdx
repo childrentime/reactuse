@@ -7,14 +7,19 @@ description: 將文本複製到用戶的剪貼板。 本文介紹其用法、最
 
 將文本複製到用戶的剪貼板
 
+`useClipboard` 回傳已複製的文字、複製函式，以及表示 Clipboard API 是否可用的 `isSupported` 標誌。沒有該 API 時，複製會降級到 `document.execCommand("copy")`；`copy` 和 `cut` 事件會讀取目前選取範圍。
 
-## Usage
+### 注意事項
+
+- `isSupported` 只表示 `navigator.clipboard` 是否可用。
+- 回傳元組為 `[text, copy, isSupported]`。
+
+## 用法
 
 ```tsx live
-
 function Demo() {
   const [value, setValue] = useState("");
-  const [text, copy] = useClipboard();
+  const [text, copy, isSupported] = useClipboard();
   const permissionRead = usePermission("clipboard-read");
   const permissionWrite = usePermission("clipboard-write");
   return (
@@ -22,6 +27,9 @@ function Demo() {
       <p>
         剪貼板權限：讀取 <b>{permissionRead}</b> | 寫入&nbsp;
         <b>{permissionWrite}</b>
+      </p>
+      <p>
+        Clipboard API 支援: <b>{isSupported ? "是" : "否"}</b>
       </p>
       <p>
         當前複製的內容：<code>{text || "無"}</code>

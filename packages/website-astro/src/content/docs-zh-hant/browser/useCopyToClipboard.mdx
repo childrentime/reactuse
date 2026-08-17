@@ -1,36 +1,36 @@
 ---
 title: useCopyToClipboard – Browser Hook 使用方法與示例 (useClipboard 的別名)
 sidebar_label: useCopyToClipboard
-description: "useCopyToClipboard 是一個用於將文字複製到剪貼簿的 React hook，是 useClipboard 的別名，回傳已複製的值以及一個 copy 函式。"
+description: "useCopyToClipboard 是 useClipboard 的別名，使用相同的實作，回傳已複製的文字、複製函式和 Clipboard API 支援狀態。"
 ---
 # useCopyToClipboard
 
 將文本複製到用戶的剪貼板。
 
 :::info
-`useCopyToClipboard` 是 [`useClipboard`](/zh-Hant/browser/useclipboard) 的別名。它們具有相同的功能和 API。
+`useCopyToClipboard` 是 [`useClipboard`](/zh-Hant/browser/useclipboard) 的別名。它使用相同的實作，回傳 `[text, copy, isSupported]`；完整的 Clipboard API 和舊版複製降級行為請參閱 `useClipboard`。
 :::
 
-`useCopyToClipboard` 封裝了 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)，提供一個包含最近複製文字和 `copy` 函式的便捷元組。這是 `useClipboard` 的直接替代別名，你可以根據程式碼庫的命名慣例選擇使用任一名稱。完整詳情請參閱 `useClipboard`。
+`useCopyToClipboard` 透過與 `useClipboard` 相同的實作封裝 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)，回傳已複製的文字、`copy` 函式和 `isSupported` 狀態。
 
 ### 使用場景
 
 - 當你偏好 `useCopyToClipboard` 命名慣例時，新增「複製到剪貼簿」功能
 - 從使用此命名模式的其他 hook 函式庫遷移
-- 任何適用 `useClipboard` 的場景——兩個 hooks 可互換使用
+- 透過這個關聯的 hook 名稱使用 `useClipboard` 的行為
 
 ### 注意事項
 
-- **SSR 安全**：在伺服器端渲染時回傳空字串和空操作函式。伺服器上不會存取 `navigator`。
-- **瀏覽器支援**：需要 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)（所有現代瀏覽器均支援）。
-- **權限**：某些瀏覽器需要使用者授權才能存取剪貼簿。可搭配 `usePermission` 檢查 `clipboard-read` 和 `clipboard-write` 狀態。
+- **SSR 安全**：在伺服器端渲染時回傳空字串、複製函式和 `false`。伺服器上不會存取 `navigator`。
+- **瀏覽器支援**：`isSupported` 只表示 `navigator.clipboard` 是否可用。需要時，複製仍會降級到 `document.execCommand("copy")`。
+- **權限**：某些瀏覽器需要使用者授權才能存取 Clipboard API。可搭配 `usePermission` 檢查 `clipboard-read` 和 `clipboard-write` 狀態。
 
 ## 用法
 
 ```tsx live
 function Demo() {
   const [value, setValue] = useState("");
-  const [text, copy] = useCopyToClipboard();
+  const [text, copy, isSupported] = useCopyToClipboard();
   const permissionRead = usePermission("clipboard-read");
   const permissionWrite = usePermission("clipboard-write");
   return (
@@ -38,6 +38,9 @@ function Demo() {
       <p>
         剪貼板權限: 讀取 <b>{permissionRead}</b> | 寫入&nbsp;
         <b>{permissionWrite}</b>
+      </p>
+      <p>
+        Clipboard API 支援: <b>{isSupported ? "是" : "否"}</b>
       </p>
       <p>
         當前複製的內容: <code>{text || "無"}</code>

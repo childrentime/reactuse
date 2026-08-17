@@ -632,7 +632,7 @@ Import: `import { useBroadcastChannel } from '@reactuses/core'`
 
 #### useClipboard
 
-useClipboard is a React hook to read from and write to the system clipboard via the Clipboard API, returning the copied text and a copy function.
+useClipboard is a React hook to read from and write to the system clipboard via the Clipboard API, returning the copied text, a copy function, and Clipboard API support status.
 
 Copy text to a user's clipboard
 
@@ -650,7 +650,7 @@ Import: `import { useColorMode } from '@reactuses/core'`
 
 #### useCopyToClipboard
 
-useCopyToClipboard is a React hook to copy text to the clipboard — an alias for useClipboard, returning the copied value and a copy function.
+useCopyToClipboard is a React hook alias for useClipboard, using the same implementation and returning the copied text, a copy function, and Clipboard API support status.
 
 Copy text to a user's clipboard.
 
@@ -1110,4 +1110,4 @@ PDD (Pinduoduo), Shopee, Ctrip, Bambu Lab
 Unlicense - Use freely without restrictions
 
 ---
-Generated: 2026-08-11T02:11:13.001Z | Total Hooks: 114
+Generated: 2026-08-17T07:54:00.211Z | Total Hooks: 114
