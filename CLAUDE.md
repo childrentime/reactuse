@@ -12,6 +12,17 @@ pnpm lint         # eslint
 pnpm test         # vitest
 ```
 
+### Generated API docs
+
+`packages/website-astro/api/{hook}-README{,-zhHans,-zhHant}.md` are **generated** from each
+hook's `interface.ts` by `pnpm --filter @reactuses/core gend`. The Astro site splices them
+into every doc page at the `%%API%%` marker (`src/plugins/remark-api-inject.mjs`), and
+`packages/mcp` reads them too.
+
+**If you change an `interface.ts`, re-run `gend` and commit the result.** The remark plugin
+drops the marker silently when a file is missing or stale, so the published API table just
+keeps showing the old signature with no build error.
+
 ## AI Agent System (`.claude/`)
 
 This repo carries a small, Chromium-inspired AI agent system under `.claude/` — sized for a
@@ -62,7 +73,6 @@ Categories: `browser`, `effect`, `element`, `state`, `integrations`
 ### Writing blog posts
 
 - Blog posts live in `packages/website-astro/src/content/blog/` (English), with translations in `blog-zh-hans/` and `blog-zh-hant/`.
-- The legacy Docusaurus blog is at `packages/website-docusaurus/blog/`.
 
 ### Writing blog post titles (SEO — for NEW posts only)
 

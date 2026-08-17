@@ -8,7 +8,6 @@ export default ririd(
     formatters: true,
     ignores: [
       'scripts/templates/**',
-      'packages/website-docusaurus/**',
       '**/.astro/**',
       '**/*.test.ts',
       '**/*.md',

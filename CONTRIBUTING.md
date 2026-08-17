@@ -36,7 +36,7 @@ packages is divided into two parts.
 ```md
 packages
 core/ - the core hook package
-website-docusaurus/ - the document package
+website-astro/ - the document site (reactuse.com)
 ```
 
 ### Creating a new hook

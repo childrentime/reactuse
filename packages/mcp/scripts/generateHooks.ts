@@ -13,7 +13,7 @@ export interface HookData {
 const REPO_ROOT = path.resolve(__dirname, '../../..')
 const REGISTRY_PATH = path.join(REPO_ROOT, 'scripts/hook-registry.json')
 const ASTRO_DOCS = path.join(REPO_ROOT, 'packages/website-astro/src/content/docs')
-const API_DIR = path.join(REPO_ROOT, 'packages/website-docusaurus/api')
+const API_DIR = path.join(REPO_ROOT, 'packages/website-astro/api')
 
 const aliases: Record<string, string> = {
   useClickAway: 'useClickOutside',

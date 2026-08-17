@@ -1,7 +1,7 @@
 /**
  * Remark plugin: replaces %%API%% placeholders with auto-generated API docs.
  *
- * Reads the API markdown from packages/website-docusaurus/api/ directory
+ * Reads the API markdown from the packages/website-astro/api/ directory
  * and injects it into the document AST.
  */
 import fs from 'node:fs'
@@ -17,10 +17,7 @@ const aliases = {
 }
 
 // API docs directory (relative to project root)
-const API_DIR = path.resolve(
-  process.cwd(),
-  '../website-docusaurus/api',
-)
+const API_DIR = path.resolve(process.cwd(), 'api')
 
 export function remarkApiInject() {
   return (tree, file) => {
