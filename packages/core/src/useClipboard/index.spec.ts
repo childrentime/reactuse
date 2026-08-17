@@ -5,15 +5,22 @@ import { useClipboard } from '.'
 describe('useClipboard', () => {
   const originalClipboard = navigator.clipboard
   const originalExecCommand = document.execCommand
+  let selectedText = ''
 
   beforeEach(() => {
+    selectedText = ''
     Object.defineProperty(navigator, 'clipboard', {
       configurable: true,
       value: undefined,
     })
     Object.defineProperty(document, 'execCommand', {
       configurable: true,
-      value: jest.fn(() => true),
+      value: jest.fn(() => {
+        const textarea = document.querySelector('textarea')
+        textarea?.dispatchEvent(new Event('copy', { bubbles: true }))
+        selectedText = ''
+        return true
+      }),
     })
     jest.spyOn(document, 'hasFocus').mockReturnValue(true)
   })
@@ -38,43 +45,64 @@ describe('useClipboard', () => {
     })
   })
 
-  it('copies with the legacy command when Clipboard API is unavailable', async () => {
+  it('keeps the synchronous selection from an execCommand copy event', async () => {
     const execCommand = document.execCommand as jest.Mock
+    selectedText = 'selection snapshot'
+    jest.spyOn(document, 'getSelection').mockReturnValue({
+      toString: () => selectedText,
+    } as Selection)
     const { result } = renderHook(() => useClipboard())
 
     await act(async () => {
-      await result.current[1]('copied text')
+      await result.current[1]('copy argument')
     })
 
     expect(result.current[2]).toBe(false)
     expect(execCommand).toHaveBeenCalledWith('copy')
-    expect(result.current[0]).toBe('copied text')
+    expect(result.current[0]).toBe('selection snapshot')
     expect(document.querySelectorAll('textarea')).toHaveLength(0)
   })
-
-  it('reads selected text only from copy events without Clipboard API', async () => {
+  it('keeps selected text from a user copy event after selection is cleared', async () => {
     const getSelection = jest
       .spyOn(document, 'getSelection')
-      .mockReturnValue({ toString: () => 'selected text' } as Selection)
+      .mockReturnValue({ toString: () => selectedText } as Selection)
     const { result } = renderHook(() => useClipboard())
 
-    expect(getSelection).not.toHaveBeenCalled()
-
+    selectedText = 'selected copy text'
     await act(async () => {
       window.dispatchEvent(new Event('copy'))
+      selectedText = ''
     })
 
     await waitFor(() => {
-      expect(result.current[0]).toBe('selected text')
+      expect(result.current[0]).toBe('selected copy text')
     })
     expect(getSelection).toHaveBeenCalled()
   })
 
-  it('falls back to selected text when Clipboard API reading fails during copy', async () => {
+  it('keeps selected text from a user cut event after selection is cleared', async () => {
+    const getSelection = jest
+      .spyOn(document, 'getSelection')
+      .mockReturnValue({ toString: () => selectedText } as Selection)
+    const { result } = renderHook(() => useClipboard())
+
+    selectedText = 'selected cut text'
+    await act(async () => {
+      window.dispatchEvent(new Event('cut'))
+      selectedText = ''
+    })
+
+    await waitFor(() => {
+      expect(result.current[0]).toBe('selected cut text')
+    })
+    expect(getSelection).toHaveBeenCalled()
+  })
+
+  it('keeps selected text when Clipboard API reading rejects during copy', async () => {
     const readText = jest.fn().mockRejectedValue(new Error('permission denied'))
     const getSelection = jest
       .spyOn(document, 'getSelection')
-      .mockReturnValue({ toString: () => 'selected after failure' } as Selection)
+      .mockReturnValue({ toString: () => selectedText } as Selection)
     jest.spyOn(console, 'warn').mockImplementation(() => {})
     Object.defineProperty(navigator, 'clipboard', {
       configurable: true,
@@ -87,8 +115,10 @@ describe('useClipboard', () => {
     })
     expect(getSelection).not.toHaveBeenCalled()
 
+    selectedText = 'selected after failure'
     await act(async () => {
       window.dispatchEvent(new Event('copy'))
+      selectedText = ''
     })
 
     await waitFor(() => {

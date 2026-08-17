@@ -64,15 +64,14 @@ export const useClipboard: UseClipboard = (): readonly [
     }
   }, [])
 
-  const updateSelectedText = useCallback(() => {
-    setText(defaultDocument?.getSelection?.()?.toString() ?? '')
-  }, [])
-
-  const updateTextFromEvent = useCallback(async () => {
-    if (!await updateText()) {
-      updateSelectedText()
-    }
-  }, [updateSelectedText, updateText])
+  const updateTextFromEvent = useCallback(() => {
+    // Read selection before an async clipboard read or cut can clear it.
+    const selected = defaultDocument?.getSelection?.()?.toString() ?? ''
+    void updateText().then((ok) => {
+      if (!ok && selected)
+        setText(selected)
+    })
+  }, [updateText])
 
   useEventListener('copy', updateTextFromEvent)
   useEventListener('cut', updateTextFromEvent)

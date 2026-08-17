@@ -8,19 +8,15 @@ description: 将文本复制到用户的剪贴板。useClipboard 的别名。学
 将文本复制到用户的剪贴板。
 
 :::info 别名
-`useCopyToClipboard` 是 [`useClipboard`](/zh-Hans/browser/useClipboard) 的别名，并使用相同的实现。它返回 `[text, copy, isSupported]`；Clipboard API 和旧版复制降级行为请参阅 `useClipboard`。
+`useCopyToClipboard` 是 [`useClipboard`](/zh-Hans/browser/useClipboard) 的别名。它们具有相同的功能和 API。
 :::
-
-### 注意事项
-
-- `isSupported` 只表示 `navigator.clipboard` 是否可用。
 
 ## 用法
 
 ```tsx live
 function Demo() {
   const [value, setValue] = useState("");
-  const [text, copy, isSupported] = useCopyToClipboard();
+  const [text, copy] = useCopyToClipboard();
   const permissionRead = usePermission("clipboard-read");
   const permissionWrite = usePermission("clipboard-write");
   return (
@@ -28,9 +24,6 @@ function Demo() {
       <p>
         剪贴板权限: 读取 <b>{permissionRead}</b> | 写入&nbsp;
         <b>{permissionWrite}</b>
-      </p>
-      <p>
-        Clipboard API 支持: <b>{isSupported ? "是" : "否"}</b>
       </p>
       <p>
         当前复制的内容: <code>{text || "无"}</code>
