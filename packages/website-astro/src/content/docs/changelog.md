@@ -5,6 +5,10 @@ description: "Changelog for @reactuses/core — release notes and version histor
 ---
 # ChangeLog
 
+## 6.5.2(Aug 17, 2026)
+
+- fix(useClipboard): work in non-secure contexts, and expose Clipboard API support (#218, #219). `navigator.clipboard` is `undefined` whenever `window.isSecureContext` is false — plain `http://`, LAN IPs, some embedded webviews — so `copy()` rejected and the hook was unusable there. Copying now falls back to a temporary `<textarea>` plus `document.execCommand('copy')`, and `copy`/`cut` events fall back to the current document selection when a Clipboard API read is unavailable or denied. The returned tuple gains a third element, `isSupported`, reporting whether `navigator.clipboard` exists — the copy fallback works either way, so treat it as a capability hint rather than a gate. The selection is captured synchronously inside the event, because by the time an awaited continuation runs the browser has already cleared it on `cut` (Firefox) or torn down the fallback textarea. Verified against Chromium, Firefox and WebKit. Thanks @tanukihee
+
 ## 6.5.1(Aug 15, 2026)
 
 - fix(useInterval): don't run the `immediate` callback while paused (#128). `immediate: true` invoked the callback inside the effect unconditionally, so a `delay` flipping to `null` — the documented "stop the timer" value — still ran it once at the moment of pausing (e.g. a poll firing exactly when `visible && online ? 10_000 : null` went offline). The immediate call is now guarded on `delay !== null`; `controls: true` behaviour is unchanged. Thanks @vincerubinetti
