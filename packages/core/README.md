@@ -53,7 +53,7 @@ const Demo = () => {
 ## Hook Categories
 
 <details>
-<summary><strong>Browser (48 hooks)</strong></summary>
+<summary><strong>Browser (50 hooks)</strong></summary>
 
 useClipboard, useColorMode, useCookie, useDarkMode, useDocumentVisibility, useEyeDropper, useFavicon, useFileDialog, useFullscreen, useMediaDevices, useMediaQuery, useOnline, usePermission, usePlatform, usePreferredColorScheme, usePreferredContrast, usePreferredDark, usePreferredLanguages, useScreenSafeArea, useScriptTag, useTextDirection, useTitle, useWebNotification, useBroadcastChannel, useEventSource, useFetchEventSource, useGeolocation, useIdle, useKeyModifier, useMobileLandscape, useNetwork, useOrientation, usePageLeave, useSpeechRecognition, useWindowFocus, useWindowScroll, useWindowSize, and more...
 
@@ -77,6 +77,13 @@ useClickOutside, useDraggable, useDropZone, useElementBounding, useElementByPoin
 <summary><strong>Effect (20 hooks)</strong></summary>
 
 useAsyncEffect, useCustomCompareEffect, useDeepCompareEffect, useEventListener, useInterval, useMount, useRafFn, useTimeout, useTimeoutFn, useUnmount, useUpdate, and more...
+
+</details>
+
+<details>
+<summary><strong>Integrations (1 hook)</strong></summary>
+
+useQRCode
 
 </details>
 

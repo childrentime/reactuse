@@ -90,7 +90,7 @@ const Demo = () => {
 ## Hook Categories
 
 <details>
-<summary><strong>Browser (48 hooks)</strong></summary>
+<summary><strong>Browser (50 hooks)</strong></summary>
 
 useClipboard, useColorMode, useCookie, useDarkMode, useDocumentVisibility, useEyeDropper, useFavicon, useFileDialog, useFullscreen, useMediaDevices, useMediaQuery, useOnline, usePermission, usePlatform, usePreferredColorScheme, usePreferredContrast, usePreferredDark, usePreferredLanguages, useScreenSafeArea, useScriptTag, useTextDirection, useTitle, useWebNotification, useBroadcastChannel, useEventSource, useFetchEventSource, useGeolocation, useIdle, useKeyModifier, useMobileLandscape, useNetwork, useOrientation, usePageLeave, useSpeechRecognition, useWindowFocus, useWindowScroll, useWindowSize, and more...
 
@@ -114,6 +114,13 @@ useClickOutside, useDraggable, useDropZone, useElementBounding, useElementByPoin
 <summary><strong>Effect (20 hooks)</strong></summary>
 
 useAsyncEffect, useCustomCompareEffect, useDeepCompareEffect, useEventListener, useInterval, useMount, useRafFn, useTimeout, useTimeoutFn, useUnmount, useUpdate, and more...
+
+</details>
+
+<details>
+<summary><strong>Integrations (1 hook)</strong></summary>
+
+useQRCode
 
 </details>
 
@@ -163,4 +170,4 @@ This project is heavily inspired by the following awesome projects.
 
 ## Support ReactUse
 
-ReactUse is free and MIT-licensed, maintained in spare time. If it saved you a day of work, consider [becoming a sponsor](https://github.com/sponsors/childrentime) (from $5/month) or [buying me a coffee](https://www.buymeacoffee.com/lianwenwu) — it keeps the hooks maintained and the docs interactive. 🥰
+ReactUse is free, released into the public domain under the Unlicense, and maintained in spare time. If it saved you a day of work, consider [becoming a sponsor](https://github.com/sponsors/childrentime) (from $5/month) or [buying me a coffee](https://www.buymeacoffee.com/lianwenwu) — it keeps the hooks maintained and the docs interactive. 🥰

@@ -9,9 +9,7 @@ description: Scaffold a new React hook in @reactuses/core with the repo's real c
 Use this when adding a new hook to `@reactuses/core`. It encodes how hooks are *actually*
 built in this repo today. Pair it with **hook-test** and **hook-docs** afterward.
 
-> ⚠️ **Do not run `pnpm newHook`.** `scripts/newHook.ts` is stale — it writes to
-> `packages/core/hooks/` and `packages/website/src/routes.json`, neither of which exists
-> anymore (hooks live in `packages/core/src/`). Do the steps below manually.
+> There is no scaffolding script — hooks are created by hand. Follow the steps below.
 
 ## Step 0 — Understand before writing (don't skip)
 

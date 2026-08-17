@@ -6,8 +6,12 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "conventionalCommits.scopes": [
+    "core",
     "website",
-    "core"
+    "blog",
+    "readme",
+    "mcp",
+    "skill"
   ],
   "eslint.validate": [
     "typescript",

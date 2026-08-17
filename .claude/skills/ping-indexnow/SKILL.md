@@ -31,7 +31,7 @@ reactuse.com 已在根目录托管 IndexNow key 文件 `fef79adedf094ebea713a5bc
 - `packages/website-astro/src/content/blog/2026-XX-YY-{slug}.md(x)` → `https://reactuse.com/blog/{slug}/`（slug 取 frontmatter 里的 `slug` 字段；没有就用文件名去掉日期前缀）
 - `packages/website-astro/src/content/blog-zh-hans/...` → `https://reactuse.com/zh-Hans/blog/{slug}/`
 - `packages/website-astro/src/content/blog-zh-hant/...` → `https://reactuse.com/zh-Hant/blog/{slug}/`
-- `packages/website-astro/src/content/docs/{category}/{name}.mdx` → `https://reactuse.com/{category}/{name}/`（保留原大小写；和 `scripts/hook-registry.json` 对齐）
+- `packages/website-astro/src/content/docs/{category}/{name}.mdx` → `https://reactuse.com/{category}/{name.lower()}/`（**URL 全小写**；直接取 `scripts/hook-registry.json` 的 `url` 字段最稳。camelCase 会被 edge function 301 走，白费一次配额）
 
 读 frontmatter 确认 `slug` 字段比从文件名推断更可靠。
 

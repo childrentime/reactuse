@@ -1,4 +1,4 @@
-import { dirname, resolve } from 'node:path'
+import { resolve } from 'node:path'
 import fs from 'node:fs'
 import { generateMarkdown } from '@reactuses/ts-document'
 import fg from 'fast-glob'
@@ -6,50 +6,27 @@ import type { GenerateMarkdownConfig } from '@reactuses/ts-document/lib/interfac
 
 const cwd = resolve(__dirname, '../src')
 const interfaces = fg.sync('**/interface.ts', { cwd, absolute: true })
-const config: GenerateMarkdownConfig = {
-  sourceFilesPaths: interfaces,
-  lang: 'en',
-}
 
-for (const file of interfaces) {
-  const res = generateMarkdown(file, config) as Record<string, string> | undefined
-  if (Object.keys(res ?? {}).length && res !== undefined) {
-    const content = Object.values(res).join('\n\n')
-    const temp = file.slice(0, file.lastIndexOf('/'))
-    const name = temp.slice(temp.lastIndexOf('/') + 1)
-    const doc = resolve(dirname(file), '../../../website-astro/api/', `${name}-README.md`)
-    fs.writeFileSync(doc, content)
-  }
-}
+// Consumed by the astro site's %%API%% remark plugin and by packages/mcp.
+const apiDir = resolve(__dirname, '../../website-astro/api')
 
-const cnconfig: GenerateMarkdownConfig = {
-  sourceFilesPaths: interfaces,
-  lang: 'zh',
-}
+// ts-document lang -> suffix on the generated `<hook>-README<suffix>.md`
+const locales: Array<[lang: string, suffix: string]> = [
+  ['en', ''],
+  ['zh', '-zhHans'],
+  ['zh-Hant', '-zhHant'],
+]
 
-for (const file of interfaces) {
-  const res = generateMarkdown(file, cnconfig) as Record<string, string> | undefined
-  if (Object.keys(res ?? {}).length && res !== undefined) {
-    const content = Object.values(res).join('\n\n')
-    const temp = file.slice(0, file.lastIndexOf('/'))
-    const name = temp.slice(temp.lastIndexOf('/') + 1)
-    const doc = resolve(dirname(file), '../../../website-astro/api/', `${name}-README-zhHans.md`)
-    fs.writeFileSync(doc, content)
-  }
-}
+for (const [lang, suffix] of locales) {
+  const config: GenerateMarkdownConfig = { sourceFilesPaths: interfaces, lang }
 
-const zhHantConfig: GenerateMarkdownConfig = {
-  sourceFilesPaths: interfaces,
-  lang: 'zh-Hant',
-}
+  for (const file of interfaces) {
+    const res = generateMarkdown(file, config) as Record<string, string> | undefined
+    if (!res || !Object.keys(res).length)
+      continue
 
-for (const file of interfaces) {
-  const res = generateMarkdown(file, zhHantConfig) as Record<string, string> | undefined
-  if (Object.keys(res ?? {}).length && res !== undefined) {
-    const content = Object.values(res).join('\n\n')
-    const temp = file.slice(0, file.lastIndexOf('/'))
-    const name = temp.slice(temp.lastIndexOf('/') + 1)
-    const doc = resolve(dirname(file), '../../../website-astro/api/', `${name}-README-zhHant.md`)
-    fs.writeFileSync(doc, content)
+    const dir = file.slice(0, file.lastIndexOf('/'))
+    const name = dir.slice(dir.lastIndexOf('/') + 1)
+    fs.writeFileSync(resolve(apiDir, `${name}-README${suffix}.md`), Object.values(res).join('\n\n'))
   }
 }

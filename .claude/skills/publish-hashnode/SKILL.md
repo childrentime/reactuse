@@ -245,7 +245,7 @@ opencli browser default eval '(() => {
 - **Tag 必须从下拉选** —— 自由输入的 tag publish 会卡，必须有 `aria-haspopup` 的下拉里挑现成的
 - **Slug 重复发不了** —— 同一 slug 第二次 publish 会失败。要么先在 Hashnode UI 删旧的，要么改 slug 加后缀
 - **本地 DNS 给 `gql.hashnode.com` NXDOMAIN** —— 有些路由器/DNS 服务对它有污染。浏览器走 `hashnode.com` 主域不受影响，可以无视
-- **正文里的相对链接** —— `[useToggle](/state/useToggle/)` 这种到 Hashnode 上会指到 hashnode.dev 自己。如果博客大量用站内链接，发之前 sed 把它们替换成 `https://reactuse.com/state/useToggle/`
+- **正文里的相对链接** —— `[useToggle](/state/usetoggle/)` 这种到 Hashnode 上会指到 hashnode.dev 自己。如果博客大量用站内链接，发之前 sed 把它们替换成 `https://reactuse.com/state/usetoggle/`（站内 URL 全小写，别写 camelCase）
 - **opencli ref 编号每次 state 都会变** —— 每步前重新 `state` 拿当前 ref，不要复用上一步的编号
 - **interactive 数量 > 80 时 state 可能截断** —— 用 `python3` 解析 JSON.data 拿完整字符串，或在响应里 grep 关键字
 - **正文 fill 不触发 React onChange，draft 不保存** —— 这是最隐蔽的坑。`opencli fill` 是同步 value 赋值，Hashnode auto-save 不会跑。fill 之后必须 eval 触发 input event（见步骤 4）。症状：publish 后访问公开 URL 是 Post Not Found，publication 首页也没有这篇。修复后能看到首页列表里有新文章

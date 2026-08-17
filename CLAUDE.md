@@ -9,7 +9,7 @@ ReactUse is a collection of React hooks (`@reactuses/core`). The website is buil
 ```bash
 pnpm install      # install dependencies
 pnpm lint         # eslint
-pnpm test         # vitest
+pnpm test         # jest, via @reactuses/core
 ```
 
 ### Generated API docs
@@ -127,7 +127,8 @@ After writing or editing a blog post, **you must verify all hook links**:
 
 ### Directory structure
 
-External platform copies are stored in `blog-external/` with sequential numbering:
+External platform copies are stored in `blog-external/` with sequential numbering. Note this
+directory is **gitignored** — the copies are a local staging area, not repo content:
 
 ```
 blog-external/

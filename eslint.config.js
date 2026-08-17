@@ -7,7 +7,6 @@ export default ririd(
     typescript: true,
     formatters: true,
     ignores: [
-      'scripts/templates/**',
       '**/.astro/**',
       '**/*.test.ts',
       '**/*.md',

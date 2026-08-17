@@ -118,7 +118,7 @@
     "package.json"
   ],
   "scripts": {
-    "lint": "eslint \"{hooks,tests}/**/*.{ts,tsx}\"",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "build": "esno scripts/build.ts",
     "build:tsdown": "tsdown",
     "dev": "tsdown --watch",

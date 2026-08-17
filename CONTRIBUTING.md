@@ -16,14 +16,14 @@ Thanks for being willing to contribute 🙌 If you contribute to this project, y
 > ```sh
 > git remote add upstream https://github.com/childrentime/reactuse.git
 > git fetch upstream
-> git branch --set-upstream-to=upstream/master master
+> git branch --set-upstream-to=upstream/main main
 > ```
 >
 > This will add the original repository as a "remote" called "upstream," Then
-> fetch the git information from that remote, then set your local `master`
-> branch to use the upstream master branch whenever you run `git pull`. Then you
-> can make all of your pull request branches based on this `master` branch.
-> Whenever you want to update your version of `master`, do a regular `git pull`.
+> fetch the git information from that remote, then set your local `main`
+> branch to use the upstream main branch whenever you run `git pull`. Then you
+> can make all of your pull request branches based on this `main` branch.
+> Whenever you want to update your version of `main`, do a regular `git pull`.
 
 ## Development
 
@@ -31,11 +31,13 @@ This library is a collection of React hooks so a proposal for a new hook will ne
 
 ## Project Structure
 
-packages is divided into two parts.
+packages holds four workspaces.
 
 ```md
 packages
-core/ - the core hook package
+core/         - the core hook package (@reactuses/core, published)
+mcp/          - the MCP server (@reactuses/mcp, published)
+ts-document/  - generates the API tables from each hook's interface.ts
 website-astro/ - the document site (reactuse.com)
 ```
 

@@ -24,7 +24,7 @@ Exercises: **new-hook**, **hook-test**, **hook-docs** skills + the knowledge bas
 
 ## Must not
 
-- Run `pnpm newHook` (it's stale/broken).
+- Reach for a scaffolding script — there isn't one (`pnpm newHook` was removed); hooks are written by hand.
 - Put types inline instead of in `interface.ts`.
 - Hand-roll state it could get from `useCounter`-style patterns without considering reuse.
 - Invent a category, or build a camelCase URL by hand.

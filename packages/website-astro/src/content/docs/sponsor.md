@@ -5,7 +5,7 @@ description: "Sponsor ReactUse — put your product in front of the React develo
 ---
 # Sponsor ReactUse
 
-ReactUse is free, MIT-licensed and maintained in spare time. Sponsorship is what keeps 100+ hooks maintained, SSR-safe and documented with interactive demos — and it's also the single most effective way to put your product in front of working React developers.
+ReactUse is free, released under the Unlicense and maintained in spare time. Sponsorship is what keeps 100+ hooks maintained, SSR-safe and documented with interactive demos — and it's also the single most effective way to put your product in front of working React developers.
 
 ## Why sponsor
 

@@ -5,7 +5,7 @@ description: "赞助 ReactUse——让你的产品出现在每月安装 @reactus
 ---
 # 赞助 ReactUse
 
-ReactUse 免费、MIT 协议开源，由维护者利用业余时间维护。赞助不仅支撑着 100+ hooks 的持续维护、SSR 兼容与交互式文档，也是把你的产品直接呈现给一线 React 开发者的最有效方式。
+ReactUse 免费、以 Unlicense 释入公有领域，由维护者利用业余时间维护。赞助不仅支撑着 100+ hooks 的持续维护、SSR 兼容与交互式文档，也是把你的产品直接呈现给一线 React 开发者的最有效方式。
 
 ## 为什么值得赞助
 

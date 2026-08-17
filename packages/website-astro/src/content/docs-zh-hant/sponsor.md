@@ -5,7 +5,7 @@ description: "贊助 ReactUse——讓你的產品出現在每月安裝 @reactus
 ---
 # 贊助 ReactUse
 
-ReactUse 免費、MIT 授權開源，由維護者利用業餘時間維護。贊助不僅支撐著 100+ hooks 的持續維護、SSR 相容與互動式文件，也是把你的產品直接呈現給第一線 React 開發者的最有效方式。
+ReactUse 免費、以 Unlicense 釋入公有領域，由維護者利用業餘時間維護。贊助不僅支撐著 100+ hooks 的持續維護、SSR 相容與互動式文件，也是把你的產品直接呈現給第一線 React 開發者的最有效方式。
 
 ## 為什麼值得贊助
 

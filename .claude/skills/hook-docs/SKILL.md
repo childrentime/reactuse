@@ -75,8 +75,19 @@ function Demo() {
 ## Translations
 
 The zh-Hans / zh-Hant files mirror the English structure exactly — translate the prose and
-the frontmatter `title`/`description`, keep the code demo identical. See
-`ai-multilingual-guide.md` at the repo root for tone/terminology guidance.
+the frontmatter `title`/`description`, keep the code demo identical.
+
+zh-Hans → zh-Hant is not a pure character conversion; these terms differ:
+
+| 简体 | 繁體 |     | 简体 | 繁體 |
+|------|------|-----|------|------|
+| 状态 | 狀態 |     | 默认 | 預設 |
+| 函数 | 函數 |     | 设置 | 設定 |
+| 参数 | 參數 |     | 获取 | 獲取 |
+| 组件 | 組件 |     | 监听 | 監聽 |
+| 类型 | 類型 |     | 处理 | 處理 |
+| 数组 | 數組 |     | 实例 | 實例 |
+| 对象 | 對象 |     | 管理 / 配置 | unchanged |
 
 ## After writing — regenerate the registry
 

@@ -1,5 +1,5 @@
 User-agent: *
-Disallow: /search/
+Disallow:
 
 # Allow AI crawlers for AI search citation
 User-agent: GPTBot
