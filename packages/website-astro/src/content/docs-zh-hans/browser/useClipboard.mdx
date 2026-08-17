@@ -1,14 +1,13 @@
 ---
 title: useClipboard 用法与示例
 sidebar_label: useClipboard
-description: "useClipboard 是一个 React hook，通过 Clipboard API 读取和写入系统剪贴板，返回已复制的文本和一个复制函数。"
+description: "useClipboard 是一个 React hook，通过 Clipboard API 读取和写入系统剪贴板，返回已复制的文本、复制函数和 Clipboard API 支持状态。"
 ---
 # useClipboard
 
 将文本复制到用户的剪贴板
 
-
-`useClipboard` 提供了一个简单的接口，用于通过 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) 读写系统剪贴板。它返回一个包含最近复制文本和 `copy` 函数的元组。该 hook 内部处理权限检查，适用于支持 Clipboard API 的所有现代浏览器。
+`useClipboard` 提供了一个简单的接口，用于通过 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) 读写系统剪贴板。它返回最近复制的文本、`copy` 函数，以及 Clipboard API 是否可用。Clipboard API 不可用时，复制会降级到 `document.execCommand("copy")`；`copy` 和 `cut` 事件会读取当前文本选区。
 
 ### 使用场景
 
@@ -18,17 +17,16 @@ description: "useClipboard 是一个 React hook，通过 Clipboard API 读取和
 
 ### 注意事项
 
-- **SSR 安全**：在服务端渲染期间返回空字符串和空操作函数。服务端不会访问 `navigator`。
-- **浏览器支持**：需要 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)（所有现代浏览器均支持）。在旧版浏览器中会优雅降级。
-- **权限**：部分浏览器需要用户授权才能访问剪贴板。可配合 `usePermission` 检查 `clipboard-read` 和 `clipboard-write` 的状态。
+- **SSR 安全**：在服务端渲染期间返回空字符串、复制函数和 `false`。服务端不会访问 `navigator`。
+- **浏览器支持**：`isSupported` 只表示 `navigator.clipboard` 是否可用。没有 Clipboard API 时，复制仍会尝试使用 `document.execCommand("copy")` 降级。
+- **权限**：部分浏览器需要用户授权才能访问 Clipboard API。可配合 `usePermission` 检查 `clipboard-read` 和 `clipboard-write` 的状态。
 
 ## Usage
 
 ```tsx live
-
 function Demo() {
   const [value, setValue] = useState("");
-  const [text, copy] = useClipboard();
+  const [text, copy, isSupported] = useClipboard();
   const permissionRead = usePermission("clipboard-read");
   const permissionWrite = usePermission("clipboard-write");
   return (
@@ -36,6 +34,9 @@ function Demo() {
       <p>
         剪贴板权限: 读取 <b>{permissionRead}</b> | 写入&nbsp;
         <b>{permissionWrite}</b>
+      </p>
+      <p>
+        Clipboard API 支持: <b>{isSupported ? "是" : "否"}</b>
       </p>
       <p>
         当前复制内容: <code>{text || "无"}</code>

@@ -1,36 +1,36 @@
 ---
 title: useCopyToClipboard – Browser Hook Usage & Examples (Alias for useClipboard)
 sidebar_label: useCopyToClipboard
-description: "useCopyToClipboard is a React hook to copy text to the clipboard — an alias for useClipboard, returning the copied value and a copy function."
+description: "useCopyToClipboard is a React hook alias for useClipboard, using the same implementation and returning the copied text, a copy function, and Clipboard API support status."
 ---
 # useCopyToClipboard
 
 Copy text to a user's clipboard.
 
 :::info
-`useCopyToClipboard` is an alias for [`useClipboard`](/browser/useclipboard). They have identical functionality and API.
+`useCopyToClipboard` is an alias for [`useClipboard`](/browser/useclipboard). It uses the same implementation and returns `[text, copy, isSupported]`; see `useClipboard` for the complete Clipboard API and legacy fallback behavior.
 :::
 
-`useCopyToClipboard` wraps the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) to provide a convenient tuple of the last copied text and a `copy` function. This is a drop-in alias for `useClipboard`, so you can use whichever name fits your codebase conventions. See also `useClipboard` for full details.
+`useCopyToClipboard` wraps the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) through the same implementation as `useClipboard`, returning the copied text, a `copy` function, and the `isSupported` status.
 
 ### When to Use
 
 - Adding "copy to clipboard" functionality when you prefer the `useCopyToClipboard` naming convention
 - Migrating from other hook libraries that use this naming pattern
-- Any scenario where `useClipboard` applies -- the two hooks are interchangeable
+- Any scenario where the `useClipboard` behavior is needed under this related hook name
 
 ### Notes
 
-- **SSR-safe**: Returns an empty string and a no-op function during server-side rendering. No `navigator` access occurs on the server.
-- **Browser support**: Requires the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) (supported in all modern browsers).
-- **Permissions**: Some browsers require user permission for clipboard access. Use alongside `usePermission` to check `clipboard-read` and `clipboard-write` status.
+- **SSR-safe**: Returns an empty string, a copy function, and `false` during server-side rendering. No `navigator` access occurs on the server.
+- **Browser support**: `isSupported` reports whether `navigator.clipboard` is available. Copying still falls back to `document.execCommand("copy")` when needed.
+- **Permissions**: Some browsers require user permission for Clipboard API access. Use alongside `usePermission` to check `clipboard-read` and `clipboard-write` status.
 
 ## Usage
 
 ```tsx live
 function Demo() {
   const [value, setValue] = useState("");
-  const [text, copy] = useCopyToClipboard();
+  const [text, copy, isSupported] = useCopyToClipboard();
   const permissionRead = usePermission("clipboard-read");
   const permissionWrite = usePermission("clipboard-write");
   return (
@@ -38,6 +38,9 @@ function Demo() {
       <p>
         Clipboard Permission: read <b>{permissionRead}</b> | write&nbsp;
         <b>{permissionWrite}</b>
+      </p>
+      <p>
+        Clipboard API supported: <b>{isSupported ? "yes" : "no"}</b>
       </p>
       <p>
         Current copied: <code>{text || "none"}</code>
