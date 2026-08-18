@@ -40,11 +40,13 @@ export const useScrollIntoView: UseScrollIntoView = (
     }
   }
 
-  const element = getTargetElement(targetElement)
-
   const scrollIntoView = ({
     alignment = 'start',
   }: UseScrollIntoViewAnimation = {}) => {
+    // Resolve the target when the scroll is triggered, not during render:
+    // a ref's `.current` is still null in the render that creates this closure,
+    // and attaching it doesn't re-render, so a render-time read stays stale.
+    const element = getTargetElement(targetElement)
     const parent
       = getTargetElement(scrollElement) || getScrollParent(axis, element)
     shouldStop.current = false
