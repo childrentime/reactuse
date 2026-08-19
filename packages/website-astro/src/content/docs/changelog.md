@@ -5,6 +5,10 @@ description: "Changelog for @reactuses/core — release notes and version histor
 ---
 # ChangeLog
 
+## 6.5.3(Aug 19, 2026)
+
+- fix(useScrollLock): release the lock when the owning component unmounts. The lock is an inline `overflow: hidden` written onto an element the hook does not own, plus an iOS `touchmove` guard registered with `passive: false`, and neither was ever cleaned up — unmounting while locked (a route change with the modal still open is the common one) left the page permanently unscrollable, and on iOS left a listener attached to `document.body` cancelling every touch scroll for the rest of the session. The hook now restores the exact inline `overflow` it replaced and detaches the guard on unmount, which is the behaviour the docs already promised. Unmounting while unlocked still touches nothing
+
 ## 6.5.2(Aug 17, 2026)
 
 - fix(useClipboard): work in non-secure contexts, and expose Clipboard API support (#218, #219). `navigator.clipboard` is `undefined` whenever `window.isSecureContext` is false — plain `http://`, LAN IPs, some embedded webviews — so `copy()` rejected and the hook was unusable there. Copying now falls back to a temporary `<textarea>` plus `document.execCommand('copy')`, and `copy`/`cut` events fall back to the current document selection when a Clipboard API read is unavailable or denied. The returned tuple gains a third element, `isSupported`, reporting whether `navigator.clipboard` exists — the copy fallback works either way, so treat it as a capability hint rather than a gate. The selection is captured synchronously inside the event, because by the time an awaited continuation runs the browser has already cleared it on `cut` (Firefox) or torn down the fallback textarea. Verified against Chromium, Firefox and WebKit. Thanks @tanukihee
