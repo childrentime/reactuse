@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { type BasicTarget, getTargetElement } from '../utils/domTarget'
 import { isIOS } from '../utils/is'
 import { useEvent } from '../useEvent'
+import { useUnmount } from '../useUnmount'
 import type { UseScrollLock } from './interface'
 
 function checkOverflowScroll(ele: Element): boolean {
@@ -93,6 +94,23 @@ export const useScrollLock: UseScrollLock = (
     else {
       unlock()
     }
+  })
+
+  // The lock is an inline style on an element we don't own, so unmounting while
+  // locked would leave `overflow: hidden` (and the iOS touchmove guard) behind
+  // with nothing left to remove them.
+  useUnmount(() => {
+    if (!locked) {
+      return
+    }
+    const element = getTargetElement(target)
+    if (!element) {
+      return
+    }
+    if (isIOS) {
+      element.removeEventListener('touchmove', preventDefault)
+    }
+    element.style.overflow = initialOverflowRef.current
   })
 
   return [locked, set] as const
