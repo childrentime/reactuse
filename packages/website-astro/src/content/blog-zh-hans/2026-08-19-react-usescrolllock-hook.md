@@ -1,6 +1,6 @@
 ---
 title: "React useScrollLock Hook：为弹窗锁住页面滚动 (2026)"
-description: "useScrollLock 实用指南：为什么给 body 加 `overflow: hidden` 拦不住 iOS Safari 的橡皮筋滚动，hook 的 touchmove 守卫如何在锁住页面的同时让弹窗内部继续滚动，useScrollLock vs position:fixed vs body:has(dialog[open]) 三种方案对比，如何锁住滚动容器而不是文档，以及真正会踩的坑——锁住时卸载、两个持有者争抢同一元素、initialState 跳过 iOS 守卫、滚动条消失导致的布局抖动。TypeScript 优先，SSR 安全。"
+description: "useScrollLock 实用指南：为什么给 body 加 `overflow: hidden` 拦不住 iOS Safari 的橡皮筋滚动，hook 的 touchmove 守卫如何在锁住页面的同时让弹窗内部继续滚动，useScrollLock vs position:fixed vs body:has(dialog[open]) 三种方案对比，如何锁住滚动容器而不是文档，以及真正会踩的坑——卸载时谁来释放锁、两个持有者争抢同一元素、initialState 跳过 iOS 守卫、滚动条消失导致的布局抖动。TypeScript 优先，SSR 安全。"
 slug: react-usescrolllock-hook
 authors:
   - name: ReactUse Team
@@ -244,13 +244,18 @@ const [, setLocked] = useScrollLock(() => document.body);
 
 ### 1. 锁定是一个样式，不是一段生命周期
 
-到 `@reactuses/core` v6.5.2 为止，持有锁的组件卸载时，hook **不会**还原样式——在锁定状态下卸载，`overflow: hidden` 就会留在元素上，而且再没有谁能把它摘掉。修法只有一行，上面每个例子里都已经写了：
+锁是写在一个 hook 并不拥有的元素上的行内 `overflow: hidden`，总得有人把它放回去。从 `@reactuses/core` v6.5.3 起，持有锁的组件卸载时 hook 会自己做这件事：还原它替换掉的那个行内值，并摘掉 iOS 的 `touchmove` 守卫——所以"弹窗还开着就跳路由"不会再把页面冻住。v6.5.2 及更早版本不会还原，如果你锁在旧版本上就得留意：在 iOS 上残留的那个 `passive: false` 监听会把整个会话剩下的触摸滚动全部干掉，不只是样式的问题。
+
+不过卸载只是一半。另一半——组件还挂着、只是弹窗关了——无论哪个版本都得你自己管，这也正是上面那个模式把 `setLocked` 绑到 `open` 上并带 cleanup、而不是在两个 handler 里分别开关的原因：
 
 ```tsx
-useEffect(() => () => setLocked(false), [setLocked]);
+useEffect(() => {
+  setLocked(open);
+  return () => setLocked(false);
+}, [open, setLocked]);
 ```
 
-把返回的 setter 当成你借来的一个样式。每一次借都要还，包括离场那一次。
+把 setter 当成你借来的一个样式。每一次借都要还。
 
 ### 2. 一个元素只能有一个持有者
 

@@ -1,6 +1,6 @@
 ---
 title: "React useScrollLock Hook: Lock Body Scroll for Modals (2026)"
-description: "A practical guide to useScrollLock in React: why `overflow: hidden` on body doesn't stop iOS Safari rubber-banding, how the hook's touchmove guard keeps your modal's own content scrolling, useScrollLock vs the position:fixed and body:has(dialog[open]) approaches, locking a scroll container instead of the document, and the real gotchas — unmounting while locked, two owners fighting over one element, initialState skipping the iOS guard, and scrollbar layout shift. TypeScript-first, SSR-safe."
+description: "A practical guide to useScrollLock in React: why `overflow: hidden` on body doesn't stop iOS Safari rubber-banding, how the hook's touchmove guard keeps your modal's own content scrolling, useScrollLock vs the position:fixed and body:has(dialog[open]) approaches, locking a scroll container instead of the document, and the real gotchas — who releases the lock on unmount, two owners fighting over one element, initialState skipping the iOS guard, and scrollbar layout shift. TypeScript-first, SSR-safe."
 slug: react-usescrolllock-hook
 authors:
   - name: ReactUse Team
@@ -244,13 +244,18 @@ const [, setLocked] = useScrollLock(() => document.body);
 
 ### 1. The lock is a style, not a lifecycle
 
-As of `@reactuses/core` v6.5.2, the hook does **not** restore the style when the owning component unmounts — unmount while locked and `overflow: hidden` stays on the element with nothing left to remove it. The fix is one line, and it's already in every example above:
+The lock is an inline `overflow: hidden` written onto an element the hook doesn't own, so something has to put it back. Since `@reactuses/core` v6.5.3 the hook does that itself when the owning component unmounts: it restores the exact inline value it replaced and detaches the iOS `touchmove` guard, so a route change with the modal still open can no longer leave the page frozen. On v6.5.2 and earlier it didn't — worth knowing if you're pinned to an older version, because on iOS the leftover `passive: false` listener kills touch scrolling for the rest of the session, not just the style.
+
+Unmounting is only half of it. The other half — the modal closing while the component stays mounted — is yours either way, which is exactly why the pattern above binds `setLocked` to `open` with a cleanup instead of toggling it from two handlers:
 
 ```tsx
-useEffect(() => () => setLocked(false), [setLocked]);
+useEffect(() => {
+  setLocked(open);
+  return () => setLocked(false);
+}, [open, setLocked]);
 ```
 
-Think of the returned setter as owning a style you borrowed. Every borrow needs a return, including the one on the way out.
+Think of the setter as owning a style you borrowed. Every borrow needs a return.
 
 ### 2. One owner per element
 
