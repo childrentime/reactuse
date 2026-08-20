@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { isBrowser } from '../utils/is'
 import { type BasicTarget, getTargetElement } from '../utils/domTarget'
+import { useStableTarget } from '../utils/useStableTarget'
 import { type UseCssVar, type UseCssVarOptions, defaultOptions } from './interface'
 
 function getInitialState(defaultValue?: string) {
@@ -33,20 +34,23 @@ export const useCssVar: UseCssVar = <T extends HTMLElement = HTMLElement>(
     getInitialState(defaultValue),
   )
   const observerRef = useRef<MutationObserver>()
+  // A getter target (`() => el`) is a fresh function every render; depending on it
+  // directly rebuilt `set`, `updateCssVar` and the MutationObserver on every render.
+  const { key: targetKey, ref: targetRef } = useStableTarget(target)
 
   const set = useCallback(
     (v: string) => {
-      const element = getTargetElement(target)
+      const element = getTargetElement(targetRef.current)
       if (element?.style) {
         element?.style.setProperty(prop, v)
         setVariable(v)
       }
     },
-    [prop, target],
+    [prop, targetRef],
   )
 
   const updateCssVar = useCallback(() => {
-    const element = getTargetElement(target)
+    const element = getTargetElement(targetRef.current)
     if (element) {
       const value = window
         .getComputedStyle(element)
@@ -54,10 +58,10 @@ export const useCssVar: UseCssVar = <T extends HTMLElement = HTMLElement>(
         ?.trim()
       setVariable(value)
     }
-  }, [target, prop])
+  }, [targetRef, prop])
 
   useEffect(() => {
-    const element = getTargetElement(target)
+    const element = getTargetElement(targetRef.current)
     if (!element) {
       return
     }
@@ -86,7 +90,7 @@ export const useCssVar: UseCssVar = <T extends HTMLElement = HTMLElement>(
         observerRef.current.disconnect()
       }
     }
-  }, [observe, target, updateCssVar, set, defaultValue, prop])
+  }, [observe, targetKey, targetRef, updateCssVar, set, defaultValue, prop])
 
   return [variable, set] as const
 }
