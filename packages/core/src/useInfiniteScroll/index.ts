@@ -3,6 +3,7 @@ import { useLatest } from '../useLatest'
 import { useUpdateEffect } from '../useUpdateEffect'
 import { defaultOptions } from '../utils/defaults'
 import { getTargetElement } from '../utils/domTarget'
+import { useStableTarget } from '../utils/useStableTarget'
 import type { UseInfiniteScroll, UseInfiniteScrollOptions } from './interface'
 
 export const useInfiniteScroll: UseInfiniteScroll = (
@@ -11,6 +12,10 @@ export const useInfiniteScroll: UseInfiniteScroll = (
   options: UseInfiniteScrollOptions = defaultOptions,
 ) => {
   const savedLoadMore = useLatest(onLoadMore)
+  // `target` may be a getter such as `() => el`, which is a new function on every
+  // render. Depending on it directly would re-run the effect below — and call
+  // onLoadMore — on every render, which loops once loading appends data.
+  const { key: targetKey, ref: targetRef } = useStableTarget(target)
   const direction = options.direction ?? 'bottom'
   const state = useScroll(target, {
     ...options,
@@ -23,7 +28,7 @@ export const useInfiniteScroll: UseInfiniteScroll = (
   const di = state[3][direction]
 
   useUpdateEffect(() => {
-    const element = getTargetElement(target)
+    const element = getTargetElement(targetRef.current)
     const fn = async () => {
       const previous = {
         height: element?.scrollHeight ?? 0,
@@ -40,5 +45,5 @@ export const useInfiniteScroll: UseInfiniteScroll = (
       }
     }
     fn()
-  }, [di, options.preserveScrollPosition, target])
+  }, [di, options.preserveScrollPosition, targetKey, targetRef])
 }
