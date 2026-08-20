@@ -52,14 +52,31 @@ export const useScrollLock: UseScrollLock = (
 
   const initialOverflowRef = useRef<CSSStyleDeclaration['overflow']>('scroll')
 
+  // The element the lock is currently applied to. `target` is listed in the effect
+  // below, and the documented `() => document.body` form is a fresh function on
+  // every render, so the effect re-runs constantly. Keying the snapshot on the
+  // element means the original overflow is read once per lock instead of being
+  // overwritten with the `hidden` the hook itself just wrote.
+  const lockedElementRef = useRef<HTMLElement | null>(null)
+
   useEffect(() => {
     const element = getTargetElement(target)
-    if (element) {
-      initialOverflowRef.current = element.style.overflow
-      if (locked) {
-        element.style.overflow = 'hidden'
-      }
+    if (!element) {
+      return
     }
+    if (!locked) {
+      lockedElementRef.current = null
+      return
+    }
+    if (lockedElementRef.current !== element) {
+      // The target moved while locked: put the element we were holding back.
+      if (lockedElementRef.current) {
+        lockedElementRef.current.style.overflow = initialOverflowRef.current
+      }
+      initialOverflowRef.current = element.style.overflow
+      lockedElementRef.current = element
+    }
+    element.style.overflow = 'hidden'
   }, [locked, target])
 
   const lock = useEvent(() => {

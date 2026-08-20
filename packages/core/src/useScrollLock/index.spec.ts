@@ -99,4 +99,87 @@ describe('useScrollLock', () => {
     expect(empty.current[0]).toBe(false)
     expect(() => unmount()).not.toThrow()
   })
+
+  // The effect that applies the lock lists `target` in its dependencies, so an
+  // inline getter — the form the docs recommend for SSR — invalidates it on every
+  // render. Re-running it must not re-snapshot the overflow it already replaced.
+  it('keeps the original overflow across re-renders while locked', () => {
+    const { result, rerender } = renderHook(() => useScrollLock(() => element))
+
+    act(() => result.current[1](true))
+    expect(element.style.overflow).toBe('hidden')
+
+    rerender()
+    rerender()
+
+    act(() => result.current[1](false))
+    expect(element.style.overflow).toBe('auto')
+  })
+
+  it('restores a non-default inline overflow after a re-render while locked', () => {
+    element.style.overflow = 'overlay'
+    const { result, rerender } = renderHook(() => useScrollLock(() => element))
+
+    act(() => result.current[1](true))
+    rerender()
+    act(() => result.current[1](false))
+
+    expect(element.style.overflow).toBe('overlay')
+  })
+
+  it('releases the lock on unmount after a re-render while locked', () => {
+    const { result, rerender, unmount } = renderHook(() => useScrollLock(() => element))
+
+    act(() => result.current[1](true))
+    rerender()
+    unmount()
+
+    expect(element.style.overflow).toBe('auto')
+  })
+
+  it('honours initialState across re-renders', () => {
+    const { result, rerender } = renderHook(() => useScrollLock(() => element, true))
+
+    rerender()
+    act(() => result.current[1](false))
+
+    expect(element.style.overflow).toBe('auto')
+  })
+
+  it('re-snapshots the overflow on every fresh lock', () => {
+    const { result, rerender } = renderHook(() => useScrollLock(() => element))
+
+    act(() => result.current[1](true))
+    rerender()
+    act(() => result.current[1](false))
+    expect(element.style.overflow).toBe('auto')
+
+    element.style.overflow = 'scroll'
+    act(() => result.current[1](true))
+    rerender()
+    act(() => result.current[1](false))
+    expect(element.style.overflow).toBe('scroll')
+  })
+
+  it('restores the previous element when the target changes while locked', () => {
+    const other = document.createElement('div')
+    other.style.overflow = 'overlay'
+    document.body.appendChild(other)
+
+    const { result, rerender } = renderHook(
+      ({ el }: { el: HTMLElement }) => useScrollLock(() => el),
+      { initialProps: { el: element as HTMLElement } },
+    )
+
+    act(() => result.current[1](true))
+    expect(element.style.overflow).toBe('hidden')
+
+    rerender({ el: other })
+    expect(element.style.overflow).toBe('auto')
+    expect(other.style.overflow).toBe('hidden')
+
+    act(() => result.current[1](false))
+    expect(other.style.overflow).toBe('overlay')
+    other.remove()
+  })
 })
