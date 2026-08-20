@@ -80,13 +80,20 @@ const [locked, setLocked] = useScrollLock(target, initialState?)
 ```tsx
 const [locked, setLocked] = useState(initialState);
 const initialOverflowRef = useRef<CSSStyleDeclaration["overflow"]>("scroll");
+const lockedElementRef = useRef<HTMLElement | null>(null);
 
 useEffect(() => {
   const element = getTargetElement(target);
-  if (element) {
-    initialOverflowRef.current = element.style.overflow; // 记住我们要替换掉的值
-    if (locked) element.style.overflow = "hidden";
+  if (!element) return;
+  if (!locked) {
+    lockedElementRef.current = null;
+    return;
   }
+  if (lockedElementRef.current !== element) {
+    initialOverflowRef.current = element.style.overflow; // 记住我们要替换掉的值——每次上锁只记一次
+    lockedElementRef.current = element;
+  }
+  element.style.overflow = "hidden";
 }, [locked, target]);
 
 const lock = useEvent(() => {
@@ -105,11 +112,12 @@ const unlock = useEvent(() => {
 });
 ```
 
-里面有四个决策值得点名，因为手写版本恰恰就是在这几处不一样：
+里面有五个决策值得点名，因为手写版本恰恰就是在这几处不一样：
 
 - **锁定是 state，不是「发出去就不管」的副作用。** `locked` 是真正的 `useState` 值，所以驱动样式的那个布尔值同时也能驱动你的 `aria-hidden`、className、Esc 处理逻辑。
 - **它还原自己替换掉的行内值**，而不是 `""`。如果原本行内是 `overflow: overlay`，还原回来的就是它。
 - **target 是惰性解析的**，走 `getTargetElement`，没有 `window` 时返回 `undefined`。服务端不会碰 DOM。
+- **快照挂钩的是元素，不是 effect 的执行。** `target` 在依赖列表里，而 `() => document.body` 每次渲染都是新函数，所以这个 effect 会反复重跑；如果每次都重新读一遍原始 `overflow`，读到的就是 hook 自己刚写进去的 `hidden`。（这曾是一个真实的 bug，已在 6.5.4 修复。）
 - **只有 iOS 会加 `touchmove` 守卫。** 而这正是真正有意思的部分。
 
 ## 为什么在 iOS 上 `overflow: hidden` 不够

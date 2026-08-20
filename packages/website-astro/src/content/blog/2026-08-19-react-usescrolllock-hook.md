@@ -80,13 +80,20 @@ The core of it, condensed from the source:
 ```tsx
 const [locked, setLocked] = useState(initialState);
 const initialOverflowRef = useRef<CSSStyleDeclaration["overflow"]>("scroll");
+const lockedElementRef = useRef<HTMLElement | null>(null);
 
 useEffect(() => {
   const element = getTargetElement(target);
-  if (element) {
-    initialOverflowRef.current = element.style.overflow; // remember what we're replacing
-    if (locked) element.style.overflow = "hidden";
+  if (!element) return;
+  if (!locked) {
+    lockedElementRef.current = null;
+    return;
   }
+  if (lockedElementRef.current !== element) {
+    initialOverflowRef.current = element.style.overflow; // remember what we're replacing — once per lock
+    lockedElementRef.current = element;
+  }
+  element.style.overflow = "hidden";
 }, [locked, target]);
 
 const lock = useEvent(() => {
@@ -105,11 +112,12 @@ const unlock = useEvent(() => {
 });
 ```
 
-Four decisions in there are worth naming, because they're exactly where hand-rolled versions differ:
+Five decisions in there are worth naming, because they're exactly where hand-rolled versions differ:
 
 - **The lock is state, not a fire-and-forget side effect.** `locked` is a real `useState` value, so the same boolean that drives the style can drive your `aria-hidden`, your class names, your Esc handler.
 - **It restores the inline value it replaced**, not `""`. If something had set `overflow: overlay` inline, that's what comes back.
 - **The target is resolved lazily** through `getTargetElement`, which returns `undefined` when there is no `window`. Nothing touches the DOM on the server.
+- **The snapshot is keyed on the element, not on the effect firing.** `target` is in the dependency list and `() => document.body` is a fresh function every render, so the effect re-runs constantly; reading the original `overflow` each time would capture the `hidden` the hook itself just wrote. (That was a real bug, fixed in 6.5.4.)
 - **Only iOS gets a `touchmove` guard.** Which is the genuinely interesting part.
 
 ## Why `overflow: hidden` Isn't Enough on iOS
