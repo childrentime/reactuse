@@ -182,4 +182,36 @@ describe('useScrollLock', () => {
     expect(other.style.overflow).toBe('overlay')
     other.remove()
   })
+
+  it('does not re-apply the lock on unrelated re-renders', () => {
+    // The effect must be tied to the element it locks, not to the identity of a
+    // `() => element` getter, which is a new function on every render.
+    let writes = 0
+    const realStyle = element.style
+    Object.defineProperty(element, 'style', {
+      configurable: true,
+      value: new Proxy(realStyle, {
+        set(t, k, v) {
+          if (k === 'overflow')
+            writes++
+          ;(t as any)[k] = v
+          return true
+        },
+      }),
+    })
+
+    const { result, rerender } = renderHook(() => useScrollLock(() => element))
+
+    act(() => result.current[1](true))
+    const afterLock = writes
+
+    rerender()
+    rerender()
+    rerender()
+
+    expect(writes).toBe(afterLock)
+    expect(element.style.overflow).toBe('hidden')
+
+    Object.defineProperty(element, 'style', { configurable: true, value: realStyle })
+  })
 })

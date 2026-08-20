@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { type BasicTarget, getTargetElement } from '../utils/domTarget'
 import { isIOS } from '../utils/is'
 import { useEvent } from '../useEvent'
+import { useStableTarget } from '../utils/useStableTarget'
 import { useUnmount } from '../useUnmount'
 import type { UseScrollLock } from './interface'
 
@@ -59,8 +60,13 @@ export const useScrollLock: UseScrollLock = (
   // overwritten with the `hidden` the hook itself just wrote.
   const lockedElementRef = useRef<HTMLElement | null>(null)
 
+  // `() => document.body` is a fresh function on every render, so depending on
+  // `target` directly re-ran the effect below on every render. Resolving it to a
+  // stable key keeps the effect tied to the element it actually locks.
+  const { key: targetKey, ref: targetRef } = useStableTarget(target)
+
   useEffect(() => {
-    const element = getTargetElement(target)
+    const element = getTargetElement(targetRef.current)
     if (!element) {
       return
     }
@@ -77,10 +83,10 @@ export const useScrollLock: UseScrollLock = (
       lockedElementRef.current = element
     }
     element.style.overflow = 'hidden'
-  }, [locked, target])
+  }, [locked, targetKey, targetRef])
 
   const lock = useEvent(() => {
-    const element = getTargetElement(target)
+    const element = getTargetElement(targetRef.current)
     if (!element || locked) {
       return
     }
@@ -93,7 +99,7 @@ export const useScrollLock: UseScrollLock = (
   })
 
   const unlock = useEvent(() => {
-    const element = getTargetElement(target)
+    const element = getTargetElement(targetRef.current)
     if (!element || !locked) {
       return
     }
@@ -120,7 +126,7 @@ export const useScrollLock: UseScrollLock = (
     if (!locked) {
       return
     }
-    const element = getTargetElement(target)
+    const element = getTargetElement(targetRef.current)
     if (!element) {
       return
     }
