@@ -86,7 +86,10 @@ function useEventListenerImpl(
       if (!(targetElement && targetElement.removeEventListener)) {
         return
       }
-      off(targetElement, eventName, eventListener)
+      // removeEventListener matches on (type, callback, capture), so the same
+      // options have to come back here or a capture-phase listener is never
+      // detached and survives the component that registered it.
+      off(targetElement, eventName, eventListener, options)
     }
   }, [eventName, elementKey, options])
 }

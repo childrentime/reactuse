@@ -142,3 +142,92 @@ function checkOnDepsChanges(
   )
   expect(props2.target.current[addEventListenerName]).toHaveBeenCalledTimes(1)
 }
+
+describe('useEventListener cleanup matches the registered listener', () => {
+  let element: HTMLDivElement
+
+  beforeEach(() => {
+    element = document.createElement('div')
+    document.body.appendChild(element)
+  })
+
+  afterEach(() => {
+    element.remove()
+  })
+
+  // removeEventListener matches on (type, callback, capture), so a listener
+  // registered with `capture: true` is only detached when the same flag is
+  // passed back on removal.
+  it('detaches a capture-phase listener on unmount', () => {
+    let calls = 0
+    const { unmount } = renderHook(() =>
+      useEventListener('click', () => calls++, element, { capture: true }),
+    )
+
+    element.dispatchEvent(new Event('click'))
+    expect(calls).toBe(1)
+
+    unmount()
+    element.dispatchEvent(new Event('click'))
+    expect(calls).toBe(1)
+  })
+
+  it('detaches a listener registered with the boolean capture form', () => {
+    let calls = 0
+    const { unmount } = renderHook(() =>
+      useEventListener('click', () => calls++, element, true),
+    )
+
+    unmount()
+    element.dispatchEvent(new Event('click'))
+    expect(calls).toBe(0)
+  })
+
+  it('passes the options through to removeEventListener', () => {
+    const remove = jest.spyOn(element, 'removeEventListener')
+    const options = { capture: true }
+
+    const { unmount } = renderHook(() =>
+      useEventListener('click', () => void 0, element, options),
+    )
+    unmount()
+
+    expect(remove).toHaveBeenCalledWith('click', expect.any(Function), options)
+  })
+
+  it('detaches a capture-phase listener when the dependencies change', () => {
+    let calls = 0
+    const { rerender } = renderHook(
+      ({ name }: { name: string }) =>
+        useEventListener(name, () => calls++, element, { capture: true }),
+      { initialProps: { name: 'click' } },
+    )
+
+    rerender({ name: 'dblclick' })
+    element.dispatchEvent(new Event('click'))
+    expect(calls).toBe(0)
+  })
+
+  it('does not accumulate capture-phase listeners across mounts', () => {
+    let calls = 0
+    for (let i = 0; i < 5; i++) {
+      renderHook(() =>
+        useEventListener('click', () => calls++, element, { capture: true }),
+      ).unmount()
+    }
+
+    element.dispatchEvent(new Event('click'))
+    expect(calls).toBe(0)
+  })
+
+  it('still detaches listeners registered without capture', () => {
+    let calls = 0
+    const { unmount } = renderHook(() =>
+      useEventListener('click', () => calls++, element, { passive: true }),
+    )
+
+    unmount()
+    element.dispatchEvent(new Event('click'))
+    expect(calls).toBe(0)
+  })
+})
