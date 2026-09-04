@@ -9,6 +9,12 @@ from = "/sitemap.xml"
 to = "/sitemap-index.xml"
 status = 301
 
+# Legacy typo link (README used to point at /llm.txt); the file is /llms.txt
+[[redirects]]
+from = "/llm.txt"
+to = "/llms.txt"
+status = 301
+
 [build.environment]
 NPM_FLAGS = "--version"
 NODE_OPTIONS = "--max_old_space_size=4096"
