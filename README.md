@@ -144,7 +144,7 @@ Add the following to your configuration:
 
 ## Documentation
 
-📖 [Full Documentation](https://reactuse.com) | 📖 [LLM-friendly Documentation](https://reactuse.com/llm.txt) | 💬 [Discord](https://discord.gg/VEMFdByJ) | 🐛 [Issues](https://github.com/childrentime/reactuse/issues)
+📖 [Full Documentation](https://reactuse.com) | 📖 [LLM-friendly Documentation](https://reactuse.com/llms.txt) | 💬 [Discord](https://discord.gg/VEMFdByJ) | 🐛 [Issues](https://github.com/childrentime/reactuse/issues)
 
 ---
 
