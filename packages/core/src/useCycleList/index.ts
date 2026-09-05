@@ -8,9 +8,13 @@ export const useCycleList: UseCycleList = <T> (
   const [index, setIndex] = useState(i)
 
   const set = (i: number) => {
-    const length = list.length
-    const nextIndex = (((index + i) % length) + length) % length
-    setIndex(nextIndex)
+    setIndex(current => {
+      const length = list.length
+      // An empty list has no index to move to, and `% 0` is NaN.
+      if (length === 0)
+        return current
+      return (((current + i) % length) + length) % length
+    })
   }
 
   const next = (i = 1) => {
