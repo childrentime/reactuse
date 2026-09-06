@@ -54,6 +54,11 @@ export const useIdle: UseIdle = (
 
     return () => {
       mounted = false
+      // The idle timer runs for `ms` (a minute by default) and the throttled
+      // handler holds one of its own, so both outlive the component unless they
+      // are cancelled here.
+      clearTimeout(timeout)
+      onEvent.cancel()
 
       for (let i = 0; i < events.length; i++) {
         off(window, events[i], onEvent)
