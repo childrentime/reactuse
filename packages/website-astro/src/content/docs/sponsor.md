@@ -34,7 +34,7 @@ All tiers are billed through [**GitHub Sponsors**](https://github.com/sponsors/c
 <table align="center">
   <tr>
     <td align="center" width="280">
-      <a href="https://cenno.app/"><img src="https://cenno.app/icons/icon-192.png" alt="Cenno — expense tracking for iPhone and iPad" width="80"></a><br>
+      <a href="https://apps.apple.com/app/id6760214754"><img src="https://cenno.app/icons/icon-192.png" alt="Cenno — expense tracking for iPhone and iPad" width="80"></a><br>
       <a href="https://cenno.app/"><b>Cenno</b></a><br>
       <sub>Expense tracking for iPhone &amp; iPad — no account, no server, no ads. Free on the App Store.</sub>
     </td>

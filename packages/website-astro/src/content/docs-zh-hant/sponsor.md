@@ -34,7 +34,7 @@ ReactUse 免費、以 Unlicense 釋入公有領域，由維護者利用業餘時
 <table align="center">
   <tr>
     <td align="center" width="280">
-      <a href="https://cenno.app/zh/"><img src="https://cenno.app/icons/icon-192.png" alt="帳本本 Cenno——iPhone 與 iPad 記帳" width="80"></a><br>
+      <a href="https://apps.apple.com/app/id6760214754"><img src="https://cenno.app/icons/icon-192.png" alt="帳本本 Cenno——iPhone 與 iPad 記帳" width="80"></a><br>
       <a href="https://cenno.app/zh/"><b>帳本本 Cenno</b></a><br>
       <sub>iPhone 與 iPad 記帳——沒有帳號、沒有伺服器、沒有廣告。App Store 免費下載。</sub>
     </td>
