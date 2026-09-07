@@ -5,6 +5,11 @@ description: "Changelog for @reactuses/core — release notes and version histor
 ---
 # ChangeLog
 
+## 6.5.6(Sep 7, 2026)
+
+- fix(useIdle): cancel the timers on unmount. The effect's cleanup removed the event listeners but left both timers running: the idle countdown, which is `ms` long and a minute by default, and the 50ms timer inside the throttled activity handler. The `mounted` flag stopped the state update, so nothing warned — the timers just kept the effect's closure alive until they fired, and `jest.getTimerCount()` still read 1 after unmount. Both are now cancelled in cleanup, matching how `useThrottleFn` and `useDebounceFn` already cancel theirs. The hook gains its first spec file — five tests, two of which fail on 6.5.5. Thanks to @rawsun007 (#222)
+- fix(useCycleList): derive the next index from the current state. `set` read `index` from the render closure, so two calls in the same batch both computed from the same value and the second overwrote the first — calling `next()` twice in one handler advanced a single step, and `next()` followed by `prev()` did not cancel out. An empty list also made `(index + i) % 0` NaN, which was stored as the index and never recovered. Both now go through the functional updater form, matching `useCounter`, and an empty list leaves the index untouched. Adds `useCycleList/index.spec.ts` — eight tests, three of which fail on 6.5.5. Thanks to @rawsun007 (#221)
+
 ## 6.5.5(Aug 20, 2026)
 
 - fix(useInfiniteScroll): stop firing `onLoadMore` on every render. The load-more effect listed `target` in its dependencies, and a getter target such as `() => element` — one of the documented `BasicTarget` forms — is a new function on every render, so the effect re-ran every render and called `onLoadMore` each time. Loading more data appends to state and renders again, so it never settled: three renders produced three loads, against zero for a ref target (the form the docs demo). The target now resolves through `useStableTarget`, so the effect is keyed on the element rather than on the identity of the getter. The hook gains its first spec file — nine tests covering both target forms
