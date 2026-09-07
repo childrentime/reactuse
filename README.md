@@ -34,10 +34,15 @@ Sponsoring ReactUse puts your product in front of the React developers who insta
   <a href="https://github.com/childrentime/reactuse/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/childrentime/reactuse?style=for-the-badge&labelColor=24292e&color=70a5fd&label=github%20stars"></a>
 </p>
 
+<p align="center"><sub>💎 &nbsp;Special Sponsor</sub></p>
+
 <p align="center">
-  <a href="https://github.com/sponsors/childrentime"><img alt="Gold Sponsor — this spot is open" src="https://img.shields.io/badge/%F0%9F%A5%87%20Gold-your%20logo%20here-FFD700?style=for-the-badge&labelColor=24292e"></a>
-  <a href="https://github.com/sponsors/childrentime"><img alt="Silver Sponsor — this spot is open" src="https://img.shields.io/badge/%F0%9F%A5%88%20Silver-your%20logo%20here-C0C0C0?style=for-the-badge&labelColor=24292e"></a>
-  <a href="https://github.com/sponsors/childrentime"><img alt="Bronze Sponsor — this spot is open" src="https://img.shields.io/badge/%F0%9F%A5%89%20Bronze-your%20logo%20here-CD7F32?style=for-the-badge&labelColor=24292e"></a>
+  <a href="https://cenno.app/"><img src="https://cenno.app/icons/icon-192.png" alt="Cenno — expense tracking for iPhone and iPad" width="96"></a>
+</p>
+
+<p align="center">
+  <a href="https://cenno.app/"><b>Cenno</b></a><br>
+  <sub>Expense tracking for iPhone &amp; iPad — no account, no server, no ads. Free on the App Store.</sub>
 </p>
 
 <p align="center">
@@ -45,7 +50,7 @@ Sponsoring ReactUse puts your product in front of the React developers who insta
   <a href="https://www.buymeacoffee.com/lianwenwu"><img alt="Buy me a coffee" src="https://img.shields.io/badge/%E2%98%95%20Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&labelColor=24292e"></a>
 </p>
 
-<p align="center"><sub>All sponsor slots are currently open — <a href="https://github.com/sponsors/childrentime">claim one</a> and your logo goes live within 48 hours. Tiers, benefits and company invoicing: <a href="https://reactuse.com/sponsor/">reactuse.com/sponsor</a>.</sub></p>
+<p align="center"><sub>🥇 Gold, 🥈 Silver and 🥉 Bronze slots are open — <a href="https://github.com/sponsors/childrentime">claim one</a> and your logo goes live here within 48 hours. Tiers, benefits and company invoicing: <a href="https://reactuse.com/sponsor/">reactuse.com/sponsor</a>.</sub></p>
 
 ## Introduction
 
