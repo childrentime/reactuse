@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useMount } from '../useMount'
+import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { off, on } from '../utils/browser'
 import { defaultOptions } from '../utils/defaults'
 import type { KeyModifier, UseKeyModifier, UseModifierOptions } from './interface'
@@ -19,25 +19,24 @@ export const useKeyModifier: UseKeyModifier = (
 
   const [state, setState] = useState<boolean>(initial)
 
-  useMount(() => {
-    events.forEach(listenEvent => {
-      on(document, listenEvent, (evt: KeyboardEvent) => {
-        if (typeof evt.getModifierState === 'function') {
-          setState(evt.getModifierState(modifier))
-        }
-      })
-    })
+  // Deep compare so an inline `events` array does not re-register on every
+  // render, while a changed `modifier` or event list does.
+  useDeepCompareEffect(() => {
+    // One reference reaches both calls: `removeEventListener` matches on the
+    // callback identity, so a freshly built arrow function detaches nothing.
+    const handler = (evt: Event) => {
+      const event = evt as KeyboardEvent
+      if (typeof event.getModifierState === 'function') {
+        setState(event.getModifierState(modifier))
+      }
+    }
+
+    events.forEach(listenEvent => on(document, listenEvent, handler))
 
     return () => {
-      events.forEach(listenerEvent => {
-        off(document, listenerEvent, (evt: KeyboardEvent) => {
-          if (typeof evt.getModifierState === 'function') {
-            setState(evt.getModifierState(modifier))
-          }
-        })
-      })
+      events.forEach(listenEvent => off(document, listenEvent, handler))
     }
-  })
+  }, [modifier, events])
 
   return state
 }
