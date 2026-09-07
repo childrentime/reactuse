@@ -34,16 +34,17 @@ Sponsoring ReactUse puts your product in front of the React developers who insta
   <a href="https://github.com/childrentime/reactuse/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/childrentime/reactuse?style=for-the-badge&labelColor=24292e&color=70a5fd&label=github%20stars"></a>
 </p>
 
-<p align="center"><sub>💎 &nbsp;Special Sponsor</sub></p>
+<p align="center"><sub>💎 &nbsp;Special Sponsors</sub></p>
 
-<p align="center">
-  <a href="https://cenno.app/"><img src="https://cenno.app/icons/icon-192.png" alt="Cenno — expense tracking for iPhone and iPad" width="96"></a>
-</p>
-
-<p align="center">
-  <a href="https://cenno.app/"><b>Cenno</b></a><br>
-  <sub>Expense tracking for iPhone &amp; iPad — no account, no server, no ads. Free on the App Store.</sub>
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="280">
+      <a href="https://cenno.app/"><img src="https://cenno.app/icons/icon-192.png" alt="Cenno — expense tracking for iPhone and iPad" width="80"></a><br>
+      <a href="https://cenno.app/"><b>Cenno</b></a><br>
+      <sub>Expense tracking for iPhone &amp; iPad — no account, no server, no ads. Free on the App Store.</sub>
+    </td>
+  </tr>
+</table>
 
 <p align="center">
   <a href="https://github.com/sponsors/childrentime"><img alt="Sponsor on GitHub" src="https://img.shields.io/badge/%E2%9D%A4%20Sponsor%20on%20GitHub-db61a2?style=for-the-badge&labelColor=24292e"></a>

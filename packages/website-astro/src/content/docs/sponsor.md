@@ -18,7 +18,7 @@ ReactUse is free, released under the Unlicense and maintained in spare time. Spo
 
 | Tier | Per month | What you get |
 | --- | --- | --- |
-| 🥇 **Gold** | $500 | Large logo + link at the **top of the GitHub README** and this page. First position, maximum visibility. |
+| 🥇 **Gold** | $500 | Large logo + link at the **top of the GitHub README** and this page. Highest paid placement, maximum visibility. |
 | 🥈 **Silver** | $150 | Medium logo + link in the GitHub README and on this page. |
 | 🥉 **Bronze** | $50 | Small logo + link in the GitHub README and on this page. |
 | ☕ **Backer** | $5 | Your name listed on this page + our sincere gratitude. |
@@ -29,13 +29,19 @@ All tiers are billed through [**GitHub Sponsors**](https://github.com/sponsors/c
 
 ## Current sponsors
 
-Every slot above is currently **open** — the first Gold sponsor gets the top of a README seen by thousands of developers a week, exclusively.
+<p align="center"><sub>💎 &nbsp;Special Sponsors</sub></p>
 
-<p align="center">
-  <a href="https://github.com/sponsors/childrentime"><img alt="Gold Sponsor — this spot is open" src="https://img.shields.io/badge/%F0%9F%A5%87%20Gold-your%20logo%20here-FFD700?style=for-the-badge&labelColor=24292e"></a>
-  <a href="https://github.com/sponsors/childrentime"><img alt="Silver Sponsor — this spot is open" src="https://img.shields.io/badge/%F0%9F%A5%88%20Silver-your%20logo%20here-C0C0C0?style=for-the-badge&labelColor=24292e"></a>
-  <a href="https://github.com/sponsors/childrentime"><img alt="Bronze Sponsor — this spot is open" src="https://img.shields.io/badge/%F0%9F%A5%89%20Bronze-your%20logo%20here-CD7F32?style=for-the-badge&labelColor=24292e"></a>
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="280">
+      <a href="https://cenno.app/"><img src="https://cenno.app/icons/icon-192.png" alt="Cenno — expense tracking for iPhone and iPad" width="80"></a><br>
+      <a href="https://cenno.app/"><b>Cenno</b></a><br>
+      <sub>Expense tracking for iPhone &amp; iPad — no account, no server, no ads. Free on the App Store.</sub>
+    </td>
+  </tr>
+</table>
+
+🥇 Gold, 🥈 Silver and 🥉 Bronze slots are currently **open** — the first Gold sponsor gets the top paid placement in a README seen by thousands of developers a week.
 
 ## How to sponsor
 

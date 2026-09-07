@@ -18,7 +18,7 @@ ReactUse 免費、以 Unlicense 釋入公有領域，由維護者利用業餘時
 
 | 檔位 | 每月 | 你將獲得 |
 | --- | --- | --- |
-| 🥇 **金牌贊助** | $500 | 大尺寸 logo + 連結，置於 **GitHub README 頂部**及本頁。首位展示，曝光最大化。 |
+| 🥇 **金牌贊助** | $500 | 大尺寸 logo + 連結，置於 **GitHub README 頂部**及本頁。付費檔位中的最高位置，曝光最大化。 |
 | 🥈 **銀牌贊助** | $150 | 中尺寸 logo + 連結，展示於 GitHub README 及本頁。 |
 | 🥉 **銅牌贊助** | $50 | 小尺寸 logo + 連結，展示於 GitHub README 及本頁。 |
 | ☕ **支持者** | $5 | 你的名字列在本頁 + 我們真誠的感謝。 |
@@ -29,13 +29,19 @@ ReactUse 免費、以 Unlicense 釋入公有領域，由維護者利用業餘時
 
 ## 目前贊助商
 
-以上所有展示位目前**全部空缺**——第一位金牌贊助商將獨享這個每週被數千名開發者看到的 README 頂部位置。
+<p align="center"><sub>💎 &nbsp;特別贊助</sub></p>
 
-<p align="center">
-  <a href="https://github.com/sponsors/childrentime"><img alt="金牌贊助位——虛位以待" src="https://img.shields.io/badge/%F0%9F%A5%87%20Gold-your%20logo%20here-FFD700?style=for-the-badge&labelColor=24292e"></a>
-  <a href="https://github.com/sponsors/childrentime"><img alt="銀牌贊助位——虛位以待" src="https://img.shields.io/badge/%F0%9F%A5%88%20Silver-your%20logo%20here-C0C0C0?style=for-the-badge&labelColor=24292e"></a>
-  <a href="https://github.com/sponsors/childrentime"><img alt="銅牌贊助位——虛位以待" src="https://img.shields.io/badge/%F0%9F%A5%89%20Bronze-your%20logo%20here-CD7F32?style=for-the-badge&labelColor=24292e"></a>
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="280">
+      <a href="https://cenno.app/zh/"><img src="https://cenno.app/icons/icon-192.png" alt="帳本本 Cenno——iPhone 與 iPad 記帳" width="80"></a><br>
+      <a href="https://cenno.app/zh/"><b>帳本本 Cenno</b></a><br>
+      <sub>iPhone 與 iPad 記帳——沒有帳號、沒有伺服器、沒有廣告。App Store 免費下載。</sub>
+    </td>
+  </tr>
+</table>
+
+🥇 金牌、🥈 銀牌、🥉 銅牌展示位目前**全部空缺**——第一位金牌贊助商將獲得這個每週被數千名開發者看到的 README 中付費檔位的最高位置。
 
 ## 如何贊助
 
