@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useEventListener } from '../useEventListener'
 import { defaultOptions } from '../utils/defaults'
 import { getTargetElement } from '../utils/domTarget'
+import { useStableTarget } from '../utils/useStableTarget'
 import type { UseMousePressed, UseMousePressedOptions, UseMousePressedSourceType } from './interface'
 
 const listenerOptions = { passive: true }
@@ -14,58 +15,61 @@ export const useMousePressed: UseMousePressed = (
 
   const [pressed, setPressed] = useState(initialValue)
   const [sourceType, setSourceType] = useState<UseMousePressedSourceType>(null)
-  const element = getTargetElement(target)
+  const { key: elementKey, ref: elementRef } = useStableTarget(target)
 
-  const onPressed = useCallback(
-    (srcType: UseMousePressedSourceType) => () => {
-      setPressed(true)
-      setSourceType(srcType)
-    },
-    [],
-  )
+  // One reference per handler: removeEventListener matches on the callback, so a
+  // curried `onPressed('mouse')` built a different function for the add and the
+  // remove and detached neither.
+  const onMousePressed = useCallback(() => {
+    setPressed(true)
+    setSourceType('mouse')
+  }, [])
+  const onTouchPressed = useCallback(() => {
+    setPressed(true)
+    setSourceType('touch')
+  }, [])
   const onReleased = useCallback(() => {
     setPressed(false)
     setSourceType(null)
   }, [])
 
-  useEventListener('mousedown', onPressed('mouse'), target, listenerOptions)
+  useEventListener('mousedown', onMousePressed, target, listenerOptions)
   useEventListener('mouseleave', onReleased, () => window, listenerOptions)
   useEventListener('mouseup', onReleased, () => window, listenerOptions)
 
   useEffect(() => {
+    // Resolved here rather than during render: a ref handed to a child is still
+    // null while rendering, and the effect would never run again to pick it up.
+    const element = getTargetElement(elementRef.current)
+    if (!element) {
+      return
+    }
+
     if (drag) {
-      element?.addEventListener(
-        'dragstart',
-        onPressed('mouse'),
-        listenerOptions,
-      )
-      element?.addEventListener('drop', onReleased, listenerOptions)
-      element?.addEventListener('dragend', onReleased, listenerOptions)
+      element.addEventListener('dragstart', onMousePressed, listenerOptions)
+      element.addEventListener('drop', onReleased, listenerOptions)
+      element.addEventListener('dragend', onReleased, listenerOptions)
     }
 
     if (touch) {
-      element?.addEventListener(
-        'touchstart',
-        onPressed('touch'),
-        listenerOptions,
-      )
-      element?.addEventListener('touchend', onReleased, listenerOptions)
-      element?.addEventListener('touchcancel', onReleased, listenerOptions)
+      element.addEventListener('touchstart', onTouchPressed, listenerOptions)
+      element.addEventListener('touchend', onReleased, listenerOptions)
+      element.addEventListener('touchcancel', onReleased, listenerOptions)
     }
 
     return () => {
       if (drag) {
-        element?.removeEventListener('dragstart', onPressed('mouse'))
-        element?.removeEventListener('drop', onReleased)
-        element?.removeEventListener('dragend', onReleased)
+        element.removeEventListener('dragstart', onMousePressed)
+        element.removeEventListener('drop', onReleased)
+        element.removeEventListener('dragend', onReleased)
       }
       if (touch) {
-        element?.removeEventListener('touchstart', onPressed('touch'))
-        element?.removeEventListener('touchend', onReleased)
-        element?.removeEventListener('touchcancel', onReleased)
+        element.removeEventListener('touchstart', onTouchPressed)
+        element.removeEventListener('touchend', onReleased)
+        element.removeEventListener('touchcancel', onReleased)
       }
     }
-  }, [drag, onPressed, onReleased, touch, element])
+  }, [drag, touch, elementKey, elementRef, onMousePressed, onTouchPressed, onReleased])
 
   return [pressed, sourceType] as const
 }
