@@ -10,6 +10,7 @@ Brief description of what this PR does.
 
 ## Checklist
 - [ ] I have read the [Contributing Guide](../CONTRIBUTING.md)
+- [ ] I have read and understood every line of this diff myself, including any AI-written parts ([AI usage policy](../.claude/ai-policy.md))
 - [ ] My code follows the project's coding style
 - [ ] I have added tests for my changes
 - [ ] All existing tests pass

@@ -51,6 +51,15 @@ You can write your tests first if you prefer [test-driven development](https://e
 
 Feel free to enhance the existing functions. Please try not to introduce breaking changes.
 
+## Using AI assistants
+
+AI-assisted contributions are welcome. The one rule is that **you own every line you
+open a PR with**: read and understand the whole diff before you push it, including the
+parts an AI wrote, and be ready to answer review feedback yourself. Please mention
+substantial AI use in the PR description — it helps reviewers calibrate.
+
+The full policy is short: [`.claude/ai-policy.md`](./.claude/ai-policy.md).
+
 ## Thanks
 
 Thank you again for being interested in this project! You are awesome!
