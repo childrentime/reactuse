@@ -43,6 +43,11 @@ Sponsoring ReactUse puts your product in front of the React developers who insta
       <a href="https://cenno.app/"><b>Cenno</b></a><br>
       <sub>Expense tracking for iPhone &amp; iPad — no account, no server, no ads. Free on the App Store.</sub>
     </td>
+    <td align="center" width="280">
+      <a href="https://apps.apple.com/app/id6803985536"><img src="https://hintlib.com/icons/apple-touch-icon.png" alt="Unscript — English speaking practice for iPhone" width="80"></a><br>
+      <a href="https://hintlib.com/"><b>Unscript</b></a><br>
+      <sub>English speaking practice for iPhone — say one real dialogue four times, with less of the script each time. Speech stays on your phone. Free on the App Store.</sub>
+    </td>
   </tr>
 </table>
 

@@ -38,6 +38,11 @@ ReactUse 免費、以 Unlicense 釋入公有領域，由維護者利用業餘時
       <a href="https://cenno.app/zh/"><b>帳本本 Cenno</b></a><br>
       <sub>iPhone 與 iPad 記帳——沒有帳號、沒有伺服器、沒有廣告。App Store 免費下載。</sub>
     </td>
+    <td align="center" width="280">
+      <a href="https://apps.apple.com/app/id6803985536"><img src="https://hintlib.com/icons/apple-touch-icon.png" alt="Unscript 脫稿——英語口語練習" width="80"></a><br>
+      <a href="https://hintlib.com/zh/"><b>Unscript 脫稿</b></a><br>
+      <sub>iPhone 英語口語練習——同一段對話練四遍，台詞一次比一次少。語音辨識不離開手機。App Store 免費下載。</sub>
+    </td>
   </tr>
 </table>
 
