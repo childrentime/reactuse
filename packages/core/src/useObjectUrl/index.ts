@@ -7,16 +7,17 @@ export const useObjectUrl: UseObjectUrl = (
   const [url, setUrl] = useState<string>()
 
   useEffect(() => {
-    if (object) {
-      setUrl(URL.createObjectURL(object))
+    if (!object) {
+      setUrl(undefined)
+      return
     }
 
+    const objectUrl = URL.createObjectURL(object)
+    setUrl(objectUrl)
+
     return () => {
-      if (url) {
-        URL.revokeObjectURL(url)
-      }
+      URL.revokeObjectURL(objectUrl)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [object])
 
   return url
