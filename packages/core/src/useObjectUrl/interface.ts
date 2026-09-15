@@ -10,5 +10,5 @@ export type UseObjectUrl = (
    * @zh-Hant 檔案或者媒體對象
    * @en file or media source
    */
-  object: Blob | MediaSource
+  object?: Blob | MediaSource
 ) => string | undefined

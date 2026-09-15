@@ -51,10 +51,17 @@ it('should revoke the current url on unmount', () => {
   expect(revoked).toEqual(['blob:mock/1'])
 })
 
+it('should return undefined without an object', () => {
+  const { result } = renderHook(() => useObjectUrl(undefined))
+
+  expect(result.current).toBeUndefined()
+  expect(created).toEqual([])
+})
+
 it('should drop the url when the object goes away', () => {
-  const { result, rerender } = renderHook(
-    ({ object }) => useObjectUrl(object as Blob),
-    { initialProps: { object: first as Blob | undefined } },
+  const { result, rerender } = renderHook<string | undefined, { object?: Blob }>(
+    ({ object }) => useObjectUrl(object),
+    { initialProps: { object: first } },
   )
 
   rerender({ object: undefined })

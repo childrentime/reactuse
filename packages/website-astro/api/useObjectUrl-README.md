@@ -6,4 +6,4 @@
 #### Arguments
 |Argument|Description|Type|DefaultValue|
 |---|---|---|---|
-|object|file or media source|Blob \| MediaSource  **(Required)**|-|
+|object|file or media source|Blob \| MediaSource \| undefined |-|

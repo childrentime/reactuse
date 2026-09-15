@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import type { UseObjectUrl } from './interface'
 
 export const useObjectUrl: UseObjectUrl = (
-  object: Blob | MediaSource,
+  object?: Blob | MediaSource,
 ): string | undefined => {
   const [url, setUrl] = useState<string>()
 
