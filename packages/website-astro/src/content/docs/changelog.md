@@ -5,6 +5,10 @@ description: "Changelog for @reactuses/core — release notes and version histor
 ---
 # ChangeLog
 
+## 6.5.8(Sep 15, 2026)
+
+- docs(readme): show the sponsors on the npm package page. The README that ships inside the package had fallen behind the repository one and carried neither the Special Sponsors wall nor the sponsor badge, so npmjs.com showed no sponsors at all. It now has the same Sponsors section, badge and "Support ReactUse" closing as the GitHub README. No code changes
+
 ## 6.5.7(Sep 15, 2026)
 
 - fix(useObjectUrl): revoke the URLs it creates. The cleanup read `url` from the render closure, which belongs to the render before `setUrl` applied, so it was always `undefined` there and nothing was ever revoked: every object URL the hook created leaked for the lifetime of the page — on unmount and on every change of `object` — although the docs promised the opposite. The created URL is now held in a local `const` for the cleanup to release, and the hook returns `undefined` again once the object goes away instead of the URL of an object it no longer has. The argument is also typed as optional now (`object?: Blob | MediaSource`), so the documented `useObjectUrl(file)` with `file` from `useState<File>()` typechecks. Adds `useObjectUrl/index.spec.ts` — five tests, three of which fail on 6.5.6. Thanks to @rawsun007 (#226)
