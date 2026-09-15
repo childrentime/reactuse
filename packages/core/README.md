@@ -10,6 +10,7 @@
   <img alt="UnLicense" src="https://img.shields.io/npm/l/@reactuses/core?style=for-the-badge&labelColor=24292e">
   <img alt="Tree Shaking Friendly" src="https://img.shields.io/badge/Tree%20Shaking-Friendly-brightgreen?style=for-the-badge&labelColor=24292e">
   <img alt="TypeScript Support" src="https://img.shields.io/badge/TypeScript-Support-blue?style=for-the-badge&labelColor=24292e">
+  <a href="https://github.com/sponsors/childrentime"><img alt="Sponsor ReactUse" src="https://img.shields.io/badge/%E2%9D%A4-Sponsor-db61a2?style=for-the-badge&labelColor=24292e"></a>
 </p>
 
 <p align="center">
@@ -17,6 +18,39 @@
   <a href="https://deepwiki.com/childrentime/reactuse"><img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg"></a>
   <a href="https://gitmcp.io/childrentime/reactuse"><img alt="GitMCP" src="https://img.shields.io/badge/GitMCP-Use%20with%20AI-22c55e?style=for-the-badge&labelColor=24292e"></a>
 </p>
+
+## Sponsors
+
+Sponsoring ReactUse puts your product in front of the React developers who install `@reactuses/core` every month — your logo right here at the top of the README, and on [reactuse.com/sponsor](https://reactuse.com/sponsor/). Live reach:
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@reactuses/core"><img alt="npm installs per month" src="https://img.shields.io/npm/dm/@reactuses/core?style=for-the-badge&labelColor=24292e&color=50a36f&label=npm%20installs%2Fmonth"></a>
+  <a href="https://github.com/childrentime/reactuse/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/childrentime/reactuse?style=for-the-badge&labelColor=24292e&color=70a5fd&label=github%20stars"></a>
+</p>
+
+<p align="center"><sub>💎 &nbsp;Special Sponsors</sub></p>
+
+<table align="center">
+  <tr>
+    <td align="center" width="280">
+      <a href="https://apps.apple.com/app/id6760214754"><img src="https://cenno.app/icons/icon-192.png" alt="Cenno — expense tracking for iPhone and iPad" width="80"></a><br>
+      <a href="https://cenno.app/"><b>Cenno</b></a><br>
+      <sub>Expense tracking for iPhone &amp; iPad — no account, no server, no ads. Free on the App Store.</sub>
+    </td>
+    <td align="center" width="280">
+      <a href="https://apps.apple.com/app/id6803985536"><img src="https://hintlib.com/icons/apple-touch-icon.png" alt="Unscript — English speaking practice for iPhone" width="80"></a><br>
+      <a href="https://hintlib.com/"><b>Unscript</b></a><br>
+      <sub>English speaking practice for iPhone — say one real dialogue four times, with less of the script each time. Speech stays on your phone. Free on the App Store.</sub>
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <a href="https://github.com/sponsors/childrentime"><img alt="Sponsor on GitHub" src="https://img.shields.io/badge/%E2%9D%A4%20Sponsor%20on%20GitHub-db61a2?style=for-the-badge&labelColor=24292e"></a>
+  <a href="https://www.buymeacoffee.com/lianwenwu"><img alt="Buy me a coffee" src="https://img.shields.io/badge/%E2%98%95%20Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&labelColor=24292e"></a>
+</p>
+
+<p align="center"><sub>🥇 Gold, 🥈 Silver and 🥉 Bronze slots are open — <a href="https://github.com/sponsors/childrentime">claim one</a> and your logo goes live here within 48 hours. Tiers, benefits and company invoicing: <a href="https://reactuse.com/sponsor/">reactuse.com/sponsor</a>.</sub></p>
 
 ## Introduction
 
@@ -129,8 +163,6 @@ This project is heavily inspired by the following awesome projects.
 
 ---
 
-## Sponsor Me
+## Support ReactUse
 
-If my work has helped you, consider buying me a cup of coffee. Thank you very much🥰!.
-
-[Buy me a coffee](https://www.buymeacoffee.com/lianwenwu)
+ReactUse is free, released into the public domain under the Unlicense, and maintained in spare time. If it saved you a day of work, consider [becoming a sponsor](https://github.com/sponsors/childrentime) (from $5/month) or [buying me a coffee](https://www.buymeacoffee.com/lianwenwu) — it keeps the hooks maintained and the docs interactive. 🥰
