@@ -7,7 +7,7 @@ export function useMobileLandscape() {
 
   useEffect(() => {
     const userAgent = window.navigator.userAgent
-    const isMobile = /Mobi|Android｜iphone/i.test(userAgent)
+    const isMobile = /Mobi|Android|iPhone/i.test(userAgent)
     setIsMobileLandscape(isMobile && orientation.type === 'landscape-primary')
   }, [orientation.type])
 
