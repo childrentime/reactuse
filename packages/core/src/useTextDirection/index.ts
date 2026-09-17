@@ -10,17 +10,17 @@ import type {
 export const useTextDirection: UseTextDirection = (
   options: UseTextDirectionOptions = defaultOptions,
 ) => {
-  const { selector = 'html', initialValue = 'ltr' } = options
-  const getValue = () => {
-    if (initialValue !== undefined) {
-      return initialValue
-    }
+  const { selector = 'html', initialValue } = options
+  const getValue = (): UseTextDirectionValue => {
     if (isBrowser) {
       return (
         (document
           ?.querySelector(selector)
-          ?.getAttribute('dir') as UseTextDirectionValue) ?? initialValue
+          ?.getAttribute('dir') as UseTextDirectionValue) ?? initialValue ?? 'ltr'
       )
+    }
+    if (initialValue !== undefined) {
+      return initialValue
     }
     // A default value has not been provided, and you are rendering on the server, warn of a possible hydration mismatch when defaulting to false.
     if (process.env.NODE_ENV !== 'production') {
@@ -28,7 +28,7 @@ export const useTextDirection: UseTextDirection = (
         '`useTextDirection` When server side rendering, defaultState should be defined to prevent a hydration mismatches.',
       )
     }
-    return initialValue
+    return 'ltr'
   }
   const [value, setValue] = useState<UseTextDirectionValue>(getValue())
 
@@ -36,7 +36,7 @@ export const useTextDirection: UseTextDirection = (
     setValue(
       document
         ?.querySelector(selector)
-        ?.getAttribute('dir') as UseTextDirectionValue ?? initialValue,
+        ?.getAttribute('dir') as UseTextDirectionValue ?? initialValue ?? 'ltr',
     )
   }, [initialValue, selector])
 
