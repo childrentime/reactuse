@@ -5,6 +5,11 @@ description: "Changelog for @reactuses/core — release notes and version histor
 ---
 # ChangeLog
 
+## 6.5.9(Sep 17, 2026)
+
+- fix(useMobileLandscape): use an ASCII pipe in the user-agent regex. The alternation between `Android` and `iphone` was written with a fullwidth vertical line (U+FF5C) rather than `|`, so the two alternatives were one literal string that no user agent contains. An Android user agent without a `Mobi` token — a tablet — was therefore never detected as mobile, and the hook reported landscape only for the `Mobi` case it happened to match. Thanks to @rawsun007 (#228)
+- fix(useTextDirection): read the element's direction on the first render. `initialValue` was destructured with a default of `'ltr'`, so the `initialValue !== undefined` guard above it was always true and both the branch that reads the target element's `dir` and the server-side warning below it were unreachable. Every first render reported `ltr` and the effect corrected it afterwards, so a document with `dir="rtl"` rendered `ltr` once before settling, and server markup claimed `ltr` for a direction the hook had never read. The element now wins, falling back to `initialValue` and then `'ltr'` — what the unreachable branch already did. Two consequences worth knowing: `initialValue` is a fallback rather than an initial value now, and is documented as such; and the SSR warning is live again, so an app that server-renders without `initialValue` is told to set it instead of silently hydrating against a direction the server could not see. Adds `useTextDirection/index.spec.ts` — five tests, two of which fail on 6.5.8. Thanks to @rawsun007 (#230)
+
 ## 6.5.8(Sep 15, 2026)
 
 - docs(readme): show the sponsors on the npm package page. The README that ships inside the package had fallen behind the repository one and carried neither the Special Sponsors wall nor the sponsor badge, so npmjs.com showed no sponsors at all. It now has the same Sponsors section, badge and "Support ReactUse" closing as the GitHub README. No code changes
