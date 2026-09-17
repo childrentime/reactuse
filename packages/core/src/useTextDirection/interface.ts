@@ -31,9 +31,9 @@ export interface UseTextDirectionOptions {
    */
   selector?: string
   /**
-   * @en Initial value
-   * @zh 初始值
-   * @zh-Hant 初始值
+   * @en Fallback direction, used when the target element has no `dir` attribute
+   * @zh 兜底方向，目标元素没有 `dir` 属性时使用
+   * @zh-Hant 兜底方向，目標元素沒有 `dir` 屬性時使用
    * @defaultValue 'ltr'
    */
   initialValue?: UseTextDirectionValue

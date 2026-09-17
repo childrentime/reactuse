@@ -15,7 +15,7 @@
 |參數名|描述|類型|預設值|
 |---|---|---|---|
 |selector|适用于目标元素的 CSS 选择器|string |`'html'`|
-|initialValue|初始值|[UseTextDirectionValue](#usetextdirectionvalue) |`'ltr'`|
+|initialValue|兜底方向，目标元素没有 `dir` 属性时使用|[UseTextDirectionValue](#usetextdirectionvalue) |`'ltr'`|
 
 ### UseTextDirectionValue
 

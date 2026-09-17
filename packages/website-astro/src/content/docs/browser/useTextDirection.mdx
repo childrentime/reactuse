@@ -17,7 +17,8 @@ change [dir](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 
 ### Notes
 
-- **SSR-safe**: Returns the `initialValue` (default: `"ltr"`) and a no-op setter during server-side rendering. No `document` access occurs on the server.
+- **The element wins**: `initialValue` is a fallback, not an override. If the target element already carries a `dir` attribute, the hook reports that value — on the very first render, not after an effect — so an RTL document never flashes `ltr`. `initialValue` is used only when the element has no `dir`.
+- **SSR-safe**: No `document` access occurs on the server; server rendering returns `initialValue` (default: `"ltr"`) and a no-op setter. Because the client reads the element on its first render, pass an `initialValue` matching the direction of your server-rendered markup, or the two will disagree and React will report a hydration mismatch.
 - **Target selector**: By default, the hook sets `dir` on the `<html>` element. Use the `selector` option to target a specific element for scoped direction changes.
 - **Related hooks**: See also `usePreferredLanguages` for detecting the user's language preferences, which can inform the text direction choice.
 

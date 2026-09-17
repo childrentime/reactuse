@@ -17,7 +17,8 @@ description: "useTextDirection 是一个读取并更新元素 dir 属性的 Reac
 
 ### 注意事项
 
-- **SSR 安全**：在服务端渲染期间返回 `initialValue`（默认 `"ltr"`）和空操作设置函数。服务端不会访问 `document`。
+- **以元素为准**：`initialValue` 是兜底值而非覆盖值。若目标元素已带有 `dir` 属性，hook 在首次渲染时就会报告该值（而不是等 effect 纠正），因此 RTL 文档不会先闪一下 `ltr`。只有元素没有 `dir` 时才会使用 `initialValue`。
+- **SSR 安全**：服务端不会访问 `document`，服务端渲染返回 `initialValue`（默认 `"ltr"`）和空操作设置函数。由于客户端在首次渲染时就读取元素，请传入与服务端渲染标记方向一致的 `initialValue`，否则两边不一致，React 会报 hydration 不匹配。
 - **目标选择器**：默认情况下，hook 在 `<html>` 元素上设置 `dir`。使用 `selector` 选项定位特定元素以进行作用域内的方向更改。
 - **相关 hooks**：参见 `usePreferredLanguages` 了解检测用户的语言偏好，这可以为文本方向的选择提供参考。
 

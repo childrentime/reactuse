@@ -15,7 +15,7 @@
 |Property|Description|Type|DefaultValue|
 |---|---|---|---|
 |selector|CSS Selector for the target element applying to|string |`'html'`|
-|initialValue|Initial value|[UseTextDirectionValue](#usetextdirectionvalue) |`'ltr'`|
+|initialValue|Fallback direction, used when the target element has no `dir` attribute|[UseTextDirectionValue](#usetextdirectionvalue) |`'ltr'`|
 
 ### UseTextDirectionValue
 
