@@ -9,7 +9,7 @@ describe(useScriptTag, () => {
 
   beforeEach(() => {
     const els = document.querySelectorAll<HTMLScriptElement>('script')
-    els.forEach(el => document.head.removeChild(el))
+    els.forEach(el => el.remove())
   })
 
   it('should add script tag', async () => {
@@ -128,8 +128,22 @@ describe(useScriptTag, () => {
     expect(element?.getAttribute('data-test')).toBe('data-test-value')
   })
 
+  it('should unload a script that was already on the page outside head', async () => {
+    const existing = document.createElement('script')
+    existing.src = src
+    document.body.appendChild(existing)
+
+    const hook = renderHook(() => useScriptTag(src, () => {}, { manual: false }))
+
+    await act(async () => {
+      hook.unmount()
+    })
+
+    expect(document.querySelector(`script[src="${src}"]`)).toBeNull()
+  })
+
   it('should remove script tag on unmount', async () => {
-    const removeChildListener = jest.spyOn(document.head, 'removeChild')
+    const removeChildListener = jest.spyOn(Element.prototype, 'remove')
 
     expect(removeChildListener).not.toBeCalled()
 
@@ -163,7 +177,7 @@ describe(useScriptTag, () => {
   })
 
   it('should remove script tag on unload call', async () => {
-    const removeChildListener = jest.spyOn(document.head, 'removeChild')
+    const removeChildListener = jest.spyOn(Element.prototype, 'remove')
 
     expect(removeChildListener).not.toBeCalled()
 
@@ -195,7 +209,7 @@ describe(useScriptTag, () => {
   })
 
   it('should remove script tag on unload call after multiple loads', async () => {
-    const removeChildListener = jest.spyOn(document.head, 'removeChild')
+    const removeChildListener = jest.spyOn(Element.prototype, 'remove')
 
     expect(removeChildListener).not.toBeCalled()
 

@@ -164,9 +164,8 @@ export const useScriptTag: UseScriptTag = (
     const el = document.querySelector<HTMLScriptElement>(
       `script[src="${src}"]`,
     )
-    if (el) {
-      document.head.removeChild(el)
-    }
+    // The lookup is document-wide, so the tag is not necessarily in `head`.
+    el?.remove()
   }
 
   useMount(() => {
