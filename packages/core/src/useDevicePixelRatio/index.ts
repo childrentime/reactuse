@@ -1,8 +1,11 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import type { UseDevicePixelRatio } from './interface'
 
 export const useDevicePixelRatio: UseDevicePixelRatio = () => {
   const [pixelRatio, setPixelRatio] = useState<number>(1)
+  // `observe` re-subscribes to a new media query every time the ratio changes,
+  // so the effect cannot hold the cleanup for the current subscription itself.
+  const cleanupRef = useRef<(() => void) | undefined>(undefined)
 
   const observe = useCallback(() => {
     if (!window)
@@ -18,14 +21,16 @@ export const useDevicePixelRatio: UseDevicePixelRatio = () => {
 
     media.addEventListener('change', handleChange, { once: true })
 
-    return () => {
+    cleanupRef.current = () => {
       media.removeEventListener('change', handleChange)
     }
   }, [])
 
   useEffect(() => {
-    const cleanup = observe()
-    return cleanup
+    observe()
+    return () => {
+      cleanupRef.current?.()
+    }
   }, [observe])
 
   return { pixelRatio } as const
