@@ -6,7 +6,7 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|options|配置项|[UseElementByPointOptions](#useelementbypointoptions)&lt;M&gt;  **(必填)**|-|
+|options|配置項|[UseElementByPointOptions](#useelementbypointoptions)&lt;M&gt;  **(必填)**|-|
 
 ### UseElementByPointOptions
 

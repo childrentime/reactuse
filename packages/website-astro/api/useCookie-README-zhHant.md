@@ -9,9 +9,9 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|key|键值|string  **(必填)**|-|
-|options|透传给 `js-cookie` 的参数|any |-|
-|defaultValue|默认值，ssr必须传递|string \| undefined |-|
+|key|鍵值|string  **(必填)**|-|
+|options|透傳給 `js-cookie` 的參數|any |-|
+|defaultValue|預設值，ssr必須傳遞|string \| undefined |-|
 
 ### useCookieState
 

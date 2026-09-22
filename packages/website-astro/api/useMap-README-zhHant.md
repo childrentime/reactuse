@@ -14,4 +14,4 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|initialValue|初始值，可以为 Map 实例、数组或者一个初始化的函数|Map&lt;K, V&gt; \| readonly (readonly [K, V])[] \| (() =&gt; Map&lt;K, V&gt; \| readonly (readonly [K, V])[]) \| undefined |-|
+|initialValue|初始值，可以為 Map 實例、數組或者一個初始化的函數|Map&lt;K, V&gt; \| readonly (readonly [K, V])[] \| (() =&gt; Map&lt;K, V&gt; \| readonly (readonly [K, V])[]) \| undefined |-|

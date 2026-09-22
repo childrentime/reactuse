@@ -54,10 +54,13 @@ function generateMarkdown(
             let field = column.value
 
             // Field like tag.version
-            const execResult = /tag\.(\w+)/.exec(field)
+            const execResult = /tag\.([\w-]+)/.exec(field)
             if (execResult) {
               field = execResult[1]
+              /* Prefer the exact tag, then the base language, so a parameter documented with `@zh` but no `@zh-Hant` keeps its simplified text rather than rendering empty. Mirrors the hook-level tag fallback in generate.ts. */
+              const baseField = field.includes('-') ? field.slice(0, field.indexOf('-')) : field
               const obj = schema.tags?.find(tag => tag.name === field)
+                || schema.tags?.find(tag => tag.name === baseField)
               const value = obj ? toSingleLine(obj.value) : '-'
               return field === 'defaultValue' ? `\`${value}\`` : value
             }

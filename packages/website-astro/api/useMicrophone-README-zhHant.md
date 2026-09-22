@@ -2,11 +2,11 @@
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|deviceId|指定要使用的麦克风设备 ID；激活状态下变化会自动重新获取流|string |`-`|
-|constraints|与默认音频约束合并的额外 MediaTrackConstraints；deviceId 优先|MediaTrackConstraints |`-`|
-|levelInterval|音量级别状态更新的节流间隔（毫秒）|number |`100`|
-|mimeType|MediaRecorder 的首选 mime 类型；不受支持时自动回退|string |`-`|
-|autoStart|挂载时自动打开麦克风|boolean |`false`|
+|deviceId|指定要使用的麥克風裝置 ID；啟動狀態下變化會自動重新取得串流|string |`-`|
+|constraints|與預設音訊約束合併的額外 MediaTrackConstraints；deviceId 優先|MediaTrackConstraints |`-`|
+|levelInterval|音量等級狀態更新的節流間隔（毫秒）|number |`100`|
+|mimeType|MediaRecorder 的首選 mime 類型；不支援時自動回退|string |`-`|
+|autoStart|掛載時自動開啟麥克風|boolean |`false`|
 
 ### useMicrophone
 
@@ -16,4 +16,4 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|options|可选配置|[UseMicrophoneOptions](#usemicrophoneoptions) \| undefined |-|
+|options|可選配置|[UseMicrophoneOptions](#usemicrophoneoptions) \| undefined |-|

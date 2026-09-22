@@ -12,10 +12,10 @@
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|target|dom对象|[BasicTarget](#basictarget)&lt;Element&gt;  **(必填)**|`-`|
-|latency|延迟时间（毫秒）|number \| undefined |`-`|
-|onSingleClick|单击事件处理函数|((e?: MouseEvent \| TouchEvent) => void) \| undefined |`-`|
-|onDoubleClick|双击事件处理函数|((e?: MouseEvent \| TouchEvent) => void) \| undefined |`-`|
+|target|dom對象|[BasicTarget](#basictarget)&lt;Element&gt;  **(必填)**|`-`|
+|latency|延遲時間（毫秒）|number \| undefined |`-`|
+|onSingleClick|單擊事件處理函數|((e?: MouseEvent \| TouchEvent) => void) \| undefined |`-`|
+|onDoubleClick|雙擊事件處理函數|((e?: MouseEvent \| TouchEvent) => void) \| undefined |`-`|
 
 ### BasicTarget
 

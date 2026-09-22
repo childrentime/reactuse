@@ -12,7 +12,7 @@
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|signal|终止信号|AbortSignal |`-`|
+|signal|終止信號|AbortSignal |`-`|
 
 ### UseEyeDropperOpenReturnType
 

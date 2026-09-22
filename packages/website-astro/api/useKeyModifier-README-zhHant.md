@@ -6,8 +6,8 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|modifier|键位|[KeyModifier](#keymodifier)  **(必填)**|-|
-|options|可选参数|[UseModifierOptions](#usemodifieroptions) \| undefined |-|
+|modifier|鍵位|[KeyModifier](#keymodifier)  **(必填)**|-|
+|options|可選參數|[UseModifierOptions](#usemodifieroptions) \| undefined |-|
 
 ### UseModifierOptions
 

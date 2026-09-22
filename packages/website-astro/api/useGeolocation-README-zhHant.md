@@ -10,4 +10,4 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|options|可选 `PositionOptions` 参数|Partial&lt;PositionOptions&gt; \| undefined |-|
+|options|可選 `PositionOptions` 參數|Partial&lt;PositionOptions&gt; \| undefined |-|

@@ -8,8 +8,8 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|target|dom对象|[BasicTarget](#basictarget)&lt;HTMLElement \| SVGElement&gt;  **(必填)**|-|
-|options|传递给 `intersectionObserver` 的选项|IntersectionObserverInit \| undefined |-|
+|target|dom對象|[BasicTarget](#basictarget)&lt;HTMLElement \| SVGElement&gt;  **(必填)**|-|
+|options|傳遞給 `intersectionObserver` 的選項|IntersectionObserverInit \| undefined |-|
 
 ### BasicTarget
 

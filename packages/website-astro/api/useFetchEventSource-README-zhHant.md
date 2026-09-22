@@ -9,9 +9,9 @@
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|retries|重试次数，如果是函数，会调用来判断是否重试|number \| (() => boolean) |`-`|
-|delay|重连前的延迟时间（毫秒）|number |`-`|
-|onFailed|重连失败时的回调|() => void |`-`|
+|retries|重試次數，如果是函數，會調用來判斷是否重試|number \| (() => boolean) |`-`|
+|delay|重連前的延遲時間（毫秒）|number |`-`|
+|onFailed|重連失敗時的回調|() => void |`-`|
 
 ### UseFetchEventSourceOptions
 

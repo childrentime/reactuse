@@ -10,8 +10,8 @@
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|online|浏览器是否连接网络|boolean \| undefined  **(必填)**|`-`|
-|previous|`online` 属性的先前值。 帮助识别浏览器是否刚刚连接或失去连接。|boolean \| undefined  **(必填)**|`-`|
+|online|瀏覽器是否連接網路|boolean \| undefined  **(必填)**|`-`|
+|previous|`online` 屬性的先前值。 幫助識別瀏覽器是否剛剛連接或失去連接。|boolean \| undefined  **(必填)**|`-`|
 |since|{Date} 对象指向状态更改发生的时刻。|Date \| undefined  **(必填)**|`-`|
 |downlink|有效带宽估计（以兆位每秒为单位），四舍五入到25 kbps 的最接近倍数。|[INetworkInformation](#inetworkinformation)['downlink'] \| undefined  **(必填)**|`-`|
 |downlinkMax|最大下行链路速度，以兆比特每秒 (Mbps) 为单位|[INetworkInformation](#inetworkinformation)['downlinkMax'] \| undefined  **(必填)**|`-`|

@@ -8,23 +8,23 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|key|键值|string  **(必填)**|-|
-|defaultValue|默认值|T \| undefined |-|
-|options|可选参数|[UseSessionStorageOptions](#usesessionstorageoptions)&lt;T&gt; \| undefined |-|
+|key|鍵值|string  **(必填)**|-|
+|defaultValue|預設值|T \| undefined |-|
+|options|可選參數|[UseSessionStorageOptions](#usesessionstorageoptions)&lt;T&gt; \| undefined |-|
 
 ### UseSessionStorageOptions
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|serializer|自定义数据序列化|[UseSessionStorageSerializer](#usesessionstorageserializer)&lt;T&gt; |`-`|
-|onError|错误回调|(error: unknown) => void |``console.error``|
-|effectStorageValue|首次挂载时没有数据时设置到 storage, 已弃用|T \| (() => T) |`-`|
-|mountStorageValue|首次挂载时没有数据时设置到 storage|T \| (() => T) |`-`|
-|listenToStorageChanges|监听 storage 变化|boolean |``true``|
+|serializer|自定義數據序列化|[UseSessionStorageSerializer](#usesessionstorageserializer)&lt;T&gt; |`-`|
+|onError|錯誤回調|(error: unknown) => void |``console.error``|
+|effectStorageValue|首次掛載時沒有數據時設置到 storage, 已棄用|T \| (() => T) |`-`|
+|mountStorageValue|首次掛載時沒有數據時設置到 storage|T \| (() => T) |`-`|
+|listenToStorageChanges|監聽 storage 變化|boolean |``true``|
 
 ### UseSessionStorageSerializer
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|read|自定义数据读取|(raw: string) => T  **(必填)**|`-`|
-|write|自定义数据写入|(value: T) => string  **(必填)**|`-`|
+|read|自定義數據讀取|(raw: string) => T  **(必填)**|`-`|
+|write|自定義數據寫入|(value: T) => string  **(必填)**|`-`|
