@@ -6,4 +6,4 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|defauleValue|默认值|boolean \| undefined |-|
+|defauleValue|預設值|boolean \| undefined |-|

@@ -9,5 +9,5 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|callback|回调|FrameRequestCallback  **(必填)**|-|
+|callback|回調|FrameRequestCallback  **(必填)**|-|
 |initiallyActive|立即执行|boolean \| undefined |-|

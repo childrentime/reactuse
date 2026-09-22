@@ -2,11 +2,11 @@
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|isOpen|是否打开，传了则为受控|boolean |`-`|
-|defaultOpen|默认打开状态|boolean |`-`|
-|onClose|关闭时的回调|() => void |`-`|
-|onOpen|打开时的回调|() => void |`-`|
-|onChange|状态改变时的回调|(isOpen: boolean \| undefined) => void |`-`|
+|isOpen|是否打開，傳了則為受控|boolean |`-`|
+|defaultOpen|預設打開狀態|boolean |`-`|
+|onClose|關閉時的回調|() => void |`-`|
+|onOpen|打開時的回調|() => void |`-`|
+|onChange|狀態改變時的回調|(isOpen: boolean \| undefined) => void |`-`|
 
 ### useDisclosure
 

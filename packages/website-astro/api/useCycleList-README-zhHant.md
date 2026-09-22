@@ -9,5 +9,5 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|list|循环数组|T[]  **(必填)**|-|
-|i|数组索引|number \| undefined |-|
+|list|循環陣列|T[]  **(必填)**|-|
+|i|陣列索引|number \| undefined |-|

@@ -10,8 +10,8 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|target|dom对象|[BasicTarget](#basictarget)&lt;HTMLElement \| SVGElement&gt;  **(必填)**|-|
-|options|可选参数|[UseDraggableOptions](#usedraggableoptions) \| undefined |-|
+|target|dom對象|[BasicTarget](#basictarget)&lt;HTMLElement \| SVGElement&gt;  **(必填)**|-|
+|options|可選參數|[UseDraggableOptions](#usedraggableoptions) \| undefined |-|
 
 ### UseDraggableOptions
 

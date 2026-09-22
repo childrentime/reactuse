@@ -9,11 +9,11 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|ms|间隔时间|number \| undefined |-|
+|ms|間隔時間|number \| undefined |-|
 |options|-|[UseTimeoutOptions](#usetimeoutoptions) \| undefined |-|
 
 ### UseTimeoutOptions
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|immediate|立即设置定时器|boolean |`true`|
+|immediate|立即設定定時器|boolean |`true`|

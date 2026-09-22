@@ -8,7 +8,7 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|targetElement|dom对象|[BasicTarget](#basictarget)&lt;HTMLElement&gt;  **(必填)**|-|
+|targetElement|dom對象|[BasicTarget](#basictarget)&lt;HTMLElement&gt;  **(必填)**|-|
 |params|可选参数|[UseScrollIntoViewParams](#usescrollintoviewparams) \| undefined |-|
 |scrollElement|滚动容器|[BasicTarget](#basictarget)&lt;HTMLElement&gt; |-|
 

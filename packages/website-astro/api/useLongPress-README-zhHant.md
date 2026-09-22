@@ -11,12 +11,12 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|callback|回调|(e: MouseEvent \| TouchEvent) => void  **(必填)**|-|
-|options|可选参数|[UseLongPressOptions](#uselongpressoptions) \| undefined |-|
+|callback|回調|(e: MouseEvent \| TouchEvent) => void  **(必填)**|-|
+|options|可選參數|[UseLongPressOptions](#uselongpressoptions) \| undefined |-|
 
 ### UseLongPressOptions
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|isPreventDefault|阻止默认事件|boolean |`true`|
-|delay|延迟|number |`300`|
+|isPreventDefault|阻止預設事件|boolean |`true`|
+|delay|延遲|number |`300`|

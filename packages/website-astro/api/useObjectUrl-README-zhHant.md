@@ -6,4 +6,4 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|object|文件或者媒体对象|Blob \| MediaSource \| undefined |-|
+|object|檔案或者媒體對象|Blob \| MediaSource \| undefined |-|

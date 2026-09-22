@@ -15,6 +15,6 @@
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|multiple|选择多个文件|boolean |`true`|
+|multiple|選擇多個檔案|boolean |`true`|
 |accept|可以接受的文件类型|string |`'*'`|
 |capture|[指定设备，可以从麦克风或者摄像头中获取文件](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)|string |`-`|

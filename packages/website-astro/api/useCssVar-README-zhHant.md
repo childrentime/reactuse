@@ -8,16 +8,16 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|prop|属性值，比如 --color|string  **(必填)**|-|
+|prop|屬性值，比如 --color|string  **(必填)**|-|
 |target|dom元素|[BasicTarget](#basictarget)&lt;T&gt;  **(必填)**|-|
-|defaultValue|默认值|string \| undefined |-|
-|options|可选项|[UseCssVarOptions](#usecssvaroptions) \| undefined |-|
+|defaultValue|預設值|string \| undefined |-|
+|options|可選項|[UseCssVarOptions](#usecssvaroptions) \| undefined |-|
 
 ### UseCssVarOptions
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|observe|使用 MutationObserver 来监听变量变更|boolean |`false`|
+|observe|使用 MutationObserver 來監聽變數變更|boolean |`false`|
 
 ### BasicTarget
 

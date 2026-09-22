@@ -11,6 +11,6 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|initialValue|初始值，可以为数字或者一个初始化的函数|number \| (() => number) \| undefined |`0`|
-|max|最大值。不提供则无上限|number \| null \| undefined |-|
-|min|最小值。不提供则无下限|number \| null \| undefined |-|
+|initialValue|初始值，可以為數字或者一個初始化的函數|number \| (() => number) \| undefined |`0`|
+|max|最大值。不提供則無上限|number \| null \| undefined |-|
+|min|最小值。不提供則無下限|number \| null \| undefined |-|
