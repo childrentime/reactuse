@@ -1,37 +1,36 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { UseDevicePixelRatio } from './interface'
 
 export const useDevicePixelRatio: UseDevicePixelRatio = () => {
   const [pixelRatio, setPixelRatio] = useState<number>(1)
-  // `observe` re-subscribes to a new media query every time the ratio changes,
-  // so the effect cannot hold the cleanup for the current subscription itself.
-  const cleanupRef = useRef<(() => void) | undefined>(undefined)
-
-  const observe = useCallback(() => {
-    if (!window)
-      return
-
-    setPixelRatio(window.devicePixelRatio)
-
-    const media = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`)
-
-    const handleChange = () => {
-      observe()
-    }
-
-    media.addEventListener('change', handleChange, { once: true })
-
-    cleanupRef.current = () => {
-      media.removeEventListener('change', handleChange)
-    }
-  }, [])
 
   useEffect(() => {
-    observe()
-    return () => {
-      cleanupRef.current?.()
+    // Each ratio carries its own media query, so `observe` re-subscribes on
+    // every change and hands the effect the cleanup for the live subscription.
+    let cleanup: (() => void) | undefined
+
+    const observe = () => {
+      setPixelRatio(window.devicePixelRatio)
+
+      const media = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`)
+
+      const handleChange = () => {
+        observe()
+      }
+
+      media.addEventListener('change', handleChange, { once: true })
+
+      cleanup = () => {
+        media.removeEventListener('change', handleChange)
+      }
     }
-  }, [observe])
+
+    observe()
+
+    return () => {
+      cleanup?.()
+    }
+  }, [])
 
   return { pixelRatio } as const
 }
