@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { noop } from '../utils/is'
+import { defaultDocument } from '../utils/browser'
 import { useMount } from '../useMount'
 import { useUnmount } from '../useUnmount'
 import { defaultOptions } from '../utils/defaults'
@@ -43,7 +44,7 @@ export const useScriptTag: UseScriptTag = (
       }
 
       // Check if document actually exists, otherwise resolve the Promise (SSR Support).
-      if (!document) {
+      if (!defaultDocument) {
         resolve(false)
         return
       }
@@ -151,7 +152,7 @@ export const useScriptTag: UseScriptTag = (
    * Unload the script specified by `src`.
    */
   const unload = () => {
-    if (!document) {
+    if (!defaultDocument) {
       return
     }
 
