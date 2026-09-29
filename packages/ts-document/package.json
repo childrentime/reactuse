@@ -24,6 +24,7 @@
   ],
   "scripts": {
     "prepublishOnly": "npm run test && npm run tsc",
+    "prepare": "npm run tsc",
     "tsc": "rm -rf lib/ && tsc",
     "tsc:watch": "tsc -w",
     "test": "jest"
