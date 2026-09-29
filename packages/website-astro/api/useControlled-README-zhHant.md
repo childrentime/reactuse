@@ -9,5 +9,5 @@
 |參數名|描述|類型|預設值|
 |---|---|---|---|
 |value|受控值|T \| undefined  **(必填)**|-|
-|defaultValue|默认值|T  **(必填)**|-|
-|onChange|值改变时的回调|((v: T, ...args: any[]) => void) \| undefined |-|
+|defaultValue|預設值|T  **(必填)**|-|
+|onChange|值改變時的回調|((v: T, ...args: any[]) => void) \| undefined |-|

@@ -11,22 +11,22 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|options|可选参数|[UseWakeLockOptions](#usewakelockoptions) \| undefined |-|
+|options|可選參數|[UseWakeLockOptions](#usewakelockoptions) \| undefined |-|
 
 ### UseWakeLockOptions
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|onRequest|请求成功时的回调|() => void |`-`|
-|onRelease|释放时的回调|() => void |`-`|
-|onError|发生错误时的回调|(error: Error) => void |`-`|
+|onRequest|請求成功時的回調|() => void |`-`|
+|onRelease|釋放時的回調|() => void |`-`|
+|onError|發生錯誤時的回調|(error: Error) => void |`-`|
 
 ### UseWakeLockReturn
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|isSupported|浏览器是否支持 Wake Lock API|boolean  **(必填)**|`-`|
-|isActive|当前是否持有唤醒锁|boolean  **(必填)**|`-`|
-|request|请求唤醒锁|() =&gt; Promise&lt;void&gt;  **(必填)**|`-`|
-|forceRequest|强制请求唤醒锁，无论页面是否可见|() =&gt; Promise&lt;void&gt;  **(必填)**|`-`|
-|release|释放唤醒锁|() =&gt; Promise&lt;void&gt;  **(必填)**|`-`|
+|isSupported|瀏覽器是否支援 Wake Lock API|boolean  **(必填)**|`-`|
+|isActive|當前是否持有喚醒鎖|boolean  **(必填)**|`-`|
+|request|請求喚醒鎖|() =&gt; Promise&lt;void&gt;  **(必填)**|`-`|
+|forceRequest|強制請求喚醒鎖，無論頁面是否可見|() =&gt; Promise&lt;void&gt;  **(必填)**|`-`|
+|release|釋放喚醒鎖|() =&gt; Promise&lt;void&gt;  **(必填)**|`-`|

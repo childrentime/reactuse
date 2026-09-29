@@ -9,6 +9,6 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|fn|要节流的函数|T  **(必填)**|-|
-|wait|间隔时间|number \| undefined |-|
-|options|传递给 `lodash.throttle` 的属性|_.ThrottleSettings \| undefined |-|
+|fn|要節流的函數|T  **(必填)**|-|
+|wait|間隔時間|number \| undefined |-|
+|options|傳遞給 `lodash.throttle` 的屬性|_.ThrottleSettings \| undefined |-|

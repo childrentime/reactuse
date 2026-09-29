@@ -6,13 +6,13 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|requestPermissions|自动请求权限|boolean \| undefined |-|
+|requestPermissions|自動請求權限|boolean \| undefined |-|
 
 ### UseWebNotificationReturn
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|isSupported|浏览器是否支持|boolean  **(必填)**|`-`|
+|isSupported|瀏覽器是否支援|boolean  **(必填)**|`-`|
 |show|展示函数|[UseWebNotificationShow](#usewebnotificationshow)  **(必填)**|`-`|
 |close|关闭函数|() => void  **(必填)**|`-`|
 |ensurePermissions|请求权限函数|() =&gt; Promise&lt;boolean \| undefined&gt;  **(必填)**|`-`|

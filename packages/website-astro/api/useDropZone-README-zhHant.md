@@ -6,8 +6,8 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|target|目标元素|[BasicTarget](#basictarget)&lt;EventTarget&gt;  **(必填)**|-|
-|onDrop|拖拽释放时候的回调|((files: File[] \| null) => void) \| undefined |-|
+|target|目標元素|[BasicTarget](#basictarget)&lt;EventTarget&gt;  **(必填)**|-|
+|onDrop|拖拽釋放時候的回調|((files: File[] \| null) => void) \| undefined |-|
 
 ### BasicTarget
 

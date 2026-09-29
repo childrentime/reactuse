@@ -6,5 +6,5 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|effect|副作用函数|React.EffectCallback  **(必填)**|-|
-|deps|依赖列表|React.DependencyList  **(必填)**|-|
+|effect|副作用函數|React.EffectCallback  **(必填)**|-|
+|deps|依賴列表|React.DependencyList  **(必填)**|-|

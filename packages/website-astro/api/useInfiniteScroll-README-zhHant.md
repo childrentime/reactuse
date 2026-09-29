@@ -7,7 +7,7 @@
 |參數名|描述|類型|預設值|
 |---|---|---|---|
 |target|dom元素|[BasicTarget](#basictarget)&lt;Element&gt;  **(必填)**|-|
-|onLoadMore|加载更多函数|[UseInfiniteScrollLoadMore](#useinfinitescrollloadmore)  **(必填)**|-|
+|onLoadMore|加載更多函數|[UseInfiniteScrollLoadMore](#useinfinitescrollloadmore)  **(必填)**|-|
 |options|可选参数|[UseInfiniteScrollOptions](#useinfinitescrolloptions) \| undefined |-|
 
 ### UseInfiniteScrollLoadMore
@@ -27,12 +27,12 @@
 |distance|元素底部与视口底部之间的最小距离|number |`0`|
 |direction|滚动方向|'top' \| 'bottom' \| 'left' \| 'right' |`'bottom'`|
 |preserveScrollPosition|加载更多项目时是否保留当前滚动位置|boolean |`-`|
-|throttle|滚动事件的节流时间，默认关闭。|number |`0`|
-|idle|滚动结束时的检查时间。当配置 `throttle` 时，此配置将设置为 (throttle +idle)。|number |`200`|
-|offset|将到达状态偏移 x 像素|[UseScrollOffset](#usescrolloffset) |`-`|
-|onScroll|滚动的回调|(e: Event) => void |`-`|
-|onStop|滚动结束的回调|(e: Event) => void |`-`|
-|eventListenerOptions|滚动事件参数|boolean \| AddEventListenerOptions |`{capture: false, passive: true}`|
+|throttle|滚動事件的節流時間，預設關閉。|number |`0`|
+|idle|滚動結束時的檢查時間。當配置 `throttle` 時，此配置將設置為 (throttle +idle)。|number |`200`|
+|offset|將到達狀態偏移 x 像素|[UseScrollOffset](#usescrolloffset) |`-`|
+|onScroll|滚動的回調|(e: Event) => void |`-`|
+|onStop|滚動結束的回調|(e: Event) => void |`-`|
+|eventListenerOptions|滚動事件參數|boolean \| AddEventListenerOptions |`{capture: false, passive: true}`|
 
 ### UseInfiniteScrollArrivedState
 

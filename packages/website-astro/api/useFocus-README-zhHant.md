@@ -8,8 +8,8 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|target|dom对象|[BasicTarget](#basictarget)&lt;HTMLElement \| SVGElement&gt;  **(必填)**|-|
-|initialValue|默认值|boolean \| undefined |`false`|
+|target|dom對象|[BasicTarget](#basictarget)&lt;HTMLElement \| SVGElement&gt;  **(必填)**|-|
+|initialValue|預設值|boolean \| undefined |`false`|
 
 ### BasicTarget
 

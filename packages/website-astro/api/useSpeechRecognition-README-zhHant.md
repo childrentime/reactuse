@@ -2,10 +2,10 @@
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|continuous|控制是否为每次识别返回连续结果，或仅返回单个结果|boolean |`true`|
-|interimResults|控制是否应返回临时结果（true）或不返回（false）。临时结果是尚未最终确定的结果|boolean |`true`|
-|lang|语音识别的语言|string |`'en-US'`|
-|maxAlternatives|表示每个结果返回的最大备选项数量的数字|number |`1`|
+|continuous|控制是否為每次識別返回連續結果，或僅返回單個結果|boolean |`true`|
+|interimResults|控制是否應返回臨時結果（true）或不返回（false）。臨時結果是尚未最終確定的結果|boolean |`true`|
+|lang|語音識別的語言|string |`'en-US'`|
+|maxAlternatives|表示每個結果返回的最大備選項數量的數字|number |`1`|
 
 ### useSpeechRecognition
 
@@ -24,4 +24,4 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|options|可选的语音识别配置参数|[UseSpeechRecognitionOptions](#usespeechrecognitionoptions) \| undefined |-|
+|options|可選的語音識別配置參數|[UseSpeechRecognitionOptions](#usespeechrecognitionoptions) \| undefined |-|

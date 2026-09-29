@@ -2,7 +2,7 @@
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|userAgent|服务端渲染时，需要传递 `userAgent`|string |`-`|
+|userAgent|服務端渲染時，需要傳遞 `userAgent`|string |`-`|
 
 ### usePlatform
 

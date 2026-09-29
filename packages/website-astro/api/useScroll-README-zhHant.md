@@ -12,36 +12,36 @@
 |參數名|描述|類型|預設值|
 |---|---|---|---|
 |target|dom元素|[BasicTarget](#basictarget)&lt;Element&gt; \| Document \| Window  **(必填)**|-|
-|options|可选参数|[UseScrollOptions](#usescrolloptions) \| undefined |-|
+|options|可選參數|[UseScrollOptions](#usescrolloptions) \| undefined |-|
 
 ### UseScrollOptions
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|throttle|滚动事件的节流时间，默认关闭。|number |`0`|
-|idle|滚动结束时的检查时间。当配置 `throttle` 时，此配置将设置为 (throttle +idle)。|number |`200`|
-|offset|将到达状态偏移 x 像素|[UseScrollOffset](#usescrolloffset) |`-`|
-|onScroll|滚动的回调|(e: Event) => void |`-`|
-|onStop|滚动结束的回调|(e: Event) => void |`-`|
-|eventListenerOptions|滚动事件参数|boolean \| AddEventListenerOptions |`{capture: false, passive: true}`|
+|throttle|滚動事件的節流時間，預設關閉。|number |`0`|
+|idle|滚動結束時的檢查時間。當配置 `throttle` 時，此配置將設置為 (throttle +idle)。|number |`200`|
+|offset|將到達狀態偏移 x 像素|[UseScrollOffset](#usescrolloffset) |`-`|
+|onScroll|滚動的回調|(e: Event) => void |`-`|
+|onStop|滚動結束的回調|(e: Event) => void |`-`|
+|eventListenerOptions|滚動事件參數|boolean \| AddEventListenerOptions |`{capture: false, passive: true}`|
 
 ### UseScrollArrivedState
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|left|到达左边|boolean  **(必填)**|`-`|
-|right|到达右边|boolean  **(必填)**|`-`|
-|top|到达顶部|boolean  **(必填)**|`-`|
-|bottom|到达底部|boolean  **(必填)**|`-`|
+|left|到達左邊|boolean  **(必填)**|`-`|
+|right|到達右邊|boolean  **(必填)**|`-`|
+|top|到達頂部|boolean  **(必填)**|`-`|
+|bottom|到達底部|boolean  **(必填)**|`-`|
 
 ### UseScrollDirection
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|left|向左滚动|boolean  **(必填)**|`-`|
-|right|向右滚动|boolean  **(必填)**|`-`|
-|top|向上滚动|boolean  **(必填)**|`-`|
-|bottom|向下滚动|boolean  **(必填)**|`-`|
+|left|向左滚動|boolean  **(必填)**|`-`|
+|right|向右滚動|boolean  **(必填)**|`-`|
+|top|向上滚動|boolean  **(必填)**|`-`|
+|bottom|向下滚動|boolean  **(必填)**|`-`|
 
 ### BasicTarget
 

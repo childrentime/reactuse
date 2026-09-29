@@ -11,4 +11,4 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|initialValue|初始值，默认为 false|boolean \| undefined |-|
+|initialValue|初始值，預設為 false|boolean \| undefined |-|

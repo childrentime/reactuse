@@ -9,12 +9,12 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|cb|回调|(...args: unknown[]) => any  **(必填)**|-|
-|interval|间隔时间|number  **(必填)**|-|
-|options|可选参数|[UseTimeoutFnOptions](#usetimeoutfnoptions) \| undefined |-|
+|cb|回調|(...args: unknown[]) => any  **(必填)**|-|
+|interval|間隔時間|number  **(必填)**|-|
+|options|可選參數|[UseTimeoutFnOptions](#usetimeoutfnoptions) \| undefined |-|
 
 ### UseTimeoutFnOptions
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|immediate|立即设置定时器|boolean |`true`|
+|immediate|立即設置定時器|boolean |`true`|

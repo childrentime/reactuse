@@ -2,8 +2,8 @@
 
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|immediate|立即打开连接, 默认打开|boolean |`-`|
-|autoReconnect|连接断开时自动重连|[UseEventSourceAutoReconnectOptions](#useeventsourceautoreconnectoptions) |`-`|
+|immediate|立即打開連接, 預設打開|boolean |`-`|
+|autoReconnect|連接斷開時自動重連|[UseEventSourceAutoReconnectOptions](#useeventsourceautoreconnectoptions) |`-`|
 
 ### UseEventSourceAutoReconnectOptions
 

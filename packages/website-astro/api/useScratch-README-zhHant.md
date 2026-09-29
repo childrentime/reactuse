@@ -3,18 +3,18 @@
 |參數名|描述|類型|預設值|
 |---|---|---|---|
 |isScratching|是否正在刮擦|boolean  **(必填)**|`-`|
-|start|开始时间戳|number |`-`|
-|end|结束时间戳|number |`-`|
-|x|相对于元素的 x 坐标|number |`-`|
-|y|相对于元素的 y 坐标|number |`-`|
+|start|開始時間戳|number |`-`|
+|end|結束時間戳|number |`-`|
+|x|相對於元素的 x 座標|number |`-`|
+|y|相對於元素的 y 座標|number |`-`|
 |dx|x 方向的增量|number |`-`|
 |dy|y 方向的增量|number |`-`|
-|docX|文档中的 x 坐标|number |`-`|
-|docY|文档中的 y 坐标|number |`-`|
-|posX|元素在文档中的 x 位置|number |`-`|
-|posY|元素在文档中的 y 位置|number |`-`|
+|docX|文檔中的 x 座標|number |`-`|
+|docY|文檔中的 y 座標|number |`-`|
+|posX|元素在文檔中的 x 位置|number |`-`|
+|posY|元素在文檔中的 y 位置|number |`-`|
 |elH|元素高度|number |`-`|
-|elW|元素宽度|number |`-`|
+|elW|元素寬度|number |`-`|
 |elX|元素 x 位置|number |`-`|
 |elY|元素 y 位置|number |`-`|
 
@@ -23,9 +23,9 @@
 |參數名|描述|類型|預設值|
 |---|---|---|---|
 |disabled|是否禁用|boolean |`false`|
-|onScratch|刮擦时的回调|(state: [UseScratchState](#usescratchstate)) => void |`-`|
-|onScratchStart|开始刮擦时的回调|(state: [UseScratchState](#usescratchstate)) => void |`-`|
-|onScratchEnd|结束刮擦时的回调|(state: [UseScratchState](#usescratchstate)) => void |`-`|
+|onScratch|刮擦時的回調|(state: [UseScratchState](#usescratchstate)) => void |`-`|
+|onScratchStart|開始刮擦時的回調|(state: [UseScratchState](#usescratchstate)) => void |`-`|
+|onScratchEnd|結束刮擦時的回調|(state: [UseScratchState](#usescratchstate)) => void |`-`|
 
 ### useScratch
 
@@ -35,8 +35,8 @@
 #### Arguments
 |參數名|描述|類型|預設值|
 |---|---|---|---|
-|target|目标元素|[BasicTarget](#basictarget)&lt;HTMLElement&gt;  **(必填)**|-|
-|options|配置项|[UseScratchOptions](#usescratchoptions) \| undefined |-|
+|target|目標元素|[BasicTarget](#basictarget)&lt;HTMLElement&gt;  **(必填)**|-|
+|options|配置項|[UseScratchOptions](#usescratchoptions) \| undefined |-|
 
 ### BasicTarget
 
