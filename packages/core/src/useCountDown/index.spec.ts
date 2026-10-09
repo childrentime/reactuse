@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react'
-import { useCountDown } from '.'
+import { getHMSTime, useCountDown } from '.'
 
 jest.useFakeTimers()
 
@@ -41,4 +41,10 @@ it('should not call the callback when started at zero', () => {
 
   tick(2)
   expect(onEnd).not.toHaveBeenCalled()
+})
+
+it('should cap the formatted time at 99:59:59', () => {
+  expect(getHMSTime(359999)).toEqual(['99', '59', '59'])
+  expect(getHMSTime(360000)).toEqual(['99', '59', '59'])
+  expect(getHMSTime(360001)).toEqual(['99', '59', '59'])
 })
