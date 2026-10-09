@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useInterval } from '../useInterval'
+import { useLatest } from '../useLatest'
 import type { UseCountDown } from './interface'
 
 function padZero(time: number): string {
@@ -26,6 +27,7 @@ export const useCountDown: UseCountDown = (
 ) => {
   const [remainTime, setRemainTime] = useState(time)
   const [delay, setDelay] = useState<number | null>(1000)
+  const callbackRef = useLatest(callback)
 
   useInterval(() => {
     if (remainTime <= 0) {
@@ -37,9 +39,9 @@ export const useCountDown: UseCountDown = (
 
   useEffect(() => {
     if (time > 0 && remainTime <= 0) {
-      callback && callback()
+      callbackRef.current?.()
     }
-  }, [callback, remainTime, time])
+  }, [callbackRef, remainTime, time])
 
   const [hour, minute, secoud] = format(remainTime)
 
