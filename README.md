@@ -48,6 +48,11 @@ Sponsoring ReactUse puts your product in front of the React developers who insta
       <a href="https://hintlib.com/"><b>Unscript</b></a><br>
       <sub>English speaking practice for iPhone — say one real dialogue four times, with less of the script each time. Speech stays on your phone. Free on the App Store.</sub>
     </td>
+    <td align="center" width="280">
+      <a href="https://apps.apple.com/app/id6812938877"><img src="https://fogaway.pages.dev/icons/apple-touch-icon.png" alt="FogAway — fog-of-war exploration map for iPhone" width="80"></a><br>
+      <a href="https://fogaway.pages.dev/"><b>FogAway</b></a><br>
+      <sub>Uncover the places you explore, record your routes, and revisit each day. Tracks stay on your phone. Available on the App Store.</sub>
+    </td>
   </tr>
 </table>
 

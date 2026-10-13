@@ -43,6 +43,11 @@ ReactUse 免费、以 Unlicense 释入公有领域，由维护者利用业余时
       <a href="https://hintlib.com/zh/"><b>Unscript 脱稿</b></a><br>
       <sub>iPhone 英语口语练习——同一段对话练四遍，台词一次比一次少。语音识别不出手机。App Store 免费下载。</sub>
     </td>
+    <td align="center" width="280">
+      <a href="https://apps.apple.com/app/id6812938877"><img src="https://fogaway.pages.dev/icons/apple-touch-icon.png" alt="拨雾 FogAway——iPhone 迷雾探索地图" width="80"></a><br>
+      <a href="https://fogaway.pages.dev/zh/"><b>拨雾 FogAway</b></a><br>
+      <sub>走过的地方从迷雾中揭开，自动记录路线，回看每天的足迹。轨迹保存在手机本地。已上架 App Store。</sub>
+    </td>
   </tr>
 </table>
 
