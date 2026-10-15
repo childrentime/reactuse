@@ -43,6 +43,7 @@ import { useLongPress } from './useLongPress'
 import { useMeasure } from './useMeasure'
 import { useMediaDevices } from './useMediaDevices'
 import { useMediaQuery } from './useMediaQuery'
+import { breakpointsTailwind, useBreakpoints } from './useBreakpoints'
 import { useMicrophone } from './useMicrophone'
 import { useMount } from './useMount'
 import { useMountedState } from './useMountedState'
@@ -123,6 +124,8 @@ export {
   useInterval,
   useDarkMode,
   useMediaQuery,
+  useBreakpoints,
+  breakpointsTailwind,
   usePreferredDark,
   usePreferredColorScheme,
   usePreferredContrast,
@@ -274,6 +277,7 @@ export * from './useLongPress/interface'
 export * from './useMeasure/interface'
 export * from './useMediaDevices/interface'
 export * from './useMediaQuery/interface'
+export * from './useBreakpoints/interface'
 export * from './useMicrophone/interface'
 export * from './useMount/interface'
 export * from './useMountedState/interface'

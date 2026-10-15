@@ -15,6 +15,10 @@
     "category": "state",
     "url": "https://reactuse.com/state/useboolean/"
   },
+  "useBreakpoints": {
+    "category": "browser",
+    "url": "https://reactuse.com/browser/usebreakpoints/"
+  },
   "useBroadcastChannel": {
     "category": "browser",
     "url": "https://reactuse.com/browser/usebroadcastchannel/"
