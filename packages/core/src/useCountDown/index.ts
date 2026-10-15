@@ -11,7 +11,7 @@ export function getHMSTime(timeDiff: number): [string, string, string] {
   if (timeDiff <= 0) {
     return ['00', '00', '00']
   }
-  if (timeDiff > 100 * 3600) {
+  if (timeDiff >= 100 * 3600) {
     return ['99', '59', '59']
   }
   const hour = Math.floor(timeDiff / 3600)
