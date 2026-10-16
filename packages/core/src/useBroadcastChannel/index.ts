@@ -36,6 +36,7 @@ export const useBroadcastChannel: UseBroadcastChannel = <D, P>(
   useEffect(() => {
     if (isSupported) {
       channelRef.current = new BroadcastChannel(name)
+      setIsClosed(false)
       setError(null)
 
       const handleMessage = (e: MessageEvent) => {
