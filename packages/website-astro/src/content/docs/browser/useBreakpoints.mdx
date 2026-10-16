@@ -1,0 +1,42 @@
+---
+title: useBreakpoints – Browser Hook Usage & Examples
+sidebar_label: useBreakpoints
+description: "useBreakpoints is a React hook that tracks named viewport breakpoints with matchMedia, returning a boolean per breakpoint plus helpers such as smaller and between."
+---
+# useBreakpoints
+
+Reactive viewport breakpoints
+
+`useBreakpoints` takes a map of breakpoint names to minimum widths in pixels and tells you which ones the viewport has reached. It subscribes to one pair of [`window.matchMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) queries per breakpoint, so the component re-renders only when the viewport crosses a breakpoint, not on every resize. Each breakpoint name is `true` once the viewport is at least that wide, and `greater`, `greaterOrEqual`, `smaller`, `smallerOrEqual` and `between` compare against any of them. `current` lists every breakpoint reached, and `active` is the largest of them.
+
+### When to Use
+
+- Switching layouts in JavaScript, such as a drawer on mobile and a sidebar on desktop
+- Keeping JavaScript logic in step with CSS breakpoints, for example `breakpointsTailwind` to match Tailwind's `sm` to `2xl`
+- Changing the number of columns or items with the screen size
+
+### Notes
+
+- **SSR-safe**: on the server and during hydration the hook assumes a viewport `defaultWidth` pixels wide (default `0`), then switches to the real width after hydration without a mismatch.
+- **Mobile first**: breakpoints are minimum widths. `between(a, b)` is true from `a` up to, but not including, `b`.
+- **Inline objects are fine**: the hook keys its subscriptions on the breakpoint values, so passing a new object each render does not resubscribe.
+- **Related hooks**: for a single arbitrary query, use `useMediaQuery`.
+
+## Usage
+
+```tsx live
+function Demo() {
+  const bp = useBreakpoints(breakpointsTailwind);
+
+  return (
+    <div>
+      <div>Active breakpoint: {bp.active ?? "below sm"}</div>
+      <div>Reached: {bp.current.join(", ") || "none"}</div>
+      <div>Smaller than md: {bp.smaller("md") ? "Yes" : "No"}</div>
+      <div>Between md and xl: {bp.between("md", "xl") ? "Yes" : "No"}</div>
+    </div>
+  );
+};
+```
+
+%%API%%

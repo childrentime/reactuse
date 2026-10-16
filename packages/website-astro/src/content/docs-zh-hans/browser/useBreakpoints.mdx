@@ -1,0 +1,42 @@
+---
+title: useBreakpoints 用法与示例
+sidebar_label: useBreakpoints
+description: "useBreakpoints 是一个 React hook，通过 matchMedia 跟踪具名的视口断点，为每个断点返回一个布尔值，并提供 smaller、between 等比较函数。"
+---
+# useBreakpoints
+
+响应式视口断点
+
+`useBreakpoints` 接收一个断点名称到最小宽度（像素）的映射，并告诉你视口已达到哪些断点。它为每个断点订阅一对 [`window.matchMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) 查询，因此组件只在视口跨越断点时重新渲染，而不是每次调整大小都渲染。视口宽度达到某个断点后，该断点名称的值为 `true`；`greater`、`greaterOrEqual`、`smaller`、`smallerOrEqual` 和 `between` 可以与任意断点比较。`current` 列出所有已达到的断点，`active` 是其中最大的一个。
+
+### 使用场景
+
+- 在 JavaScript 中切换布局，例如移动端使用抽屉、桌面端使用侧边栏
+- 让 JavaScript 逻辑与 CSS 断点保持一致，例如用 `breakpointsTailwind` 对应 Tailwind 的 `sm` 到 `2xl`
+- 根据屏幕尺寸改变列数或条目数
+
+### 注意事项
+
+- **SSR 安全**：在服务端和水合期间，hook 假定视口宽度为 `defaultWidth` 像素（默认 `0`），水合完成后再切换到真实宽度，不会产生水合不匹配。
+- **移动优先**：断点是最小宽度。`between(a, b)` 在宽度从 `a` 起、到 `b` 之前（不含 `b`）为 true。
+- **可以传入内联对象**：hook 按断点数值管理订阅，每次渲染传入新对象不会重新订阅。
+- **相关 hooks**：只需要单个任意查询时，使用 `useMediaQuery`。
+
+## Usage
+
+```tsx live
+function Demo() {
+  const bp = useBreakpoints(breakpointsTailwind);
+
+  return (
+    <div>
+      <div>Active breakpoint: {bp.active ?? "below sm"}</div>
+      <div>Reached: {bp.current.join(", ") || "none"}</div>
+      <div>Smaller than md: {bp.smaller("md") ? "Yes" : "No"}</div>
+      <div>Between md and xl: {bp.between("md", "xl") ? "Yes" : "No"}</div>
+    </div>
+  );
+};
+```
+
+%%API%%
