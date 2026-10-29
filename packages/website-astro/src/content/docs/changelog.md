@@ -5,6 +5,10 @@ description: "Changelog for @reactuses/core — release notes and version histor
 ---
 # ChangeLog
 
+## 6.6.1(Oct 29, 2026)
+
+- docs(readme): drop the "Who's Using This" section from the README that ships with the package. No code changes
+
 ## 6.6.0(Oct 16, 2026)
 
 - feat(useBreakpoints): new hook for named viewport breakpoints. It takes a map of breakpoint names to minimum widths and returns a boolean per name, the helpers `greater`, `greaterOrEqual`, `smaller`, `smallerOrEqual` and `between`, plus `current` (every breakpoint reached, smallest first) and `active` (the largest one). It subscribes to two `matchMedia` queries per breakpoint, so a component re-renders only when a breakpoint is crossed rather than on every resize, and inline breakpoint objects do not resubscribe. `defaultWidth` is the width assumed on the server and during hydration, so SSR renders without a mismatch. Ships with a `breakpointsTailwind` preset. Thanks to @rawsun007 (#243, closes #240)

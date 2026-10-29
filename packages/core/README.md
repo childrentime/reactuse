@@ -128,14 +128,6 @@ useQRCode
 
 ---
 
-## Who's Using This
-
-[![PDD](https://img.shields.io/badge/PDD-E_Commerce-orange?style=for-the-badge)](https://www.pinduoduo.com/)
-[![Shopee](https://img.shields.io/badge/Shopee-E_Commerce-red?style=for-the-badge)](https://shopee.com/)
-[![Ctrip](https://img.shields.io/badge/Ctrip-Travel-blue?style=for-the-badge)](https://www.ctrip.com/)
-
----
-
 ## MCP Support
 
 If you want to use the MCP (Model Context Protocol) integration with reactuse, you can easily set it up with the following configuration. This allows you to run the `@reactuses/mcp` utility via `npx` for enhanced command-line support and automation.

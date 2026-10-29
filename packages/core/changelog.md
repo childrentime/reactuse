@@ -433,3 +433,7 @@ function Component() {
 - fix(useScriptTag): remove the script wherever it lives. `unload()` found the tag document-wide but removed it with `document.head.removeChild`, so a reused script outside `head` threw `NotFoundError` on unmount. Thanks to @rawsun007 (#232)
 - fix(useScriptTag): make the SSR guards work. `if (!document)` throws a `ReferenceError` on the server instead of returning, so `load()` rejected and `unload()` threw. Both now use `defaultDocument`. Thanks to @rawsun007 (#238)
 - fix(useDevicePixelRatio): stop leaking a `change` listener after the ratio changes. Each resubscribe's cleanup was thrown away, so the listener added after the first change outlived the component and called `setPixelRatio` after unmount. Thanks to @rawsun007 (#231)
+
+## 6.6.1(Oct 29, 2026)
+
+- docs(readme): drop the "Who's Using This" section from the README that ships with the package. No code changes
