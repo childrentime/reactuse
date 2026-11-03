@@ -110,6 +110,7 @@ import { useMap } from './useMap'
 import { useColorMode } from './useColorMode'
 import { useSpeechRecognition } from './useSpeechRecognition'
 import { useWakeLock } from './useWakeLock'
+import { useBatchedMount } from './useBatchedMount'
 
 export {
   usePrevious,
@@ -230,6 +231,7 @@ export {
   useColorMode,
   useSpeechRecognition,
   useWakeLock,
+  useBatchedMount,
 }
 
 export * from './useActiveElement/interface'
@@ -339,3 +341,4 @@ export * from './useMap/interface'
 export * from './useColorMode/interface'
 export * from './useSpeechRecognition/interface'
 export * from './useWakeLock/interface'
+export * from './useBatchedMount/interface'
